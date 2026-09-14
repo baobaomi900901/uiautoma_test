@@ -1,0 +1,697 @@
+{
+  "browser_exe_name": "chrome.exe",
+  "browser_exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "browser_pid": 24612,
+  "candidate_xpaths": [
+    "//input[@class='ant-checkbox-input']"
+  ],
+  "dom_path": [
+    {
+      "attrs": {},
+      "depth": -1,
+      "fields": {
+        "app": {
+          "op": 1,
+          "used": false,
+          "value": "chrome.exe"
+        },
+        "title": {
+          "op": 1,
+          "used": false,
+          "value": "表单控件测试"
+        },
+        "url": {
+          "op": 1,
+          "used": false,
+          "value": "http://localhost:7199/form-controls"
+        }
+      },
+      "layer_used": false,
+      "tag": "web"
+    },
+    {
+      "attrs": {
+        "lang": {
+          "op": 1,
+          "used": false,
+          "value": "zh-CN"
+        }
+      },
+      "depth": 0,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "html"
+    },
+    {
+      "attrs": {},
+      "depth": 1,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "body"
+    },
+    {
+      "attrs": {},
+      "depth": 2,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": true,
+          "value": "root"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "padding: 24px; min-height: 100vh; box-sizing: border-box;"
+        }
+      },
+      "depth": 3,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "width: 100%; margin: 0px;"
+        }
+      },
+      "depth": 4,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 5,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-card ant-card-bordered css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 6,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-card-body"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: grid; grid-template-columns: minmax(0px, 1fr) 1px minmax(0px, 1fr); column-gap: 24px; align-items: start;"
+        }
+      },
+      "depth": 7,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 4
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 3
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "margin-bottom: 16px;"
+        }
+      },
+      "depth": 8,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-form-item css-dev-only-do-not-override-mncuj7 ant-form-item-vertical"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 46
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 36
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 9,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-row ant-form-item-row css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 10,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-col ant-form-item-control css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 2
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 11,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-form-item-control-input"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 12,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-form-item-control-input-content"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 13,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;"
+        }
+      },
+      "depth": 14,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-checkbox-group css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 2
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 15,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-checkbox-wrapper ant-checkbox-wrapper-in-form-item css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 4
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 4
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "label"
+    },
+    {
+      "attrs": {},
+      "depth": 16,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-checkbox ant-wave-target css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "span"
+    },
+    {
+      "attrs": {
+        "type": {
+          "op": 1,
+          "used": false,
+          "value": "checkbox"
+        },
+        "value": {
+          "op": 1,
+          "used": false,
+          "value": "travel"
+        }
+      },
+      "depth": 17,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-checkbox-input"
+        },
+        "id": {
+          "_dynamic": true,
+          "op": 1,
+          "used": false,
+          "value": "el_9gogwsIfLALG"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": true,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "input"
+    }
+  ],
+  "locators": {
+    "dom_structure": {
+      "machine_xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[36]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[4]/span[1]/input[1]",
+      "readable_xpath": "//div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[3]/div[36]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[4]/span[1]/input[1]"
+    }
+  },
+  "machine_xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[36]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[4]/span[1]/input[1]",
+  "platform": "web",
+  "sessionId": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|24612",
+  "web_extension_id": "dibnmjmomkibpflpmagomhkehpelfoff",
+  "web_session_id": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|24612",
+  "xpath": "//div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[3]/div[36]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[4]/span[1]/input[1]",
+  "xpath_diagnostics": [
+    {
+      "failure_reason": "",
+      "match_count": 1,
+      "matched_target": true,
+      "source": "stabilized",
+      "xpath": "//input[@class='ant-checkbox-input']"
+    }
+  ],
+  "xpath_mode": "readable_verified"
+}

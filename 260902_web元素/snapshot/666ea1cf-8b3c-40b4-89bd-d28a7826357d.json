@@ -1,0 +1,218 @@
+{
+  "type": "web",
+  "path": [
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "root" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card ant-card-bordered css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card-body" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "iframe",
+      "required": [
+        { "name": "src", "value": "/xpath/#/iframe-shadow-form-content", "operator": "contains" }
+      ],
+      "optional": [
+        { "name": "id", "value": "iframe-shadow-form" },
+        { "name": "title", "value": "iframe 内的 Shadow 表单" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 2 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "root" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "required": [
+        { "name": "id", "value": "form-shadow-host" }
+      ],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "#shadow-root",
+      "required": [
+        { "name": "mode", "value": "open" }
+      ],
+      "optional": []
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "shadow-form-content" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card ant-card-bordered css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card-body" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 2 },
+        { "name": "index", "value": 3 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 52 },
+        { "name": "index", "value": 66 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "innerText", "value": "提 交" },
+        { "name": "class", "value": "ant-space-item" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "button",
+      "required": [
+        { "name": "innerText", "value": "提 交" },
+        { "name": "id", "value": "form-controls-ant-submit" }
+      ],
+      "optional": [
+        { "name": "type", "value": "button" },
+        { "name": "class", "value": "ant-btn css-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    }
+  ],
+  "xpath": {
+    "enabled": false,
+    "segments": [
+      "//iframe[contains(@src,'/xpath/#/iframe-shadow-form-content')]",
+      "//div[@id='form-shadow-host']/uiautomaShadowRoot//button[normalize-space(.)='提 交'][@id='form-controls-ant-submit']"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "type": "win",
+  "path": [
+    {
+      "backend": "wnd",
+      "tag": "Window",
+      "required": [
+        { "name": "process_name", "value": "win32-shooting-range-uia.exe" },
+        { "name": "class_name", "value": "XPathWin32ShootingRange" },
+        { "name": "title", "value": "Win32 靶场 - UIA" }
+      ],
+      "optional": []
+    },
+    {
+      "backend": "wnd",
+      "tag": "Tab",
+      "required": [
+        { "name": "class_name", "value": "SysTabControl32" }
+      ],
+      "optional": [
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "wnd",
+      "tag": "Pane",
+      "required": [
+        { "name": "class_name", "value": "XPathWin32Panel" },
+        { "name": "uia_name", "value": "表格数据页" }
+      ],
+      "optional": [
+        { "name": "title", "value": "表格数据页" },
+        { "name": "index", "value": 1 }
+      ]
+    },
+    {
+      "backend": "wnd",
+      "tag": "List",
+      "required": [
+        { "name": "class_name", "value": "SysListView32" },
+        { "name": "uia_name", "value": "共 1000 条数据，每页 20 条" }
+      ],
+      "optional": [
+        { "name": "title", "value": "员工数据表格" },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "uia",
+      "tag": "ListItem",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "uia_name", "value": "1" },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "uia",
+      "tag": "Text",
+      "required": [
+        { "name": "uia_name", "value": "1" }
+      ],
+      "optional": [
+        { "name": "index", "value": 0 }
+      ]
+    }
+  ]
+}

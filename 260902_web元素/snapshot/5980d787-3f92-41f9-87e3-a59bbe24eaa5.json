@@ -1,0 +1,24 @@
+{
+  "type": "win",
+  "path": [
+    {
+      "backend": "wnd",
+      "tag": "Menu",
+      "required": [
+        { "name": "process_name", "value": "win32-shooting-range-uia.exe" },
+        { "name": "class_name", "value": "#32768" }
+      ],
+      "optional": []
+    },
+    {
+      "backend": "uia",
+      "tag": "MenuItem",
+      "required": [],
+      "optional": [
+        { "name": "uia_name", "value": "撤消(U)" },
+        { "name": "automation_id", "value": "772" },
+        { "name": "index", "value": 0 }
+      ]
+    }
+  ]
+}

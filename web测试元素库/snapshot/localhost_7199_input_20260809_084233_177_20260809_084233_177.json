@@ -1,0 +1,23 @@
+{
+  "browser_exe_name": "chrome.exe",
+  "browser_exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "browser_pid": 33696,
+  "candidate_xpaths": [
+    "//input[@id='form-controls-native-cities']"
+  ],
+  "hostname": "localhost:7199",
+  "locator_kind": "xpath",
+  "page_origin": "http://localhost:7199",
+  "page_title": "表单控件测试",
+  "page_url": "http://localhost:7199/form-controls",
+  "platform": "web",
+  "primary_xpath": "//input[@id='form-controls-native-cities']",
+  "tag_name": "input",
+  "title": "表单控件测试",
+  "url": "http://localhost:7199/form-controls",
+  "web_extension_id": "dibnmjmomkibpflpmagomhkehpelfoff",
+  "web_session_id": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|33696",
+  "xpath": "//input[@id='form-controls-native-cities']",
+  "machine_xpath": "//input[@id='form-controls-native-cities']",
+  "raw_xpath": "//input[@id='form-controls-native-cities']"
+}

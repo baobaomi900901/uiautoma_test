@@ -1,0 +1,19 @@
+{
+  "groups": [
+    {
+      "id": "c955a815-3de6-4fa8-8137-0156407df2db",
+      "name": "默认分组",
+      "images": [
+        {
+          "id": "a232dbe0-0bda-49bc-8f3e-cf1b961df555",
+          "name": "元素",
+          "source_type": "screenshot",
+          "similarity": 0.8,
+          "capture_scale": 1.0,
+          "adaptive": true,
+          "grayscale": false
+        }
+      ]
+    }
+  ]
+}

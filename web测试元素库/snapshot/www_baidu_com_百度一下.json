@@ -1,0 +1,15 @@
+{
+  "hostname": "www.baidu.com",
+  "locator_kind": "xpath",
+  "page_origin": "https://www.baidu.com",
+  "page_url": "https://www.baidu.com/",
+  "platform": "web",
+  "title": "百度一下，你就知道",
+  "url": "https://www.baidu.com/",
+  "xpath": "//input[@id=\"su\"]",
+  "xpath_mode": "readable_verified",
+  "candidate_xpaths": [
+    "//input[@id=\"su\"]",
+    "//input[@value=\"百度一下\"]"
+  ]
+}

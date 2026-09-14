@@ -1,0 +1,35 @@
+{
+  "type": "win",
+  "path": [
+    {
+      "backend": "wnd",
+      "tag": "Window",
+      "required": [
+        { "name": "process_name", "value": "win32-shooting-range-uia.exe" },
+        { "name": "class_name", "value": "XPathWin32ShootingRange" },
+        { "name": "title", "value": "Win32 靶场 - UIA" }
+      ],
+      "optional": []
+    },
+    {
+      "backend": "wnd",
+      "tag": "Tab",
+      "required": [
+        { "name": "class_name", "value": "SysTabControl32" }
+      ],
+      "optional": [
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "uia",
+      "tag": "TabItem",
+      "required": [
+        { "name": "uia_name", "value": "拖拽测试" }
+      ],
+      "optional": [
+        { "name": "index", "value": 0 }
+      ]
+    }
+  ]
+}

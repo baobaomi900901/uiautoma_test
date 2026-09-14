@@ -1,0 +1,630 @@
+{
+  "browser_exe_name": "chrome.exe",
+  "browser_exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "browser_pid": 33696,
+  "candidate_xpaths": [
+    "//label[text()='旅行']",
+    "//div/label[text()='旅行']",
+    "//div/div/label[text()='旅行']",
+    "//div/div/div/label[text()='旅行']",
+    "//div/div/div/div/label[text()='旅行']",
+    "//div/div/div/div/div/label[text()='旅行']",
+    "//div/div/div/div/div/div/label[text()='旅行']",
+    "//div/div/div/div/div/div/div/label[text()='旅行']",
+    "//div/div/div/div/div/div/div/div/label[text()='旅行']",
+    "//div/div/div/div/div/div/div/div/div/label[text()='旅行']",
+    "//div/div/div/div/div/div/div/div/div/div/label[text()='旅行']",
+    "//div/div/div/div/div/div/div/div/div/div/div/label[text()='旅行']",
+    "//div/div/div/div/div/div/div/div/div/div/div/div/label[text()='旅行']",
+    "//div[@id='root']/div/div/div/div/div/div/div/div/div/div/div/div/label[text()='旅行']",
+    "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[35]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[4]"
+  ],
+  "dom_path": [
+    {
+      "attrs": {
+        "lang": {
+          "op": 1,
+          "used": false,
+          "value": "zh-CN"
+        }
+      },
+      "depth": 0,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "html"
+    },
+    {
+      "attrs": {},
+      "depth": 1,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "body"
+    },
+    {
+      "attrs": {},
+      "depth": 2,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": "root"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "padding: 24px; min-height: 100vh; box-sizing: border-box;"
+        }
+      },
+      "depth": 3,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "width: 100%; margin: 0px;"
+        }
+      },
+      "depth": 4,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 5,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-card ant-card-bordered css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 6,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-card-body"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: grid; grid-template-columns: minmax(0px, 1fr) 1px minmax(0px, 1fr); column-gap: 24px; align-items: start;"
+        }
+      },
+      "depth": 7,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 4
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "margin-bottom: 16px;"
+        }
+      },
+      "depth": 8,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-form-item css-dev-only-do-not-override-mncuj7 ant-form-item-has-success ant-form-item-vertical"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 45
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 35
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 9,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-row ant-form-item-row css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 10,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-col ant-form-item-control css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 11,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-form-item-control-input"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 12,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-form-item-control-input-content"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 13,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;"
+        }
+      },
+      "depth": 14,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "for": {
+          "op": 1,
+          "used": false,
+          "value": "el_CwBrQCbs8jAK"
+        },
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; line-height: 22px; color: rgba(0, 0, 0, 0.88);"
+        }
+      },
+      "depth": 15,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 4
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 4
+        },
+        "text": {
+          "op": 1,
+          "used": true,
+          "value": "旅行"
+        }
+      },
+      "layer_used": true,
+      "tag": "label"
+    }
+  ],
+  "hostname": "localhost:7199",
+  "locator_kind": "xpath",
+  "machine_xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[35]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[4]",
+  "page_origin": "http://localhost:7199",
+  "page_url": "http://localhost:7199/form-controls?uiautoma_element_get_text_run=e7bfefb26dd5447cb07ddb953a631eae",
+  "platform": "web",
+  "screen_rect": {
+    "h": 24.2,
+    "w": 57.2,
+    "x": 1416.13,
+    "y": 1471.53
+  },
+  "sessionId": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|33696",
+  "title": "表单控件测试",
+  "url": "http://localhost:7199/form-controls?uiautoma_element_get_text_run=e7bfefb26dd5447cb07ddb953a631eae",
+  "web_extension_id": "dibnmjmomkibpflpmagomhkehpelfoff",
+  "web_session_id": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|33696",
+  "xpath": "//label[text()='旅行']",
+  "xpath_compiler_hash": "873d7db3bc55681f9d218ee96f06dd8f90274189d104f9dfc3f3ac55b4db68f1",
+  "xpath_compiler_revision": "42",
+  "xpath_diagnostics": [
+    {
+      "error": "",
+      "failure_reason": "",
+      "match_count": 1,
+      "matched_target": true,
+      "source": "generated",
+      "xpath": "//label[text()='旅行']"
+    }
+  ],
+  "xpath_mode": "readable_verified"
+}

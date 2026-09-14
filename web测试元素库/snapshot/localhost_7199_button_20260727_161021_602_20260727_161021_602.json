@@ -1,0 +1,536 @@
+{
+  "browser_exe_name": "chrome.exe",
+  "browser_exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "browser_pid": 53536,
+  "candidate_xpaths": [
+    "//button[text()='focus()']",
+    "//button[@id='focus-target']",
+    "//button[@type='button']",
+    "//button[text()='focus()' and @id='focus-target' and @type='button']",
+    "//div/button[text()='focus()']",
+    "//div/div/button[text()='focus()']",
+    "//div/div/div/button[text()='focus()']",
+    "//div/div/div/div/button[text()='focus()']",
+    "//div/div/div/div/div/button[text()='focus()']",
+    "//div/div/div/div/div/div/button[text()='focus()']",
+    "//div/div/div/div/div/div/div/button[text()='focus()']",
+    "//div/div/div/div/div/div/div/div/button[text()='focus()']",
+    "//div/div/div/div/div/div/div/div/div/button[text()='focus()']",
+    "//div[@id='root']/div/div/div/div/div/div/div/div/div/button[text()='focus()']",
+    "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[3]/div[3]/div[1]/div[2]/button[1]"
+  ],
+  "dom_path": [
+    {
+      "attrs": {
+        "lang": {
+          "op": 1,
+          "used": false,
+          "value": "zh-CN"
+        }
+      },
+      "depth": 0,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "html"
+    },
+    {
+      "attrs": {},
+      "depth": 1,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "body"
+    },
+    {
+      "attrs": {},
+      "depth": 2,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": "root"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "padding: 24px; min-height: 100vh; box-sizing: border-box;"
+        }
+      },
+      "depth": 3,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "width: 100%; margin: 0px;"
+        }
+      },
+      "depth": 4,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 5,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-card ant-card-bordered css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 6,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-card-body"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: flex; gap: 24px; align-items: stretch;"
+        }
+      },
+      "depth": 7,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "gap: 20px; flex: 0 0 auto; width: 420px; max-width: 100%;"
+        }
+      },
+      "depth": 8,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 9,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-space-item"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 10,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: flex; align-items: center; gap: 12px;"
+        }
+      },
+      "depth": 11,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "width: 100px; height: 100px; box-sizing: border-box; padding: 0px; border-radius: 8px; border: 2px solid rgb(134, 239, 172); background: rgb(255, 255, 255); color: rgb(22, 101, 52); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; cursor: pointer; outline: none; flex-shrink: 0;"
+        },
+        "title": {
+          "op": 1,
+          "used": false,
+          "value": "focus-target"
+        },
+        "type": {
+          "op": 1,
+          "used": false,
+          "value": "button"
+        }
+      },
+      "depth": 12,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": "focus-target"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": true,
+          "value": "focus()"
+        }
+      },
+      "layer_used": true,
+      "tag": "button"
+    }
+  ],
+  "hostname": "localhost:7199",
+  "locator_kind": "xpath",
+  "machine_xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[3]/div[3]/div[1]/div[2]/button[1]",
+  "page_origin": "http://localhost:7199",
+  "page_url": "http://localhost:7199/keys-click-test",
+  "platform": "web",
+  "screen_rect": {
+    "h": 107.89,
+    "w": 110,
+    "x": 1160.26,
+    "y": 986.26
+  },
+  "sessionId": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|53536",
+  "title": "元素点击测试",
+  "url": "http://localhost:7199/keys-click-test",
+  "web_extension_id": "dibnmjmomkibpflpmagomhkehpelfoff",
+  "web_session_id": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|53536",
+  "xpath": "//button[text()='focus()']",
+  "xpath_compiler_hash": "dbc0a412b5491b7768540e15fc9d9a1d8970d9d4883cc8ba3f64ce8be9d64e9f",
+  "xpath_compiler_revision": "35",
+  "xpath_diagnostics": [
+    {
+      "error": "",
+      "failure_reason": "",
+      "match_count": 1,
+      "matched_target": true,
+      "source": "generated",
+      "xpath": "//button[text()='focus()']"
+    }
+  ],
+  "xpath_mode": "readable_verified"
+}

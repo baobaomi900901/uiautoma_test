@@ -1,0 +1,143 @@
+{
+  "type": "web",
+  "path": [
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "root" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card ant-card-bordered css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card-body" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "form",
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-form ant-form-vertical css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 3 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "innerText", "value": "单文件上传" },
+        { "name": "class", "value": "ant-form-item css-mncuj7 ant-form-item-vertical" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "innerText", "value": "单文件上传" },
+        { "name": "class", "value": "ant-row ant-form-item-row css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-col ant-form-item-control css-mncuj7" },
+        { "name": "index-of-type", "value": 1 },
+        { "name": "index", "value": 1 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-form-item-control-input" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-form-item-control-input-content" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "input",
+      "required": [
+        { "name": "id", "value": "input-upload-single" }
+      ],
+      "optional": [
+        { "name": "type", "value": "file" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    }
+  ],
+  "xpath": {
+    "enabled": false,
+    "segments": [
+      "//form//input[@id='input-upload-single']"
+    ]
+  }
+}

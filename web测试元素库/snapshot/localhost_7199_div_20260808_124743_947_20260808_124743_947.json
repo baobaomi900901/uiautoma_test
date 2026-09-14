@@ -1,0 +1,528 @@
+{
+  "browser_exe_name": "chrome.exe",
+  "browser_exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "browser_pid": 33696,
+  "candidate_xpaths": [
+    "//div[@data-position='center']",
+    "//div[@id='position-grid-panel']/div[@data-position='center']",
+    "//div/div[@id='position-grid-panel']/div[@data-position='center']",
+    "//div/div/div[@id='position-grid-panel']/div[@data-position='center']",
+    "//div/div/div/div[@id='position-grid-panel']/div[@data-position='center']",
+    "//div/div/div/div/div[@id='position-grid-panel']/div[@data-position='center']",
+    "//div/div/div/div/div/div[@id='position-grid-panel']/div[@data-position='center']",
+    "//div/div/div/div/div/div/div[@id='position-grid-panel']/div[@data-position='center']",
+    "//div/div/div/div/div/div/div/div[@id='position-grid-panel']/div[@data-position='center']",
+    "//div/div/div/div/div/div/div/div/div[@id='position-grid-panel']/div[@data-position='center']",
+    "//div[@id='root']/div/div/div/div/div/div/div/div/div[@id='position-grid-panel']/div[@data-position='center']",
+    "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[3]/div[2]/div[1]/div[2]/div[5]"
+  ],
+  "dom_path": [
+    {
+      "attrs": {
+        "lang": {
+          "op": 1,
+          "used": false,
+          "value": "zh-CN"
+        }
+      },
+      "depth": 0,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "html"
+    },
+    {
+      "attrs": {},
+      "depth": 1,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "body"
+    },
+    {
+      "attrs": {},
+      "depth": 2,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": "root"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "padding: 24px; min-height: 100vh; box-sizing: border-box;"
+        }
+      },
+      "depth": 3,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "width: 100%; margin: 0px;"
+        }
+      },
+      "depth": 4,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 5,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-card ant-card-bordered css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 6,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-card-body"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: flex; gap: 24px; align-items: stretch;"
+        }
+      },
+      "depth": 7,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "gap: 20px; flex: 0 0 auto; width: 420px; max-width: 100%;"
+        }
+      },
+      "depth": 8,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 9,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-space-item"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 10,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: grid; grid-template-columns: repeat(3, 100px); grid-template-rows: repeat(3, 100px); width: 300px; max-width: 100%; border: 2px solid rgb(22, 119, 255); border-radius: 8px; overflow: hidden; cursor: crosshair; user-select: none;"
+        }
+      },
+      "depth": 11,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": "position-grid-panel"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "data-position": {
+          "op": 1,
+          "used": true,
+          "value": "center"
+        },
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgb(191, 219, 254); background: rgb(239, 246, 255); font-size: 15px; font-weight: 600; color: rgb(29, 78, 216); line-height: 1.3;"
+        }
+      },
+      "depth": 12,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 5
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 5
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    }
+  ],
+  "hostname": "localhost:7199",
+  "locator_kind": "xpath",
+  "machine_xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[3]/div[2]/div[1]/div[2]/div[5]",
+  "page_origin": "http://localhost:7199",
+  "page_url": "http://localhost:7199/keys-click-test",
+  "platform": "web",
+  "screen_rect": {
+    "h": 110,
+    "w": 110,
+    "x": 1909.02,
+    "y": 658.09
+  },
+  "sessionId": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|33696",
+  "title": "元素点击测试",
+  "url": "http://localhost:7199/keys-click-test",
+  "web_extension_id": "dibnmjmomkibpflpmagomhkehpelfoff",
+  "web_session_id": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|33696",
+  "xpath": "//div[@data-position='center']",
+  "xpath_compiler_hash": "873d7db3bc55681f9d218ee96f06dd8f90274189d104f9dfc3f3ac55b4db68f1",
+  "xpath_compiler_revision": "42",
+  "xpath_diagnostics": [
+    {
+      "error": "",
+      "failure_reason": "",
+      "match_count": 1,
+      "matched_target": true,
+      "source": "generated",
+      "xpath": "//div[@data-position='center']"
+    }
+  ],
+  "xpath_mode": "readable_verified"
+}

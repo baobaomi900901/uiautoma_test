@@ -1,0 +1,551 @@
+{
+  "browser_exe_name": "chrome.exe",
+  "browser_exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "browser_pid": 33696,
+  "candidate_xpaths": [
+    "//select[@id='form-controls-native-city']",
+    "//div/select[@id='form-controls-native-city']",
+    "//div/div/select[@id='form-controls-native-city']",
+    "//div/div/div/select[@id='form-controls-native-city']",
+    "//div/div/div/div/select[@id='form-controls-native-city']",
+    "//div/div/div/div/div/select[@id='form-controls-native-city']",
+    "//div/div/div/div/div/div/select[@id='form-controls-native-city']",
+    "//div/div/div/div/div/div/div/select[@id='form-controls-native-city']",
+    "//div/div/div/div/div/div/div/div/select[@id='form-controls-native-city']",
+    "//div/div/div/div/div/div/div/div/div/select[@id='form-controls-native-city']",
+    "//div/div/div/div/div/div/div/div/div/div/select[@id='form-controls-native-city']",
+    "//div[@id='root']/div/div/div/div/div/div/div/div/div/div/select[@id='form-controls-native-city']",
+    "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[27]/div[1]/div[2]/div[1]/div[1]/select[1]"
+  ],
+  "dom_path": [
+    {
+      "attrs": {
+        "lang": {
+          "op": 1,
+          "used": false,
+          "value": "zh-CN"
+        }
+      },
+      "depth": 0,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "html"
+    },
+    {
+      "attrs": {},
+      "depth": 1,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "body"
+    },
+    {
+      "attrs": {},
+      "depth": 2,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": "root"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "padding: 24px; min-height: 100vh; box-sizing: border-box;"
+        }
+      },
+      "depth": 3,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "width: 100%; margin: 0px;"
+        }
+      },
+      "depth": 4,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 5,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-card ant-card-bordered css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 6,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-card-body"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "display: grid; grid-template-columns: minmax(0px, 1fr) 1px minmax(0px, 1fr); column-gap: 24px; align-items: start;"
+        }
+      },
+      "depth": 7,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 4
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "margin-bottom: 16px;"
+        }
+      },
+      "depth": 8,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-form-item css-dev-only-do-not-override-mncuj7 ant-form-item-vertical"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 33
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 27
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 9,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-row ant-form-item-row css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 10,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-col ant-form-item-control css-dev-only-do-not-override-mncuj7"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 11,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-form-item-control-input"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {},
+      "depth": 12,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "ant-form-item-control-input-content"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": false,
+      "tag": "div"
+    },
+    {
+      "attrs": {
+        "style": {
+          "op": 1,
+          "used": false,
+          "value": "width: 100%; height: 32px; padding: 4px 11px; font-size: 14px; line-height: 22px; border-radius: 6px; border: 1px solid rgb(217, 217, 217); box-sizing: border-box; outline: none; transition: 0.2s; background: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.88);"
+        }
+      },
+      "depth": 13,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "id": {
+          "op": 1,
+          "used": true,
+          "value": "form-controls-native-city"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "indexOfType": {
+          "op": 1,
+          "used": false,
+          "value": 1
+        },
+        "text": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        }
+      },
+      "layer_used": true,
+      "tag": "select"
+    }
+  ],
+  "hostname": "localhost:7199",
+  "locator_kind": "xpath",
+  "machine_xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[27]/div[1]/div[2]/div[1]/div[1]/select[1]",
+  "page_origin": "http://localhost:7199",
+  "page_url": "http://localhost:7199/form-controls",
+  "platform": "web",
+  "screen_rect": {
+    "h": 35.19,
+    "w": 1052.28,
+    "x": 1191.74,
+    "y": 1122.99
+  },
+  "sessionId": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|33696",
+  "title": "表单控件测试",
+  "url": "http://localhost:7199/form-controls",
+  "web_extension_id": "dibnmjmomkibpflpmagomhkehpelfoff",
+  "web_session_id": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|33696",
+  "xpath": "//select[@id='form-controls-native-city']",
+  "xpath_compiler_hash": "873d7db3bc55681f9d218ee96f06dd8f90274189d104f9dfc3f3ac55b4db68f1",
+  "xpath_compiler_revision": "42",
+  "xpath_diagnostics": [
+    {
+      "error": "",
+      "failure_reason": "",
+      "match_count": 1,
+      "matched_target": true,
+      "source": "generated",
+      "xpath": "//select[@id='form-controls-native-city']"
+    }
+  ],
+  "xpath_mode": "readable_verified"
+}

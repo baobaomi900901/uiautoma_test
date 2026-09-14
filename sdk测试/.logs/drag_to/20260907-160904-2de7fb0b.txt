@@ -1,0 +1,175 @@
+完整日志: D:\code\元素库\sdk测试\.logs\drag_to\20260907-160904-2de7fb0b.txt
+UIAutoma Win32 Element API 测试
+
+  API     : uiautoma.win32.Win32Element.drag_to
+  元素库  : D:\code\元素库\260902_win元素
+  拖拽元素: win32靶场_拖拽测试_可拖拽元素
+  DPI 模式: Per-Monitor v2（进程）
+  校验方式: 靶场 JSON 位移、锚点及物理边界交叉核对
+  状态恢复: 每例重置位置；结束后恢复普通剪贴板文本、鼠标和前台
+
+进度     状态    测试项              测试结果                                                                         耗时
+───────  ──────  ──────────────────  ────────────────────────────────────────────────────────────────────────  ─────────
+01/38    [通过]  API 合同            七个公开参数、默认值与位置/关键字调用规则符合合同                             0.1ms
+02/38    [通过]  页面与测试目标      拖拽页与四个元素已就绪，已读取重置后的 JSON                                1319.6ms
+                                     边界: (2941, 400, 120, 80)
+                                     初始位置: (217, 167)
+03/38    [通过]  全部默认参数        位移、锚点及返回结果符合预期                                               3188.2ms
+                                     调用: drag_to() {}
+                                     位移: 预期 (0, 0)，边界 (0, 0)，JSON折算 (0.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 0 次；靶场 250ms；调用 1510.3ms
+                                     速度校验: middle，250ms 在 175–420ms 内；延时校验: 基线 505.1ms，差值 1005.2ms，预期 1000ms
+04/38    [通过]  全位置参数          位移、锚点及返回结果符合预期                                               1122.8ms
+                                     调用: drag_to(True, 'smooth', 20, 30, 0, 'middleCenter', 'middle') {}
+                                     位移: 预期 (30, 20)，边界 (30, 20)，JSON折算 (30.0, 20.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 250ms；调用 511.2ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+05/38    [通过]  正向位移            位移、锚点及返回结果符合预期                                               1121.3ms
+                                     调用: drag_to() {'top': 20, 'left': 30, 'delay_after': 0}
+                                     位移: 预期 (30, 20)，边界 (30, 20)，JSON折算 (30.0, 20.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 266ms；调用 509.6ms
+                                     速度校验: middle，266ms 在 175–420ms 内
+06/38    [通过]  负向位移            位移、锚点及返回结果符合预期                                               1076.8ms
+                                     调用: drag_to() {'top': -20, 'left': -30, 'delay_after': 0}
+                                     位移: 预期 (-30, -20)，边界 (-30, -20)，JSON折算 (-30.0, -20.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 266ms；调用 505.5ms
+                                     速度校验: middle，266ms 在 175–420ms 内
+07/38    [通过]  仅垂直位移          位移、锚点及返回结果符合预期                                               1103.3ms
+                                     调用: drag_to() {'top': 20, 'delay_after': 0}
+                                     位移: 预期 (0, 20)，边界 (0, 20)，JSON折算 (0.0, 20.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 250ms；调用 509.9ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+08/38    [通过]  仅水平位移          位移、锚点及返回结果符合预期                                               1113.4ms
+                                     调用: drag_to() {'left': 30, 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 266ms；调用 503.6ms
+                                     速度校验: middle，266ms 在 175–420ms 内
+09/38    [通过]  非模拟模式          位移、锚点及返回结果符合预期                                                631.4ms
+                                     调用: drag_to() {'simulative': False, 'left': 30, 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 1 次；靶场 0ms；调用 19.2ms
+                                     速度校验: instant，0ms 在 0–80ms 内
+10/38    [通过]  瞬时轨迹            位移、锚点及返回结果符合预期                                                863.1ms
+                                     调用: drag_to() {'simulative': True, 'behavior': 'instant', 'left': 30, 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 1 次；靶场 0ms；调用 251.8ms
+                                     速度校验: instant，0ms 在 0–80ms 内
+11/38    [通过]  三元组锚点          位移、锚点及返回结果符合预期                                               1115.0ms
+                                     调用: drag_to() {'left': 30, 'anchor': ('middleCenter', 6, 4), 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 66, 'y': 44, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 250ms；调用 510.8ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+12/38    [通过]  字典锚点            位移、锚点及返回结果符合预期                                               1110.1ms
+                                     调用: drag_to() {'left': 30, 'anchor': {'anchor': 'middleCenter', 'offset_x': -6, 'offset_y': -4}, 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 54, 'y': 36, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 250ms；调用 506.4ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+13/38    [通过]  随机锚点            位移、锚点及返回结果符合预期                                               1061.2ms
+                                     调用: drag_to() {'left': 30, 'anchor': 'random', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 13, 'y': 26, 'sudokuPart': 'topLeft'}；移动 15 次；靶场 266ms；调用 477.5ms
+                                     速度校验: middle，266ms 在 175–420ms 内
+14/38    [通过]  None延时            位移、锚点及返回结果符合预期                                               2229.1ms
+                                     调用: drag_to() {'left': 30, 'delay_after': None}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 250ms；调用 510.1ms
+                                     速度校验: middle，250ms 在 175–420ms 内；延时校验: 基线 507.4ms，差值 2.8ms，预期 0ms
+15/38    [通过]  正数延时            位移、锚点及返回结果符合预期                                               2428.8ms
+                                     调用: drag_to() {'left': 30, 'delay_after': 0.2}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 250ms；调用 705.9ms
+                                     速度校验: middle，250ms 在 175–420ms 内；延时校验: 基线 505.0ms，差值 201.0ms，预期 200ms
+16/38    [通过]  坐标转换            位移、锚点及返回结果符合预期                                               1118.7ms
+                                     调用: drag_to() {'left': '30', 'top': 20.9, 'delay_after': 0}
+                                     位移: 预期 (30, 20)，边界 (30, 20)，JSON折算 (30.0, 20.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 250ms；调用 506.6ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+17/38    [通过]  速度 instant        位移、锚点及返回结果符合预期                                                859.7ms
+                                     调用: drag_to() {'simulative': True, 'left': 30, 'move_speed': 'instant', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 1 次；靶场 0ms；调用 250.4ms
+                                     速度校验: instant，0ms 在 0–80ms 内
+18/38    [通过]  速度 fast           位移、锚点及返回结果符合预期                                                954.6ms
+                                     调用: drag_to() {'simulative': True, 'left': 30, 'move_speed': 'fast', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 6 次；靶场 110ms；调用 353.8ms
+                                     速度校验: fast，110ms 在 50–180ms 内
+19/38    [通过]  速度 middle         位移、锚点及返回结果符合预期                                               1113.6ms
+                                     调用: drag_to() {'simulative': True, 'left': 30, 'move_speed': 'middle', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 266ms；调用 503.6ms
+                                     速度校验: middle，266ms 在 175–420ms 内
+20/38    [通过]  速度 slow           位移、锚点及返回结果符合预期                                               1473.6ms
+                                     调用: drag_to() {'simulative': True, 'left': 30, 'move_speed': 'slow', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 30 次；靶场 625ms；调用 862.9ms
+                                     速度校验: slow，625ms 在 450–1000ms 内
+21/38    [通过]  锚点 topLeft        位移、锚点及返回结果符合预期                                               1051.9ms
+                                     调用: drag_to() {'left': 30, 'anchor': 'topLeft', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 2, 'y': 2, 'sudokuPart': 'topLeft'}；移动 15 次；靶场 266ms；调用 474.0ms
+                                     速度校验: middle，266ms 在 175–420ms 内
+22/38    [通过]  锚点 topCenter      位移、锚点及返回结果符合预期                                               1110.8ms
+                                     调用: drag_to() {'left': 30, 'anchor': 'topCenter', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 2, 'sudokuPart': 'topCenter'}；移动 15 次；靶场 250ms；调用 508.1ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+23/38    [通过]  锚点 topRight       位移、锚点及返回结果符合预期                                               1181.3ms
+                                     调用: drag_to() {'left': 30, 'anchor': 'topRight', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 118, 'y': 2, 'sudokuPart': 'topRight'}；移动 15 次；靶场 265ms；调用 541.4ms
+                                     速度校验: middle，265ms 在 175–420ms 内
+24/38    [失败]  锚点 middleLeft     测试条件或实际结果不符合预期                                               3069.4ms
+                                     原因    : 复制按钮未产生新的靶场 JSON：'drag-test-6033b0e0fda045798297cef205b54056'
+                                     异常    : RuntimeError
+25/38    [通过]  锚点 middleCenter   位移、锚点及返回结果符合预期                                               1106.3ms
+                                     调用: drag_to() {'left': 30, 'anchor': 'middleCenter', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 266ms；调用 503.8ms
+                                     速度校验: middle，266ms 在 175–420ms 内
+26/38    [通过]  锚点 middleRight    位移、锚点及返回结果符合预期                                               1181.3ms
+                                     调用: drag_to() {'left': 30, 'anchor': 'middleRight', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 118, 'y': 40, 'sudokuPart': 'middleRight'}；移动 15 次；靶场 250ms；调用 539.6ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+27/38    [通过]  锚点 bottomLeft     位移、锚点及返回结果符合预期                                               1048.3ms
+                                     调用: drag_to() {'left': 30, 'anchor': 'bottomLeft', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 2, 'y': 78, 'sudokuPart': 'bottomLeft'}；移动 15 次；靶场 266ms；调用 473.5ms
+                                     速度校验: middle，266ms 在 175–420ms 内
+28/38    [通过]  锚点 bottomCenter   位移、锚点及返回结果符合预期                                               1113.5ms
+                                     调用: drag_to() {'left': 30, 'anchor': 'bottomCenter', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 78, 'sudokuPart': 'bottomCenter'}；移动 15 次；靶场 250ms；调用 503.5ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+29/38    [通过]  锚点 bottomRight    位移、锚点及返回结果符合预期                                               1185.7ms
+                                     调用: drag_to() {'left': 30, 'anchor': 'bottomRight', 'delay_after': 0}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 118, 'y': 78, 'sudokuPart': 'bottomRight'}；移动 15 次；靶场 250ms；调用 542.4ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+30/38    [通过]  非法轨迹            非法参数在拖拽前被拒绝，位置与动作结果未改变                                433.5ms
+31/38    [通过]  非法速度            非法参数在拖拽前被拒绝，位置与动作结果未改变                                438.2ms
+32/38    [通过]  非法锚点            非法参数在拖拽前被拒绝，位置与动作结果未改变                                432.7ms
+33/38    [通过]  非法锚点类型        非法参数在拖拽前被拒绝，位置与动作结果未改变                                434.9ms
+34/38    [通过]  非法横坐标          非法参数在拖拽前被拒绝，位置与动作结果未改变                                437.9ms
+35/38    [通过]  非法纵坐标          非法参数在拖拽前被拒绝，位置与动作结果未改变                                433.5ms
+36/38    [通过]  负数延时            位移、锚点及返回结果符合预期                                               1106.8ms
+                                     调用: drag_to() {'left': 30, 'delay_after': -1}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 250ms；调用 505.3ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+37/38    [通过]  非数字延时          位移、锚点及返回结果符合预期                                               1112.8ms
+                                     调用: drag_to() {'left': 30, 'delay_after': 'invalid'}
+                                     位移: 预期 (30, 0)，边界 (30, 0)，JSON折算 (30.0, 0.0)
+                                     锚点: {'x': 60, 'y': 40, 'sudokuPart': 'middleCenter'}；移动 15 次；靶场 250ms；调用 504.8ms
+                                     速度校验: middle，250ms 在 175–420ms 内
+38/38    [失败]  资源清理            测试条件或实际结果不符合预期                                                313.8ms
+                                     原因    : 剪贴板文本: OpenClipboard 失败：5
+                                     异常    : RuntimeError
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+测试失败
+  生命周期: READY_FOR_LIVE
+  结果    : 36/38 通过
+  总耗时  : 52287.4ms
+  退出码  : 1

@@ -1,0 +1,50 @@
+{
+  "time": "2026-09-09T07:20:36.892931+00:00",
+  "case": "A1",
+  "variant": "observer-self-check",
+  "app_pid": 24104,
+  "sample_interval_ms": 50,
+  "events": [
+    {
+      "elapsed_ms": 1,
+      "foreground_hwnd": 1050534,
+      "foreground_pid": 24072,
+      "foreground_title": "企业微信",
+      "native_menu_flags": 0,
+      "menu_owner": 0,
+      "app_windows": [
+        {
+          "hwnd": 132746,
+          "visible": true,
+          "minimized": false,
+          "topmost": false
+        },
+        {
+          "hwnd": 132748,
+          "visible": false,
+          "minimized": false,
+          "topmost": false
+        },
+        {
+          "hwnd": 199322,
+          "visible": true,
+          "minimized": false,
+          "topmost": false
+        },
+        {
+          "hwnd": 197184,
+          "visible": false,
+          "minimized": false,
+          "topmost": false
+        },
+        {
+          "hwnd": 853636,
+          "visible": false,
+          "minimized": false,
+          "topmost": false
+        }
+      ]
+    }
+  ],
+  "limit": "采样可能漏过短暂事件，不自动判定用例通过；不采集截图或按键"
+}

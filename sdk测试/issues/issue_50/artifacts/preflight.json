@@ -1,0 +1,268 @@
+{
+  "time": "2026-09-09T07:20:08.446722+00:00",
+  "issue": 50,
+  "repositories": {
+    "desktop": {
+      "path": "D:\\code\\desktop\\.worktree\\codex-stage6-sdk-runtime-ba38916b",
+      "head": {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "cwd": "D:\\code\\desktop\\.worktree\\codex-stage6-sdk-runtime-ba38916b",
+        "exit_code": 0,
+        "stdout": "72e0d084fd129a31ed060f5fb925cb053de16d1e\n",
+        "stderr": ""
+      },
+      "local_changes": {
+        "command": [
+          "git",
+          "status",
+          "--short"
+        ],
+        "cwd": "D:\\code\\desktop\\.worktree\\codex-stage6-sdk-runtime-ba38916b",
+        "exit_code": 0,
+        "stdout": " M app/src-tauri/Cargo.toml\n M assets/provider/UIAutoma.UIAutomation.Provider.exe\n M assets/provider/asset-manifest.json\n",
+        "stderr": ""
+      }
+    },
+    "rust_uia": {
+      "path": "D:\\code\\rust_uia\\.worktree\\codex-web-stage3-provider-v2-ea56c541",
+      "head": {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "cwd": "D:\\code\\rust_uia\\.worktree\\codex-web-stage3-provider-v2-ea56c541",
+        "exit_code": 0,
+        "stdout": "1b4744f6dc82097aec323acc4e036be2ceb706c6\n",
+        "stderr": ""
+      },
+      "local_changes": {
+        "command": [
+          "git",
+          "status",
+          "--short"
+        ],
+        "cwd": "D:\\code\\rust_uia\\.worktree\\codex-web-stage3-provider-v2-ea56c541",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    }
+  },
+  "checks": [
+    {
+      "name": "desktop 包含 92cd5fb",
+      "passed": true,
+      "detail": {
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "92cd5fb",
+          "HEAD"
+        ],
+        "cwd": "D:\\code\\desktop\\.worktree\\codex-stage6-sdk-runtime-ba38916b",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "desktop 包含 aba9f01",
+      "passed": true,
+      "detail": {
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "aba9f01",
+          "HEAD"
+        ],
+        "cwd": "D:\\code\\desktop\\.worktree\\codex-stage6-sdk-runtime-ba38916b",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "rust_uia 包含 3bc16ea",
+      "passed": true,
+      "detail": {
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "3bc16ea",
+          "HEAD"
+        ],
+        "cwd": "D:\\code\\rust_uia\\.worktree\\codex-web-stage3-provider-v2-ea56c541",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "rust_uia 包含 1b4744f",
+      "passed": true,
+      "detail": {
+        "command": [
+          "git",
+          "merge-base",
+          "--is-ancestor",
+          "1b4744f",
+          "HEAD"
+        ],
+        "cwd": "D:\\code\\rust_uia\\.worktree\\codex-web-stage3-provider-v2-ea56c541",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "运行中的 UIAutoma.exe",
+      "passed": true
+    },
+    {
+      "name": "运行中的 UIAutoma.UIAutomation.Provider.exe",
+      "passed": true
+    }
+  ],
+  "scope": "源码提交包含性和运行路径；不证明运行二进制由当前 HEAD 构建",
+  "environment": {
+    "processes": [
+      {
+        "Name": "UIAutoma.exe",
+        "ProcessId": 24104,
+        "ExecutablePath": "D:\\code\\desktop\\.worktree\\codex-stage6-sdk-runtime-ba38916b\\app\\src-tauri\\target\\debug\\UIAutoma.exe",
+        "sha256": "ffa94167e207d8385e06cb42601beefda180df95a64302ab6217d2fa7ffe83bf"
+      },
+      {
+        "Name": "UIAutoma.UIAutomation.Provider.exe",
+        "ProcessId": 31216,
+        "ExecutablePath": "D:\\code\\desktop\\.worktree\\codex-stage6-sdk-runtime-ba38916b\\assets\\provider\\UIAutoma.UIAutomation.Provider.exe",
+        "sha256": "4d4a16ed4a4ed5597663e850883c3e21a9b967deb5c9d0b801e3cb8400502a32"
+      },
+      {
+        "Name": "win32-shooting-range-uia.exe",
+        "ProcessId": 12992,
+        "ExecutablePath": "D:\\code\\xpath\\WIN32\\build\\Release\\win32-shooting-range-uia.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 46960,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 46748,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 47112,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 47128,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 47204,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 47560,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 47608,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "UIAutoma.ChromeBridge.exe",
+        "ProcessId": 48460,
+        "ExecutablePath": "C:\\Users\\moby\\AppData\\Local\\UIAutoma\\native_host\\UIAutoma.ChromeBridge.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 48728,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 49372,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 50280,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 2828,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 46560,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 50816,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 10756,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 14928,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 47880,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 37060,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 14940,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 54544,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 49588,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      },
+      {
+        "Name": "chrome.exe",
+        "ProcessId": 53348,
+        "ExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      }
+    ],
+    "build": "26100",
+    "windows": "Microsoft Windows 11 专业工作站版"
+  }
+}

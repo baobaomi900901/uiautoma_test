@@ -1,0 +1,248 @@
+{
+  "type": "web",
+  "path": [
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "root" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card ant-card-bordered css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card-body" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "iframe",
+      "required": [
+        { "name": "src", "value": "/xpath/#/iframe-shadow-form-content", "operator": "contains" }
+      ],
+      "optional": [
+        { "name": "id", "value": "iframe-shadow-form" },
+        { "name": "title", "value": "iframe 内的 Shadow 表单" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 2 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "root" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "required": [
+        { "name": "id", "value": "form-shadow-host" }
+      ],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "#shadow-root",
+      "required": [
+        { "name": "mode", "value": "open" }
+      ],
+      "optional": []
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "shadow-form-content" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card ant-card-bordered css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card-body" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 2 },
+        { "name": "index", "value": 3 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "required": [
+        { "name": "index-of-type", "value": 36 }
+      ],
+      "optional": [
+        { "name": "class", "value": "ant-form-item css-mncuj7 ant-form-item-vertical" },
+        { "name": "index", "value": 44 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-row ant-form-item-row css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-col ant-form-item-control css-mncuj7" },
+        { "name": "index-of-type", "value": 1 },
+        { "name": "index", "value": 1 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-form-item-control-input" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-form-item-control-input-content" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "label",
+      "required": [
+        { "name": "innerText", "value": "其他" }
+      ],
+      "optional": [
+        { "name": "index-of-type", "value": 2 },
+        { "name": "for", "value": "form-controls-native-genderOther" },
+        { "name": "index", "value": 2 }
+      ]
+    }
+  ],
+  "xpath": {
+    "enabled": false,
+    "segments": [
+      "//iframe[contains(@src,'/xpath/#/iframe-shadow-form-content')]",
+      "//div[@id='form-shadow-host']/uiautomaShadowRoot//div[37]//label[normalize-space(.)='其他']"
+    ]
+  }
+}

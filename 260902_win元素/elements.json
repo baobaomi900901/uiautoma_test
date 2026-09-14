@@ -1,0 +1,221 @@
+{
+  "groups": [
+    {
+      "id": "6e3d05d0-2ea0-4c45-bf56-1442e882280d",
+      "name": "win32-shooting-range-uia.exe",
+      "process_name": "win32-shooting-range-uia.exe",
+      "elements": [
+        {
+          "id": "df849752-32d7-46a0-9bec-7bcd6d0d7d7d",
+          "name": "win32靶场_表单控件_输入框_姓名",
+          "type": "win"
+        },
+        {
+          "id": "a1688056-746a-4cf5-b472-e92381fea367",
+          "name": "win32靶场_表单控件_密码_输入框",
+          "type": "win"
+        },
+        {
+          "id": "4d57ac56-0aa5-4972-baa7-aa6827f7256c",
+          "name": "win32靶场_表单控件_邮箱_输入框",
+          "type": "win"
+        },
+        {
+          "id": "c71297bd-54fb-4360-9a16-173311da0202",
+          "name": "win32靶场_表单控件_输入框_年龄",
+          "type": "win"
+        },
+        {
+          "id": "ea707247-9ad8-4261-b79d-c335e837f5c9",
+          "name": "win32靶场_表单控件_下拉框_城市",
+          "type": "win"
+        },
+        {
+          "id": "b217bcab-fb8a-4f90-90a8-0a3aa43f3e1f",
+          "name": "win32靶场_表单控件_多选_北京",
+          "type": "win"
+        },
+        {
+          "id": "82e6976d-18ad-41f2-8c0d-8c9779f677fd",
+          "name": "win32靶场_表单控件_多选_上海",
+          "type": "win"
+        },
+        {
+          "id": "0ccb6a62-9551-4d74-970d-f5b4cf3249bc",
+          "name": "win32靶场_表单控件_多选_广州",
+          "type": "win"
+        },
+        {
+          "id": "604c3e66-e128-424b-bd88-d0191c11b00a",
+          "name": "win32靶场_表单控件_多选_深圳",
+          "type": "win"
+        },
+        {
+          "id": "dc09f40c-3b09-4675-bf93-4a19a7e0a7d0",
+          "name": "win32靶场_表单控件_多选_杭州",
+          "type": "win"
+        },
+        {
+          "id": "74aa1f58-5759-401e-abf5-c47530a56a59",
+          "name": "win32靶场_表单控件_单选_男",
+          "type": "win"
+        },
+        {
+          "id": "d7a55661-522b-43a6-ab22-debf92191862",
+          "name": "win32靶场_表单控件_单选_女",
+          "type": "win"
+        },
+        {
+          "id": "a93f5bbe-449a-4a68-b398-8890b992ed40",
+          "name": "win32靶场_表单控件_单选_其他",
+          "type": "win"
+        },
+        {
+          "id": "99835398-29d3-4a01-ad3a-d785dbec02c5",
+          "name": "win32靶场_表单控件_多选_阅读",
+          "type": "win"
+        },
+        {
+          "id": "e8f5bbf7-a30f-4a02-990f-62f046e90491",
+          "name": "win32靶场_表单控件_多选_运动",
+          "type": "win"
+        },
+        {
+          "id": "638d40ea-0c5e-4544-bccf-1aa092ef4543",
+          "name": "win32靶场_表单控件_多选_音乐",
+          "type": "win"
+        },
+        {
+          "id": "8c4cbdd8-1782-432d-8d89-2f2a7c78fade",
+          "name": "win32靶场_表单控件_多选_旅行",
+          "type": "win"
+        },
+        {
+          "id": "5fb2a2b7-32b5-42f5-a2df-2eae7953d6ed",
+          "name": "win32靶场_表单控件_文本域_备注",
+          "type": "win"
+        },
+        {
+          "id": "230b15a9-7599-4f9e-889d-561e15aa75be",
+          "name": "win32靶场_表单控件_多选_同意用户协议",
+          "type": "win"
+        },
+        {
+          "id": "377c3a69-95ec-4c3c-b803-2813d8519569",
+          "name": "win32靶场_表单控件_按钮_保存",
+          "type": "win"
+        },
+        {
+          "id": "94c14170-5514-450d-8e3f-28c22e600c4e",
+          "name": "win32靶场_表单控件_按钮_重置",
+          "type": "win"
+        },
+        {
+          "id": "f150564e-ded3-42cc-b7a2-0b47c7d6ce85",
+          "name": "win32靶场_表单控件_表单面板",
+          "type": "win"
+        },
+        {
+          "id": "d6dea53e-bfbb-4b80-902b-ba0a6edc2e42",
+          "name": "win32靶场_表单控件_标题",
+          "type": "win"
+        },
+        {
+          "id": "e928418a-f0ce-4e5c-bc6c-731d38f6b4b8",
+          "name": "win32靶场_tab_item表单控件",
+          "type": "win"
+        },
+        {
+          "id": "9e8066c8-aa81-498b-b35f-4eff1834e2d9",
+          "name": "win32靶场_tab_item表格数据",
+          "type": "win"
+        },
+        {
+          "id": "4dcacafd-3f8b-4358-ac00-12e1f682ed35",
+          "name": "win32靶场_tab_item拖拽测试",
+          "type": "win"
+        },
+        {
+          "id": "a6c0db1b-430a-457c-a2d1-3403143afe62",
+          "name": "win32靶场_拖拽测试_可拖拽元素",
+          "type": "win"
+        },
+        {
+          "id": "1336505d-de78-4bf9-b66e-5e3eb538ce11",
+          "name": "win32靶场_拖拽测试_重置位置",
+          "type": "win"
+        },
+        {
+          "id": "d1356a23-fa5a-4a22-91a5-3a40ea26d615",
+          "name": "win32靶场_拖拽测试_复制拖拽元素当前结果到剪切板",
+          "type": "win"
+        },
+        {
+          "id": "dc14dc45-8f05-4939-8a24-2ff6bddcdce0",
+          "name": "win32靶场_拖拽测试_隐藏_drag-target",
+          "type": "win"
+        },
+        {
+          "id": "d6012b07-230d-43c2-aceb-6fc6b98b26a8",
+          "name": "win32靶场_表格数据_list首个单元格",
+          "type": "win"
+        },
+        {
+          "id": "70c1d2ea-7ae5-4d22-af30-14ee66bc8831",
+          "name": "win32靶场_表格数据_list普通单元格_相似元素",
+          "type": "win"
+        },
+        {
+          "id": "511d24a9-1f13-4656-8b04-28be20fa71ef",
+          "name": "win32靶场_表格数据_list普通单元格",
+          "type": "win"
+        },
+        {
+          "id": "1e6e064c-18eb-4897-987f-0ec13c250506",
+          "name": "#50_测试元素_撤消_U",
+          "type": "win"
+        },
+        {
+          "id": "5980d787-3f92-41f9-87e3-a59bbe24eaa5",
+          "name": "#50_测试元素_撤消_U_相似元素",
+          "type": "win"
+        },
+        {
+          "id": "1ce111ee-0ae4-459b-8533-09eb0890932d",
+          "name": "#50_menu_新建_N",
+          "type": "win"
+        },
+        {
+          "id": "5c4a731f-e491-4dca-8a1a-5bbc349a264e",
+          "name": "#50_menu_新建_N_相似元素",
+          "type": "win"
+        },
+        {
+          "id": "ef5b863e-3a8f-4e52-8fd6-96e1ce78ca71",
+          "name": "北京",
+          "type": "win"
+        },
+        {
+          "id": "38cee73a-9c4a-41a6-93e9-15dadd2e7f84",
+          "name": "上海",
+          "type": "win"
+        },
+        {
+          "id": "e7291e0e-d301-4d94-bf57-91bedcf36b07",
+          "name": "姓名",
+          "type": "win"
+        },
+        {
+          "id": "28e06ea7-043e-4845-a5b8-1a350cdd4d8c",
+          "name": "密码",
+          "type": "win"
+        },
+        {
+          "id": "642b7c90-68f9-4642-bb0d-67d36d7a5237",
+          "name": "新建(N)",
+          "type": "win"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,742 @@
+{
+  "platform": "web",
+  "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[33]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[4]",
+  "xpath_mode": "machine_fallback",
+  "xpath_compiler_revision": "42",
+  "xpath_compiler_hash": "873d7db3bc55681f9d218ee96f06dd8f90274189d104f9dfc3f3ac55b4db68f1",
+  "candidate_xpaths": [
+    "//label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/div/div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div/div/div/div/div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "//div[@id='root']/div/div/div/div/div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]",
+    "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[33]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[4]"
+  ],
+  "xpath_diagnostics": [
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/div/div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div/div/div/div/div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "multiple_matches",
+      "match_count": 5,
+      "matched_target": false,
+      "source": "generated",
+      "xpath": "//div[@id='root']/div/div/div/div/div/div/div/div/div/div/div/div/label[contains(@class, 'ant-checkbox-wrapper')]"
+    },
+    {
+      "error": "",
+      "failure_reason": "",
+      "match_count": 1,
+      "matched_target": true,
+      "source": "machine",
+      "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[33]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[4]"
+    }
+  ],
+  "web_extension_id": "dibnmjmomkibpflpmagomhkehpelfoff",
+  "web_session_id": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|33696",
+  "sessionId": "chrome|dibnmjmomkibpflpmagomhkehpelfoff|33696",
+  "browser_exe_name": "chrome.exe",
+  "browser_exe_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "browser_pid": 33696,
+  "machine_xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[33]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[4]",
+  "dom_path": [
+    {
+      "tag": "web",
+      "layer_used": false,
+      "depth": -1,
+      "fields": {
+        "app": {
+          "value": "chrome.exe",
+          "used": false,
+          "op": 1
+        },
+        "title": {
+          "value": "表单控件测试",
+          "used": false,
+          "op": 1
+        },
+        "url": {
+          "value": "http://localhost:7199/form-controls?uiautoma_element_get_text_run=e7bfefb26dd5447cb07ddb953a631eae",
+          "used": false,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    },
+    {
+      "tag": "html",
+      "layer_used": true,
+      "depth": 0,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 1,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {
+        "lang": {
+          "value": "zh-CN",
+          "used": false,
+          "op": 1
+        }
+      }
+    },
+    {
+      "tag": "body",
+      "layer_used": true,
+      "depth": 1,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 2,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 2,
+      "fields": {
+        "id": {
+          "value": "root",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 1,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 3,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 1,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {
+        "style": {
+          "value": "padding: 24px; min-height: 100vh; box-sizing: border-box;",
+          "used": false,
+          "op": 1
+        }
+      }
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 4,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 1,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {
+        "style": {
+          "value": "width: 100%; margin: 0px;",
+          "used": false,
+          "op": 1
+        }
+      }
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 5,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "ant-card ant-card-bordered css-dev-only-do-not-override-mncuj7",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 1,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 6,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "ant-card-body",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 1,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 7,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 4,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 3,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {
+        "style": {
+          "value": "display: grid; grid-template-columns: minmax(0px, 1fr) 1px minmax(0px, 1fr); column-gap: 24px; align-items: start;",
+          "used": false,
+          "op": 1
+        }
+      }
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 8,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "ant-form-item css-dev-only-do-not-override-mncuj7 ant-form-item-has-success ant-form-item-vertical",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 43,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 33,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {
+        "style": {
+          "value": "margin-bottom: 16px;",
+          "used": false,
+          "op": 1
+        }
+      }
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 9,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "ant-row ant-form-item-row css-dev-only-do-not-override-mncuj7",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 1,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 10,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "ant-col ant-form-item-control css-dev-only-do-not-override-mncuj7",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 2,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 2,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 11,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "ant-form-item-control-input",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 1,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 12,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "ant-form-item-control-input-content",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 1,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 13,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 1,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 1,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "layer_used": true,
+      "depth": 14,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "ant-checkbox-group css-dev-only-do-not-override-mncuj7",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 2,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 2,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {
+        "style": {
+          "value": "display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;",
+          "used": false,
+          "op": 1
+        }
+      }
+    },
+    {
+      "tag": "label",
+      "layer_used": true,
+      "depth": 15,
+      "fields": {
+        "id": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "class": {
+          "value": "ant-checkbox-wrapper ant-checkbox-wrapper-in-form-item css-dev-only-do-not-override-mncuj7",
+          "used": false,
+          "op": 1
+        },
+        "text": {
+          "value": "",
+          "used": false,
+          "op": 1
+        },
+        "index": {
+          "value": 4,
+          "used": false,
+          "op": 1
+        },
+        "indexOfType": {
+          "value": 4,
+          "used": true,
+          "op": 1
+        }
+      },
+      "attrs": {}
+    }
+  ]
+}

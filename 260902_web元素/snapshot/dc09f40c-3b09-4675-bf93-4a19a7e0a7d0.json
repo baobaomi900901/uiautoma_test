@@ -1,0 +1,49 @@
+{
+  "type": "win",
+  "path": [
+    {
+      "backend": "wnd",
+      "tag": "Window",
+      "required": [
+        { "name": "process_name", "value": "win32-shooting-range-uia.exe" },
+        { "name": "class_name", "value": "XPathWin32ShootingRange" },
+        { "name": "title", "value": "Win32 靶场 - UIA" }
+      ],
+      "optional": []
+    },
+    {
+      "backend": "wnd",
+      "tag": "Tab",
+      "required": [
+        { "name": "class_name", "value": "SysTabControl32" }
+      ],
+      "optional": [
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "wnd",
+      "tag": "Pane",
+      "required": [
+        { "name": "class_name", "value": "XPathWin32Panel" },
+        { "name": "uia_name", "value": "表单控件页" }
+      ],
+      "optional": [
+        { "name": "title", "value": "表单控件页" },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "wnd",
+      "tag": "CheckBox",
+      "required": [
+        { "name": "class_name", "value": "Button" },
+        { "name": "uia_name", "value": "杭州" }
+      ],
+      "optional": [
+        { "name": "title", "value": "杭州" },
+        { "name": "index", "value": 4 }
+      ]
+    }
+  ]
+}

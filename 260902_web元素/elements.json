@@ -1,0 +1,341 @@
+{
+  "groups": [
+    {
+      "id": "9c1d5a35-b043-4f57-8fa8-a667531f408d",
+      "name": "表单控件测试",
+      "origin": "https://baobaomi900901.github.io",
+      "elements": [
+        {
+          "id": "ef82d0d4-5b13-481b-ae99-adc203f2417d",
+          "name": "web靶场_表单测试_ant_输入框",
+          "type": "web"
+        },
+        {
+          "id": "a8af3f5b-1017-4103-9c9c-631b44a2166e",
+          "name": "web靶场_表单测试_ant_密码输入框",
+          "type": "web"
+        },
+        {
+          "id": "e40f9622-59df-4638-95dc-404841bbcd3c",
+          "name": "web靶场_表单测试_ant_邮箱输入框",
+          "type": "web"
+        },
+        {
+          "id": "605ce618-2070-4aea-9e4d-5305d7743c19",
+          "name": "web靶场_表单测试_ant_数字输入框",
+          "type": "web"
+        },
+        {
+          "id": "b6d81e8a-229f-4517-b78b-56711752833a",
+          "name": "web靶场_表单测试_ant_select单选",
+          "type": "web"
+        },
+        {
+          "id": "dbfdfd2c-02f5-4d4b-b346-44b5acccc626",
+          "name": "web靶场_表单测试_ant_select单选_options_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "5329a020-76fd-4c9f-82da-9c9ea0216a15",
+          "name": "web靶场_表单测试_ant_select多选",
+          "type": "web"
+        },
+        {
+          "id": "b2524f66-77db-4d2d-8c42-131e60204ef5",
+          "name": "web靶场_表单测试_ant_select多选_options_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "3e25b6ef-9eb3-471a-b9ca-2c8cbc1d7c48",
+          "name": "web靶场_表单测试_ant_radio_label_男",
+          "type": "web"
+        },
+        {
+          "id": "0be68efa-4dd6-463e-a971-703891258b77",
+          "name": "web靶场_表单测试_ant_radio_label_女",
+          "type": "web"
+        },
+        {
+          "id": "895749a0-0342-446c-b3a2-299f2f6c0dc5",
+          "name": "web靶场_表单测试_ant_radio_label_其他",
+          "type": "web"
+        },
+        {
+          "id": "b3cc55e5-1aa9-4b65-a327-a225f4e67b1d",
+          "name": "web靶场_表单测试_ant_radio_input_男",
+          "type": "web"
+        },
+        {
+          "id": "f5a0e8fd-63ff-4fcf-89ae-a3ce49f36b20",
+          "name": "web靶场_表单测试_ant_radio_input_女",
+          "type": "web"
+        },
+        {
+          "id": "37e366f6-bdbe-4ef5-9e01-747fe32140cd",
+          "name": "web靶场_表单测试_ant_radio_input_其他",
+          "type": "web"
+        },
+        {
+          "id": "4c39bb9f-f0df-4696-8e5b-9b1b1b695a1e",
+          "name": "web靶场_表单测试_ant_radio_label_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "b60ae0f0-6a4d-492d-958e-545a9780c273",
+          "name": "web靶场_表单测试_ant_radio_input_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "317295c7-8246-414f-af43-fe8b5c0e09eb",
+          "name": "web靶场_表单测试_ant_checkbox_label_全选",
+          "type": "web"
+        },
+        {
+          "id": "a45235a3-63ff-4817-b5ac-3918eba3b024",
+          "name": "web靶场_表单测试_ant_checkbox_input_全选",
+          "type": "web"
+        },
+        {
+          "id": "ee190d00-9553-421e-a8d8-a282970900ad",
+          "name": "web靶场_表单测试_ant_checkbox_label_阅读",
+          "type": "web"
+        },
+        {
+          "id": "b30ec850-ba4e-4496-a5fc-e5f7373c8476",
+          "name": "web靶场_表单测试_ant_checkbox_label_运动",
+          "type": "web"
+        },
+        {
+          "id": "1c20d852-fa95-4634-99d9-d724a16c3100",
+          "name": "web靶场_表单测试_ant_checkbox_label_音乐",
+          "type": "web"
+        },
+        {
+          "id": "dd73cfa1-745e-44fb-99dc-31db56ad109c",
+          "name": "web靶场_表单测试_ant_checkbox_label_旅行",
+          "type": "web"
+        },
+        {
+          "id": "cb20983f-ada0-4c57-ad85-e094639c23ae",
+          "name": "web靶场_表单测试_ant_checkbox_input_阅读",
+          "type": "web"
+        },
+        {
+          "id": "6b210505-539a-4805-8aa8-2e3fe8f1acd3",
+          "name": "web靶场_表单测试_ant_checkbox_input_运动",
+          "type": "web"
+        },
+        {
+          "id": "02eab3e4-f9e8-4f6b-99f4-47aaa70020d8",
+          "name": "web靶场_表单测试_ant_checkbox_input_音乐",
+          "type": "web"
+        },
+        {
+          "id": "b2cc8fa9-f3c4-42af-a07a-877483a232fd",
+          "name": "web靶场_表单测试_ant_checkbox_input_旅行",
+          "type": "web"
+        },
+        {
+          "id": "58a34df5-3435-4cc9-80cb-23eedd185c2b",
+          "name": "web靶场_表单测试_ant_文本域",
+          "type": "web"
+        },
+        {
+          "id": "b166ed6b-4112-4f0c-8a88-ef8d792a2284",
+          "name": "web靶场_表单测试_ant_滑块",
+          "type": "web"
+        },
+        {
+          "id": "666ea1cf-8b3c-40b4-89bd-d28a7826357d",
+          "name": "web靶场_表单测试_ant_按钮_提交",
+          "type": "web"
+        },
+        {
+          "id": "7c2ffcac-faaa-462b-8cb2-7ae32bedaa9f",
+          "name": "web靶场_表单测试_ant_按钮_重置",
+          "type": "web"
+        },
+        {
+          "id": "4d4bb1af-0a7b-4630-b394-cc2393b79047",
+          "name": "web靶场_表单测试_原生_输入框",
+          "type": "web"
+        },
+        {
+          "id": "6aa61f64-e390-490b-94f9-f2b44484a263",
+          "name": "web靶场_表单测试_原生_密码输入框",
+          "type": "web"
+        },
+        {
+          "id": "3378e776-506b-4edc-82e4-f9d5a99fe9f1",
+          "name": "web靶场_表单测试_原生_邮件输入框",
+          "type": "web"
+        },
+        {
+          "id": "64ac814e-4d51-4657-ac4d-61ad529137ee",
+          "name": "web靶场_表单测试_原生_数字输入框",
+          "type": "web"
+        },
+        {
+          "id": "d96d6c49-8566-4209-bb81-98be0844280a",
+          "name": "web靶场_表单测试_原生_select单选",
+          "type": "web"
+        },
+        {
+          "id": "9dca587f-0eea-4250-ba92-b7dfd9c31a74",
+          "name": "web靶场_表单测试_原生_select多选_options_面板",
+          "type": "web"
+        },
+        {
+          "id": "86806218-cbe8-4573-826e-91c55b0fbcef",
+          "name": "web靶场_表单测试_原生_select多选_options_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "0f2ef924-d8aa-4e4e-bf86-abb9a0c27492",
+          "name": "web靶场_表单测试_原生_radio_label_男",
+          "type": "web"
+        },
+        {
+          "id": "ca669aff-7ae3-4ed1-b6ef-e1527c90ca92",
+          "name": "web靶场_表单测试_原生_radio_label_女",
+          "type": "web"
+        },
+        {
+          "id": "075a1a80-e6a2-4a41-87ae-b5a5dcccf5da",
+          "name": "web靶场_表单测试_原生_radio_label_其他",
+          "type": "web"
+        },
+        {
+          "id": "22fed276-8c09-42b0-b593-0550485bb952",
+          "name": "web靶场_表单测试_原生_radio_label_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "52c03bde-4e90-4314-b0ba-8b438b674370",
+          "name": "web靶场_表单测试_原生_radio_input_男",
+          "type": "web"
+        },
+        {
+          "id": "8c78e3e2-bddb-4d0d-9447-5254590c70c4",
+          "name": "web靶场_表单测试_原生_radio_input_女",
+          "type": "web"
+        },
+        {
+          "id": "9147e14e-0f8a-46f3-bb0e-3fc707cd29f6",
+          "name": "web靶场_表单测试_原生_radio_input_其他",
+          "type": "web"
+        },
+        {
+          "id": "096f23ed-202e-4375-a323-5442ad92c845",
+          "name": "web靶场_表单测试_原生_radio_input_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "d7dfa17b-2cb9-4826-808d-13179e483e04",
+          "name": "web靶场_表单测试_原生_checkbox_label_全选",
+          "type": "web"
+        },
+        {
+          "id": "e4c0ba68-ed9c-4526-bdf8-6b135c86d254",
+          "name": "web靶场_表单测试_原生_checkbox_label_阅读",
+          "type": "web"
+        },
+        {
+          "id": "65e4ec0b-c6e2-4ce8-abec-e87346294b10",
+          "name": "web靶场_表单测试_原生_checkbox_label_运动",
+          "type": "web"
+        },
+        {
+          "id": "aa25cc46-3496-4d8b-a0b5-32c38c5f4bb0",
+          "name": "web靶场_表单测试_原生_checkbox_label_音乐",
+          "type": "web"
+        },
+        {
+          "id": "31f406a2-7d0c-40be-9582-cb4e05460c5d",
+          "name": "web靶场_表单测试_原生_checkbox_label_旅行",
+          "type": "web"
+        },
+        {
+          "id": "e72095ac-f5b8-4383-b912-2a99dba0b031",
+          "name": "web靶场_表单测试_原生_checkbox_input_全选",
+          "type": "web"
+        },
+        {
+          "id": "5b4a8e9d-7797-4acd-9111-4ddbad02e1c0",
+          "name": "web靶场_表单测试_原生_checkbox_input_阅读",
+          "type": "web"
+        },
+        {
+          "id": "a6974dc8-2d33-467a-9376-d63f31e40564",
+          "name": "web靶场_表单测试_原生_checkbox_input_运动",
+          "type": "web"
+        },
+        {
+          "id": "8a647e03-9582-4d1b-b154-1b8acaaa7119",
+          "name": "web靶场_表单测试_原生_checkbox_input_音乐",
+          "type": "web"
+        },
+        {
+          "id": "343cd5fb-c694-4783-a8a6-cab81fe23582",
+          "name": "web靶场_表单测试_原生_checkbox_input_旅行",
+          "type": "web"
+        },
+        {
+          "id": "4fe766b4-bff7-4413-af30-870b2adffc11",
+          "name": "web靶场_表单测试_ant_checkbox_label_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "5b5b6dc7-d1b1-4015-b856-4d180584c0f3",
+          "name": "web靶场_表单测试_ant_checkbox_input_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "efe69c66-1a47-4971-a076-4dc3635671dc",
+          "name": "web靶场_表单测试_原生_checkbox_label_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "99d6a256-64f0-4307-8ba6-e861565de019",
+          "name": "web靶场_表单测试_原生_checkbox_input_相似元素",
+          "type": "web"
+        },
+        {
+          "id": "ad89363a-df04-4328-89c5-c60f5cd64729",
+          "name": "web靶场_表单测试_原生_文本域",
+          "type": "web"
+        },
+        {
+          "id": "919aac0d-2a16-4018-9ff3-d9b5ba5cc1f8",
+          "name": "web靶场_表单测试_原生_滑块",
+          "type": "web"
+        },
+        {
+          "id": "8c26bc5e-3cd1-4cb4-b62a-fb740ac2a18d",
+          "name": "web靶场_表单测试_原生_按钮_提交",
+          "type": "web"
+        },
+        {
+          "id": "996cfb9e-b956-4c29-9766-052559aba10f",
+          "name": "web靶场_表单测试_原生_重置",
+          "type": "web"
+        },
+        {
+          "id": "a5629f71-cbea-48f8-898a-c52fe50c4627",
+          "name": "web靶场_表单测试_控制表单组件id是否为动态的开关",
+          "type": "web"
+        },
+        {
+          "id": "8c8fa2e6-e606-4de8-8f33-f9b1c66507b8",
+          "name": "web靶场_下载对话框测试 _下载txt",
+          "type": "web"
+        },
+        {
+          "id": "a9bd6284-9fff-4d33-b32b-c60592bd4104",
+          "name": "web靶场_上传对话框测试 _原生_上传组件",
+          "type": "web"
+        }
+      ]
+    }
+  ]
+}

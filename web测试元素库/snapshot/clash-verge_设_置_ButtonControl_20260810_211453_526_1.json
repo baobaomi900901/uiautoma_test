@@ -1,0 +1,320 @@
+{
+  "analysis": {
+    "browser_architecture": "",
+    "browser_engine": "Chromium",
+    "browser_version": "",
+    "fallback_backend": "",
+    "host_framework": "",
+    "msaa_bridge_uia_tree_complete": false,
+    "preferred_backend": "MSAA",
+    "recorded_automation": "MSAA",
+    "technology_hint": "WebView2"
+  },
+  "element_path": [
+    {
+      "depth": 0,
+      "fields": {
+        "name": {
+          "value": "clash-verge.exe"
+        }
+      },
+      "tag": "app"
+    },
+    {
+      "depth": 1,
+      "fields": {
+        "automation_id": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "child_id": {
+          "op": 1,
+          "used": false,
+          "value": 0
+        },
+        "class_name": {
+          "op": 1,
+          "used": true,
+          "value": "Tauri Window"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 3
+        },
+        "is_app_shell": {
+          "op": 1,
+          "used": true,
+          "value": true
+        },
+        "is_browser_frame": {
+          "op": 1,
+          "used": true,
+          "value": false
+        },
+        "is_desktop": {
+          "op": 1,
+          "used": true,
+          "value": false
+        },
+        "name": {
+          "op": 1,
+          "used": true,
+          "value": "Clash Verge"
+        },
+        "native_window_handle": {
+          "op": 1,
+          "used": false,
+          "value": 69428
+        },
+        "role": {
+          "op": 1,
+          "used": false,
+          "value": ""
+        },
+        "same_type_index": {
+          "op": 1,
+          "used": false,
+          "value": 0
+        }
+      },
+      "layer_used": true,
+      "tag": "WindowControl"
+    },
+    {
+      "depth": 2,
+      "fields": {
+        "explicit-name": {
+          "op": 1,
+          "used": false,
+          "value": "true"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 0
+        },
+        "name": {
+          "op": 1,
+          "used": true,
+          "value": "Clash Verge"
+        },
+        "name-from": {
+          "op": 1,
+          "used": false,
+          "value": "related-element"
+        },
+        "role": {
+          "op": 1,
+          "used": true,
+          "value": "Document"
+        },
+        "text-align": {
+          "op": 1,
+          "used": false,
+          "value": "left"
+        },
+        "value": {
+          "op": 1,
+          "used": true,
+          "value": "http://tauri.localhost/"
+        }
+      },
+      "layer_used": true,
+      "tag": "document"
+    },
+    {
+      "depth": 3,
+      "fields": {
+        "display": {
+          "op": 1,
+          "used": false,
+          "value": "block"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 0
+        },
+        "role": {
+          "op": 1,
+          "used": true,
+          "value": "Grouping"
+        },
+        "text-align": {
+          "op": 1,
+          "used": false,
+          "value": "left"
+        }
+      },
+      "layer_used": true,
+      "tag": "body"
+    },
+    {
+      "depth": 4,
+      "fields": {
+        "display": {
+          "op": 1,
+          "used": false,
+          "value": "block"
+        },
+        "id": {
+          "op": 1,
+          "used": false,
+          "value": "root"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 0
+        },
+        "role": {
+          "op": 1,
+          "used": true,
+          "value": "Grouping"
+        },
+        "text-align": {
+          "op": 1,
+          "used": false,
+          "value": "left"
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    },
+    {
+      "depth": 5,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "MuiList-root MuiList-padding the-menu css-1wduhak"
+        },
+        "display": {
+          "op": 1,
+          "used": false,
+          "value": "block"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 2
+        },
+        "role": {
+          "op": 1,
+          "used": true,
+          "value": "List"
+        },
+        "setsize": {
+          "op": 1,
+          "used": false,
+          "value": "8"
+        },
+        "text-align": {
+          "op": 1,
+          "used": false,
+          "value": "left"
+        }
+      },
+      "layer_used": true,
+      "tag": "ul"
+    },
+    {
+      "depth": 6,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "MuiListItem-root MuiListItem-gutters MuiListItem-padding css-rf7pr6"
+        },
+        "display": {
+          "op": 1,
+          "used": false,
+          "value": "flex"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 7
+        },
+        "level": {
+          "op": 1,
+          "used": false,
+          "value": "1"
+        },
+        "posinset": {
+          "op": 1,
+          "used": false,
+          "value": "8"
+        },
+        "role": {
+          "op": 1,
+          "used": true,
+          "value": "ListItem"
+        },
+        "setsize": {
+          "op": 1,
+          "used": false,
+          "value": "8"
+        },
+        "text-align": {
+          "op": 1,
+          "used": false,
+          "value": "left"
+        }
+      },
+      "layer_used": true,
+      "tag": "li"
+    },
+    {
+      "depth": 7,
+      "fields": {
+        "class": {
+          "op": 1,
+          "used": false,
+          "value": "MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters css-6c7i4y"
+        },
+        "display": {
+          "op": 1,
+          "used": false,
+          "value": "flex"
+        },
+        "index": {
+          "op": 1,
+          "used": false,
+          "value": 0
+        },
+        "name": {
+          "op": 1,
+          "used": true,
+          "value": "设 置"
+        },
+        "name-from": {
+          "op": 1,
+          "used": false,
+          "value": "contents"
+        },
+        "role": {
+          "op": 1,
+          "used": true,
+          "value": "PushButton"
+        },
+        "text-align": {
+          "op": 1,
+          "used": false,
+          "value": "left"
+        },
+        "xml-roles": {
+          "op": 1,
+          "used": false,
+          "value": "button"
+        }
+      },
+      "layer_used": true,
+      "tag": "div"
+    }
+  ],
+  "platform": "win",
+  "schema_version": "2.0"
+}
