@@ -108,17 +108,6 @@ uiautoma.web.WebElement.get_text
 - 清理结果：`PASS`，本次资源 `3/3`
 - 产品源码修改：无
 
-## 2026-09-15：元素 HTML 靶场复测
-
-脚本：`web/test_web_element_get_text_html.py`
-
-结果：**8/8 通过，退出码 0**。普通文本与 Unicode、特殊字符、`div → span → label`
-三层嵌套 HTML 均已通过 `get_text()` 与独立 DOM `innerText` 对比；每个场景重置后，
-输入框为空且靶元素恢复为 `等待渲染 HTML…`。额外位置参数被 `TypeError` 拒绝，Package
-和测试页面已清理。
-
-测试结论已确认：`WebElement.get_text()` 初次验收通过，状态为 `VERIFIED`。
-
 ## 明确排除
 
 - Edge、CEF 和 Auto 真实行为。
