@@ -271,6 +271,13 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 > `failure_reason=Cannot find a next page in history.`，而页面侧 `history.length` 已为 `2`~`3`；
 > 先执行一次 `page.execute_javascript(...)` 后即可成功。跟踪 Issue：
 > https://github.com/uiautoma/desktop/issues/58 ；复现脚本 `issues/issue_58/test_issue_58_go_back.py`。
+>
+> `WebBrowser.stop_load()` 验收（2026-09-15）顺带发现并已提单的三个缺陷：
+> - [#59](https://github.com/uiautoma/desktop/issues/59) `is_load_completed()` 在 Chrome 错误页上恒为 `False`（`wait_load_completed()` 只能等到超时）
+> - [#60](https://github.com/uiautoma/desktop/issues/60) 连续两次 `wait_load_completed()` 超时后页面对象失效（`stale_page_reference`）并泄漏标签（4/4 复现）
+> - [#61](https://github.com/uiautoma/desktop/issues/61) 无响应标签无法回收：`close()` / `navigate()` 在同步 JS 死循环页面上全部失败
+>
+> 详见 `web/evidence/stop_load.md` 与 `web/evidence/is_load_completed.md`。
 
 
 

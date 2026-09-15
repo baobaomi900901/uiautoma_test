@@ -63,6 +63,8 @@
 
 ## 已知发现 1：Chrome 错误页上 `is_load_completed()` 恒为 `False`
 
+跟踪 Issue：https://github.com/uiautoma/desktop/issues/59
+
 **复现**：导航到 `http://127.0.0.1:9/uiautoma-error-page.html`（端口 9 关闭，连接立即被拒绝），
 Chrome 进入自身错误页后采集：
 
@@ -97,6 +99,8 @@ const loaded = !!(liveTab.status === "complete" && await probeTabDocumentReady(l
 因此脚本中以 `KNOWN`（记录）状态呈现、不计入退出码。是否提单由维护者决定。
 
 ## 已知发现 2：同步 JS 死循环页面（`slow-load-30s.html`）——`stop_load()` 无效，且标签无法回收
+
+跟踪 Issue：https://github.com/uiautoma/desktop/issues/61
 
 靶场 `slow-load-30s.html` 的 `hang.js` 是**主线程同步死循环**：
 
@@ -134,6 +138,40 @@ while (true) { tick(); }                          // 之后永不返回
 
 这从反面印证了 `stop_load()` 的价值：它是**释放挂起导航、让标签重新可控**的前置动作，
 脚本的收尾与异常路径因此都先 `stop_load()` 兜底，再 `close()`。
+
+## 已知发现 4：连续两次 `wait_load_completed()` 超时会让页面对象失效并泄漏标签
+
+跟踪 Issue：https://github.com/uiautoma/desktop/issues/60
+
+排查「错误页」现象时又稳定复现出一个更严重的问题：在**未完成页面**上连续调用两次
+`wait_load_completed()`，第二次超时之后**页面对象被判失效**，`get_url()` 与 `close()` 全部抛
+「网页对象已失效」（`stale_page_reference`），标签成为孤儿（探针运行后标签数由 8 涨到 11）。
+
+**4/4 稳定复现**（错误页 2 次 + 待处理导航 2 次）：
+
+| 场景 | 第 1 次 `wait(timeout=2)` | 第 2 次 | 之后句柄 |
+|---|---|---|---|
+| 错误页（127.0.0.1:9） | `web_wait_ready_timeout`（2.00s） | `web_browser_command_timeout`（2.01s） | **失效** |
+| 错误页（第 2 轮） | `web_browser_command_timeout`（2.00s） | **「网页对象已失效」**（2.00s） | **失效** |
+| 待处理导航（10.255.255.1） | `web_browser_command_timeout`（2.01s） | `web_browser_command_timeout`（2.02s） | **失效** |
+| 待处理导航（第 2 轮） | `web_browser_command_timeout`（2.01s） | `web_browser_command_timeout`（2.01s） | **失效** |
+
+**对照实验（说明「连续两次」是必要条件，与是否执行 JS 无关）**：
+
+| 对照 | 结果 |
+|---|---|
+| 只调一次 `wait(timeout=2)` | 句柄有效、`close()` 成功 |
+| 不调等待，只静置 12s 并周期读 `get_url()`/`is_load_completed()` | 句柄始终有效、`close()` 成功 |
+| 先 `execute_javascript` 再只调一次等待 | 句柄有效 |
+
+源码线索：引擎 `wait_ready` 分支超时返回 `{ tab: null }`
+（`browser_command_package.js:1663-1671`），而 Runtime 在命令后**再次解析 `page_ref`**，
+解析不到即返回 `stale_page_reference`（`action_service.py:5439-5440`），
+说明 `web_page_state` 中该页面引用已消失（消失的确切触发点本次未定位）。
+
+**对本次验收的影响**：脚本从未连续两次等待，因此 6 次运行 + 维护者 1 次运行均未受影响；
+但该缺陷意味着「导航失败 → 等待完成 → 关闭页面」这一自然写法会丢句柄，故一并记录。
+唯一回收方式：重新 `web.get_all()` 取新页面对象，先 `stop_load()` 再 `close()`（本次已据此清理干净）。
 
 ## 实测行为记录
 

@@ -46,6 +46,8 @@
 
 ## 补充实测（2026-09-15）：Chrome 错误页上**恒为 `False`**
 
+跟踪 Issue：https://github.com/uiautoma/desktop/issues/59
+
 本文件原先把「加载失败页面（DNS 失败、HTTP 错误页）的状态语义」列入「明确排除」。
 在 `WebBrowser.stop_load()` 验收中该场景被实际覆盖，结论如下——原排除项就此撤销。
 
