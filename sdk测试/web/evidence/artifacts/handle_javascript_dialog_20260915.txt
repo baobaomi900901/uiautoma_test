@@ -1,0 +1,134 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.handle_javascript_dialog
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/15    [92m[通过][0m  api_contract                  dialog_result 位置或关键字且默认 ok；text / wait_appear_timeout 仅限关键字（默认 None / 20）；返回 None
+02/15    [92m[通过][0m  page_prepare                  已创建 WebBrowser 测试页面（349.2ms）
+03/15    [92m[通过][0m  initial_state                 初始 URL 可读
+04/15    [92m[通过][0m  alert_accept                  alert 被接受（返回 None），且页面恢复响应
+05/15    [92m[通过][0m  confirm_accept_true           confirm 接受后页面内 confirm() 返回 True
+06/15    [92m[通过][0m  confirm_cancel_false          confirm 取消后页面内 confirm() 返回 False
+07/15    [92m[通过][0m  prompt_accept_text            prompt 填写 'typed-value' 后页面内 prompt() 返回同值
+08/15    [92m[通过][0m  prompt_cancel_null            prompt 取消后页面内 prompt() 返回 null（Python None）
+09/15    [92m[通过][0m  cancel_ignores_text           取消时 text 被忽略：prompt() 返回 None
+10/15    [92m[通过][0m  no_dialog_timeout             ActionError 正确拒绝（trace=web_dialog_timeout）
+11/15    [92m[通过][0m  invalid_dialog_result         InvalidParamsError 正确拒绝（trace=invalid_params）
+12/15    [92m[通过][0m  invalid_timeout               InvalidParamsError 正确拒绝
+13/15    [92m[通过][0m  text_not_keyword_only         TypeError 正确拒绝
+14/15    [92m[通过][0m  unknown_keyword               TypeError 正确拒绝
+15/15    [92m[通过][0m  cleanup                       已兜底清扫对话框并仅关闭本次创建的测试页面
+────────────────────────────────────────────────────────────────────────
+测试通过 · 15/15 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.handle_javascript_dialog",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "dialog_result 位置或关键字且默认 ok；text / wait_appear_timeout 仅限关键字（默认 None / 20）；返回 None",
+      "return_annotation": "None"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已创建 WebBrowser 测试页面（349.2ms）"
+    },
+    {
+      "case_id": "initial_state",
+      "status": "PASS",
+      "detail": "初始 URL 可读",
+      "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+    },
+    {
+      "case_id": "alert_accept",
+      "status": "PASS",
+      "detail": "alert 被接受（返回 None），且页面恢复响应",
+      "returned": "None"
+    },
+    {
+      "case_id": "confirm_accept_true",
+      "status": "PASS",
+      "detail": "confirm 接受后页面内 confirm() 返回 True",
+      "returned": "None",
+      "confirm_value": "True"
+    },
+    {
+      "case_id": "confirm_cancel_false",
+      "status": "PASS",
+      "detail": "confirm 取消后页面内 confirm() 返回 False",
+      "returned": "None",
+      "confirm_value": "False"
+    },
+    {
+      "case_id": "prompt_accept_text",
+      "status": "PASS",
+      "detail": "prompt 填写 'typed-value' 后页面内 prompt() 返回同值",
+      "returned": "None",
+      "prompt_value": "'typed-value'"
+    },
+    {
+      "case_id": "prompt_cancel_null",
+      "status": "PASS",
+      "detail": "prompt 取消后页面内 prompt() 返回 null（Python None）",
+      "returned": "None",
+      "prompt_value": "None"
+    },
+    {
+      "case_id": "cancel_ignores_text",
+      "status": "PASS",
+      "detail": "取消时 text 被忽略：prompt() 返回 None",
+      "returned": "None",
+      "prompt_value": "None"
+    },
+    {
+      "case_id": "no_dialog_timeout",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（trace=web_dialog_timeout）",
+      "trace_info": "web_dialog_timeout",
+      "failure_reason": "",
+      "elapsed_s": 0.04
+    },
+    {
+      "case_id": "invalid_dialog_result",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（trace=invalid_params）",
+      "trace_info": "invalid_params",
+      "failure_reason": "",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "invalid_timeout",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝",
+      "trace_info": "",
+      "failure_reason": "",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "text_not_keyword_only",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝",
+      "trace_info": "",
+      "failure_reason": "",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝",
+      "trace_info": "",
+      "failure_reason": "",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已兜底清扫对话框并仅关闭本次创建的测试页面"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.get_javascript_dialog_text
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/13    [92m[通过][0m  api_contract                  wait_appear_timeout 仅限关键字且默认 20，返回注解 str
+02/13    [92m[通过][0m  page_prepare                  已创建 WebBrowser 测试页面（354.2ms）
+03/13    [92m[通过][0m  initial_state                 初始 URL 可读
+04/13    [92m[通过][0m  alert_text                    alert 文本 读到 'UIA-alert-msg'（str，等待 0.405s），随后已处理对话框
+05/13    [92m[通过][0m  confirm_text                  confirm 文本 读到 'UIA-confirm-msg'（str，等待 0.4s），随后已处理对话框
+06/13    [92m[通过][0m  prompt_text                   prompt 文本 读到 'UIA-prompt-msg'（str，等待 0.396s），随后已处理对话框
+07/13    [92m[通过][0m  waits_for_late_dialog         延迟 1.5s 出现的 alert 文本 读到 'UIA-alert-msg'（str，等待 1.574s），随后已处理对话框
+08/13    [92m[通过][0m  no_dialog_timeout_zero        ActionError 正确拒绝（trace=web_dialog_timeout）（0.022s）
+09/13    [92m[通过][0m  no_dialog_timeout_positive    ActionError 正确拒绝（trace=web_dialog_timeout）（2.02s）
+10/13    [92m[通过][0m  invalid_timeout               InvalidParamsError 正确拒绝（0.0s）
+11/13    [92m[通过][0m  extra_positional              TypeError 正确拒绝（0.0s）
+12/13    [92m[通过][0m  unknown_keyword               TypeError 正确拒绝（0.0s）
+13/13    [92m[通过][0m  cleanup                       已兜底清扫对话框并仅关闭本次创建的测试页面
+────────────────────────────────────────────────────────────────────────
+测试通过 · 13/13 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.get_javascript_dialog_text",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "wait_appear_timeout 仅限关键字且默认 20，返回注解 str",
+      "return_annotation": "str"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已创建 WebBrowser 测试页面（354.2ms）"
+    },
+    {
+      "case_id": "initial_state",
+      "status": "PASS",
+      "detail": "初始 URL 可读",
+      "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+    },
+    {
+      "case_id": "alert_text",
+      "status": "PASS",
+      "detail": "alert 文本 读到 'UIA-alert-msg'（str，等待 0.405s），随后已处理对话框",
+      "value": "'UIA-alert-msg'",
+      "expected": "'UIA-alert-msg'",
+      "elapsed_s": 0.405,
+      "dialog_resolved": true
+    },
+    {
+      "case_id": "confirm_text",
+      "status": "PASS",
+      "detail": "confirm 文本 读到 'UIA-confirm-msg'（str，等待 0.4s），随后已处理对话框",
+      "value": "'UIA-confirm-msg'",
+      "expected": "'UIA-confirm-msg'",
+      "elapsed_s": 0.4,
+      "dialog_resolved": true
+    },
+    {
+      "case_id": "prompt_text",
+      "status": "PASS",
+      "detail": "prompt 文本 读到 'UIA-prompt-msg'（str，等待 0.396s），随后已处理对话框",
+      "value": "'UIA-prompt-msg'",
+      "expected": "'UIA-prompt-msg'",
+      "elapsed_s": 0.396,
+      "dialog_resolved": true
+    },
+    {
+      "case_id": "waits_for_late_dialog",
+      "status": "PASS",
+      "detail": "延迟 1.5s 出现的 alert 文本 读到 'UIA-alert-msg'（str，等待 1.574s），随后已处理对话框",
+      "value": "'UIA-alert-msg'",
+      "expected": "'UIA-alert-msg'",
+      "elapsed_s": 1.574,
+      "dialog_resolved": true
+    },
+    {
+      "case_id": "no_dialog_timeout_zero",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（trace=web_dialog_timeout）（0.022s）",
+      "trace_info": "web_dialog_timeout",
+      "elapsed_s": 0.022
+    },
+    {
+      "case_id": "no_dialog_timeout_positive",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（trace=web_dialog_timeout）（2.02s）",
+      "trace_info": "web_dialog_timeout",
+      "elapsed_s": 2.02
+    },
+    {
+      "case_id": "invalid_timeout",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）",
+      "trace_info": "",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）",
+      "trace_info": "",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）",
+      "trace_info": "",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已兜底清扫对话框并仅关闭本次创建的测试页面"
+    }
+  ]
+}
