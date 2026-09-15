@@ -334,6 +334,26 @@
           "id": "a9bd6284-9fff-4d33-b32b-c60592bd4104",
           "name": "web靶场_上传对话框测试 _原生_上传组件",
           "type": "web"
+        },
+        {
+          "id": "d814bcec-1e0b-45ec-8af4-c7fa25cf8a13",
+          "name": "web靶场_测试get_text_靶元素",
+          "type": "web"
+        },
+        {
+          "id": "3fc7cbc3-f850-40c3-ab52-3804472e2bb1",
+          "name": "web靶场_测试get_text_输入框",
+          "type": "web"
+        },
+        {
+          "id": "3442068e-bbda-4c5d-b43c-b612fc134d21",
+          "name": "web靶场_测试get_text_按钮_确定",
+          "type": "web"
+        },
+        {
+          "id": "5e097c37-0dbe-4f42-873f-e5974a5e05b6",
+          "name": "web靶场_测试get_text_按钮_重置",
+          "type": "web"
         }
       ]
     }

@@ -20,6 +20,7 @@ from uiautoma.web import WebBrowser  # noqa: E402
 __test__ = False
 DEFAULT_URL = "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
 GREEN, RED, RESET = "\x1b[92m", "\x1b[91m", "\x1b[0m"
+BLOCKING_TRACES = {"web_browser_command_timeout", "browser_session_disconnected", "web_bridge_unavailable", "native_host_unavailable", "browser_host_window_mismatch", "activate_tab_failed"}
 
 
 def result(case_id: str, status: str, detail: str, **extra: Any) -> dict[str, Any]:
@@ -55,6 +56,33 @@ def _expect_browser(case_id: str, page: WebBrowser, detail: str) -> dict[str, An
                   page_id=getattr(page, "id", ""), actual_type=type(page).__name__)
 
 
+def _exception_status(exc: Exception) -> str:
+    trace = str(getattr(exc, "trace_info", "") or "")
+    raw = getattr(getattr(exc, "result", None), "raw", {})
+    reason = _find_raw_field(raw, "failure_reason")
+    return "BLOCKED" if trace in BLOCKING_TRACES or reason in BLOCKING_TRACES else "FAIL"
+
+
+def _find_raw_field(value: object, field: str) -> str:
+    if isinstance(value, dict):
+        if value.get(field):
+            return str(value[field])
+        for child in value.values():
+            found = _find_raw_field(child, field)
+            if found:
+                return found
+    return ""
+
+
+def _exception_details(exc: Exception) -> dict[str, str]:
+    raw = getattr(getattr(exc, "result", None), "raw", {})
+    return {
+        "trace_info": str(getattr(exc, "trace_info", "") or ""),
+        "trace_id": str(getattr(exc, "trace_id", "") or ""),
+        "failure_reason": _find_raw_field(raw, "failure_reason"),
+    }
+
+
 def run(args: argparse.Namespace) -> tuple[list[dict[str, Any]], int]:
     results = [check_contract()]
     if results[-1]["status"] != "PASS" or args.contract_only:
@@ -64,23 +92,49 @@ def run(args: argparse.Namespace) -> tuple[list[dict[str, Any]], int]:
     opened: list[WebBrowser] = []
     try:
         started = time.perf_counter()
-        page = web.create(args.target_url, mode=args.mode, load_timeout=args.load_timeout)
+        try:
+            page = web.create(args.target_url, mode=args.mode, load_timeout=args.load_timeout)
+        except Exception as exc:
+            status = _exception_status(exc)
+            results.append(result("page_prepare", status, f"打开测试页面失败: {type(exc).__name__}: {exc}",
+                                  trace_info=str(getattr(exc, "trace_info", "") or "")))
+            return results, 2 if status == "BLOCKED" else 1
         opened.append(page)
-        results.append(_expect_browser("test_page_prepare", page, "已打开测试页面并取得 WebBrowser"))
+        results.append(_expect_browser("page_prepare", page, "已打开测试页面并取得 WebBrowser"))
         if not isinstance(page, WebBrowser):
             return results, 1
         title = page.get_title()
         current_url = page.get_url()
-        results.append(result("get_by_url", "PASS", "按 URL 获取同一页面",
-                              elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                              matched_url=current_url))
-        by_url = web.get(url=current_url, mode=args.mode, load_timeout=0)
+        try:
+            by_url = web.get(url=current_url, mode=args.mode, load_timeout=0)
+        except Exception as exc:
+            trace = str(getattr(exc, "trace_info", "") or getattr(exc, "error_code", "") or "")
+            status = "BLOCKED" if trace in BLOCKING_TRACES else "FAIL"
+            raw = getattr(getattr(exc, "result", None), "raw", None)
+            results.append(result("get_by_url", status, f"get_by_url 调用失败: url={current_url!r}; {type(exc).__name__}: {exc}",
+                                  **_exception_details(exc),
+                                  error_code=str(getattr(exc, "error", "") or ""),
+                                  strategy=str(getattr(exc, "strategy", "") or ""),
+                                  fallback_reason=str(getattr(exc, "fallback_reason", "") or ""),
+                                  log_lines=list(getattr(exc, "log_lines", []) or []), raw=raw if isinstance(raw, dict) else {}))
+            return results, 2 if status == "BLOCKED" else 1
+        results.append(result("get_by_url", "PASS" if isinstance(by_url, WebBrowser) else "FAIL", "按 URL 获取同一页面",
+                              elapsed_ms=round((time.perf_counter() - started) * 1000, 1), matched_url=current_url))
         results[-1]["status"] = "PASS" if isinstance(by_url, WebBrowser) else "FAIL"
-        by_title = web.get(title=title, mode=args.mode, load_timeout=0)
+        try:
+            by_title = web.get(title=title, mode=args.mode, load_timeout=0)
+        except Exception as exc:
+            raise RuntimeError(f"get_by_title 调用失败: title={title!r}; {type(exc).__name__}: {exc}") from exc
         results.append(_expect_browser("get_by_title", by_title, "按标题获取页面"))
-        by_both = web.get(title=title, url=current_url, mode=args.mode, load_timeout=0)
+        try:
+            by_both = web.get(title=title, url=current_url, mode=args.mode, load_timeout=0)
+        except Exception as exc:
+            raise RuntimeError(f"get_by_title_and_url 调用失败: title={title!r}, url={current_url!r}; {type(exc).__name__}: {exc}") from exc
         results.append(_expect_browser("get_by_title_and_url", by_both, "标题和 URL 同时匹配"))
-        wildcard = web.get(url=current_url, mode=args.mode, use_wildcard=True, load_timeout=0)
+        try:
+            wildcard = web.get(url=current_url, mode=args.mode, use_wildcard=True, load_timeout=0)
+        except Exception as exc:
+            raise RuntimeError(f"get_wildcard 调用失败: url={current_url!r}; {type(exc).__name__}: {exc}") from exc
         results.append(_expect_browser("get_wildcard", wildcard, "通配符筛选成功"))
         missing = f"https://example.invalid/uiautoma-get-{int(time.time() * 1000)}"
         try:
@@ -98,8 +152,11 @@ def run(args: argparse.Namespace) -> tuple[list[dict[str, Any]], int]:
         else:
             results.append(result("page_url_requires_open", "FAIL", "非法 page_url 组合未被拒绝"))
     except Exception as exc:  # noqa: BLE001
-        results.append(result("scenario", "FAIL", "get() 场景执行失败",
-                              exception=type(exc).__name__, error=str(exc)))
+        status = _exception_status(exc)
+        trace = str(getattr(exc, "trace_info", "") or getattr(exc, "error_code", "") or "")
+        results.append(result("scenario", status, f"get() 场景执行失败: {type(exc).__name__}: {exc}",
+                              exception=type(exc).__name__, error=str(exc), trace_info=trace,
+                              trace_id=str(getattr(exc, "trace_id", "") or "")))
     finally:
         cleanup_ok = True
         for item in opened:
@@ -109,7 +166,9 @@ def run(args: argparse.Namespace) -> tuple[list[dict[str, Any]], int]:
                 cleanup_ok = False
         results.append(result("cleanup", "PASS" if cleanup_ok else "FAIL",
                               "已关闭测试页面" if cleanup_ok else "页面关闭失败"))
-    return results, 0 if all(item["status"] == "PASS" for item in results) else 1
+    if all(item["status"] == "PASS" for item in results):
+        return results, 0
+    return results, 2 if any(item["status"] == "BLOCKED" for item in results) else 1
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -127,11 +186,17 @@ def main(argv: list[str] | None = None) -> int:
     print("───────  ──────  ─────────────────────  ─────────────────────────────")
     for index, item in enumerate(results, 1):
         passed = item["status"] == "PASS"
-        color = GREEN if passed else RED
-        print(f"{index:02d}/{len(results):02d}    {color}[{'通过' if passed else '失败'}]{RESET}  "
+        label = {"PASS": "通过", "BLOCKED": "阻塞"}.get(item["status"], "失败")
+        color = {"PASS": GREEN, "BLOCKED": "\x1b[93m"}.get(item["status"], RED)
+        print(f"{index:02d}/{len(results):02d}    {color}[{label}]{RESET}  "
               f"{item['case_id']:<22}  {item['detail']}")
+        if not passed:
+            for key, name in (("trace_info", "追踪"), ("failure_reason", "失败原因"), ("trace_id", "追踪ID")):
+                if item.get(key):
+                    print(f"         {name}: {item[key]}")
     print("─" * 72)
-    print(f"{'测试通过' if code == 0 else '测试失败'} · {sum(i['status']=='PASS' for i in results)}/{len(results)} 通过 · 退出码 {code}")
+    summary = "测试通过" if code == 0 else ("测试阻塞" if code == 2 else "测试失败")
+    print(f"{summary} · {sum(i['status']=='PASS' for i in results)}/{len(results)} 通过 · 退出码 {code}")
     return code
 
 

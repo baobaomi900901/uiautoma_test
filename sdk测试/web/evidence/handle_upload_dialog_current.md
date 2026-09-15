@@ -91,6 +91,24 @@ trace=web_dialog_failed
 当前剩余问题是 Runtime 无法识别原生上传对话框的确认/打开按钮。该场景尚未提交新 Issue，
 API 仍保持 `READY_FOR_LIVE`。
 
+## 2026-09-15：指定 `测试.txt` 复测
+
+使用用户指定文件 `C:\Users\moby\Desktop\测试.txt` 运行：
+
+```powershell
+uv run .\web\test_web_handle_upload_dialog_current.py --upload-file "C:\Users\moby\Desktop\测试.txt" --preserve-on-failure
+```
+
+结果：**3/5 通过，退出码 1**。
+
+- 文件准备、页面/元素准备：通过。
+- Runtime 已填写文件路径，但未点击上传对话框的“打开”按钮。
+- 实际错误：`ActionError: 无法识别文件对话框的确定按钮`，`trace=web_dialog_failed`。
+- `cleanup` 显示失败是 `--preserve-on-failure` 的预期结果：系统弹窗和网页被保留供人工处理，不是清理逻辑异常。
+- 用户文件未被删除或修改。
+
+本次进一步确认：上传对话框的路径输入阶段可执行，失败集中在 Runtime 识别并点击“打开”按钮；“确定按钮”只是通用错误文案。当前 API 仍为 `READY_FOR_LIVE`。
+
 最新证据已同步到 Issue #57 的
 [复测评论](https://github.com/uiautoma/desktop/issues/57#issuecomment-5657686373)：
 上传场景当前失败追踪为 `web_dialog_failed`，与 Issue 原始的
