@@ -1,0 +1,134 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.stop_load
+页面    : https://baobaomi900901.github.io/xpath/#/form-controls
+挂起目标: http://10.255.255.1/uiautoma-slow.html, http://192.0.2.1/uiautoma-slow.html
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/15    [92m[通过][0m  api_contract                            无任何参数；返回注解 None
+02/15    [92m[通过][0m  environment_baseline                    进入时浏览器共 8 个标签（用于收尾核对是否有孤儿标签）
+03/15    [92m[通过][0m  page_prepare                            已打开官方靶场页
+04/15    [92m[通过][0m  baseline_load_completed                 基线：is_load_completed()=True、readyState=complete、JS 可用（https://baobaomi900901.github.io/xpath/#/form-controls）
+05/15    [92m[通过][0m  noop_on_completed_page                  已加载完成的页面上 stop_load() 返回 None（0.017s），页面状态不变（is_load_completed()=True、readyState=complete、JS 可用）
+06/15    [92m[通过][0m  repeated_calls                          连续 3 次 stop_load() 均返回 None
+07/15    [92m[通过][0m  pending_navigation_established          已制造待处理网络请求：导航 http://10.255.255.1/uiautoma-slow.html 超时（3.003s，ActionError: 网页操作超时，请检查页面是否加载完成或存在弹窗），is_load_completed()=False 且 execute_javascript() 失败（URL 仍为 'https://baobaomi900901.github.io/xpath/#/form-controls'）
+08/15    [92m[通过][0m  abort_pending_navigation                stop_load() 返回 None（0.049s）后挂起导航被中止：页面在 0.09s 内恢复可用（execute_javascript() 恢复、readyState=complete）；此时 is_load_completed()=True
+09/15    [92m[通过][0m  usable_after_stop                       中止后可正常导航回靶场页并读取标题（'表单控件测试'），is_load_completed()=True
+10/15    [92m[通过][0m  create_stop_if_timeout_true             create(load_timeout=3, stop_if_timeout=True) 超时抛错（UIAError: 网页操作超时，请检查页面是否加载完成或存在弹窗）后，新标签在 0.09s 内不再处于加载中（is_load_completed() 转为 True）：超时后确实自动停止了加载
+11/15    [92m[通过][0m  create_stop_if_timeout_false_then_stop  默认 stop_if_timeout=False：create 超时（UIAError: 网页操作超时，请检查页面是否加载完成或存在弹窗）后标签处于待处理导航（is_load_completed()=False、JS 不可用）；stop_load() 返回 None，0.09s 内加载不再进行（is_load_completed() 转为 True），标签可正常关闭
+12/15    [92m[通过][0m  page_close_verified                     页面已关闭，且 web.get_all() 复核无残留
+13/15    [92m[通过][0m  stale_after_close                       ActionError 正确拒绝（0.0s）：网页对象已失效
+14/15    [94m[记录][0m  error_page_is_load_completed_false      Chrome 错误页（http://127.0.0.1:9/uiautoma-error-page.html）上页面实际 readyState='complete'、loadEventEnd=79、navCount=1、JS 可执行、标签可关闭，但 is_load_completed() 仍为 False —— 该值在错误页上恒为 False；这属于 is_load_completed()/wait_load_completed() 的问题，不由 stop_load 负责，详见证据文档「已知发现」。此行不计入退出码。
+15/15    [92m[通过][0m  cleanup                                 已关闭本次页面；与进入时相比新增标签 0 个
+────────────────────────────────────────────────────────────────────────
+测试通过 · 14/14 通过（另 1 项记录，不计入退出码） · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.stop_load",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/form-controls",
+  "hung_page_url": "https://baobaomi900901.github.io/xpath/slow-load-30s.html",
+  "hang_urls": [
+    "http://10.255.255.1/uiautoma-slow.html",
+    "http://192.0.2.1/uiautoma-slow.html"
+  ],
+  "refused_url": "http://127.0.0.1:9/uiautoma-error-page.html",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "无任何参数；返回注解 None"
+    },
+    {
+      "case_id": "environment_baseline",
+      "status": "PASS",
+      "detail": "进入时浏览器共 8 个标签（用于收尾核对是否有孤儿标签）",
+      "tabs": 8
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已打开官方靶场页",
+      "url": "https://baobaomi900901.github.io/xpath/#/form-controls"
+    },
+    {
+      "case_id": "baseline_load_completed",
+      "status": "PASS",
+      "detail": "基线：is_load_completed()=True、readyState=complete、JS 可用（https://baobaomi900901.github.io/xpath/#/form-controls）"
+    },
+    {
+      "case_id": "noop_on_completed_page",
+      "status": "PASS",
+      "detail": "已加载完成的页面上 stop_load() 返回 None（0.017s），页面状态不变（is_load_completed()=True、readyState=complete、JS 可用）",
+      "elapsed_s": 0.017
+    },
+    {
+      "case_id": "repeated_calls",
+      "status": "PASS",
+      "detail": "连续 3 次 stop_load() 均返回 None"
+    },
+    {
+      "case_id": "pending_navigation_established",
+      "status": "PASS",
+      "detail": "已制造待处理网络请求：导航 http://10.255.255.1/uiautoma-slow.html 超时（3.003s，ActionError: 网页操作超时，请检查页面是否加载完成或存在弹窗），is_load_completed()=False 且 execute_javascript() 失败（URL 仍为 'https://baobaomi900901.github.io/xpath/#/form-controls'）",
+      "hang_url": "http://10.255.255.1/uiautoma-slow.html",
+      "elapsed_s": 3.003
+    },
+    {
+      "case_id": "abort_pending_navigation",
+      "status": "PASS",
+      "detail": "stop_load() 返回 None（0.049s）后挂起导航被中止：页面在 0.09s 内恢复可用（execute_javascript() 恢复、readyState=complete）；此时 is_load_completed()=True",
+      "elapsed_s": 0.049,
+      "recovered": true
+    },
+    {
+      "case_id": "usable_after_stop",
+      "status": "PASS",
+      "detail": "中止后可正常导航回靶场页并读取标题（'表单控件测试'），is_load_completed()=True"
+    },
+    {
+      "case_id": "create_stop_if_timeout_true",
+      "status": "PASS",
+      "detail": "create(load_timeout=3, stop_if_timeout=True) 超时抛错（UIAError: 网页操作超时，请检查页面是否加载完成或存在弹窗）后，新标签在 0.09s 内不再处于加载中（is_load_completed() 转为 True）：超时后确实自动停止了加载",
+      "loaded": true,
+      "url": ""
+    },
+    {
+      "case_id": "create_stop_if_timeout_false_then_stop",
+      "status": "PASS",
+      "detail": "默认 stop_if_timeout=False：create 超时（UIAError: 网页操作超时，请检查页面是否加载完成或存在弹窗）后标签处于待处理导航（is_load_completed()=False、JS 不可用）；stop_load() 返回 None，0.09s 内加载不再进行（is_load_completed() 转为 True），标签可正常关闭",
+      "loaded": true,
+      "pending": true,
+      "usable": false,
+      "closed": true
+    },
+    {
+      "case_id": "page_close_verified",
+      "status": "PASS",
+      "detail": "页面已关闭，且 web.get_all() 复核无残留",
+      "leftover_pages": 0
+    },
+    {
+      "case_id": "stale_after_close",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.0s）：网页对象已失效",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "error_page_is_load_completed_false",
+      "status": "KNOWN",
+      "detail": "Chrome 错误页（http://127.0.0.1:9/uiautoma-error-page.html）上页面实际 readyState='complete'、loadEventEnd=79、navCount=1、JS 可执行、标签可关闭，但 is_load_completed() 仍为 False —— 该值在错误页上恒为 False；这属于 is_load_completed()/wait_load_completed() 的问题，不由 stop_load 负责，详见证据文档「已知发现」。此行不计入退出码。",
+      "ready_state": "complete",
+      "load_event_end": 79,
+      "is_load_completed": false
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已关闭本次页面；与进入时相比新增标签 0 个",
+      "new_tabs": 0,
+      "hung_tabs": 0,
+      "error": ""
+    }
+  ]
+}

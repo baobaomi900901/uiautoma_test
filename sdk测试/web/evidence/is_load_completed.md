@@ -44,6 +44,34 @@
 本 API 只读、不需要导航历史前置，本脚本也不调用后退/前进，因此不受 #58 影响。
 可继续作为「引擎分支内非导航历史命令正常」的对照证据（另见 `reload.md`）。
 
+## 补充实测（2026-09-15）：Chrome 错误页上**恒为 `False`**
+
+本文件原先把「加载失败页面（DNS 失败、HTTP 错误页）的状态语义」列入「明确排除」。
+在 `WebBrowser.stop_load()` 验收中该场景被实际覆盖，结论如下——原排除项就此撤销。
+
+导航到 `http://127.0.0.1:9/uiautoma-error-page.html`（端口 9 关闭，连接立即被拒绝），
+Chrome 进入自身错误页后多次采样：
+
+| 观测 | 值 |
+|---|---|
+| `document.readyState` | `complete` |
+| `performance.getEntriesByType('navigation')[0].loadEventEnd` | `62`（> 0），`navCount = 1` |
+| `location.href` | `chrome-error://chromewebdata/` |
+| `execute_javascript()` | 正常返回 |
+| `close()` | 成功（0.05s） |
+| **`is_load_completed()`** | **`False`（多次采样始终 `False`）** |
+
+追因（依据当前源码）：引擎判据为 `liveTab.status === "complete" && probeTabDocumentReady(...)`，
+而 `probeTabDocumentReady()` 对 `canProbeDocumentReady() === false` 的地址直接返回 `true`；
+`chrome-error://` 既非 `chrome://` 前缀也不是 `http(s)://`，因此探测被跳过，
+判定完全落在标签状态上。页面侧条件（`readyState`、`loadEventEnd`、脚本可执行）均已满足，
+故失败条件只能是标签状态未变为 `complete`（`tab.status` 未透出到 SDK，此处为推定）。
+
+**影响**：任何以失败导航收尾的页面（被 `stop_load()` 中止的导航、连接被拒、DNS 失败等）
+都会让本 API 永远返回 `False`，`wait_load_completed()` 会一路等到超时才报错。
+
+完整上下文与判据区分见 [`stop_load.md`](stop_load.md)「已知发现 1」。
+
 ## 复测
 
 脚本：[test_web_browser_is_load_completed.py](../test_web_browser_is_load_completed.py)
@@ -63,7 +91,8 @@ uv run .\web\test_web_browser_is_load_completed.py --contract-only
 
 - **长时间未完成页面上的持续 `False`**：静态靶场加载过快，只能用零等待刷新制造短暂窗口，
   未验证秒级持续未加载时是否稳定返回 `False`。
-- 加载失败页面（DNS 失败、HTTP 错误页）的状态语义。
+  （补充：与之不同的「真·加载中」状态已在 `stop_load.md` 中由「挂起导航」构造并实测为 `False`。）
+- 加载失败页面（DNS 失败、HTTP 错误页）的状态语义 —— **原排除项已撤销**，见上方补充实测。
 - `iframe` 子框架未完成而主文档已完成时的语义。
 - Edge、CEF 与 Auto 模式（脚本 `--mode` 仅开放 `chrome`）。
 - 已失效页面引用（`stale_page_reference`）下的行为。
