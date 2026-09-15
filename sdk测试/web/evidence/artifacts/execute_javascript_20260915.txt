@@ -1,0 +1,129 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.execute_javascript
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/16    [92m[通过][0m  api_contract              code 必填，argument 默认 None，execution_world 默认 ISOLATED，返回注解 Any
+02/16    [92m[通过][0m  page_prepare              已创建 WebBrowser 测试页面（366.2ms）
+03/16    [92m[通过][0m  initial_state             初始 URL 可读且页面 id 非空
+04/16    [92m[通过][0m  return_passthrough        数字/字符串/布尔/列表/字典 五种返回值均按原类型透传（5/5）
+05/16    [92m[通过][0m  return_none               null / undefined / 无返回值 三种情形均返回 None
+06/16    [92m[通过][0m  async_awaited             Promise.resolve(5) 被 await 后返回 5
+07/16    [92m[通过][0m  argument_passing          数字/字符串/列表/字典/None 五种参数均正确传入（None 传为 undefined）
+08/16    [92m[通过][0m  element_param_null        函数第一个形参收到 null
+09/16    [92m[通过][0m  world_isolation           MAIN 与 ISOLATED 的 JS 变量互相不可见、各自可见（6/6）
+10/16    [92m[通过][0m  world_dom_shared          MAIN 修改 document.title 后，get_title() 与 ISOLATED 读取结果一致（DOM 共享）
+11/16    [92m[通过][0m  positional_call           code 与 argument、execution_world 均可用位置传入
+12/16    [92m[通过][0m  non_function_code         ActionError 正确拒绝（trace=execute_javascript_failed）
+13/16    [92m[通过][0m  throwing_function         ActionError 正确拒绝（trace=execute_javascript_failed）
+14/16    [92m[通过][0m  invalid_world             InvalidParamsError 正确拒绝
+15/16    [92m[通过][0m  empty_code                InvalidParamsError 正确拒绝（trace=invalid_params）
+16/16    [92m[通过][0m  cleanup                   仅关闭本次创建的测试页面
+────────────────────────────────────────────────────────────────────────
+测试通过 · 16/16 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.execute_javascript",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "code 必填，argument 默认 None，execution_world 默认 ISOLATED，返回注解 Any",
+      "return_annotation": "Any"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已创建 WebBrowser 测试页面（366.2ms）"
+    },
+    {
+      "case_id": "initial_state",
+      "status": "PASS",
+      "detail": "初始 URL 可读且页面 id 非空"
+    },
+    {
+      "case_id": "return_passthrough",
+      "status": "PASS",
+      "detail": "数字/字符串/布尔/列表/字典 五种返回值均按原类型透传（5/5）",
+      "sample_count": 5
+    },
+    {
+      "case_id": "return_none",
+      "status": "PASS",
+      "detail": "null / undefined / 无返回值 三种情形均返回 None"
+    },
+    {
+      "case_id": "async_awaited",
+      "status": "PASS",
+      "detail": "Promise.resolve(5) 被 await 后返回 5",
+      "actual": "5"
+    },
+    {
+      "case_id": "argument_passing",
+      "status": "PASS",
+      "detail": "数字/字符串/列表/字典/None 五种参数均正确传入（None 传为 undefined）",
+      "argument_count": 5
+    },
+    {
+      "case_id": "element_param_null",
+      "status": "PASS",
+      "detail": "函数第一个形参收到 null",
+      "actual": "True"
+    },
+    {
+      "case_id": "world_isolation",
+      "status": "PASS",
+      "detail": "MAIN 与 ISOLATED 的 JS 变量互相不可见、各自可见（6/6）",
+      "checks": 6
+    },
+    {
+      "case_id": "world_dom_shared",
+      "status": "PASS",
+      "detail": "MAIN 修改 document.title 后，get_title() 与 ISOLATED 读取结果一致（DOM 共享）",
+      "original_title": "iframe + Shadow 表单测试",
+      "temp_title": "uiautoma-exec-js-a10d9b44"
+    },
+    {
+      "case_id": "positional_call",
+      "status": "PASS",
+      "detail": "code 与 argument、execution_world 均可用位置传入",
+      "actual": "'pos'"
+    },
+    {
+      "case_id": "non_function_code",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（trace=execute_javascript_failed）",
+      "trace_info": "execute_javascript_failed",
+      "failure_reason": "Error: script must be a function\n    at uiautoma-browser-execute-javascript.js:3:37"
+    },
+    {
+      "case_id": "throwing_function",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（trace=execute_javascript_failed）",
+      "trace_info": "execute_javascript_failed",
+      "failure_reason": "Error: boom\n    at eval (eval at <anonymous> (:2:21), <anonymous>:1:22)\n    at uiautoma-browser-execute-javascript.js:4:14"
+    },
+    {
+      "case_id": "invalid_world",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝",
+      "trace_info": "",
+      "failure_reason": ""
+    },
+    {
+      "case_id": "empty_code",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（trace=invalid_params）",
+      "trace_info": "invalid_params",
+      "failure_reason": ""
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "仅关闭本次创建的测试页面"
+    }
+  ]
+}
