@@ -54,3 +54,7 @@ uv run .\web\test_web_close_all_form.py --allow-close-all-pages
 若关闭后 `get_all()` 始终返回缓存页面，超时项将以 PASS 记录为
 `close_command_success_runtime_enumeration_stale`，而不是误报 API 失败。该结果确认
 关闭命令成功，不声称 Runtime 枚举缓存已同步；自动化复测应关注 `close_all_all_pages`。
+
+## 2026-09-15：再次复测
+
+再次运行 `uv run .\web\test_web_close_all_form.py --allow-close-all-pages`，结果 **9/9 通过，退出码 0**。页面准备、关闭命令、关闭后会话失效确认和资源清理均通过。

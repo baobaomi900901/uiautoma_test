@@ -120,6 +120,11 @@ uv run .\web\test_web_handle_save_dialog_css.py
 据此，当前脚本覆盖范围内的 `handle_save_dialog()` 初次测试状态更新为 `VERIFIED`；
 `wait_complete=True`、覆盖策略等未列入本脚本的扩展场景仍不在本次结论内。
 
+### 2026-09-15 再次复测
+
+同一靶场、元素库和下载元素再次运行完整脚本，结果 **7/7 通过，退出码 0**。确认保存耗时
+`2637.5ms`，取消保存耗时 `2476.2ms`；非法参数、关键字规则和 Package/页面/临时目录清理均通过。
+
 Issue #57 已补充最新复测证据：
 [comment-5657686373](https://github.com/uiautoma/desktop/issues/57#issuecomment-5657686373)。
 Chrome 重启后窗口匹配错误未再复现；Issue 保持开放，等待维护者确认原始路由冲突是否已根治。
