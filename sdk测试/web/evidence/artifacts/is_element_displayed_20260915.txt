@@ -1,0 +1,170 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.is_element_displayed
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/20    [92m[通过][0m  api_contract                selector 必填、无 timeout 等额外参数，返回注解 bool
+02/20    [92m[通过][0m  library_prepare             已打开元素库副本：web 元素 70 个
+03/20    [92m[通过][0m  page_prepare                已打开元素所属靶场页
+04/20    [92m[通过][0m  live_classification         库中 70 个元素在本页分类：唯一 52、多命中 10、本页不存在 8
+05/20    [92m[通过][0m  displayed_true_unique       本页唯一命中元素 返回 True（0.019s）
+06/20    [92m[通过][0m  displayed_true_multi        多命中元素（3 个）仍为 True 返回 True（0.016s）
+07/20    [92m[通过][0m  displayed_true_selector     以 package.selector() 传入唯一元素 返回 True（0.016s）
+08/20    [92m[通过][0m  not_on_page_false           库中有但本页不存在的元素 返回 False（0.015s）
+09/20    [92m[通过][0m  wrong_page_false            元素所属页正确但当前页不对 返回 False（0.006s）
+10/20    [92m[通过][0m  library_miss_raises         ElementNotFoundError 正确拒绝（0.001s）：未找到选择器，选择器名："__uiautomata_absent_fea36669__"
+11/20    [92m[通过][0m  empty_name                  InvalidParamsError 正确拒绝（0.0s）：元素名称不能为空
+12/20    [92m[通过][0m  blank_name                  InvalidParamsError 正确拒绝（0.0s）：元素名称不能为空
+13/20    [92m[通过][0m  non_str_name                InvalidParamsError 正确拒绝（0.0s）：selector 必须是元素名称字符串或 Selector 对象
+14/20    [92m[通过][0m  none_name                   InvalidParamsError 正确拒绝（0.0s）：selector 必须是元素名称字符串或 Selector 对象
+15/20    [92m[通过][0m  extra_positional            TypeError 正确拒绝（0.0s）：WebBrowser.is_element_displayed() takes 2 positional arguments but 3 were given
+16/20    [92m[通过][0m  no_timeout_param            TypeError 正确拒绝（0.0s）：WebBrowser.is_element_displayed() got an unexpected keyword argument 'timeout'
+17/20    [92m[通过][0m  page_close_verified         页面已关闭，且 web.get_all() 复核无残留
+18/20    [92m[通过][0m  package_close_verified      Package 已关闭
+19/20    [92m[通过][0m  no_package_rejected         NoCurrentPackageError 正确拒绝（0.001s）：当前没有打开的 Package
+20/20    [92m[通过][0m  cleanup                     已关闭页面（get_all 复核无残留）、关闭 Package、删除元素库副本
+────────────────────────────────────────────────────────────────────────
+测试通过 · 20/20 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.is_element_displayed",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "selector 必填、无 timeout 等额外参数，返回注解 bool",
+      "parameter_names": [
+        "self",
+        "selector"
+      ],
+      "return_annotation": "bool"
+    },
+    {
+      "case_id": "library_prepare",
+      "status": "PASS",
+      "detail": "已打开元素库副本：web 元素 70 个",
+      "web_count": 70
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已打开元素所属靶场页",
+      "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+    },
+    {
+      "case_id": "live_classification",
+      "status": "PASS",
+      "detail": "库中 70 个元素在本页分类：唯一 52、多命中 10、本页不存在 8",
+      "library_size": 70,
+      "unique": 52,
+      "multi": 10,
+      "off_page": 8
+    },
+    {
+      "case_id": "displayed_true_unique",
+      "status": "PASS",
+      "detail": "本页唯一命中元素 返回 True（0.019s）",
+      "elapsed_s": 0.019,
+      "element_name": "web靶场_表单测试_ant_输入框"
+    },
+    {
+      "case_id": "displayed_true_multi",
+      "status": "PASS",
+      "detail": "多命中元素（3 个）仍为 True 返回 True（0.016s）",
+      "elapsed_s": 0.016,
+      "element_name": "web靶场_表单测试_ant_radio_label_相似元素",
+      "matches": 3
+    },
+    {
+      "case_id": "displayed_true_selector",
+      "status": "PASS",
+      "detail": "以 package.selector() 传入唯一元素 返回 True（0.016s）",
+      "elapsed_s": 0.016,
+      "element_name": "web靶场_表单测试_ant_输入框"
+    },
+    {
+      "case_id": "not_on_page_false",
+      "status": "PASS",
+      "detail": "库中有但本页不存在的元素 返回 False（0.015s）",
+      "elapsed_s": 0.015,
+      "element_name": "web靶场_表单测试_ant_select单选_options_相似元素"
+    },
+    {
+      "case_id": "wrong_page_false",
+      "status": "PASS",
+      "detail": "元素所属页正确但当前页不对 返回 False（0.006s）",
+      "elapsed_s": 0.006,
+      "element_name": "web靶场_表单测试_ant_输入框"
+    },
+    {
+      "case_id": "library_miss_raises",
+      "status": "PASS",
+      "detail": "ElementNotFoundError 正确拒绝（0.001s）：未找到选择器，选择器名：\"__uiautomata_absent_fea36669__\"",
+      "elapsed_s": 0.001
+    },
+    {
+      "case_id": "empty_name",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：元素名称不能为空",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "blank_name",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：元素名称不能为空",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "non_str_name",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：selector 必须是元素名称字符串或 Selector 对象",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "none_name",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：selector 必须是元素名称字符串或 Selector 对象",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）：WebBrowser.is_element_displayed() takes 2 positional arguments but 3 were given",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "no_timeout_param",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）：WebBrowser.is_element_displayed() got an unexpected keyword argument 'timeout'",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "page_close_verified",
+      "status": "PASS",
+      "detail": "页面已关闭，且 web.get_all() 复核无残留",
+      "leftover_pages": 0
+    },
+    {
+      "case_id": "package_close_verified",
+      "status": "PASS",
+      "detail": "Package 已关闭"
+    },
+    {
+      "case_id": "no_package_rejected",
+      "status": "PASS",
+      "detail": "NoCurrentPackageError 正确拒绝（0.001s）：当前没有打开的 Package",
+      "elapsed_s": 0.001
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已关闭页面（get_all 复核无残留）、关闭 Package、删除元素库副本",
+      "leftover_pages": 0,
+      "page_close_error": "",
+      "library_copy_removed": true
+    }
+  ]
+}
