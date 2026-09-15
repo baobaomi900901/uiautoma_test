@@ -236,7 +236,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.activateTab()` | `VERIFIED`（6/6；恢复仅尝试） | [web/test_web_browser_activate_tab.py](web/test_web_browser_activate_tab.py) | [web/evidence/browser_activate_tab.md](web/evidence/browser_activate_tab.md) |
 | `uiautoma.web.WebBrowser.get_url()` | `VERIFIED`（7/7） | `web/test_web_browser_get_url.py` | `web/evidence/browser_get_url.md` |
 | `uiautoma.web.WebBrowser.navigate()` | `VERIFIED`（14/14） | `web/test_web_browser_navigate.py` | `web/evidence/browser_navigate.md` |
-| `uiautoma.web.WebElement.get_text()` | `VERIFIED`（8/8） | `web/test_web_element_get_text_html.py` | `web/evidence/get_text.md` |
+| `uiautoma.web.WebElement.get_text()` | `VERIFIED`（35/35 语义矩阵复验；2026-09-15；连续 3 次退出码 0；另有早先 8/8 靶场复测） | `web/test_web_element_get_text.py`（35/35）+ `web/test_web_element_get_text_html.py`（8/8） | `web/evidence/get_text.md` |
 | `uiautoma.web.WebBrowser.get_text()` | `VERIFIED`（7/7） | `web/test_web_browser_get_text.py` | `web/evidence/browser_get_text.md` |
 | `uiautoma.web.WebBrowser.go_back()` | `READY_FOR_LIVE`（2026-09-15：首次调用稳定失败，缺陷 #58） | `web/test_web_browser_go_back.py` | `web/evidence/go_back.md` |
 | `uiautoma.web.WebBrowser.go_forward()` | `VERIFIED`（13/13；2026-09-15；仅预热路径，冷状态被 #58 阻塞） | `web/test_web_browser_go_forward.py` | `web/evidence/go_forward.md` |

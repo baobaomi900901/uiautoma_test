@@ -119,8 +119,62 @@ uiautoma.web.WebElement.get_text
 
 测试结论已确认：`WebElement.get_text()` 初次验收通过，状态为 `VERIFIED`。
 
-## 明确排除
+## 2026-09-15：innerText 语义矩阵复验（35/35，连续 3 次退出码 0）
+
+脚本：`web/test_web_element_get_text.py`（独立于上面那份 8/8 脚本，两者都在本工作区保留）
+原始产物：[`artifacts/element_get_text_20260915.txt`](artifacts/element_get_text_20260915.txt)
+
+靶场：`https://baobaomi900901.github.io/xpath/#/element-html-test`（维护者官方靶场）
+元素库：`D:\code\元素库\260902_web元素`，其中为本次验收准备了 4 条 web 元素；
+脚本先 `find(名称)` 再用 `get_attribute("id")` 核对指向，实测均命中预期节点：
+
+| 库元素名 | 实测指向 |
+|---|---|
+| `web靶场_测试get_text_靶元素` | `#element-html-target` |
+| `web靶场_测试get_text_按钮_确定` | `#element-html-apply` |
+| `web靶场_测试get_text_按钮_重置` | `#element-html-reset` |
+| `web靶场_测试get_text_输入框` | `#element-html-input` |
+
+**期望值来源（两类，互不依赖）**：
+1. 受控 fixture —— 脚本往靶元素注入 HTML，期望值按 `innerText` 的**公开语义**手写推导，
+   **不拿浏览器的 `innerText` 当答案**（浏览器值只作为报告里的对照）；
+2. 真实页面元素（按钮等无法手推期望值的）—— 断言等于浏览器自身 `innerText`，
+   这正是源码声明的 `text_strategy: "innerText"`。
+
+主路线走**库元素名称目标**，另有 CSS 路线对照，两条路线结果一致。
+
+| 场景 | 实测结果 | 与 `textContent` 的差异 |
+|---|---|---|
+| 纯文本 `<span>str</span>` | `'str'` | — |
+| 行内嵌套 `<b>加粗</b><i>斜体</i><span>后缀</span>` | `'加粗斜体后缀'` | 无分隔符 |
+| 块级 `<div>第一行</div><div>第二行</div>` | `'第一行\n第二行'` | textContent 无换行 |
+| `<br>` 换行 | `'第一行\n第二行'` | 同上 |
+| **`display:none` 子元素** | `'可见'`（隐藏文本不计入） | textContent 为 `'可见隐藏'` |
+| **`visibility:hidden` 子元素** | `'可见'` | textContent 为 `'可见半隐藏'` |
+| 连续空白 `a     b\t\tc` | `'a b c'`（折叠） | textContent 保留原样 |
+| `&nbsp;` | `'a\xa0b'`（保留 U+00A0） | 一致 |
+| **`<script>`/`<style>`** | `'正文'`（内容不计入） | textContent 含脚本与样式文本 |
+| 空 `<span></span>` | `''`（空字符串，非 `None`） | — |
+| `<pre>a\nb</pre>` | `'a\nb'` | — |
+| 行内 + 块级混合 | `'标题后缀\n次行'` | textContent 无换行 |
+| **`<input value='输入值'>`** | `'输入值'`（`innerText` 为空时回退取 `value`） | — |
+| `<textarea>` 多行 | `'多行\n文本'`（同上回退） | — |
+| 普通 `<button>` | `'确 定'`（原样，保留空格） | — |
+| **1200 字符长文本** | 完整返回（`len=1200`，**不截断**） | — |
+
+其余用例：`「确定」/「重置」` 按钮经库元素读取与浏览器 `innerText` 一致
+（`'确 定'` / `'重 置'`）；经页面自身流程（输入 `<b>流程</b>验证` → 点「确定」）后
+库元素读到 `'流程验证'`；节点被移除后再 `get_text()` 抛
+`ActionError: 未找到指定ID的元素`（0.003s）；多余位置参数与未知关键字均 `TypeError`；
+页面关闭后抛 `ActionError: 网页对象已失效`；清理复核无残留。
+
+**本次填补了本文件原先列入「明确排除」的两项**：空文本元素与不可见元素负例（见下方修订说明）。
+
+## 明确排除（2026-09-15 修订）
 
 - Edge、CEF 和 Auto 真实行为。
-- 空文本或不可见元素负例。
+- ~~空文本或不可见元素负例~~ —— **已由上面的语义矩阵覆盖**（空 `<span>` → `''`；
+  `display:none` / `visibility:hidden` 子文本不计入）。
 - 元素库捕获期 `WebSessionId` 在不清理时仍可直连当前页面（产品侧会话绑定）。
+- `get_text()` 与 `get_html()`/`get_value()` 三者的组合语义：本文件只覆盖 `get_text()`。
+- 超长文本的**边界值**（本次覆盖 1200 字符；更大规模与 Runtime 报文上限未构造）。

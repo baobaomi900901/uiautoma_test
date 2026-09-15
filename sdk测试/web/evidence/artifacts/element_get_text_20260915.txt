@@ -1,0 +1,394 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.get_text
+页面    : https://baobaomi900901.github.io/xpath/#/element-html-test
+元素库  : D:\code\元素库\260902_web元素
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/35    [92m[通过][0m  api_contract                          无任何参数；返回注解 str
+02/35    [92m[通过][0m  environment_baseline                  进入时浏览器共 11 个标签
+03/35    [92m[通过][0m  library_prepare                       已打开元素库副本：web 元素 70 个（与列举一致）
+04/35    [92m[通过][0m  page_prepare                          已打开元素 HTML 测试页
+05/35    [92m[通过][0m  library_elements_mapping              4 条库元素均已绑定且指向预期节点：web靶场_测试get_text_靶元素→#element-html-target；web靶场_测试get_text_按钮_确定→#element-html-apply；web靶场_测试get_text_按钮_重置→#element-html-reset；web靶场_测试get_text_输入框→#element-html-input
+06/35    [92m[通过][0m  plain_text                            [库元素] 纯文本 span：get_text 返回 'str'，与独立推导的期望值一致
+07/35    [92m[通过][0m  nested_inline                         [库元素] 行内嵌套不产生分隔符：get_text 返回 '加粗斜体后缀'，与独立推导的期望值一致
+08/35    [92m[通过][0m  block_lines                           [库元素] 块级元素之间产生换行（textContent 中不存在）：get_text 返回 '第一行\n第二行'，与独立推导的期望值一致
+09/35    [92m[通过][0m  br_break                              [库元素] <br> 产生换行：get_text 返回 '第一行\n第二行'，与独立推导的期望值一致
+10/35    [92m[通过][0m  hidden_child_display_none             [库元素] display:none 的子文本不计入：get_text 返回 '可见'，与独立推导的期望值一致
+11/35    [92m[通过][0m  hidden_child_visibility               [库元素] visibility:hidden 的子文本不计入：get_text 返回 '可见'，与独立推导的期望值一致
+12/35    [92m[通过][0m  whitespace_collapse                   [库元素] 连续空白折叠为单个空格：get_text 返回 'a b c'，与独立推导的期望值一致
+13/35    [92m[通过][0m  nbsp_entity                           [库元素] &nbsp; 保留为 U+00A0：get_text 返回 'a\xa0b'，与独立推导的期望值一致
+14/35    [92m[通过][0m  script_style_excluded                 [库元素] <script>/<style> 内容不计入：get_text 返回 '正文'，与独立推导的期望值一致
+15/35    [92m[通过][0m  empty_span                            [库元素] 无文本时返回空字符串：get_text 返回 ''，与独立推导的期望值一致
+16/35    [92m[通过][0m  pre_newlines                          [库元素] <pre> 保留换行：get_text 返回 'a\nb'，与独立推导的期望值一致
+17/35    [92m[通过][0m  mixed_nested                          [库元素] 行内与块级混合：get_text 返回 '标题后缀\n次行'，与独立推导的期望值一致
+18/35    [92m[通过][0m  input_value_fallback                  [库元素] input 无 innerText 时取 value：get_text 返回 '输入值'，与独立推导的期望值一致
+19/35    [92m[通过][0m  textarea_value_fallback               [库元素] textarea 取 value：get_text 返回 '多行\n文本'，与独立推导的期望值一致
+20/35    [92m[通过][0m  button_text                           [库元素] 按钮文本原样返回（含空格）：get_text 返回 '确 定'，与独立推导的期望值一致
+21/35    [92m[通过][0m  long_text_no_truncation               [库元素] 1200 字符长文本（验证不截断）：get_text 返回 '长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长'…(len=1200)，与独立推导的期望值一致
+22/35    [92m[通过][0m  css_route_plain                       [CSS] 纯文本：get_text 返回 'css 路线'，与独立推导的期望值一致
+23/35    [92m[通过][0m  css_route_hidden                      [CSS] 隐藏子元素不计入：get_text 返回 '可见'，与独立推导的期望值一致
+24/35    [92m[通过][0m  library_button_confirm                「确定」按钮（库元素）：get_text='确 定'，与浏览器 innerText 一致（策略对齐）
+25/35    [92m[通过][0m  library_button_reset                  「重置」按钮（库元素）：get_text='重 置'，与浏览器 innerText 一致（策略对齐）
+26/35    [92m[通过][0m  library_input_value_fallback          库元素「输入框」（textarea）：设置值后 get_text 返回该值（'文本框内容\n第二行'）
+27/35    [92m[通过][0m  real_page_flow                        经页面自身流程（输入 '<b>流程</b>验证' → 点「确定」）渲染后，库元素 get_text 返回 '流程验证'
+28/35    [92m[通过][0m  removed_node_before                   [CSS] 移除前可读：get_text 返回 '临时'，与独立推导的期望值一致
+29/35    [92m[通过][0m  removed_node_after                    ActionError 正确拒绝（0.003s）：未找到指定ID的元素
+30/35    [92m[通过][0m  extra_positional                      TypeError 正确拒绝（0.0s）：WebElement.get_text() takes 1 positional argument but 2 were given
+31/35    [92m[通过][0m  unknown_kwarg                         TypeError 正确拒绝（0.0s）：WebElement.get_text() got an unexpected keyword argument 'timeout'
+32/35    [92m[通过][0m  page_close_verified                   页面已关闭，且 web.get_all() 复核无残留
+33/35    [92m[通过][0m  after_page_close                      ActionError 正确拒绝（0.0s）：网页对象已失效
+34/35    [92m[通过][0m  package_close_verified                Package 已关闭
+35/35    [92m[通过][0m  cleanup                               已关闭页面与 Package、删除元素库副本
+────────────────────────────────────────────────────────────────────────
+测试通过 · 35/35 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebElement.get_text",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/element-html-test",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "无任何参数；返回注解 str"
+    },
+    {
+      "case_id": "environment_baseline",
+      "status": "PASS",
+      "detail": "进入时浏览器共 11 个标签",
+      "tabs": 11
+    },
+    {
+      "case_id": "library_prepare",
+      "status": "PASS",
+      "detail": "已打开元素库副本：web 元素 70 个（与列举一致）",
+      "web_count": 70
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已打开元素 HTML 测试页",
+      "url": "https://baobaomi900901.github.io/xpath/#/element-html-test"
+    },
+    {
+      "case_id": "library_elements_mapping",
+      "status": "PASS",
+      "detail": "4 条库元素均已绑定且指向预期节点：web靶场_测试get_text_靶元素→#element-html-target；web靶场_测试get_text_按钮_确定→#element-html-apply；web靶场_测试get_text_按钮_重置→#element-html-reset；web靶场_测试get_text_输入框→#element-html-input",
+      "mapping": {
+        "web靶场_测试get_text_靶元素": {
+          "tag": "等待渲染 HTML…",
+          "id": "element-html-target"
+        },
+        "web靶场_测试get_text_按钮_确定": {
+          "tag": "确 定",
+          "id": "element-html-apply"
+        },
+        "web靶场_测试get_text_按钮_重置": {
+          "tag": "重 置",
+          "id": "element-html-reset"
+        },
+        "web靶场_测试get_text_输入框": {
+          "tag": "TEXTAREA",
+          "id": "element-html-input"
+        }
+      }
+    },
+    {
+      "case_id": "plain_text",
+      "status": "PASS",
+      "detail": "[库元素] 纯文本 span：get_text 返回 'str'，与独立推导的期望值一致",
+      "elapsed_s": 0.004,
+      "route": "库元素",
+      "expected": "str",
+      "actual": "str",
+      "browser_inner_text": "str",
+      "browser_text_content": "str",
+      "browser_value": null
+    },
+    {
+      "case_id": "nested_inline",
+      "status": "PASS",
+      "detail": "[库元素] 行内嵌套不产生分隔符：get_text 返回 '加粗斜体后缀'，与独立推导的期望值一致",
+      "elapsed_s": 0.01,
+      "route": "库元素",
+      "expected": "加粗斜体后缀",
+      "actual": "加粗斜体后缀",
+      "browser_inner_text": "加粗斜体后缀",
+      "browser_text_content": "加粗斜体后缀",
+      "browser_value": null
+    },
+    {
+      "case_id": "block_lines",
+      "status": "PASS",
+      "detail": "[库元素] 块级元素之间产生换行（textContent 中不存在）：get_text 返回 '第一行\\n第二行'，与独立推导的期望值一致",
+      "elapsed_s": 0.037,
+      "route": "库元素",
+      "expected": "第一行\n第二行",
+      "actual": "第一行\n第二行",
+      "browser_inner_text": "第一行\n第二行",
+      "browser_text_content": "第一行第二行",
+      "browser_value": null
+    },
+    {
+      "case_id": "br_break",
+      "status": "PASS",
+      "detail": "[库元素] <br> 产生换行：get_text 返回 '第一行\\n第二行'，与独立推导的期望值一致",
+      "elapsed_s": 0.016,
+      "route": "库元素",
+      "expected": "第一行\n第二行",
+      "actual": "第一行\n第二行",
+      "browser_inner_text": "第一行\n第二行",
+      "browser_text_content": "第一行第二行",
+      "browser_value": null
+    },
+    {
+      "case_id": "hidden_child_display_none",
+      "status": "PASS",
+      "detail": "[库元素] display:none 的子文本不计入：get_text 返回 '可见'，与独立推导的期望值一致",
+      "elapsed_s": 0.007,
+      "route": "库元素",
+      "expected": "可见",
+      "actual": "可见",
+      "browser_inner_text": "可见",
+      "browser_text_content": "可见隐藏",
+      "browser_value": null
+    },
+    {
+      "case_id": "hidden_child_visibility",
+      "status": "PASS",
+      "detail": "[库元素] visibility:hidden 的子文本不计入：get_text 返回 '可见'，与独立推导的期望值一致",
+      "elapsed_s": 0.015,
+      "route": "库元素",
+      "expected": "可见",
+      "actual": "可见",
+      "browser_inner_text": "可见",
+      "browser_text_content": "可见半隐藏",
+      "browser_value": null
+    },
+    {
+      "case_id": "whitespace_collapse",
+      "status": "PASS",
+      "detail": "[库元素] 连续空白折叠为单个空格：get_text 返回 'a b c'，与独立推导的期望值一致",
+      "elapsed_s": 0.014,
+      "route": "库元素",
+      "expected": "a b c",
+      "actual": "a b c",
+      "browser_inner_text": "a b c",
+      "browser_text_content": "a     b\t\tc",
+      "browser_value": null
+    },
+    {
+      "case_id": "nbsp_entity",
+      "status": "PASS",
+      "detail": "[库元素] &nbsp; 保留为 U+00A0：get_text 返回 'a\\xa0b'，与独立推导的期望值一致",
+      "elapsed_s": 0.009,
+      "route": "库元素",
+      "expected": "a b",
+      "actual": "a b",
+      "browser_inner_text": "a b",
+      "browser_text_content": "a b",
+      "browser_value": null
+    },
+    {
+      "case_id": "script_style_excluded",
+      "status": "PASS",
+      "detail": "[库元素] <script>/<style> 内容不计入：get_text 返回 '正文'，与独立推导的期望值一致",
+      "elapsed_s": 0.004,
+      "route": "库元素",
+      "expected": "正文",
+      "actual": "正文",
+      "browser_inner_text": "正文",
+      "browser_text_content": "var x = 1;正文.a{color:red}",
+      "browser_value": null
+    },
+    {
+      "case_id": "empty_span",
+      "status": "PASS",
+      "detail": "[库元素] 无文本时返回空字符串：get_text 返回 ''，与独立推导的期望值一致",
+      "elapsed_s": 0.003,
+      "route": "库元素",
+      "expected": "",
+      "actual": "",
+      "browser_inner_text": "",
+      "browser_text_content": "",
+      "browser_value": null
+    },
+    {
+      "case_id": "pre_newlines",
+      "status": "PASS",
+      "detail": "[库元素] <pre> 保留换行：get_text 返回 'a\\nb'，与独立推导的期望值一致",
+      "elapsed_s": 0.003,
+      "route": "库元素",
+      "expected": "a\nb",
+      "actual": "a\nb",
+      "browser_inner_text": "a\nb",
+      "browser_text_content": "a\nb",
+      "browser_value": null
+    },
+    {
+      "case_id": "mixed_nested",
+      "status": "PASS",
+      "detail": "[库元素] 行内与块级混合：get_text 返回 '标题后缀\\n次行'，与独立推导的期望值一致",
+      "elapsed_s": 0.003,
+      "route": "库元素",
+      "expected": "标题后缀\n次行",
+      "actual": "标题后缀\n次行",
+      "browser_inner_text": "标题后缀\n次行",
+      "browser_text_content": "标题后缀次行",
+      "browser_value": null
+    },
+    {
+      "case_id": "input_value_fallback",
+      "status": "PASS",
+      "detail": "[库元素] input 无 innerText 时取 value：get_text 返回 '输入值'，与独立推导的期望值一致",
+      "elapsed_s": 0.007,
+      "route": "库元素",
+      "expected": "输入值",
+      "actual": "输入值",
+      "browser_inner_text": "",
+      "browser_text_content": "",
+      "browser_value": "输入值"
+    },
+    {
+      "case_id": "textarea_value_fallback",
+      "status": "PASS",
+      "detail": "[库元素] textarea 取 value：get_text 返回 '多行\\n文本'，与独立推导的期望值一致",
+      "elapsed_s": 0.008,
+      "route": "库元素",
+      "expected": "多行\n文本",
+      "actual": "多行\n文本",
+      "browser_inner_text": "",
+      "browser_text_content": "多行\n文本",
+      "browser_value": "多行\n文本"
+    },
+    {
+      "case_id": "button_text",
+      "status": "PASS",
+      "detail": "[库元素] 按钮文本原样返回（含空格）：get_text 返回 '确 定'，与独立推导的期望值一致",
+      "elapsed_s": 0.006,
+      "route": "库元素",
+      "expected": "确 定",
+      "actual": "确 定",
+      "browser_inner_text": "确 定",
+      "browser_text_content": "确 定",
+      "browser_value": ""
+    },
+    {
+      "case_id": "long_text_no_truncation",
+      "status": "PASS",
+      "detail": "[库元素] 1200 字符长文本（验证不截断）：get_text 返回 '长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长'…(len=1200)，与独立推导的期望值一致",
+      "elapsed_s": 0.003,
+      "route": "库元素",
+      "expected": "长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长",
+      "actual": "长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长",
+      "browser_inner_text": "长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长",
+      "browser_text_content": "长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长",
+      "browser_value": null
+    },
+    {
+      "case_id": "css_route_plain",
+      "status": "PASS",
+      "detail": "[CSS] 纯文本：get_text 返回 'css 路线'，与独立推导的期望值一致",
+      "elapsed_s": 0.003,
+      "route": "CSS",
+      "expected": "css 路线",
+      "actual": "css 路线",
+      "browser_inner_text": "css 路线",
+      "browser_text_content": "css 路线",
+      "browser_value": null
+    },
+    {
+      "case_id": "css_route_hidden",
+      "status": "PASS",
+      "detail": "[CSS] 隐藏子元素不计入：get_text 返回 '可见'，与独立推导的期望值一致",
+      "elapsed_s": 0.004,
+      "route": "CSS",
+      "expected": "可见",
+      "actual": "可见",
+      "browser_inner_text": "可见",
+      "browser_text_content": "可见隐藏",
+      "browser_value": null
+    },
+    {
+      "case_id": "library_button_confirm",
+      "status": "PASS",
+      "detail": "「确定」按钮（库元素）：get_text='确 定'，与浏览器 innerText 一致（策略对齐）",
+      "actual": "确 定",
+      "browser_inner_text": "确 定"
+    },
+    {
+      "case_id": "library_button_reset",
+      "status": "PASS",
+      "detail": "「重置」按钮（库元素）：get_text='重 置'，与浏览器 innerText 一致（策略对齐）",
+      "actual": "重 置",
+      "browser_inner_text": "重 置"
+    },
+    {
+      "case_id": "library_input_value_fallback",
+      "status": "PASS",
+      "detail": "库元素「输入框」（textarea）：设置值后 get_text 返回该值（'文本框内容\\n第二行'）",
+      "actual": "文本框内容\n第二行"
+    },
+    {
+      "case_id": "real_page_flow",
+      "status": "PASS",
+      "detail": "经页面自身流程（输入 '<b>流程</b>验证' → 点「确定」）渲染后，库元素 get_text 返回 '流程验证'",
+      "actual": "流程验证"
+    },
+    {
+      "case_id": "removed_node_before",
+      "status": "PASS",
+      "detail": "[CSS] 移除前可读：get_text 返回 '临时'，与独立推导的期望值一致",
+      "elapsed_s": 0.006,
+      "route": "CSS",
+      "expected": "临时",
+      "actual": "临时",
+      "browser_inner_text": "临时",
+      "browser_text_content": "临时",
+      "browser_value": null
+    },
+    {
+      "case_id": "removed_node_after",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.003s）：未找到指定ID的元素",
+      "elapsed_s": 0.003
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）：WebElement.get_text() takes 1 positional argument but 2 were given",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "unknown_kwarg",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）：WebElement.get_text() got an unexpected keyword argument 'timeout'",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "page_close_verified",
+      "status": "PASS",
+      "detail": "页面已关闭，且 web.get_all() 复核无残留",
+      "leftover_pages": 0
+    },
+    {
+      "case_id": "after_page_close",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.0s）：网页对象已失效",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "package_close_verified",
+      "status": "PASS",
+      "detail": "Package 已关闭"
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已关闭页面与 Package、删除元素库副本",
+      "error": ""
+    }
+  ]
+}
