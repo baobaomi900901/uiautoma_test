@@ -1,0 +1,302 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.http_request
+页面    : https://baobaomi900901.github.io/xpath/#/element-html-test
+回显服务: https://httpbin.org（不可达时相关用例记 BLOCKED）
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/42    [92m[通过][0m  api_contract                            url 为位置参数，其余 6 个仅限关键字（默认 GET/None/None/None/30/300），返回注解 dict
+02/42    [92m[通过][0m  environment_baseline                    进入时浏览器共 11 个标签；本脚本**不打开任何元素库**（http_request 只用 page_ref，无需 Package）
+03/42    [92m[通过][0m  page_prepare                            已打开靶场页
+04/42    [92m[通过][0m  echo_service_probe                      回显服务 https://httpbin.org 可达（status=200）
+05/42    [92m[通过][0m  reference_download                      已独立下载参考文件 delayed-element.html（5289 字节）
+06/42    [92m[通过][0m  relative_path_leading_slash             相对路径 /xpath/delayed-element.html：status=200, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=4777>，内容与独立下载的文本逐字符一致
+07/42    [92m[通过][0m  gzip_transfer_reported_but_decoded      服务端以 'gzip' 传输，而 content 已是解码后的文本（长度 4777 字符 ≠ 磁盘 5289 字节；含中文多字节）
+08/42    [92m[通过][0m  relative_path_without_slash             无前导斜杠的相对路径 delayed-element.html 同样命中（证明按页面 URL 解析 base）：status=200, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=4777>
+09/42    [92m[通过][0m  absolute_url                            绝对 URL 请求成功：status=200, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=2735>
+10/42    [92m[通过][0m  not_found_empty_content                 404 时 status_code=404 且 content 为空**字符串**：status=404, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=0>
+11/42    [92m[通过][0m  head_no_body                            HEAD 返回 200 且无响应体：status=200, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=0>
+12/42    [92m[通过][0m  post_to_static_file_rejected            对静态文件 POST 得到 405 且无内容（非 2xx 语义）：status=405, content_type='', content_encoding='', content=<str len=0>
+13/42    [92m[通过][0m  echo_post_body_and_headers              回显核对：data='{"hello":"世界"}'、X-Probe='uiautomata-42'、Content-Type='application/json'、url='https://httpbin.org/post'
+14/42    [92m[通过][0m  echo_put                                PUT 送达且回显 data='put-body'
+15/42    [92m[通过][0m  echo_patch                              PATCH 送达且回显 data='patch-body'
+16/42    [92m[通过][0m  echo_delete                             DELETE 送达且回显 data=''
+17/42    [92m[通过][0m  lowercase_method_uppercased             小写 'get' 被规范化为大写并成功：status=200, content_type='application/json', content_encoding='', content=<str len=861>
+18/42    [92m[通过][0m  get_with_body_rejected                  ActionError 正确拒绝（0.007s）：TypeError: Failed to execute 'fetch' on 'Window': Request with GET/HEAD method cannot have body.
+    at eval (eval at <anonymous> (:2:21), <anonymous>:5:32)
+   
+19/42    [92m[通过][0m  cross_origin_no_cookie_leak             已设置靶场 Cookie（uiautomata_probe@baobaomi900901.github.io），跨源请求回显 cookies={} —— 默认 credentials=same-origin，不外泄
+20/42    [92m[通过][0m  connect_timeout_aborts_hanging          挂起地址在 connect_timeout=1 下被约束中止（download_timeout=5 未生效）：ActionError（1.032s，形态=abort）—— AbortError: signal is aborted without reason
+21/42    [92m[通过][0m  connect_timeout_bounds_headers          /delay/4 + connect_timeout=1：响应头未到即中止：ActionError（1.028s，形态=abort）—— AbortError: signal is aborted without reason
+22/42    [92m[通过][0m  headers_delay_within_connect_timeout    /delay/2 在默认超时下成功（2.427s）——说明 TTFB 由 connect_timeout 约束、download_timeout 不约束它
+23/42    [92m[通过][0m  download_timeout_bounds_body            头部即时返回、响应体分块 5s：download_timeout=1 在读体阶段中止：ActionError（1.251s，形态=abort）—— AbortError: The user aborted a request.
+24/42    [92m[通过][0m  drip_within_download_timeout            分块响应在 download_timeout=6 内完整读完（2.58s，50 字符）
+25/42    [92m[通过][0m  save_text_creates_nested_dirs           保存到嵌套新目录成功：content 为 bytes（5289 字节），落盘文件与独立下载的字节完全一致
+26/42    [92m[通过][0m  save_binary_chunked_100k                100000 字节二进制：content 为 bytes 且长度 100000，落盘文件同长度且与 content 逐字节一致（跨 32768 分块路径）
+27/42    [92m[通过][0m  binary_without_save_is_text             不保存时二进制响应被按文本解码：content 为 str（1890 字符，与 2000 字节不等 → 有损）——想拿原始字节必须传 save_filename
+28/42    [92m[通过][0m  non_2xx_not_saved                       非 2xx 时不落盘且 content 为空字符串：status=404, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=0>，文件存在=False
+29/42    [92m[通过][0m  head_save_creates_empty_file            HEAD + save_filename：content 为空 bytes，落盘 0 字节文件（如实记录该行为）
+30/42    [92m[通过][0m  save_path_is_directory                  InvalidParamsError 正确拒绝（0.0s）：保存路径必须包含文件名
+31/42    [92m[通过][0m  url_empty                               InvalidParamsError 正确拒绝（0.0s）：missing url
+32/42    [92m[通过][0m  url_none                                InvalidParamsError 正确拒绝（0.0s）：missing url
+33/42    [92m[通过][0m  method_empty                            InvalidParamsError 正确拒绝（0.0s）：HTTP 方法不能为空
+34/42    [92m[通过][0m  headers_non_str_value                   InvalidParamsError 正确拒绝（0.0s）：HTTP 请求头必须为字符串字典
+35/42    [92m[通过][0m  body_not_str                            InvalidParamsError 正确拒绝（0.0s）：HTTP 请求体必须为字符串，请先序列化 JSON
+36/42    [92m[通过][0m  connect_timeout_zero                    InvalidParamsError 正确拒绝（0.0s）：HTTP 连接和下载等待时间必须为至少 1 秒的有限数值
+37/42    [92m[通过][0m  connect_timeout_fraction                InvalidParamsError 正确拒绝（0.0s）：HTTP 连接和下载等待时间必须为至少 1 秒的有限数值
+38/42    [92m[通过][0m  download_timeout_bool                   InvalidParamsError 正确拒绝（0.0s）：HTTP 连接和下载等待时间必须为至少 1 秒的有限数值
+39/42    [92m[通过][0m  save_filename_empty                     InvalidParamsError 正确拒绝（0.0s）：保存路径不能为空
+40/42    [92m[通过][0m  page_close_verified                     页面已关闭，且 web.get_all() 复核无残留
+41/42    [92m[通过][0m  after_page_close                        ActionError 正确拒绝（0.0s）：网页对象已失效
+42/42    [92m[通过][0m  cleanup                                 已关闭页面、删除本次临时目录（含 3 个落盘产物）
+────────────────────────────────────────────────────────────────────────
+测试通过 · 42/42 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.http_request",
+  "page_url": "https://baobaomi900901.github.io/xpath/#/element-html-test",
+  "echo_base": "https://httpbin.org",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "url 为位置参数，其余 6 个仅限关键字（默认 GET/None/None/None/30/300），返回注解 dict"
+    },
+    {
+      "case_id": "environment_baseline",
+      "status": "PASS",
+      "detail": "进入时浏览器共 11 个标签；本脚本**不打开任何元素库**（http_request 只用 page_ref，无需 Package）",
+      "tabs": 11
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已打开靶场页",
+      "url": "https://baobaomi900901.github.io/xpath/#/element-html-test"
+    },
+    {
+      "case_id": "echo_service_probe",
+      "status": "PASS",
+      "detail": "回显服务 https://httpbin.org 可达（status=200）"
+    },
+    {
+      "case_id": "reference_download",
+      "status": "PASS",
+      "detail": "已独立下载参考文件 delayed-element.html（5289 字节）"
+    },
+    {
+      "case_id": "relative_path_leading_slash",
+      "status": "PASS",
+      "detail": "相对路径 /xpath/delayed-element.html：status=200, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=4777>，内容与独立下载的文本逐字符一致"
+    },
+    {
+      "case_id": "gzip_transfer_reported_but_decoded",
+      "status": "PASS",
+      "detail": "服务端以 'gzip' 传输，而 content 已是解码后的文本（长度 4777 字符 ≠ 磁盘 5289 字节；含中文多字节）"
+    },
+    {
+      "case_id": "relative_path_without_slash",
+      "status": "PASS",
+      "detail": "无前导斜杠的相对路径 delayed-element.html 同样命中（证明按页面 URL 解析 base）：status=200, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=4777>"
+    },
+    {
+      "case_id": "absolute_url",
+      "status": "PASS",
+      "detail": "绝对 URL 请求成功：status=200, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=2735>"
+    },
+    {
+      "case_id": "not_found_empty_content",
+      "status": "PASS",
+      "detail": "404 时 status_code=404 且 content 为空**字符串**：status=404, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=0>"
+    },
+    {
+      "case_id": "head_no_body",
+      "status": "PASS",
+      "detail": "HEAD 返回 200 且无响应体：status=200, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=0>"
+    },
+    {
+      "case_id": "post_to_static_file_rejected",
+      "status": "PASS",
+      "detail": "对静态文件 POST 得到 405 且无内容（非 2xx 语义）：status=405, content_type='', content_encoding='', content=<str len=0>"
+    },
+    {
+      "case_id": "echo_post_body_and_headers",
+      "status": "PASS",
+      "detail": "回显核对：data='{\"hello\":\"世界\"}'、X-Probe='uiautomata-42'、Content-Type='application/json'、url='https://httpbin.org/post'",
+      "elapsed_s": 0.258
+    },
+    {
+      "case_id": "echo_put",
+      "status": "PASS",
+      "detail": "PUT 送达且回显 data='put-body'",
+      "elapsed_s": 0.249
+    },
+    {
+      "case_id": "echo_patch",
+      "status": "PASS",
+      "detail": "PATCH 送达且回显 data='patch-body'",
+      "elapsed_s": 0.242
+    },
+    {
+      "case_id": "echo_delete",
+      "status": "PASS",
+      "detail": "DELETE 送达且回显 data=''",
+      "elapsed_s": 0.249
+    },
+    {
+      "case_id": "lowercase_method_uppercased",
+      "status": "PASS",
+      "detail": "小写 'get' 被规范化为大写并成功：status=200, content_type='application/json', content_encoding='', content=<str len=861>",
+      "elapsed_s": 0.26
+    },
+    {
+      "case_id": "get_with_body_rejected",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.007s）：TypeError: Failed to execute 'fetch' on 'Window': Request with GET/HEAD method cannot have body.\n    at eval (eval at <anonymous> (:2:21), <anonymous>:5:32)\n   ",
+      "elapsed_s": 0.007
+    },
+    {
+      "case_id": "cross_origin_no_cookie_leak",
+      "status": "PASS",
+      "detail": "已设置靶场 Cookie（uiautomata_probe@baobaomi900901.github.io），跨源请求回显 cookies={} —— 默认 credentials=same-origin，不外泄"
+    },
+    {
+      "case_id": "connect_timeout_aborts_hanging",
+      "status": "PASS",
+      "detail": "挂起地址在 connect_timeout=1 下被约束中止（download_timeout=5 未生效）：ActionError（1.032s，形态=abort）—— AbortError: signal is aborted without reason",
+      "elapsed_s": 1.032,
+      "failure_shape": "abort"
+    },
+    {
+      "case_id": "connect_timeout_bounds_headers",
+      "status": "PASS",
+      "detail": "/delay/4 + connect_timeout=1：响应头未到即中止：ActionError（1.028s，形态=abort）—— AbortError: signal is aborted without reason",
+      "elapsed_s": 1.028,
+      "failure_shape": "abort"
+    },
+    {
+      "case_id": "headers_delay_within_connect_timeout",
+      "status": "PASS",
+      "detail": "/delay/2 在默认超时下成功（2.427s）——说明 TTFB 由 connect_timeout 约束、download_timeout 不约束它",
+      "elapsed_s": 2.427
+    },
+    {
+      "case_id": "download_timeout_bounds_body",
+      "status": "PASS",
+      "detail": "头部即时返回、响应体分块 5s：download_timeout=1 在读体阶段中止：ActionError（1.251s，形态=abort）—— AbortError: The user aborted a request.",
+      "elapsed_s": 1.251,
+      "failure_shape": "abort"
+    },
+    {
+      "case_id": "drip_within_download_timeout",
+      "status": "PASS",
+      "detail": "分块响应在 download_timeout=6 内完整读完（2.58s，50 字符）",
+      "elapsed_s": 2.58
+    },
+    {
+      "case_id": "save_text_creates_nested_dirs",
+      "status": "PASS",
+      "detail": "保存到嵌套新目录成功：content 为 bytes（5289 字节），落盘文件与独立下载的字节完全一致"
+    },
+    {
+      "case_id": "save_binary_chunked_100k",
+      "status": "PASS",
+      "detail": "100000 字节二进制：content 为 bytes 且长度 100000，落盘文件同长度且与 content 逐字节一致（跨 32768 分块路径）"
+    },
+    {
+      "case_id": "binary_without_save_is_text",
+      "status": "PASS",
+      "detail": "不保存时二进制响应被按文本解码：content 为 str（1890 字符，与 2000 字节不等 → 有损）——想拿原始字节必须传 save_filename"
+    },
+    {
+      "case_id": "non_2xx_not_saved",
+      "status": "PASS",
+      "detail": "非 2xx 时不落盘且 content 为空字符串：status=404, content_type='text/html; charset=utf-8', content_encoding='gzip', content=<str len=0>，文件存在=False"
+    },
+    {
+      "case_id": "head_save_creates_empty_file",
+      "status": "PASS",
+      "detail": "HEAD + save_filename：content 为空 bytes，落盘 0 字节文件（如实记录该行为）"
+    },
+    {
+      "case_id": "save_path_is_directory",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：保存路径必须包含文件名",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "url_empty",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：missing url",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "url_none",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：missing url",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "method_empty",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：HTTP 方法不能为空",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "headers_non_str_value",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：HTTP 请求头必须为字符串字典",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "body_not_str",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：HTTP 请求体必须为字符串，请先序列化 JSON",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "connect_timeout_zero",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：HTTP 连接和下载等待时间必须为至少 1 秒的有限数值",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "connect_timeout_fraction",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：HTTP 连接和下载等待时间必须为至少 1 秒的有限数值",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "download_timeout_bool",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：HTTP 连接和下载等待时间必须为至少 1 秒的有限数值",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "save_filename_empty",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：保存路径不能为空",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "page_close_verified",
+      "status": "PASS",
+      "detail": "页面已关闭，且 web.get_all() 复核无残留",
+      "leftover_pages": 0
+    },
+    {
+      "case_id": "after_page_close",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.0s）：网页对象已失效",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已关闭页面、删除本次临时目录（含 3 个落盘产物）",
+      "produced_files": 3,
+      "error": ""
+    }
+  ]
+}

@@ -266,6 +266,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.stop_load()` | `VERIFIED`（14/14 + 1 记录；2026-09-15；连续 6 次全绿；含错误页 is_load_completed 恒 False 与无响应标签回收缺口） | `web/test_web_browser_stop_load.py` | `web/evidence/stop_load.md` |
 | `uiautoma.web.WebBrowser.wait_appear()` | `VERIFIED`（31/31 + 1 边界；2026-09-15；连续 3 次全绿；canonical 为靶场自计时页 delayed-element.html，测试侧零调度） | `web/test_web_browser_wait_appear.py` | `web/evidence/wait_appear.md` |
 | `uiautoma.web.WebBrowser.wait_disappear()` | `VERIFIED`（32/32 无边界；2026-09-15；连续 3 次全绿；含「隐藏≠消失」与 React 销毁节点即判消失） | `web/test_web_browser_wait_disappear.py` | `web/evidence/wait_disappear.md` |
+| `uiautoma.web.WebBrowser.http_request()` | `VERIFIED`（42/42；2026-09-15；连续 3 次全绿；回显核对请求头/体、connect/download 超时分野、10 万分块二进制） | `web/test_web_browser_http_request.py` | `web/evidence/http_request.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
 >
@@ -280,6 +281,11 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 > - [#61](https://github.com/uiautoma/desktop/issues/61) 无响应标签无法回收：`close()` / `navigate()` 在同步 JS 死循环页面上全部失败
 >
 > 详见 `web/evidence/stop_load.md` 与 `web/evidence/is_load_completed.md`。
+>
+> **`WebBrowser` 覆盖完成**（2026-09-15，`http_request()` 验收后）：按 SDK 源码全量对账，
+> `WebBrowser` 的 **41 个公开成员已全部有验收结果**——40 个为 `VERIFIED`
+> （`go_back` 已测但存在缺陷 #58、`extract_table` 已验合同但功能未实现、`id` 为属性已测）。
+> 元素级 `WebElement` 仍有未在本工作区复验的方法，见 `web/web api 清单.md`。
 
 
 
