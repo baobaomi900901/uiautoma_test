@@ -260,6 +260,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.find_all_by_xpath()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_all_by_xpath.py` | `web/evidence/find_all_by_xpath.md` |
 | `uiautoma.web.WebBrowser.is_element_displayed()` | `VERIFIED`（20/20；2026-09-15；活推导分类唯一 52/多命中 10/本页不存在 8） | `web/test_web_browser_is_element_displayed.py` | `web/evidence/is_element_displayed.md` |
 | `uiautoma.web.WebBrowser.extract_table()` | `未实现`（已验合同 11/11：必抛 `UnsupportedActionError`，零 Runtime 交互） | `web/test_web_browser_extract_table.py` | `web/evidence/extract_table.md` |
+| `uiautoma.web.WebBrowser.screenshot()` | `VERIFIED`（21/21；2026-09-15；产物字节独立解析确证尺寸） | `web/test_web_browser_screenshot.py` | `web/evidence/browser_screenshot.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
 >
@@ -267,6 +268,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 > `failure_reason=Cannot find a next page in history.`，而页面侧 `history.length` 已为 `2`~`3`；
 > 先执行一次 `page.execute_javascript(...)` 后即可成功。跟踪 Issue：
 > https://github.com/uiautoma/desktop/issues/58 ；复现脚本 `issues/issue_58/test_issue_58_go_back.py`。
+
 
 
 

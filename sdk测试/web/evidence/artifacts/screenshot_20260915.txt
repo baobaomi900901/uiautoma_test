@@ -1,0 +1,202 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.screenshot
+页面    : https://baobaomi900901.github.io/xpath/#/form-controls
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/21    [92m[通过][0m  api_contract                folder_path 必填；file_name / full_size / piece_height / height 仅限关键字（默认 None / True / 0 / 0）；返回注解 None
+02/21    [92m[通过][0m  page_prepare                已打开官方靶场页
+03/21    [92m[通过][0m  dom_expectations            活推导页面尺寸 2636×2018，视口 2651×1270
+04/21    [92m[通过][0m  default_full_page           默认整页（自动命名） 产出 screenshot_7ee1e0d44cb44cbb83f993c89f140ce6.png（png 2636×2018，1.791s）
+05/21    [92m[通过][0m  custom_name_jpg             file_name='acceptance-shot.jpg' 产出 acceptance-shot.jpg（jpeg 2636×2018，1.921s）
+06/21    [92m[通过][0m  viewport_only               full_size=False 产出视口尺寸 2636×1214（整页高 2018，视口高 1270）
+07/21    [92m[通过][0m  height_clip                 height=600 限高 产出 screenshot_8ca422ac8ac1493fb88b8dd88e69536a.png（png 2636×600，1.908s）
+08/21    [92m[通过][0m  piece_height_stitch         piece_height=500 分段拼接 产出 screenshot_a54c5271d52e498abfcdc6ebf533e44e.png（png 2636×2018，7.425s）
+09/21    [92m[通过][0m  auto_create_folder          多级目录自动创建 产出 screenshot_980917e2c28743b2a94db57ee896a18c.png（png 2636×2018，1.942s）
+10/21    [92m[通过][0m  empty_folder                InvalidParamsError 正确拒绝（0.0s）：请提供截图保存目录
+11/21    [92m[通过][0m  blank_folder                InvalidParamsError 正确拒绝（0.0s）：请提供截图保存目录
+12/21    [92m[通过][0m  non_str_folder              InvalidParamsError 正确拒绝（0.0s）：请提供截图保存目录
+13/21    [92m[通过][0m  file_name_with_slash        InvalidParamsError 正确拒绝（0.0s）：截图文件名不能包含目录或非法字符
+14/21    [92m[通过][0m  file_name_dotdot            InvalidParamsError 正确拒绝（0.0s）：截图文件名不能包含目录或非法字符
+15/21    [92m[通过][0m  file_name_control_char      InvalidParamsError 正确拒绝（0.0s）：截图文件名不能包含目录或非法字符
+16/21    [92m[通过][0m  full_size_non_bool          InvalidParamsError 正确拒绝（0.0s）：full_size 必须为布尔值
+17/21    [92m[通过][0m  piece_height_negative       InvalidParamsError 正确拒绝（0.0s）：piece_height 必须为非负整数
+18/21    [92m[通过][0m  piece_height_bool           InvalidParamsError 正确拒绝（0.0s）：piece_height 必须为非负整数
+19/21    [92m[通过][0m  height_non_int              InvalidParamsError 正确拒绝（0.0s）：height 必须为非负整数
+20/21    [92m[通过][0m  page_close_verified         页面已关闭，且 web.get_all() 复核无残留
+21/21    [92m[通过][0m  cleanup                     已关闭页面（get_all 复核无残留）、删除本次截图目录（含 6 个产物文件）
+────────────────────────────────────────────────────────────────────────
+测试通过 · 21/21 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.screenshot",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/form-controls",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "folder_path 必填；file_name / full_size / piece_height / height 仅限关键字（默认 None / True / 0 / 0）；返回注解 None"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已打开官方靶场页",
+      "url": "https://baobaomi900901.github.io/xpath/#/form-controls"
+    },
+    {
+      "case_id": "dom_expectations",
+      "status": "PASS",
+      "detail": "活推导页面尺寸 2636×2018，视口 2651×1270",
+      "metrics": {
+        "ih": 1270,
+        "iw": 2651,
+        "sh": 2018,
+        "sw": 2636
+      }
+    },
+    {
+      "case_id": "default_full_page",
+      "status": "PASS",
+      "detail": "默认整页（自动命名） 产出 screenshot_7ee1e0d44cb44cbb83f993c89f140ce6.png（png 2636×2018，1.791s）",
+      "file_name": "screenshot_7ee1e0d44cb44cbb83f993c89f140ce6.png",
+      "format": "png",
+      "width": 2636,
+      "height": 2018,
+      "elapsed_s": 1.791
+    },
+    {
+      "case_id": "custom_name_jpg",
+      "status": "PASS",
+      "detail": "file_name='acceptance-shot.jpg' 产出 acceptance-shot.jpg（jpeg 2636×2018，1.921s）",
+      "file_name": "acceptance-shot.jpg",
+      "format": "jpeg",
+      "width": 2636,
+      "height": 2018,
+      "elapsed_s": 1.921,
+      "actual_file_name": "acceptance-shot.jpg"
+    },
+    {
+      "case_id": "viewport_only",
+      "status": "PASS",
+      "detail": "full_size=False 产出视口尺寸 2636×1214（整页高 2018，视口高 1270）",
+      "size": [
+        2636,
+        1214
+      ],
+      "full_size": [
+        2636,
+        2018
+      ],
+      "viewport": [
+        2651,
+        1270
+      ],
+      "elapsed_s": 1.853
+    },
+    {
+      "case_id": "height_clip",
+      "status": "PASS",
+      "detail": "height=600 限高 产出 screenshot_8ca422ac8ac1493fb88b8dd88e69536a.png（png 2636×600，1.908s）",
+      "file_name": "screenshot_8ca422ac8ac1493fb88b8dd88e69536a.png",
+      "format": "png",
+      "width": 2636,
+      "height": 600,
+      "elapsed_s": 1.908
+    },
+    {
+      "case_id": "piece_height_stitch",
+      "status": "PASS",
+      "detail": "piece_height=500 分段拼接 产出 screenshot_a54c5271d52e498abfcdc6ebf533e44e.png（png 2636×2018，7.425s）",
+      "file_name": "screenshot_a54c5271d52e498abfcdc6ebf533e44e.png",
+      "format": "png",
+      "width": 2636,
+      "height": 2018,
+      "elapsed_s": 7.425
+    },
+    {
+      "case_id": "auto_create_folder",
+      "status": "PASS",
+      "detail": "多级目录自动创建 产出 screenshot_980917e2c28743b2a94db57ee896a18c.png（png 2636×2018，1.942s）",
+      "file_name": "screenshot_980917e2c28743b2a94db57ee896a18c.png",
+      "format": "png",
+      "width": 2636,
+      "height": 2018,
+      "elapsed_s": 1.942
+    },
+    {
+      "case_id": "empty_folder",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：请提供截图保存目录",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "blank_folder",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：请提供截图保存目录",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "non_str_folder",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：请提供截图保存目录",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "file_name_with_slash",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：截图文件名不能包含目录或非法字符",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "file_name_dotdot",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：截图文件名不能包含目录或非法字符",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "file_name_control_char",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：截图文件名不能包含目录或非法字符",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "full_size_non_bool",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：full_size 必须为布尔值",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "piece_height_negative",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：piece_height 必须为非负整数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "piece_height_bool",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：piece_height 必须为非负整数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "height_non_int",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：height 必须为非负整数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "page_close_verified",
+      "status": "PASS",
+      "detail": "页面已关闭，且 web.get_all() 复核无残留",
+      "leftover_pages": 0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已关闭页面（get_all 复核无残留）、删除本次截图目录（含 6 个产物文件）",
+      "leftover_pages": 0,
+      "produced_files": 6,
+      "page_close_error": ""
+    }
+  ]
+}
