@@ -69,7 +69,7 @@
 | `is_element_displayed` | `is_element_displayed(self, selector: str \| Selector) -> bool` | 判断当前页面是否存在能定位到的匹配元素。 | ✅ 已完成（20/20；库级未命中会抛异常而非 False） |
 | `extract_table` | `extract_table(self, table_selector: object, *, exclude_thead: bool=False, timeout: float=20) -> list[list[str]]` | 提取页面表格。 | ⛔ 未实现（已验合同：11/11 必抛 UnsupportedActionError） |
 | `screenshot` | `screenshot(self, folder_path: str, *, file_name: str \| None=None, full_size: bool=True, piece_height: int=0, height: int=0) -> None` | 截取页面图片到文件。 | ✅ 已完成（21/21；扩展名决定格式） |
-| `screenshot_to_clipboard` | `screenshot_to_clipboard(self, *, full_size: bool=True, piece_height: int=0, height: int=0) -> None` | 截取页面图片到剪贴板。 | - |
+| `screenshot_to_clipboard` | `screenshot_to_clipboard(self, *, full_size: bool=True, piece_height: int=0, height: int=0) -> None` | 截取页面图片到剪贴板。 | ✅ 已完成（23/23；ctypes 独立读 CF_DIB，与文件截图三角像素比对） |
 
 ## `WebElement` 页面/元素对象 API
 

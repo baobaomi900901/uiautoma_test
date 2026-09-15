@@ -261,6 +261,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.is_element_displayed()` | `VERIFIED`（20/20；2026-09-15；活推导分类唯一 52/多命中 10/本页不存在 8） | `web/test_web_browser_is_element_displayed.py` | `web/evidence/is_element_displayed.md` |
 | `uiautoma.web.WebBrowser.extract_table()` | `未实现`（已验合同 11/11：必抛 `UnsupportedActionError`，零 Runtime 交互） | `web/test_web_browser_extract_table.py` | `web/evidence/extract_table.md` |
 | `uiautoma.web.WebBrowser.screenshot()` | `VERIFIED`（21/21；2026-09-15；产物字节独立解析确证尺寸） | `web/test_web_browser_screenshot.py` | `web/evidence/browser_screenshot.md` |
+| `uiautoma.web.WebBrowser.screenshot_to_clipboard()` | `VERIFIED`（23/23；2026-09-15；ctypes 独立读 CF_DIB + 与文件截图三角像素比对） | `web/test_web_browser_screenshot_to_clipboard.py` | `web/evidence/screenshot_to_clipboard.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
 >

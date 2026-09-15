@@ -1,0 +1,219 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.screenshot_to_clipboard
+页面    : https://baobaomi900901.github.io/xpath/#/form-controls
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/23    [92m[通过][0m  api_contract                        full_size / piece_height / height 均为仅限关键字（默认 True / 0 / 0）；无目录与文件名参数；返回注解 None
+02/23    [92m[通过][0m  clipboard_readable                  ctypes 独立通道可读写剪贴板；进入时格式=[8, 2, 17]，原文本=无，原图像=有
+03/23    [92m[通过][0m  clipboard_channel_selftest          脚本自身哨兵文本写入与读取一致；还原分支（无原内容时不清空剪贴板）已执行
+04/23    [92m[通过][0m  page_prepare                        已打开官方靶场页
+05/23    [92m[通过][0m  dom_expectations                    活推导页面尺寸 2636×2018，视口 2651×1214
+06/23    [92m[通过][0m  sentinel_replaced                   哨兵文本已消失且出现 CF_DIB，剪贴板内容确由本次调用改写
+07/23    [92m[通过][0m  default_full_page                   默认整页截图写入剪贴板 剪贴板 CF_DIB 2636×2018、24bpp、15958384 字节精确吻合，像素与文件截图差 0 字节（15958344 字节中，1.9s），同参数两次文件截图零差异
+08/23    [92m[通过][0m  viewport_only                       full_size=False 仅视口 剪贴板 CF_DIB 2636×1214、24bpp、9600352 字节精确吻合，像素与文件截图差 0 字节（9600312 字节中，1.829s），同参数两次文件截图零差异
+09/23    [92m[通过][0m  height_clip                         height=600 限高 剪贴板 CF_DIB 2636×600、24bpp、4744840 字节精确吻合，像素与文件截图差 0 字节（4744800 字节中，1.769s），同参数两次文件截图零差异
+10/23    [92m[通过][0m  piece_height_stitch                 piece_height=500 分段拼接 剪贴板 CF_DIB 2636×2018、24bpp、15958384 字节精确吻合，像素与文件截图差 3 字节（15958344 字节中，7.1s），与同参数第二次文件截图抖动同为 3 字节
+11/23    [92m[通过][0m  viewport_ignores_height             full_size=False 时 height 被忽略 剪贴板 CF_DIB 2636×1214、24bpp、9600352 字节精确吻合，像素与文件截图差 0 字节（9600312 字节中，1.92s），同参数两次文件截图零差异（与仅视口同为 2636×1214）
+12/23    [92m[通过][0m  full_size_non_bool                  InvalidParamsError 正确拒绝（0.0s）：full_size 必须为布尔值
+13/23    [92m[通过][0m  piece_height_negative               InvalidParamsError 正确拒绝（0.0s）：piece_height 必须为非负整数
+14/23    [92m[通过][0m  piece_height_bool                   InvalidParamsError 正确拒绝（0.0s）：piece_height 必须为非负整数
+15/23    [92m[通过][0m  height_non_int                      InvalidParamsError 正确拒绝（0.0s）：height 必须为非负整数
+16/23    [92m[通过][0m  height_negative                     InvalidParamsError 正确拒绝（0.0s）：height 必须为非负整数
+17/23    [92m[通过][0m  positional_rejected                 TypeError 正确拒绝（0.0s）：WebBrowser.screenshot_to_clipboard() takes 1 positional argument but 2 were given
+18/23    [92m[通过][0m  unknown_kwarg_rejected              TypeError 正确拒绝（0.0s）：WebBrowser.screenshot_to_clipboard() got an unexpected keyword argument 'folder'
+19/23    [92m[通过][0m  clipboard_untouched_on_invalid_param  参数非法时剪贴板仍为哨兵文本且无 CF_DIB，校验发生在写出之前
+20/23    [92m[通过][0m  page_close_verified                 页面已关闭，且 web.get_all() 复核无残留
+21/23    [92m[通过][0m  closed_page_error                   ActionError 正确拒绝（0.0s）：网页对象已失效
+22/23    [92m[通过][0m  clipboard_untouched_when_closed     页面失效时剪贴板未被触碰
+23/23    [92m[通过][0m  cleanup                             已关闭页面（get_all 复核无残留）、删除本次截图目录（含 10 个产物文件）；剪贴板收尾：已还原进入时的剪贴板图像（15958384 字节 CF_DIB）
+────────────────────────────────────────────────────────────────────────
+测试通过 · 23/23 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.screenshot_to_clipboard",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/form-controls",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "full_size / piece_height / height 均为仅限关键字（默认 True / 0 / 0）；无目录与文件名参数；返回注解 None"
+    },
+    {
+      "case_id": "clipboard_readable",
+      "status": "PASS",
+      "detail": "ctypes 独立通道可读写剪贴板；进入时格式=[8, 2, 17]，原文本=无，原图像=有",
+      "formats": [
+        8,
+        2,
+        17
+      ]
+    },
+    {
+      "case_id": "clipboard_channel_selftest",
+      "status": "PASS",
+      "detail": "脚本自身哨兵文本写入与读取一致；还原分支（无原内容时不清空剪贴板）已执行"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已打开官方靶场页",
+      "url": "https://baobaomi900901.github.io/xpath/#/form-controls"
+    },
+    {
+      "case_id": "dom_expectations",
+      "status": "PASS",
+      "detail": "活推导页面尺寸 2636×2018，视口 2651×1214",
+      "metrics": {
+        "ih": 1214,
+        "iw": 2651,
+        "sh": 2018,
+        "sw": 2636
+      }
+    },
+    {
+      "case_id": "sentinel_replaced",
+      "status": "PASS",
+      "detail": "哨兵文本已消失且出现 CF_DIB，剪贴板内容确由本次调用改写"
+    },
+    {
+      "case_id": "default_full_page",
+      "status": "PASS",
+      "detail": "默认整页截图写入剪贴板 剪贴板 CF_DIB 2636×2018、24bpp、15958384 字节精确吻合，像素与文件截图差 0 字节（15958344 字节中，1.9s），同参数两次文件截图零差异",
+      "elapsed_s": 1.9,
+      "width": 2636,
+      "height": 2018,
+      "dib_bytes": 15958384,
+      "pixel_diff_bytes": 0,
+      "pixel_diff_vs_second_bytes": 0,
+      "pixel_jitter_bytes": 0,
+      "pixel_total_bytes": 15958344
+    },
+    {
+      "case_id": "viewport_only",
+      "status": "PASS",
+      "detail": "full_size=False 仅视口 剪贴板 CF_DIB 2636×1214、24bpp、9600352 字节精确吻合，像素与文件截图差 0 字节（9600312 字节中，1.829s），同参数两次文件截图零差异",
+      "elapsed_s": 1.829,
+      "width": 2636,
+      "height": 1214,
+      "dib_bytes": 9600352,
+      "pixel_diff_bytes": 0,
+      "pixel_diff_vs_second_bytes": 0,
+      "pixel_jitter_bytes": 0,
+      "pixel_total_bytes": 9600312
+    },
+    {
+      "case_id": "height_clip",
+      "status": "PASS",
+      "detail": "height=600 限高 剪贴板 CF_DIB 2636×600、24bpp、4744840 字节精确吻合，像素与文件截图差 0 字节（4744800 字节中，1.769s），同参数两次文件截图零差异",
+      "elapsed_s": 1.769,
+      "width": 2636,
+      "height": 600,
+      "dib_bytes": 4744840,
+      "pixel_diff_bytes": 0,
+      "pixel_diff_vs_second_bytes": 0,
+      "pixel_jitter_bytes": 0,
+      "pixel_total_bytes": 4744800
+    },
+    {
+      "case_id": "piece_height_stitch",
+      "status": "PASS",
+      "detail": "piece_height=500 分段拼接 剪贴板 CF_DIB 2636×2018、24bpp、15958384 字节精确吻合，像素与文件截图差 3 字节（15958344 字节中，7.1s），与同参数第二次文件截图抖动同为 3 字节",
+      "elapsed_s": 7.1,
+      "width": 2636,
+      "height": 2018,
+      "dib_bytes": 15958384,
+      "pixel_diff_bytes": 3,
+      "pixel_diff_vs_second_bytes": 0,
+      "pixel_jitter_bytes": 3,
+      "pixel_total_bytes": 15958344
+    },
+    {
+      "case_id": "viewport_ignores_height",
+      "status": "PASS",
+      "detail": "full_size=False 时 height 被忽略 剪贴板 CF_DIB 2636×1214、24bpp、9600352 字节精确吻合，像素与文件截图差 0 字节（9600312 字节中，1.92s），同参数两次文件截图零差异（与仅视口同为 2636×1214）",
+      "elapsed_s": 1.92,
+      "width": 2636,
+      "height": 1214,
+      "dib_bytes": 9600352,
+      "pixel_diff_bytes": 0,
+      "pixel_diff_vs_second_bytes": 0,
+      "pixel_jitter_bytes": 0,
+      "pixel_total_bytes": 9600312
+    },
+    {
+      "case_id": "full_size_non_bool",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：full_size 必须为布尔值",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "piece_height_negative",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：piece_height 必须为非负整数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "piece_height_bool",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：piece_height 必须为非负整数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "height_non_int",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：height 必须为非负整数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "height_negative",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：height 必须为非负整数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "positional_rejected",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）：WebBrowser.screenshot_to_clipboard() takes 1 positional argument but 2 were given",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "unknown_kwarg_rejected",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）：WebBrowser.screenshot_to_clipboard() got an unexpected keyword argument 'folder'",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "clipboard_untouched_on_invalid_param",
+      "status": "PASS",
+      "detail": "参数非法时剪贴板仍为哨兵文本且无 CF_DIB，校验发生在写出之前"
+    },
+    {
+      "case_id": "page_close_verified",
+      "status": "PASS",
+      "detail": "页面已关闭，且 web.get_all() 复核无残留",
+      "leftover_pages": 0
+    },
+    {
+      "case_id": "closed_page_error",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.0s）：网页对象已失效",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "clipboard_untouched_when_closed",
+      "status": "PASS",
+      "detail": "页面失效时剪贴板未被触碰"
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已关闭页面（get_all 复核无残留）、删除本次截图目录（含 10 个产物文件）；剪贴板收尾：已还原进入时的剪贴板图像（15958384 字节 CF_DIB）",
+      "leftover_pages": 0,
+      "produced_files": 10,
+      "page_close_error": "",
+      "clipboard_note": "已还原进入时的剪贴板图像（15958384 字节 CF_DIB）"
+    }
+  ]
+}
