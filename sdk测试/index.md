@@ -252,6 +252,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.start_monitor_network()` | `VERIFIED`（12/12；2026-09-15；含存储级过滤实证） | `web/test_web_browser_start_monitor_network.py` | `web/evidence/start_monitor_network.md` |
 | `uiautoma.web.WebBrowser.get_responses()` | `VERIFIED`（19/19；2026-09-15；含记录结构与过滤语义） | `web/test_web_browser_get_responses.py` | `web/evidence/get_responses.md` |
 | `uiautoma.web.WebBrowser.stop_monitor_network()` | `VERIFIED`（13/13；2026-09-15） | `web/test_web_browser_stop_monitor_network.py` | `web/evidence/stop_monitor_network.md` |
+| `uiautoma.web.WebBrowser.find()` | `VERIFIED`（19/19；2026-09-15；库=260902_web元素，靶场=#/iframe-shadow-form） | `web/test_web_browser_find.py` | `web/evidence/find.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
 >
