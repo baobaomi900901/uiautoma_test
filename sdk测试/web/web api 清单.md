@@ -41,8 +41,8 @@
 | `go_forward` | `go_forward(self, *, load_timeout: float=20) -> None` | 浏览器前进。 | ✅ 已完成（13/13；前置依赖 #58，仅预热路径） |
 | `reload` | `reload(self, ignore_cache: bool=False, *, load_timeout: float=20) -> None` | 刷新页面。 | ✅ 已完成（12/12） |
 | `stop_load` | `stop_load(self) -> None` | 停止页面加载。 | - |
-| `is_load_completed` | `is_load_completed(self) -> bool` | 判断页面是否加载完成。 | - |
-| `wait_load_completed` | `wait_load_completed(self, timeout: float=20) -> None` | 等待页面加载完成。 | - |
+| `is_load_completed` | `is_load_completed(self) -> bool` | 判断页面是否加载完成。 | ✅ 已完成（9/9） |
+| `wait_load_completed` | `wait_load_completed(self, timeout: float=20) -> None` | 等待页面加载完成。 | ✅ 已完成（12/12） |
 | `close` | `close(self, *, ignore_beforeunload: bool=False) -> None` | 关闭当前网页。 | - |
 | `execute_javascript` | `execute_javascript(self, code: str, argument: object \| None=None, execution_world: str='ISOLATED') -> Any` | 在当前网页上执行 JavaScript 脚本。 | - |
 | `scroll_to` | `scroll_to(self, *, location: str='bottom', behavior: str='instant', top: int=0, left: int=0) -> None` | 滚动页面到指定位置。 | - |

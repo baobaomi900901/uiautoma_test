@@ -241,6 +241,8 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.go_back()` | `READY_FOR_LIVE`（2026-09-15：首次调用稳定失败，缺陷 #58） | `web/test_web_browser_go_back.py` | `web/evidence/go_back.md` |
 | `uiautoma.web.WebBrowser.go_forward()` | `VERIFIED`（13/13；2026-09-15；仅预热路径，冷状态被 #58 阻塞） | `web/test_web_browser_go_forward.py` | `web/evidence/go_forward.md` |
 | `uiautoma.web.WebBrowser.reload()` | `VERIFIED`（12/12；2026-09-15） | `web/test_web_browser_reload.py` | `web/evidence/reload.md` |
+| `uiautoma.web.WebBrowser.is_load_completed()` | `VERIFIED`（9/9；2026-09-15；True/False 两路径均已实际覆盖） | `web/test_web_browser_is_load_completed.py` | `web/evidence/is_load_completed.md` |
+| `uiautoma.web.WebBrowser.wait_load_completed()` | `VERIFIED`（12/12；2026-09-15） | `web/test_web_browser_wait_load_completed.py` | `web/evidence/wait_load_completed.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
 >

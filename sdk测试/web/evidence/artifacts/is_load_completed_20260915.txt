@@ -1,0 +1,83 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.is_load_completed
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/09    [92m[通过][0m  api_contract                无参数，返回注解 bool
+02/09    [92m[通过][0m  page_prepare                已创建 WebBrowser 测试页面（466.0ms）
+03/09    [92m[通过][0m  initial_state               初始 URL 可读且页面 id 非空
+04/09    [92m[通过][0m  loaded_true                 加载完成后连续三次返回 bool True
+05/09    [92m[通过][0m  after_zero_wait_reload      零等待刷新后立即取值 False（捕捉到未完成窗口），并在 0.444s 内恢复为 True
+06/09    [92m[通过][0m  after_navigate_loaded       导航到第二页面后返回 True，页面 id 不变
+07/09    [92m[通过][0m  extra_positional            TypeError 正确拒绝
+08/09    [92m[通过][0m  unknown_keyword             TypeError 正确拒绝
+09/09    [92m[通过][0m  cleanup                     仅关闭本次创建的测试页面
+────────────────────────────────────────────────────────────────────────
+测试通过 · 9/9 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.is_load_completed",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "无参数，返回注解 bool",
+      "parameter_count": 1,
+      "return_annotation": "bool"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已创建 WebBrowser 测试页面（466.0ms）"
+    },
+    {
+      "case_id": "initial_state",
+      "status": "PASS",
+      "detail": "初始 URL 可读且页面 id 非空"
+    },
+    {
+      "case_id": "loaded_true",
+      "status": "PASS",
+      "detail": "加载完成后连续三次返回 bool True",
+      "samples": [
+        "True",
+        "True",
+        "True"
+      ]
+    },
+    {
+      "case_id": "after_zero_wait_reload",
+      "status": "PASS",
+      "detail": "零等待刷新后立即取值 False（捕捉到未完成窗口），并在 0.444s 内恢复为 True",
+      "immediate_value": "False",
+      "caught_false_window": true,
+      "recovered": true,
+      "recovery_seconds": 0.444,
+      "samples_during_poll": 5
+    },
+    {
+      "case_id": "after_navigate_loaded",
+      "status": "PASS",
+      "detail": "导航到第二页面后返回 True，页面 id 不变",
+      "value": "True"
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝"
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝"
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "仅关闭本次创建的测试页面"
+    }
+  ]
+}
