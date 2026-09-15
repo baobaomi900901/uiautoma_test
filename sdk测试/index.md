@@ -2,6 +2,10 @@
 
 生命周期状态：`DRAFT`、`READY_FOR_LIVE`、`VERIFIED`。
 
+> 测一个新 API 时按 [`AGENTS.md`](AGENTS.md) 的 TEST WORKFLOW 走 7 步；
+> 判据细则（状态模型、期望值来源、独立确证、抖动治理、脚本与证据骨架、反模式）见
+> [`web/web api 实测手册.md`](web/web%20api%20实测手册.md)。
+
 ## Win32
 
 | API | 状态 | 持久化脚本 | 验证证据 | 公开文档 |
