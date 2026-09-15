@@ -254,6 +254,10 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.stop_monitor_network()` | `VERIFIED`（13/13；2026-09-15） | `web/test_web_browser_stop_monitor_network.py` | `web/evidence/stop_monitor_network.md` |
 | `uiautoma.web.WebBrowser.find()` | `VERIFIED`（20/20；2026-09-15；库=260902_web元素，靶场=#/iframe-shadow-form） | `web/test_web_browser_find.py` | `web/evidence/find.md` |
 | `uiautoma.web.WebBrowser.find_all()` | `VERIFIED`（18/18；2026-09-15；超时返回空列表、多命中返回全部） | `web/test_web_browser_find_all.py` | `web/evidence/find_all.md` |
+| `uiautoma.web.WebBrowser.find_by_css()` | `VERIFIED`（18/18；2026-09-15；本地 fixture） | `web/test_web_browser_find_by_css.py` | `web/evidence/find_by_css.md` |
+| `uiautoma.web.WebBrowser.find_all_by_css()` | `VERIFIED`（18/18；2026-09-15；本地 fixture） | `web/test_web_browser_find_all_by_css.py` | `web/evidence/find_all_by_css.md` |
+| `uiautoma.web.WebBrowser.find_by_xpath()` | `VERIFIED`（21/21；2026-09-15；本地 fixture） | `web/test_web_browser_find_by_xpath.py` | `web/evidence/find_by_xpath.md` |
+| `uiautoma.web.WebBrowser.find_all_by_xpath()` | `VERIFIED`（20/20；2026-09-15；本地 fixture） | `web/test_web_browser_find_all_by_xpath.py` | `web/evidence/find_all_by_xpath.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
 >

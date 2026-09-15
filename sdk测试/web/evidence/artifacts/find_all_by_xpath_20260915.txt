@@ -1,0 +1,179 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.find_all_by_xpath
+页面    : http://127.0.0.1:18642/index.html
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/20    [92m[通过][0m  api_contract                    xpath_selector 必填，timeout 仅限关键字且默认 20，返回注解 list[WebElement]
+02/20    [92m[通过][0m  library_prepare                 已打开元素库副本：web 元素 70 个
+03/20    [92m[通过][0m  page_prepare                    已打开靶场页
+04/20    [92m[通过][0m  multi_returns_all               //input 多命中 返回 list[4]：['first', 'second', 'secret', 'solo@example.com']（0.026s）
+05/20    [92m[通过][0m  class_predicate_multi           //li[@class="item"] 多命中 返回 list[3]：['alpha', 'beta', 'gamma']（0.004s）
+06/20    [92m[通过][0m  unique_list_of_one              //*[@id="unique-target"] 唯一命中 返回 list[1]：['唯一目标']（0.016s）
+07/20    [92m[通过][0m  not_found_empty_waits           //*[@id="uiautoma-absent"] 未匹配（timeout=3） 返回 list[0]（空列表）（3.001s）
+08/20    [92m[通过][0m  not_found_timeout_zero_fast     //*[@id="uiautoma-absent"] 未匹配（timeout=0） 返回 list[0]（空列表）（0.004s）
+09/20    [92m[通过][0m  timeout_zero_present            //*[@id="unique-target"]（timeout=0） 返回 list[1]：['唯一目标']（0.013s）
+10/20    [92m[通过][0m  malformed_syntax_rejected       RpcProtocolError 正确拒绝（0.016s）：Web 元素操作失败，请重试
+11/20    [92m[通过][0m  page_usable_after_malformed     语法非法后页面仍可用（title='UIAutoma 本地选择器靶场'）
+12/20    [92m[通过][0m  empty_selector                  InvalidParamsError 正确拒绝（0.0s）：选择器不能为空
+13/20    [92m[通过][0m  blank_selector                  InvalidParamsError 正确拒绝（0.0s）：选择器不能为空
+14/20    [92m[通过][0m  non_str_selector                InvalidParamsError 正确拒绝（0.0s）：选择器不能为空
+15/20    [92m[通过][0m  invalid_timeout                 InvalidParamsError 正确拒绝（0.0s）：timeout 必须为 -1 或非负数
+16/20    [92m[通过][0m  invalid_timeout_type            InvalidParamsError 正确拒绝（0.0s）：timeout 必须是秒数
+17/20    [92m[通过][0m  missing_selector                TypeError 正确拒绝（0.0s）：WebBrowser.find_all_by_xpath() missing 1 required positional argument: 'xpath_selector'
+18/20    [92m[通过][0m  positional_timeout              TypeError 正确拒绝（0.0s）：WebBrowser.find_all_by_xpath() takes 2 positional arguments but 3 were given
+19/20    [92m[通过][0m  no_package_rejected             NoCurrentPackageError 正确拒绝（0.001s）：当前没有打开的 Package
+20/20    [92m[通过][0m  cleanup                         已关闭页面与 Package，删除元素库副本，并停止本地 fixture 服务
+────────────────────────────────────────────────────────────────────────
+测试通过 · 20/20 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.find_all_by_xpath",
+  "target_url": "http://127.0.0.1:18642/index.html",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "xpath_selector 必填，timeout 仅限关键字且默认 20，返回注解 list[WebElement]"
+    },
+    {
+      "case_id": "library_prepare",
+      "status": "PASS",
+      "detail": "已打开元素库副本：web 元素 70 个",
+      "web_count": 70
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已打开靶场页",
+      "url": "http://127.0.0.1:18642/index.html"
+    },
+    {
+      "case_id": "multi_returns_all",
+      "status": "PASS",
+      "detail": "//input 多命中 返回 list[4]：['first', 'second', 'secret', 'solo@example.com']（0.026s）",
+      "count": 4,
+      "names": [
+        "first",
+        "second",
+        "secret",
+        "solo@example.com"
+      ],
+      "elapsed_s": 0.026
+    },
+    {
+      "case_id": "class_predicate_multi",
+      "status": "PASS",
+      "detail": "//li[@class=\"item\"] 多命中 返回 list[3]：['alpha', 'beta', 'gamma']（0.004s）",
+      "count": 3,
+      "names": [
+        "alpha",
+        "beta",
+        "gamma"
+      ],
+      "elapsed_s": 0.004
+    },
+    {
+      "case_id": "unique_list_of_one",
+      "status": "PASS",
+      "detail": "//*[@id=\"unique-target\"] 唯一命中 返回 list[1]：['唯一目标']（0.016s）",
+      "count": 1,
+      "names": [
+        "唯一目标"
+      ],
+      "elapsed_s": 0.016
+    },
+    {
+      "case_id": "not_found_empty_waits",
+      "status": "PASS",
+      "detail": "//*[@id=\"uiautoma-absent\"] 未匹配（timeout=3） 返回 list[0]（空列表）（3.001s）",
+      "count": 0,
+      "names": [],
+      "elapsed_s": 3.001
+    },
+    {
+      "case_id": "not_found_timeout_zero_fast",
+      "status": "PASS",
+      "detail": "//*[@id=\"uiautoma-absent\"] 未匹配（timeout=0） 返回 list[0]（空列表）（0.004s）",
+      "count": 0,
+      "names": [],
+      "elapsed_s": 0.004
+    },
+    {
+      "case_id": "timeout_zero_present",
+      "status": "PASS",
+      "detail": "//*[@id=\"unique-target\"]（timeout=0） 返回 list[1]：['唯一目标']（0.013s）",
+      "count": 1,
+      "names": [
+        "唯一目标"
+      ],
+      "elapsed_s": 0.013
+    },
+    {
+      "case_id": "malformed_syntax_rejected",
+      "status": "PASS",
+      "detail": "RpcProtocolError 正确拒绝（0.016s）：Web 元素操作失败，请重试",
+      "elapsed_s": 0.016
+    },
+    {
+      "case_id": "page_usable_after_malformed",
+      "status": "PASS",
+      "detail": "语法非法后页面仍可用（title='UIAutoma 本地选择器靶场'）"
+    },
+    {
+      "case_id": "empty_selector",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：选择器不能为空",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "blank_selector",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：选择器不能为空",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "non_str_selector",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：选择器不能为空",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "invalid_timeout",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：timeout 必须为 -1 或非负数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "invalid_timeout_type",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：timeout 必须是秒数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "missing_selector",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）：WebBrowser.find_all_by_xpath() missing 1 required positional argument: 'xpath_selector'",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "positional_timeout",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）：WebBrowser.find_all_by_xpath() takes 2 positional arguments but 3 were given",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "no_package_rejected",
+      "status": "PASS",
+      "detail": "NoCurrentPackageError 正确拒绝（0.001s）：当前没有打开的 Package",
+      "elapsed_s": 0.001
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已关闭页面与 Package，删除元素库副本，并停止本地 fixture 服务",
+      "library_copy_removed": true
+    }
+  ]
+}
