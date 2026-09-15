@@ -1,0 +1,96 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.close
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/10    [92m[通过][0m  api_contract                    无公开位置参数，ignore_beforeunload 仅限关键字且默认 False，返回 None
+02/10    [92m[通过][0m  page_prepare                    已创建带运行标记的测试页面 1
+03/10    [92m[通过][0m  close_default                   返回 None，且 0.018s 内该标签页已从 web.get_all 消失
+04/10    [92m[通过][0m  reuse_after_close               关闭后复用被 ActionError 拒绝（trace=stale_page_reference）
+05/10    [92m[通过][0m  beforeunload_handler_install    已在 MAIN world 注册 beforeunload 处理器
+06/10    [92m[通过][0m  close_ignore_beforeunload_true  返回 None，且带 beforeunload 处理器的页面在 0.019s 内关闭
+07/10    [92m[通过][0m  close_explicit_false            显式 False 在干净页面上返回 None 且标签页在 0.013s 内关闭
+08/10    [92m[通过][0m  extra_positional                TypeError 正确拒绝
+09/10    [92m[通过][0m  unknown_keyword                 TypeError 正确拒绝
+10/10    [92m[通过][0m  cleanup                         本次运行标记零残留（收尾清理 0 个遗留页面）
+────────────────────────────────────────────────────────────────────────
+测试通过 · 10/10 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.close",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "无公开位置参数，ignore_beforeunload 仅限关键字且默认 False，返回 None",
+      "return_annotation": "None"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已创建带运行标记的测试页面 1",
+      "run_id": "fea17b7768b8478f98e31d1a6e8d0a3a",
+      "url": "https://baobaomi900901.github.io/xpath/?uiautoma_close_run=fea17b7768b8478f98e31d1a6e8d0a3a#/iframe-shadow-form",
+      "page_id": "1b3c50fb558e4fd6"
+    },
+    {
+      "case_id": "close_default",
+      "status": "PASS",
+      "detail": "返回 None，且 0.018s 内该标签页已从 web.get_all 消失",
+      "returned": "None",
+      "tab_gone": true,
+      "seconds": 0.018
+    },
+    {
+      "case_id": "reuse_after_close",
+      "status": "PASS",
+      "detail": "关闭后复用被 ActionError 拒绝（trace=stale_page_reference）",
+      "trace_info": "stale_page_reference",
+      "failure_reason": ""
+    },
+    {
+      "case_id": "beforeunload_handler_install",
+      "status": "PASS",
+      "detail": "已在 MAIN world 注册 beforeunload 处理器",
+      "installed": true
+    },
+    {
+      "case_id": "close_ignore_beforeunload_true",
+      "status": "PASS",
+      "detail": "返回 None，且带 beforeunload 处理器的页面在 0.019s 内关闭",
+      "returned": "None",
+      "tab_gone": true,
+      "seconds": 0.019
+    },
+    {
+      "case_id": "close_explicit_false",
+      "status": "PASS",
+      "detail": "显式 False 在干净页面上返回 None 且标签页在 0.013s 内关闭",
+      "returned": "None",
+      "tab_gone": true,
+      "seconds": 0.013
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝"
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝"
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "本次运行标记零残留（收尾清理 0 个遗留页面）",
+      "leftover_found": 0,
+      "leftover_closed": 0,
+      "leftover_remaining": 0,
+      "errors": []
+    }
+  ]
+}

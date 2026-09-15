@@ -43,7 +43,7 @@
 | `stop_load` | `stop_load(self) -> None` | 停止页面加载。 | - |
 | `is_load_completed` | `is_load_completed(self) -> bool` | 判断页面是否加载完成。 | ✅ 已完成（9/9） |
 | `wait_load_completed` | `wait_load_completed(self, timeout: float=20) -> None` | 等待页面加载完成。 | ✅ 已完成（12/12） |
-| `close` | `close(self, *, ignore_beforeunload: bool=False) -> None` | 关闭当前网页。 | - |
+| `close` | `close(self, *, ignore_beforeunload: bool=False) -> None` | 关闭当前网页。 | ✅ 已完成（10/10） |
 | `execute_javascript` | `execute_javascript(self, code: str, argument: object \| None=None, execution_world: str='ISOLATED') -> Any` | 在当前网页上执行 JavaScript 脚本。 | - |
 | `scroll_to` | `scroll_to(self, *, location: str='bottom', behavior: str='instant', top: int=0, left: int=0) -> None` | 滚动页面到指定位置。 | - |
 | `handle_javascript_dialog` | `handle_javascript_dialog(self, dialog_result: str='ok', *, text: str \| None=None, wait_appear_timeout: float=20) -> None` | 处理网页弹出的提示框、确认框或输入框。 | - |
