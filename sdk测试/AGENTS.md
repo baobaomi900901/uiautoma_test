@@ -8,6 +8,12 @@
 
 ## WORKSPACE BOUNDARY
 
+- **仓库映射**：本工作区（`D:\code\元素库`）的远端是
+  https://github.com/baobaomi900901/uiautomata_test （`origin`，分支 `main`），只存放
+  元素库、SDK 实测脚本与测试文档。
+  https://github.com/baobaomi900901/xpath 是**靶场站点源码仓库**（即
+  `https://baobaomi900901.github.io/xpath/` 的源码），不是测试脚本与元素库的存放位置；
+  两者不要混用。
 - 本工作区**只允许**：开发与运行测试脚本、编写测试文档与证据、归档复现材料、提交 Issue。
 - **禁止修改被测产品源码**，包括 `D:\code\desktop` 的主检出、任何 `.worktree` 和任何分支：
   不得在其中新建、修改或删除文件，不得创建/切换分支，不得提交或推送。
