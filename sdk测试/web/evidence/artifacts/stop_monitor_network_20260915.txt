@@ -1,0 +1,106 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.stop_monitor_network
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/13    [92m[通过][0m  api_contract                      无参数，返回 None
+02/13    [92m[通过][0m  page_prepare                      已创建 WebBrowser 测试页面（475.8ms）
+03/13    [92m[通过][0m  initial_state                     初始 URL 可读
+04/13    [92m[通过][0m  monitor_prepare                   监听已启动并捕获 1 条记录（HTTP 404）
+05/13    [92m[通过][0m  stop_after_start                  停止监听返回 None
+06/13    [92m[通过][0m  stopped_no_events                 ActionError 正确拒绝（trace=web_network_monitor_not_found）
+07/13    [92m[通过][0m  page_usable_after_stop            停止监听后页面脚本仍正常执行（会话未被破坏）
+08/13    [92m[通过][0m  stop_idempotent                   再次停止（已无监听） 返回 None（幂等，不报错）
+09/13    [92m[通过][0m  stop_without_monitor              在从未启动监听的页面上停止 返回 None（幂等，不报错）
+10/13    [92m[通过][0m  restart_after_stop                停止后可重新启动监听并再次捕获 1 条记录
+11/13    [92m[通过][0m  extra_positional                  TypeError 正确拒绝
+12/13    [92m[通过][0m  unknown_keyword                   TypeError 正确拒绝
+13/13    [92m[通过][0m  cleanup                           已停止监听并仅关闭本次创建的测试页面
+────────────────────────────────────────────────────────────────────────
+测试通过 · 13/13 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.stop_monitor_network",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "无参数，返回 None",
+      "return_annotation": "None"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已创建 WebBrowser 测试页面（475.8ms）"
+    },
+    {
+      "case_id": "initial_state",
+      "status": "PASS",
+      "detail": "初始 URL 可读",
+      "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+    },
+    {
+      "case_id": "monitor_prepare",
+      "status": "PASS",
+      "detail": "监听已启动并捕获 1 条记录（HTTP 404）",
+      "captured": 1,
+      "fetch_status": 404
+    },
+    {
+      "case_id": "stop_after_start",
+      "status": "PASS",
+      "detail": "停止监听返回 None",
+      "returned": "None"
+    },
+    {
+      "case_id": "stopped_no_events",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（trace=web_network_monitor_not_found）",
+      "trace_info": "web_network_monitor_not_found"
+    },
+    {
+      "case_id": "page_usable_after_stop",
+      "status": "PASS",
+      "detail": "停止监听后页面脚本仍正常执行（会话未被破坏）",
+      "value": "'alive'"
+    },
+    {
+      "case_id": "stop_idempotent",
+      "status": "PASS",
+      "detail": "再次停止（已无监听） 返回 None（幂等，不报错）",
+      "returned": "None"
+    },
+    {
+      "case_id": "stop_without_monitor",
+      "status": "PASS",
+      "detail": "在从未启动监听的页面上停止 返回 None（幂等，不报错）",
+      "returned": "None"
+    },
+    {
+      "case_id": "restart_after_stop",
+      "status": "PASS",
+      "detail": "停止后可重新启动监听并再次捕获 1 条记录",
+      "captured": 1
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝",
+      "trace_info": ""
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝",
+      "trace_info": ""
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已停止监听并仅关闭本次创建的测试页面"
+    }
+  ]
+}

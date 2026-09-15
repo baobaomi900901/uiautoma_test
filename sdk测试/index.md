@@ -249,6 +249,9 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.get_scroll()` | `VERIFIED`（15/15；2026-09-15） | `web/test_web_browser_get_scroll.py` | `web/evidence/get_scroll.md` |
 | `uiautoma.web.WebBrowser.handle_javascript_dialog()` | `VERIFIED`（15/15；2026-09-15；confirm/prompt 语义页面内回读核对） | `web/test_web_browser_handle_javascript_dialog.py` | `web/evidence/handle_javascript_dialog.md` |
 | `uiautoma.web.WebBrowser.get_javascript_dialog_text()` | `VERIFIED`（13/13；2026-09-15；含等待出现路径证据） | `web/test_web_browser_get_javascript_dialog_text.py` | `web/evidence/get_javascript_dialog_text.md` |
+| `uiautoma.web.WebBrowser.start_monitor_network()` | `VERIFIED`（12/12；2026-09-15；含存储级过滤实证） | `web/test_web_browser_start_monitor_network.py` | `web/evidence/start_monitor_network.md` |
+| `uiautoma.web.WebBrowser.get_responses()` | `VERIFIED`（19/19；2026-09-15；含记录结构与过滤语义） | `web/test_web_browser_get_responses.py` | `web/evidence/get_responses.md` |
+| `uiautoma.web.WebBrowser.stop_monitor_network()` | `VERIFIED`（13/13；2026-09-15） | `web/test_web_browser_stop_monitor_network.py` | `web/evidence/stop_monitor_network.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
 >

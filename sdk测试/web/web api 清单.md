@@ -56,9 +56,9 @@
 | `set_cookie` | `set_cookie(self, *, name=None, value=None, sessionCookie: bool=False, expires: float=100, domain=None, path=None, httpOnly: bool=False, secure: bool=False) -> None` | 写入 Cookie | ✅ 已完成（10/10） |
 | `remove_cookie` | `remove_cookie(self, name: str, *, partition_key=None) -> None` | 删除 Cookie | ✅ 已完成（9/9） |
 | `clear_cookies` | `clear_cookies(self, *, partition_key=None) -> None` | 清理符合条件的 Cookie | ✅ 已完成（10/10） |
-| `start_monitor_network` | `start_monitor_network(self, *, url: str='', use_wildcard: bool=False, resource_type: str='All') -> None` | 开始监听当前网页的网络请求。 | - |
-| `get_responses` | `get_responses(self, *, url: str='', use_wildcard: bool=False, resource_type: str='All') -> list` | 获取监听到的网络响应。 | - |
-| `stop_monitor_network` | `stop_monitor_network(self) -> None` | 停止监听当前网页的网络请求。 | - |
+| `start_monitor_network` | `start_monitor_network(self, *, url: str='', use_wildcard: bool=False, resource_type: str='All') -> None` | 开始监听当前网页的网络请求。 | ✅ 已完成（12/12；过滤为存储级） |
+| `get_responses` | `get_responses(self, *, url: str='', use_wildcard: bool=False, resource_type: str='All') -> list` | 获取监听到的网络响应。 | ✅ 已完成（19/19） |
+| `stop_monitor_network` | `stop_monitor_network(self) -> None` | 停止监听当前网页的网络请求。 | ✅ 已完成（13/13） |
 | `http_request` | `http_request(self, url: str, *, method: str='GET', headers=None, body=None, save_filename=None, connect_timeout: float=30, download_timeout: float=300) -> dict` | 在当前网页中发送 HTTP 请求。 | - |
 | `find_all` | `find_all(self, selector: str \| Selector, *, timeout: float=20) -> list[WebElement]` | 在当前页面查找与已保存选择器匹配的全部元素。 | - |
 | `find` | `find(self, selector: str \| Selector, *, timeout: float=20) -> WebElement` | 在当前页面查找与已保存选择器匹配的唯一元素。 | - |
