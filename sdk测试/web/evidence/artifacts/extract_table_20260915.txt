@@ -1,0 +1,97 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.extract_table
+页面    : https://baobaomi900901.github.io/xpath/#/table-test
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/11    [92m[通过][0m  api_contract                    table_selector 必填（位置或关键字），exclude_thead / timeout 仅限关键字（默认 False / 20），返回注解 list[list[str]]
+02/11    [92m[通过][0m  zero_runtime_rejection          无 Package / 无页面 / 不连 Runtime 时 抛 UnsupportedActionError（method=web.browser.extract_table，0.0s）：web.browser.extract_table 当前版本暂不支持
+03/11    [92m[通过][0m  not_no_package_error            拒绝形态是 UnsupportedActionError，而非 NoCurrentPackageError（未走到 Package 检查）
+04/11    [92m[通过][0m  any_arguments_rejected          7 种参数形态（含非法类型）均抛同一 UnsupportedActionError
+05/11    [92m[通过][0m  arg_binding_missing_selector    缺少 table_selector → TypeError（WebBrowser.extract_table() missing 1 required positional argument: 'table_selector'）
+06/11    [92m[通过][0m  arg_binding_extra_positional    多余位置参数（exclude_thead 仅限关键字） → TypeError（WebBrowser.extract_table() takes 2 positional arguments but 3 were given）
+07/11    [92m[通过][0m  arg_binding_unknown_keyword     未知关键字 → TypeError（WebBrowser.extract_table() got an unexpected keyword argument 'unsupported'）
+08/11    [92m[通过][0m  table_page_prepare              靶场页存在 2 个 <table>（用于证明拒绝不是「找不到表格」）
+09/11    [92m[通过][0m  rejected_on_real_table_page     在含真实表格的靶场页上 抛 UnsupportedActionError（method=web.browser.extract_table，0.0s）：web.browser.extract_table 当前版本暂不支持
+10/11    [92m[通过][0m  page_close_verified             页面已关闭，且 web.get_all() 复核无残留
+11/11    [92m[通过][0m  cleanup                         已关闭页面（get_all 复核无残留）；本 API 为桩，未创建 Package 与其它资源
+────────────────────────────────────────────────────────────────────────
+测试通过 · 11/11 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.extract_table",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/table-test",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "table_selector 必填（位置或关键字），exclude_thead / timeout 仅限关键字（默认 False / 20），返回注解 list[list[str]]",
+      "return_annotation": "list[list[str]]"
+    },
+    {
+      "case_id": "zero_runtime_rejection",
+      "status": "PASS",
+      "detail": "无 Package / 无页面 / 不连 Runtime 时 抛 UnsupportedActionError（method=web.browser.extract_table，0.0s）：web.browser.extract_table 当前版本暂不支持",
+      "method": "web.browser.extract_table",
+      "message": "web.browser.extract_table 当前版本暂不支持",
+      "elapsed_s": 0.0,
+      "fake_page_ref": true
+    },
+    {
+      "case_id": "not_no_package_error",
+      "status": "PASS",
+      "detail": "拒绝形态是 UnsupportedActionError，而非 NoCurrentPackageError（未走到 Package 检查）"
+    },
+    {
+      "case_id": "any_arguments_rejected",
+      "status": "PASS",
+      "detail": "7 种参数形态（含非法类型）均抛同一 UnsupportedActionError",
+      "shapes": 7
+    },
+    {
+      "case_id": "arg_binding_missing_selector",
+      "status": "PASS",
+      "detail": "缺少 table_selector → TypeError（WebBrowser.extract_table() missing 1 required positional argument: 'table_selector'）"
+    },
+    {
+      "case_id": "arg_binding_extra_positional",
+      "status": "PASS",
+      "detail": "多余位置参数（exclude_thead 仅限关键字） → TypeError（WebBrowser.extract_table() takes 2 positional arguments but 3 were given）"
+    },
+    {
+      "case_id": "arg_binding_unknown_keyword",
+      "status": "PASS",
+      "detail": "未知关键字 → TypeError（WebBrowser.extract_table() got an unexpected keyword argument 'unsupported'）"
+    },
+    {
+      "case_id": "table_page_prepare",
+      "status": "PASS",
+      "detail": "靶场页存在 2 个 <table>（用于证明拒绝不是「找不到表格」）",
+      "url": "https://baobaomi900901.github.io/xpath/#/table-test",
+      "table_count": 2
+    },
+    {
+      "case_id": "rejected_on_real_table_page",
+      "status": "PASS",
+      "detail": "在含真实表格的靶场页上 抛 UnsupportedActionError（method=web.browser.extract_table，0.0s）：web.browser.extract_table 当前版本暂不支持",
+      "method": "web.browser.extract_table",
+      "message": "web.browser.extract_table 当前版本暂不支持",
+      "elapsed_s": 0.0,
+      "table_count": 2
+    },
+    {
+      "case_id": "page_close_verified",
+      "status": "PASS",
+      "detail": "页面已关闭，且 web.get_all() 复核无残留",
+      "leftover_pages": 0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已关闭页面（get_all 复核无残留）；本 API 为桩，未创建 Package 与其它资源",
+      "leftover_pages": 0,
+      "page_close_error": ""
+    }
+  ]
+}

@@ -67,7 +67,7 @@
 | `find_all_by_xpath` | `find_all_by_xpath(self, xpath_selector: str, *, timeout: float=20) -> list[WebElement]` | 在当前页面查找与 XPath 选择器匹配的全部元素。 | ✅ 已完成（22/22；官方靶场+活 DOM 推导） |
 | `find_by_xpath` | `find_by_xpath(self, xpath_selector: str, *, timeout: float=20) -> WebElement` | 在当前页面查找与 XPath 选择器匹配的唯一元素。 | ✅ 已完成（22/22；官方靶场+活 DOM 推导） |
 | `is_element_displayed` | `is_element_displayed(self, selector: str \| Selector) -> bool` | 判断当前页面是否存在能定位到的匹配元素。 | ✅ 已完成（20/20；库级未命中会抛异常而非 False） |
-| `extract_table` | `extract_table(self, table_selector: object, *, exclude_thead: bool=False, timeout: float=20) -> list[list[str]]` | 提取页面表格。 | - |
+| `extract_table` | `extract_table(self, table_selector: object, *, exclude_thead: bool=False, timeout: float=20) -> list[list[str]]` | 提取页面表格。 | ⛔ 未实现（已验合同：11/11 必抛 UnsupportedActionError） |
 | `screenshot` | `screenshot(self, folder_path: str, *, file_name: str \| None=None, full_size: bool=True, piece_height: int=0, height: int=0) -> None` | 截取页面图片到文件。 | - |
 | `screenshot_to_clipboard` | `screenshot_to_clipboard(self, *, full_size: bool=True, piece_height: int=0, height: int=0) -> None` | 截取页面图片到剪贴板。 | - |
 
