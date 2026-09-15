@@ -6,8 +6,8 @@
     {
       "case_id": "first_call_hash_1",
       "status": "PASS",
-      "detail": "ȱ�ݸ���: 'Cannot find a next page in history.' elapsed=0.015s",
-      "elapsed_s": 0.015,
+      "detail": "缺陷复现: 'Cannot find a next page in history.' elapsed=0.014s",
+      "elapsed_s": 0.014,
       "failure_reason": "Cannot find a next page in history.",
       "trace_info": "web_browser_command_failed",
       "url_after": "https://baobaomi900901.github.io/xpath/#/element-html-test",
@@ -16,8 +16,8 @@
     {
       "case_id": "first_call_hash_2",
       "status": "PASS",
-      "detail": "ȱ�ݸ���: 'Cannot find a next page in history.' elapsed=0.016s",
-      "elapsed_s": 0.016,
+      "detail": "缺陷复现: 'Cannot find a next page in history.' elapsed=0.015s",
+      "elapsed_s": 0.015,
       "failure_reason": "Cannot find a next page in history.",
       "trace_info": "web_browser_command_failed",
       "url_after": "https://baobaomi900901.github.io/xpath/#/cookie-test",
@@ -26,8 +26,8 @@
     {
       "case_id": "first_call_cross",
       "status": "PASS",
-      "detail": "ȱ�ݸ���: 'Cannot find a next page in history.' elapsed=0.014s",
-      "elapsed_s": 0.014,
+      "detail": "缺陷复现: 'Cannot find a next page in history.' elapsed=0.015s",
+      "elapsed_s": 0.015,
       "failure_reason": "Cannot find a next page in history.",
       "trace_info": "web_browser_command_failed",
       "url_after": "https://example.com/",
@@ -36,8 +36,8 @@
     {
       "case_id": "after_page_script",
       "status": "PASS",
-      "detail": "Ԥ�Ⱥ� go_back �ɹ�: returned=None url='https://baobaomi900901.github.io/xpath/#/element-html-test'",
-      "elapsed_s": 0.138,
+      "detail": "预热后 go_back 成功: returned=None url='https://baobaomi900901.github.io/xpath/#/element-html-test'",
+      "elapsed_s": 0.137,
       "history_before_back": 3,
       "url_after": "https://baobaomi900901.github.io/xpath/#/element-html-test"
     }
