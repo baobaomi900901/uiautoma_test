@@ -2,28 +2,28 @@ UIAutoma Web API 测试
 API     : uiautoma.web.WebBrowser.wait_appear
 页面    : https://baobaomi900901.github.io/xpath/
 元素库  : D:\code\元素库\260902_web元素
-转变来源: --transition-source auto
+转变来源: --transition-source scheduled
 进度     状态    测试项                  测试结果
 ────────────────────────────────────────────────────────────────────────
 01/30    [92m[通过][0m  api_contract                            selector_or_element 必填、timeout 位置或关键字且默认 20、返回注解 bool
-02/30    [92m[通过][0m  environment_baseline                    进入时浏览器共 7 个标签
-03/30    [92m[通过][0m  transition_source                       自动选择：靶场自计时页 不可用（HTTP 404）→ 回退 scheduled（测试侧调度转变）
+02/30    [92m[通过][0m  environment_baseline                    进入时浏览器共 8 个标签
+03/30    [92m[通过][0m  transition_source                       使用 scheduled（自计时页可达性：未探测）
 04/30    [92m[通过][0m  library_prepare                         已打开元素库副本：web 元素 70 个（与列举一致）
 05/30    [92m[通过][0m  page_prepare                            已打开靶场首页
-06/30    [92m[通过][0m  probe_target_bound                      已注入稳定探针节点 #uiautoma-wait-target 并绑定为 WebElement（rt:web:b1d9b59097884a6e86e4019febb6cf6a）
-07/30    [92m[通过][0m  present_returns_true_at_once            元素已存在时返回 True（0.009s，未等待）
+06/30    [92m[通过][0m  probe_target_bound                      已注入稳定探针节点 #uiautoma-wait-target 并绑定为 WebElement（rt:web:98f73149a9424d92a80b1acdfe091de2）
+07/30    [92m[通过][0m  present_returns_true_at_once            元素已存在时返回 True（0.02s，未等待）
 08/30    [92m[通过][0m  absent_returns_false_at_timeout         元素不存在（False）时等满 2s 超时返回 False（实测 2.001s）
-09/30    [92m[通过][0m  absent_timeout_zero_no_wait             timeout=0 且元素不存在时立即返回 False（0.03s，不等待）
-10/30    [92m[通过][0m  appears_during_wait                     等待期间元素出现（同一节点在 1.2s 后插回，调度={'delay': 1200, 'removed': True}）：返回 True，耗时 1.254s，确实等到出现才返回
-11/30    [92m[通过][0m  infinite_timeout_returns_on_appear      timeout=-1 在元素出现后返回 True（1.256s），未无限阻塞
-12/30    [92m[通过][0m  hidden_still_present                    隐藏节点（{'clientRects': 0, 'display': 'none'}）仍判为「存在」：返回 True（0.016s）——本 API 按 DOM 存在性判定，不区分可见性
-13/30    [94m[边界][0m  recreated_node_not_matched              React 销毁并重建同形节点后，旧 WebElement 引用仍返回 False（过程：按标题过滤后 {'cards': 1, 'target': False}，旧引用返回 False；过滤清除后同形节点重新出现，重新 find 得到新 id=rt:web:cbffc31ef00645be95e782cd3389f368 可用，旧 id=rt:web:7318aeadf50e468aba0dfd1ba1780aca 不再生效）。即 WebElement 目标按**节点身份**绑定，节点被销毁重建后不会被旧引用认领——属 API 语义边界，不计入退出码。
+09/30    [92m[通过][0m  absent_timeout_zero_no_wait             timeout=0 且元素不存在时立即返回 False（0.008s，不等待）
+10/30    [92m[通过][0m  appears_during_wait                     等待期间元素出现（同一节点在 1.2s 后插回，调度={'delay': 1200, 'removed': True}）：返回 True，耗时 1.258s，确实等到出现才返回
+11/30    [92m[通过][0m  infinite_timeout_returns_on_appear      timeout=-1 在元素出现后返回 True（1.248s），未无限阻塞
+12/30    [92m[通过][0m  hidden_still_present                    隐藏节点（{'clientRects': 0, 'display': 'none'}）仍判为「存在」：返回 True（0.015s）——本 API 按 DOM 存在性判定，不区分可见性
+13/30    [94m[边界][0m  recreated_node_not_matched              React 销毁并重建同形节点后，旧 WebElement 引用仍返回 False（过程：按标题过滤后 {'cards': 1, 'target': False}，旧引用返回 False；过滤清除后同形节点重新出现，重新 find 得到新 id=rt:web:cac57b39a483444797bbfc44ca401be7 可用，旧 id=rt:web:451b0c86a9d449d4a834da7445c94e4e 不再生效）。即 WebElement 目标按**节点身份**绑定，节点被销毁重建后不会被旧引用认领——属 API 语义边界，不计入退出码。
 14/30    [92m[通过][0m  name_on_wrong_page_false                库中存在但本页不存在的名称：等满 2s 返回 False（实测 2.001s）
-15/30    [92m[通过][0m  name_appears_after_route_change         等待期间路由切到库元素所属页（调度 1.2s）：名称目标返回 True，耗时 1.414s，说明真的等到了出现
-16/30    [92m[通过][0m  name_present_returns_true_at_once       名称目标已在当前页：返回 True（0.017s）
+15/30    [92m[通过][0m  name_appears_after_route_change         等待期间路由切到库元素所属页（调度 1.2s）：名称目标返回 True，耗时 1.426s，说明真的等到了出现
+16/30    [92m[通过][0m  name_present_returns_true_at_once       名称目标已在当前页（库元素所属路由）：返回 True（0.014s）
 17/30    [92m[通过][0m  selector_target_present                 Selector 目标（package.selector）返回 True（0.014s）
 18/30    [92m[通过][0m  css_string_treated_as_name              ActionError 正确拒绝（0.001s）：未找到选择器，选择器名："#menu-anchor-test"
-19/30    [92m[通过][0m  unknown_name_rejected                   ActionError 正确拒绝（0.0s）：未找到选择器，选择器名："__uiautoma_not_exist__"
+19/30    [92m[通过][0m  unknown_name_rejected                   ActionError 正确拒绝（0.001s）：未找到选择器，选择器名："__uiautoma_not_exist__"
 20/30    [92m[通过][0m  timeout_negative                        InvalidParamsError 正确拒绝（0.0s）：timeout 必须为 -1 或非负数
 21/30    [92m[通过][0m  timeout_non_numeric                     InvalidParamsError 正确拒绝（0.0s）：timeout 必须是秒数
 22/30    [92m[通过][0m  target_none                             InvalidParamsError 正确拒绝（0.0s）：selector 必须是元素名称字符串或 Selector 对象
@@ -43,7 +43,7 @@ API     : uiautoma.web.WebBrowser.wait_appear
   "library": "D:\\code\\元素库\\260902_web元素",
   "delayed_page_url": "https://baobaomi900901.github.io/xpath/delayed-element.html",
   "mode": "chrome",
-  "transition_source": "auto",
+  "transition_source": "scheduled",
   "status": "PASS",
   "exit_code": 0,
   "results": [
@@ -55,14 +55,13 @@ API     : uiautoma.web.WebBrowser.wait_appear
     {
       "case_id": "environment_baseline",
       "status": "PASS",
-      "detail": "进入时浏览器共 7 个标签",
-      "tabs": 7
+      "detail": "进入时浏览器共 8 个标签",
+      "tabs": 8
     },
     {
       "case_id": "transition_source",
       "status": "PASS",
-      "detail": "自动选择：靶场自计时页 不可用（HTTP 404）→ 回退 scheduled（测试侧调度转变）",
-      "delayed_page_available": false,
+      "detail": "使用 scheduled（自计时页可达性：未探测）",
       "source": "scheduled"
     },
     {
@@ -80,13 +79,13 @@ API     : uiautoma.web.WebBrowser.wait_appear
     {
       "case_id": "probe_target_bound",
       "status": "PASS",
-      "detail": "已注入稳定探针节点 #uiautoma-wait-target 并绑定为 WebElement（rt:web:b1d9b59097884a6e86e4019febb6cf6a）"
+      "detail": "已注入稳定探针节点 #uiautoma-wait-target 并绑定为 WebElement（rt:web:98f73149a9424d92a80b1acdfe091de2）"
     },
     {
       "case_id": "present_returns_true_at_once",
       "status": "PASS",
-      "detail": "元素已存在时返回 True（0.009s，未等待）",
-      "elapsed_s": 0.009
+      "detail": "元素已存在时返回 True（0.02s，未等待）",
+      "elapsed_s": 0.02
     },
     {
       "case_id": "absent_returns_false_at_timeout",
@@ -97,34 +96,34 @@ API     : uiautoma.web.WebBrowser.wait_appear
     {
       "case_id": "absent_timeout_zero_no_wait",
       "status": "PASS",
-      "detail": "timeout=0 且元素不存在时立即返回 False（0.03s，不等待）",
-      "elapsed_s": 0.03
+      "detail": "timeout=0 且元素不存在时立即返回 False（0.008s，不等待）",
+      "elapsed_s": 0.008
     },
     {
       "case_id": "appears_during_wait",
       "status": "PASS",
-      "detail": "等待期间元素出现（同一节点在 1.2s 后插回，调度={'delay': 1200, 'removed': True}）：返回 True，耗时 1.254s，确实等到出现才返回",
-      "elapsed_s": 1.254,
+      "detail": "等待期间元素出现（同一节点在 1.2s 后插回，调度={'delay': 1200, 'removed': True}）：返回 True，耗时 1.258s，确实等到出现才返回",
+      "elapsed_s": 1.258,
       "scheduled_delay": 1.2
     },
     {
       "case_id": "infinite_timeout_returns_on_appear",
       "status": "PASS",
-      "detail": "timeout=-1 在元素出现后返回 True（1.256s），未无限阻塞",
-      "elapsed_s": 1.256
+      "detail": "timeout=-1 在元素出现后返回 True（1.248s），未无限阻塞",
+      "elapsed_s": 1.248
     },
     {
       "case_id": "hidden_still_present",
       "status": "PASS",
-      "detail": "隐藏节点（{'clientRects': 0, 'display': 'none'}）仍判为「存在」：返回 True（0.016s）——本 API 按 DOM 存在性判定，不区分可见性",
-      "elapsed_s": 0.016
+      "detail": "隐藏节点（{'clientRects': 0, 'display': 'none'}）仍判为「存在」：返回 True（0.015s）——本 API 按 DOM 存在性判定，不区分可见性",
+      "elapsed_s": 0.015
     },
     {
       "case_id": "recreated_node_not_matched",
       "status": "KNOWN",
-      "detail": "React 销毁并重建同形节点后，旧 WebElement 引用仍返回 False（过程：按标题过滤后 {'cards': 1, 'target': False}，旧引用返回 False；过滤清除后同形节点重新出现，重新 find 得到新 id=rt:web:cbffc31ef00645be95e782cd3389f368 可用，旧 id=rt:web:7318aeadf50e468aba0dfd1ba1780aca 不再生效）。即 WebElement 目标按**节点身份**绑定，节点被销毁重建后不会被旧引用认领——属 API 语义边界，不计入退出码。",
-      "old_element_id": "rt:web:7318aeadf50e468aba0dfd1ba1780aca",
-      "new_element_id": "rt:web:cbffc31ef00645be95e782cd3389f368",
+      "detail": "React 销毁并重建同形节点后，旧 WebElement 引用仍返回 False（过程：按标题过滤后 {'cards': 1, 'target': False}，旧引用返回 False；过滤清除后同形节点重新出现，重新 find 得到新 id=rt:web:cac57b39a483444797bbfc44ca401be7 可用，旧 id=rt:web:451b0c86a9d449d4a834da7445c94e4e 不再生效）。即 WebElement 目标按**节点身份**绑定，节点被销毁重建后不会被旧引用认领——属 API 语义边界，不计入退出码。",
+      "old_element_id": "rt:web:451b0c86a9d449d4a834da7445c94e4e",
+      "new_element_id": "rt:web:cac57b39a483444797bbfc44ca401be7",
       "value_after_recreate": false,
       "elapsed_s": 2.001
     },
@@ -138,14 +137,15 @@ API     : uiautoma.web.WebBrowser.wait_appear
     {
       "case_id": "name_appears_after_route_change",
       "status": "PASS",
-      "detail": "等待期间路由切到库元素所属页（调度 1.2s）：名称目标返回 True，耗时 1.414s，说明真的等到了出现",
-      "elapsed_s": 1.414
+      "detail": "等待期间路由切到库元素所属页（调度 1.2s）：名称目标返回 True，耗时 1.426s，说明真的等到了出现",
+      "elapsed_s": 1.426,
+      "retry_notes": []
     },
     {
       "case_id": "name_present_returns_true_at_once",
       "status": "PASS",
-      "detail": "名称目标已在当前页：返回 True（0.017s）",
-      "elapsed_s": 0.017
+      "detail": "名称目标已在当前页（库元素所属路由）：返回 True（0.014s）",
+      "elapsed_s": 0.014
     },
     {
       "case_id": "selector_target_present",
@@ -162,8 +162,8 @@ API     : uiautoma.web.WebBrowser.wait_appear
     {
       "case_id": "unknown_name_rejected",
       "status": "PASS",
-      "detail": "ActionError 正确拒绝（0.0s）：未找到选择器，选择器名：\"__uiautoma_not_exist__\"",
-      "elapsed_s": 0.0
+      "detail": "ActionError 正确拒绝（0.001s）：未找到选择器，选择器名：\"__uiautoma_not_exist__\"",
+      "elapsed_s": 0.001
     },
     {
       "case_id": "timeout_negative",
