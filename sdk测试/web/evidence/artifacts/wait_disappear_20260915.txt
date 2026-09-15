@@ -1,0 +1,243 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.wait_disappear
+页面    : https://baobaomi900901.github.io/xpath/
+元素库  : D:\code\元素库\260902_web元素
+转变来源: --transition-source auto
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/32    [92m[通过][0m  api_contract                              selector_or_element 必填、timeout 位置或关键字且默认 20、返回注解 bool
+02/32    [92m[通过][0m  environment_baseline                      进入时浏览器共 11 个标签
+03/32    [92m[通过][0m  transition_source                         自动选择：靶场自计时页 可达（HTTP 200）→ 使用 delayed-page（页面自己计时移除）
+04/32    [92m[通过][0m  library_prepare                           已打开元素库副本：web 元素 70 个（与列举一致）
+05/32    [92m[通过][0m  page_prepare                              已打开靶场首页
+06/32    [92m[通过][0m  delayed_page_target_bound                 已打开自计时页并绑定 #delayed-target（等出现用了 1.56s，rt:web:b53e83c6adef43cc9ff453ac6f0751b7）
+07/32    [92m[通过][0m  delayed_page_self_timed                   页面自己按周期插入/移除（4.5s 内观测到 3 次变化：[(1.4, 'absent'), (2.94, 'present'), (4.47, 'absent')]），测试侧零调度
+08/32    [92m[通过][0m  delayed_page_single_node                  节点只创建过一次（#delayed-created-count=1、#delayed-host[data-created-count]=1、已切换 5 轮）
+09/32    [92m[通过][0m  absent_returns_true_at_once               元素已被页面移除时返回 True（0.019s，未等待）
+10/32    [92m[通过][0m  absent_timeout_zero_no_wait               timeout=0 且元素已移除时立即返回 True（0.012s，不等待）
+11/32    [92m[通过][0m  present_returns_false_at_timeout          元素在场（确认 present 用时 1.248s）时等满 1s 返回 False（实测 1.001s）
+12/32    [92m[通过][0m  disappears_during_wait                    等待期间**页面自己**把同一节点移出 DOM（确认 present 用时 0.003s）：返回 True，耗时 0.424s —— 测试侧零调度，这是 canonical 的等待消失路径
+13/32    [92m[通过][0m  infinite_timeout_returns_on_disappear     timeout=-1 在页面自己移除元素后返回 True（1.462s），未无限阻塞
+14/32    [92m[通过][0m  hidden_not_disappeared                    隐藏节点（{'clientRects': 0, 'display': 'none'}）**不算消失**：等满 1s 返回 False（实测 1.001s）——本 API 按 DOM 存在性判定，`display:none` 不等于移出 DOM
+15/32    [92m[通过][0m  recreated_node_counts_as_gone             React 销毁目标卡片后（DOM 中已无该节点），旧 WebElement 引用立即判为消失：返回 True（0.01s）——与 wait_appear 的「重建节点不被旧引用认领」互为镜像
+16/32    [92m[通过][0m  name_absent_returns_true_at_once          库中存在但本页不存在的名称：立即返回 True（0.007s）
+17/32    [92m[通过][0m  name_present_returns_false_at_timeout     名称目标在场时等满 2s 返回 False（实测 2.001s）
+18/32    [92m[通过][0m  name_disappears_after_navigation          库元素所属页尚未离开时即开始等待（navigate load_timeout=0，元素此刻仍在场）：页面切换后返回 True，耗时 0.064s，说明真的等到了消失
+19/32    [92m[通过][0m  selector_target_absent_returns_true       Selector 目标在本页不存在：返回 True（0.019s）
+20/32    [92m[通过][0m  css_string_treated_as_name                ActionError 正确拒绝（0.001s）：未找到选择器，选择器名："#menu-anchor-test"
+21/32    [92m[通过][0m  unknown_name_rejected                     ActionError 正确拒绝（0.001s）：未找到选择器，选择器名："__uiautoma_not_exist__"
+22/32    [92m[通过][0m  timeout_negative                          InvalidParamsError 正确拒绝（0.0s）：timeout 必须为 -1 或非负数
+23/32    [92m[通过][0m  timeout_non_numeric                       InvalidParamsError 正确拒绝（0.0s）：timeout 必须是秒数
+24/32    [92m[通过][0m  target_none                               InvalidParamsError 正确拒绝（0.0s）：selector 必须是元素名称字符串或 Selector 对象
+25/32    [92m[通过][0m  target_int                                InvalidParamsError 正确拒绝（0.0s）：selector 必须是元素名称字符串或 Selector 对象
+26/32    [92m[通过][0m  extra_positional                          TypeError 正确拒绝（0.0s）：WebBrowser.wait_disappear() takes from 2 to 3 positional arguments but 4 were given
+27/32    [92m[通过][0m  missing_target                            TypeError 正确拒绝（0.0s）：WebBrowser.wait_disappear() missing 1 required positional argument: 'selector_or_element'
+28/32    [92m[通过][0m  page_close_verified                       页面已关闭，且 web.get_all() 复核无残留
+29/32    [92m[通过][0m  after_page_close                          ActionError 正确拒绝（0.002s）：网页对象已失效
+30/32    [92m[通过][0m  package_close_verified                    Package 已关闭
+31/32    [92m[通过][0m  no_package_rejected                       NoCurrentPackageError 正确拒绝（0.0s）：当前没有打开的 Package
+32/32    [92m[通过][0m  cleanup                                   已关闭页面与 Package、删除元素库副本
+────────────────────────────────────────────────────────────────────────
+测试通过 · 32/32 通过（另 0 项边界，不计入退出码） · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.wait_disappear",
+  "home_url": "https://baobaomi900901.github.io/xpath/",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "delayed_page_url": "https://baobaomi900901.github.io/xpath/delayed-element.html",
+  "mode": "chrome",
+  "transition_source": "auto",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "selector_or_element 必填、timeout 位置或关键字且默认 20、返回注解 bool"
+    },
+    {
+      "case_id": "environment_baseline",
+      "status": "PASS",
+      "detail": "进入时浏览器共 11 个标签",
+      "tabs": 11
+    },
+    {
+      "case_id": "transition_source",
+      "status": "PASS",
+      "detail": "自动选择：靶场自计时页 可达（HTTP 200）→ 使用 delayed-page（页面自己计时移除）",
+      "delayed_page_available": true,
+      "source": "delayed-page"
+    },
+    {
+      "case_id": "library_prepare",
+      "status": "PASS",
+      "detail": "已打开元素库副本：web 元素 70 个（与列举一致）",
+      "web_count": 70
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已打开靶场首页",
+      "url": "https://baobaomi900901.github.io/xpath/"
+    },
+    {
+      "case_id": "delayed_page_target_bound",
+      "status": "PASS",
+      "detail": "已打开自计时页并绑定 #delayed-target（等出现用了 1.56s，rt:web:b53e83c6adef43cc9ff453ac6f0751b7）"
+    },
+    {
+      "case_id": "delayed_page_self_timed",
+      "status": "PASS",
+      "detail": "页面自己按周期插入/移除（4.5s 内观测到 3 次变化：[(1.4, 'absent'), (2.94, 'present'), (4.47, 'absent')]），测试侧零调度"
+    },
+    {
+      "case_id": "delayed_page_single_node",
+      "status": "PASS",
+      "detail": "节点只创建过一次（#delayed-created-count=1、#delayed-host[data-created-count]=1、已切换 5 轮）"
+    },
+    {
+      "case_id": "absent_returns_true_at_once",
+      "status": "PASS",
+      "detail": "元素已被页面移除时返回 True（0.019s，未等待）",
+      "elapsed_s": 0.019
+    },
+    {
+      "case_id": "absent_timeout_zero_no_wait",
+      "status": "PASS",
+      "detail": "timeout=0 且元素已移除时立即返回 True（0.012s，不等待）",
+      "elapsed_s": 0.012
+    },
+    {
+      "case_id": "present_returns_false_at_timeout",
+      "status": "PASS",
+      "detail": "元素在场（确认 present 用时 1.248s）时等满 1s 返回 False（实测 1.001s）",
+      "elapsed_s": 1.001
+    },
+    {
+      "case_id": "disappears_during_wait",
+      "status": "PASS",
+      "detail": "等待期间**页面自己**把同一节点移出 DOM（确认 present 用时 0.003s）：返回 True，耗时 0.424s —— 测试侧零调度，这是 canonical 的等待消失路径",
+      "elapsed_s": 0.424,
+      "scheduled_delay": null
+    },
+    {
+      "case_id": "infinite_timeout_returns_on_disappear",
+      "status": "PASS",
+      "detail": "timeout=-1 在页面自己移除元素后返回 True（1.462s），未无限阻塞",
+      "elapsed_s": 1.462
+    },
+    {
+      "case_id": "hidden_not_disappeared",
+      "status": "PASS",
+      "detail": "隐藏节点（{'clientRects': 0, 'display': 'none'}）**不算消失**：等满 1s 返回 False（实测 1.001s）——本 API 按 DOM 存在性判定，`display:none` 不等于移出 DOM",
+      "elapsed_s": 1.001
+    },
+    {
+      "case_id": "recreated_node_counts_as_gone",
+      "status": "PASS",
+      "detail": "React 销毁目标卡片后（DOM 中已无该节点），旧 WebElement 引用立即判为消失：返回 True（0.01s）——与 wait_appear 的「重建节点不被旧引用认领」互为镜像",
+      "elapsed_s": 0.01
+    },
+    {
+      "case_id": "name_absent_returns_true_at_once",
+      "status": "PASS",
+      "detail": "库中存在但本页不存在的名称：立即返回 True（0.007s）",
+      "elapsed_s": 0.007
+    },
+    {
+      "case_id": "name_present_returns_false_at_timeout",
+      "status": "PASS",
+      "detail": "名称目标在场时等满 2s 返回 False（实测 2.001s）",
+      "elapsed_s": 2.001
+    },
+    {
+      "case_id": "name_disappears_after_navigation",
+      "status": "PASS",
+      "detail": "库元素所属页尚未离开时即开始等待（navigate load_timeout=0，元素此刻仍在场）：页面切换后返回 True，耗时 0.064s，说明真的等到了消失",
+      "elapsed_s": 0.064,
+      "retry_notes": []
+    },
+    {
+      "case_id": "selector_target_absent_returns_true",
+      "status": "PASS",
+      "detail": "Selector 目标在本页不存在：返回 True（0.019s）",
+      "elapsed_s": 0.019
+    },
+    {
+      "case_id": "css_string_treated_as_name",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.001s）：未找到选择器，选择器名：\"#menu-anchor-test\"",
+      "elapsed_s": 0.001
+    },
+    {
+      "case_id": "unknown_name_rejected",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.001s）：未找到选择器，选择器名：\"__uiautoma_not_exist__\"",
+      "elapsed_s": 0.001
+    },
+    {
+      "case_id": "timeout_negative",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：timeout 必须为 -1 或非负数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "timeout_non_numeric",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：timeout 必须是秒数",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "target_none",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：selector 必须是元素名称字符串或 Selector 对象",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "target_int",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（0.0s）：selector 必须是元素名称字符串或 Selector 对象",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）：WebBrowser.wait_disappear() takes from 2 to 3 positional arguments but 4 were given",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "missing_target",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝（0.0s）：WebBrowser.wait_disappear() missing 1 required positional argument: 'selector_or_element'",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "page_close_verified",
+      "status": "PASS",
+      "detail": "页面已关闭，且 web.get_all() 复核无残留",
+      "leftover_pages": 0
+    },
+    {
+      "case_id": "after_page_close",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.002s）：网页对象已失效",
+      "elapsed_s": 0.002
+    },
+    {
+      "case_id": "package_close_verified",
+      "status": "PASS",
+      "detail": "Package 已关闭"
+    },
+    {
+      "case_id": "no_package_rejected",
+      "status": "PASS",
+      "detail": "NoCurrentPackageError 正确拒绝（0.0s）：当前没有打开的 Package",
+      "elapsed_s": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已关闭页面与 Package、删除元素库副本",
+      "error": ""
+    }
+  ]
+}
