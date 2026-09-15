@@ -24,7 +24,7 @@
 
 ## 真实验收结果
 
-**VERIFIED：20/20 通过，退出码 0。**
+**VERIFIED：22/22 通过，退出码 0。**
 
 被测基线：Desktop worktree `codex/stage6-sdk-runtime`，HEAD `dbe9e015`（2026-09-15）
 
@@ -47,7 +47,36 @@
 | 缺少 `selector` | 通过，`TypeError` |
 | `timeout` 用位置传入 | 通过，`TypeError`（仅限关键字） |
 | 未打开 Package | 通过，`NoCurrentPackageError`（"当前没有打开的 Package"） |
-| 资源清理 | 通过，关闭页面与 Package，并删除元素库副本 |
+| **页面关闭复核** | 通过，`close()` 后用 `web.get_all()` 实证页面已消失（无残留） |
+| **Package 关闭复核** | 通过 |
+| 资源清理 | 通过，关页（`get_all` 复核无残留）、关 Package、删除元素库副本 |
+
+## 重要修正：关闭顺序与共享连接（本次实测发现）
+
+首次验收时该脚本**每次运行都会泄漏一个标签页**，而 `cleanup` 却报 `PASS`（假通过）。根因两条：
+
+1. **`Package.close()` 会释放「Package 会话及其顶级便利连接」**（源码 docstring 明示），而
+   `web.create()` 把同一个 client 实例绑定到了页面对象上
+   （`_page_from_result(..., client=client)`）。因此**先关 Package 再关页面**时，
+   `page.close()` 会抛 `HostUnavailableError: 自动化服务连接中断或响应超时`，
+   页面再也关不掉。
+2. 旧版 `cleanup` 用例**只检查元素库副本目录是否存在**，没有检查页面是否真的关闭；
+   而 `finally` 又用 `except: pass` 吞掉了 `page.close()` 的异常 —— 于是失败被掩盖成 PASS。
+
+修正后的顺序与判定：
+
+```text
+… 目标用例 …
+1. page.close()  →  time.sleep(0.5)  →  web.get_all() 复核该 page.id 已消失   （page_close_verified）
+2. package.close()                                                          （package_close_verified）
+3. 未打开 Package 的判定（在被关闭的页面对象上调用，判定发生在 SDK 侧，不需要连接）（no_package_rejected）
+4. cleanup：复核页面无残留 + 副本已删除，不再静默吞异常
+```
+
+修正后实测：`find` 22/22 通过，运行前后 Chrome 页面数不变（无泄漏）。
+
+**给其它脚本的教训**：任何同时使用页面与 Package 的验收，都必须**先关页面再关 Package**，
+并且清理用例要用 `web.get_all()` 实证，而不是只看自己的临时目录。
 
 ### 更正：歧义的来源是「一个元素匹配多个节点」，不是「库中同名」
 
@@ -126,5 +155,6 @@ uv run .\web\test_web_browser_find.py --library "D:\code\元素库\260902_web元
 
 | 日期 | 变更 |
 |---|---|
-| 2026-09-15 | 初次验收 19/19；补充 `AmbiguousElementError` 用例并更正「无同名元素故无法构造歧义」的错误判断，现为 20/20 |
+| 2026-09-15 | 初次验收 19/19；补充 `AmbiguousElementError` 用例并更正「无同名元素故无法构造歧义」的错误判断，改为 20/20 |
+| 2026-09-15 | **发现并修正清理缺陷**：该脚本每次都泄漏一个标签页却报 `cleanup PASS`。真因是先关 Package 再关页面（共享连接被释放）+ `cleanup` 只检查副本目录。已改为「先关页面并 `get_all` 复核 → 再关 Package」，并新增 `page_close_verified` / `package_close_verified` 两个用例；现为 22/22。**此前版本记载的「资源清理 PASS」不成立，特此更正。** |
 

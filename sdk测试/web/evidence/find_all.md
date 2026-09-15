@@ -21,7 +21,7 @@
 
 ## 真实验收结果
 
-**VERIFIED：18/18 通过，退出码 0。**
+**VERIFIED：20/20 通过，退出码 0。**
 
 被测基线：Desktop worktree `codex/stage6-sdk-runtime`，HEAD `dbe9e015`（2026-09-15）
 
@@ -41,7 +41,16 @@
 | `timeout=-2` / `timeout="bad"` | 通过，`InvalidParamsError` |
 | 缺少 `selector` / `timeout` 位置传入 | 通过，`TypeError` |
 | 未打开 Package | 通过，`NoCurrentPackageError` |
-| 资源清理 | 通过，关闭页面与 Package，并删除元素库副本 |
+| **页面关闭复核** | 通过，`close()` 后用 `web.get_all()` 实证页面已消失（无残留） |
+| **Package 关闭复核** | 通过 |
+| 资源清理 | 通过，关页（`get_all` 复核无残留）、关 Package、删除元素库副本 |
+
+## 修订记录
+
+| 日期 | 变更 |
+|---|---|
+| 2026-09-15 | 初次验收 18/18 |
+| 2026-09-15 | **同 `find` 的清理缺陷一并修正**：先关 Package 会释放共享连接，导致随后的 `page.close()` 抛 `HostUnavailableError` 且被静默吞掉（标签页泄漏、`cleanup` 假 PASS）。已改为「先关页面并 `get_all` 复核 → 再关 Package」，新增 `page_close_verified` / `package_close_verified`，现为 20/20。**此前版本的「资源清理 PASS」不成立，特此更正。** |
 
 ## 与 `find()` 的语义差异（本次实测确认）
 

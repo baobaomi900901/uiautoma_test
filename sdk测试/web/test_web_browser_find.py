@@ -148,6 +148,7 @@ def run(args):
     copy_dir = LIB_TMP_ROOT / run_id
     package = None
     page = None
+    page_id = ""
     try:
         # 场景准备 1：复制并打开元素库
         try:
@@ -333,36 +334,79 @@ def run(args):
         results.append(expect_raises(lambda: page.find(), TypeError, "missing_selector"))
         results.append(expect_raises(lambda: page.find(ELEMENT_NAME, 1), TypeError, "positional_timeout"))
 
-        # 目标用例 9：未打开 Package 时拒绝
+        # 目标用例 9：关闭页面并复核
+        # 顺序关键：**必须先关页面再关 Package**。`Package.close()` 会释放 Package 会话
+        # 及其「顶级便利连接」，而页面对象持有同一个 client 实例，之后再调 page.close()
+        # 只会得到 HostUnavailableError 并静默泄漏标签页（本脚本曾因此泄漏，已修正）。
+        closed_page = page
+        try:
+            returned = page.close(ignore_beforeunload=True)
+        except Exception as exc:  # noqa: BLE001
+            results.append(result("page_close_verified", "FAIL", error_detail("page.close 调用失败", exc)))
+        else:
+            time.sleep(0.5)
+            leftover = [p for p in web.get_all(mode=args.mode)
+                        if str(getattr(p, "id", "") or "") == page_id]
+            ok = returned is None and not leftover
+            results.append(result(
+                "page_close_verified",
+                "PASS" if ok else "FAIL",
+                "页面已关闭，且 web.get_all() 复核无残留" if ok else
+                f"关闭后仍有残留: return={returned!r}, leftover={len(leftover)}",
+                returned=repr(returned), leftover_pages=len(leftover),
+            ))
+        page = None
+
+        # 目标用例 10：关闭 Package
         try:
             package.close()
-        except Exception:  # noqa: BLE001
-            pass
+            results.append(result("package_close_verified", "PASS", "Package 已关闭"))
+        except Exception as exc:  # noqa: BLE001
+            results.append(result("package_close_verified", "FAIL", error_detail("Package 关闭失败", exc)))
+        package = None
+
+        # 目标用例 11：未打开 Package 时拒绝
+        # 判定发生在 SDK 侧（get_package()），不需要连接，因此可在已关闭的页面对象上验证。
         results.append(expect_raises(
-            lambda: page.find(ELEMENT_NAME, timeout=1), NoCurrentPackageError, "no_package_rejected",
+            lambda: closed_page.find(ELEMENT_NAME, timeout=1), NoCurrentPackageError, "no_package_rejected",
             message_contains="Package",
         ))
-        package = None
     except Exception as exc:  # noqa: BLE001
         results.append(result("scenario", "FAIL", error_detail("find 场景执行失败", exc)))
     finally:
+        # 兜底：页面与 Package 可能因中途异常仍开着；顺序仍是先页面后 Package。
+        page_close_error = ""
         if page is not None:
             try:
                 page.close(ignore_beforeunload=True)
-            except Exception:  # noqa: BLE001
-                pass
+            except Exception as exc:  # noqa: BLE001
+                page_close_error = f"{type(exc).__name__}: {exc}"
         if package is not None:
             try:
                 package.close()
             except Exception:  # noqa: BLE001
                 pass
         shutil.rmtree(copy_dir, ignore_errors=True)
-        leftover = copy_dir.exists()
+
+        # 用 web.get_all() 实证本次页面确已消失，避免「只调用 close 就记 PASS」的假通过
+        leftover = []
+        try:
+            leftover = [p for p in web.get_all(mode=args.mode) if str(getattr(p, "id", "") or "") == page_id]
+        except Exception as exc:  # noqa: BLE001
+            page_close_error = page_close_error or f"get_all 复核失败: {type(exc).__name__}: {exc}"
+        cleaned = not leftover and not page_close_error and not copy_dir.exists()
         results.append(result(
             "cleanup",
-            "PASS" if not leftover else "FAIL",
-            "已关闭页面与 Package，并删除元素库副本" if not leftover else "元素库副本未能删除",
-            library_copy_removed=not leftover,
+            "PASS" if cleaned else "FAIL",
+            (
+                "已关闭页面（get_all 复核无残留）、关闭 Package、删除元素库副本"
+                if cleaned
+                else f"清理不完整: 残留页面={len(leftover)}, close 错误={page_close_error or '无'}, "
+                     f"副本残留={copy_dir.exists()}"
+            ),
+            leftover_pages=len(leftover),
+            page_close_error=page_close_error,
+            library_copy_removed=not copy_dir.exists(),
         ))
 
     statuses = {item["status"] for item in results}

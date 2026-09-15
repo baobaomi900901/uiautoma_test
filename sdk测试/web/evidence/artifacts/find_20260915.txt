@@ -4,28 +4,30 @@ API     : uiautoma.web.WebBrowser.find
 元素库  : D:\code\元素库\260902_web元素
 进度     状态    测试项                  测试结果
 ────────────────────────────────────────────────────────────────────────
-01/20    [92m[通过][0m  api_contract                    selector 必填，timeout 仅限关键字且默认 20，返回注解 WebElement
-02/20    [92m[通过][0m  library_prepare                 已打开元素库副本：web 元素 70 个（与列举一致）
-03/20    [92m[通过][0m  page_prepare                    已打开元素所属靶场页
-04/20    [92m[通过][0m  find_by_name                    按库中名称命中元素（标签 INPUT，运行时 id 前缀 rt:web:）
-05/20    [92m[通过][0m  find_by_selector                以 package.selector() 传入同样命中（标签 INPUT）
-06/20    [92m[通过][0m  repeated_find_stable            重复定位命中同一目标（标签一致 INPUT）；注意 element_id 每次都会重新生成
-07/20    [92m[通过][0m  find_all_contains_target        find_all 返回 1 个元素且包含目标（标签 INPUT）
-08/20    [92m[通过][0m  find_second_element             库中第二个元素同样可定位（标签 INPUT）
-09/20    [92m[通过][0m  ambiguous_match_rejected        AmbiguousElementError 正确拒绝（0.014s）：元素匹配结果不唯一
-10/20    [92m[通过][0m  timeout_zero_present            timeout=0 且元素存在时仍命中
-11/20    [92m[通过][0m  unknown_name_rejected           ElementNotFoundError 正确拒绝（0.001s）：未找到选择器，选择器名："__uiautoma_not_exist__"
-12/20    [92m[通过][0m  page_mismatch_rejected          ElementNotFoundError 正确拒绝（3.001s）：未找到匹配元素
-13/20    [92m[通过][0m  empty_name                      InvalidParamsError 正确拒绝（0.0s）：元素名称不能为空
-14/20    [92m[通过][0m  blank_name                      InvalidParamsError 正确拒绝（0.0s）：元素名称不能为空
-15/20    [92m[通过][0m  invalid_timeout                 InvalidParamsError 正确拒绝（0.0s）：timeout 必须为 -1 或非负数
-16/20    [92m[通过][0m  invalid_timeout_type            InvalidParamsError 正确拒绝（0.0s）：timeout 必须是秒数
-17/20    [92m[通过][0m  missing_selector                TypeError 正确拒绝（0.0s）：WebBrowser.find() missing 1 required positional argument: 'selector'
-18/20    [92m[通过][0m  positional_timeout              TypeError 正确拒绝（0.0s）：WebBrowser.find() takes 2 positional arguments but 3 were given
-19/20    [92m[通过][0m  no_package_rejected             NoCurrentPackageError 正确拒绝（0.001s）：当前没有打开的 Package
-20/20    [92m[通过][0m  cleanup                         已关闭页面与 Package，并删除元素库副本
+01/22    [92m[通过][0m  api_contract                    selector 必填，timeout 仅限关键字且默认 20，返回注解 WebElement
+02/22    [92m[通过][0m  library_prepare                 已打开元素库副本：web 元素 70 个（与列举一致）
+03/22    [92m[通过][0m  page_prepare                    已打开元素所属靶场页
+04/22    [92m[通过][0m  find_by_name                    按库中名称命中元素（标签 INPUT，运行时 id 前缀 rt:web:）
+05/22    [92m[通过][0m  find_by_selector                以 package.selector() 传入同样命中（标签 INPUT）
+06/22    [92m[通过][0m  repeated_find_stable            重复定位命中同一目标（标签一致 INPUT）；注意 element_id 每次都会重新生成
+07/22    [92m[通过][0m  find_all_contains_target        find_all 返回 1 个元素且包含目标（标签 INPUT）
+08/22    [92m[通过][0m  find_second_element             库中第二个元素同样可定位（标签 INPUT）
+09/22    [92m[通过][0m  ambiguous_match_rejected        AmbiguousElementError 正确拒绝（0.016s）：元素匹配结果不唯一
+10/22    [92m[通过][0m  timeout_zero_present            timeout=0 且元素存在时仍命中
+11/22    [92m[通过][0m  unknown_name_rejected           ElementNotFoundError 正确拒绝（0.001s）：未找到选择器，选择器名："__uiautoma_not_exist__"
+12/22    [92m[通过][0m  page_mismatch_rejected          ElementNotFoundError 正确拒绝（3.001s）：未找到匹配元素
+13/22    [92m[通过][0m  empty_name                      InvalidParamsError 正确拒绝（0.0s）：元素名称不能为空
+14/22    [92m[通过][0m  blank_name                      InvalidParamsError 正确拒绝（0.0s）：元素名称不能为空
+15/22    [92m[通过][0m  invalid_timeout                 InvalidParamsError 正确拒绝（0.0s）：timeout 必须为 -1 或非负数
+16/22    [92m[通过][0m  invalid_timeout_type            InvalidParamsError 正确拒绝（0.0s）：timeout 必须是秒数
+17/22    [92m[通过][0m  missing_selector                TypeError 正确拒绝（0.0s）：WebBrowser.find() missing 1 required positional argument: 'selector'
+18/22    [92m[通过][0m  positional_timeout              TypeError 正确拒绝（0.0s）：WebBrowser.find() takes 2 positional arguments but 3 were given
+19/22    [92m[通过][0m  page_close_verified             页面已关闭，且 web.get_all() 复核无残留
+20/22    [92m[通过][0m  package_close_verified          Package 已关闭
+21/22    [92m[通过][0m  no_package_rejected             NoCurrentPackageError 正确拒绝（0.001s）：当前没有打开的 Package
+22/22    [92m[通过][0m  cleanup                         已关闭页面（get_all 复核无残留）、关闭 Package、删除元素库副本
 ────────────────────────────────────────────────────────────────────────
-测试通过 · 20/20 通过 · 退出码 0
+测试通过 · 22/22 通过 · 退出码 0
 {
   "api": "uiautoma.web.WebBrowser.find",
   "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
@@ -46,20 +48,20 @@ API     : uiautoma.web.WebBrowser.find
       "detail": "已打开元素库副本：web 元素 70 个（与列举一致）",
       "web_count": 70,
       "listed": 70,
-      "library_copy": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\8826408b8377495cbd2bb122a386c2c8"
+      "library_copy": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\6658dcddd4ef42a594f71c98b2944d8e"
     },
     {
       "case_id": "page_prepare",
       "status": "PASS",
       "detail": "已打开元素所属靶场页",
       "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
-      "page_id": "ed62d86e75ee4e38"
+      "page_id": "3368becd34484d58"
     },
     {
       "case_id": "find_by_name",
       "status": "PASS",
       "detail": "按库中名称命中元素（标签 INPUT，运行时 id 前缀 rt:web:）",
-      "element_id": "rt:web:16b7686849b0435aa356093786c374b5",
+      "element_id": "rt:web:bcd2e24ce3d34a299717ce8334faff23",
       "tag": "INPUT"
     },
     {
@@ -94,8 +96,8 @@ API     : uiautoma.web.WebBrowser.find
     {
       "case_id": "ambiguous_match_rejected",
       "status": "PASS",
-      "detail": "AmbiguousElementError 正确拒绝（0.014s）：元素匹配结果不唯一",
-      "elapsed_s": 0.014,
+      "detail": "AmbiguousElementError 正确拒绝（0.016s）：元素匹配结果不唯一",
+      "elapsed_s": 0.016,
       "matches": 3
     },
     {
@@ -153,6 +155,18 @@ API     : uiautoma.web.WebBrowser.find
       "elapsed_s": 0.0
     },
     {
+      "case_id": "page_close_verified",
+      "status": "PASS",
+      "detail": "页面已关闭，且 web.get_all() 复核无残留",
+      "returned": "None",
+      "leftover_pages": 0
+    },
+    {
+      "case_id": "package_close_verified",
+      "status": "PASS",
+      "detail": "Package 已关闭"
+    },
+    {
       "case_id": "no_package_rejected",
       "status": "PASS",
       "detail": "NoCurrentPackageError 正确拒绝（0.001s）：当前没有打开的 Package",
@@ -161,7 +175,9 @@ API     : uiautoma.web.WebBrowser.find
     {
       "case_id": "cleanup",
       "status": "PASS",
-      "detail": "已关闭页面与 Package，并删除元素库副本",
+      "detail": "已关闭页面（get_all 复核无残留）、关闭 Package、删除元素库副本",
+      "leftover_pages": 0,
+      "page_close_error": "",
       "library_copy_removed": true
     }
   ]
