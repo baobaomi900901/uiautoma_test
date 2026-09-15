@@ -264,6 +264,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.screenshot_to_clipboard()` | `VERIFIED`（23/23；2026-09-15；ctypes 独立读 CF_DIB + 与文件截图三角像素比对） | `web/test_web_browser_screenshot_to_clipboard.py` | `web/evidence/screenshot_to_clipboard.md` |
 | `uiautoma.web.WebElement.screenshot_to_clipboard()` | `VERIFIED`（18/18；2026-09-15；ctypes 独立读 CF_DIB + 活矩形裁切偏移扫描验取景，Issue #20 在 dpr=1 未复现） | `web/test_web_element_screenshot_to_clipboard.py` | `web/evidence/element_screenshot_to_clipboard.md` |
 | `uiautoma.web.WebBrowser.stop_load()` | `VERIFIED`（14/14 + 1 记录；2026-09-15；连续 6 次全绿；含错误页 is_load_completed 恒 False 与无响应标签回收缺口） | `web/test_web_browser_stop_load.py` | `web/evidence/stop_load.md` |
+| `uiautoma.web.WebBrowser.wait_appear()` | `VERIFIED`（29/29 + 1 边界；2026-09-15；连续 3 次全绿；调度式转变已验证，自计时页待靶场部署） | `web/test_web_browser_wait_appear.py` | `web/evidence/wait_appear.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
 >
