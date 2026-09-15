@@ -16,8 +16,9 @@
 
 ## 真实验收结果
 
-**VERIFIED：29/29 通过 + 1 项如实刻画，退出码 0**（`scheduled` 模式**连续 3 次完整运行全绿**）；
-靶场自计时页落地后，`delayed-page` 模式在本地 dev 服务器上另跑一轮 **26/26 通过 + 2 项边界，退出码 0**。
+**VERIFIED：31/31 通过 + 1 项如实刻画，退出码 0**（**连续 3 次完整运行全绿**）。
+默认 `auto` 模式已自动选中靶场自计时页（`delayed-page`），即 canonical 场景是
+**由靶场页面自己计时**产生元素出现/消失，测试侧零调度。
 
 靶场：维护者的官方靶场（测试侧不自建页面）
 被测基线：Desktop worktree `codex/stage6-sdk-runtime`，HEAD `dbe9e015`（2026-09-15）
@@ -26,22 +27,24 @@
 | 测试项 | 结果 |
 |---|---|
 | API 合同 | 通过，`selector_or_element` 必填、`timeout` 位置/关键字且默认 20、返回 `bool` |
-| 环境 / 元素库 / 页面准备 | 通过，进入时 7 个标签；库 70 个元素与列举一致 |
-| 转变来源选择 | 通过，`auto` 探测到自计时页 404 → 回退 `scheduled` |
-| 探针目标绑定 | 通过，注入稳定节点 `#uiautoma-wait-target` 并绑定为 `WebElement` |
-| **元素已存在** | 通过，返回 `True`（**0.004s**，未等待） |
-| **元素不存在** | 通过，等满 2s 返回 `False`（实测 **2.001s**） |
-| **`timeout=0`** | 通过，不存在时立即返回 `False`（**0.004s**，只查一次不等待） |
-| **等待期间元素出现（核心正向）** | 通过，同一节点在 1.2s 后插回 → 返回 `True`，耗时 **1.254s**（确实等到出现才返回） |
-| **`timeout=-1`** | 通过，元素出现后返回 `True`（**1.253s**），未无限阻塞 |
-| 隐藏元素仍算「存在」 | 通过，`display:none`、`getClientRects()=0` 仍返回 `True`（**0.015s**） |
+| 环境 / 元素库 / 页面准备 | 通过，进入时 11 个标签；库 70 个元素与列举一致 |
+| 转变来源选择 | 通过，`auto` 探测到自计时页可达（HTTP 200）→ 使用 `delayed-page` |
+| **自计时页绑定** | 通过，等 `#delayed-target` 出现用了 1.407s 并绑定为 `WebElement` |
+| **页面自计时** | 通过，4.5s 内观测到 3 次切换 `[(1.55, absent), (2.94, present), (4.48, absent)]`，测试侧零调度 |
+| **同一节点** | 通过，`#delayed-created-count=1`、`data-created-count=1`（已切换 5 轮） |
+| **元素已存在** | 通过，返回 `True`（**0.007s**，未等待） |
+| **页面移除元素后** | 通过，等满 1s 返回 `False`（实测 **1.001s**） |
+| **`timeout=0`** | 通过，元素已被移除时立即返回 `False`（**0.007s**） |
+| **等待期间元素出现（canonical）** | 通过，**页面自己**把同一节点重新挂回 → 返回 `True`，耗时 **0.533s**（测试侧零调度） |
+| **`timeout=-1`** | 通过，页面自己让它出现后返回 `True`（**1.461s**），未无限阻塞 |
+| 隐藏元素仍算「存在」 | 通过，`display:none`、`getClientRects()=0` 仍返回 `True`（**0.008s**） |
 | React 重建同形节点 | 边界（`KNOWN`），见「已知边界 1」 |
 | **名称目标：本页不存在** | 通过，等满 2s 返回 `False`（2.001s） |
-| **名称目标：等待期间路由切换后出现** | 通过，调度 1.2s 后切换路由 → 返回 `True`，耗时 **1.413s** |
-| 名称目标：已在当前页 | 通过，返回 `True`（0.021s） |
-| `Selector` 目标（`package.selector`） | 通过，返回 `True`（0.016s） |
+| **名称目标：导航未完成时开始等待** | 通过，`navigate(load_timeout=0)` 时元素仍不存在 → 路由切换后返回 `True`，耗时 **0.198s** |
+| 名称目标：已在当前页 | 通过，返回 `True`（0.03s） |
+| `Selector` 目标（`package.selector`） | 通过，返回 `True`（0.01s） |
 | **CSS 选择器字符串作为目标** | 通过，被当作库元素名并立即抛 `ActionError`（`未找到选择器`，0.001s） |
-| 未知库名 | 通过，同上立即抛错（0.001s） |
+| 未知库名 | 通过，同上立即抛错（0.0s） |
 | 参数校验 | 通过，`timeout=-2` / `"x"`、目标 `None` / `123` → `InvalidParamsError`；多余位置参数 / 缺参 → `TypeError`（全部 0.0s） |
 | 页面关闭后 | 通过，`ActionError`（"网页对象已失效"，0.002s） |
 | 关闭 Package 后 | 通过，名称目标在 **SDK 侧**立即抛 `NoCurrentPackageError`（0.0s） |
@@ -52,44 +55,41 @@
 `wait_appear()` 的核心是「**等待期间**元素出现」，所以必须有一个在等待过程中发生的转变。
 单线程脚本在等待里阻塞时无法自己触发页面变化，因此：
 
-- **`scheduled`（默认可用，已实测）**：测试侧用 `execute_javascript` 决定「何时」发生转变——
-  - WebElement 目标：注入稳定探针节点并挂在 `window.__uiautomaWaitNode`，**同一个节点**移除后
-    在 1.2s 后原样插回；
-  - 名称目标：调度 `location.hash` 切换路由，让**靶场自己的库元素**出现。
-  元素与节点都由浏览器真实渲染，测试侧只决定时机。
-- **`delayed-page`（靶场自计时页，已落地，本地实测通过）**：`public/delayed-element.html`
+- **`delayed-page`（canonical，靶场自计时页已部署并实测）**：`public/delayed-element.html`
   每 1.5s 交替插入/移除**同一个** `#delayed-target` 节点，**由页面自己计时，测试侧零调度**。
-  该页已在靶场仓库创建并在目录页登记（见下节），本地 dev 服务器 `localhost:7199` 上实测通过。
+- **`scheduled`（回退方案）**：测试侧用 `execute_javascript` 注入稳定探针节点并挂在
+  `window.__uiautomaWaitNode`，**同一个节点**移除后在 1.2s 后原样插回。
 - **`auto`（默认值）**：先探测 `delayed-page` 是否可达，可达则用它，否则回退 `scheduled`。
 
-### 自计时页面（B）的落地情况
+名称/Selector 目标的「等待出现」不走上面两条：在**导航尚未完成时就开始等待**
+（`navigate(..., load_timeout=0)` → `wait_appear(name, N)`），元素随路由切换出现，测试侧同样零调度。
+
+### 自计时页面（B）已落地
 
 | 项 | 内容 |
 |---|---|
 | 页面文件 | `xpath` 靶场仓库 `WEB/public/delayed-element.html`（与 `slow-load-30s.html` 同级） |
 | 目录登记 | `WEB/src/pages/HomePage.tsx` 的 `menuItems` 新增 `menu-delayed-element` 卡片（与 `menu-slow-load-30s` 同风格） |
-| 部署后地址 | `https://baobaomi900901.github.io/xpath/delayed-element.html`（推送到 `main` 后由 `.github/workflows/pages.yml` 自动构建部署） |
+| 线上地址 | `https://baobaomi900901.github.io/xpath/delayed-element.html`（HTTP 200，5289 字节；`main` 分支 push 后由 `.github/workflows/pages.yml` 自动部署） |
 | 页面行为 | 加载后立即 `absent`，之后每 1.5s 交替 present/absent；`?interval=3000` 可调整 |
-| 自证信息 | `#delayed-state`（present/absent）、`#delayed-cycles`（轮次）、`#delayed-created-count` 与 `#delayed-host[data-created-count]`（**节点创建次数，恒为 1**） |
+| 自证信息 | `#delayed-state`、`#delayed-cycles`、`#delayed-created-count` 与 `#delayed-host[data-created-count]`（**节点创建次数恒为 1**） |
 
 **页面设计约束（来自本轮实测）**：节点**只 `createElement` 一次**，之后只用 `appendChild` / `remove`
 反复挂载同一个节点 —— 因为元素引用按节点身份绑定，每次新建节点会让旧 `WebElement` 永远等不到。
 另外「消失」必须是**真的移出 DOM**，不能用 `display:none`（存在性判定不区分可见性）。
 
-本地实测（`--transition-source delayed-page --delayed-page-url http://localhost:7199/delayed-element.html --skip-name-cases`，
-产物 `artifacts/wait_appear_delayed_page_20260915.txt`）：**26/26 通过 + 2 项边界，退出码 0**。
+线上同源实测（`auto` 选中该页）：
 
 | 用例 | 实测 |
 |---|---|
-| 页面自计时 | 4.5s 内观测到 3 次切换 `[(1.4, absent), (2.94, present), (4.47, absent)]`，测试侧零调度 |
+| 页面自计时 | 4.5s 内 3 次切换 `[(1.55, absent), (2.94, present), (4.48, absent)]`，测试侧零调度 |
 | 同一节点 | `#delayed-created-count=1`、`data-created-count=1`（已切换 5 轮） |
-| 已存在 | `wait_appear(element, 5)` → `True`（0.005s） |
-| 被移除后 | `wait_appear(element, 1)` → `False`（1.001s）；`timeout=0` → `False`（0.003s） |
-| **等待出现（canonical）** | 页面自己把同一节点挂回 → `True`（**0.43s**，零调度） |
-| `timeout=-1` | 页面自己让它出现后 → `True`（1.461s） |
+| 已存在 / 被移除 / `timeout=0` | `True`（0.007s）/ `False`（1.001s）/ `False`（0.007s） |
+| **等待出现（canonical）** | 页面自己把同一节点挂回 → `True`（**0.533s**，零调度） |
+| `timeout=-1` | 页面自己让它出现 → `True`（1.461s） |
 
-> 本地运行只覆盖 `delayed-page` 相关用例：元素库的保存路径绑定部署域名，localhost 上名称/Selector
-> 用例无法命中，故用 `--skip-name-cases` 跳过（记 `KNOWN`）。等页面部署后即可在同源环境跑完整一轮。
+> 在本地 dev 服务器（`localhost:7199`）上也跑过同一分支：因元素库保存路径绑定部署域名，
+> 名称/Selector 用例需 `--skip-name-cases` 跳过，其余用例同样全绿；该轮记录已被线上同源运行取代。
 
 ## 已实测确立的判据
 
@@ -137,25 +137,27 @@ ActionError: 网页操作超时，请检查页面是否加载完成或存在弹�
 超时前的一次瞬时失败会变成异常，属健壮性问题；待维护者决定是否改为轮询内重试。
 （对照：`frame_not_found` 场景在预热后的 5/5 次复测中都返回了 `True`。）
 
-## 已知边界 3：JS 发起的 hash 路由切换撞上等待时，框架绑定可能失效
+## 已知边界 3：路由切换期间等待曾撞坏框架绑定（已改用更稳的写法）
 
-在「自计时页（localhost）+ 首页（部署站）」混源编排的那一轮里，`name_appears_after_route_change`
-出现 `frame_not_found`（`目标域已被移除或重新加载`，1.268s），且**紧随其后的两次调用也立即失败**
-（0.01s，同一 trace），直到重新 `navigate` 才恢复。
+早期脚本用 `execute_javascript` 调度 `location.hash` 切换来制造「名称目标稍后出现」，
+在部署站同源运行中出现过 `frame_not_found`（`目标域已被移除或重新加载`，1.266s），
+且紧随其后的调用也立即失败（0.013s，另一 trace `Frame with ID 0 is showing error page`），
+需重新 `navigate` 才恢复。
 
-专项定位（`frame_state_probe`，产物不单独归档）：
+对照实验（`name_appear_probe`，各 5 轮）：
 
-| 步骤 | 结果 |
+| 写法 | 结果 |
 |---|---|
-| 部署站首页 → `wait_appear(name, 3)` | `False`（3.00s，语义正确） |
-| 切到 localhost 自计时页 → 切回部署站首页 → 再 `wait_appear(name, 3)` | `False`（正常，**未**出现 frame_not_found） |
-| `navigate(#/iframe-shadow-form)` → `wait_appear(name, 5)` | `True`（0.02s） |
-| 再往返一次后重复上一步 | `True`（0.02s） |
+| **A**：`navigate(iframe 路由, load_timeout=0)` 后立即 `wait_appear(name, 8)` | **5/5 成功**，耗时 0.17~0.23s |
+| B：`execute_javascript` 调度 `location.hash` 后 `wait_appear` | 5/5 成功，耗时固定 1.38s |
 
-结论：跨源往返本身**不会**触发；触发条件是**由页面 JS 发起的路由切换与等待同时发生**，
-且一次干净的 `navigate` 即可恢复。脚本因此加入「上下文重置 + 重试」，并在真正用到重试时
-以 `KNOWN`（`route_change_frame_flake`）如实记录；独立探针 5/5、完整验收 3/3 均未出现该现象，
-判为环境/时序性问题，不计入退出码。
+**已改为写法 A**：它是「不等待导航完成 + 等元素出现」这一自然用法，测试侧完全不注入调度 JS，
+耗时还短一个数量级。改用后 `auto` 模式连续 3 次完整运行（31/31）均无重试、无该 trace。
+脚本仍保留一次「上下文重置 + 重试」，一旦真的用到就以 `KNOWN`（`route_change_frame_flake`）如实记录。
+
+另有一次专项定位（`frame_state_probe`）说明**跨源往返本身不会触发**：部署站首页 ↔ localhost
+自计时页往返后，`wait_appear(name, 3)` 语义正常，再次进入 iframe 路由仍 `True`（0.02s）。
+即该现象与「页面自身路由切换 + 等待同时在飞」相关，而非跨源导航本身。
 
 ## 与 `wait_disappear()` 的关系
 
@@ -167,18 +169,16 @@ ActionError: 网页操作超时，请检查页面是否加载完成或存在弹�
 ## 复测
 
 脚本：[test_web_browser_wait_appear.py](../test_web_browser_wait_appear.py)
-原始产物：
-[artifacts/wait_appear_20260915.txt](artifacts/wait_appear_20260915.txt)（`scheduled` 模式，29/29 + 1 边界，退出码 0）
-[artifacts/wait_appear_delayed_page_20260915.txt](artifacts/wait_appear_delayed_page_20260915.txt)（`delayed-page` 模式本地跑，26/26 + 2 边界，退出码 0）
+原始产物：[artifacts/wait_appear_20260915.txt](artifacts/wait_appear_20260915.txt)（`auto` 模式，31/31 + 1 边界，退出码 0）
 
 ```powershell
-uv run .\web\test_web_browser_wait_appear.py                        # auto：探测自计时页，可用则用它
-uv run .\web\test_web_browser_wait_appear.py --transition-source scheduled
-uv run .\web\test_web_browser_wait_appear.py --transition-source delayed-page   # 页面未部署时如实 BLOCKED（退出码 2）
+uv run .\web\test_web_browser_wait_appear.py                        # auto：探测自计时页，可达即用它（当前为 delayed-page）
+uv run .\web\test_web_browser_wait_appear.py --transition-source delayed-page
+uv run .\web\test_web_browser_wait_appear.py --transition-source scheduled      # 回退方案：测试侧注入探针节点
 uv run .\web\test_web_browser_wait_appear.py --json
 uv run .\web\test_web_browser_wait_appear.py --contract-only
 
-# 本地自计时页（dev server）：元素库绑定部署域名，需跳过名称/Selector 用例
+# 本地 dev server 上的自计时页：元素库绑定部署域名，需跳过名称/Selector 用例
 uv run .\web\test_web_browser_wait_appear.py --transition-source delayed-page `
   --delayed-page-url http://localhost:7199/delayed-element.html --skip-name-cases
 ```
@@ -190,8 +190,6 @@ uv run .\web\test_web_browser_wait_appear.py --transition-source delayed-page `
 ## 明确排除
 
 - **`wait_disappear()`**：同族另一 API，未测（同族下一个候选）。
-- **`delayed-page` 分支在部署站的完整同源运行**：本地 dev 服务器已实测通过，
-  部署站的同源完整一轮待页面推送后补跑（届时 `auto` 会自动选中它）。
 - **跨 iframe / 跨 frame 的等待**：库元素本身在 iframe 内（已覆盖），但未覆盖「等待 iframe 自身出现」。
 - **元素在等待期间被替换为同形新节点后的自动重新绑定**：见已知边界 1，属当前语义不支持的用法。
 - **`timeout=-1` 且元素永不出现**：会一直阻塞，未构造（避免无法收尾）。

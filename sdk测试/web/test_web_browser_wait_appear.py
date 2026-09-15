@@ -10,14 +10,15 @@
 
 `wait_appear()` 的核心语义是「**等待期间**元素出现」，因此必须有一个在等待过程中发生的转变。
 
-- `scheduled`（默认可用）：测试侧用 `execute_javascript` 制造转变——
-  对 WebElement 目标，注入一个稳定探针节点（挂在 `window.__uiautomaWaitNode` 上），
-  先把它移除、再在 1.2s 后**把同一个节点原样插回**；
-  对名称目标，调度 `location.hash` 切换路由，让**靶场的库元素**出现。
-  节点与元素都由浏览器真实渲染，测试侧只决定「何时」发生。
-- `delayed-page`（靶场自计时页面，待部署）：`public/delayed-element.html`
-  每 1.5s 交替插入/移除 `#delayed-target`，由**页面自己**计时；该页未部署时本分支记 BLOCKED。
+- `scheduled`（回退方案）：测试侧用 `execute_javascript` 注入稳定探针节点（挂在
+  `window.__uiautomaWaitNode` 上），先移除、再在 1.2s 后**把同一个节点原样插回**。
+  节点由浏览器真实渲染，测试侧只决定「何时」发生。
+- `delayed-page`（canonical，靶场自计时页已部署）：`public/delayed-element.html`
+  每 1.5s 交替插入/移除**同一个** `#delayed-target` 节点，**由页面自己计时，测试侧零调度**。
 - `auto`（默认值）：先探测 `delayed-page` 是否可达，可达则用它，否则回退 `scheduled`。
+
+名称/Selector 目标的「等待出现」不走上面两条：在**导航尚未完成时就开始等待**
+（`navigate(..., load_timeout=0)` → `wait_appear(name, N)`），元素随路由切换出现，测试侧同样零调度。
 
 ## 已实测确立的判据（详见 web/evidence/wait_appear.md）
 
@@ -105,11 +106,6 @@ CLEANUP_PROBES = (
     " ['uiautoma-wait-target', 'uiautoma-hidden-target'].forEach(function (id) {"
     "   const node = document.getElementById(id); if (node) node.remove(); });"
     " delete window.__uiautomaWaitNode;"
-    " return true; }"
-)
-SCHEDULE_HASH = (
-    "function (element, args) {"
-    " setTimeout(function () { location.hash = args.hash; }, args.delay);"
     " return true; }"
 )
 SET_SEARCH = (
@@ -596,23 +592,28 @@ def run(args):
                     f"本行不计入退出码，待维护者决定。",
                     transient_attempts=transient))
 
-            # 名称目标：等待期间由页面自身路由切换让库元素出现（可重试 + 上下文重置）
+            # 名称目标：等待期间由页面自身的路由切换让库元素出现。
+            # 用「navigate(load_timeout=0) 不等待加载 → 立刻 wait_appear」这一自然用法，
+            # 不依赖测试侧调度 JS（此前用 execute_javascript 调度 hash 切换会在等待中撞坏框架绑定）。
             route_attempts = []
             value, elapsed, error = None, 0.0, ""
             for attempt in range(1, 3):
                 if attempt > 1:
                     reset_page_context(1.0)
-                page.execute_javascript(SCHEDULE_HASH, {"hash": "#/iframe-shadow-form",
-                                                        "delay": int(TRANSITION_DELAY * 1000)})
+                try:
+                    page.navigate(library_page_url, load_timeout=0)
+                except Exception as exc:  # noqa: BLE001
+                    route_attempts.append(f"第 {attempt} 次 navigate 失败: {error_detail('', exc)}")
+                    continue
                 value, elapsed, error = timed_wait(lambda: page.wait_appear(ELEMENT_NAME, 8))
                 if error == "":
                     break
                 route_attempts.append(f"第 {attempt} 次: {error}（{elapsed}s）")
-            ok = value is True and elapsed >= TRANSITION_DELAY - 0.2
+            ok = value is True and 0.05 <= elapsed <= 4.0
             results.append(result(
                 "name_appears_after_route_change", "PASS" if ok else "FAIL",
-                (f"等待期间路由切到库元素所属页（调度 {TRANSITION_DELAY}s）：名称目标返回 True，"
-                 f"耗时 {elapsed}s，说明真的等到了出现"
+                (f"库元素所属页尚未加载时即开始等待（navigate load_timeout=0，元素此刻仍不存在）："
+                 f"路由切换完成后返回 True，耗时 {elapsed}s，说明真的等到了出现"
                  + (f"；期间重试：{'; '.join(route_attempts)}" if route_attempts else "")) if ok else
                 f"结果不符: value={value!r}, elapsed={elapsed}s, error={error or '无'}"
                 + (f"，重试记录：{route_attempts}" if route_attempts else ""),
@@ -620,9 +621,9 @@ def run(args):
             if route_attempts:
                 results.append(result(
                     "route_change_frame_flake", "KNOWN",
-                    f"JS 发起的 hash 路由切换正撞上等待时，出现过 {len(route_attempts)} 次 "
-                    f"frame_not_found（'{route_attempts[0]}'）；一次干净 navigate 即可恢复，重试后通过。"
-                    f"此前独立探针 5/5 与完整验收 3/3 均未出现，属环境/时序性问题，"
+                    f"路由切换期间等待曾失败并重试：{'; '.join(route_attempts)}；"
+                    f"一次干净 navigate 即可恢复，重试后通过。历史记录：用 execute_javascript 调度 "
+                    f"hash 切换时更易触发 frame_not_found，故已改为 navigate(load_timeout=0) 的自然写法。"
                     f"本行不计入退出码。",
                     retry_notes=route_attempts))
 
