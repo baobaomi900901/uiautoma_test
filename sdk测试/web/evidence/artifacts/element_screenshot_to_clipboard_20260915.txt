@@ -1,0 +1,188 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.screenshot_to_clipboard
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+元素库  : D:\code\元素库\260902_web元素
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/18    [92m[通过][0m  api_contract                      无任何参数（不含目录/文件名）；返回注解 None
+02/18    [92m[通过][0m  clipboard_readable                ctypes 独立通道可读写剪贴板；进入时格式=[8, 2, 17]，原文本=无，原图像=有
+03/18    [92m[通过][0m  clipboard_channel_selftest        脚本自身哨兵文本写入与读取一致（保证收尾还原可信）
+04/18    [92m[通过][0m  library_prepare                   已打开元素库副本：web 元素 70 个（与列举一致）
+05/18    [92m[通过][0m  page_prepare                      已打开库元素所属靶场页
+06/18    [92m[通过][0m  library_element_bind              已绑定库元素 web靶场_表单测试_ant_输入框（标签 INPUT，活矩形 1196×32）
+07/18    [92m[通过][0m  sentinel_replaced                 哨兵文本已消失且出现 CF_DIB，剪贴板内容确由本次调用改写
+08/18    [92m[通过][0m  library_element_clipboard         库元素 web靶场_表单测试_ant_输入框 剪贴板 CF_DIB 1196×32、24bpp、114856 字节精确吻合，像素与元素文件截图差 0 字节（114816 字节中，1.789s），同参数两次文件截图零差异；尺寸与 get_bounding() 完全一致
+09/18    [92m[通过][0m  repeated_call_identical           同一元素连续两次调用产出完全相同的 CF_DIB（114856 字节）
+10/18    [92m[通过][0m  second_element_different_size     第二个库元素 web靶场_表单测试_ant_数字输入框 剪贴板尺寸 1194×30 与其活矩形一致，且与第一个元素不同（1196×32）
+11/18    [92m[通过][0m  framing_prepare                   已切到主框架页并活取 #form-controls-ant-submit 矩形 63.84375×32（dpr=1，页面 2636×2018）
+12/18    [92m[通过][0m  framing_aligned                   元素截图与剪贴板均为活矩形尺寸 64×32（= 63.84375×32 CSS × dpr 1.0）；把整页截图按活矩形裁切后做±6 像素偏移扫描，最小区块差异出现在偏移 (0, 0)，即取景精确对准
+13/18    [92m[通过][0m  framing_clipboard_vs_file         主框架元素（活矩形独立验证） 剪贴板 CF_DIB 64×32、24bpp、6184 字节精确吻合，像素与元素文件截图差 0 字节（6144 字节中，1.729s），同参数两次文件截图零差异
+14/18    [92m[通过][0m  stale_after_navigate              ActionError 正确拒绝（0.018s）：未找到指定ID的元素
+15/18    [92m[通过][0m  page_close_verified               页面已关闭，且 web.get_all() 复核无残留
+16/18    [92m[通过][0m  stale_after_close                 ActionError 正确拒绝（0.001s）：网页对象已失效
+17/18    [92m[通过][0m  package_close_verified            Package 已关闭
+18/18    [92m[通过][0m  cleanup                           已关闭页面（get_all 复核无残留）、关闭 Package、删除临时目录（含 233 个文件，含元素库副本）；剪贴板收尾：已还原进入时的剪贴板图像（114856 字节 CF_DIB）
+────────────────────────────────────────────────────────────────────────
+测试通过 · 18/18 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebElement.screenshot_to_clipboard",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "mode": "chrome",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "无任何参数（不含目录/文件名）；返回注解 None"
+    },
+    {
+      "case_id": "clipboard_readable",
+      "status": "PASS",
+      "detail": "ctypes 独立通道可读写剪贴板；进入时格式=[8, 2, 17]，原文本=无，原图像=有",
+      "formats": [
+        8,
+        2,
+        17
+      ]
+    },
+    {
+      "case_id": "clipboard_channel_selftest",
+      "status": "PASS",
+      "detail": "脚本自身哨兵文本写入与读取一致（保证收尾还原可信）"
+    },
+    {
+      "case_id": "library_prepare",
+      "status": "PASS",
+      "detail": "已打开元素库副本：web 元素 70 个（与列举一致）",
+      "web_count": 70
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已打开库元素所属靶场页",
+      "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+    },
+    {
+      "case_id": "library_element_bind",
+      "status": "PASS",
+      "detail": "已绑定库元素 web靶场_表单测试_ant_输入框（标签 INPUT，活矩形 1196×32）",
+      "element_id": "rt:web:0ed08de2a60e4d0dbb7fe77b5100c11a",
+      "bounding": {
+        "x": 838,
+        "y": 1005,
+        "width": 1196,
+        "height": 32
+      }
+    },
+    {
+      "case_id": "sentinel_replaced",
+      "status": "PASS",
+      "detail": "哨兵文本已消失且出现 CF_DIB，剪贴板内容确由本次调用改写"
+    },
+    {
+      "case_id": "library_element_clipboard",
+      "status": "PASS",
+      "detail": "库元素 web靶场_表单测试_ant_输入框 剪贴板 CF_DIB 1196×32、24bpp、114856 字节精确吻合，像素与元素文件截图差 0 字节（114816 字节中，1.789s），同参数两次文件截图零差异；尺寸与 get_bounding() 完全一致",
+      "elapsed_s": 1.789,
+      "width": 1196,
+      "height": 32,
+      "dib_bytes": 114856,
+      "pixel_diff_bytes": 0,
+      "pixel_diff_vs_second_bytes": 0,
+      "pixel_jitter_bytes": 0,
+      "pixel_total_bytes": 114816
+    },
+    {
+      "case_id": "repeated_call_identical",
+      "status": "PASS",
+      "detail": "同一元素连续两次调用产出完全相同的 CF_DIB（114856 字节）",
+      "dib_bytes": 114856
+    },
+    {
+      "case_id": "second_element_different_size",
+      "status": "PASS",
+      "detail": "第二个库元素 web靶场_表单测试_ant_数字输入框 剪贴板尺寸 1194×30 与其活矩形一致，且与第一个元素不同（1196×32）",
+      "width": 1194,
+      "height": 30
+    },
+    {
+      "case_id": "framing_prepare",
+      "status": "PASS",
+      "detail": "已切到主框架页并活取 #form-controls-ant-submit 矩形 63.84375×32（dpr=1，页面 2636×2018）",
+      "metrics": {
+        "count": 1,
+        "dpr": 1,
+        "h": 32,
+        "id": "form-controls-ant-submit",
+        "sh": 2018,
+        "sw": 2636,
+        "sx": 0,
+        "sy": 0,
+        "w": 63.84375,
+        "x": 49,
+        "y": 1823
+      }
+    },
+    {
+      "case_id": "framing_aligned",
+      "status": "PASS",
+      "detail": "元素截图与剪贴板均为活矩形尺寸 64×32（= 63.84375×32 CSS × dpr 1.0）；把整页截图按活矩形裁切后做±6 像素偏移扫描，最小区块差异出现在偏移 (0, 0)，即取景精确对准",
+      "expected": [
+        64,
+        32
+      ],
+      "best_offset": [
+        0,
+        0
+      ],
+      "best_offset_diff": 40
+    },
+    {
+      "case_id": "framing_clipboard_vs_file",
+      "status": "PASS",
+      "detail": "主框架元素（活矩形独立验证） 剪贴板 CF_DIB 64×32、24bpp、6184 字节精确吻合，像素与元素文件截图差 0 字节（6144 字节中，1.729s），同参数两次文件截图零差异",
+      "elapsed_s": 1.729,
+      "width": 64,
+      "height": 32,
+      "dib_bytes": 6184,
+      "pixel_diff_bytes": 0,
+      "pixel_diff_vs_second_bytes": 0,
+      "pixel_jitter_bytes": 0,
+      "pixel_total_bytes": 6144
+    },
+    {
+      "case_id": "stale_after_navigate",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.018s）：未找到指定ID的元素",
+      "elapsed_s": 0.018
+    },
+    {
+      "case_id": "page_close_verified",
+      "status": "PASS",
+      "detail": "页面已关闭，且 web.get_all() 复核无残留",
+      "leftover_pages": 0
+    },
+    {
+      "case_id": "stale_after_close",
+      "status": "PASS",
+      "detail": "ActionError 正确拒绝（0.001s）：网页对象已失效",
+      "elapsed_s": 0.001
+    },
+    {
+      "case_id": "package_close_verified",
+      "status": "PASS",
+      "detail": "Package 已关闭"
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "已关闭页面（get_all 复核无残留）、关闭 Package、删除临时目录（含 233 个文件，含元素库副本）；剪贴板收尾：已还原进入时的剪贴板图像（114856 字节 CF_DIB）",
+      "leftover_pages": 0,
+      "produced_files": 233,
+      "page_close_error": "",
+      "clipboard_note": "已还原进入时的剪贴板图像（114856 字节 CF_DIB）"
+    }
+  ]
+}

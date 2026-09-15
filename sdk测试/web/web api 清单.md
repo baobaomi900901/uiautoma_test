@@ -117,7 +117,7 @@
 | `extract_table` | `extract_table(self) -> list[list[str]]` | 提取表格内容。 | - |
 | `get_basetable_value` | `get_basetable_value(self, *, exclude_thead: bool=False) -> list[list[str]]` | 提取基础表格内容。 | - |
 | `screenshot` | `screenshot(self, folder_path: str, *, file_name: str \| None=None) -> str` | 截取元素图片到文件。 | - |
-| `screenshot_to_clipboard` | `screenshot_to_clipboard(self) -> None` | 截取元素图片到剪贴板。 | - |
+| `screenshot_to_clipboard` | `screenshot_to_clipboard(self) -> None` | 截取元素图片到剪贴板。 | ✅ 已完成（18/18；活矩形裁切偏移扫描验取景，dpr=1 下 Issue #20 未复现） |
 | `is_checked` | `is_checked(self) -> bool` | 判断网页复选框或单选框是否被选中。 | - |
 | `is_enabled` | `is_enabled(self) -> bool` | 判断网页元素是否可用。 | - |
 | `is_displayed` | `is_displayed(self) -> bool` | 判断网页元素是否可见。 | - |

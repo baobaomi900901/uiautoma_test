@@ -117,3 +117,19 @@ uiautoma.web.WebElement.screenshot
 ## 跟踪 Issue
 
 https://github.com/uiautoma/desktop/issues/20
+
+## 补充实测（2026-09-15，dpr=1 环境）
+
+元素级 `WebElement.screenshot_to_clipboard()` 验收时，顺带用**独立于产品自述**的方式
+重新验证了本 API 的取景：主框架元素 `#form-controls-ant-submit` 活矩形
+`63.84375×32` CSS、`devicePixelRatio = 1` → 元素截图 **64×32**（= 四舍五入后的活矩形尺寸）；
+把整页截图按活矩形裁切后做 **±6 像素偏移扫描**，最小区块差异出现在偏移 **(0, 0)**，
+即**取景精确对准、无偏移**。
+
+也就是说：本文件记录的像素取景偏移缺陷（Issue #20）在 **dpr = 1 的当前基线（HEAD `dbe9e015`）上未复现**。
+
+**但本文件的生命周期状态维持 `READY_FOR_LIVE` 不变**：原缺陷证据来自 `dpr ≠ 1` /
+页面缩放环境（414×414 的元素截成 303×303，比例约 0.73），本次环境未覆盖该触发条件，
+Issue #20 是否可关闭需维护者用高 DPI / 缩放环境复核。
+
+证据：[element_screenshot_to_clipboard.md](element_screenshot_to_clipboard.md)。
