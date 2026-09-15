@@ -1,0 +1,150 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.scroll_to
+页面    : https://baobaomi900901.github.io/xpath/#/form-controls
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/16    [92m[通过][0m  api_contract                  location/behavior/top/left 全为仅限关键字（默认 bottom/instant/0/0），返回 None
+02/16    [92m[通过][0m  page_prepare                  已创建 WebBrowser 测试页面（365.3ms）
+03/16    [92m[通过][0m  initial_state                 初始 URL 可读
+04/16    [92m[通过][0m  scrollable_prepare            已注入 spacer：scrollHeight=9766, scrollWidth=4000
+05/16    [92m[通过][0m  default_bottom                默认滚到底部：scrollY=9766, scrollX=4000（纵向与横向均到底）
+06/16    [92m[通过][0m  top_preserves_horizontal      回到顶部且保留横向位置：scrollY=0, scrollX=4000
+07/16    [92m[通过][0m  point_exact                   point(top=300,left=250) 精确落点：scrollY=300, scrollX=250
+08/16    [92m[通过][0m  point_left_only               只给 left=120 时 scrollX=120 且 scrollY 归 0
+09/16    [92m[通过][0m  point_overshoot_clamped       越界 point 被浏览器夹取到底部：scrollY=9766, scrollX=4000
+10/16    [92m[通过][0m  point_negative_clamped        负值 point 被夹取到 0：scrollY=0, scrollX=0
+11/16    [92m[通过][0m  smooth_matches_browser_control  smooth 与原生 window.scrollTo({behavior:'smooth'}) 行为一致（起点 1500 → 终值 1500，本环境未推进动画（视口 clientHeight=0，合成器不驱动））
+12/16    [92m[通过][0m  invalid_location              InvalidParamsError 正确拒绝（trace=invalid_params）
+13/16    [92m[通过][0m  invalid_behavior              InvalidParamsError 正确拒绝（trace=invalid_params）
+14/16    [92m[通过][0m  extra_positional              TypeError 正确拒绝
+15/16    [92m[通过][0m  unknown_keyword               TypeError 正确拒绝
+16/16    [92m[通过][0m  cleanup                       仅关闭本次创建的测试页面
+────────────────────────────────────────────────────────────────────────
+测试通过 · 16/16 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.scroll_to",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/form-controls",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "location/behavior/top/left 全为仅限关键字（默认 bottom/instant/0/0），返回 None",
+      "return_annotation": "None"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已创建 WebBrowser 测试页面（365.3ms）"
+    },
+    {
+      "case_id": "initial_state",
+      "status": "PASS",
+      "detail": "初始 URL 可读",
+      "url": "https://baobaomi900901.github.io/xpath/#/form-controls"
+    },
+    {
+      "case_id": "scrollable_prepare",
+      "status": "PASS",
+      "detail": "已注入 spacer：scrollHeight=9766, scrollWidth=4000",
+      "scroll_height": 9766,
+      "scroll_width": 4000
+    },
+    {
+      "case_id": "default_bottom",
+      "status": "PASS",
+      "detail": "默认滚到底部：scrollY=9766, scrollX=4000（纵向与横向均到底）",
+      "returned": "None",
+      "top": 9766,
+      "left": 4000,
+      "sh": 9766,
+      "sw": 4000,
+      "ch": 0,
+      "cw": 0
+    },
+    {
+      "case_id": "top_preserves_horizontal",
+      "status": "PASS",
+      "detail": "回到顶部且保留横向位置：scrollY=0, scrollX=4000",
+      "returned": "None",
+      "top": 0,
+      "left": 4000
+    },
+    {
+      "case_id": "point_exact",
+      "status": "PASS",
+      "detail": "point(top=300,left=250) 精确落点：scrollY=300, scrollX=250",
+      "returned": "None",
+      "top": 300,
+      "left": 250
+    },
+    {
+      "case_id": "point_left_only",
+      "status": "PASS",
+      "detail": "只给 left=120 时 scrollX=120 且 scrollY 归 0",
+      "returned": "None",
+      "top": 0,
+      "left": 120
+    },
+    {
+      "case_id": "point_overshoot_clamped",
+      "status": "PASS",
+      "detail": "越界 point 被浏览器夹取到底部：scrollY=9766, scrollX=4000",
+      "returned": "None",
+      "top": 9766,
+      "left": 4000,
+      "sh": 9766,
+      "sw": 4000
+    },
+    {
+      "case_id": "point_negative_clamped",
+      "status": "PASS",
+      "detail": "负值 point 被夹取到 0：scrollY=0, scrollX=0",
+      "returned": "None",
+      "top": 0,
+      "left": 0
+    },
+    {
+      "case_id": "smooth_matches_browser_control",
+      "status": "PASS",
+      "detail": "smooth 与原生 window.scrollTo({behavior:'smooth'}) 行为一致（起点 1500 → 终值 1500，本环境未推进动画（视口 clientHeight=0，合成器不驱动））",
+      "returned": "None",
+      "start_top": 1500.0,
+      "product_final_top": 1500.0,
+      "raw_final_top": 1500.0,
+      "converged": false,
+      "seconds": 0.64
+    },
+    {
+      "case_id": "invalid_location",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（trace=invalid_params）",
+      "trace_info": "invalid_params"
+    },
+    {
+      "case_id": "invalid_behavior",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝（trace=invalid_params）",
+      "trace_info": "invalid_params"
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝",
+      "trace_info": ""
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝",
+      "trace_info": ""
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "仅关闭本次创建的测试页面"
+    }
+  ]
+}

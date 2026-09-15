@@ -1,0 +1,130 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.get_scroll
+页面    : https://baobaomi900901.github.io/xpath/#/form-controls
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/15    [92m[通过][0m  api_contract                    direction/location 仅限关键字（默认 vertical/current），返回注解 float
+02/15    [92m[通过][0m  page_prepare                    已创建 WebBrowser 测试页面（354.5ms）
+03/15    [92m[通过][0m  initial_state                   初始 URL 可读
+04/15    [92m[通过][0m  scrollable_prepare              已注入 spacer：scrollHeight=9766, scrollWidth=4000
+05/15    [92m[通过][0m  initial_current_zero            位于顶部时默认读数 返回 float 0.0
+06/15    [92m[通过][0m  current_matches_js              point(top=300) 后的 current 读数（与 JS window.scrollY 一致） 返回 float 300.0
+07/15    [92m[通过][0m  vertical_bottom_content_height  vertical/bottom 返回滚动内容总高 返回 float 9766.0
+08/15    [92m[通过][0m  horizontal_current              point(left=250) 后的 horizontal 读数（与 JS window.scrollX 一致） 返回 float 250.0
+09/15    [92m[通过][0m  horizontal_bottom_content_width  horizontal/bottom 返回滚动内容总宽 返回 float 4000.0
+10/15    [92m[通过][0m  all_combinations_float          vertical/horizontal × current/bottom 四种组合均返回 float
+11/15    [92m[通过][0m  invalid_direction               InvalidParamsError 正确拒绝
+12/15    [92m[通过][0m  invalid_location                InvalidParamsError 正确拒绝
+13/15    [92m[通过][0m  extra_positional                TypeError 正确拒绝
+14/15    [92m[通过][0m  unknown_keyword                 TypeError 正确拒绝
+15/15    [92m[通过][0m  cleanup                         仅关闭本次创建的测试页面
+────────────────────────────────────────────────────────────────────────
+测试通过 · 15/15 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.get_scroll",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/form-controls",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "direction/location 仅限关键字（默认 vertical/current），返回注解 float",
+      "return_annotation": "float"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已创建 WebBrowser 测试页面（354.5ms）"
+    },
+    {
+      "case_id": "initial_state",
+      "status": "PASS",
+      "detail": "初始 URL 可读",
+      "url": "https://baobaomi900901.github.io/xpath/#/form-controls"
+    },
+    {
+      "case_id": "scrollable_prepare",
+      "status": "PASS",
+      "detail": "已注入 spacer：scrollHeight=9766, scrollWidth=4000",
+      "scroll_height": 9766,
+      "scroll_width": 4000
+    },
+    {
+      "case_id": "initial_current_zero",
+      "status": "PASS",
+      "detail": "位于顶部时默认读数 返回 float 0.0",
+      "actual": "0.0",
+      "expected": "0.0"
+    },
+    {
+      "case_id": "current_matches_js",
+      "status": "PASS",
+      "detail": "point(top=300) 后的 current 读数（与 JS window.scrollY 一致） 返回 float 300.0",
+      "actual": "300.0",
+      "expected": "300.0",
+      "js_scroll_y": 300.0
+    },
+    {
+      "case_id": "vertical_bottom_content_height",
+      "status": "PASS",
+      "detail": "vertical/bottom 返回滚动内容总高 返回 float 9766.0",
+      "actual": "9766.0",
+      "expected": "9766.0",
+      "scroll_height": 9766.0,
+      "current": 300.0
+    },
+    {
+      "case_id": "horizontal_current",
+      "status": "PASS",
+      "detail": "point(left=250) 后的 horizontal 读数（与 JS window.scrollX 一致） 返回 float 250.0",
+      "actual": "250.0",
+      "expected": "250.0",
+      "js_scroll_x": 250.0
+    },
+    {
+      "case_id": "horizontal_bottom_content_width",
+      "status": "PASS",
+      "detail": "horizontal/bottom 返回滚动内容总宽 返回 float 4000.0",
+      "actual": "4000.0",
+      "expected": "4000.0",
+      "scroll_width": 4000.0
+    },
+    {
+      "case_id": "all_combinations_float",
+      "status": "PASS",
+      "detail": "vertical/horizontal × current/bottom 四种组合均返回 float",
+      "combinations": 4
+    },
+    {
+      "case_id": "invalid_direction",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝",
+      "trace_info": ""
+    },
+    {
+      "case_id": "invalid_location",
+      "status": "PASS",
+      "detail": "InvalidParamsError 正确拒绝",
+      "trace_info": ""
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝",
+      "trace_info": ""
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝",
+      "trace_info": ""
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "仅关闭本次创建的测试页面"
+    }
+  ]
+}

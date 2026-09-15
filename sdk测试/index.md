@@ -245,6 +245,8 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.wait_load_completed()` | `VERIFIED`（12/12；2026-09-15） | `web/test_web_browser_wait_load_completed.py` | `web/evidence/wait_load_completed.md` |
 | `uiautoma.web.WebBrowser.close()` | `VERIFIED`（10/10；2026-09-15；含 get_all 复核与 stale_page_reference 复核） | `web/test_web_browser_close.py` | `web/evidence/close.md` |
 | `uiautoma.web.WebBrowser.execute_javascript()` | `VERIFIED`（16/16；2026-09-15；含双 world 隔离与 DOM 共享） | `web/test_web_browser_execute_javascript.py` | `web/evidence/execute_javascript.md` |
+| `uiautoma.web.WebBrowser.scroll_to()` | `VERIFIED`（16/16；2026-09-15；smooth 仅验证与原生行为一致） | `web/test_web_browser_scroll_to.py` | `web/evidence/scroll_to.md` |
+| `uiautoma.web.WebBrowser.get_scroll()` | `VERIFIED`（15/15；2026-09-15） | `web/test_web_browser_get_scroll.py` | `web/evidence/get_scroll.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
 >
