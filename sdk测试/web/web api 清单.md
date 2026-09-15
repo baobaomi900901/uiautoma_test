@@ -60,8 +60,8 @@
 | `get_responses` | `get_responses(self, *, url: str='', use_wildcard: bool=False, resource_type: str='All') -> list` | 获取监听到的网络响应。 | ✅ 已完成（19/19） |
 | `stop_monitor_network` | `stop_monitor_network(self) -> None` | 停止监听当前网页的网络请求。 | ✅ 已完成（13/13） |
 | `http_request` | `http_request(self, url: str, *, method: str='GET', headers=None, body=None, save_filename=None, connect_timeout: float=30, download_timeout: float=300) -> dict` | 在当前网页中发送 HTTP 请求。 | - |
-| `find_all` | `find_all(self, selector: str \| Selector, *, timeout: float=20) -> list[WebElement]` | 在当前页面查找与已保存选择器匹配的全部元素。 | - |
-| `find` | `find(self, selector: str \| Selector, *, timeout: float=20) -> WebElement` | 在当前页面查找与已保存选择器匹配的唯一元素。 | ✅ 已完成（19/19；库=260902_web元素，靶场=#/iframe-shadow-form） |
+| `find_all` | `find_all(self, selector: str \| Selector, *, timeout: float=20) -> list[WebElement]` | 在当前页面查找与已保存选择器匹配的全部元素。 | ✅ 已完成（18/18；超时返回空列表） |
+| `find` | `find(self, selector: str \| Selector, *, timeout: float=20) -> WebElement` | 在当前页面查找与已保存选择器匹配的唯一元素。 | ✅ 已完成（20/20；库=260902_web元素，靶场=#/iframe-shadow-form） |
 | `find_all_by_css` | `find_all_by_css(self, css_selector: str, *, timeout: float=20) -> list[WebElement]` | 在当前页面查找与 CSS 选择器匹配的全部元素。 | - |
 | `find_by_css` | `find_by_css(self, css_selector: str, *, timeout: float=20) -> WebElement` | 在当前页面查找与 CSS 选择器匹配的唯一元素。 | - |
 | `find_all_by_xpath` | `find_all_by_xpath(self, xpath_selector: str, *, timeout: float=20) -> list[WebElement]` | 在当前页面查找与 XPath 选择器匹配的全部元素。 | - |
