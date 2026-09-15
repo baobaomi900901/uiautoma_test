@@ -1,0 +1,127 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.reload
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/12    [92m[通过][0m  api_contract                ignore_cache 位置或关键字且默认 False，load_timeout 仅限关键字且默认 20，返回 None
+02/12    [92m[通过][0m  page_prepare                已创建 WebBrowser 测试页面（479.5ms）
+03/12    [92m[通过][0m  initial_state               初始 URL 可读、页面 id 非空，且 timeOrigin 探针可用
+04/12    [92m[通过][0m  reload_default              返回 None、URL 与页面 id 不变，且独立确证已重新加载（0.498s）
+05/12    [92m[通过][0m  reload_positional_ignore_cache  返回 None、URL 与页面 id 不变，且独立确证已重新加载（3.074s）
+06/12    [92m[通过][0m  reload_ignore_cache_keyword  返回 None、URL 与页面 id 不变，且独立确证已重新加载（0.607s）
+07/12    [92m[通过][0m  zero_timeout                返回 None、URL 与页面 id 不变，且独立确证已重新加载（0.378s）
+08/12    [92m[通过][0m  post_reload_usable          刷新后 get_url/get_title/get_html 正常且页面 id 不变
+09/12    [92m[通过][0m  invalid_timeout             ValueError 正确拒绝
+10/12    [92m[通过][0m  invalid_timeout_type        ValueError 正确拒绝
+11/12    [92m[通过][0m  unknown_keyword             TypeError 正确拒绝
+12/12    [92m[通过][0m  cleanup                     仅关闭本次创建的测试页面
+────────────────────────────────────────────────────────────────────────
+测试通过 · 12/12 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebBrowser.reload",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "mode": "chrome",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "ignore_cache 位置或关键字且默认 False，load_timeout 仅限关键字且默认 20，返回 None"
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "已创建 WebBrowser 测试页面（479.5ms）"
+    },
+    {
+      "case_id": "initial_state",
+      "status": "PASS",
+      "detail": "初始 URL 可读、页面 id 非空，且 timeOrigin 探针可用",
+      "time_origin_probe_ok": true
+    },
+    {
+      "case_id": "reload_default",
+      "status": "PASS",
+      "detail": "返回 None、URL 与页面 id 不变，且独立确证已重新加载（0.498s）",
+      "returned": null,
+      "elapsed_s": 0.498,
+      "time_origin_before": 1789460630654.3,
+      "time_origin_after": 1789460631210.1,
+      "time_origin_changed": true,
+      "marker_armed": true,
+      "marker_cleared": true,
+      "reload_confirmed": true,
+      "url_after": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+    },
+    {
+      "case_id": "reload_positional_ignore_cache",
+      "status": "PASS",
+      "detail": "返回 None、URL 与页面 id 不变，且独立确证已重新加载（3.074s）",
+      "returned": null,
+      "elapsed_s": 3.074,
+      "time_origin_before": 1789460631210.1,
+      "time_origin_after": 1789460631754.9,
+      "time_origin_changed": true,
+      "marker_armed": true,
+      "marker_cleared": true,
+      "reload_confirmed": true,
+      "url_after": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+    },
+    {
+      "case_id": "reload_ignore_cache_keyword",
+      "status": "PASS",
+      "detail": "返回 None、URL 与页面 id 不变，且独立确证已重新加载（0.607s）",
+      "returned": null,
+      "elapsed_s": 0.607,
+      "time_origin_before": 1789460631754.9,
+      "time_origin_after": 1789460634880.2,
+      "time_origin_changed": true,
+      "marker_armed": true,
+      "marker_cleared": true,
+      "reload_confirmed": true,
+      "url_after": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+    },
+    {
+      "case_id": "zero_timeout",
+      "status": "PASS",
+      "detail": "返回 None、URL 与页面 id 不变，且独立确证已重新加载（0.378s）",
+      "returned": null,
+      "elapsed_s": 0.378,
+      "time_origin_before": 1789460634880.2,
+      "time_origin_after": 1789460635535.1,
+      "time_origin_changed": true,
+      "marker_armed": true,
+      "marker_cleared": true,
+      "reload_confirmed": true,
+      "url_after": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+    },
+    {
+      "case_id": "post_reload_usable",
+      "status": "PASS",
+      "detail": "刷新后 get_url/get_title/get_html 正常且页面 id 不变",
+      "title": "iframe + Shadow 表单测试",
+      "html_length": 22819
+    },
+    {
+      "case_id": "invalid_timeout",
+      "status": "PASS",
+      "detail": "ValueError 正确拒绝"
+    },
+    {
+      "case_id": "invalid_timeout_type",
+      "status": "PASS",
+      "detail": "ValueError 正确拒绝"
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "detail": "TypeError 正确拒绝"
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "仅关闭本次创建的测试页面"
+    }
+  ]
+}

@@ -39,7 +39,7 @@
 | `navigate` | `navigate(self, url: str, *, load_timeout: float=20) -> None` | 导航到指定 URL。 | ✅ 已完成（14/14） |
 | `go_back` | `go_back(self, *, load_timeout: float=20) -> None` | 浏览器后退。 | ❌ 失败（首次调用稳定失败；2026-09-15；#58） |
 | `go_forward` | `go_forward(self, *, load_timeout: float=20) -> None` | 浏览器前进。 | ✅ 已完成（13/13；前置依赖 #58，仅预热路径） |
-| `reload` | `reload(self, ignore_cache: bool=False, *, load_timeout: float=20) -> None` | 刷新页面。 | - |
+| `reload` | `reload(self, ignore_cache: bool=False, *, load_timeout: float=20) -> None` | 刷新页面。 | ✅ 已完成（12/12） |
 | `stop_load` | `stop_load(self) -> None` | 停止页面加载。 | - |
 | `is_load_completed` | `is_load_completed(self) -> bool` | 判断页面是否加载完成。 | - |
 | `wait_load_completed` | `wait_load_completed(self, timeout: float=20) -> None` | 等待页面加载完成。 | - |
