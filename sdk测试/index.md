@@ -38,7 +38,7 @@
 | `uiautoma.web.WebElement.next_sibling()` | `VERIFIED` | [`web/test_web_element_next_sibling.py`](web/test_web_element_next_sibling.py) | [`web/evidence/next_sibling.md`](web/evidence/next_sibling.md) | [`sdk/docs/web/next_sibling.md`](../../sdk/docs/web/next_sibling.md) |
 | `uiautoma.web.WebElement.input()` | `VERIFIED` | [`web/test_web_element_input.py`](web/test_web_element_input.py) | [`web/evidence/input.md`](web/evidence/input.md) | [`sdk/docs/web/input.md`](../../sdk/docs/web/input.md) |
 | `uiautoma.web.WebElement.clipboard_input()` | `VERIFIED` | [`web/test_web_element_clipboard_input.py`](web/test_web_element_clipboard_input.py) | [`web/evidence/clipboard_input.md`](web/evidence/clipboard_input.md) | [`sdk/docs/web/clipboard_input.md`](../../sdk/docs/web/clipboard_input.md) |
-| `uiautoma.web.WebElement.get_text()` | `VERIFIED` | [`web/test_web_element_get_text.py`](web/test_web_element_get_text.py) | [`web/evidence/get_text.md`](web/evidence/get_text.md) | [`sdk/docs/web/get_text.md`](../../sdk/docs/web/get_text.md) |
+| `uiautoma.web.WebElement.get_text()` | `VERIFIED`（8/8） | [`web/test_web_element_get_text_html.py`](web/test_web_element_get_text_html.py) | [`web/evidence/get_text.md`](web/evidence/get_text.md) | [`sdk/docs/web/get_text.md`](../../sdk/docs/web/get_text.md) |
 | `uiautoma.web.WebElement.get_html()` | `VERIFIED` | [`web/test_web_element_get_html.py`](web/test_web_element_get_html.py) | [`web/evidence/get_html.md`](web/evidence/get_html.md) | [`sdk/docs/web/get_html.md`](../../sdk/docs/web/get_html.md) |
 | `uiautoma.web.WebElement.get_value()` | `VERIFIED` | [`web/test_web_element_get_value.py`](web/test_web_element_get_value.py) | [`web/evidence/get_value.md`](web/evidence/get_value.md) | [`sdk/docs/web/get_value.md`](../../sdk/docs/web/get_value.md) |
 | `uiautoma.web.WebElement.set_value()` | `VERIFIED` | [`web/test_web_element_set_value.py`](web/test_web_element_set_value.py) | [`web/evidence/set_value.md`](web/evidence/set_value.md) | [`sdk/docs/web/set_value.md`](../../sdk/docs/web/set_value.md) |
@@ -60,8 +60,8 @@
 | `uiautoma.web.WebElement.drag_to()` | `READY_FOR_LIVE` | [`web/test_web_element_drag_to.py`](web/test_web_element_drag_to.py) | [`web/evidence/drag_to.md`](web/evidence/drag_to.md) | [`sdk/docs/web/drag_to.md`](../../sdk/docs/web/drag_to.md) |
 | `uiautoma.web.WebElement.upload()` | `VERIFIED` | [`web/test_web_element_upload.py`](web/test_web_element_upload.py) | [`web/evidence/upload.md`](web/evidence/upload.md) | [`sdk/docs/web/upload.md`](../../sdk/docs/web/upload.md) |
 | `uiautoma.web.WebElement.download()` | `READY_FOR_LIVE` | [`web/test_web_element_download.py`](web/test_web_element_download.py) | [`web/evidence/download.md`](web/evidence/download.md) | [`sdk/docs/web/download.md`](../../sdk/docs/web/download.md) |
-| `uiautoma.web.close_all()` | `READY_FOR_LIVE` | [`web/test_web_close_all.py`](web/test_web_close_all.py) | [`web/evidence/close_all.md`](web/evidence/close_all.md) | [`sdk/docs/web/close_all.md`](../../sdk/docs/web/close_all.md) |
-| `uiautoma.web.handle_save_dialog()` | `READY_FOR_LIVE` | [`web/test_web_handle_save_dialog.py`](web/test_web_handle_save_dialog.py) | [`web/evidence/handle_save_dialog.md`](web/evidence/handle_save_dialog.md) | [`sdk/docs/web/handle_save_dialog.md`](../../sdk/docs/web/handle_save_dialog.md) |
+| `uiautoma.web.close_all()` | `VERIFIED`（9/9） | [`web/test_web_close_all_form.py`](web/test_web_close_all_form.py) | [`web/evidence/close_all_current.md`](web/evidence/close_all_current.md) | [`sdk/docs/web/close_all.md`](../../sdk/docs/web/close_all.md) |
+| `uiautoma.web.handle_save_dialog()` | `VERIFIED`（7/7；2026-09-15复测，扩展场景待测） | [`web/test_web_handle_save_dialog_current.py`](web/test_web_handle_save_dialog_current.py) | [`web/evidence/handle_save_dialog_current.md`](web/evidence/handle_save_dialog_current.md) | [`sdk/docs/web/handle_save_dialog.md`](../../sdk/docs/web/handle_save_dialog.md) |
 | `uiautoma.web.handle_upload_dialog()` | `READY_FOR_LIVE` | [`web/test_web_handle_upload_dialog.py`](web/test_web_handle_upload_dialog.py) | [`web/evidence/handle_upload_dialog.md`](web/evidence/handle_upload_dialog.md) | [`sdk/docs/web/handle_upload_dialog.md`](../../sdk/docs/web/handle_upload_dialog.md) |
 | `uiautoma.web.set_cookie()` | `READY_FOR_LIVE` | [`web/test_web_set_cookie_get_cookie.py`](web/test_web_set_cookie_get_cookie.py) | [`web/evidence/set_cookie.md`](web/evidence/set_cookie.md) | [`sdk/docs/web/set_cookie.md`](../../sdk/docs/web/set_cookie.md) |
 | `uiautoma.web.get_cookie()` | `READY_FOR_LIVE` | [`web/test_web_set_cookie_get_cookie.py`](web/test_web_set_cookie_get_cookie.py) | [`web/evidence/get_cookie.md`](web/evidence/get_cookie.md) | [`sdk/docs/web/get_cookie.md`](../../sdk/docs/web/get_cookie.md) |
@@ -225,9 +225,24 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.remove_cookie()` | `VERIFIED`（9/9） | `web/test_web_remove_cookie.py` | `web/evidence/remove_cookie.md` |
 | `uiautoma.web.clear_cookies()` | `VERIFIED`（10/10） | `web/test_web_clear_cookies.py` | `web/evidence/clear_cookies.md` |
 | `uiautoma.web.close_all()` | `VERIFIED`（9/9） | `web/test_web_close_all_form.py` | `web/evidence/close_all_current.md` |
-| `uiautoma.web.handle_save_dialog()` | `VERIFIED`（7/7；扩展场景待测） | `web/test_web_handle_save_dialog_current.py` | `web/evidence/handle_save_dialog_current.md` |
-| `uiautoma.web.handle_upload_dialog()` | `READY_FOR_LIVE`（3/4；确定按钮识别失败） | `web/test_web_handle_upload_dialog_current.py` | `web/evidence/handle_upload_dialog_current.md` |
+| `uiautoma.web.handle_save_dialog()` | `VERIFIED`（7/7；2026-09-15复测，扩展场景待测） | `web/test_web_handle_save_dialog_current.py` | `web/evidence/handle_save_dialog_current.md` |
+| `uiautoma.web.handle_upload_dialog()` | `READY_FOR_LIVE`（3/5；路径已填写但“打开”按钮识别失败） | `web/test_web_handle_upload_dialog_current.py` | `web/evidence/handle_upload_dialog_current.md` |
 | `uiautoma.web.set_user_environment()` | `VERIFIED`（6/6；含预期环境状态） | `web/test_web_set_user_environment_profiles.py` | `web/evidence/set_user_environment.md` |
+| `uiautoma.web.reset_user_environment()` | `VERIFIED`（7/7） | `web/test_web_reset_user_environment.py` | `web/evidence/reset_user_environment.md` |
 | `uiautoma.web.WebBrowser.id` | `VERIFIED`（8/8） | `web/test_web_browser_id.py` | `web/evidence/browser_id.md` |
+| `uiautoma.web.WebBrowser.get_title()` | `VERIFIED`（7/7） | `web/test_web_browser_get_title.py` | `web/evidence/browser_get_title.md` |
+| `uiautoma.web.WebBrowser.get_html()` | `VERIFIED`（8/8） | `web/test_web_browser_get_html_baidu.py` | `web/evidence/browser_get_html_baidu.md` |
+| `uiautoma.web.WebBrowser.activate()` | `VERIFIED`（6/6） | `web/test_web_browser_activate.py` | `web/evidence/browser_activate.md` |
+| `uiautoma.web.WebBrowser.activateTab()` | `VERIFIED`（6/6；恢复仅尝试） | [web/test_web_browser_activate_tab.py](web/test_web_browser_activate_tab.py) | [web/evidence/browser_activate_tab.md](web/evidence/browser_activate_tab.md) |
+| `uiautoma.web.WebBrowser.get_url()` | `VERIFIED`（7/7） | `web/test_web_browser_get_url.py` | `web/evidence/browser_get_url.md` |
+| `uiautoma.web.WebBrowser.navigate()` | `VERIFIED`（14/14） | `web/test_web_browser_navigate.py` | `web/evidence/browser_navigate.md` |
+| `uiautoma.web.WebElement.get_text()` | `VERIFIED`（8/8） | `web/test_web_element_get_text_html.py` | `web/evidence/get_text.md` |
+| `uiautoma.web.WebBrowser.get_text()` | `VERIFIED`（7/7） | `web/test_web_browser_get_text.py` | `web/evidence/browser_get_text.md` |
+| `uiautoma.web.WebBrowser.go_back()` | `READY_FOR_LIVE`（2026-09-15：首次调用稳定失败，缺陷 #58） | `web/test_web_browser_go_back.py` | `web/evidence/go_back.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
+>
+> `WebBrowser.go_back()`（2026-09-15）：首次调用稳定失败，引擎原始
+> `failure_reason=Cannot find a next page in history.`，而页面侧 `history.length` 已为 `2`~`3`；
+> 先执行一次 `page.execute_javascript(...)` 后即可成功。跟踪 Issue：
+> https://github.com/uiautoma/desktop/issues/58 ；复现脚本 `issues/issue_58/test_issue_58_go_back.py`。

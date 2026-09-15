@@ -1,0 +1,17 @@
+# Python 字节码（生成物，不跟踪）
+__pycache__/
+*.py[cod]
+
+# 虚拟环境
+.venv/
+.venv*/
+
+# 测试运行产物
+.pytest_tmp/
+.pytest_cache/
+
+# 系统文件
+Thumbs.db
+desktop.ini
+
+# 说明：.logs/ 下的证据日志是有意跟踪的验收材料，因此不在此忽略。
