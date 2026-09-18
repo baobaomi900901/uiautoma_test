@@ -354,6 +354,70 @@
           "id": "5e097c37-0dbe-4f42-873f-e5974a5e05b6",
           "name": "web靶场_测试get_text_按钮_重置",
           "type": "web"
+        },
+        {
+          "id": "9941e5a1-63b9-4292-a6b9-851dccc9d7fa",
+          "name": "web靶场_测试find_父级",
+          "type": "web"
+        },
+        {
+          "id": "98474fb1-37e7-4394-9bec-d907127c1268",
+          "name": "web靶场_测试find_子级",
+          "type": "web"
+        }
+      ]
+    },
+    {
+      "id": "7505e3e8-d858-4e69-899a-031814e58dd1",
+      "name": "clash-verge.exe",
+      "process_name": "clash-verge.exe",
+      "elements": [
+        {
+          "id": "5eadd3c0-dfe2-4fed-9d7d-a179b7aaf66c",
+          "name": "🇯🇵日本-1号-0.1倍率 Vless UDP XUDP 70",
+          "type": "win"
+        },
+        {
+          "id": "8e9755ce-d12b-4b62-9b13-25b744d7c98f",
+          "name": "组",
+          "type": "win"
+        }
+      ]
+    },
+    {
+      "id": "99d04215-7256-46ab-aac0-f0f150737b49",
+      "name": "EXCEL.EXE",
+      "process_name": "EXCEL.EXE",
+      "elements": [
+        {
+          "id": "de9f582c-c3cc-431f-b7c4-9e16736b60f9",
+          "name": "联系支持人员...",
+          "type": "win"
+        },
+        {
+          "id": "7fde69f8-151e-479c-b4b0-5160ff0c7523",
+          "name": "Excel 靶场插件",
+          "type": "win"
+        },
+        {
+          "id": "a83f331b-0022-4246-a577-972ecdb79dc5",
+          "name": "打开面板",
+          "type": "win"
+        },
+        {
+          "id": "dc8b6036-cc81-4e04-aeba-58c7526a0e59",
+          "name": "点击登录",
+          "type": "win"
+        },
+        {
+          "id": "24dcf950-1015-4cb3-a849-ee247bf6f1a6",
+          "name": "名称",
+          "type": "win"
+        },
+        {
+          "id": "78beae0c-dbdd-432b-9af0-45a17014b5ef",
+          "name": "登录",
+          "type": "win"
         }
       ]
     }

@@ -257,6 +257,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.get_responses()` | `VERIFIED`（19/19；2026-09-15；含记录结构与过滤语义） | `web/test_web_browser_get_responses.py` | `web/evidence/get_responses.md` |
 | `uiautoma.web.WebBrowser.stop_monitor_network()` | `VERIFIED`（13/13；2026-09-15） | `web/test_web_browser_stop_monitor_network.py` | `web/evidence/stop_monitor_network.md` |
 | `uiautoma.web.WebBrowser.find()` | `VERIFIED`（22/22；2026-09-15；含清理复核修正） | `web/test_web_browser_find.py` | `web/evidence/find.md` |
+| `uiautoma.web.WebElement.find()` | `VERIFIED`（6/6；连续 3 次；人工复测通过） | `web/test_web_element_find.py` | `web/evidence/element_find.md` |
 | `uiautoma.web.WebBrowser.find_all()` | `VERIFIED`（20/20；2026-09-15；超时返回空列表、多命中返回全部；含清理复核修正） | `web/test_web_browser_find_all.py` | `web/evidence/find_all.md` |
 | `uiautoma.web.WebBrowser.find_by_css()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_by_css.py` | `web/evidence/find_by_css.md` |
 | `uiautoma.web.WebBrowser.find_all_by_css()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_all_by_css.py` | `web/evidence/find_all_by_css.md` |
@@ -290,7 +291,6 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 > `WebBrowser` 的 **41 个公开成员已全部有验收结果**——40 个为 `VERIFIED`
 > （`go_back` 已测但存在缺陷 #58、`extract_table` 已验合同但功能未实现、`id` 为属性已测）。
 > 元素级 `WebElement` 仍有未在本工作区复验的方法，见 `web/web api 清单.md`。
-
 
 
 

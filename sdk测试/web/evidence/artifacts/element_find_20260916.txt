@@ -1,0 +1,6 @@
+API     : uiautoma.web.WebElement.find
+页面    : https://baobaomi900901.github.io/xpath/#/anchor-test
+元素库  : D:\code\元素库\260902_web元素
+结果    : 6/6 通过，退出码 0
+复测    : 连续 3 次脚本运行通过；人工复测通过
+命令    : cd "D:\code\元素库\sdk测试"; uv run .\web\test_web_element_find.py

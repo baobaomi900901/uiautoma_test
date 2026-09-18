@@ -1,0 +1,100 @@
+{
+  "type": "web",
+  "path": [
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "root" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card ant-card-bordered css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-card-body" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "role", "value": "alert" },
+        { "name": "class", "value": "ant-alert ant-alert-info ant-alert-with-description css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "data-show", "value": "true" },
+        { "name": "index", "value": 1 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-alert-content" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 1 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "required": [
+        { "name": "innerText", "value": "测试说明" }
+      ],
+      "optional": [
+        { "name": "class", "value": "ant-alert-message" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    }
+  ],
+  "xpath": {
+    "enabled": false,
+    "segments": [
+      "//div[normalize-space(.)='测试说明']"
+    ]
+  }
+}
