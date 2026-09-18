@@ -20,6 +20,7 @@ from urllib.parse import urlsplit
 
 from uiautoma import web
 from uiautoma.web import WebBrowser
+from _web_page_identity import count_key, leaked, page_alive, page_key
 
 __test__ = False
 
@@ -119,13 +120,13 @@ def run(args):
         if not ok:
             return results, 1
 
-        page_id = page.id
+        page_id = page_key(page)
         initial_url = page.get_url()
         results.append(result(
             "initial_state",
             "PASS" if same_url(initial_url, args.target_url) and bool(page_id) else "FAIL",
-            "初始 URL 可读且页面 id 非空" if same_url(initial_url, args.target_url) and page_id else
-            f"初始状态不符: url={initial_url!r}, id={page_id!r}",
+            "初始 URL 可读且页面标识（url|title）非空" if same_url(initial_url, args.target_url) and page_id else
+            f"初始状态不符: url={initial_url!r}, page_key={page_id!r}",
         ))
 
         # 目标用例 1：已加载完成的页面，默认调用应立即返回 None
@@ -169,15 +170,18 @@ def run(args):
             ))
         else:
             after = page.is_load_completed()
-            ok = returned is None and after is True and page.id == page_id
+            # main 已移除 WebBrowser.id：改为断言对象仍可驱动该标签
+            alive, alive_detail = page_alive(page)
+            ok = returned is None and after is True and alive
             results.append(result(
                 "wait_pending_load",
                 "PASS" if ok else "FAIL",
                 (
                     f"等待返回 None（{waited}s）：等待前 is_load_completed={pending_before!r}，"
-                    f"等待后为 True，页面 id 不变"
+                    f"等待后为 True，页面对象仍可用（{alive_detail}）"
                     if ok
-                    else f"结果不符: return={returned!r}, before={pending_before!r}, after={after!r}"
+                    else f"结果不符: return={returned!r}, before={pending_before!r}, "
+                         f"after={after!r}, alive={alive_detail}"
                 ),
                 returned=repr(returned),
                 pending_before_wait=repr(pending_before),

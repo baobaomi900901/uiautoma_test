@@ -23,6 +23,7 @@ from urllib.parse import urlsplit
 
 from uiautoma import ActionError, InvalidParamsError, web
 from uiautoma.web import WebBrowser
+from _web_page_identity import count_key, leaked, page_key
 
 __test__ = False
 
@@ -147,13 +148,13 @@ def run(args):
         if not ok:
             return results, 1
 
-        page_id = page.id
+        page_id = page_key(page)
         initial_url = page.get_url()
         results.append(result(
             "initial_state",
             "PASS" if same_url(initial_url, args.target_url) and bool(page_id) else "FAIL",
-            "初始 URL 可读且页面 id 非空" if same_url(initial_url, args.target_url) and page_id else
-            f"初始状态不符: url={initial_url!r}, id={page_id!r}",
+            "初始 URL 可读且页面标识（url|title）非空" if same_url(initial_url, args.target_url) and page_id else
+            f"初始状态不符: url={initial_url!r}, page_key={page_id!r}",
         ))
 
         # 返回透传：数字 / 字符串 / 布尔 / 列表 / 字典
@@ -285,7 +286,7 @@ def run(args):
         # 双 world 共享同一 DOM：MAIN 改标题后，get_title 与 ISOLATED 都能读到
         try:
             original_title = page.get_title()
-            temp_title = f"uiautoma-exec-js-{page_id[:8]}"
+            temp_title = f"uiautoma-exec-js-{time.time_ns() % 10**8:08d}"  # main 已移除 WebBrowser.id，不再借用页面标识拼临时标题
             set_result = page.execute_javascript(
                 f"function () {{ document.title = {json.dumps(temp_title)}; return document.title; }}",
                 execution_world="MAIN",

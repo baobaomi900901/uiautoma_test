@@ -13,6 +13,7 @@ if str(SDK_SRC) not in sys.path:
 
 from uiautoma import web  # noqa: E402
 from uiautoma.web import WebBrowser  # noqa: E402
+from _web_page_identity import page_key  # noqa: E402
 
 __test__ = False
 DEFAULT_URL = "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
@@ -58,9 +59,11 @@ def run(args):
             results.append(result("activate_return", "PASS" if returned is None else "FAIL",
                                   "activate 返回 None" if returned is None else "activate 返回值不符"))
             active = web.get_active(mode=args.mode, load_timeout=0)
-            same = isinstance(active, WebBrowser) and active.id == page.id
+            # main 已移除 WebBrowser.id：改用 (url|title) 组合键判断是否同一标签
+            same = isinstance(active, WebBrowser) and page_key(active) == page_key(page)
             results.append(result("active_page_check", "PASS" if same else "FAIL",
-                                  "激活后当前页面 ID 匹配" if same else "激活后当前页面不匹配"))
+                                  "激活后当前页面标识（url|title）匹配" if same else "激活后当前页面不匹配",
+                                  page_key=page_key(active)))
         except Exception as exc:  # noqa: BLE001
             status = error_status(exc)
             results.append(result("activate_action", status, f"activate 场景失败: {type(exc).__name__}: {exc}",

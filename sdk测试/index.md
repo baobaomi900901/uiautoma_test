@@ -78,8 +78,10 @@
 `select_by_index()`、`get_bounding()` 与 `upload()` 已于 2026-08-09，在 Chrome 下完成真实
 页面验收与本次资源精确清理，状态为 `VERIFIED`。
 
-其余 API：远端 `main` 的公开合同已通过 `--contract-only`。当前基线不包含本地 Web Stack
-安装入口时，旧基线下的真实运行结果只作为历史证据，仍等待当前基线真实复验。
+其余 API：远端 `main` 的公开合同已通过 `--contract-only`（2026-09-18 新基线全量冒烟 61/61）。
+2026-08 那批元素库脚本的真实运行结果绑在旧基线 `dbe9e015` 上，仍按历史证据对待；
+其中读取 `page.raw` / `element.raw` 的 35 个模板脚本在新基线上**无法运行**（`raw` 已被移除），
+处置口径待定，详见 `web/evidence/baseline_adaptation.md`「本轮未纳入的范围」。
 
 `handle_save_dialog()` 的默认保存场景曾真实通过，但 `wait_complete=True` 已真实复现
 `web_download_timeout`；该缺陷修复并完成当前基线复验前不能进入 `VERIFIED`。
@@ -233,7 +235,8 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.handle_upload_dialog()` | `READY_FOR_LIVE`（3/5；路径已填写但“打开”按钮识别失败） | `web/test_web_handle_upload_dialog_current.py` | `web/evidence/handle_upload_dialog_current.md` |
 | `uiautoma.web.set_user_environment()` | `VERIFIED`（6/6；含预期环境状态） | `web/test_web_set_user_environment_profiles.py` | `web/evidence/set_user_environment.md` |
 | `uiautoma.web.reset_user_environment()` | `VERIFIED`（7/7） | `web/test_web_reset_user_environment.py` | `web/evidence/reset_user_environment.md` |
-| `uiautoma.web.WebBrowser.id` | `VERIFIED`（8/8） | `web/test_web_browser_id.py` | `web/evidence/browser_id.md` |
+| `uiautoma.web.WebBrowser.id` | `已移除`（`44c8e91f` 收敛公开接口）；脚本改为「成员收敛 + 替代方式」契约（8/8，2026-09-18 新基线） | `web/test_web_browser_id.py` | `web/evidence/baseline_adaptation.md` |
+| `uiautoma.web.WebElement.find_all()` | `VERIFIED`（30 用例 29/29 + 1 `KNOWN`；2026-09-18 新基线；标准靶场同文档路由语义正确，跨 iframe/open shadow 作用域为不对称边界） | `web/test_web_element_find_all.py` | `web/evidence/element_find_all.md` |
 | `uiautoma.web.WebBrowser.get_title()` | `VERIFIED`（7/7） | `web/test_web_browser_get_title.py` | `web/evidence/browser_get_title.md` |
 | `uiautoma.web.WebBrowser.get_html()` | `VERIFIED`（8/8） | `web/test_web_browser_get_html_baidu.py` | `web/evidence/browser_get_html_baidu.md` |
 | `uiautoma.web.WebBrowser.activate()` | `VERIFIED`（6/6） | `web/test_web_browser_activate.py` | `web/evidence/browser_activate.md` |
@@ -268,12 +271,12 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.screenshot()` | `VERIFIED`（21/21；2026-09-15；产物字节独立解析确证尺寸） | `web/test_web_browser_screenshot.py` | `web/evidence/browser_screenshot.md` |
 | `uiautoma.web.WebBrowser.screenshot_to_clipboard()` | `VERIFIED`（23/23；2026-09-15；ctypes 独立读 CF_DIB + 与文件截图三角像素比对） | `web/test_web_browser_screenshot_to_clipboard.py` | `web/evidence/screenshot_to_clipboard.md` |
 | `uiautoma.web.WebElement.screenshot_to_clipboard()` | `VERIFIED`（18/18；2026-09-15；ctypes 独立读 CF_DIB + 活矩形裁切偏移扫描验取景，Issue #20 在 dpr=1 未复现） | `web/test_web_element_screenshot_to_clipboard.py` | `web/evidence/element_screenshot_to_clipboard.md` |
-| `uiautoma.web.WebBrowser.stop_load()` | `VERIFIED`（14/14 + 1 记录；2026-09-15；连续 6 次全绿；含错误页 is_load_completed 恒 False 与无响应标签回收缺口） | `web/test_web_browser_stop_load.py` | `web/evidence/stop_load.md` |
+| `uiautoma.web.WebBrowser.stop_load()` | `BLOCKED`（10/12 + 2 `BLOCKED` + 1 `KNOWN`，退出码 2；2026-09-18：地址形态探测按边界约定删除，中止「待处理导航」的正向路径需靶场提供「加载永不完成」页面） | `web/test_web_browser_stop_load.py` | `web/evidence/stop_load.md` |
 | `uiautoma.web.WebBrowser.wait_appear()` | `VERIFIED`（31/31 + 1 边界；2026-09-15；连续 3 次全绿；canonical 为靶场自计时页 delayed-element.html，测试侧零调度） | `web/test_web_browser_wait_appear.py` | `web/evidence/wait_appear.md` |
 | `uiautoma.web.WebBrowser.wait_disappear()` | `VERIFIED`（32/32 无边界；2026-09-15；连续 3 次全绿；含「隐藏≠消失」与 React 销毁节点即判消失） | `web/test_web_browser_wait_disappear.py` | `web/evidence/wait_disappear.md` |
-| `uiautoma.web.WebBrowser.http_request()` | `VERIFIED`（42/42；2026-09-15；连续 3 次全绿；回显核对请求头/体、connect/download 超时分野、10 万分块二进制） | `web/test_web_browser_http_request.py` | `web/evidence/http_request.md` |
+| `uiautoma.web.WebBrowser.http_request()` | `VERIFIED`（41/41；2026-09-18 新基线复跑；地址形态探测已删除，`connect_timeout` 语义改由回显服务 `/delay` 覆盖） | `web/test_web_browser_http_request.py` | `web/evidence/http_request.md` |
 
-> 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开。
+> 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开（`dbe9e015` 起即如此），脚本已改写为收敛契约（旧名不存在 + `remove_cookie` 签名核对）。
 >
 > `WebBrowser.go_back()`（2026-09-15）：首次调用稳定失败，引擎原始
 > `failure_reason=Cannot find a next page in history.`，而页面侧 `history.length` 已为 `2`~`3`；
@@ -287,10 +290,39 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 >
 > 详见 `web/evidence/stop_load.md` 与 `web/evidence/is_load_completed.md`。
 >
-> **`WebBrowser` 覆盖完成**（2026-09-15，`http_request()` 验收后）：按 SDK 源码全量对账，
-> `WebBrowser` 的 **41 个公开成员已全部有验收结果**——40 个为 `VERIFIED`
-> （`go_back` 已测但存在缺陷 #58、`extract_table` 已验合同但功能未实现、`id` 为属性已测）。
+> **`WebBrowser` 覆盖完成**（2026-09-15，`http_request()` 验收后；2026-09-18 在新基线 `c101caa9` 复核）：
+> 按 SDK 源码全量对账，`WebBrowser` 的公开成员除**已被移除**的 `id`（`44c8e91f`）外全部有验收结果
+> （`go_back` 已测但存在缺陷 #58、`extract_table` 已验合同但功能未实现）。
 > 元素级 `WebElement` 仍有未在本工作区复验的方法，见 `web/web api 清单.md`。
+>
+> **基线切换适配**（2026-09-18）：全部实测证据此前绑在 worktree `dbe9e015` 上；本次以
+> `main@c101caa9` 为新基线完成套件适配——机械迁移 21 个脚本、语义改写 6 个、套件内其余 `page.id`
+> 引用 9 个、契约漂移 3 个、重写 1 个，并修正 2 处早于本次切换的历史漂移。
+> 契约面冒烟 **61/61**；受影响最重的脚本真机复跑全绿（`reload` 12/12、`go_forward` 13/13、
+> `navigate` 14/14、`id` 8/8、`get_all` 9/9、`activate` 6/6、`get` 9/9）；`stop_load` 与
+> `http_request` 的结果以「测试侧边界裁定」一节为准（地址形态探测删除后分别变为
+> 10/12+2 BLOCKED 与 41/41）。差异总账、判据强度变化与三条产品侧观察见
+> `web/evidence/baseline_adaptation.md`。
+>
+> **测试侧边界裁定**（2026-09-18，产品负责人）：**一律不使用非靶场地址形态探测**，全部删除。
+> 已删除 4 个脚本里的 6 处自造地址/路径名（不可路由保留地址、本机 discard 端口、保留域名、
+> 自造页面文件名），页面材料一律来自标准靶场 `https://baobaomi900901.github.io/xpath/`。
+> 删除后的复跑结果：`stop_load` 10/12 + 2 `BLOCKED` + 1 `KNOWN`（退出码 2）、
+> `http_request` 41/41、`get_all` 9/9、`get` 9/9、`WebElement.find_all` 30 用例 29/29 + 1 `KNOWN`。
+> **待靶场提供（否则无法解除阻塞）**：一个「加载永不完成」的页面/路由（服务端永不响应的子资源），
+> 用于验证 `stop_load()` 中止待处理导航与 `create(load_timeout=…)` 超时后的标签状态。
+> 产品负责人已确认会补充该页面；到位后即可恢复这两族用例的实测。
+>
+> **`WebElement.find_all()` 结论修正**（2026-09-18）：标准靶场**同文档**页面上元素级作用域语义
+> 正确（含严格子集：整页 1 条 → 作用域内 0 条）；**跨 iframe/open shadow 的已保存路径**作用域内
+> 返回空列表（整页 3 条、shadow 内 3 个节点），属不对称边界，记为 `KNOWN`。
+> 元素库 64/72 条路径跨 iframe/shadow，故该组合在真实库下不可用——已提
+> [#64](https://github.com/uiautoma/desktop/issues/64)，修复后该用例应升级为 PASS。
+>
+> **`WebBrowser.id` 移除后的判据缺口**（必须知晓）：公开面已无任何标签身份访问器，
+> 「同一标签」只能用 `(url, title)` 组合键近似；同 URL 同标题的两个标签**无法区分**。
+> 键不变的场景（刷新）可用组合键做等价断言；键必然变化的场景（导航/前进/后退）只能退化为
+> 「对象仍可驱动该标签 + 标签数量未增加」，强度弱于原先的 `id` 不变断言。
 
 
 

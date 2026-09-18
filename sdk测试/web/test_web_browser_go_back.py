@@ -8,6 +8,7 @@ from urllib.parse import urlsplit
 
 from uiautoma import web
 from uiautoma.web import WebBrowser
+from _web_page_identity import page_alive
 
 __test__ = False
 DEFAULT_URL = "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
@@ -106,13 +107,15 @@ def run(args):
             results.append(result("page_prepare", "FAIL", "create 返回类型错误"))
         else:
             results.append(result("page_prepare", "PASS", "已创建 WebBrowser 测试页面"))
-            initial_id = page.id
             initial_url = page.get_url()
+            # main 已移除 WebBrowser.id：初始状态改为断言对象可驱动该标签
+            initial_alive, initial_alive_detail = page_alive(page)
+            initial_ok = initial_alive and same_url(initial_url, args.target_url)
             results.append(result(
                 "initial_state",
-                "PASS" if initial_id and same_url(initial_url, args.target_url) else "FAIL",
-                "初始 URL 可读且页面 id 非空" if initial_id and same_url(initial_url, args.target_url)
-                else f"初始状态不符: url={initial_url!r}, id={initial_id!r}",
+                "PASS" if initial_ok else "FAIL",
+                f"初始 URL 可读且页面对象可用（{initial_alive_detail}）" if initial_ok
+                else f"初始状态不符: url={initial_url!r}, {initial_alive_detail}",
             ))
 
             page.navigate(SECOND_URL, load_timeout=args.load_timeout)
@@ -130,12 +133,15 @@ def run(args):
             if setup_ok:
                 returned = page.go_back(load_timeout=args.load_timeout)
                 back_ok, back_actual = wait_for_url(page, SECOND_URL)
+                # main 已移除 WebBrowser.id：后退会改组合键，改为断言对象仍可驱动该标签
+                back_alive, back_alive_detail = page_alive(page)
                 results.append(result(
                     "go_back_default",
-                    "PASS" if returned is None and back_ok and page.id == initial_id else "FAIL",
-                    "默认后退返回 None，回到第二页面且 id 保持不变" if returned is None and back_ok and page.id == initial_id
-                    else f"后退结果不符: return={returned!r}, url={back_actual!r}, id_changed={page.id != initial_id}",
+                    "PASS" if returned is None and back_ok and back_alive else "FAIL",
+                    "默认后退返回 None，回到第二页面且页面对象仍可用" if returned is None and back_ok and back_alive
+                    else f"后退结果不符: return={returned!r}, url={back_actual!r}, alive={back_alive_detail}",
                     actual_url=back_actual,
+                    page_alive=back_alive_detail,
                 ))
 
                 returned = page.go_back(load_timeout=args.load_timeout)

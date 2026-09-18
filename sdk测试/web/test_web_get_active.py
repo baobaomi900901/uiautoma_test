@@ -14,6 +14,7 @@ if str(SDK_SRC) not in sys.path:
 
 from uiautoma import web  # noqa: E402
 from uiautoma.web import WebBrowser  # noqa: E402
+from _web_page_identity import page_key  # noqa: E402
 
 __test__ = False
 DEFAULT_URL = "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
@@ -53,15 +54,18 @@ def run(args: argparse.Namespace) -> tuple[list[dict[str, Any]], int]:
             return results, 1
         page.activate()
         active = web.get_active(mode=args.mode, load_timeout=0)
-        same = isinstance(active, WebBrowser) and active.id == page.id
+        # main 已移除 WebBrowser.id：改用 (url|title) 组合键判断是否同一标签
+        target_key = page_key(page)
+        same = isinstance(active, WebBrowser) and page_key(active) == target_key
         results.append(result("get_active_default", "PASS" if same else "FAIL",
-                              "返回当前活动页面" if same else "未返回当前活动页面", page_id=getattr(active, "id", "")))
+                              "返回当前活动页面" if same else "未返回当前活动页面",
+                              page_key=page_key(active) if isinstance(active, WebBrowser) else ""))
         for case_id, timeout in (("zero_timeout", 0), ("none_timeout", None)):
             active = web.get_active(mode=args.mode, load_timeout=timeout)
-            ok = isinstance(active, WebBrowser) and active.id == page.id
+            ok = isinstance(active, WebBrowser) and page_key(active) == target_key
             results.append(result(case_id, "PASS" if ok else "FAIL",
                                   "活动页面匹配" if ok else "活动页面不匹配"))
-        reads = [web.get_active(mode=args.mode, load_timeout=0).id for _ in range(3)]
+        reads = [page_key(web.get_active(mode=args.mode, load_timeout=0)) for _ in range(3)]
         results.append(result("repeat_read", "PASS" if len(set(reads)) == 1 else "FAIL",
                               "连续三次返回同一活动页面" if len(set(reads)) == 1 else "重复读取结果变化"))
         try:

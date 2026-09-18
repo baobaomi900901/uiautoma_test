@@ -228,3 +228,29 @@ uv run .\web\test_web_browser_stop_load.py --include-hung-page --json
 - **Edge、CEF 与 Auto 模式**（脚本 `--mode` 仅开放 `chrome`）。
 - **内部 `timeout_ms` 固定 2000 的边界**（例如引擎停载耗时超过 2s 时 SDK 是否误报）：
   未构造。
+
+## 2026-09-18 修订（新基线 + 测试侧边界裁定）
+
+**新基线**：`main@c101caa9`（原证据绑在 `dbe9e015`）。`WebBrowser.id` 已被移除，脚本改用
+`_web_page_identity` 的 `(url, title)` 组合键与标签数量核对；判据类别见
+`baseline_adaptation.md`。迁移中我一度用「标签组合键列表相等」判断「未新开标签」，
+但同标签导航后该标签自身的组合键必然变化，导致 10/13 假失败；已改为比较标签**数量**，
+并如实保留该错因。
+
+**边界裁定（产品负责人 2026-09-18）**：测试侧**一律不使用地址形态探测**。本脚本原先用
+不可路由保留地址 `10.255.255.1` / `192.0.2.1`（黑洞）与 `127.0.0.1:9`（本机 discard 端口）
+构造两类形态，现已全部删除，对应处置：
+
+| 原用例 | 现状态 | 说明 |
+|---|---|---|
+| `pending_navigation_established` + `abort_pending_navigation`（核心正向：中止挂起导航） | `BLOCKED`（`pending_navigation_fixture_missing`） | 静态托管的标准靶场无法产生网络级「待处理导航」（服务端总是应答） |
+| `create_stop_if_timeout_true` / `_false_then_stop` | `BLOCKED`（`create_timeout_fixture_missing`） | 同上，依赖「加载永不完成」页面 |
+| `error_page_is_load_completed_false`（Issue #59） | `KNOWN` | 标准靶场的 404 是正常文档，不产生 `chrome-error` 页；仅保留历史证据（见「已知发现 1」） |
+
+**当前实测**（2026-09-18）：`10/12 通过 + 2 BLOCKED + 1 KNOWN`，退出码 2（阻塞）。
+保留并通过的部分：`stop_load()` 返回值与重复调用、失败后页面可用性、关闭后立即拒绝、
+`slow-load-30s.html` 边界（`--include-hung-page`，需人工退出网页）等。
+
+**请求靶场页面（解除 BLOCKED 的唯一途径）**：一个「加载永不完成」的页面/路由，
+例如页面内引用一个**服务端永不响应**的子资源（长挂起请求），使导航长期处于待处理状态；
+该页面到位后本脚本可恢复 `abort_pending_navigation` 与 `create(load_timeout=…)` 两族用例。

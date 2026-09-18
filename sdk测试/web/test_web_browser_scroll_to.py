@@ -76,13 +76,13 @@ def check_contract():
         names == ("self", "location", "behavior", "top", "left")
         and all(p.kind is inspect.Parameter.KEYWORD_ONLY for p in parameters[1:])
         and parameters[1].default == "bottom"
-        and parameters[2].default == "instant"
+        and parameters[2].default == "smooth"  # 48f5bafb：main 把默认值由 instant 改为 smooth
         and parameters[3].default == 0
         and parameters[4].default == 0
         and annotation in {"None", "<class 'NoneType'>"}
     )
     detail = (
-        "location/behavior/top/left 全为仅限关键字（默认 bottom/instant/0/0），返回 None"
+        "location/behavior/top/left 全为仅限关键字（默认 bottom/smooth/0/0，main 基线），返回 None"
         if ok
         else f"公开签名不符合合同: {sig}"
     )

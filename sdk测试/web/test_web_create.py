@@ -21,6 +21,7 @@ if str(SDK_SRC) not in sys.path:
 
 from uiautoma import web  # noqa: E402
 from uiautoma.web import WebBrowser  # noqa: E402
+from _web_page_identity import page_key  # noqa: E402
 
 __test__ = False
 
@@ -70,7 +71,7 @@ def run(args: argparse.Namespace) -> tuple[list[dict[str, Any]], int]:
             results.append(result("create_return_type", "FAIL", "返回值不是 WebBrowser", actual_type=type(page).__name__))
         else:
             results.append(result("create_default", "PASS", "成功打开页面并返回 WebBrowser",
-                                  elapsed_ms=elapsed, page_id=page.id))
+                                  elapsed_ms=elapsed, page_key=page_key(page)))
             current_url = page.get_url()
             title = page.get_title()
             results.append(result("page_metadata", "PASS" if current_url else "FAIL",

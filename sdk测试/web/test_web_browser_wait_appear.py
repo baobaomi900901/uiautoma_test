@@ -50,6 +50,7 @@ from pathlib import Path
 import uiautoma
 from uiautoma import ActionError, InvalidParamsError, NoCurrentPackageError, web
 from uiautoma.web import WebBrowser, WebElement
+from _web_page_identity import count_key, leaked, page_key
 
 __test__ = False
 
@@ -292,7 +293,8 @@ def run(args):
 
         try:
             page = web.create(args.home_url, mode=args.mode, load_timeout=args.load_timeout)
-            page_id = page.id
+            page_id = page_key(page)
+            baseline_matches = count_key(page_id, args.mode)
             ok = isinstance(page, WebBrowser)
             results.append(result(
                 "page_prepare", "PASS" if ok else "FAIL",
@@ -684,8 +686,7 @@ def run(args):
             results.append(result("page_close_verified", "FAIL", error_detail("page.close 调用失败", exc)))
         else:
             time.sleep(0.5)
-            leftover = [p for p in web.get_all(mode=args.mode)
-                        if str(getattr(p, "id", "") or "") == page_id]
+            leftover = leaked(page_id, baseline_matches, args.mode)
             results.append(result(
                 "page_close_verified", "PASS" if not leftover else "FAIL",
                 "页面已关闭，且 web.get_all() 复核无残留" if not leftover else

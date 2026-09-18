@@ -38,6 +38,7 @@ from uiautoma import (
     web,
 )
 from uiautoma.web import WebBrowser
+from _web_page_identity import count_key, leaked, page_key
 
 __test__ = False
 
@@ -176,7 +177,8 @@ def run(args):
         # 场景准备 2：打开正确靶场页
         try:
             page = web.create(args.target_url, mode=args.mode, load_timeout=args.load_timeout)
-            page_id = page.id
+            page_id = page_key(page)
+            baseline_matches = count_key(page_id, args.mode)
             current = page.get_url()
             results.append(result(
                 "page_prepare",
@@ -345,8 +347,7 @@ def run(args):
             results.append(result("page_close_verified", "FAIL", error_detail("page.close 调用失败", exc)))
         else:
             time.sleep(0.5)
-            leftover = [p for p in web.get_all(mode=args.mode)
-                        if str(getattr(p, "id", "") or "") == page_id]
+            leftover = leaked(page_id, baseline_matches, args.mode)
             ok = returned is None and not leftover
             results.append(result(
                 "page_close_verified",
@@ -391,7 +392,7 @@ def run(args):
         # 用 web.get_all() 实证本次页面确已消失，避免「只调用 close 就记 PASS」的假通过
         leftover = []
         try:
-            leftover = [p for p in web.get_all(mode=args.mode) if str(getattr(p, "id", "") or "") == page_id]
+            leftover = leaked(page_id, baseline_matches, args.mode)
         except Exception as exc:  # noqa: BLE001
             page_close_error = page_close_error or f"get_all 复核失败: {type(exc).__name__}: {exc}"
         cleaned = not leftover and not page_close_error and not copy_dir.exists()

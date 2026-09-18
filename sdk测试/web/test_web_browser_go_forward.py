@@ -27,6 +27,7 @@ from urllib.parse import urlsplit
 
 from uiautoma import ActionError, web
 from uiautoma.web import WebBrowser
+from _web_page_identity import page_alive, tab_count
 
 __test__ = False
 
@@ -181,8 +182,8 @@ def establish_forward_history(page: WebBrowser, target_url: str, back_to_url: st
 
 def forward_case(page: WebBrowser, case_id: str, target_url: str, back_to_url: str,
                  load_timeout: float, *, call_load_timeout, poll_timeout: float = 8.0):
-    """通用目标用例：建立前进历史 → 调用 go_forward → 校验返回值、URL 与页面 id。"""
-    page_id_before = page.id
+    """通用目标用例：建立前进历史 → 调用 go_forward → 校验返回值、URL 与页面对象可用性。"""
+    tabs_before = tab_count()
     prep = establish_forward_history(page, target_url, back_to_url, load_timeout)
     if not prep["ok"]:
         return result(
@@ -208,23 +209,28 @@ def forward_case(page: WebBrowser, case_id: str, target_url: str, back_to_url: s
         ), None
 
     ok, url = wait_for_url(page, target_url, poll_timeout)
-    id_after = page.id
-    passed = returned is None and ok and id_after == page_id_before
+    # main 已移除 WebBrowser.id：前进必然会改组合键，改用「对象仍可用 + 标签数量不变」
+    alive, alive_detail = page_alive(page)
+    tabs_after = tab_count()
+    passed = returned is None and ok and alive and tabs_after == tabs_before
     return result(
         case_id,
         "PASS" if passed else "FAIL",
         (
-            f"前进返回 None、到达 {target_url.rsplit('/', 1)[-1]} 且页面 id 保持不变"
-            f"（前置路径 {prep['path']}）"
+            f"前进返回 None、到达 {target_url.rsplit('/', 1)[-1]}，"
+            f"页面对象仍可用且未新开标签（前置路径 {prep['path']}）"
             if passed
-            else f"前进结果不符: return={returned!r}, url={url!r}, id_changed={id_after != page_id_before}"
+            else f"前进结果不符: return={returned!r}, url={url!r}, alive={alive_detail}, "
+                 f"tabs_added={tabs_after - tabs_before}"
         ),
         precond_path=prep["path"],
         precondition_direct_error=prep.get("direct_error", ""),
         returned=str(returned),
         url_actual=url,
         url_attr=page.url,
-        page_id_unchanged=id_after == page_id_before,
+        page_alive=alive_detail,
+        tabs_before=tabs_before,
+        tabs_after=tabs_after,
     ), url
 
 
@@ -247,13 +253,14 @@ def run(args):
         if not ok:
             return results, 1
 
-        initial_id = page.id
         initial_url = page.get_url()
+        initial_alive, initial_alive_detail = page_alive(page)
+        initial_ok = same_url(initial_url, args.target_url) and initial_alive
         results.append(result(
             "initial_state",
-            "PASS" if same_url(initial_url, args.target_url) and bool(initial_id) else "FAIL",
-            "初始 URL 可读且页面 id 非空" if same_url(initial_url, args.target_url) and initial_id else
-            f"初始状态不符: url={initial_url!r}, id={initial_id!r}",
+            "PASS" if initial_ok else "FAIL",
+            f"初始 URL 可读且页面对象可用（{initial_alive_detail}）" if initial_ok else
+            f"初始状态不符: url={initial_url!r}, {initial_alive_detail}",
         ))
 
         reached_b, url_b = goto(page, SECOND_URL, args.load_timeout)

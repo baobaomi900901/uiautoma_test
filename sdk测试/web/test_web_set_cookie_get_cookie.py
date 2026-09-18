@@ -51,7 +51,7 @@ EXPECTED_CONTRACTS = {
         ),
         "required": ("url",),
         "defaults": {
-            "mode": "cef",
+            "mode": "auto",  # 历史漂移修正：mode 默认值早已由 cef 改为 auto（当前基线复核）
             "name": None,
             "value": None,
             "sessionCookie": True,
@@ -78,7 +78,7 @@ EXPECTED_CONTRACTS = {
         "callable": web.get_cookie,
         "parameter_order": ("url", "mode", "name"),
         "required": ("url",),
-        "defaults": {"mode": "cef", "name": None},
+        "defaults": {"mode": "auto", "name": None},
         "kinds": {
             "url": inspect.Parameter.POSITIONAL_OR_KEYWORD,
             "mode": inspect.Parameter.POSITIONAL_OR_KEYWORD,

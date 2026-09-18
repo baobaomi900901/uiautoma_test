@@ -13,6 +13,7 @@ if str(SDK_SRC) not in sys.path:
 
 from uiautoma import web  # noqa: E402
 from uiautoma.web import WebBrowser  # noqa: E402
+from _web_page_identity import page_key  # noqa: E402
 
 __test__ = False
 BAIDU_URL = "https://www.baidu.com/"
@@ -45,7 +46,8 @@ def run(args):
         results.append(result("page_prepare", "PASS", "已打开百度测试页面"))
         page.activate()
         active = web.get_active(mode=args.mode, load_timeout=0)
-        same = isinstance(active, WebBrowser) and active.id == page.id
+        # main 已移除 WebBrowser.id：改用 (url|title) 组合键判断是否同一标签
+        same = isinstance(active, WebBrowser) and page_key(active) == page_key(page)
         results.append(result("get_active_page", "PASS" if same else "FAIL",
                               "已获取当前百度网页对象" if same else "当前网页对象与创建页面不一致"))
         if not same:

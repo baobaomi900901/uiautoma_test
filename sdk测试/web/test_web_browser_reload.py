@@ -21,6 +21,7 @@ from urllib.parse import urlsplit
 
 from uiautoma import web
 from uiautoma.web import WebBrowser
+from _web_page_identity import count_key, leaked, page_key
 
 __test__ = False
 
@@ -184,7 +185,8 @@ def reload_case(page: WebBrowser, case_id: str, call, expected_url: str, page_id
         )
 
     url_ok = same_url(observation["url_after"], expected_url)
-    id_ok = page.id == page_id
+    # main 已移除 WebBrowser.id：刷新不改 url/title，组合键不变即等价断言
+    id_ok = page_key(page) == page_id
     passed = (
         observation["returned"] is None
         and url_ok
@@ -226,14 +228,14 @@ def run(args):
         if not ok:
             return results, 1
 
-        page_id = page.id
+        page_id = page_key(page)
         initial_url = page.get_url()
         probe_ok = time_origin(page) is not None
         results.append(result(
             "initial_state",
             "PASS" if same_url(initial_url, args.target_url) and bool(page_id) else "FAIL",
             "初始 URL 可读、页面 id 非空，且 timeOrigin 探针可用" if probe_ok else
-            "初始 URL 可读且页面 id 非空，但 timeOrigin 探针不可用（后续用例改用 JS 标记确证）",
+            "初始 URL 可读且页面标识（url|title）非空，但 timeOrigin 探针不可用（后续用例改用 JS 标记确证）",
             time_origin_probe_ok=probe_ok,
         ))
 
@@ -253,14 +255,14 @@ def run(args):
         # 目标用例 4：load_timeout=0（不等待加载完成，由独立观测确认收敛）
         results.append(reload_case(page, "zero_timeout", lambda: page.reload(load_timeout=0), args.target_url, page_id))
 
-        # 刷新后页面对象仍可用：元数据与读取接口正常，页面 id 不变
+        # 刷新后页面对象仍可用：元数据与读取接口正常，页面标识（url|title）不变
         try:
             url_after = page.get_url()
             title_after = page.get_title()
             html_after = page.get_html()
             usable = (
                 same_url(url_after, args.target_url)
-                and page.id == page_id
+                and page_key(page) == page_id
                 and isinstance(title_after, str)
                 and isinstance(html_after, str)
                 and len(html_after) > 0
@@ -268,8 +270,8 @@ def run(args):
             results.append(result(
                 "post_reload_usable",
                 "PASS" if usable else "FAIL",
-                "刷新后 get_url/get_title/get_html 正常且页面 id 不变" if usable else
-                f"刷新后页面对象不可用: url={url_after!r}, id_changed={page.id != page_id}, "
+                "刷新后 get_url/get_title/get_html 正常且页面标识（url|title）不变" if usable else
+                f"刷新后页面对象不可用: url={url_after!r}, key_changed={page_key(page) != page_id}, "
                 f"html_len={len(html_after) if isinstance(html_after, str) else None}",
                 title=title_after if isinstance(title_after, str) else "",
                 html_length=len(html_after) if isinstance(html_after, str) else 0,

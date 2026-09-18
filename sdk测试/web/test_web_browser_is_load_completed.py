@@ -18,6 +18,7 @@ from urllib.parse import urlsplit
 
 from uiautoma import web
 from uiautoma.web import WebBrowser
+from _web_page_identity import count_key, leaked, page_alive, page_key
 
 __test__ = False
 
@@ -118,13 +119,13 @@ def run(args):
         if not ok:
             return results, 1
 
-        page_id = page.id
+        page_id = page_key(page)
         initial_url = page.get_url()
         results.append(result(
             "initial_state",
             "PASS" if same_url(initial_url, args.target_url) and bool(page_id) else "FAIL",
-            "初始 URL 可读且页面 id 非空" if same_url(initial_url, args.target_url) and page_id else
-            f"初始状态不符: url={initial_url!r}, id={page_id!r}",
+            "初始 URL 可读且页面标识（url|title）非空" if same_url(initial_url, args.target_url) and page_id else
+            f"初始状态不符: url={initial_url!r}, page_key={page_id!r}",
         ))
 
         # 目标用例 1：加载完成后应稳定返回 True（bool 类型）
@@ -146,7 +147,8 @@ def run(args):
         type_ok = isinstance(immediate, bool)
         caught_false = immediate is False
         recovered, waited, seen = poll_loaded(page)
-        passed = type_ok and recovered and page.id == page_id
+        # 刷新不改 url/title，组合键不变即等价于「仍是同一个页面」
+        passed = type_ok and recovered and page_key(page) == page_id
         results.append(result(
             "after_zero_wait_reload",
             "PASS" if passed else "FAIL",
@@ -167,13 +169,16 @@ def run(args):
         page.navigate(SECOND_URL, load_timeout=args.load_timeout)
         current = page.get_url()
         value = page.is_load_completed()
-        passed = same_url(current, SECOND_URL) and value is True and page.id == page_id
+        # main 已移除 WebBrowser.id：导航会改组合键，改为断言对象仍可驱动该标签
+        alive, alive_detail = page_alive(page)
+        passed = same_url(current, SECOND_URL) and value is True and alive
         results.append(result(
             "after_navigate_loaded",
             "PASS" if passed else "FAIL",
-            "导航到第二页面后返回 True，页面 id 不变" if passed else
-            f"结果不符: url={current!r}, value={value!r}, id_changed={page.id != page_id}",
+            "导航到第二页面后返回 True，且页面对象仍可驱动该标签" if passed else
+            f"结果不符: url={current!r}, value={value!r}, alive={alive_detail}",
             value=repr(value),
+            page_alive=alive_detail,
         ))
 
         # 参数边界：本 API 无参数

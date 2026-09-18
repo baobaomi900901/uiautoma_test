@@ -18,10 +18,11 @@
 `execute_javascript()` 失败；反过来，「挂起已中止」也不能只看 `is_load_completed()`，
 而应要求**页面重新可用**（`execute_javascript()` 恢复、`readyState` 回到 `complete`）。
 
-核心正向场景：把页面**导航到连接永久挂起的地址**（保留地址 `10.255.255.1` /
-`192.0.2.1`，不会应答），制造真实的「待处理网络请求」：`navigate` 必然超时、
-`execute_javascript()` 失败、`close()` 也会失败；此时调用 `stop_load()`，要求挂起被中止、
-页面恢复可用。该场景不修改靶场，中止后 Chrome 落到自身错误页，标签可正常回收，可重复运行。
+边界约定（2026-09-18，产品负责人裁定）：**测试侧一律不使用地址形态探测**——不可路由保留地址、
+本机 discard 端口、保留域名等全部删除，页面材料一律来自标准靶场
+（`https://baobaomi900901.github.io/xpath/`）。因此原先用「黑洞地址」制造的两类形态
+（服务端永不响应的**待处理导航**、Chrome **网络错误页**）不再由本脚本构造：
+前者记为 `BLOCKED` 并请求靶场提供对应页面；后者只保留历史发现（见「已知发现」），不再现场复现。
 
 状态模型：`PASS` / `FAIL` / `BLOCKED` 计入退出码；`KNOWN` 表示已如实刻画、但**不由本 API 负责**
 的边界或发现（不计入退出码）。
@@ -37,13 +38,14 @@ import time
 
 from uiautoma import ActionError, UIAError, web
 from uiautoma.web import WebBrowser
+from _web_page_identity import count_key, leaked, page_key, tab_keys
 
 __test__ = False
 
 DEFAULT_URL = "https://baobaomi900901.github.io/xpath/#/form-controls"
 HUNG_PAGE_URL = "https://baobaomi900901.github.io/xpath/slow-load-30s.html"
-HANG_URLS = ("http://10.255.255.1/uiautoma-slow.html", "http://192.0.2.1/uiautoma-slow.html")
-REFUSED_URL = "http://127.0.0.1:9/uiautoma-error-page.html"
+# 地址形态探测已按边界约定全部删除（2026-09-18）；原本用黑地址制造的两类形态改为
+# 「请求靶场提供页面 / 保留历史发现」，见文件头与下方 BLOCKED、KNOWN 用例。
 GREEN, RED, YELLOW, BLUE, RESET = "\x1b[92m", "\x1b[91m", "\x1b[93m", "\x1b[94m", "\x1b[0m"
 
 READY_STATE_JS = (
@@ -162,13 +164,6 @@ def wait_stopped(page, timeout: float):
     return False, round(waited + ready_waited, 2), state, "既未转为 True，页面也不可用"
 
 
-def new_tab_ids():
-    try:
-        return {str(getattr(item, "id", "") or "") for item in web.get_all(mode="chrome")}
-    except Exception:  # noqa: BLE001
-        return set()
-
-
 def run(args):
     results = [check_contract()]
     if results[-1]["status"] != "PASS" or args.contract_only:
@@ -180,7 +175,7 @@ def run(args):
     try:
         try:
             baseline = web.get_all(mode=args.mode)
-            baseline_ids = {str(getattr(item, "id", "") or "") for item in baseline}
+            baseline_ids = set(tab_keys(args.mode))
             results.append(result(
                 "environment_baseline", "PASS",
                 f"进入时浏览器共 {len(baseline)} 个标签（用于收尾核对是否有孤儿标签）",
@@ -191,7 +186,8 @@ def run(args):
 
         try:
             page = web.create(args.target_url, mode=args.mode, load_timeout=args.load_timeout)
-            page_id = page.id
+            page_id = page_key(page)
+            baseline_matches = count_key(page_id, args.mode)
             ok = isinstance(page, WebBrowser)
             results.append(result(
                 "page_prepare", "PASS" if ok else "FAIL",
@@ -237,63 +233,13 @@ def run(args):
         except Exception as exc:  # noqa: BLE001
             results.append(result("repeated_calls", "FAIL", error_detail("连续调用失败", exc)))
 
-        # 目标用例 3（核心正向）：挂起导航 → stop_load 中止 → 页面恢复可用
-        # 待处理导航未释放时连 close() 都会失败，因此任何路径下都要先 stop_load 兜底。
-        established = False
-        try:
-            hang_url = ""
-            for candidate in HANG_URLS:
-                started = time.perf_counter()
-                try:
-                    page.navigate(candidate, load_timeout=args.hang_timeout)
-                    navigate_note = "navigate 意外成功"
-                except Exception as exc:  # noqa: BLE001
-                    navigate_note = f"{exception_name(exc)}: {exc}"
-                hang_url, navigate_elapsed = candidate, round(time.perf_counter() - started, 3)
-                loaded, js_ok, ready_state, url = probe(page)
-                if loaded is False and not js_ok:
-                    established = True
-                    break
-                if loaded is False and js_ok:
-                    navigate_note += "（已落到错误页，非待处理导航）"
-            if not established:
-                results.append(result(
-                    "abort_pending_navigation", "BLOCKED",
-                    f"挂起地址 {hang_url} 未能制造「待处理导航」状态（navigate {navigate_elapsed}s："
-                    f"{navigate_note}；is_load_completed={loaded!r}, js_ok={js_ok}）",
-                    hang_url=hang_url))
-            else:
-                results.append(result(
-                    "pending_navigation_established", "PASS",
-                    f"已制造待处理网络请求：导航 {hang_url} 超时（{navigate_elapsed}s，{navigate_note}），"
-                    f"is_load_completed()=False 且 execute_javascript() 失败（URL 仍为 {url!r}）",
-                    hang_url=hang_url, elapsed_s=navigate_elapsed))
-                started = time.perf_counter()
-                try:
-                    returned = page.stop_load()
-                    stop_elapsed = round(time.perf_counter() - started, 3)
-                except Exception as exc:  # noqa: BLE001
-                    results.append(result("abort_pending_navigation", "FAIL",
-                                          error_detail("stop_load 调用失败", exc)))
-                else:
-                    usable, waited, state = wait_usable(page, args.settle_timeout)
-                    results.append(result(
-                        "abort_pending_navigation", "PASS" if (returned is None and usable) else "FAIL",
-                        f"stop_load() 返回 None（{stop_elapsed}s）后挂起导航被中止：页面在 {waited}s 内恢复可用"
-                        f"（execute_javascript() 恢复、readyState=complete）"
-                        f"；此时 is_load_completed()={state[0]!r}"
-                        + ("（导航已落到 Chrome 错误页，该值恒为 False，见下方已知发现）"
-                           if state[0] is False else "")
-                        if (returned is None and usable) else
-                        f"中止后未恢复可用: return={returned!r}, is_load_completed={state[0]!r}, "
-                        f"js_ok={state[1]}, readyState={state[2]!r}",
-                        elapsed_s=stop_elapsed, recovered=usable))
-        finally:
-            if established:
-                try:
-                    page.stop_load()
-                except Exception:  # noqa: BLE001
-                    pass
+        # 目标用例 3（核心正向）：中止待处理导航 —— 需要靶场提供「加载永不完成」的页面
+        results.append(result(
+            "pending_navigation_fixture_missing", "BLOCKED",
+            "按测试侧边界约定不使用地址形态探测（不可路由地址/discard 端口已全部删除），"
+            "而静态托管的标准靶场无法产生网络级「待处理导航」（服务端总是应答）。"
+            "因此 stop_load() 中止挂起导航这条正向路径在获得靶场页面之前无法验证。"
+            "请求：在靶场增加一个「加载永不完成」的页面/路由（例如服务端永不响应的子资源请求）。"))
 
         # 目标用例 4：中止后页面仍可正常使用
         try:
@@ -308,86 +254,11 @@ def run(args):
         except Exception as exc:  # noqa: BLE001
             results.append(result("usable_after_stop", "FAIL", error_detail("中止后恢复失败", exc)))
 
-        # 目标用例 5：create 超时后的标签状态（stop_if_timeout True / False）与 stop_load 的作用
-        for stop_if_timeout in (True, False):
-            case_id = ("create_stop_if_timeout_true" if stop_if_timeout
-                       else "create_stop_if_timeout_false_then_stop")
-            before_ids = new_tab_ids()
-            started = time.perf_counter()
-            try:
-                web.create(hang_url, mode=args.mode, load_timeout=3, stop_if_timeout=stop_if_timeout)
-                create_error = "create 意外成功"
-            except UIAError as exc:
-                create_error = f"{exception_name(exc)}: {exc}"
-            except Exception as exc:  # noqa: BLE001
-                create_error = f"{exception_name(exc)}: {exc}"
-            create_elapsed = round(time.perf_counter() - started, 3)
-            time.sleep(1.0)
-            fresh = [item for item in web.get_all(mode=args.mode)
-                     if str(getattr(item, "id", "") or "") not in before_ids]
-            if len(fresh) != 1:
-                results.append(result(
-                    case_id, "FAIL",
-                    f"应以 1 个新标签承载该地址，实际新增 {len(fresh)} 个（create {create_elapsed}s 报错：{create_error}）"))
-                continue
-            tab = fresh[0]
-            loaded, js_ok, ready_state, url = probe(tab)
-            if stop_if_timeout:
-                # 引擎侧的停载可能晚于 SDK 的 3s 超时返回，因此等待而不是只探一次。
-                stopped, waited, state, branch = wait_stopped(tab, args.settle_timeout)
-                results.append(result(
-                    case_id, "PASS" if stopped else "FAIL",
-                    f"create(load_timeout=3, stop_if_timeout=True) 超时抛错（{create_error}）后，"
-                    f"新标签在 {waited}s 内不再处于加载中（{branch}）：超时后确实自动停止了加载" if stopped else
-                    f"超时后仍在加载: is_load_completed()={state[0]!r}, js_ok={state[1]}, "
-                    f"readyState={state[2]!r}（create 报错：{create_error}）",
-                    loaded=state[0], url=state[3]))
-            else:
-                pending = loaded is False and not js_ok
-                stop_error = ""
-                returned = None
-                try:
-                    returned = tab.stop_load()
-                except Exception as exc:  # noqa: BLE001
-                    stop_error = error_detail("stop_load 调用失败", exc)
-                if stop_error:
-                    results.append(result(case_id, "FAIL", stop_error))
-                else:
-                    # 该标签的首次导航被中止后可能落在新标签页 / about:blank（产品对这类页面
-                    # 不支持脚本执行）或 Chrome 错误页（is_load_completed() 恒为 False），
-                    # 因此统一用 wait_stopped() 判定「加载不再进行」，再要求标签可正常关闭。
-                    stopped, waited, state, branch = wait_stopped(tab, args.settle_timeout)
-                    closed = False
-                    close_note = ""
-                    try:
-                        tab.close(ignore_beforeunload=True)
-                        closed = True
-                    except Exception as exc:  # noqa: BLE001
-                        close_note = f"{exception_name(exc)}: {exc}"
-                        stopped, waited, state, branch = wait_stopped(tab, args.settle_timeout)
-                        try:
-                            tab.close(ignore_beforeunload=True)
-                            closed = True
-                            close_note = ""
-                        except Exception:  # noqa: BLE001
-                            pass
-                    ok = returned is None and stopped and closed
-                    results.append(result(
-                        case_id, "PASS" if ok else "FAIL",
-                        f"默认 stop_if_timeout=False：create 超时（{create_error}）后标签"
-                        + ("处于待处理导航（is_load_completed()=False、JS 不可用）" if pending
-                           else "处于错误页")
-                        + f"；stop_load() 返回 None，{waited}s 内加载不再进行（{branch}），标签可正常关闭"
-                        if ok else
-                        f"结果不符: pending={pending}, return={returned!r}, stopped={stopped}, "
-                        f"closed={closed}, close_note={close_note or '无'}, branch={branch}, "
-                        f"js_ok={state[1]}, is_load_completed={state[0]!r}",
-                        loaded=state[0], pending=pending, usable=state[1], closed=closed))
-                continue
-            try:
-                tab.close(ignore_beforeunload=True)
-            except Exception as exc:  # noqa: BLE001
-                results.append(result(case_id, "FAIL", error_detail("标签无法关闭", exc)))
+        # 目标用例 5：create 超时后的标签状态 —— 依赖「待处理导航」形态，同 3 号用例被阻塞
+        results.append(result(
+            "create_timeout_fixture_missing", "BLOCKED",
+            "create(load_timeout=3) 超时后的标签状态与 stop_if_timeout 的作用，同样需要靶场提供"
+            "「加载永不完成」的页面；当前无该页面且不使用地址形态探测，故本项不验证。"))
 
         # 目标用例 6：页面关闭后立即拒绝
         try:
@@ -396,8 +267,7 @@ def run(args):
             results.append(result("page_close_verified", "FAIL", error_detail("page.close 调用失败", exc)))
         else:
             time.sleep(0.5)
-            leftover = [p for p in web.get_all(mode=args.mode)
-                        if str(getattr(p, "id", "") or "") == page_id]
+            leftover = leaked(page_id, baseline_matches, args.mode)
             results.append(result(
                 "page_close_verified", "PASS" if not leftover else "FAIL",
                 "页面已关闭，且 web.get_all() 复核无残留" if not leftover else
@@ -407,35 +277,12 @@ def run(args):
             message_contains="失效", max_elapsed=3.0))
         page = None
 
-        # 已知发现（不计入退出码）：Chrome 错误页上 is_load_completed() 恒为 False
-        error_page = None
-        try:
-            error_page = web.create(args.target_url, mode=args.mode, load_timeout=args.load_timeout)
-            try:
-                error_page.navigate(REFUSED_URL, load_timeout=3)
-            except Exception:  # noqa: BLE001
-                pass
-            time.sleep(1.0)
-            loaded, js_ok, ready_state, url = probe(error_page)
-            detail = error_page.execute_javascript(READY_STATE_JS)
-            results.append(result(
-                "error_page_is_load_completed_false", "KNOWN",
-                f"Chrome 错误页（{url}）上页面实际 readyState={detail.get('readyState')!r}、"
-                f"loadEventEnd={detail.get('loadEventEnd')}、navCount={detail.get('navCount')}、JS 可执行、标签可关闭，"
-                f"但 is_load_completed() 仍为 {loaded!r} —— 该值在错误页上恒为 False；"
-                f"这属于 is_load_completed()/wait_load_completed() 的问题，不由 stop_load 负责，"
-                f"详见证据文档「已知发现」。此行不计入退出码。",
-                ready_state=detail.get("readyState"), load_event_end=detail.get("loadEventEnd"),
-                is_load_completed=loaded))
-        except Exception as exc:  # noqa: BLE001
-            results.append(result("error_page_is_load_completed_false", "KNOWN",
-                                  f"未能构造错误页场景：{exception_name(exc)}: {exc}"))
-        finally:
-            if error_page is not None:
-                try:
-                    error_page.close(ignore_beforeunload=True)
-                except Exception:  # noqa: BLE001
-                    pass
+        # 已知发现（不计入退出码）：Chrome 错误页上 is_load_completed() 恒为 False（Issue #59）
+        results.append(result(
+            "error_page_is_load_completed_false", "KNOWN",
+            "该发现在旧基线上以「连接被拒地址」构造的 Chrome 网络错误页为证据；按 2026-09-18 的"
+            "边界约定不再使用地址形态探测，而标准靶场（GitHub Pages）上的 404 是正常文档、"
+            "不产生 chrome-error 页，故本轮不再现场复现，仅保留历史证据（见证据文档「已知发现 1」）。"))
 
         # 可选：同步 JS 死循环阻塞页（默认不跑；跑完需人工在 Chrome 点「退出网页」）
         if args.include_hung_page:
@@ -496,21 +343,25 @@ def run(args):
                     time.sleep(0.5)
         time.sleep(0.5)
         leftover = []
+        baseline_count = len(baseline_ids)
         try:
             remaining = web.get_all(mode=args.mode)
-            leftover = [p for p in remaining if str(getattr(p, "id", "") or "") not in baseline_ids]
+            # 主判据用标签数量增量（不受其它标签标题抖动影响）；差集键仅作为线索列出。
+            leftover = [p for p in remaining if page_key(p) not in baseline_ids]
+            count_delta = len(remaining) - baseline_count
         except Exception as exc:  # noqa: BLE001
+            count_delta = None
             close_error = close_error or f"get_all 复核失败: {exception_name(exc)}: {exc}"
         hung_left = [p for p in leftover if "slow-load-30s" in str(p.get_url())]
-        known_left = bool(hung_left) and args.include_hung_page
-        cleaned = not close_error and (not leftover or known_left)
+        known_left = bool(hung_left) and args.include_hung_page and (count_delta or 0) == len(hung_left)
+        cleaned = not close_error and ((count_delta or 0) <= 0 or known_left)
         results.append(result(
             "cleanup", "PASS" if cleaned else "FAIL",
-            f"已关闭本次页面；与进入时相比新增标签 {len(leftover)} 个"
+            f"已关闭本次页面；与进入时相比标签总数增量 {count_delta}（组合键新增 {len(leftover)} 个）"
             + ("（其中无响应标签由 --include-hung-page 场景产生，属已知边界，需人工退出网页）"
                if known_left else "") if cleaned else
-            f"清理不完整: 新增标签={len(leftover)}, 错误={close_error or '无'}",
-            new_tabs=len(leftover), hung_tabs=len(hung_left), error=close_error))
+            f"清理不完整: 标签总数增量={count_delta}, 组合键新增={len(leftover)}, 错误={close_error or '无'}",
+            new_tabs=len(leftover), tab_count_delta=count_delta, hung_tabs=len(hung_left), error=close_error))
 
     statuses = {item["status"] for item in results}
     code = 1 if "FAIL" in statuses else (2 if "BLOCKED" in statuses else 0)
@@ -523,7 +374,8 @@ def main(argv=None):
     parser.add_argument("--hung-page-url", default=HUNG_PAGE_URL, help="同步 JS 死循环阻塞页")
     parser.add_argument("--mode", choices=("chrome", "edge"), default="chrome")
     parser.add_argument("--load-timeout", type=float, default=20)
-    parser.add_argument("--hang-timeout", type=float, default=3, help="导航到挂起地址时的等待秒数")
+    parser.add_argument("--hang-timeout", type=float, default=3,
+                        help="预留：导航到「加载永不完成」靶场页面时的等待秒数（当前无该页面，未使用）")
     parser.add_argument("--settle-timeout", type=float, default=8, help="stop_load 后等待页面恢复可用的秒数")
     parser.add_argument("--contract-only", action="store_true")
     parser.add_argument("--include-hung-page", action="store_true",
@@ -538,7 +390,7 @@ def main(argv=None):
     print("UIAutoma Web API 测试")
     print("API     : uiautoma.web.WebBrowser.stop_load")
     print(f"页面    : {args.target_url}")
-    print(f"挂起目标: {', '.join(HANG_URLS)}")
+    print("边界    : 不使用地址形态探测；加载永不完成页面待靶场提供")
     print("进度     状态    测试项                  测试结果")
     print("────────────────────────────────────────────────────────────────────────")
     for index, current in enumerate(results, 1):
@@ -557,7 +409,7 @@ def main(argv=None):
         print(json.dumps({
             "api": "uiautoma.web.WebBrowser.stop_load",
             "target_url": args.target_url, "hung_page_url": args.hung_page_url,
-            "hang_urls": list(HANG_URLS), "refused_url": REFUSED_URL, "mode": args.mode,
+            "mode": args.mode,
             "status": "PASS" if code == 0 else ("BLOCKED" if code == 2 else "FAIL"),
             "exit_code": code, "results": results,
         }, ensure_ascii=False, indent=2))

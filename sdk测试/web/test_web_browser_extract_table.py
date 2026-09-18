@@ -31,6 +31,7 @@ from urllib.parse import urlsplit
 
 from uiautoma import UnsupportedActionError, web
 from uiautoma.web import WebBrowser
+from _web_page_identity import count_key, leaked, page_key
 
 __test__ = False
 
@@ -183,7 +184,8 @@ def run(args):
         # 目标用例 5：在确实存在 <table> 的靶场页上仍然拒绝
         try:
             page = web.create(args.target_url, mode=args.mode, load_timeout=args.load_timeout)
-            page_id = page.id
+            page_id = page_key(page)
+            baseline_matches = count_key(page_id, args.mode)
             current = page.get_url()
             table_count = page.execute_javascript(
                 "function () { return document.querySelectorAll('table').length }")
@@ -210,8 +212,7 @@ def run(args):
                 results.append(result("page_close_verified", "FAIL", error_detail("page.close 调用失败", exc)))
             else:
                 time.sleep(0.5)
-                leftover = [p for p in web.get_all(mode=args.mode)
-                            if str(getattr(p, "id", "") or "") == page_id]
+                leftover = leaked(page_id, baseline_matches, args.mode)
                 ok = returned is None and not leftover
                 results.append(result(
                     "page_close_verified", "PASS" if ok else "FAIL",
@@ -230,7 +231,7 @@ def run(args):
                 page_close_error = f"{type(exc).__name__}: {exc}"
         leftover = []
         try:
-            leftover = [p for p in web.get_all(mode=args.mode) if str(getattr(p, "id", "") or "") == page_id]
+            leftover = leaked(page_id, baseline_matches, args.mode)
         except Exception as exc:  # noqa: BLE001
             page_close_error = page_close_error or f"get_all 复核失败: {type(exc).__name__}: {exc}"
         cleaned = not leftover and not page_close_error

@@ -27,16 +27,24 @@ def result(case_id: str, status: str, detail: str, **extra: Any) -> dict[str, An
 
 def check_contract() -> dict[str, Any]:
     signature = inspect.signature(web.get_cookies)
-    expected = ("mode", "name", "url", "domain", "path", "partition_key", "secure", "session")
+    # 当前合同：url、mode 为前两个位置参数，name 及其余筛选参数仅限关键字
+    expected = ("url", "mode", "name", "domain", "path", "partition_key", "secure", "session")
     actual = tuple(signature.parameters)
-    kinds_ok = signature.parameters["mode"].kind == inspect.Parameter.POSITIONAL_OR_KEYWORD and all(
-        signature.parameters[name].kind == inspect.Parameter.KEYWORD_ONLY for name in expected[1:]
+    kinds_ok = all(
+        signature.parameters[name].kind == inspect.Parameter.POSITIONAL_OR_KEYWORD
+        for name in ("url", "mode")
+    ) and all(
+        signature.parameters[name].kind == inspect.Parameter.KEYWORD_ONLY for name in expected[2:]
     )
-    defaults_ok = all(signature.parameters[name].default is (None if name != "mode" else "auto")
-                       for name in expected)
+    defaults_ok = (
+        signature.parameters["url"].default is inspect.Parameter.empty
+        and signature.parameters["mode"].default == "auto"
+        and all(signature.parameters[name].default is None for name in expected[2:])
+    )
     ok = actual == expected and kinds_ok and defaults_ok
     return result("api_contract", "PASS" if ok else "FAIL",
-                  "公开签名符合当前合同" if ok else "公开签名、参数顺序或默认值不一致",
+                  "公开签名符合当前合同（url、mode 位置参数，其余仅限关键字）" if ok
+                  else "公开签名、参数顺序或默认值不一致",
                   parameter_order_ok=actual == expected, parameter_kinds_ok=kinds_ok, defaults_ok=defaults_ok)
 
 
@@ -52,39 +60,44 @@ def run(args: argparse.Namespace) -> tuple[list[dict[str, Any]], int]:
                               "已打开 Cookie 测试页面" if isinstance(page, WebBrowser) else "返回对象类型错误"))
         web.set_cookie(args.target_url, args.mode, name=names[0], value="session-value", sessionCookie=True, path="/")
         web.set_cookie(args.target_url, args.mode, name=names[1], value="persistent-value", sessionCookie=False, expires=300, path="/")
-        all_cookies = web.get_cookies(mode=args.mode, url=args.target_url)
+        all_cookies = web.get_cookies(args.target_url, args.mode)
         names_seen = {str(item.get("name")) for item in all_cookies}
         results.append(result("get_all", "PASS" if set(names) <= names_seen else "FAIL",
                               "返回 Cookie 列表包含测试 Cookie" if set(names) <= names_seen else "测试 Cookie 未全部返回",
                               count=len(all_cookies)))
-        one = web.get_cookies(mode=args.mode, name=names[0], url=args.target_url)
+        one = web.get_cookies(args.target_url, args.mode, name=names[0])
         results.append(result("filter_name", "PASS" if len(one) == 1 and one[0].get("name") == names[0] else "FAIL",
                               "按名称筛选成功" if len(one) == 1 else "名称筛选结果不正确"))
-        persistent = web.get_cookies(mode=args.mode, name=names[1], url=args.target_url, session=False)
-        session = web.get_cookies(mode=args.mode, name=names[0], url=args.target_url, session=True)
+        persistent = web.get_cookies(args.target_url, args.mode, name=names[1], session=False)
+        session = web.get_cookies(args.target_url, args.mode, name=names[0], session=True)
         ok = len(persistent) == 1 and len(session) == 1
         results.append(result("filter_session", "PASS" if ok else "FAIL",
                               "session=True/False 筛选正确" if ok else "session 筛选结果不正确"))
-        domain = web.get_cookies(mode=args.mode, domain="baobaomi900901.github.io")
+        # url 传空字符串表示不按网址筛选
+        domain = web.get_cookies("", args.mode, domain="baobaomi900901.github.io")
         results.append(result("filter_domain", "PASS" if isinstance(domain, list) else "FAIL",
                               "domain 筛选返回列表" if isinstance(domain, list) else "domain 筛选返回类型错误"))
-        path = web.get_cookies(mode=args.mode, url=args.target_url, path="/")
+        path = web.get_cookies(args.target_url, args.mode, path="/")
         results.append(result("filter_path", "PASS" if set(names) <= {str(i.get("name")) for i in path} else "FAIL",
                               "path 筛选包含测试 Cookie" if set(names) <= {str(i.get("name")) for i in path} else "path 筛选未命中"))
-        empty = web.get_cookies(mode=args.mode, name="uiautoma_cookie_not_found")
+        empty = web.get_cookies("", args.mode, name="uiautoma_cookie_not_found")
         results.append(result("not_found", "PASS" if empty == [] else "FAIL",
                               "未命中返回空列表" if empty == [] else "未命中未返回空列表"))
-        again = web.get_cookies(mode=args.mode, name=names[0], url=args.target_url)
+        again = web.get_cookies(args.target_url, args.mode, name=names[0])
         results.append(result("repeat_read", "PASS" if again == one else "FAIL",
                               "重复读取结果稳定" if again == one else "重复读取结果变化"))
         try:
-            web.get_cookies(args.mode, names[0])
+            web.get_cookies(args.target_url, args.mode, names[0])
         except TypeError:
-            results.append(result("keyword_only", "PASS", "筛选参数位置传入被 TypeError 拒绝"))
+            results.append(result("keyword_only", "PASS", "第三个及以后参数位置传入被 TypeError 拒绝"))
         else:
-            results.append(result("keyword_only", "FAIL", "筛选参数位置传入未被拒绝"))
+            results.append(result("keyword_only", "FAIL", "位置传入第三个参数未被拒绝"))
+        positional = web.get_cookies(args.target_url, args.mode)
+        results.append(result("positional_url_mode", "PASS" if isinstance(positional, list) else "FAIL",
+                              "url、mode 可按位置传入并返回列表" if isinstance(positional, list)
+                              else f"位置传入返回类型错误: {type(positional).__name__}"))
         try:
-            web.get_cookies(mode=args.mode, partition_key={"top_level_site": "https://example.com"})
+            web.get_cookies("", args.mode, partition_key={"top_level_site": "https://example.com"})
         except Exception as exc:  # noqa: BLE001
             results.append(result("partition_key_mode", "PASS", "分区筛选按合同处理或被环境拒绝",
                                   exception=type(exc).__name__))

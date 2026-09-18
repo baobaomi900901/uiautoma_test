@@ -15,6 +15,7 @@ if str(SDK_SRC) not in sys.path:
 
 from uiautoma import web  # noqa: E402
 from uiautoma.web import WebBrowser  # noqa: E402
+from _web_page_identity import page_key  # noqa: E402
 
 __test__ = False
 DEFAULT_URL = "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
@@ -53,24 +54,27 @@ def run(args: argparse.Namespace) -> tuple[list[dict[str, Any]], int]:
         if not isinstance(page, WebBrowser):
             return results, 1
         title, current_url = page.get_title(), page.get_url()
+        # main 已移除 WebBrowser.id：改用 (url|title) 组合键识别目标标签
+        target_key = page_key(page)
         all_pages = web.get_all(mode=args.mode, url=current_url)
-        ok = isinstance(all_pages, list) and any(p.id == page.id for p in all_pages)
+        ok = isinstance(all_pages, list) and any(page_key(p) == target_key for p in all_pages)
         results.append(result("get_all_by_url", "PASS" if ok else "FAIL",
                               "返回列表包含目标页面" if ok else "列表未包含目标页面", count=len(all_pages)))
         by_title = web.get_all(mode=args.mode, title=title)
-        ok = isinstance(by_title, list) and any(p.id == page.id for p in by_title)
+        ok = isinstance(by_title, list) and any(page_key(p) == target_key for p in by_title)
         results.append(result("get_all_by_title", "PASS" if ok else "FAIL",
                               "标题筛选包含目标页面" if ok else "标题筛选未命中", count=len(by_title)))
         wildcard = web.get_all(mode=args.mode, url=current_url, use_wildcard=True)
-        ok = isinstance(wildcard, list) and any(p.id == page.id for p in wildcard)
+        ok = isinstance(wildcard, list) and any(page_key(p) == target_key for p in wildcard)
         results.append(result("get_all_wildcard", "PASS" if ok else "FAIL",
                               "通配符筛选包含目标页面" if ok else "通配符筛选未命中", count=len(wildcard)))
-        missing = f"https://example.invalid/uiautoma-get-all-{int(time.time() * 1000)}"
-        empty = web.get_all(mode=args.mode, url=missing)
+        # 不构造任何域名：改用哨兵标题过滤（只做标签匹配，不打开任何页面）
+        missing_title = "__uiautoma_no_such_title__"
+        empty = web.get_all(mode=args.mode, title=missing_title)
         results.append(result("not_found_zero", "PASS" if empty == [] else "FAIL",
                               "未命中返回空列表" if empty == [] else "未命中未返回空列表"))
-        first = [p.id for p in web.get_all(mode=args.mode, url=current_url)]
-        second = [p.id for p in web.get_all(mode=args.mode, url=current_url)]
+        first = [page_key(p) for p in web.get_all(mode=args.mode, url=current_url)]
+        second = [page_key(p) for p in web.get_all(mode=args.mode, url=current_url)]
         results.append(result("repeat_read", "PASS" if first == second else "FAIL",
                               "重复读取顺序稳定" if first == second else "重复读取顺序变化"))
         try:

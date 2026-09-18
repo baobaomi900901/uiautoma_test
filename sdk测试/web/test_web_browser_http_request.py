@@ -36,6 +36,7 @@ from pathlib import Path
 
 from uiautoma import ActionError, InvalidParamsError, web
 from uiautoma.web import WebBrowser
+from _web_page_identity import count_key, leaked, page_key
 
 __test__ = False
 
@@ -43,9 +44,9 @@ PAGE_URL = "https://baobaomi900901.github.io/xpath/#/element-html-test"
 SITE_BASE = "https://baobaomi900901.github.io/xpath/"
 STATIC_FILE = "delayed-element.html"
 STATIC_BYTES = 5289
-MISSING_PATH = "/xpath/definitely-missing-http-request-probe.html"
+MISSING_PATH = f"/xpath/{uuid.uuid4().hex}"  # 随机不存在路径（标准靶场宿主上的 404，不自造文件名）
 ECHO_BASE = "https://httpbin.org"
-HANG_URL = "http://10.255.255.1/uiautoma-http-probe"
+# 地址形态探测已按边界约定删除（2026-09-18）：connect_timeout 语义改由回显服务的 /delay 覆盖。
 RUN_TMP_ROOT = Path(__file__).resolve().parents[1] / ".pytest_tmp"
 GREEN, RED, YELLOW, RESET = "\x1b[92m", "\x1b[91m", "\x1b[93m", "\x1b[0m"
 
@@ -190,7 +191,8 @@ def run(args):
 
         try:
             page = web.create(args.page_url, mode=args.mode, load_timeout=args.load_timeout)
-            page_id = page.id
+            page_id = page_key(page)
+            baseline_matches = count_key(page_id, args.mode)
             ok = isinstance(page, WebBrowser)
             results.append(result(
                 "page_prepare", "PASS" if ok else "FAIL",
@@ -400,10 +402,8 @@ def run(args):
                 pass
 
         # ---------- 超时语义 ----------
-        results.append(expect_timeout_abort(
-            lambda: page.http_request(HANG_URL, connect_timeout=1, download_timeout=5),
-            "connect_timeout_aborts_hanging", (0.8, 6.0),
-            "挂起地址在 connect_timeout=1 下被约束中止（download_timeout=5 未生效）"))
+        # 按 2026-09-18 边界约定，不再用不可路由地址制造「连接永不完成」；
+        # connect_timeout 的约束语义改由回显服务的 /delay 路径覆盖（见下）。
 
         if echo_ready:
             results.append(expect_timeout_abort(
@@ -563,8 +563,7 @@ def run(args):
             results.append(result("page_close_verified", "FAIL", error_detail("page.close 调用失败", exc)))
         else:
             time.sleep(0.5)
-            leftover = [p for p in web.get_all(mode=args.mode)
-                        if str(getattr(p, "id", "") or "") == page_id]
+            leftover = leaked(page_id, baseline_matches, args.mode)
             results.append(result(
                 "page_close_verified", "PASS" if not leftover else "FAIL",
                 "页面已关闭，且 web.get_all() 复核无残留" if not leftover else

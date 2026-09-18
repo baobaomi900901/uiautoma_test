@@ -16,6 +16,7 @@ if str(SDK_SRC) not in sys.path:
 
 from uiautoma import web  # noqa: E402
 from uiautoma.web import WebBrowser  # noqa: E402
+from _web_page_identity import page_key  # noqa: E402
 
 __test__ = False
 DEFAULT_URL = "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
@@ -53,7 +54,8 @@ def check_contract() -> dict[str, Any]:
 
 def _expect_browser(case_id: str, page: WebBrowser, detail: str) -> dict[str, Any]:
     return result(case_id, "PASS" if isinstance(page, WebBrowser) else "FAIL", detail,
-                  page_id=getattr(page, "id", ""), actual_type=type(page).__name__)
+                  page_key=page_key(page) if isinstance(page, WebBrowser) else "",
+                  actual_type=type(page).__name__)
 
 
 def _exception_status(exc: Exception) -> str:
@@ -136,9 +138,10 @@ def run(args: argparse.Namespace) -> tuple[list[dict[str, Any]], int]:
         except Exception as exc:
             raise RuntimeError(f"get_wildcard 调用失败: url={current_url!r}; {type(exc).__name__}: {exc}") from exc
         results.append(_expect_browser("get_wildcard", wildcard, "通配符筛选成功"))
-        missing = f"https://example.invalid/uiautoma-get-{int(time.time() * 1000)}"
+        # 不构造任何域名：改用哨兵标题过滤（只做标签匹配，不打开任何页面）
+        missing_title = "__uiautoma_no_such_title__"
         try:
-            web.get(url=missing, mode=args.mode, load_timeout=0)
+            web.get(title=missing_title, mode=args.mode, load_timeout=0)
         except Exception as exc:  # noqa: BLE001
             results.append(result("not_found", "PASS", "未命中且 open_page=False 正确抛出异常",
                                   exception=type(exc).__name__))

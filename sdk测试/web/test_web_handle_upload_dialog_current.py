@@ -77,7 +77,8 @@ def result(case_id: str, status: str, detail: str, **extra: Any) -> dict[str, An
 
 def check_contract() -> dict[str, Any]:
     signature = inspect.signature(web.handle_upload_dialog)
-    expected = ("file_paths", "dialog_result", "mode", "simulative", "clipboard_input",
+    # 44c8e91f：公开参数 file_paths 改名为 file_names（RPC 层仍是 file_paths）
+    expected = ("file_names", "dialog_result", "mode", "simulative", "clipboard_input",
                 "wait_appear_timeout", "force_ime_eng", "send_key_delay", "focus_timeout")
     actual = tuple(signature.parameters)
     kinds_ok = all(signature.parameters[name].kind == inspect.Parameter.POSITIONAL_OR_KEYWORD for name in expected[:3]) and all(signature.parameters[name].kind == inspect.Parameter.KEYWORD_ONLY for name in expected[3:])

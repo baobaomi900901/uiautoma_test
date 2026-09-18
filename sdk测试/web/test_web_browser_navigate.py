@@ -8,6 +8,7 @@ from urllib.parse import urlsplit
 
 from uiautoma import InvalidParamsError, web
 from uiautoma.web import WebBrowser
+from _web_page_identity import page_alive, tab_count
 
 __test__ = False
 
@@ -118,23 +119,29 @@ def run(args):
             return results, 1
 
         initial_url = page.get_url()
-        initial_id = page.id
+        # main 已移除 WebBrowser.id：初始状态改为断言对象可驱动该标签
+        tabs_before = tab_count()
+        initial_alive, initial_alive_detail = page_alive(page)
+        initial_ok = same_url(initial_url, args.target_url) and initial_alive
         results.append(result(
             "initial_state",
-            "PASS" if same_url(initial_url, args.target_url) and isinstance(initial_id, str) and initial_id else "FAIL",
-            "初始 URL 可读且页面 id 非空" if same_url(initial_url, args.target_url) and initial_id else
-            f"初始状态不符: url={initial_url!r}, id={initial_id!r}",
+            "PASS" if initial_ok else "FAIL",
+            f"初始 URL 可读且页面对象可用（{initial_alive_detail}）" if initial_ok else
+            f"初始状态不符: url={initial_url!r}, {initial_alive_detail}",
         ))
 
         returned = page.navigate(SECOND_URL, load_timeout=args.load_timeout)
         current = page.get_url()
-        id_after = page.id
-        ok = returned is None and same_url(current, SECOND_URL) and id_after == initial_id
+        # main 已移除 WebBrowser.id：导航必然改组合键，改用「对象仍可用 + 标签数量不变」
+        nav_alive, nav_alive_detail = page_alive(page)
+        tabs_after = tab_count()
+        ok = returned is None and same_url(current, SECOND_URL) and nav_alive and tabs_after == tabs_before
         results.append(result(
             "navigate_default",
             "PASS" if ok else "FAIL",
-            "导航到第二页面成功，返回 None 且页面 id 保持不变" if ok else
-            f"导航结果不符: return={returned!r}, url={current!r}, id_changed={id_after != initial_id}",
+            "导航到第二页面成功，返回 None、页面对象仍可用且未新开标签" if ok else
+            f"导航结果不符: return={returned!r}, url={current!r}, alive={nav_alive_detail}, "
+            f"tabs_added={tabs_after - tabs_before}",
             actual_url=current,
         ))
 
