@@ -1,0 +1,51 @@
+PS D:\code\元素库\sdk测试> uv run .\web\test_web_element_find_by_xpath_form.py
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.find_by_xpath
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+元素库  : D:\code\元素库\260902_web元素
+SDK     : D:\code\desktop\sdk\src\uiautoma\__init__.py
+参照    : 元素库定位根容器；相对 XPath；原生 document.evaluate 独立核对
+进度     状态    测试项                      测试结果 / 耗时
+────────────────────────────────────────────────────────────────────────────────────────────────────
+01/40    [通过]  api_contract                xpath_selector 必填；timeout 仅限关键字且默认 10；返回唯一 WebElement  0.0ms
+02/40    [通过]  library_prepare             已打开元素库副本；四个输入框与动态 ID 开关库 项均存在  147.8ms
+03/40    [通过]  page_prepare                已新建本次测试页面  1322.7ms
+04/40    [通过]  dynamic_id_switch           aria-checked: false（未点击）  93.0ms
+05/40    [通过]  page_text                   web靶场_表单测试_ant_输入框；预期 1 项 ['form-controls-ant-text']；实际 1 项 ['form-controls-ant-text']  31.8ms
+06/40    [通过]  page_password               web靶场_表单测试_ant_密码输入框；预期 1 项 span.ant-input-affix-wrapper，内含 input#form-controls-ant-password[type=password]；实际 1  项 {'tag': 'span', 'id': None, 'class': 'ant-input-affix-wrapper css-mncuj7 ant-input-outlined ant-input-password', 'inputs': [('form-controls-ant-password', 'password')]}  32.6ms
+07/40    [通过]  page_email                  web靶场_表单测试_ant_邮箱输入框；预期 1 项 ['form-controls-ant-email']；实际 1 项 ['form-controls-ant-email']  30.0ms
+08/40    [通过]  page_number                 web靶场_表单测试_ant_数字输入框；预期 1 项 ['form-controls-ant-number']；实际 1 项 ['form-controls-ant-number']  31.0ms
+09/40    [通过]  root_prepare                四条父级链均到达 #shadow-form-content；未比较 Runtime .id  1500.7ms
+10/40    [通过]  dom_oracle                  5 个相对 XPath 各唯一命中；.//input 多项=37；未命中与子树外各 0 项；. 返回根自身；密码 ./input 与 ./input/.. 各 1 项  23.3ms
+11/40    [通过]  xpath_text_default          预期 DOM id='form-controls-ant-text'；实际 'form-controls-ant-text'  24.2ms
+12/40    [通过]  xpath_password_wrapper      预期 1 项 span.ant-input-affix-wrapper，内含 input#form-controls-ant-password[type=password]；实际 1 项 {'tag': 'span', 'id': None, 'class': 'ant-input-affix-wrapper css-mncuj7 ant-input-outlined ant-input-password', 'inputs': [('form-controls-ant-password', 'password')]}  31.6ms
+13/40    [通过]  xpath_password_input        预期 DOM id='form-controls-ant-password'；实 际 'form-controls-ant-password'  31.0ms
+14/40    [通过]  xpath_email                 预期 DOM id='form-controls-ant-email'；实际 'form-controls-ant-email'  31.5ms
+15/40    [通过]  xpath_number                预期 DOM id='form-controls-ant-number'；实际 'form-controls-ant-number'  31.2ms
+16/40    [通过]  keyword_xpath               预期 DOM id='form-controls-ant-text'；实际 'form-controls-ant-text'  31.5ms
+17/40    [通过]  zero_timeout_hit            预期 DOM id='form-controls-ant-text'；实际 'form-controls-ant-text'  31.7ms
+18/40    [通过]  repeat_read                 连续三次分别核对 DOM id；预期 DOM id='form-controls-ant-text'；实际 'form-controls-ant-text'  93.3ms
+19/40    [通过]  ambiguous                   预期 AmbiguousElementError；实际 AmbiguousElementError: 元素匹配结果不唯一  15.4ms
+20/40    [通过]  missing_zero                预期 ElementNotFoundError；实际 ElementNotFoundError: 未找到匹配元素  15.5ms
+21/40    [通过]  missing_wait                预期 ElementNotFoundError；实际 ElementNotFoundError: 未找到匹配元素  300.9ms
+22/40    [通过]  scope_outside               预期 ElementNotFoundError；实际 ElementNotFoundError: 未找到匹配元素  3.2ms
+23/40    [通过]  relative_excludes_self      预期 ElementNotFoundError；实际 ElementNotFoundError: 未找到匹配元素  5.2ms
+24/40    [通过]  self_context                预期 DOM id='shadow-form-content'；实际 'shadow-form-content'  30.5ms
+25/40    [通过]  password_direct_child       预期 DOM id='form-controls-ant-password'；实 际 'form-controls-ant-password'  31.7ms
+26/40    [通过]  parent_axis                 预期 1 项 span.ant-input-affix-wrapper，内含 input#form-controls-ant-password[type=password]；实际 1 项 {'tag': 'span', 'id': None, 'class': 'ant-input-affix-wrapper css-mncuj7 ant-input-outlined ant-input-password', 'inputs': [('form-controls-ant-password', 'password')]}  33.1ms
+27/40    [通过]  invalid_xpath_syntax        预期 RpcProtocolError；实际 RpcProtocolError: Web 元素操作失败，请重试；trace=xpath_segment_evaluate_failed  14.7ms
+28/40    [通过]  after_invalid_xpath         预期 DOM id='form-controls-ant-text'；实际 'form-controls-ant-text'  31.1ms
+29/40    [通过]  selector_none               预期 InvalidParamsError；实际 InvalidParamsError: 选择器不能为空  0.0ms
+30/40    [通过]  selector_integer            预期 InvalidParamsError；实际 InvalidParamsError: 选择器不能为空  0.0ms
+31/40    [通过]  selector_empty              预期 InvalidParamsError；实际 InvalidParamsError: 选择器不能为空  0.0ms
+32/40    [通过]  selector_blank              预期 InvalidParamsError；实际 InvalidParamsError: 选择器不能为空  0.0ms
+33/40    [通过]  invalid_timeout             预期 InvalidParamsError；实际 InvalidParamsError: timeout 必须为 -1 或非负数  0.0ms
+34/40    [通过]  invalid_timeout_type        预期 InvalidParamsError；实际 InvalidParamsError: timeout 必须是秒数  0.0ms
+35/40    [通过]  missing_selector            预期 TypeError；实际 TypeError: WebElement.find_by_xpath() missing 1 required positional argument: 'xpath_selector'  0.0ms
+36/40    [通过]  positional_timeout          预期 TypeError；实际 TypeError: WebElement.find_by_xpath() takes 2 positional arguments but 3 were given  0.0ms
+37/40    [通过]  unknown_keyword             预期 TypeError；实际 TypeError: WebElement.find_by_xpath() got an unexpected keyword argument 'unsupported'  0.0ms
+38/40    [通过]  cleanup_page                本次创建页面的 close() 调用成功  63.6ms      
+39/40    [通过]  cleanup_package             本次 Package 的 close() 调用成功  0.8ms      
+40/40    [通过]  cleanup_temp                本次临时元素库副本已删除并核对不存在  38.5ms 
+────────────────────────────────────────────────────────────────────────────────────────────────────
+测试通过 · 40/40 通过 · 4104.9ms · 退出码 0

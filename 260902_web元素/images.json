@@ -5,8 +5,44 @@
       "name": "默认分组",
       "images": [
         {
-          "id": "a232dbe0-0bda-49bc-8f3e-cf1b961df555",
-          "name": "元素",
+          "id": "af42ce4e-fd91-4562-9175-977d28361624",
+          "name": "元素_2",
+          "source_type": "screenshot",
+          "similarity": 0.95,
+          "capture_scale": 1.0,
+          "adaptive": true,
+          "grayscale": false
+        },
+        {
+          "id": "c6dcbda6-df34-4617-acf4-29c66c5a55d7",
+          "name": "元素_3",
+          "source_type": "screenshot",
+          "similarity": 0.8,
+          "capture_scale": 1.0,
+          "adaptive": true,
+          "grayscale": false
+        },
+        {
+          "id": "345c9f8b-eb82-4d68-b5f2-9127971b0336",
+          "name": "元素_4",
+          "source_type": "screenshot",
+          "similarity": 0.4,
+          "capture_scale": 1.0,
+          "adaptive": true,
+          "grayscale": false
+        },
+        {
+          "id": "04a44d8a-8109-4b9b-838f-0cb82494a6c0",
+          "name": "元素_5",
+          "source_type": "screenshot",
+          "similarity": 0.8,
+          "capture_scale": 1.0,
+          "adaptive": true,
+          "grayscale": false
+        },
+        {
+          "id": "c03c4aca-e638-4573-b876-7c179a866fa0",
+          "name": "元素_6",
           "source_type": "screenshot",
           "similarity": 0.8,
           "capture_scale": 1.0,

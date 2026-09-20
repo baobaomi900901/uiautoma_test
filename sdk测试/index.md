@@ -263,6 +263,21 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebElement.find()` | `VERIFIED`（6/6；连续 3 次；人工复测通过） | `web/test_web_element_find.py` | `web/evidence/element_find.md` |
 | `uiautoma.web.WebBrowser.find_all()` | `VERIFIED`（20/20；2026-09-15；超时返回空列表、多命中返回全部；含清理复核修正） | `web/test_web_browser_find_all.py` | `web/evidence/find_all.md` |
 | `uiautoma.web.WebBrowser.find_by_css()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_by_css.py` | `web/evidence/find_by_css.md` |
+| `uiautoma.web.WebElement.find_by_css()` | `VERIFIED`（38/38；用户本轮实测；iframe/open shadow 容器内 CSS 查找） | [web/test_web_element_find_by_css_form.py](web/test_web_element_find_by_css_form.py) | [web/evidence/element_find_by_css.md](web/evidence/element_find_by_css.md) |
+| `uiautoma.web.WebElement.find_all_by_css()` | `VERIFIED`（39/39；用户本轮实测；iframe/open shadow 容器内 CSS 全量查找） | [web/test_web_element_find_all_by_css_form.py](web/test_web_element_find_all_by_css_form.py) | [web/evidence/element_find_all_by_css.md](web/evidence/element_find_all_by_css.md) |
+| `uiautoma.web.WebElement.find_by_xpath()` | `VERIFIED`（40/40；用户本轮实测；iframe/open shadow 容器内相对 XPath） | [web/test_web_element_find_by_xpath_form.py](web/test_web_element_find_by_xpath_form.py) | [web/evidence/element_find_by_xpath.md](web/evidence/element_find_by_xpath.md) |
+| `uiautoma.web.WebElement.find_all_by_xpath()` | `VERIFIED`（41/41；用户本轮实测；iframe/open shadow 容器内 XPath 全量查找） | [web/test_web_element_find_all_by_xpath_form.py](web/test_web_element_find_all_by_xpath_form.py) | [web/evidence/element_find_all_by_xpath.md](web/evidence/element_find_all_by_xpath.md) |
+| `uiautoma.web.WebElement.parent()` | `VERIFIED`（23/23；表单场景；含零预算超时边界） | [web/test_web_element_parent_form.py](web/test_web_element_parent_form.py) | [web/evidence/element_parent_form.md](web/evidence/element_parent_form.md) |
+| `uiautoma.web.WebElement.children()` | `VERIFIED`（25/25；表单场景；直接子元素；含零预算超时边界） | [web/test_web_element_children_form.py](web/test_web_element_children_form.py) | [web/evidence/element_children_form.md](web/evidence/element_children_form.md) |
+| `uiautoma.web.WebElement.child_at()` | `VERIFIED`（40/40；表单场景；含零预算超时边界） | [web/test_web_element_child_at_form.py](web/test_web_element_child_at_form.py) | [web/evidence/element_child_at_form.md](web/evidence/element_child_at_form.md) |
+| `uiautoma.web.WebElement.previous_sibling()` | `VERIFIED`（28/28；表单场景；含零预算超时边界） | [web/test_web_element_previous_sibling_form.py](web/test_web_element_previous_sibling_form.py) | [web/evidence/element_previous_sibling_form.md](web/evidence/element_previous_sibling_form.md) |
+| `uiautoma.web.WebElement.next_sibling()` | `VERIFIED`（28/28；表单场景；含零预算超时边界） | [web/test_web_element_next_sibling_form.py](web/test_web_element_next_sibling_form.py) | [web/evidence/element_next_sibling_form.md](web/evidence/element_next_sibling_form.md) |
+| `uiautoma.web.WebElement.click()` | `VERIFIED`（62/62；含真实 Win 键日志核验；原前台恢复有警告） | [web/test_web_element_click_keys.py](web/test_web_element_click_keys.py) | [web/evidence/element_click_keys.md](web/evidence/element_click_keys.md) |
+| `uiautoma.web.WebElement.clipboard_input()` | `VERIFIED`（双模式44/44；非 iframe/iframe；剪贴板 JSON 核对） | [web/test_web_clipboard_input_native_form.py](web/test_web_clipboard_input_native_form.py) | [web/evidence/element_clipboard_input_native_form.md](web/evidence/element_clipboard_input_native_form.md) |
+| `uiautoma.web.WebElement.dblclick()` | `VERIFIED`（41/41；真实/DOM 双击；剪贴板日志核验；原前台恢复有警告） | [web/test_web_element_dblclick_keys.py](web/test_web_element_dblclick_keys.py) | [web/evidence/element_dblclick_keys.md](web/evidence/element_dblclick_keys.md) |
+| `uiautoma.web.WebElement.focus()` | `VERIFIED`（15/15；focusin/activeElement/剪贴板日志；实测 isTrusted=True） | [web/test_web_element_focus_keys.py](web/test_web_element_focus_keys.py) | [web/evidence/element_focus_keys.md](web/evidence/element_focus_keys.md) |
+| `uiautoma.web.WebElement.hover()` | `VERIFIED`（23/23；真实/脚本悬停；锚点与 delay_after 核验） | [web/test_web_element_hover_keys.py](web/test_web_element_hover_keys.py) | [web/evidence/element_hover_keys.md](web/evidence/element_hover_keys.md) |
+| `uiautoma.web.WebElement.input()` | `READY_FOR_LIVE`（两模式各18/25；后台 DOM 输入提交状态异常；见 [Issue #65](https://github.com/uiautoma/desktop/issues/65)） | [web/test_web_element_input_native_form.py](web/test_web_element_input_native_form.py) | [web/evidence/element_input_native_form.md](web/evidence/element_input_native_form.md) |
 | `uiautoma.web.WebBrowser.find_all_by_css()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_all_by_css.py` | `web/evidence/find_all_by_css.md` |
 | `uiautoma.web.WebBrowser.find_by_xpath()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_by_xpath.py` | `web/evidence/find_by_xpath.md` |
 | `uiautoma.web.WebBrowser.find_all_by_xpath()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_all_by_xpath.py` | `web/evidence/find_all_by_xpath.md` |
@@ -323,6 +338,3 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 > 「同一标签」只能用 `(url, title)` 组合键近似；同 URL 同标题的两个标签**无法区分**。
 > 键不变的场景（刷新）可用组合键做等价断言；键必然变化的场景（导航/前进/后退）只能退化为
 > 「对象仍可驱动该标签 + 标签数量未增加」，强度弱于原先的 `id` 不变断言。
-
-
-

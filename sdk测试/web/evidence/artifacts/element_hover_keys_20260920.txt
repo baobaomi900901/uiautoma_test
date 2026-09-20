@@ -1,0 +1,38 @@
+来源：用户在对话中粘贴的完整终端输出；以下统一换行并补齐末尾换行，不是 agent 重新运行的原始字节日志。
+登记日期：2026-09-20
+复测命令：uv run .\web\test_web_element_hover_keys.py
+
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.hover
+页面    : https://baobaomi900901.github.io/xpath/#/keys-click-test
+元素库  : D:\code\元素库\260902_web元素
+测试元素: web靶场_测试点击_测试hover
+复制元素: web靶场_测试点击_读取最近一条点击记录
+参照    : 靶场 hover JSON；核对目标、事件类型、来源、isTrusted 和 delay_after
+进度     状态    测试项                         测试结果
+────────────────────────────────────────────────────────────────────────────────────────
+01/23    [通过]  api_contract                   公开签名、位置/关键字参数、默认值与 None 返回值符合合同  0.1ms
+02/23    [通过]  target_preflight               悬停靶场可访问；HTTP 预检第 1 次成功（200）  434.0ms
+03/23    [通过]  runtime_preflight              Runtime 与 Automation Pipe 可响应  1.4ms
+04/23    [通过]  element_library_preflight      元素库包含悬停元素和复制元素各 1 项；目录=D:\code\元素库\260902_web元素  0.5ms
+05/23    [通过]  page_and_elements              靶场已打开并激活；悬停元素与复制元素 DOM id 已核对  0.0ms
+06/23    [通过]  hover_default                  模拟人工 hover 返回 None；eventType=hover；source=真实鼠标；trusted=True；调用 1564.6ms  2395.1ms
+07/23    [通过]  hover_background               后台 hover 返回 None；eventType=hover；source=JS/插件模拟；trusted=False；调用 36.0ms  290.4ms
+08/23    [通过]  hover_none_delay               后台 hover 返回 None；eventType=hover；source=JS/插件模拟；trusted=False；调用 30.9ms  265.6ms
+09/23    [通过]  hover_positive_delay           后台 hover 返回 None；eventType=hover；source=JS/插件模拟；trusted=False；调用 232.7ms  449.5ms
+10/23    [通过]  hover_anchor_string            模拟人工 hover 返回 None；eventType=hover；source=真实鼠标；trusted=True；调用 531.7ms  1379.4ms
+11/23    [通过]  hover_anchor_tuple             模拟人工 hover 返回 None；eventType=hover；source=真实鼠标；trusted=True；调用 577.8ms  1373.1ms
+12/23    [通过]  hover_anchor_dict              模拟人工 hover 返回 None；eventType=hover；source=真实鼠标；trusted=True；调用 566.9ms  1417.5ms
+13/23    [通过]  hover_anchor_random            模拟人工 hover 返回 None；eventType=hover；source=真实鼠标；trusted=True；调用 583.2ms  1400.2ms
+14/23    [通过]  hover_repeat                   后台 hover 返回 None；eventType=hover；source=JS/插件模拟；trusted=False；调用 36.1ms  265.3ms
+15/23    [通过]  invalid_simulative             预期 InvalidParamsError；实际 InvalidParamsError: simulative 必须是布尔值 True 或 False  0.1ms
+16/23    [通过]  invalid_delay_negative         预期 InvalidParamsError；实际 InvalidParamsError: delay_after 不能小于 0  208.6ms
+17/23    [通过]  invalid_delay_type             预期 InvalidParamsError；实际 InvalidParamsError: delay_after 必须是数字  202.1ms
+18/23    [通过]  invalid_anchor                 预期 InvalidParamsError；实际 InvalidParamsError: 不支持的锚点：invalid  0.0ms
+19/23    [通过]  unknown_keyword                预期 TypeError；实际 TypeError: WebElement.hover() got an unexpected keyword argument 'unsupported'  0.0ms
+20/23    [通过]  positional_arguments           后台 hover 返回 None；eventType=hover；source=JS/插件模拟；trusted=False；调用 43.8ms  290.5ms
+21/23    [通过]  cleanup_page                   本次页面已关闭  0.0ms
+22/23    [通过]  cleanup_package                本次 Package 已关闭  0.0ms
+23/23    [通过]  cleanup_temp                   临时元素库副本已删除  0.0ms
+────────────────────────────────────────────────────────────────────────────────────────
+测试通过 · 23/23 通过 · 退出码 0

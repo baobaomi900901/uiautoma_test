@@ -1,0 +1,76 @@
+PS D:\code\元素库\sdk测试> uv run .\web\test_web_element_input_native_form.py
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.input
+靶场模式: noniframe
+页面    : https://baobaomi900901.github.io/xpath/#/form-controls
+元素库  : D:\code\元素库\260902_web元素
+测试元素: web靶场_非iframe_非shadow_表单测试_原生_输入框
+提交元素: web靶场_非iframe_非shadow_表单测试_原生_按钮_提交
+参照    : 点击原生提交按钮读取剪贴板 JSON，仅核对 payload.text
+进度     状态    测试项                         测试结果 / 耗时
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+01/25    [通过]  api_contract                   公开签名、参数种类、默认值和 None 返回值符合合同  0.1ms
+02/25    [通过]  target_preflight               原生表单输入测试靶场可访问；HTTP 预检第 1 次成功  553.3ms
+03/25    [通过]  runtime_preflight              Runtime 与 Automation Pipe 可响应；protocol=1；runtime=0.1.0；pid=44236  1.1ms
+04/25    [通过]  library_prepare                元素库存在：D:\code\元素库\260902_web元素  0.0ms
+05/25    [通过]  page_and_elements              靶场已打开并激活；输入、提交、重置元素均已核对  0.0ms
+06/25    [通过]  dynamic_id_switch              非 iframe、非 shadow 靶场不需要动态 ID 开关  0.0ms
+07/25    [失败]  background_unicode             AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  697.2ms
+08/25    [通过]  simulative_unicode             提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2630.5ms  3363.6ms
+09/25    [失败]  special_characters             AssertionError: 提交 JSON text 预期 '!@#$%^&*()_+-=[]{};:\'",.?/\\|~'；实际 ''  648.6ms
+10/25    [失败]  append                         AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  839.2ms
+11/25    [失败]  input_check                    AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  946.7ms
+12/25    [通过]  cdp_input                      提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；输入调用 150.7ms  902.2ms
+13/25    [通过]  force_ime                      提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2646.4ms  3382.8ms
+14/25    [通过]  send_key_delay_zero            提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 1571.6ms  2317.0ms
+15/25    [通过]  focus_timeout_zero             提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 1632.2ms  2368.2ms
+16/25    [失败]  click_before_input_false       AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  668.4ms
+17/25    [通过]  anchor_string                  提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2628.4ms  3399.9ms
+18/25    [通过]  anchor_tuple                   提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2631.4ms  3401.5ms
+19/25    [通过]  anchor_dict                    提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2630.9ms  3368.5ms
+20/25    [通过]  anchor_random                  提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2632.9ms  3368.3ms
+21/25    [失败]  delay_after_none               AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  580.8ms
+22/25    [失败]  delay_after_positive           AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  806.8ms
+23/25    [通过]  cleanup_page                   本次页面已关闭  0.0ms
+24/25    [通过]  cleanup_package                本次 Package 已关闭  0.0ms
+25/25    [通过]  cleanup_temp                   临时元素库副本已删除  0.0ms
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+测试失败 · 18/25 通过 · 33408.0ms · 退出码 1
+PS D:\code\元素库\sdk测试> uv run .\web\test_web_element_input_native_form.py iframe
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.input
+靶场模式: iframe
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+元素库  : D:\code\元素库\260902_web元素
+测试元素: web靶场_表单测试_原生_输入框
+提交元素: web靶场_表单测试_原生_按钮_提交
+参照    : 点击原生提交按钮读取剪贴板 JSON，仅核对 payload.text
+进度     状态    测试项                         测试结果 / 耗时
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+01/25    [通过]  api_contract                   公开签名、参数种类、默认值和 None 返回值符合合同  0.1ms
+02/25    [通过]  target_preflight               原生表单输入测试靶场可访问；HTTP 预检第 1 次成功  652.7ms
+03/25    [通过]  runtime_preflight              Runtime 与 Automation Pipe 可响应；protocol=1；runtime=0.1.0；pid=44236  1.0ms
+04/25    [通过]  library_prepare                元素库存在：D:\code\元素库\260902_web元素  0.0ms
+05/25    [通过]  page_and_elements              靶场已打开并激活；输入、提交、重置元素均已核对  0.0ms
+06/25    [通过]  dynamic_id_switch              动态 ID 开关已是 false，未重复点击  0.0ms
+07/25    [失败]  background_unicode             AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  5724.0ms
+08/25    [通过]  simulative_unicode             提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2626.7ms  3421.4ms
+09/25    [失败]  special_characters             AssertionError: 提交 JSON text 预期 '!@#$%^&*()_+-=[]{};:\'",.?/\\|~'；实际 ''  650.3ms
+10/25    [失败]  append                         AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  817.7ms
+11/25    [失败]  input_check                    AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  1053.6ms
+12/25    [通过]  cdp_input                      提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；输入调用 155.5ms  963.5ms
+13/25    [通过]  force_ime                      提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2647.7ms  3434.6ms
+14/25    [通过]  send_key_delay_zero            提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 1568.3ms  2334.2ms
+15/25    [通过]  focus_timeout_zero             提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 1625.8ms  2368.3ms
+16/25    [失败]  click_before_input_false       AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  697.7ms
+17/25    [通过]  anchor_string                  提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2627.0ms  3404.2ms
+18/25    [通过]  anchor_tuple                   提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2622.1ms  3368.1ms
+19/25    [通过]  anchor_dict                    提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2626.2ms  3384.6ms
+20/25    [通过]  anchor_random                  提交 JSON text='测试文本 UIAutoma 123 中文'，与输入内容一致；提交方式=dom；输入调用 2616.9ms  3368.2ms
+21/25    [失败]  delay_after_none               AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  564.5ms
+22/25    [失败]  delay_after_positive           AssertionError: 提交 JSON text 预期 '测试文本 UIAutoma 123 中文 😀✓'；实际 ''  766.9ms
+23/25    [通过]  cleanup_page                   本次页面已关闭  0.0ms
+24/25    [通过]  cleanup_package                本次 Package 已关闭  0.0ms
+25/25    [通过]  cleanup_temp                   临时元素库副本已删除  0.0ms
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+测试失败 · 18/25 通过 · 38236.3ms · 退出码 1

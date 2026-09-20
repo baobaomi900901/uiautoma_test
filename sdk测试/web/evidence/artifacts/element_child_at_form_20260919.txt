@@ -1,0 +1,52 @@
+PS D:\code\元素库\sdk测试> uv run .\web\test_web_element_child_at_form.py
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.child_at
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+元素库  : D:\code\元素库\260902_web元素
+测试元素: web靶场_表单测试_ant_输入框
+SDK     : D:\code\desktop\sdk\src\uiautoma\__init__.py
+参照    : 原生 children[index] 及 outerHTML；0 起始，越界返回 None
+进度     状态    测试项                      测试结果 / 耗时
+────────────────────────────────────────────────────────────────────────────────────────────────────
+01/40    [通过]  api_contract                index 必填、从 0 开始；timeout 仅限关键字、默认 5.0；返回 WebElement 或 None  0.0ms
+02/40    [通过]  library_prepare             元素库副本已打开，文本输入框和动态 ID 开关库 项存在  176.4ms
+03/40    [通过]  page_prepare                已打开本次独立测试页面  471.1ms
+04/40    [通过]  dynamic_id_switch           aria-checked: false（未点击）  93.0ms
+05/40    [通过]  target_prepare              已取得 web靶场_表单测试_ant_输入框；实际 DOM id='form-controls-ant-text'  30.2ms
+06/40    [通过]  dom_oracle                  原生 input 子元素=0；直接父容器子元素=1；多项容器直接子元素=2，全部后代=6，非元素直接子节点=0  21.6ms
+07/40    [通过]  containers_prepare          用 parent() 取得容器并与原生祖先逐层核对；未 用 child_at() 或 children() 生成期望值  123.5ms
+08/40    [通过]  child_at_default            index=0；预期 DIV id='' class='ant-col ant-form-item-label css-mncuj7'；实际 DIV id='' class='ant-col ant-form-item-label css-mncuj7'；outerHTML 与原生直接子元素一致  27.2ms
+09/40    [通过]  index_keyword               index=1；预期 DIV id='' class='ant-col ant-form-item-control css-mncuj7'；实际 DIV id='' class='ant-col ant-form-item-control css-mncuj7'；outerHTML 与原生直接子元素一致  30.5ms
+10/40    [通过]  timeout_keyword             index=0；预期 INPUT id='form-controls-ant-text' class='ant-input css-mncuj7 ant-input-outlined'；实际 INPUT id='form-controls-ant-text' class='ant-input css-mncuj7 ant-input-outlined'；outerHTML 与原生直接子元素一致  30.5ms
+11/40    [通过]  none_timeout                index=0；预期 DIV id='' class='ant-col ant-form-item-label css-mncuj7'；实际 DIV id='' class='ant-col ant-form-item-label css-mncuj7'；outerHTML 与原生直接子元素一致  30.5ms
+12/40    [通过]  zero_timeout                零预算边界：预期正确子元素或明确超时；实际超 时: ActionError: 网页元素操作超时，请检查页面响应或增加等待时间 [trace=web_dom_timeout] [trace_id=b7069a931ebb45c0abb8a1f4c847b23e]；本次未取得子元素，不按读取成功描述  13.7ms
+13/40    [通过]  repeat_child_at             连续三次与独立 DOM 比对通过；index=0；预期 DIV id='' class='ant-col ant-form-item-label css-mncuj7'；实际 DIV id='' class='ant-col ant-form-item-label css-mncuj7'；outerHTML 与原生直接子元素一致  96.2ms
+14/40    [通过]  all_direct_indices          逐个索引 0..1 均与原生 children 对应；直接子 元素 2 项，全部后代 6 项  62.5ms
+15/40    [通过]  last_index                  index=1；预期 DIV id='' class='ant-col ant-form-item-control css-mncuj7'；实际 DIV id='' class='ant-col ant-form-item-control css-mncuj7'；outerHTML 与原生直接子元素一致  32.1ms
+16/40    [通过]  index_equals_count          index=2 预期 None；实际 None  15.9ms
+17/40    [通过]  large_index                 index=1002 预期 None；实际 None  15.3ms
+18/40    [通过]  negative_index              index=-1 预期 None；实际 None  15.5ms
+19/40    [通过]  leaf_zero                   index=0 预期 None；实际 None  16.1ms
+20/40    [通过]  leaf_positive               index=1 预期 None；实际 None  15.6ms
+21/40    [通过]  returned_child_usable       返回的 input 可读取 id 并继续调用 child_at() ；index=0 预期 None；实际 None  63.5ms
+22/40    [通过]  numeric_string              当前实现 int(index) 转换后为 1；index='1'；预期 DIV id='' class='ant-col ant-form-item-control css-mncuj7'；实际 DIV id='' class='ant-col ant-form-item-control css-mncuj7'；outerHTML 与原生直接子元素一致  31.7ms
+23/40    [通过]  fraction_truncation         当前实现 int(index) 转换后为 1；index=1.9；预期 DIV id='' class='ant-col ant-form-item-control css-mncuj7'；实际 DIV id='' class='ant-col ant-form-item-control css-mncuj7'；outerHTML 与原生直接子元素一致  31.5ms
+24/40    [通过]  bool_index                  当前实现 int(index) 转换后为 1；index=True； 预期 DIV id='' class='ant-col ant-form-item-control css-mncuj7'；实际 DIV id='' class='ant-col ant-form-item-control css-mncuj7'；outerHTML 与原生直接子元素一致  31.3ms
+25/40    [通过]  index_none                  输入 index=None；预期 InvalidParamsError；实 际 InvalidParamsError: index 必须是整数  0.0ms
+26/40    [通过]  index_text                  输入 index='bad'；预期 InvalidParamsError；实际 InvalidParamsError: index 必须是整数  0.0ms
+27/40    [通过]  index_empty                 输入 index=''；预期 InvalidParamsError；实际 InvalidParamsError: index 必须是整数  0.0ms
+28/40    [通过]  index_list                  输入 index=[]；预期 InvalidParamsError；实际 InvalidParamsError: index 必须是整数  0.0ms
+29/40    [通过]  index_dict                  输入 index={}；预期 InvalidParamsError；实际 InvalidParamsError: index 必须是整数  0.0ms
+30/40    [通过]  index_fraction_string       输入 index='1.5'；预期 InvalidParamsError；实际 InvalidParamsError: index 必须是整数  0.0ms
+31/40    [通过]  negative_timeout            预期 InvalidParamsError；实际 InvalidParamsError: timeout 不能小于 0  0.0ms
+32/40    [通过]  negative_fraction_timeout   预期 InvalidParamsError；实际 InvalidParamsError: timeout 不能小于 0  0.0ms
+33/40    [通过]  nonnumeric_timeout          预期 InvalidParamsError；实际 InvalidParamsError: timeout 必须是秒数  0.0ms
+34/40    [通过]  missing_index               预期 TypeError；实际 TypeError: WebElement.child_at() missing 1 required positional argument: 'index'  0.0ms
+35/40    [通过]  positional_timeout          预期 TypeError；实际 TypeError: WebElement.child_at() takes 2 positional arguments but 3 were given  0.0ms
+36/40    [通过]  unknown_keyword             预期 TypeError；实际 TypeError: WebElement.child_at() got an unexpected keyword argument 'unsupported'  0.0ms
+37/40    [通过]  after_invalid               index=0；预期 DIV id='' class='ant-col ant-form-item-label css-mncuj7'；实际 DIV id='' class='ant-col ant-form-item-label css-mncuj7'；outerHTML 与原生直接子元素一致  30.3ms
+38/40    [通过]  cleanup_page                本次创建页面的 close() 调用成功  47.2ms      
+39/40    [通过]  cleanup_package             本次 Package 的 close() 调用成功  0.6ms      
+40/40    [通过]  cleanup_temp                本次临时元素库副本已删除并核对不存在  54.4ms 
+────────────────────────────────────────────────────────────────────────────────────────────────────
+测试通过 · 40/40 通过 · 1609.8ms · 退出码 0

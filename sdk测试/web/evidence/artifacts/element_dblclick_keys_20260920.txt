@@ -1,0 +1,58 @@
+来源：用户在对话中提交的完整终端输出附件；以下仅统一换行并补齐末尾换行，保留附件中的折行空格，不是 agent 重新运行的日志。
+登记日期：2026-09-20
+复测命令：uv run .\web\test_web_element_dblclick_keys.py
+
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.dblclick
+页面    : https://baobaomi900901.github.io/xpath/#/keys-click-test
+元素库  : D:\code\元素库\260902_web元素
+SDK     : D:\code\desktop\sdk\src\uiautoma\__init__.py
+测试元素: web靶场_测试点击_双击触发
+复制元素: web靶场_测试点击_读取最近一条点击记录
+参照    : 原生事件 click/click/dblclick + 剪贴板 JSON；请勿操作鼠标键盘
+边界    : 本轮仅双击按钮；锚点核对中心/所在区域，不验证全部九宫格位置、逐像素偏移 或轨迹形状
+进度     状态    测试项                      测试结果 / 耗时
+────────────────────────────────────────────────────────────────────────────────────────────────────
+01/41    [通过]  api_contract                 四个参数仅限关键字，默认值与源码一致；返回 None；不接受 button/keys/timeout  0.1ms
+02/41    [通过]  library_prepare              已打开元素库副本；双击目标和复制按钮两个库项均存在  168.1ms
+03/41    [通过]  page_prepare                 已新建带本次标记的独立靶场页面  1344.6ms
+04/41    [通过]  elements_prepare             两个库元素均已核对 DOM id：btn-dblclick-target 与 btn-copy-latest-keys-log  60.6ms
+05/41    [通过]  native_state                 已复制原剪贴板 4 个格式的实际数据； 忽略已知 Chromium 临时格式 ['49943 (Chromium internal source RFH token)', '50051 (       (Chromium internal source URL)']，记录鼠标和前台；辅助键均未按下  0.9ms
+06/41    [通过]  event_observer               已安装临时原生事件监听；逐项清空靶场日志，剪贴板使用唯一哨兵防止旧记录误通过  20.1ms
+07/41    [通过]  default_dblclick             返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=True；剪贴板 btn-dblclick-target/dblclick/真实鼠标      标；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 1247.9ms  1846.6ms
+08/41    [通过]  mouse_explicit               返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=True；剪贴板 btn-dblclick-target/dblclick/真实鼠标      标；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 256.4ms  816.7ms
+09/41    [通过]  dom_dblclick                 返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=False；剪贴板 btn-dblclick-target/dblclick/JS/插件      件模拟；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 33.8ms  969.7ms
+10/41    [通过]  delay_none                   返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=False；剪贴板 btn-dblclick-target/dblclick/JS/插件      件模拟；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 36.9ms  963.8ms
+11/41    [通过]  delay_positive               返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=False；剪贴板 btn-dblclick-target/dblclick/JS/插件      件模拟；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 240.8ms  901.7ms
+12/41    [通过]  mouse_move_true              返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=True；剪贴板 btn-dblclick-target/dblclick/真实鼠标      标；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 716.1ms  1200.6ms
+13/41    [通过]  dom_move_ignored             返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=False；剪贴板 btn-dblclick-target/dblclick/JS/插件      件模拟；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 34.0ms  982.9ms
+14/41    [通过]  anchor_string                返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=True；剪贴板 btn-dblclick-target/dblclick/真实鼠标      标；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 246.8ms  783.6ms
+15/41    [通过]  anchor_tuple                 返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=True；剪贴板 btn-dblclick-target/dblclick/真实鼠标      标；位置=(10.0,10.0)，按钮=(96.0,40.0)；调用 246.5ms  767.4ms
+16/41    [通过]  anchor_dict                  返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=True；剪贴板 btn-dblclick-target/dblclick/真实鼠标      标；位置=(86.0,30.0)，按钮=(96.0,40.0)；调用 243.8ms  834.3ms
+17/41    [通过]  anchor_random                返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=True；剪贴板 btn-dblclick-target/dblclick/真实鼠标      标；位置=(37.0,24.0)，按钮=(96.0,40.0)；调用 246.8ms  799.0ms
+18/41    [通过]  dom_anchor_ignored           返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=False；剪贴板 btn-dblclick-target/dblclick/JS/插件      件模拟；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 31.9ms  984.1ms
+19/41    [通过]  mouse_repeat_1               返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=True；剪贴板 btn-dblclick-target/dblclick/真实鼠标      标；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 247.4ms  751.7ms
+20/41    [通过]  mouse_repeat_2               返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=True；剪贴板 btn-dblclick-target/dblclick/真实鼠标      标；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 245.4ms  801.3ms
+21/41    [通过]  dom_repeat_1                 返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=False；剪贴板 btn-dblclick-target/dblclick/JS/插件      件模拟；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 44.4ms  900.5ms
+22/41    [通过]  dom_repeat_2                 返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=False；剪贴板 btn-dblclick-target/dblclick/JS/插件      件模拟；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 41.2ms  981.5ms
+23/41    [通过]  negative_delay_after_action  双击已发生后拒绝非法 delay_after；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=False；剪贴板 btn-dblclick-       -target/dblclick/JS/插件模拟；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 38.4ms  968.       .0ms
+24/41    [通过]  text_delay_after_action      双击已发生后拒绝非法 delay_after；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=False；剪贴板 btn-dblclick-       -target/dblclick/JS/插件模拟；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 43.2ms  984.       .5ms
+25/41    [通过]  simulative_integer           预期 InvalidParamsError；实际 InvalidParamsError: simulative 必须是布尔值 True 或 False；未产生目标事件或靶场记录  257       7.3ms
+26/41    [通过]  simulative_none              预期 InvalidParamsError；实际 InvalidParamsError: simulative 必须是布尔值 True 或 False；未产生目标事件或靶场记录  262       2.5ms
+27/41    [通过]  move_mouse_integer           预期 InvalidParamsError；实际 InvalidParamsError: move_mouse 必须是布尔值 True 或 False；未产生目标事件或靶场记录  264       4.4ms
+28/41    [通过]  move_mouse_none              预期 InvalidParamsError；实际 InvalidParamsError: move_mouse 必须是布尔值 True 或 False；未产生目标事件或靶场记录  264       4.8ms
+29/41    [通过]  anchor_unknown               预期 InvalidParamsError；实际 InvalidParamsError: 不支持的锚点：invalid；未产生目标事件或靶场记录  262.8ms
+30/41    [通过]  anchor_integer               预期 InvalidParamsError；实际 InvalidParamsError: anchor 必须是 None、字符串、元组或映射对象；未产生目标事件或靶场记录      录  265.5ms
+31/41    [通过]  positional_argument          预期 TypeError；实际 TypeError: WebElement.dblclick() takes 1 positional argument but 2 were given；未产生目标事件或靶      靶场记录  264.5ms
+32/41    [通过]  reject_button                预期 TypeError；实际 TypeError: WebElement.dblclick() got an unexpected keyword argument 'button'；未产生目标事件或靶         场记录  266.1ms
+33/41    [通过]  reject_keys                  预期 TypeError；实际 TypeError: WebElement.dblclick() got an unexpected keyword argument 'keys'；未产生目标事件或靶场         记录  265.5ms
+34/41    [通过]  reject_timeout               预期 TypeError；实际 TypeError: WebElement.dblclick() got an unexpected keyword argument 'timeout'；未产生目标事件或靶      靶场记录  264.7ms
+35/41    [通过]  after_invalid                返回 None；2 次 click + 1 次 dblclick；button=0、keys=none、trusted=True；剪贴板 btn-dblclick-target/dblclick/真实鼠标      标；位置=(48.0,20.0)，按钮=(96.0,40.0)；调用 249.6ms  746.4ms
+36/41    [通过]  cleanup_observer             本次临时事件监听已移除并核对  17.6ms
+37/41    [通过]  cleanup_page                 本次页面已关闭，按唯一 URL 枚举确认 无残留  78.7ms
+38/41    [通过]  cleanup_package              本次 Package 已关闭  0.5ms
+39/41    [通过]  cleanup_temp                 本次元素库副本已删除并核对不存在  68.6ms
+40/41    [通过]  cleanup_clipboard            原剪贴板 4 个格式已恢复并逐项读回核 验（包括原文本/HTML，如有）  7.8ms
+41/41    [通过]  cleanup_input                辅助键已释放、鼠标位置已恢复；前台未恢复（警告）  0.6ms
+────────────────────────────────────────────────────────────────────────────────────────────────────
+本轮检查通过 · READY_FOR_LIVE · 41/41 通过 · 22395.0ms · 退出码 0

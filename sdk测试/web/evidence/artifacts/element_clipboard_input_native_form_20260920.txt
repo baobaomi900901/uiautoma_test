@@ -1,0 +1,70 @@
+PS D:\code\元素库\sdk测试> uv run .\web\test_web_clipboard_input_native_form.py
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.clipboard_input
+靶场模式: noniframe
+页面    : https://baobaomi900901.github.io/xpath/#/form-controls
+元素库  : D:\code\元素库\260902_web元素
+测试元素: web靶场_非iframe_非shadow_表单测试_原生_输入框
+提交元素: web靶场_非iframe_非shadow_表单测试_原生_按钮_提交
+参照    : clipboard_input 后点击原生提交按钮读取剪贴板 JSON，仅核对 payload.text
+进度     状态    测试项                         测试结果 / 耗时
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+01/22    [通过]  api_contract                   clipboard_input 公开签名、参数种类、默认值和 None 返回值符合合同  0.1ms
+02/22    [通过]  runtime_preflight              Runtime 与 Automation Pipe 可响应；protocol=1；runtime=0.1.0；pid=44236  1.1ms
+03/22    [通过]  library_prepare                元素库存在：D:\code\元素库\260902_web元素  0.0ms
+04/22    [通过]  page_and_elements              靶场已打开并激活；输入、提交、重置元素均已核对  0.0ms
+05/22    [通过]  dynamic_id_switch              非 iframe、非 shadow 靶场不需要动态 ID 开关  0.0ms
+06/22    [通过]  target_preflight               原生表单输入测试靶场可访问；HTTP 预检第 1 次成功  1370.9ms
+07/22    [通过]  clipboard_basic                提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1551.1ms  2288.8ms
+08/22    [通过]  clipboard_special              提交 JSON text='!@#$%^&*()_+-=[]{};:\'",.?/\\|~'，与输入内容一致；提交方式=dom；clipboard_input 调用 1552.9ms  2300.8ms
+09/22    [通过]  clipboard_append               提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 3030.0ms  3718.3ms
+10/22    [通过]  clipboard_input_check          提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1837.6ms  2567.8ms
+11/22    [通过]  clipboard_focus_timeout_zero   提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 550.5ms  1317.2ms
+12/22    [通过]  clipboard_send_key_delay_zero  提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1389.1ms  2150.8ms
+13/22    [通过]  clipboard_click_before_input_false 提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 425.4ms  1184.1ms
+14/22    [通过]  clipboard_anchor_string        提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1545.8ms  2300.6ms
+15/22    [通过]  clipboard_anchor_tuple         提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1548.4ms  2317.6ms
+16/22    [通过]  clipboard_anchor_dict          提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1536.8ms  2318.5ms
+17/22    [通过]  clipboard_anchor_random        提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1546.1ms  2283.9ms
+18/22    [通过]  clipboard_delay_none           提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1461.1ms  2184.5ms
+19/22    [通过]  clipboard_delay_positive       提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1653.0ms  2385.0ms
+20/22    [通过]  cleanup_page                   本次页面已关闭  0.0ms
+21/22    [通过]  cleanup_package                本次 Package 已关闭  0.0ms
+22/22    [通过]  cleanup_temp                   临时元素库副本已删除  0.0ms
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+测试通过 · 22/22 通过 · 32509.4ms · 退出码 0
+PS D:\code\元素库\sdk测试> uv run .\web\test_web_clipboard_input_native_form.py iframe
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.clipboard_input
+靶场模式: iframe
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+元素库  : D:\code\元素库\260902_web元素
+测试元素: web靶场_表单测试_原生_输入框
+提交元素: web靶场_表单测试_原生_按钮_提交
+参照    : clipboard_input 后点击原生提交按钮读取剪贴板 JSON，仅核对 payload.text
+进度     状态    测试项                         测试结果 / 耗时
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+01/22    [通过]  api_contract                   clipboard_input 公开签名、参数种类、默认值和 None 返回值符合合同  0.1ms
+02/22    [通过]  runtime_preflight              Runtime 与 Automation Pipe 可响应；protocol=1；runtime=0.1.0；pid=44236  1.3ms
+03/22    [通过]  library_prepare                元素库存在：D:\code\元素库\260902_web元素  0.0ms
+04/22    [通过]  page_and_elements              靶场已打开并激活；输入、提交、重置元素均已核对  0.0ms
+05/22    [通过]  dynamic_id_switch              动态 ID 开关已是 false，未重复点击  0.0ms
+06/22    [通过]  target_preflight               原生表单输入测试靶场可访问；HTTP 预检第 1 次成功  885.2ms
+07/22    [通过]  clipboard_basic                提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1545.2ms  2342.1ms
+08/22    [通过]  clipboard_special              提交 JSON text='!@#$%^&*()_+-=[]{};:\'",.?/\\|~'，与输入内容一致；提交方式=dom；clipboard_input 调用 1559.8ms  2333.9ms
+09/22    [通过]  clipboard_append               提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 3044.4ms  3818.2ms
+10/22    [通过]  clipboard_input_check          提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1835.8ms  2618.3ms
+11/22    [通过]  clipboard_focus_timeout_zero   提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 545.9ms  1350.3ms
+12/22    [通过]  clipboard_send_key_delay_zero  提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1378.5ms  2167.7ms
+13/22    [通过]  clipboard_click_before_input_false 提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 424.9ms  1250.4ms
+14/22    [通过]  clipboard_anchor_string        提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1544.7ms  2351.1ms
+15/22    [通过]  clipboard_anchor_tuple         提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1544.4ms  2301.5ms
+16/22    [通过]  clipboard_anchor_dict          提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1534.4ms  2400.2ms
+17/22    [通过]  clipboard_anchor_random        提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1531.1ms  2301.4ms
+18/22    [通过]  clipboard_delay_none           提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1455.4ms  2217.6ms
+19/22    [通过]  clipboard_delay_positive       提交 JSON text='测试文本 UIAutoma 123 中文 😀✓'，与输入内容一致；提交方式=dom；clipboard_input 调用 1643.4ms  2434.8ms
+20/22    [通过]  cleanup_page                   本次页面已关闭  0.0ms
+21/22    [通过]  cleanup_package                本次 Package 已关闭  0.0ms
+22/22    [通过]  cleanup_temp                   临时元素库副本已删除  0.0ms
+────────────────────────────────────────────────────────────────────────────────────────────────────────────
+测试通过 · 22/22 通过 · 32740.1ms · 退出码 0

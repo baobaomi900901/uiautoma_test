@@ -1,0 +1,75 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.click
+页面    : https://baobaomi900901.github.io/xpath/#/keys-click-test
+元素库  : D:\code\元素库\260902_web元素
+SDK     : D:\code\desktop\sdk\src\uiautoma\__init__.py
+复制元素: web靶场_测试点击_读取最近一条点击记录
+参照    : 剪贴板 JSON + 独立 DOM 事件；请勿操作鼠标键盘
+顺序    : 真实鼠标 Win 键最后测试，其后仅清理；DOM win 按普通用例执行
+边界    : 双击/hover/focus 区域仅验收 click；九宫格边角内移避开圆角，未验证逐像素偏移或鼠 标轨迹形状
+进度     状态    测试项                      测试结果 / 耗时
+────────────────────────────────────────────────────────────────────────────────────────────────────
+01/62    [通过]  api_contract                 六个参数均仅限关键字；默认值与源码一致；返回 None  0.1ms
+02/62    [通过]  native_state                 已复制原剪贴板 5 个格式的实际数据，记录鼠标 和前台；辅助键均未按下  0.8ms
+03/62    [通过]  library_prepare              已打开元素库副本；六个测试元素及独立复制按钮均存在  171.3ms
+04/62    [通过]  page_prepare                 已新建带本次标记的独立靶场页面  2769.6ms
+05/62    [通过]  elements_prepare             七个库元素均已核对 DOM id；复制使用“读取最近一条点击记录”，不是 focus 目标  216.9ms
+06/62    [通过]  event_observer               已安装临时原生事件监听；逐项清空靶场日志，剪贴板使用唯一哨兵防止旧记录误通过  20.0ms
+07/62    [通过]  default_click                返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 btn-click-target/click/none/真实鼠标；调用 1123.9ms  1713.7ms
+08/62    [通过]  mouse_keys_none              返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 btn-click-target/click/none/真实鼠标；调用 122.8ms  634.5ms
+09/62    [通过]  mouse_keys_alt               返回 None；独立事件一次 click、button=0、keys=alt、trusted=True；剪贴板 btn-click-target/click/alt/真实鼠标；调用 137.6ms  682.1ms
+10/62    [通过]  mouse_keys_ctrl              返回 None；独立事件一次 click、button=0、keys=ctrl、trusted=True；剪贴板 btn-click-target/click/ctrl/真实鼠标；调用 133.7ms  684.5ms
+11/62    [通过]  mouse_keys_shift             返回 None；独立事件一次 click、button=0、keys=shift、trusted=True；剪贴板 btn-click-target/click/shift/真实鼠标；调用 119.2ms  683.0ms
+12/62    [通过]  mouse_right                  返回 None；独立事件一次 contextmenu、button=2、keys=none、trusted=True；剪贴板 btn-rightclick-target/contextmenu/none/真实鼠标；调用 122.4ms  716.6ms
+13/62    [通过]  mouse_double_target_single   返回 None；独立事件一次 click、button=0、keys=none、trusted=True；靶场未生成操作日志，独立监听确认一次 click（不要求 dblclick/hover/focus）；调用 124.5ms  411.3ms
+14/62    [通过]  mouse_click_hover            返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 hover-target/hover/-/真实鼠标；调用 121.9ms  937.9ms
+15/62    [通过]  mouse_click_focus            返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 focus-target/focus/-/真实鼠标；调用 122.5ms  684.1ms
+16/62    [通过]  dom_keys_none                返回 None；独立事件一次 click、button=0、keys=none、trusted=False；剪贴板 btn-click-target/click/none/JS/插件模拟；调用 34.8ms  732.8ms
+17/62    [通过]  dom_keys_alt                 返回 None；独立事件一次 click、button=0、keys=alt、trusted=False；剪贴板 btn-click-target/click/alt/JS/插件模拟；调用 37.1ms  700.7ms
+18/62    [通过]  dom_keys_ctrl                返回 None；独立事件一次 click、button=0、keys=ctrl、trusted=False；剪贴板 btn-click-target/click/ctrl/JS/插件模拟；调用 36.8ms  683.0ms
+19/62    [通过]  dom_keys_shift               返回 None；独立事件一次 click、button=0、keys=shift、trusted=False；剪贴板 btn-click-target/click/shift/JS/插件模拟；调用 32.4ms  701.7ms
+20/62    [通过]  dom_keys_win                 返回 None；独立事件一次 click、button=0、keys=win、trusted=False；剪贴板 btn-click-target/click/win/JS/插件模拟；调用 42.9ms  716.8ms
+21/62    [通过]  dom_right                    返回 None；独立事件一次 contextmenu、button=2、keys=none、trusted=False；剪贴板 btn-rightclick-target/contextmenu/none/JS/插件模拟；调用 40.1ms  698.2ms
+22/62    [通过]  dom_double_target_single     返回 None；独立事件一次 click、button=0、keys=none、trusted=False；靶场未生成操作日志，独立监听确认一次 click（不要求 dblclick/hover/focus）；调用 36.9ms  472.1ms
+23/62    [通过]  dom_click_hover              返回 None；独立事件一次 click、button=0、keys=none、trusted=False；靶场未生成操作日志，独立监听确认一次 click（不要求 dblclick/hover/focus）；调用 33.2ms  472.1ms
+24/62    [通过]  dom_click_focus              返回 None；独立事件一次 click、button=0、keys=none、trusted=False；靶场未生成操作日志，独立监听确认一次 click（不要求 dblclick/hover/focus）；调用 45.4ms  485.8ms
+25/62    [通过]  delay_none                   返回 None；独立事件一次 click、button=0、keys=none、trusted=False；剪贴板 btn-click-target/click/none/JS/插件模拟；调用 45.5ms  720.5ms
+26/62    [通过]  delay_positive               返回 None；独立事件一次 click、button=0、keys=none、trusted=False；剪贴板 btn-click-target/click/none/JS/插件模拟；调用 246.9ms  749.3ms
+27/62    [通过]  move_mouse_true              返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 btn-click-target/click/none/真实鼠标；调用 590.5ms  1099.9ms
+28/62    [通过]  anchor_top_left              返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；topLeft-(左上)，offset=(11,11)；调用 126.2ms  716.5ms
+29/62    [通过]  anchor_top_center            返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；top-(上)，offset=(49,11)；调用 121.7ms  638.3ms
+30/62    [通过]  anchor_top_right             返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；topRight-(右上)，offset=(87,11)；调用 122.0ms  661.2ms
+31/62    [通过]  anchor_middle_left           返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；left-(左)，offset=(11,49)；调用 125.0ms  718.5ms
+32/62    [通过]  anchor_middle_center         返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；center-(中)，offset=(8,17)；调用 128.4ms  632.3ms
+33/62    [通过]  anchor_middle_right          返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；right-(右)，offset=(87,49)；调用 124.7ms  684.0ms
+34/62    [通过]  anchor_bottom_left           返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；bottomLeft-(左下)，offset=(11,87)；调用 119.5ms  667.4ms
+35/62    [通过]  anchor_bottom_center         返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；bottom-(下)，offset=(49,87)；调用 121.1ms  666.1ms
+36/62    [通过]  anchor_bottom_right          返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；bottomRight-(右下)，offset=(87,87)；调用 121.0ms  684.2ms
+37/62    [通过]  anchor_string                返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；center-(中)，offset=(8,17)；调用 125.4ms  666.3ms
+38/62    [通过]  anchor_dict                  返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；topRight-(右上)，offset=(83,15)；调用 120.3ms  715.0ms
+39/62    [通过]  anchor_random                返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 position-grid-panel/click/none/真实鼠标；left-(左)，offset=(27,6)；调用 127.4ms  636.1ms
+40/62    [通过]  dom_anchor_ignored           返回 None；独立事件一次 click、button=0、keys=none、trusted=False；剪贴板 position-grid-panel/click/none/JS/插件模拟；center-(中)，offset=(150,150)；调用 40.4ms  699.4ms
+41/62    [通过]  negative_delay_after_action  动作已发生后拒绝非法 delay_after；独立事件一次 click、button=0、keys=none、trusted=False；剪贴板 btn-click-target/click/none/JS/插件模拟；调用 38.7ms  682.4ms
+42/62    [通过]  text_delay_after_action      动作已发生后拒绝非法 delay_after；独立事件一次 click、button=0、keys=none、trusted=False；剪贴板 btn-click-target/click/none/JS/插件模拟；调用 35.4ms  699.4ms
+43/62    [通过]  invalid_button               预期 InvalidParamsError；实际 InvalidParamsError: 鼠标按键或辅助键无效；未产生目标事件或靶场记录  269.4ms
+44/62    [通过]  button_case_sensitive        预期 InvalidParamsError；实际 InvalidParamsError: 鼠标按键或辅助键无效；未产生目标事件或靶场记录  265.1ms
+45/62    [通过]  invalid_keys                 预期 InvalidParamsError；实际 InvalidParamsError: 鼠标按键或辅助键无效；未产生目标事件或靶场记录  267.6ms
+46/62    [通过]  keys_none_object             预期 InvalidParamsError；实际 InvalidParamsError: 鼠标按键或辅助键无效；未产生目标事件或靶场记录  264.5ms
+47/62    [通过]  simulative_integer           预期 InvalidParamsError；实际 InvalidParamsError: simulative 必须是布尔值 True 或 False；未产生目标事件或靶场记录  266.8ms
+48/62    [通过]  simulative_none              预期 InvalidParamsError；实际 InvalidParamsError: simulative 必须是布尔值 True 或 False；未产生目标事件或靶场记录  265.9ms
+49/62    [通过]  move_mouse_integer           预期 InvalidParamsError；实际 InvalidParamsError: move_mouse 必须是布尔值 True 或 False；未产生目标事件或靶场记录  270.3ms
+50/62    [通过]  move_mouse_none              预期 InvalidParamsError；实际 InvalidParamsError: move_mouse 必须是布尔值 True 或 False；未产生目标事件或靶场记录  267.7ms
+51/62    [通过]  anchor_unknown               预期 InvalidParamsError；实际 InvalidParamsError: 不支持的锚点：invalid；未产生目标事件或靶场记录  274.6ms
+52/62    [通过]  anchor_integer               预期 InvalidParamsError；实际 InvalidParamsError: anchor 必须是 None、字符串、元组或映射对象；未产生目标事件或靶场记录  267.2ms       
+53/62    [通过]  positional_argument          预期 TypeError；实际 TypeError: WebElement.click() takes 1 positional argument but 2 were given；未产生目标事件或靶场记录  259.4ms    
+54/62    [通过]  unknown_keyword              预期 TypeError；实际 TypeError: WebElement.click() got an unexpected keyword argument 'timeout'；未产生目标事件或靶场记录  268.3ms    
+55/62    [通过]  after_invalid                返回 None；独立事件一次 click、button=0、keys=none、trusted=True；剪贴板 btn-click-target/click/none/真实鼠标；调用 126.9ms  626.3ms  
+56/62    [通过]  mouse_keys_win               返回 None；独立事件一次 click、button=0、keys=win、trusted=True；剪贴板 btn-click-target/click/win/真实鼠标；焦点已恢复并核验，原日志 未变；ActionError: 浏览器操作失败，请重试 [trace_info=activate_tab_failed] [trace_id=abc6cdbad9734207998a89abd10b1325]；调用 118.2ms  715.7ms
+57/62    [通过]  cleanup_observer             本次临时事件监听已移除并核对  16.4ms        
+58/62    [通过]  cleanup_page                 本次页面已关闭，按唯一 URL 枚举确认无残留  49.6ms
+59/62    [通过]  cleanup_package              本次 Package 已关闭  0.3ms
+60/62    [通过]  cleanup_temp                 本次元素库副本已删除并核对不存在  66.6ms    
+61/62    [通过]  cleanup_clipboard            原剪贴板 5 个格式已恢复并逐项读回核验（包括 原文本/HTML，如有）  3.9ms
+62/62    [通过]  cleanup_input                辅助键已释放、鼠标位置已恢复；前台未恢复（警告）  0.1ms
+────────────────────────────────────────────────────────────────────────────────────────────────────
+本轮检查通过 · READY_FOR_LIVE · 62/62 通过 · 33417.3ms · 退出码 0

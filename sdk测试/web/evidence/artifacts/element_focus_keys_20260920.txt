@@ -1,0 +1,30 @@
+来源：用户在对话中粘贴的完整终端输出；以下统一换行并补齐末尾换行，不是 agent 重新运行的原始字节日志。
+登记日期：2026-09-20
+复测命令：uv run .\web\test_web_element_focus_keys.py
+
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.focus
+页面    : https://baobaomi900901.github.io/xpath/#/keys-click-test
+元素库  : D:\code\元素库\260902_web元素
+测试元素: web靶场_测试点击_测试focus
+复制元素: web靶场_测试点击_读取最近一条点击记录
+参照    : 原生 focusin/activeElement + 靶场剪贴板 JSON
+进度     状态    测试项                         测试结果 / 耗时
+────────────────────────────────────────────────────────────────────────────────────────
+01/15    [通过]  api_contract                   timeout 仅限关键字、默认 5.0；返回 None  0.0ms
+02/15    [通过]  page_and_elements              靶场、focus 元素和复制元素已准备；DOM id 已核对  0.0ms
+03/15    [通过]  focus_default                  返回 None；focusin 1 次；activeElement=#focus-target；trusted=True；剪贴板 focus-target/focus/真实鼠标/trusted=True  303.3ms
+04/15    [通过]  focus_keyword                  返回 None；focusin 1 次；activeElement=#focus-target；trusted=True；剪贴板 focus-target/focus/真实鼠标/trusted=True  325.8ms
+05/15    [通过]  focus_none_timeout              返回 None；focusin 1 次；activeElement=#focus-target；trusted=True；剪贴板 focus-target/focus/真实鼠标/trusted=True  317.0ms
+06/15    [通过]  focus_repeat                    返回 None；focusin 1 次；activeElement=#focus-target；trusted=True；剪贴板 focus-target/focus/真实鼠标/trusted=True  318.0ms
+07/15    [通过]  negative_timeout                预期 InvalidParamsError；实际 InvalidParamsError: timeout 不能小于 0  46.2ms
+08/15    [通过]  negative_fraction               预期 InvalidParamsError；实际 InvalidParamsError: timeout 不能小于 0  43.5ms
+09/15    [通过]  nonnumeric_timeout              预期 InvalidParamsError；实际 InvalidParamsError: timeout 必须是秒数  46.9ms
+10/15    [通过]  positional_timeout              预期 TypeError；实际 TypeError: WebElement.focus() takes 1 positional argument but 2 were given  48.3ms
+11/15    [通过]  unknown_keyword                 预期 TypeError；实际 TypeError: WebElement.focus() got an unexpected keyword argument 'unsupported'  45.1ms
+12/15    [通过]  after_invalid                   返回 None；focusin 1 次；activeElement=#focus-target；trusted=True；剪贴板 focus-target/focus/真实鼠标/trusted=True  360.6ms
+13/15    [通过]  cleanup_page                   本次页面已关闭  0.0ms
+14/15    [通过]  cleanup_package                本次 Package 已关闭  0.0ms
+15/15    [通过]  cleanup_temp                   本次元素库副本已删除  0.0ms
+────────────────────────────────────────────────────────────────────────────────────────
+测试通过 · 15/15 通过 · 退出码 0

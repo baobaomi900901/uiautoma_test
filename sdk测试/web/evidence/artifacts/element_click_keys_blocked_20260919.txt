@@ -1,0 +1,17 @@
+来源：用户在对话中提供的本轮单项终端片段，以及“其余用例全部通过”的文字确认。
+登记日期：2026-09-19
+说明：以下还原 Markdown 转义并整理折行；不是本轮完整终端日志，也不是 agent 重新运行的日志。
+
+API：uiautoma.web.WebElement.click
+脚本：web/test_web_element_click_keys.py
+复测命令：uv run .\web\test_web_element_click_keys.py
+生命周期：READY_FOR_LIVE
+根据用户确认归纳：61/62 通过，1 项 BLOCKED，0 项 FAIL
+本轮总耗时：未提供
+本轮退出码：未提供；依脚本汇总规则应为 2，但未作为已观察到的退出码登记
+
+用户提供的终端片段：
+56/62    [阻塞]  mouse_keys_win    Blocked: 独立事件已核对: click、keys=win、trusted=True；复制后剪贴板哨兵未替换，尚未完成日志验证；document.hasFocus()（复制前）=False；需检查页面焦点及剪贴板通道，不能仅据此认定权限问题  4563.8ms
+
+用户补充：
+其余用例全部通过
