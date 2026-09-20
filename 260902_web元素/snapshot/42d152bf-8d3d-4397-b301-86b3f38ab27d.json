@@ -1,0 +1,107 @@
+{
+  "type": "web",
+  "path": [
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "wrapper" },
+        { "name": "class", "value": "wrapper_l wrapper_new" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 1 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "wrapper_wrapper" },
+        { "name": "index-of-type", "value": 2 },
+        { "name": "index", "value": 5 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "container" },
+        { "name": "class", "value": "sam_newgrid container_l container_xl" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "id", "value": "content_left" },
+        { "name": "index-of-type", "value": 3 },
+        { "name": "index", "value": 4 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "required": [
+        { "name": "index", "value": 1 }
+      ],
+      "optional": [
+        { "name": "class", "value": "result-op c-container xpath-log new-pmd" },
+        { "name": "index-of-type", "value": 1 },
+        { "name": "tpl", "value": "news-normal" },
+        { "name": "data-op", "value": "{'y':'FBCFECA6'}" },
+        { "name": "data-click", "value": "{\"p1\":1,\"rsv_bdr\":\"0\",\"fm\":\"al_l\",\"rsv_stl\":\"\"}" },
+        { "name": "data-cost", "value": "{\"renderCost\":0,\"dataCost\":1}" },
+        { "name": "m-name", "value": "aladdin-san/app/news-normal/result_dcc0839" }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "h3",
+      "required": [],
+      "optional": [
+        { "name": "innerText", "value": "Toobit推动AI与区块链深度融合 构筑数字经济创新新范式" },
+        { "name": "class", "value": "news-title_1YtI1" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "a",
+      "required": [
+        { "name": "class", "value": "news-title-font_1xS-F" },
+        { "name": "index", "value": 0 }
+      ],
+      "optional": [
+        { "name": "innerText", "value": "Toobit推动AI与区块链深度融合 构筑数字经济创新新范式" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "target", "value": "_blank" },
+        { "name": "aria-label", "value": "标题：Toobit推动AI与区块链深度融合 构筑数字经济创新新范式" }
+      ]
+    }
+  ],
+  "xpath": {
+    "enabled": false,
+    "segments": [
+      "//a[@aria-label='标题：Toobit推动AI与区块链深度融合 构筑数字经济创新新范式']"
+    ]
+  }
+}

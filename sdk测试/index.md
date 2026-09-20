@@ -43,7 +43,7 @@
 | `uiautoma.web.WebElement.input()` | `VERIFIED` | [`web/test_web_element_input.py`](web/test_web_element_input.py) | [`web/evidence/input.md`](web/evidence/input.md) | [`sdk/docs/web/input.md`](../../sdk/docs/web/input.md) |
 | `uiautoma.web.WebElement.clipboard_input()` | `VERIFIED` | [`web/test_web_element_clipboard_input.py`](web/test_web_element_clipboard_input.py) | [`web/evidence/clipboard_input.md`](web/evidence/clipboard_input.md) | [`sdk/docs/web/clipboard_input.md`](../../sdk/docs/web/clipboard_input.md) |
 | `uiautoma.web.WebElement.get_text()` | `VERIFIED`（8/8） | [`web/test_web_element_get_text_html.py`](web/test_web_element_get_text_html.py) | [`web/evidence/get_text.md`](web/evidence/get_text.md) | [`sdk/docs/web/get_text.md`](../../sdk/docs/web/get_text.md) |
-| `uiautoma.web.WebElement.get_html()` | `VERIFIED` | [`web/test_web_element_get_html.py`](web/test_web_element_get_html.py) | [`web/evidence/get_html.md`](web/evidence/get_html.md) | [`sdk/docs/web/get_html.md`](../../sdk/docs/web/get_html.md) |
+| `uiautoma.web.WebElement.get_html()` | `VERIFIED`（17/17；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_get_html.py`](web/test_web_element_get_html.py) | [`web/evidence/get_html.md`](web/evidence/get_html.md) | [`sdk/docs/web/get_html.md`](../../sdk/docs/web/get_html.md) |
 | `uiautoma.web.WebElement.get_value()` | `VERIFIED` | [`web/test_web_element_get_value.py`](web/test_web_element_get_value.py) | [`web/evidence/get_value.md`](web/evidence/get_value.md) | [`sdk/docs/web/get_value.md`](../../sdk/docs/web/get_value.md) |
 | `uiautoma.web.WebElement.set_value()` | `VERIFIED` | [`web/test_web_element_set_value.py`](web/test_web_element_set_value.py) | [`web/evidence/set_value.md`](web/evidence/set_value.md) | [`sdk/docs/web/set_value.md`](../../sdk/docs/web/set_value.md) |
 | `uiautoma.web.WebElement.check()` | `READY_FOR_LIVE` | [`web/test_web_element_check.py`](web/test_web_element_check.py) | [`web/evidence/check.md`](web/evidence/check.md) | [`sdk/docs/web/check.md`](../../sdk/docs/web/check.md) |
@@ -292,6 +292,17 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.http_request()` | `VERIFIED`（41/41；2026-09-18 新基线复跑；地址形态探测已删除，`connect_timeout` 语义改由回显服务 `/delay` 覆盖） | `web/test_web_browser_http_request.py` | `web/evidence/http_request.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开（`dbe9e015` 起即如此），脚本已改写为收敛契约（旧名不存在 + `remove_cookie` 签名核对）。
+>
+> **`WebElement.get_html()` 元素级复验**（2026-09-20，`main@c101caa9`）：17/17 通过，退出码 0，
+> 连续 3 次全绿。靶场为用户提供的百度资讯搜索「区块链」结果页，元素为库 `260902_web元素` 的
+> `web靶场_测试超链接`（搜索结果第一条标题链接）。期望值来自 HTML 序列化规范与页面侧
+> `document.querySelectorAll('a')` 全量枚举（96 个锚点中唯一逐字节相等），不经产品返回值推导；
+> 并覆盖 `innerHTML` 子串关系、HTML 与 `get_text()` 通道差异、属性 `&`↔`&amp;` 转义、活推导读写、
+> 零参数合同与 `stale_page_reference`。两条实测边界需要知晓：**属性顺序按 DOM 解析顺序序列化**
+> （实测 `href → target → class → aria-label`，与元素库捕获顺序不同，不可按捕获顺序断言）；
+> 该库元素绑定依赖百度当时的 DOM（必需 `div[index=1]` 与 `a.class+index=0`），改版即失效，
+> 脚本按**环境阻塞（退出码 2）**处理，不记产品缺陷。修订说明（旧 2026-08-08 结论的保留与差异）
+> 见 [`web/evidence/get_html.md`](web/evidence/get_html.md) 第 5 节。
 >
 > `WebBrowser.go_back()`（2026-09-15）：首次调用稳定失败，引擎原始
 > `failure_reason=Cannot find a next page in history.`，而页面侧 `history.length` 已为 `2`~`3`；

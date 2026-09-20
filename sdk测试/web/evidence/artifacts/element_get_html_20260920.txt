@@ -1,0 +1,175 @@
+# WebElement.get_html() 验收原始输出（2026-09-20）
+# 被测 worktree : D:\code\desktop
+# 基线 commit   : c101caa9dcd115a461fc71ecaed351b0dea880b8
+# 目标页面      : 百度资讯搜索「区块链」结果页（用户提供）
+# 元素库/元素   : D:\code\元素库\260902_web元素 -> web靶场_测试超链接
+# 复测命令      : uv run .\web\test_web_element_get_html.py
+# 归档说明      : 连续 3 次完整运行全绿（17/17，退出码 0）；本文件为第 3 次运行的完整 stdout（含 --json 报告）。
+# 结果          : 17/17 通过 · 退出码 0
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.get_html
+页面    : https://www.baidu.com/s?ie=utf-8&bsst=1&rsv_dl=news_t_sk&tn=news&cl=2&medium=0&rtt=1&wd=%E5%8C%BA%E5%9D%97%E9%93%BE
+元素库  : D:\code\元素库\260902_web元素（元素 web靶场_测试超链接）
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/17    [92m[通过][0m  api_contract              get_html 无参数、返回 str（签名 (self) -> 'str'，返回注解 'str'）（耗时 0.00s）
+02/17    [92m[通过][0m  library_prepare           元素库副本已打开（260902_web元素），Runtime 0.1.0 协议 1，进入时 16 个标签（耗时 0.18s）
+03/17    [92m[通过][0m  page_prepare              目标页面已打开：title='百度资讯搜索_区块链'（元素库分组 origin=https://www.baidu.com）（耗时 1.18s）
+04/17    [92m[通过][0m  element_bind              库元素绑定成功：find_all 命中 1 个，find 返回单一 WebElement（Runtime id=rt:web:4c3b52099a144414bf7fb5db408da809）（耗时 0.03s）
+05/17    [92m[通过][0m  return_type_nonempty      返回原生 str 且非空，长度 416（耗时 0.02s）
+06/17    [92m[通过][0m  element_scope_outerhtml   返回串以 <a 开头、</a> 结尾且不含 <html：确认是元素自身 outerHTML 而非页面 HTML（耗时 0.00s）
+07/17    [92m[通过][0m  independent_dom_match     返回串与页面侧枚举的 96 个锚点中第 46 个 outerHTML 逐字节相等，且唯一（耗时 0.03s）
+08/17    [92m[通过][0m  inner_html_contained      同一节点的 innerHTML（59 字符）是返回串的真子串，返回串比 innerHTML 多 357 字符（自身标签与属性）（耗时 0.00s）
+09/17    [92m[通过][0m  markup_vs_text            返回串含子标签标记且显著长于 innerText（HTML 416 字符 vs 文本 30 字符），与 get_text() 通道不同（耗时 0.00s）
+10/17    [92m[通过][0m  attribute_escaping        属性 API 返回原始 &（href 含 2 个），返回 HTML 中同值按 HTML 规则序列化为 &amp;（耗时 0.00s）
+11/17    [92m[通过][0m  live_mutation_visible     独立定位到的同一节点加属性后返回值立刻体现，长度增量 54 等于手写增量 54（耗时 0.03s）
+12/17    [92m[通过][0m  live_cleanup_restores     撤销后标记消失且长度精确还原为 416（耗时 0.03s）
+13/17    [92m[通过][0m  repeat_read_stable        连续 3 次读取与首次逐字节一致，长度均为 416（耗时 0.05s）
+14/17    [92m[通过][0m  param_positional          多余位置参数被 TypeError 拒绝：WebElement.get_html() takes 1 positional argument but 2 were given（耗时 0.00s）
+15/17    [92m[通过][0m  param_keyword             未声明关键字被 TypeError 拒绝：WebElement.get_html() got an unexpected keyword argument 'timeout'（耗时 0.00s）
+16/17    [92m[通过][0m  stale_page_reference      关闭后读取被拒绝：ActionError trace=stale_page_reference 消息=网页对象已失效（耗时 0.06s）
+17/17    [92m[通过][0m  cleanup                   测试页面与 Package 已关闭，元素库副本已删除；标签数 16 → 16（用户可能同时浏览，仅作诊断）（耗时 0.86s）
+────────────────────────────────────────────────────────────────────────
+测试通过 · 17/17 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebElement.get_html",
+  "target_url": "https://www.baidu.com/s?ie=utf-8&bsst=1&rsv_dl=news_t_sk&tn=news&cl=2&medium=0&rtt=1&wd=%E5%8C%BA%E5%9D%97%E9%93%BE",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "element": "web靶场_测试超链接",
+  "mode": "chrome",
+  "sdk_path": "D:\\code\\desktop\\sdk\\src\\uiautoma\\__init__.py",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "get_html 无参数、返回 str（签名 (self) -> 'str'，返回注解 'str'）（耗时 0.00s）",
+      "elapsed": 0.0,
+      "signature": "(self) -> 'str'"
+    },
+    {
+      "case_id": "library_prepare",
+      "status": "PASS",
+      "detail": "元素库副本已打开（260902_web元素），Runtime 0.1.0 协议 1，进入时 16 个标签（耗时 0.18s）",
+      "elapsed": 0.184,
+      "runtime_version": "0.1.0",
+      "tabs_before": 16
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "目标页面已打开：title='百度资讯搜索_区块链'（元素库分组 origin=https://www.baidu.com）（耗时 1.18s）",
+      "elapsed": 1.176,
+      "url": "https://www.baidu.com/s?ie=utf-8&bsst=1&rsv_dl=news_t_sk&tn=news&cl=2&medium=0&rtt=1&wd=%E5%8C%BA%E5%9D%97%E9%93%BE",
+      "title": "百度资讯搜索_区块链"
+    },
+    {
+      "case_id": "element_bind",
+      "status": "PASS",
+      "detail": "库元素绑定成功：find_all 命中 1 个，find 返回单一 WebElement（Runtime id=rt:web:4c3b52099a144414bf7fb5db408da809）（耗时 0.03s）",
+      "elapsed": 0.031,
+      "hits": 1,
+      "element_id": "rt:web:4c3b52099a144414bf7fb5db408da809",
+      "element_name": "Toobit推动AI与区块链深度融合 构筑数字经济创新新范式"
+    },
+    {
+      "case_id": "return_type_nonempty",
+      "status": "PASS",
+      "detail": "返回原生 str 且非空，长度 416（耗时 0.02s）",
+      "elapsed": 0.016,
+      "html_length": 416
+    },
+    {
+      "case_id": "element_scope_outerhtml",
+      "status": "PASS",
+      "detail": "返回串以 <a 开头、</a> 结尾且不含 <html：确认是元素自身 outerHTML 而非页面 HTML（耗时 0.00s）",
+      "elapsed": 0.0,
+      "head": "<a href=\"https://baijiahao.baidu.com/s?id=1876830897990683531&amp;wfr=spider&amp;for=pc\" target=\"_bl"
+    },
+    {
+      "case_id": "independent_dom_match",
+      "status": "PASS",
+      "detail": "返回串与页面侧枚举的 96 个锚点中第 46 个 outerHTML 逐字节相等，且唯一（耗时 0.03s）",
+      "elapsed": 0.026,
+      "anchor_total": 96,
+      "matched_index": [
+        46
+      ]
+    },
+    {
+      "case_id": "inner_html_contained",
+      "status": "PASS",
+      "detail": "同一节点的 innerHTML（59 字符）是返回串的真子串，返回串比 innerHTML 多 357 字符（自身标签与属性）（耗时 0.00s）",
+      "elapsed": 0.0,
+      "inner_length": 59
+    },
+    {
+      "case_id": "markup_vs_text",
+      "status": "PASS",
+      "detail": "返回串含子标签标记且显著长于 innerText（HTML 416 字符 vs 文本 30 字符），与 get_text() 通道不同（耗时 0.00s）",
+      "elapsed": 0.0,
+      "html_length": 416,
+      "text_length": 30
+    },
+    {
+      "case_id": "attribute_escaping",
+      "status": "PASS",
+      "detail": "属性 API 返回原始 &（href 含 2 个），返回 HTML 中同值按 HTML 规则序列化为 &amp;（耗时 0.00s）",
+      "elapsed": 0.004,
+      "amp_count": 2
+    },
+    {
+      "case_id": "live_mutation_visible",
+      "status": "PASS",
+      "detail": "独立定位到的同一节点加属性后返回值立刻体现，长度增量 54 等于手写增量 54（耗时 0.03s）",
+      "elapsed": 0.03,
+      "measured_delta": 54,
+      "expected_delta": 54
+    },
+    {
+      "case_id": "live_cleanup_restores",
+      "status": "PASS",
+      "detail": "撤销后标记消失且长度精确还原为 416（耗时 0.03s）",
+      "elapsed": 0.031
+    },
+    {
+      "case_id": "repeat_read_stable",
+      "status": "PASS",
+      "detail": "连续 3 次读取与首次逐字节一致，长度均为 416（耗时 0.05s）",
+      "elapsed": 0.047,
+      "lengths": [
+        416,
+        416,
+        416
+      ]
+    },
+    {
+      "case_id": "param_positional",
+      "status": "PASS",
+      "detail": "多余位置参数被 TypeError 拒绝：WebElement.get_html() takes 1 positional argument but 2 were given（耗时 0.00s）",
+      "elapsed": 0.0
+    },
+    {
+      "case_id": "param_keyword",
+      "status": "PASS",
+      "detail": "未声明关键字被 TypeError 拒绝：WebElement.get_html() got an unexpected keyword argument 'timeout'（耗时 0.00s）",
+      "elapsed": 0.0
+    },
+    {
+      "case_id": "stale_page_reference",
+      "status": "PASS",
+      "detail": "关闭后读取被拒绝：ActionError trace=stale_page_reference 消息=网页对象已失效（耗时 0.06s）",
+      "elapsed": 0.057
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "测试页面与 Package 已关闭，元素库副本已删除；标签数 16 → 16（用户可能同时浏览，仅作诊断）（耗时 0.86s）",
+      "elapsed": 0.856,
+      "tabs_before": 16,
+      "tabs_after": 16
+    }
+  ]
+}
+

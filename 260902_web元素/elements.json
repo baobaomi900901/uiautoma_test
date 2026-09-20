@@ -416,6 +416,18 @@
           "type": "web"
         }
       ]
+    },
+    {
+      "id": "50567c25-d5b1-4f65-9adf-90e74951314a",
+      "name": "百度资讯搜索_区块链",
+      "origin": "https://www.baidu.com",
+      "elements": [
+        {
+          "id": "42d152bf-8d3d-4397-b301-86b3f38ab27d",
+          "name": "web靶场_测试超链接",
+          "type": "web"
+        }
+      ]
     }
   ]
 }
