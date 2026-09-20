@@ -238,7 +238,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.id` | `已移除`（`44c8e91f` 收敛公开接口）；脚本改为「成员收敛 + 替代方式」契约（8/8，2026-09-18 新基线） | `web/test_web_browser_id.py` | `web/evidence/baseline_adaptation.md` |
 | `uiautoma.web.WebElement.find_all()` | `VERIFIED`（30 用例 29/29 + 1 `KNOWN`；2026-09-18 新基线；标准靶场同文档路由语义正确，跨 iframe/open shadow 作用域为不对称边界） | `web/test_web_element_find_all.py` | `web/evidence/element_find_all.md` |
 | `uiautoma.web.WebBrowser.get_title()` | `VERIFIED`（7/7） | `web/test_web_browser_get_title.py` | `web/evidence/browser_get_title.md` |
-| `uiautoma.web.WebBrowser.get_html()` | `VERIFIED`（17/17；2026-09-20 新基线复验，连续 3 次全绿） | [`web/test_web_browser_get_html.py`](web/test_web_browser_get_html.py) | [`web/evidence/browser_get_html.md`](web/evidence/browser_get_html.md) |
+| `uiautoma.web.WebBrowser.get_html()` | `VERIFIED`（8/8） | `web/test_web_browser_get_html_baidu.py` | `web/evidence/browser_get_html_baidu.md` |
 | `uiautoma.web.WebBrowser.activate()` | `VERIFIED`（6/6） | `web/test_web_browser_activate.py` | `web/evidence/browser_activate.md` |
 | `uiautoma.web.WebBrowser.activateTab()` | `VERIFIED`（6/6；恢复仅尝试） | [web/test_web_browser_activate_tab.py](web/test_web_browser_activate_tab.py) | [web/evidence/browser_activate_tab.md](web/evidence/browser_activate_tab.md) |
 | `uiautoma.web.WebBrowser.get_url()` | `VERIFIED`（7/7） | `web/test_web_browser_get_url.py` | `web/evidence/browser_get_url.md` |
@@ -292,15 +292,6 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.http_request()` | `VERIFIED`（41/41；2026-09-18 新基线复跑；地址形态探测已删除，`connect_timeout` 语义改由回显服务 `/delay` 覆盖） | `web/test_web_browser_http_request.py` | `web/evidence/http_request.md` |
 
 > 说明：本节是当前外部 `sdk测试` 工作区复测覆盖的叠加记录；前面的历史条目保留原始验收上下文。`delete_cookie` 在当前 SDK 中未公开（`dbe9e015` 起即如此），脚本已改写为收敛契约（旧名不存在 + `remove_cookie` 签名核对）。
->
-> **`WebBrowser.get_html()` 新基线复验**（2026-09-20，`main@c101caa9`）：17/17 通过，退出码 0，
-> 连续 3 次全绿。旧证据 `browser_get_html_baidu.md`（8/8，百度页，期望值由产品自身产出）保留为历史，
-> 本轮改用标准靶场固定 fixture，期望值改由靶场源码 + 标准库 `html.parser` 解析独立推导，并新增
-> 主框架作用域（iframe 内部内容不在返回串）、零参数合同、`unsupported_url` 非脚本化页面边界、
-> `silent_running` 后台标签页与「不需要 Package」等覆盖。实测抖动口径：空闲态 12/12 精确稳定，
-> 紧随 DOM 变更的首次读取最多偏差 2 字符（靶场页自身 cssinjs `<style>` 增删），故长度类判据使用
-> ±8 字符预算且仅作辅助，主判据为内容级。详见
-> [`web/evidence/browser_get_html.md`](web/evidence/browser_get_html.md)。
 >
 > `WebBrowser.go_back()`（2026-09-15）：首次调用稳定失败，引擎原始
 > `failure_reason=Cannot find a next page in history.`，而页面侧 `history.length` 已为 `2`~`3`；
