@@ -44,7 +44,7 @@
 | `uiautoma.web.WebElement.clipboard_input()` | `VERIFIED` | [`web/test_web_element_clipboard_input.py`](web/test_web_element_clipboard_input.py) | [`web/evidence/clipboard_input.md`](web/evidence/clipboard_input.md) | [`sdk/docs/web/clipboard_input.md`](../../sdk/docs/web/clipboard_input.md) |
 | `uiautoma.web.WebElement.get_text()` | `VERIFIED`（8/8） | [`web/test_web_element_get_text_html.py`](web/test_web_element_get_text_html.py) | [`web/evidence/get_text.md`](web/evidence/get_text.md) | [`sdk/docs/web/get_text.md`](../../sdk/docs/web/get_text.md) |
 | `uiautoma.web.WebElement.get_html()` | `VERIFIED`（17/17；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_get_html.py`](web/test_web_element_get_html.py) | [`web/evidence/get_html.md`](web/evidence/get_html.md) | [`sdk/docs/web/get_html.md`](../../sdk/docs/web/get_html.md) |
-| `uiautoma.web.WebElement.get_value()` | `VERIFIED` | [`web/test_web_element_get_value.py`](web/test_web_element_get_value.py) | [`web/evidence/get_value.md`](web/evidence/get_value.md) | [`sdk/docs/web/get_value.md`](../../sdk/docs/web/get_value.md) |
+| `uiautoma.web.WebElement.get_value()` | `VERIFIED`（17/17；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_get_value.py`](web/test_web_element_get_value.py) | [`web/evidence/get_value.md`](web/evidence/get_value.md) | [`sdk/docs/web/get_value.md`](../../sdk/docs/web/get_value.md) |
 | `uiautoma.web.WebElement.set_value()` | `VERIFIED` | [`web/test_web_element_set_value.py`](web/test_web_element_set_value.py) | [`web/evidence/set_value.md`](web/evidence/set_value.md) | [`sdk/docs/web/set_value.md`](../../sdk/docs/web/set_value.md) |
 | `uiautoma.web.WebElement.check()` | `READY_FOR_LIVE` | [`web/test_web_element_check.py`](web/test_web_element_check.py) | [`web/evidence/check.md`](web/evidence/check.md) | [`sdk/docs/web/check.md`](../../sdk/docs/web/check.md) |
 | `uiautoma.web.WebElement.is_checked()` | `READY_FOR_LIVE` | [`web/test_web_element_is_checked.py`](web/test_web_element_is_checked.py) | [`web/evidence/is_checked.md`](web/evidence/is_checked.md) | [`sdk/docs/web/is_checked.md`](../../sdk/docs/web/is_checked.md) |
@@ -303,6 +303,19 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 > 该库元素绑定依赖百度当时的 DOM（必需 `div[index=1]` 与 `a.class+index=0`），改版即失效，
 > 脚本按**环境阻塞（退出码 2）**处理，不记产品缺陷。修订说明（旧 2026-08-08 结论的保留与差异）
 > 见 [`web/evidence/get_html.md`](web/evidence/get_html.md) 第 5 节。
+>
+> **`WebElement.get_value()` 元素级复验**（2026-09-20，`main@c101caa9`）：17/17 通过，退出码 0，
+> 连续 3 次全绿。靶场 `#/iframe-shadow-form`，元素为库 `260902_web元素` 的
+> `web靶场_表单测试_原生_输入框`（iframe → open shadow 内的
+> `<input id="form-controls-native-text">`）。合同订正：返回注解是 **`str | None`**（旧证据误记为 `str`）。
+> 确证方式：页面侧直读 IDL `el.value` 跨通道对照，以及用页面**自身**的「提交」按钮触发的
+> `#native-result` 表单快照 JSON（不经 SDK）确认写入值被页面认可。实测边界：
+> 空输入框返回 `''` 而非 `None`，无 `value` property 的节点（radio label）返回 `None`；
+> `input[type=range]` 初始值为 `'0'`；`get_attribute("value")` **不能**当 content attribute 对照
+> （引擎 `getAttribute(name) ?? element[name]` 会回退到 IDL）；**新增前置条件**——靶场「动态 ID」开关
+> 默认开启且状态持久化，开启时固定 id 全部失效，脚本会先读地面真值并只在动态时关闭开关
+> （该分支已双向实测：强制开启后复跑仍 17/17 并还原）。修订说明见
+> [`web/evidence/get_value.md`](web/evidence/get_value.md) 第 5 节。
 >
 > `WebBrowser.go_back()`（2026-09-15）：首次调用稳定失败，引擎原始
 > `failure_reason=Cannot find a next page in history.`，而页面侧 `history.length` 已为 `2`~`3`；

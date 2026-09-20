@@ -1,875 +1,516 @@
-"""uiautoma.web.WebElement.get_value() 持久化真实浏览器测试运行器。
+"""`WebElement.get_value()` 验收脚本。
 
-导入本模块不会连接 Runtime、访问靶场或操作浏览器。真实场景打开唯一 Chrome
-``form-controls`` 页面并连接指定元素库；先对 ``input元素`` 用 ``input()`` 写入随机
-值（场景准备），再直接调用无参 ``WebElement.get_value()`` 读取并核对。
+靶场/页面
+    `https://baobaomi900901.github.io/xpath/#/iframe-shadow-form`
+    （该页把全部原生控件的库元素都采集齐了：输入框 / 密码 / 邮件 / 数字 / 文本域 /
+    select 单选 / 滑块 / radio label / 提交按钮。）
+
+元素库/元素
+    `D:\\code\\元素库\\260902_web元素`（本轮只用副本），主元素
+    `web靶场_表单测试_原生_输入框` —— iframe → open shadow DOM 内的
+    `<input type="text" id="form-controls-native-text">`。
+
+前置条件（会翻转，必须每次检查）
+    靶场 `FormControlsPage` 的 `readDynamicIdsPreference()` **默认开启动态 ID**，状态持久化在
+    `localStorage['form-controls-dynamic-ids']`。开启时 id 变成 `form-controls-native-text_<随机>`，
+    而库元素路径**必需**固定 id → 全部相关库元素同时失效。脚本按
+    `web/表单元素复测清单.md` 的规则处理：先读地面真值（DOM 实际 id），仅在动态时点一次开关关闭。
+
+期望值来源
+    1. **独立推导**：空输入框的 IDL `value` 是空字符串 `""`；没有 `value` 属性的节点返回 `None`。
+    2. **独立确证（跨通道）**：页面侧经 `iframe.contentDocument → #form-shadow-host → shadowRoot`
+       直读 `el.value`（CDP 通道），与 SDK（`chrome.scripting` 通道）返回对照。
+    3. **独立确证（页面自身状态）**：点击页面自己的「提交」后，`#native-result` 会显示由
+       Ant form 实例生成的表单快照 JSON 并同时写剪贴板；该通道完全不经过 SDK，用于确认
+       写入的值确实被**页面自己**认可。
+
+被测源码要点（worktree `D:\\code\\desktop`，基线 `c101caa9`）
+    `sdk/src/uiautoma/web/element.py:548` `get_value(self) -> str | None`，无参数；
+    `sdk/src/uiautoma/_core/client.py:3944` `get_value(*, timeout: float = 5.0) -> str | None`
+    （docstring：读取当前 **value property**；`None` 原样透出，其余转 `str`）；
+    RPC `web.get_value`（`runtime/services/capabilities.py:274`，必填
+    `package_token`/`element_id`/`timeout_ms`）；Runtime `action_service.web_get_value_element`
+    （`:2489`）→ `_run_web_value(op="get_value")`（`:6102`，要求 `locator_kind == "runtime_ref"`，
+    即必须由实时 `find` 取得）；引擎 `chrome/engine/engine_packages/page_engine_runtime.js:3669`
+    取 `element.value`，`null` 原样返回。
+
+注意：`get_attribute("value")` **不能**当 content attribute 的对照。引擎
+`page_engine_runtime.js:3688` 是 `element.getAttribute(name) ?? element[name]`，属性缺失时会
+回退到 IDL 属性，两者被混同。
+
+退出码
+    `0` 全部 PASS（允许 KNOWN）；`1` 存在 FAIL；`2` 无 FAIL 但存在 BLOCKED。
 """
-
 from __future__ import annotations
 
 import argparse
 import inspect
 import json
-import re
 import shutil
 import sys
+import tempfile
 import time
-import uuid
 from pathlib import Path
-from typing import Any, Sequence
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
-from urllib.request import Request, urlopen
 
-PRODUCT_ROOT = Path(__file__).resolve().parents[3]
-SDK_SRC = PRODUCT_ROOT / "sdk" / "src"
-if str(SDK_SRC) not in sys.path:
-    sys.path.insert(0, str(SDK_SRC))
+import uiautoma
+from uiautoma import web
+from uiautoma.web import WebBrowser, WebElement
 
-import uiautoma  # noqa: E402
-from uiautoma import ping, web  # noqa: E402
-from uiautoma.web import WebBrowser, WebElement  # noqa: E402
-
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _web_page_identity import tab_count  # noqa: E402
 
 __test__ = False
 
-DEFAULT_TARGET_URL = "http://localhost:7199/form-controls"
-DEFAULT_ELEMENT_LIBRARY = Path(__file__).with_name("web测试元素库")
-DEFAULT_INPUT_ELEMENT_NAME = "input元素"
-DEFAULT_PROFILE_DIRECTORY = "Default"
-DEFAULT_RESET_ELEMENT_NAME = "重置_html"
-DEFAULT_VALUE_PREFIX = "gv_"
-RUN_QUERY_KEY = "uiautoma_element_get_value_run"
+TARGET_URL = "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+DEFAULT_LIBRARY = Path(r"D:\code\元素库\260902_web元素")
+EXPECTED_PAGE_TITLE = "iframe + Shadow 表单测试"
+P = "web靶场_表单测试_原生_"
+TEXT_ELEMENT = P + "输入框"
+SWITCH_ELEMENT = "web靶场_表单测试_控制表单组件id是否为动态的开关"
+SUBMIT_ELEMENT = P + "按钮_提交"
+LABEL_ELEMENT = P + "radio_label_男"
+FIXED_TEXT_ID = "form-controls-native-text"
+MARKER = "uiautoma-get-value-probe"
 
-EXPECTED_PARAMETER_ORDER = (
-    "self",
+# 控件矩阵：库元素名 -> (DOM 固定 id 或 None, 说明)
+MATRIX = (
+    (P + "密码输入框", "form-controls-native-password"),
+    (P + "邮件输入框", "form-controls-native-email"),
+    (P + "数字输入框", "form-controls-native-number"),
+    (P + "文本域", "form-controls-native-remark"),
+    (P + "select单选", "form-controls-native-city"),
+    (P + "滑块", "form-controls-native-range"),
+    (SUBMIT_ELEMENT, "form-controls-native-submit"),
 )
-EXPECTED_DEFAULTS: dict[str, Any] = {}
-EXPECTED_KINDS = {
-    "self": inspect.Parameter.POSITIONAL_OR_KEYWORD,
-}
 
-# input() 仅为场景准备；目标 API 是无参 get_value()。
+GREEN, RED, YELLOW, RESET = "\x1b[92m", "\x1b[91m", "\x1b[93m", "\x1b[0m"
 
-BLOCKING_EXCEPTION_NAMES = {
-    "ConnectionError",
-    "EOFError",
-    "HostUnavailableError",
-    "PipeClosedError",
-    "TimeoutError",
-    "UnsupportedProtocolError",
-}
-BLOCKING_TRACES = {
-    "browser_executable_not_found",
-    "browser_launch_timeout",
-    "browser_session_discovery_failed",
-    "browser_session_disconnected",
-    "native_host_unavailable",
-    "plugin_not_connected",
-    "web_bridge_unavailable",
-    "web_host_unavailable",
-    "web_ipc_unreachable",
-    "web_runtime_incompatible",
-    "web_session_unavailable",
-}
+# 页面侧读取：iframe -> open shadow root 内的 id -> {value, hasValue, attr, hasAttr}
+READ_JS = (
+    "function (element, ids) {"
+    " var d = document.getElementById('iframe-shadow-form');"
+    " if (!d) return { stage: 'no_iframe' };"
+    " var cd = d.contentDocument; if (!cd) return { stage: 'no_document' };"
+    " var h = cd.getElementById('form-shadow-host');"
+    " if (!h) return { stage: 'no_host' };"
+    " if (!h.shadowRoot) return { stage: 'no_shadow' };"
+    " var root = h.shadowRoot; var out = {};"
+    " for (var i = 0; i < ids.length; i++) {"
+    "   var e = root.getElementById(ids[i]);"
+    "   out[ids[i]] = e ? { value: e.value, hasValue: ('value' in e),"
+    "     attr: e.getAttribute('value'), hasAttr: e.hasAttribute('value') } : null; }"
+    " var res = root.getElementById('native-result');"
+    " var any = root.querySelector('[id^=\"form-controls-native-text\"]');"
+    " return { stage: 'ok', values: out, nativeResult: res ? res.textContent : null,"
+    "   textIdSeen: any ? any.id : null }; }"
+)
 
-def _result(case_id: str, status: str, detail: str, **extra: Any) -> dict[str, Any]:
-    return {"case_id": case_id, "status": status, "detail": detail, **extra}
-
-def _safe_trace(exc: BaseException) -> str:
-    trace = str(getattr(exc, "trace_info", "") or "")
-    return trace if re.fullmatch(r"[A-Za-z0-9_.-]{1,80}", trace) else ""
-
-def _error_fields(exc: BaseException) -> dict[str, str]:
-    return {"exception": exc.__class__.__name__, "trace_info": _safe_trace(exc)}
-
-def _error_status(exc: BaseException) -> str:
-    if exc.__class__.__name__ in BLOCKING_EXCEPTION_NAMES or _safe_trace(exc) in BLOCKING_TRACES:
-        return "BLOCKED"
-    return "FAIL"
-
-def _validate_url(value: str, option: str) -> str:
-    text = str(value or "").strip()
-    try:
-        parts = urlsplit(text)
-    except ValueError as exc:
-        raise argparse.ArgumentTypeError(f"{option} 不是有效 URL") from exc
-    if (
-        parts.scheme.casefold() not in {"http", "https"}
-        or not parts.hostname
-        or parts.username is not None
-        or parts.password is not None
-    ):
-        raise argparse.ArgumentTypeError(f"{option} 必须是不含凭据的绝对 HTTP/HTTPS URL")
-    return text
-
-def _marked_url(target_url: str, run_id: str) -> str:
-    parts = urlsplit(target_url)
-    query = [
-        (key, value)
-        for key, value in parse_qsl(parts.query, keep_blank_values=True)
-        if key != RUN_QUERY_KEY
-    ]
-    query.append((RUN_QUERY_KEY, run_id))
-    return urlunsplit((parts.scheme, parts.netloc, parts.path or "/", urlencode(query), ""))
-
-def _page_key(value: object) -> tuple[Any, ...] | None:
-    try:
-        parts = urlsplit(str(value or "").strip())
-        port = parts.port
-    except ValueError:
-        return None
-    scheme = parts.scheme.casefold()
-    hostname = (parts.hostname or "").casefold()
-    if scheme not in {"http", "https"} or not hostname:
-        return None
-    if port == (443 if scheme == "https" else 80):
-        port = None
-    return scheme, hostname, port, parts.path or "/"
-
-def _exact_url_key(value: object) -> tuple[Any, ...] | None:
-    try:
-        parts = urlsplit(str(value or "").strip())
-        port = parts.port
-    except ValueError:
-        return None
-    scheme = parts.scheme.casefold()
-    hostname = (parts.hostname or "").casefold()
-    if scheme not in {"http", "https"} or not hostname:
-        return None
-    if port == (443 if scheme == "https" else 80):
-        port = None
-    return (
-        scheme,
-        hostname,
-        port,
-        parts.path or "/",
-        tuple(sorted(parse_qsl(parts.query, keep_blank_values=True))),
-    )
-
-def _tab_identity(page: WebBrowser | None) -> tuple[str, int, int] | None:
-    if page is None:
-        return None
-    raw = page.raw if isinstance(page.raw, dict) else {}
-    tab = raw.get("tab") if isinstance(raw.get("tab"), dict) else raw
-    try:
-        tab_id = int(tab.get("tabId", tab.get("id", 0)) or 0)
-        window_id = int(tab.get("windowId", tab.get("window_id", 0)) or 0)
-    except (TypeError, ValueError):
-        return None
-    session_id = str(
-        raw.get("target_session_id")
-        or raw.get("targetSessionId")
-        or raw.get("sessionId")
-        or tab.get("target_session_id")
-        or tab.get("targetSessionId")
-        or tab.get("sessionId")
-        or ""
-    )
-    return (session_id, window_id, tab_id) if tab_id > 0 else None
-
-def _try_get_active_page(mode: str, timeout: float) -> WebBrowser | None:
-    try:
-        return web.get_active(mode, load_timeout=max(0.1, timeout))
-    except Exception:  # noqa: BLE001
-        return None
-
-def _wait_for_launched_start_page(
-    mode: str,
-    before_identity: tuple[str, int, int] | None,
-    timeout: float,
-) -> WebBrowser | None:
-    deadline = time.monotonic() + timeout
-    while time.monotonic() < deadline:
-        page = _try_get_active_page(mode, min(1.0, timeout))
-        identity = _tab_identity(page)
-        if page is not None and identity is not None and identity != before_identity:
-            return page
-        time.sleep(0.1)
-    return None
-
-def preflight_runtime(timeout: float) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        ping(timeout=timeout)
-        return _result(
-            "runtime_preflight",
-            "PASS",
-            "Runtime 与 Automation Pipe 可响应",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "runtime_preflight",
-            "BLOCKED",
-            "Runtime 或 Automation Pipe 不可用",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-def prepare_scrubbed_library(source_library: Path, owned_dir: Path) -> dict[str, Any]:
-    """复制元素库并清空捕获期 WebSessionId，避免陈旧会话拦截当前页面绑定。"""
-
-    started = time.perf_counter()
-    scrubbed_fields = 0
-    try:
-        shutil.copytree(source_library, owned_dir)
-        elements_file = owned_dir / "elements.json"
-        payload = json.loads(elements_file.read_text(encoding="utf-8"))
-        for process in payload.values():
-            if not isinstance(process, dict):
-                continue
-            for item in process.get("Group", process.get("group", [])):
-                if not isinstance(item, dict):
-                    continue
-                for key in list(item):
-                    if "session" in key.casefold() and item.get(key):
-                        item[key] = ""
-                        scrubbed_fields += 1
-                if item.get("BrowserPid"):
-                    item["BrowserPid"] = 0
-                    scrubbed_fields += 1
-        elements_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-        snapshot_dir = owned_dir / "snapshot"
-        if snapshot_dir.is_dir():
-            for snap in snapshot_dir.glob("*.json"):
-                data = json.loads(snap.read_text(encoding="utf-8"))
-                stack: list[Any] = [data]
-                local = 0
-                while stack:
-                    obj = stack.pop()
-                    if isinstance(obj, dict):
-                        for key, value in list(obj.items()):
-                            if isinstance(key, str) and "session" in key.casefold() and value:
-                                obj[key] = ""
-                                local += 1
-                            elif isinstance(value, (dict, list)):
-                                stack.append(value)
-                    elif isinstance(obj, list):
-                        stack.extend(obj)
-                if local:
-                    snap.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-                    scrubbed_fields += local
-
-        passed = (owned_dir / "elements.json").is_file()
-        return _result(
-            "scrubbed_library_setup",
-            "PASS" if passed else "FAIL",
-            "已准备清空捕获会话后的本次元素库副本" if passed else "本次元素库副本不可用",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            scrubbed_fields=scrubbed_fields,
-            owned_library_exists=passed,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "scrubbed_library_setup",
-            "FAIL",
-            "无法准备本次元素库副本",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            scrubbed_fields=scrubbed_fields,
-            **_error_fields(exc),
-        )
-
-def prepare_owned_page(
-    target_url: str,
-    mode: str,
-    load_timeout: float,
-    profile_directory: str,
-) -> tuple[dict[str, Any], WebBrowser | None]:
-    started = time.perf_counter()
-    page: WebBrowser | None = None
-    before_active = _try_get_active_page(mode, min(1.0, load_timeout))
-    before_identity = _tab_identity(before_active)
-    existing_session_reused = before_active is not None
-    profile_identity_fallback_used = False
-    profile_identity_trace = ""
-    recovery_method = "existing_session" if existing_session_reused else ""
-    try:
-        if existing_session_reused:
-            page = web.create(target_url, mode, load_timeout=load_timeout, silent_running=True)
-        else:
-            try:
-                page = web.create(
-                    target_url,
-                    mode,
-                    load_timeout=load_timeout,
-                    silent_running=True,
-                    arguments=[
-                        f"--profile-directory={profile_directory}",
-                        "--ignore-profile-directory-if-not-exists",
-                    ],
-                )
-            except Exception as exc:  # noqa: BLE001
-                trace = _safe_trace(exc)
-                if trace != "browser_profile_identity_unknown":
-                    raise
-                profile_identity_fallback_used = True
-                profile_identity_trace = trace
-                page = _wait_for_launched_start_page(
-                    mode,
-                    before_identity,
-                    min(5.0, max(1.0, load_timeout)),
-                )
-                if page is None:
-                    raise RuntimeError("launched Chrome start page is not safely identifiable")
-                page.raw["created_by"] = "profile_launch_recovery"
-                recovery_method = "navigate_launched_start_page"
-                page.navigate(target_url, load_timeout=load_timeout)
-        checks = {
-            "returned_type_ok": isinstance(page, WebBrowser),
-            "mode_ok": str(page.mode or "").casefold() == mode.casefold(),
-            "url_ok": _exact_url_key(page.url) == _exact_url_key(target_url),
-            "owned_identity_ok": page.raw.get("created_by") in {
-                "web.create",
-                "profile_launch_recovery",
-            },
-        }
-        passed = all(checks.values())
-        return (
-            _result(
-                "owned_page_setup",
-                "PASS" if passed else "BLOCKED",
-                "已打开本次唯一get_value 测试页面" if passed else "get_value 测试页面创建结果不完整",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                profile_directory=profile_directory,
-                existing_session_reused=existing_session_reused,
-                profile_identity_fallback_used=profile_identity_fallback_used,
-                profile_identity_trace=profile_identity_trace,
-                profile_recovery_method=recovery_method,
-                **checks,
-            ),
-            page,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return (
-            _result(
-                "owned_page_setup",
-                "BLOCKED",
-                "无法打开本次get_value 测试页面",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                profile_directory=profile_directory,
-                existing_session_reused=existing_session_reused,
-                profile_identity_fallback_used=profile_identity_fallback_used,
-                profile_identity_trace=profile_identity_trace,
-                profile_recovery_method=recovery_method,
-                **_error_fields(exc),
-            ),
-            page,
-        )
+# 页面侧写入：原生 setter 改 IDL，再派发真实 input 事件，让 React 受控状态同步
+WRITE_JS = (
+    "function (element, payload) {"
+    " var d = document.getElementById('iframe-shadow-form');"
+    " var cd = d.contentDocument; var h = cd.getElementById('form-shadow-host');"
+    " var root = h.shadowRoot; var el = root.getElementById(payload.id);"
+    " if (!el) return { ok: false, reason: 'no_element' };"
+    " var proto = el.tagName === 'TEXTAREA' ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype;"
+    " var setter = Object.getOwnPropertyDescriptor(proto, 'value').set;"
+    " setter.call(el, payload.text);"
+    " el.dispatchEvent(new Event('input', { bubbles: true }));"
+    " return { ok: true, idl: el.value, hasAttr: el.hasAttribute('value'), attr: el.getAttribute('value') }; }"
+)
 
 
+class Recorder:
+    def __init__(self) -> None:
+        self.results: list[dict] = []
+        self._t0 = time.monotonic()
 
-def check_contract() -> dict[str, Any]:
-    try:
-        signature = inspect.signature(WebElement.get_value)
-        parameters = signature.parameters
-        order_ok = tuple(parameters) == EXPECTED_PARAMETER_ORDER
-        defaults_ok = all(parameters[name].default == value for name, value in EXPECTED_DEFAULTS.items())
-        kinds_ok = all(parameters[name].kind == value for name, value in EXPECTED_KINDS.items())
-        no_extra_ok = set(parameters) == {"self"}
-        return_ok = signature.return_annotation in {str, "str"} or str(signature.return_annotation) in {
-            "str",
-            "'str'",
-        }
-        passed = order_ok and defaults_ok and kinds_ok and return_ok and no_extra_ok
-        return _result(
-            "api_contract",
-            "PASS" if passed else "FAIL",
-            "公开签名符合当前合同" if passed else "公开签名与当前合同不一致",
-            parameter_order_ok=order_ok,
-            defaults_ok=defaults_ok,
-            parameter_kinds_ok=kinds_ok,
-            return_annotation_ok=return_ok,
-            no_extra_parameters_ok=no_extra_ok,
-            return_annotation=str(signature.return_annotation),
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result("api_contract", "FAIL", "无法检查公开签名", **_error_fields(exc))
-
-
-def preflight_target(target_url: str, timeout: float) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        request = Request(target_url, headers={"User-Agent": "UIAutoma-SDK-persistent-test"})
-        with urlopen(request, timeout=timeout) as response:
-            status_code = int(getattr(response, "status", 200))
-        passed = 200 <= status_code < 400
-        return _result(
-            "target_preflight",
-            "PASS" if passed else "BLOCKED",
-            "get_value 测试靶场可访问" if passed else "get_value 测试靶场未返回成功状态",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            http_status=status_code,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "target_preflight",
-            "BLOCKED",
-            "get_value 测试靶场不可访问",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-
-def _library_named_matches(payload: dict[str, Any], element_name: str) -> list[dict[str, Any]]:
-    matches: list[dict[str, Any]] = []
-    for process in payload.values():
-        if not isinstance(process, dict):
-            continue
-        for item in process.get("Group", process.get("group", [])):
-            if isinstance(item, dict) and str(item.get("Name") or "") == element_name:
-                matches.append(item)
-    return matches
-
-
-def _library_item_ok(matches: list[dict[str, Any]], target_url: str) -> tuple[bool, bool]:
-    page_ok = len(matches) == 1 and _page_key(matches[0].get("PageUrl")) == _page_key(target_url)
-    selector_ok = len(matches) == 1 and bool(str(matches[0].get("Characteristics") or "").strip())
-    return page_ok, selector_ok
-
-
-def preflight_element_library(
-    library_dir: Path,
-    input_element_name: str,
-    reset_element_name: str,
-    target_url: str,
-) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        elements_file = library_dir / "elements.json"
-        payload = json.loads(elements_file.read_text(encoding="utf-8"))
-        input_matches = _library_named_matches(payload, input_element_name)
-        reset_matches = _library_named_matches(payload, reset_element_name)
-        input_page_ok, input_selector_ok = _library_item_ok(input_matches, target_url)
-        reset_page_ok, reset_selector_ok = _library_item_ok(reset_matches, target_url)
-        passed = (
-            library_dir.is_dir()
-            and elements_file.is_file()
-            and input_page_ok
-            and input_selector_ok
-            and reset_page_ok
-            and reset_selector_ok
-        )
-        return _result(
-            "element_library_preflight",
-            "PASS" if passed else "BLOCKED",
-            "元素库包含 input元素 与 重置_html" if passed else "元素库缺少 input元素 或 重置_html",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            library_dir_exists=library_dir.is_dir(),
-            elements_json_exists=elements_file.is_file(),
-            input_named_element_count=len(input_matches),
-            input_page_url_matches=input_page_ok,
-            input_selector_present=input_selector_ok,
-            reset_named_element_count=len(reset_matches),
-            reset_page_url_matches=reset_page_ok,
-            reset_selector_present=reset_selector_ok,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "element_library_preflight",
-            "BLOCKED",
-            "无法读取或验证元素库",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-
-def connect_library_and_find_elements(
-    page: WebBrowser,
-    library_dir: Path,
-    input_element_name: str,
-    reset_element_name: str,
-    runtime_timeout: float,
-    element_timeout: float,
-) -> tuple[dict[str, Any], Any | None, WebElement | None, WebElement | None]:
-    started = time.perf_counter()
-    package: Any | None = None
-    try:
-        package = uiautoma.open(str(library_dir), timeout=runtime_timeout)
-        input_element = page.find(input_element_name, timeout=element_timeout)
-        reset_element = page.find(reset_element_name, timeout=element_timeout)
-        input_name_ok = str(input_element.name or "") == input_element_name
-        reset_name_ok = str(reset_element.name or "") == reset_element_name
-        passed = package.web_count > 0 and input_name_ok and reset_name_ok
-        return (
-            _result(
-                "element_library_setup",
-                "PASS" if passed else "FAIL",
-                "已连接元素库并绑定 input元素 与 重置_html"
-                if passed
-                else "元素库连接或元素绑定结果不符合预期",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                package_opened=True,
-                web_element_count=package.web_count,
-                input_element_name_ok=input_name_ok,
-                reset_element_name_ok=reset_name_ok,
-            ),
-            package,
-            input_element,
-            reset_element,
-        )
-    except Exception as exc:  # noqa: BLE001
-        status = _error_status(exc)
-        return (
-            _result(
-                "element_library_setup",
-                status,
-                "元素库连接被环境阻塞" if status == "BLOCKED" else "无法连接元素库或绑定目标元素",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                package_opened=package is not None,
-                **_error_fields(exc),
-            ),
-            package,
-            None,
-            None,
-        )
-
-
-def _reset_form(reset_element: WebElement) -> str:
-    reset_element.click(simulative=False, delay_after=0.2)
-    return "dom"
-
-
-def run_get_value_case(
-    page: WebBrowser,
-    input_element: WebElement,
-    reset_element: WebElement,
-    expected_value: str,
-) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        page.activate()
-        time.sleep(0.1)
-        reset_mode = _reset_form(reset_element)
-        input_element.input(expected_value, simulative=False, delay_after=0.2)
-        print(
-            f"setup input({expected_value!r}, simulative=False)",
-            file=sys.stderr,
-            flush=True,
-        )
-        call_started = time.perf_counter()
-        value = input_element.get_value()
-        elapsed_ms = round((time.perf_counter() - call_started) * 1000, 1)
-        print(f"get_value()={value!r}", file=sys.stderr, flush=True)
-        type_ok = isinstance(value, str)
-        exact_ok = str(value) == expected_value
-        passed = type_ok and exact_ok
-        return _result(
-            "get_value_after_input",
-            "PASS" if passed else "FAIL",
-            "get_value 返回与 input 写入值一致" if passed else "get_value 返回值不符合预期",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            get_value_elapsed_ms=elapsed_ms,
-            return_type_ok=type_ok,
-            value_exact_ok=exact_ok,
-            expected_value=expected_value,
-            value=str(value),
-            reset_mode=reset_mode,
-            target_id=str(input_element.id or ""),
-            target_name=str(input_element.name or ""),
-        )
-    except Exception as exc:  # noqa: BLE001
-        status = _error_status(exc)
-        return _result(
-            "get_value_after_input",
-            status,
-            "get_value 被环境阻塞" if status == "BLOCKED" else "get_value 调用失败",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            expected_value=expected_value,
-            **_error_fields(exc),
-        )
-
-
-def cleanup_resources(
-    *,
-    package: Any | None,
-    page: WebBrowser | None,
-    owned_library_dir: Path | None,
-) -> dict[str, Any]:
-    items: list[dict[str, Any]] = []
-
-    package_item: dict[str, Any] = {"resource": "element_library_connection"}
-    if package is None:
-        package_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    else:
-        try:
-            package.close()
-            package_item.update(status="PASS", confirmed=True, cleanup_call_needed=True, created=True)
-        except Exception as exc:  # noqa: BLE001
-            package_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(package_item)
-
-    page_item: dict[str, Any] = {"resource": "owned_page"}
-    if page is None:
-        page_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    elif page.raw.get("created_by") not in {"web.create", "profile_launch_recovery"}:
-        page_item.update(
-            status="FAIL",
-            confirmed=False,
-            cleanup_call_needed=False,
-            created=True,
-            reason="owned_page_identity_unknown",
-        )
-    else:
-        try:
-            page.close()
-            page_item.update(status="PASS", confirmed=True, cleanup_call_needed=True, created=True)
-        except Exception as exc:  # noqa: BLE001
-            page_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(page_item)
-
-    library_item: dict[str, Any] = {"resource": "owned_scrubbed_library"}
-    if owned_library_dir is None:
-        library_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    elif not re.fullmatch(r"[0-9a-f]{32}", owned_library_dir.name):
-        library_item.update(
-            status="FAIL",
-            confirmed=False,
-            cleanup_call_needed=False,
-            created=True,
-            reason="owned_library_identity_unknown",
-        )
-    else:
-        try:
-            if owned_library_dir.exists():
-                shutil.rmtree(owned_library_dir)
-            confirmed = not owned_library_dir.exists()
-            library_item.update(
-                status="PASS" if confirmed else "FAIL",
-                confirmed=confirmed,
-                cleanup_call_needed=True,
-                created=True,
-            )
-        except Exception as exc:  # noqa: BLE001
-            library_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(library_item)
-
-    passed = all(item["status"] == "PASS" for item in items)
-    return _result(
-        "owned_resources_cleanup",
-        "PASS" if passed else "FAIL",
-        "本次元素库连接、测试页面和临时库副本已逐项确认清理"
-        if passed
-        else "本次资源未能全部精确清理",
-        confirmed=passed,
-        attempted_count=len(items),
-        cleaned_count=sum(item["status"] == "PASS" for item in items),
-        resources=items,
-    )
-
-
-def _exit_code(results: Sequence[dict[str, Any]]) -> int:
-    statuses = {str(item.get("status") or "FAIL") for item in results}
-    return 1 if "FAIL" in statuses else (2 if "BLOCKED" in statuses else 0)
-
-
-def _report(args: argparse.Namespace, results: Sequence[dict[str, Any]]) -> tuple[dict[str, Any], int]:
-    exit_code = _exit_code(results)
-    status = "FAIL" if exit_code == 1 else ("BLOCKED" if exit_code == 2 else "PASS")
-    excluded = [
-        "edge",
-        "cef",
-        "auto",
-        "模拟人工 input 后再 get_value",
-        "空值 / 无 value 属性负例",
-        "元素库捕获期 WebSessionId 在不清理时仍可直连当前页面（产品侧会话绑定）",
-    ]
-    return (
-        {
-            "api": "uiautoma.web.WebElement.get_value",
+    def add(self, case_id: str, status: str, detail: str, **extra) -> dict:
+        now = time.monotonic()
+        elapsed = now - self._t0
+        self._t0 = now
+        item = {
+            "case_id": case_id,
             "status": status,
-            "exit_code": exit_code,
-            "mode": args.mode,
-            "profile_directory": args.profile_directory,
-            "contract_only": bool(args.contract_only),
-            "input_element_name": args.input_element_name,
-            "reset_element_name": args.reset_element_name,
-            "expected_value": args.expected_value,
-            "results": list(results),
-            "excluded": excluded,
-        },
-        exit_code,
+            "detail": f"{detail}（耗时 {elapsed:.2f}s）",
+            "elapsed": round(elapsed, 3),
+            **extra,
+        }
+        self.results.append(item)
+        return item
+
+
+def error_detail(prefix: str, exc: BaseException) -> str:
+    detail = f"{prefix}: {type(exc).__name__}: {exc}"
+    trace = str(getattr(exc, "trace_info", "") or "")
+    if trace:
+        detail += f" [trace={trace}]"
+    return detail
+
+
+def check_contract(rec: Recorder) -> bool:
+    method = getattr(WebElement, "get_value", None)
+    if not callable(method):
+        rec.add("api_contract", "FAIL", "WebElement.get_value 不存在")
+        return False
+    signature = inspect.signature(method)
+    parameters = list(signature.parameters.values())
+    names = tuple(signature.parameters)
+    annotation = str(signature.return_annotation)
+    ok = (
+        names == ("self",)
+        and parameters[0].kind is inspect.Parameter.POSITIONAL_OR_KEYWORD
+        and "None" in annotation
     )
-
-
-def run(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
-    results = [check_contract()]
-    if results[-1]["status"] != "PASS" or args.contract_only:
-        return _report(args, results)
-
-    results.append(preflight_target(args.target_url, args.preflight_timeout))
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    results.append(preflight_runtime(args.runtime_timeout))
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    results.append(
-        preflight_element_library(
-            args.element_library,
-            args.input_element_name,
-            args.reset_element_name,
-            args.target_url,
-        )
+    rec.add(
+        "api_contract",
+        "PASS" if ok else "FAIL",
+        f"get_value 无参数、返回注解含 None（签名 {signature}，返回注解 {annotation!r}）" if ok
+        else f"公开签名不符合合同: {signature}",
+        signature=str(signature), return_annotation=annotation,
     )
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
+    return ok
 
-    run_id = uuid.uuid4().hex
-    marked_url = _marked_url(args.target_url, run_id)
-    owned_library_dir = PRODUCT_ROOT / ".pytest_tmp" / run_id
+
+def read_dom(page: WebBrowser, ids: list[str]) -> dict:
+    return page.execute_javascript(READ_JS, ids, execution_world="MAIN") or {}
+
+
+def run(args):
+    rec = Recorder()
+    if not check_contract(rec):
+        return rec.results, 1
+    if args.contract_only:
+        return rec.results, 0
+
+    baseline_tabs = tab_count(args.mode)
+    work_dir = Path(tempfile.mkdtemp(prefix="uiautoma-get-value-", dir=str(args.temp_root)))
+    package = None
     page: WebBrowser | None = None
-    package: Any | None = None
+    page_closed = False
+
+    def cleanup_case() -> None:
+        errors: list[str] = []
+        if page is not None and not page_closed:
+            try:
+                page.close(ignore_beforeunload=True)
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"page: {type(exc).__name__}: {exc}")
+        if package is not None:
+            try:
+                package.close()
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"package: {type(exc).__name__}: {exc}")
+        shutil.rmtree(work_dir, ignore_errors=True)
+        time.sleep(0.8)
+        after_tabs = tab_count(args.mode)
+        ok = not errors and not work_dir.exists()
+        rec.add(
+            "cleanup", "PASS" if ok else "FAIL",
+            f"测试页面与 Package 已关闭，元素库副本已删除；标签数 {baseline_tabs} → {after_tabs}"
+            f"（用户可能同时浏览，仅作诊断）"
+            if ok else
+            f"清理不完整：关闭错误={errors or '无'}，临时目录残留={work_dir.exists()}",
+            tabs_before=baseline_tabs, tabs_after=after_tabs,
+        )
+
     try:
-        scrub_result = prepare_scrubbed_library(args.element_library, owned_library_dir)
-        results.append(scrub_result)
-        if scrub_result["status"] == "PASS":
-            page_result, page = prepare_owned_page(
-                marked_url,
-                args.mode,
-                args.load_timeout,
-                args.profile_directory,
+        # ---- 环境准备 ----
+        library_copy = work_dir / "library"
+        try:
+            shutil.copytree(args.library, library_copy)
+        except OSError as exc:
+            rec.add("library_prepare", "BLOCKED", f"元素库复制失败：{error_detail('copy', exc)}")
+            return rec.results, 2
+        package = uiautoma.open(str(library_copy), timeout=args.runtime_timeout,
+                                connect_timeout=args.runtime_timeout)
+        info = uiautoma.ping()
+        rec.add(
+            "library_prepare", "PASS",
+            f"元素库副本已打开（{args.library.name}），Runtime {info.runtime_version} "
+            f"协议 {info.protocol}，进入时 {baseline_tabs} 个标签",
+            runtime_version=str(info.runtime_version), tabs_before=baseline_tabs,
+        )
+
+        try:
+            page = web.create(args.target_url, mode=args.mode, load_timeout=args.load_timeout)
+            title = page.get_title()
+        except Exception as exc:  # noqa: BLE001
+            rec.add("page_prepare", "BLOCKED", f"目标页面准备失败：{error_detail('create', exc)}")
+            return rec.results, 2
+        rec.add(
+            "page_prepare", "PASS" if title == EXPECTED_PAGE_TITLE else "FAIL",
+            f"目标页面已打开：title={title!r}（期望 {EXPECTED_PAGE_TITLE!r}）",
+            url=page.get_url(), title=title,
+        )
+        if title != EXPECTED_PAGE_TITLE:
+            return rec.results, 1
+
+        # ---- 前置条件：动态 ID 开关（地面真值）----
+        dom = read_dom(page, [FIXED_TEXT_ID])
+        if dom.get("stage") != "ok":
+            rec.add("dynamic_id_precondition", "BLOCKED",
+                    f"iframe/open shadow 结构未就绪：stage={dom.get('stage')}")
+            return rec.results, 2
+        seen = dom.get("textIdSeen")
+        turned_off = False
+        if seen != FIXED_TEXT_ID and seen:
+            # 动态 ID 已开启：按测试清单只点击一次开关关闭
+            try:
+                switch = page.find(SWITCH_ELEMENT, timeout=args.element_timeout)
+                node = switch
+                for _ in range(5):
+                    if node.get_attribute("role") == "switch":
+                        break
+                    node = node.parent()
+                state = node.get_attribute("aria-checked")
+                if state == "true":
+                    switch.click(simulative=False, delay_after=0.8)
+                    turned_off = True
+            except Exception as exc:  # noqa: BLE001
+                rec.add("dynamic_id_precondition", "BLOCKED",
+                        f"动态 ID 已开启且开关操作失败：{error_detail('switch', exc)}")
+                return rec.results, 2
+            dom = read_dom(page, [FIXED_TEXT_ID])
+            seen = dom.get("textIdSeen")
+        if seen != FIXED_TEXT_ID:
+            rec.add(
+                "dynamic_id_precondition", "BLOCKED",
+                f"固定 id 不可用：DOM 中实际 id={seen!r}，期望 {FIXED_TEXT_ID!r}；"
+                f"库元素路径依赖固定 id，需先关闭靶场「动态 ID」开关",
             )
-            results.append(page_result)
-            if page_result["status"] == "PASS" and page is not None:
-                library_result, package, input_element, reset_element = (
-                    connect_library_and_find_elements(
-                        page,
-                        owned_library_dir,
-                        args.input_element_name,
-                        args.reset_element_name,
-                        args.runtime_timeout,
-                        args.element_timeout,
-                    )
-                )
-                results.append(library_result)
-                if (
-                    library_result["status"] == "PASS"
-                    and input_element is not None
-                    and reset_element is not None
-                ):
-                    results.append(
-                        run_get_value_case(
-                            page,
-                            input_element,
-                            reset_element,
-                            args.expected_value,
-                        )
-                    )
+            return rec.results, 2
+        rec.add(
+            "dynamic_id_precondition", "PASS",
+            f"动态 ID 已关闭，DOM 实际 id={seen!r}（本轮{'曾开启并已关闭' if turned_off else '进入时即为关闭'}）",
+            text_id=seen, turned_off=turned_off,
+        )
+
+        # ---- 元素绑定 ----
+        try:
+            hits = page.find_all(args.element, timeout=args.element_timeout)
+            element = page.find(args.element, timeout=args.element_timeout)
+        except Exception as exc:  # noqa: BLE001
+            rec.add("element_bind", "BLOCKED",
+                    f"库元素 {args.element} 无法绑定：{error_detail('find', exc)}")
+            return rec.results, 2
+        rec.add(
+            "element_bind", "PASS",
+            f"库元素绑定成功：find_all 命中 {len(hits)} 个，返回单一 WebElement（id={element.id}）",
+            hits=len(hits), element_id=str(element.id),
+        )
+
+        initial = element.get_value()
+
+        # ---- 空值语义：空字符串而非 None ----
+        empty_ok = initial == "" and type(initial) is str
+        rec.add(
+            "empty_value_is_empty_string", "PASS" if empty_ok else "FAIL",
+            f"空输入框返回空字符串（type={type(initial).__name__}），不是 None" if empty_ok
+            else f"期望空字符串 str，实测 {initial!r} type={type(initial).__name__}",
+            initial=initial,
+        )
+
+        # ---- 独立确证：与页面侧 IDL value 跨通道一致 ----
+        dom = read_dom(page, [FIXED_TEXT_ID])
+        dom_value = ((dom.get("values") or {}).get(FIXED_TEXT_ID) or {}).get("value")
+        rec.add(
+            "dom_idl_agrees", "PASS" if dom_value == initial else "FAIL",
+            f"与页面侧直读 IDL value 一致（均为 {dom_value!r}）" if dom_value == initial
+            else f"不一致：SDK={initial!r}，页面侧 el.value={dom_value!r}",
+            dom_value=dom_value,
+        )
+
+        # ---- 正向：页面侧写入已知值后必须读回 ----
+        wrote = page.execute_javascript(
+            WRITE_JS, {"id": FIXED_TEXT_ID, "text": MARKER}, execution_world="MAIN")
+        after = element.get_value()
+        write_ok = bool((wrote or {}).get("ok")) and after == MARKER
+        rec.add(
+            "live_write_visible", "PASS" if write_ok else "FAIL",
+            f"页面侧写入 {MARKER!r} 后 get_value 精确读回（写入回执 idl={((wrote or {}).get('idl'))!r}）"
+            if write_ok else
+            f"写入未被读回：写入回执={wrote}，get_value={after!r}",
+            written=MARKER, read=after, write_receipt=wrote,
+        )
+
+        # ---- 独立确证：页面自身提交回显（不经 SDK）----
+        try:
+            page.find(SUBMIT_ELEMENT, timeout=args.element_timeout).click(
+                simulative=False, delay_after=1.2)
+            echo = read_dom(page, [FIXED_TEXT_ID])
+            echo_text = str(echo.get("nativeResult") or "")
+            echo_ok = MARKER in echo_text
+            rec.add(
+                "page_form_state_agrees", "PASS" if echo_ok else "FAIL",
+                f"页面自身提交回显的表单快照 JSON 含 {MARKER!r}，页面认可该值"
+                if echo_ok else
+                f"页面回显未含写入值；回显片段={echo_text[:160]!r}",
+                echo_head=echo_text[:160],
+            )
+        except Exception as exc:  # noqa: BLE001
+            rec.add("page_form_state_agrees", "BLOCKED",
+                    f"页面提交回显通道不可用：{error_detail('submit', exc)}")
+
+        # ---- 重复读取 ----
+        reads = [element.get_value() for _ in range(3)]
+        stable = len(set(reads)) == 1 and reads[0] == MARKER
+        rec.add(
+            "repeat_read_stable", "PASS" if stable else "FAIL",
+            f"连续 3 次读取一致且等于写入值，均为 {MARKER!r}"
+            if stable else f"重复读取不一致：{reads!r}",
+            reads=reads,
+        )
+
+        # ---- 还原并复核 ----
+        page.execute_javascript(
+            WRITE_JS, {"id": FIXED_TEXT_ID, "text": ""}, execution_world="MAIN")
+        restored = element.get_value()
+        restore_ok = restored == ""
+        rec.add(
+            "restore_verified", "PASS" if restore_ok else "FAIL",
+            f"页面侧写回空串后 get_value 返回空字符串，控件已还原"
+            if restore_ok else f"还原失败：get_value={restored!r}",
+            restored=restored,
+        )
+
+        # ---- 负例：没有 value 属性的节点必须返回 None ----
+        try:
+            label = page.find(LABEL_ELEMENT, timeout=args.element_timeout)
+            label_value = label.get_value()
+            none_ok = label_value is None
+            rec.add(
+                "no_value_property_is_none", "PASS" if none_ok else "FAIL",
+                f"无 value 属性的元素（{label.name!r}）返回 None，覆盖 str | None 的 None 分支"
+                if none_ok else
+                f"期望 None，实测 {label_value!r} type={type(label_value).__name__}",
+                label_value=label_value,
+            )
+        except Exception as exc:  # noqa: BLE001
+            rec.add("no_value_property_is_none", "BLOCKED",
+                    f"负例元素绑定失败：{error_detail('find', exc)}")
+
+        # ---- 控件矩阵：各控件 get_value 与页面侧 IDL 一致 ----
+        rows: list[str] = []
+        disagreements: list[str] = []
+        missing: list[str] = []
+        for name, dom_id in MATRIX:
+            try:
+                control = page.find(name, timeout=args.element_timeout)
+            except Exception as exc:  # noqa: BLE001
+                missing.append(f"{name}({type(exc).__name__})")
+                continue
+            try:
+                sdk_value = control.get_value()
+            except Exception as exc:  # noqa: BLE001
+                disagreements.append(f"{name}:get_value {type(exc).__name__}")
+                continue
+            dom_now = read_dom(page, [dom_id])
+            dom_control = ((dom_now.get("values") or {}).get(dom_id) or {})
+            dom_control_value = dom_control.get("value", "<no-node>")
+            rows.append(f"{name.rsplit('_', 1)[-1]}={sdk_value!r}/dom={dom_control_value!r}")
+            if dom_control_value != "<no-node>" and sdk_value != dom_control_value:
+                disagreements.append(f"{name}:{sdk_value!r}!={dom_control_value!r}")
+        matrix_status = "FAIL" if disagreements else ("KNOWN" if missing else "PASS")
+        rec.add(
+            "control_matrix", matrix_status,
+            (f"{len(rows)} 个控件的 get_value 与页面侧 IDL value 全部一致："
+             + "；".join(rows)
+             + (f"；另有 {len(missing)} 个未能绑定：{missing}" if missing else ""))
+            if not disagreements else
+            f"存在不一致：{disagreements}；明细={'；'.join(rows)}",
+            rows=rows, disagreements=disagreements, missing=missing,
+        )
+
+        # ---- 参数校验：零参数合同 ----
+        try:
+            element.get_value("extra")  # type: ignore[call-arg]
+            rec.add("param_positional", "FAIL", "额外位置参数未被拒绝")
+        except TypeError as exc:
+            rec.add("param_positional", "PASS", f"多余位置参数被 TypeError 拒绝：{exc}")
+        except Exception as exc:  # noqa: BLE001
+            rec.add("param_positional", "FAIL", error_detail("期望 TypeError", exc))
+
+        try:
+            element.get_value(timeout=1)  # type: ignore[call-arg]
+            rec.add("param_keyword", "FAIL", "未声明的 timeout 关键字未被拒绝")
+        except TypeError as exc:
+            rec.add("param_keyword", "PASS", f"未声明关键字被 TypeError 拒绝：{exc}")
+        except Exception as exc:  # noqa: BLE001
+            rec.add("param_keyword", "FAIL", error_detail("期望 TypeError", exc))
+
+        # ---- 生命周期 ----
+        page.close(ignore_beforeunload=True)
+        page_closed = True
+        try:
+            element.get_value()
+            rec.add("stale_page_reference", "FAIL", "页面关闭后 get_value 未报错")
+        except Exception as exc:  # noqa: BLE001
+            trace = str(getattr(exc, "trace_info", "") or "")
+            ok = trace == "stale_page_reference" and "失效" in str(exc)
+            rec.add(
+                "stale_page_reference", "PASS" if ok else "FAIL",
+                f"关闭后读取被拒绝：{type(exc).__name__} trace={trace} 消息={exc}"
+                if ok else error_detail("关闭后报错语义不符", exc),
+            )
     except Exception as exc:  # noqa: BLE001
-        results.append(
-            _result(
-                "scenario_orchestration",
-                "FAIL",
-                "真实场景编排失败",
-                **_error_fields(exc),
-            )
-        )
+        rec.add("scenario", "FAIL", error_detail("get_value 场景执行失败", exc))
     finally:
-        results.append(
-            cleanup_resources(
-                package=package,
-                page=page,
-                owned_library_dir=owned_library_dir if owned_library_dir.exists() else None,
-            )
-        )
-    return _report(args, results)
+        cleanup_case()
+
+    statuses = {item["status"] for item in rec.results}
+    code = 1 if "FAIL" in statuses else (2 if "BLOCKED" in statuses else 0)
+    return rec.results, code
 
 
-def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="运行 uiautoma.web.WebElement.get_value() 持久化真实浏览器测试。"
-    )
-    parser.add_argument(
-        "--mode",
-        default="chrome",
-        choices=["chrome"],
-        help="用什么浏览器打开测试页面；默认 chrome。",
-    )
-    parser.add_argument(
-        "--profile-directory",
-        default=DEFAULT_PROFILE_DIRECTORY,
-        help="Chrome Profile 目录标识；默认 Default。",
-    )
-    parser.add_argument(
-        "--target-url",
-        default=DEFAULT_TARGET_URL,
-        help=f"get_value 测试靶场，默认 {DEFAULT_TARGET_URL}",
-    )
-    parser.add_argument(
-        "--element-library",
-        type=Path,
-        default=DEFAULT_ELEMENT_LIBRARY,
-        help="包含 input元素 与 重置_html 的元素库目录。",
-    )
-    parser.add_argument(
-        "--input-element-name",
-        default=DEFAULT_INPUT_ELEMENT_NAME,
-        help=f"输入目标元素名称，默认 {DEFAULT_INPUT_ELEMENT_NAME}。",
-    )
-    parser.add_argument(
-        "--reset-element-name",
-        default=DEFAULT_RESET_ELEMENT_NAME,
-        help=f"重置按钮元素名称，默认 {DEFAULT_RESET_ELEMENT_NAME}。",
-    )
-    parser.add_argument(
-        "--expected-value",
-        default="",
-        help="写入并期望读回的值；默认自动生成随机字符串。",
-    )
-    parser.add_argument("--preflight-timeout", type=float, default=2.0, help="靶场预检超时秒数，默认 2。")
-    parser.add_argument("--runtime-timeout", type=float, default=5.0, help="Runtime 与元素库连接超时秒数，默认 5。")
-    parser.add_argument("--load-timeout", type=float, default=20.0, help="页面创建超时秒数，默认 20。")
-    parser.add_argument("--element-timeout", type=float, default=5.0, help="元素库目标绑定超时秒数，默认 5。")
-    parser.add_argument("--contract-only", action="store_true", help="只检查公开签名，不连接 Runtime、靶场或浏览器。")
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="WebElement.get_value() 元素对象 API 验收")
+    parser.add_argument("--target-url", default=TARGET_URL, help="靶场页面")
+    parser.add_argument("--library", type=Path, default=DEFAULT_LIBRARY, help="元素库目录（只读，测试用副本）")
+    parser.add_argument("--element", default=TEXT_ELEMENT, help="元素库中的主元素名称")
+    parser.add_argument("--mode", choices=("chrome", "edge"), default="chrome")
+    parser.add_argument("--load-timeout", type=float, default=30)
+    parser.add_argument("--element-timeout", type=float, default=10)
+    parser.add_argument("--runtime-timeout", type=float, default=30)
+    parser.add_argument("--contract-only", action="store_true")
+    parser.add_argument("--json", action="store_true", help="在表格后额外输出 JSON 报告（用于归档验收产物）")
     args = parser.parse_args(argv)
-    try:
-        args.target_url = _validate_url(args.target_url, "--target-url")
-    except argparse.ArgumentTypeError as exc:
-        parser.error(str(exc))
-    args.element_library = args.element_library.resolve()
-    args.input_element_name = str(args.input_element_name or "").strip()
-    args.reset_element_name = str(args.reset_element_name or "").strip()
-    args.expected_value = str(args.expected_value if args.expected_value is not None else "").strip()
-    if not args.expected_value:
-        args.expected_value = f"{DEFAULT_VALUE_PREFIX}{uuid.uuid4().hex[:12]}"
-    args.profile_directory = str(args.profile_directory or "").strip()
-    if not args.input_element_name:
-        parser.error("--input-element-name 不能为空")
-    if not args.reset_element_name:
-        parser.error("--reset-element-name 不能为空")
-    if not args.profile_directory or any(char in args.profile_directory for char in ("/", "\\")):
-        parser.error("--profile-directory 必须是不含路径分隔符的 Chrome Profile 目录标识")
-    for name in ("preflight_timeout", "runtime_timeout", "load_timeout", "element_timeout"):
-        if getattr(args, name) <= 0:
-            parser.error(f"--{name.replace('_', '-')} 必须大于 0")
-    return args
+    if min(args.load_timeout, args.element_timeout, args.runtime_timeout) <= 0:
+        parser.error("timeout 参数必须大于 0")
+    if not args.library.is_dir():
+        parser.error(f"元素库不存在: {args.library}")
+    args.temp_root = Path(__file__).resolve().parents[1] / ".pytest_tmp"
+    args.temp_root.mkdir(parents=True, exist_ok=True)
 
-
-def main(argv: Sequence[str] | None = None) -> int:
-    args = parse_args(argv)
-    report, exit_code = run(args)
-    print(json.dumps(report, ensure_ascii=False, indent=2))
-    return exit_code
+    results, code = run(args)
+    print("UIAutoma Web API 测试")
+    print("API     : uiautoma.web.WebElement.get_value")
+    print(f"页面    : {args.target_url}")
+    print(f"元素库  : {args.library}（元素 {args.element}）")
+    print("进度     状态    测试项                  测试结果")
+    print("────────────────────────────────────────────────────────────────────────")
+    for index, current in enumerate(results, 1):
+        status = current["status"]
+        color = {"PASS": GREEN, "BLOCKED": YELLOW, "KNOWN": YELLOW}.get(status, RED)
+        label = {"PASS": "通过", "BLOCKED": "阻塞", "KNOWN": "已知"}.get(status, "失败")
+        print(f"{index:02d}/{len(results):02d}    {color}[{label}]{RESET}  "
+              f"{current['case_id']:<26}  {current['detail']}")
+    print("────────────────────────────────────────────────────────────────────────")
+    summary = "测试通过" if code == 0 else ("测试阻塞" if code == 2 else "测试失败")
+    print(f"{summary} · {sum(item['status'] == 'PASS' for item in results)}/{len(results)} 通过 · 退出码 {code}")
+    if args.json:
+        print(json.dumps({
+            "api": "uiautoma.web.WebElement.get_value",
+            "target_url": args.target_url,
+            "library": str(args.library),
+            "element": args.element,
+            "mode": args.mode,
+            "sdk_path": str(Path(uiautoma.__file__).resolve()),
+            "status": "PASS" if code == 0 else ("BLOCKED" if code == 2 else "FAIL"),
+            "exit_code": code,
+            "results": results,
+        }, ensure_ascii=False, indent=2))
+    return code
 
 
 if __name__ == "__main__":

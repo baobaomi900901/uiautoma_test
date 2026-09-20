@@ -1,0 +1,190 @@
+# WebElement.get_value() 验收原始输出（2026-09-20）
+# 被测 worktree : D:\code\desktop
+# 基线 commit   : c101caa9dcd115a461fc71ecaed351b0dea880b8
+# 靶场          : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+# 元素库/元素   : D:\code\元素库\260902_web元素 -> web靶场_表单测试_原生_输入框
+# 复测命令      : uv run .\web\test_web_element_get_value.py
+# 归档说明      : 连续 3 次完整运行全绿（17/17，退出码 0）；本文件为第 3 次运行完整 stdout（含 --json）。
+# 附加验证      : 强制开启动态 ID 后脚本自行恢复并仍 17/17（见 evidence 第 4 节）。
+# 结果          : 17/17 通过 · 退出码 0
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.get_value
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+元素库  : D:\code\元素库\260902_web元素（元素 web靶场_表单测试_原生_输入框）
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/17    [92m[通过][0m  api_contract                get_value 无参数、返回注解含 None（签名 (self) -> 'str | None'，返回注解 'str | None'）（耗时 0.00s）
+02/17    [92m[通过][0m  library_prepare             元素库副本已打开（260902_web元素），Runtime 0.1.0 协议 1，进入时 16 个标签（耗时 0.22s）
+03/17    [92m[通过][0m  page_prepare                目标页面已打开：title='iframe + Shadow 表单测试'（期望 'iframe + Shadow 表单测试'）（耗时 0.63s）
+04/17    [92m[通过][0m  dynamic_id_precondition     动态 ID 已关闭，DOM 实际 id='form-controls-native-text'（本轮进入时即为关闭）（耗时 0.02s）
+05/17    [92m[通过][0m  element_bind                库元素绑定成功：find_all 命中 1 个，返回单一 WebElement（id=rt:web:caeb4a1cf0594e4f9ddab19c85ecd908）（耗时 0.05s）
+06/17    [92m[通过][0m  empty_value_is_empty_string  空输入框返回空字符串（type=str），不是 None（耗时 0.01s）
+07/17    [92m[通过][0m  dom_idl_agrees              与页面侧直读 IDL value 一致（均为 ''）（耗时 0.02s）
+08/17    [92m[通过][0m  live_write_visible          页面侧写入 'uiautoma-get-value-probe' 后 get_value 精确读回（写入回执 idl='uiautoma-get-value-probe'）（耗时 0.03s）
+09/17    [92m[通过][0m  page_form_state_agrees      页面自身提交回显的表单快照 JSON 含 'uiautoma-get-value-probe'，页面认可该值（耗时 1.25s）
+10/17    [92m[通过][0m  repeat_read_stable          连续 3 次读取一致且等于写入值，均为 'uiautoma-get-value-probe'（耗时 0.04s）
+11/17    [92m[通过][0m  restore_verified            页面侧写回空串后 get_value 返回空字符串，控件已还原（耗时 0.03s）
+12/17    [92m[通过][0m  no_value_property_is_none   无 value 属性的元素（' 男'）返回 None，覆盖 str | None 的 None 分支（耗时 0.03s）
+13/17    [92m[通过][0m  control_matrix              7 个控件的 get_value 与页面侧 IDL value 全部一致：密码输入框=''/dom=''；邮件输入框=''/dom=''；数字输入框=''/dom=''；文本域=''/dom=''；select单选=''/dom=''；滑块='0'/dom='0'；提交=''/dom=''（耗时 0.33s）
+14/17    [92m[通过][0m  param_positional            多余位置参数被 TypeError 拒绝：WebElement.get_value() takes 1 positional argument but 2 were given（耗时 0.00s）
+15/17    [92m[通过][0m  param_keyword               未声明关键字被 TypeError 拒绝：WebElement.get_value() got an unexpected keyword argument 'timeout'（耗时 0.00s）
+16/17    [92m[通过][0m  stale_page_reference        关闭后读取被拒绝：ActionError trace=stale_page_reference 消息=网页对象已失效（耗时 0.07s）
+17/17    [92m[通过][0m  cleanup                     测试页面与 Package 已关闭，元素库副本已删除；标签数 16 → 16（用户可能同时浏览，仅作诊断）（耗时 0.86s）
+────────────────────────────────────────────────────────────────────────
+测试通过 · 17/17 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebElement.get_value",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "element": "web靶场_表单测试_原生_输入框",
+  "mode": "chrome",
+  "sdk_path": "D:\\code\\desktop\\sdk\\src\\uiautoma\\__init__.py",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "get_value 无参数、返回注解含 None（签名 (self) -> 'str | None'，返回注解 'str | None'）（耗时 0.00s）",
+      "elapsed": 0.0,
+      "signature": "(self) -> 'str | None'",
+      "return_annotation": "str | None"
+    },
+    {
+      "case_id": "library_prepare",
+      "status": "PASS",
+      "detail": "元素库副本已打开（260902_web元素），Runtime 0.1.0 协议 1，进入时 16 个标签（耗时 0.22s）",
+      "elapsed": 0.218,
+      "runtime_version": "0.1.0",
+      "tabs_before": 16
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "目标页面已打开：title='iframe + Shadow 表单测试'（期望 'iframe + Shadow 表单测试'）（耗时 0.63s）",
+      "elapsed": 0.627,
+      "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+      "title": "iframe + Shadow 表单测试"
+    },
+    {
+      "case_id": "dynamic_id_precondition",
+      "status": "PASS",
+      "detail": "动态 ID 已关闭，DOM 实际 id='form-controls-native-text'（本轮进入时即为关闭）（耗时 0.02s）",
+      "elapsed": 0.017,
+      "text_id": "form-controls-native-text",
+      "turned_off": false
+    },
+    {
+      "case_id": "element_bind",
+      "status": "PASS",
+      "detail": "库元素绑定成功：find_all 命中 1 个，返回单一 WebElement（id=rt:web:caeb4a1cf0594e4f9ddab19c85ecd908）（耗时 0.05s）",
+      "elapsed": 0.048,
+      "hits": 1,
+      "element_id": "rt:web:caeb4a1cf0594e4f9ddab19c85ecd908"
+    },
+    {
+      "case_id": "empty_value_is_empty_string",
+      "status": "PASS",
+      "detail": "空输入框返回空字符串（type=str），不是 None（耗时 0.01s）",
+      "elapsed": 0.01,
+      "initial": ""
+    },
+    {
+      "case_id": "dom_idl_agrees",
+      "status": "PASS",
+      "detail": "与页面侧直读 IDL value 一致（均为 ''）（耗时 0.02s）",
+      "elapsed": 0.018,
+      "dom_value": ""
+    },
+    {
+      "case_id": "live_write_visible",
+      "status": "PASS",
+      "detail": "页面侧写入 'uiautoma-get-value-probe' 后 get_value 精确读回（写入回执 idl='uiautoma-get-value-probe'）（耗时 0.03s）",
+      "elapsed": 0.029,
+      "written": "uiautoma-get-value-probe",
+      "read": "uiautoma-get-value-probe",
+      "write_receipt": {
+        "attr": "uiautoma-get-value-probe",
+        "hasAttr": true,
+        "idl": "uiautoma-get-value-probe",
+        "ok": true
+      }
+    },
+    {
+      "case_id": "page_form_state_agrees",
+      "status": "PASS",
+      "detail": "页面自身提交回显的表单快照 JSON 含 'uiautoma-get-value-probe'，页面认可该值（耗时 1.25s）",
+      "elapsed": 1.253,
+      "echo_head": "{\n  \"text\": \"uiautoma-get-value-probe\",\n  \"password\": \"\",\n  \"email\": \"\",\n  \"number\": null,\n  \"date\": \"\",\n  \"time\": \"\",\n  \"search\": \"\",\n  \"disabled\": \"不可编辑\",\n  \""
+    },
+    {
+      "case_id": "repeat_read_stable",
+      "status": "PASS",
+      "detail": "连续 3 次读取一致且等于写入值，均为 'uiautoma-get-value-probe'（耗时 0.04s）",
+      "elapsed": 0.044,
+      "reads": [
+        "uiautoma-get-value-probe",
+        "uiautoma-get-value-probe",
+        "uiautoma-get-value-probe"
+      ]
+    },
+    {
+      "case_id": "restore_verified",
+      "status": "PASS",
+      "detail": "页面侧写回空串后 get_value 返回空字符串，控件已还原（耗时 0.03s）",
+      "elapsed": 0.033,
+      "restored": ""
+    },
+    {
+      "case_id": "no_value_property_is_none",
+      "status": "PASS",
+      "detail": "无 value 属性的元素（' 男'）返回 None，覆盖 str | None 的 None 分支（耗时 0.03s）",
+      "elapsed": 0.031,
+      "label_value": null
+    },
+    {
+      "case_id": "control_matrix",
+      "status": "PASS",
+      "detail": "7 个控件的 get_value 与页面侧 IDL value 全部一致：密码输入框=''/dom=''；邮件输入框=''/dom=''；数字输入框=''/dom=''；文本域=''/dom=''；select单选=''/dom=''；滑块='0'/dom='0'；提交=''/dom=''（耗时 0.33s）",
+      "elapsed": 0.33,
+      "rows": [
+        "密码输入框=''/dom=''",
+        "邮件输入框=''/dom=''",
+        "数字输入框=''/dom=''",
+        "文本域=''/dom=''",
+        "select单选=''/dom=''",
+        "滑块='0'/dom='0'",
+        "提交=''/dom=''"
+      ],
+      "disagreements": [],
+      "missing": []
+    },
+    {
+      "case_id": "param_positional",
+      "status": "PASS",
+      "detail": "多余位置参数被 TypeError 拒绝：WebElement.get_value() takes 1 positional argument but 2 were given（耗时 0.00s）",
+      "elapsed": 0.0
+    },
+    {
+      "case_id": "param_keyword",
+      "status": "PASS",
+      "detail": "未声明关键字被 TypeError 拒绝：WebElement.get_value() got an unexpected keyword argument 'timeout'（耗时 0.00s）",
+      "elapsed": 0.0
+    },
+    {
+      "case_id": "stale_page_reference",
+      "status": "PASS",
+      "detail": "关闭后读取被拒绝：ActionError trace=stale_page_reference 消息=网页对象已失效（耗时 0.07s）",
+      "elapsed": 0.065
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "测试页面与 Package 已关闭，元素库副本已删除；标签数 16 → 16（用户可能同时浏览，仅作诊断）（耗时 0.86s）",
+      "elapsed": 0.855,
+      "tabs_before": 16,
+      "tabs_after": 16
+    }
+  ]
+}
+
