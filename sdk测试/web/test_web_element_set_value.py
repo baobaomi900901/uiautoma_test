@@ -56,7 +56,12 @@ from uiautoma import web
 from uiautoma.web import WebBrowser, WebElement
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _web_page_identity import tab_count  # noqa: E402
+from _web_env import (  # noqa: E402
+    check_web_channel,
+    list_chrome_profiles,
+    pin_environment,
+    safe_tab_count,
+)
 
 __test__ = False
 
@@ -185,7 +190,7 @@ def run(args):
     if args.contract_only:
         return rec.results, 0
 
-    baseline_tabs = tab_count(args.mode)
+    baseline_tabs = safe_tab_count(args.mode)
     work_dir = Path(tempfile.mkdtemp(prefix="uiautoma-set-value-", dir=str(args.temp_root)))
     package = None
     page: WebBrowser | None = None
@@ -205,7 +210,7 @@ def run(args):
                 errors.append(f"package: {type(exc).__name__}: {exc}")
         shutil.rmtree(work_dir, ignore_errors=True)
         time.sleep(0.8)
-        after_tabs = tab_count(args.mode)
+        after_tabs = safe_tab_count(args.mode)
         ok = not errors and not work_dir.exists()
         rec.add(
             "cleanup", "PASS" if ok else "FAIL",
@@ -217,6 +222,44 @@ def run(args):
         )
 
     try:
+        # ---- 浏览器通道前置检查 ----
+        # 一次连着多个 Chrome 用户环境/插件时，Runtime 会拒绝所有 web.* 调用
+        # （trace web_environment_ambiguous），get_all 与 create 都不可用。
+        # 这不是产品缺陷、也不是判据问题：按产品提示固定目标用户环境即可继续。
+        channel = check_web_channel(args.mode)
+        pinned_note = ""
+        profiles: list[str] = []
+        profile_error = ""
+        if not channel["ok"]:
+            profiles, profile_error = list_chrome_profiles(args.chrome_user_data_dir)
+            if args.profile or args.chrome_user_data_dir:
+                ok, pinned_note = pin_environment(args.mode, args.profile, args.chrome_user_data_dir)
+                if ok:
+                    channel = check_web_channel(args.mode)
+        if not channel["ok"]:
+            if profiles:
+                hint = "；可选用户环境：" + "、".join(profiles)
+            elif profile_error:
+                hint = f"；无法读取 Chrome Local State（{profile_error}）"
+            else:
+                hint = ""
+            rec.add(
+                "env_prepare", "BLOCKED",
+                f"浏览器通道不可用（{channel['exception']} trace={channel['trace'] or '无'}）："
+                f"{channel['message']}{hint}"
+                + (f"；{pinned_note}" if pinned_note else "")
+                + "；可用 --profile <名称> 指定目标用户环境后重试",
+                trace=channel["trace"], profiles=profiles,
+            )
+            return rec.results, 2
+        baseline_tabs = channel["tabs"]
+        rec.add(
+            "env_prepare", "PASS",
+            f"浏览器通道可用，进入时 {baseline_tabs} 个标签"
+            + (f"（{pinned_note}）" if pinned_note else ""),
+            tabs_before=baseline_tabs,
+        )
+
         # ---- 环境准备 ----
         library_copy = work_dir / "library"
         try:
@@ -531,6 +574,10 @@ def main(argv=None):
     parser.add_argument("--element-timeout", type=float, default=10)
     parser.add_argument("--runtime-timeout", type=float, default=30)
     parser.add_argument("--contract-only", action="store_true")
+    parser.add_argument("--profile", default=None,
+                        help="Chrome 用户环境目录名或显示名；浏览器通道报环境歧义时用它固定目标环境")
+    parser.add_argument("--chrome-user-data-dir", default=None,
+                        help="Chrome 用户数据目录，用于读取可选用户环境列表")
     parser.add_argument("--json", action="store_true", help="在表格后额外输出 JSON 报告（用于归档验收产物）")
     args = parser.parse_args(argv)
     if min(args.load_timeout, args.element_timeout, args.runtime_timeout) <= 0:
