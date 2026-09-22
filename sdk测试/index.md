@@ -45,7 +45,7 @@
 | `uiautoma.web.WebElement.get_text()` | `VERIFIED`（8/8） | [`web/test_web_element_get_text_html.py`](web/test_web_element_get_text_html.py) | [`web/evidence/get_text.md`](web/evidence/get_text.md) | [`sdk/docs/web/get_text.md`](../../sdk/docs/web/get_text.md) |
 | `uiautoma.web.WebElement.get_html()` | `VERIFIED`（17/17；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_get_html.py`](web/test_web_element_get_html.py) | [`web/evidence/get_html.md`](web/evidence/get_html.md) | [`sdk/docs/web/get_html.md`](../../sdk/docs/web/get_html.md) |
 | `uiautoma.web.WebElement.get_value()` | `VERIFIED`（17/17；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_get_value.py`](web/test_web_element_get_value.py) | [`web/evidence/get_value.md`](web/evidence/get_value.md) | [`sdk/docs/web/get_value.md`](../../sdk/docs/web/get_value.md) |
-| `uiautoma.web.WebElement.set_value()` | `VERIFIED` | [`web/test_web_element_set_value.py`](web/test_web_element_set_value.py) | [`web/evidence/set_value.md`](web/evidence/set_value.md) | [`sdk/docs/web/set_value.md`](../../sdk/docs/web/set_value.md) |
+| `uiautoma.web.WebElement.set_value()` | `VERIFIED`（21/21；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_set_value.py`](web/test_web_element_set_value.py) | [`web/evidence/set_value.md`](web/evidence/set_value.md) | [`sdk/docs/web/set_value.md`](../../sdk/docs/web/set_value.md) |
 | `uiautoma.web.WebElement.check()` | `READY_FOR_LIVE` | [`web/test_web_element_check.py`](web/test_web_element_check.py) | [`web/evidence/check.md`](web/evidence/check.md) | [`sdk/docs/web/check.md`](../../sdk/docs/web/check.md) |
 | `uiautoma.web.WebElement.is_checked()` | `READY_FOR_LIVE` | [`web/test_web_element_is_checked.py`](web/test_web_element_is_checked.py) | [`web/evidence/is_checked.md`](web/evidence/is_checked.md) | [`sdk/docs/web/is_checked.md`](../../sdk/docs/web/is_checked.md) |
 | `uiautoma.web.WebElement.is_enabled()` | `READY_FOR_LIVE` | [`web/test_web_element_is_enabled.py`](web/test_web_element_is_enabled.py) | [`web/evidence/is_enabled.md`](web/evidence/is_enabled.md) | [`sdk/docs/web/is_enabled.md`](../../sdk/docs/web/is_enabled.md) |
@@ -316,6 +316,19 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 > 默认开启且状态持久化，开启时固定 id 全部失效，脚本会先读地面真值并只在动态时关闭开关
 > （该分支已双向实测：强制开启后复跑仍 17/17 并还原）。修订说明见
 > [`web/evidence/get_value.md`](web/evidence/get_value.md) 第 5 节。
+>
+> **`WebElement.set_value()` 元素级复验**（2026-09-20，`main@c101caa9`）：21/21 通过，退出码 0，
+> 连续 3 次全绿。靶场与元素同 `get_value`。该 API **没有自己的 RPC**，实现复用
+> `type_text(clear=True, focus=False, mode="set_value")`，引擎只写 `element.value`（IDL）。
+> 核心判据已实测并存证：**不派发 `input`/`change` 事件**（监听计数 0，并用「派发真实事件后计数
+> 变 1」的对照证明计数有效，避免空断言），因此受控框架的表单状态与页面提交值**不会更新**
+> （用页面自身提交回显做 A/B）；**不改变焦点**；**覆盖而非追加**（签名无追加开关）；
+> `<input>` 去换行而 `<textarea>` 保留换行（规范推导对照）；非字符串入参被 `str()` 强转；
+> **非输入元素不报错**——只产生 JS expando（`get_html` 里没有该属性），却会因
+> `get_attribute()` 的 `?? element[name]` 回退被读出来，容易误判。另有两条源码读得、
+> 未作判据的行为：`set_value` 会 `scrollIntoView` 但**不聚焦**；Runtime 非 `input_check` 路径
+> **不校验 `disabled`/`readOnly`**（元素库无对应元素，未实测）。修订说明见
+> [`web/evidence/set_value.md`](web/evidence/set_value.md) 第 5 节。
 >
 > `WebBrowser.go_back()`（2026-09-15）：首次调用稳定失败，引擎原始
 > `failure_reason=Cannot find a next page in history.`，而页面侧 `history.length` 已为 `2`~`3`；

@@ -1,0 +1,207 @@
+# WebElement.set_value() 验收原始输出（2026-09-20）
+# 被测 worktree : D:\code\desktop
+# 基线 commit   : c101caa9dcd115a461fc71ecaed351b0dea880b8
+# 靶场          : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+# 元素库/元素   : D:\code\元素库\260902_web元素 -> web靶场_表单测试_原生_输入框
+# 复测命令      : uv run .\web\test_web_element_set_value.py
+# 归档说明      : 连续 3 次完整运行全绿（21/21，退出码 0）；本文件为第 3 次运行完整 stdout（含 --json）。
+# 结果          : 21/21 通过 · 退出码 0
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.set_value
+页面    : https://baobaomi900901.github.io/xpath/#/iframe-shadow-form
+元素库  : D:\code\元素库\260902_web元素（元素 web靶场_表单测试_原生_输入框）
+进度     状态    测试项                  测试结果
+────────────────────────────────────────────────────────────────────────
+01/21    [92m[通过][0m  api_contract                            set_value 仅一个必填参数 value、返回 None（签名 (self, value: 'str') -> 'None'，返回注解 'None'）（耗时 0.00s）
+02/21    [92m[通过][0m  library_prepare                         元素库副本已打开（260902_web元素），Runtime 0.1.0 协议 1，进入时 3 个标签（耗时 0.22s）
+03/21    [92m[通过][0m  page_prepare                            目标页面已打开：title='iframe + Shadow 表单测试'（期望 'iframe + Shadow 表单测试'）（耗时 0.62s）
+04/21    [92m[通过][0m  dynamic_id_precondition                 动态 ID 已关闭，DOM 实际 id='form-controls-native-text'（本轮进入时即为关闭）（耗时 0.02s）
+05/21    [92m[通过][0m  element_bind                            主元素 find_all 命中 1 个；输入框/文本域/radio label/提交按钮全部绑定成功（耗时 0.11s）
+06/21    [92m[通过][0m  return_none_and_roundtrip               返回 None；get_value 回读 'uiautoma-set-value-probe'；页面侧 el.value 'uiautoma-set-value-probe'——三方一致（耗时 0.06s）
+07/21    [92m[通过][0m  no_input_event                          写值后 input/change 监听计数仍为 0，符合 docstring「不触发输入事件」（耗时 0.00s）
+08/21    [92m[通过][0m  event_counter_control                   对照路径派发真实 input 事件后计数变为 1，证明计数器有效、上一条非空断言（耗时 0.03s）
+09/21    [92m[通过][0m  no_focus_change                         写值前后 shadow root 的 activeElement 均为 None，未被聚焦（耗时 0.06s）
+10/21    [92m[通过][0m  overwrite_not_append                    连续两次写入后为 'B'，是覆盖而不是追加（耗时 0.05s）
+11/21    [92m[通过][0m  empty_string                            写入空串后回读为空字符串 ''（耗时 0.03s）
+12/21    [92m[通过][0m  newline_sanitized_text_input            <input type=text> 写入 'a\nb' 回读 'ab'，符合 value sanitization 去换行语义（耗时 0.03s）
+13/21    [92m[通过][0m  newline_preserved_textarea              <textarea> 写入 'a\nb' 回读 'a\nb'，换行被保留（与 input 形成对照）（耗时 0.03s）
+14/21    [92m[通过][0m  non_string_coerced                      SDK 侧 str(value) 强制转换：123 → '123'，None → 'None'（耗时 0.06s）
+15/21    [92m[通过][0m  non_form_element_expando_not_serialized  非输入元素不报错：get_value 读回 'uiautoma-set-value-probe'，但 get_html 中不含该 value 属性——说明只是 JS expando，没有进入 DOM（耗时 0.06s）
+16/21    [92m[通过][0m  form_state_not_synced                   A/B 对照成立：基线快照 text 为空；set_value 写入后快照仍不含该值（未触发事件）；对照路径派发事件后快照立即包含该值（耗时 3.74s）
+17/21    [92m[通过][0m  param_missing                           缺少必填参数被 TypeError 拒绝：WebElement.set_value() missing 1 required positional argument: 'value'（耗时 0.03s）
+18/21    [92m[通过][0m  param_extra_positional                  多余位置参数被 TypeError 拒绝：WebElement.set_value() takes 2 positional arguments but 3 were given（耗时 0.00s）
+19/21    [92m[通过][0m  param_keyword                           value 可用关键字传入并正确写入（回读 'uiautoma-set-value-probe-kw'）（耗时 0.02s）
+20/21    [92m[通过][0m  stale_page_reference                    关闭后写入被拒绝：ActionError trace=stale_page_reference 消息=网页对象已失效（耗时 0.08s）
+21/21    [92m[通过][0m  cleanup                                 测试页面与 Package 已关闭，元素库副本已删除；标签数 3 → 3（用户可能同时浏览，仅作诊断）（耗时 0.87s）
+────────────────────────────────────────────────────────────────────────
+测试通过 · 21/21 通过 · 退出码 0
+{
+  "api": "uiautoma.web.WebElement.set_value",
+  "target_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "element": "web靶场_表单测试_原生_输入框",
+  "mode": "chrome",
+  "sdk_path": "D:\\code\\desktop\\sdk\\src\\uiautoma\\__init__.py",
+  "status": "PASS",
+  "exit_code": 0,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "detail": "set_value 仅一个必填参数 value、返回 None（签名 (self, value: 'str') -> 'None'，返回注解 'None'）（耗时 0.00s）",
+      "elapsed": 0.0,
+      "signature": "(self, value: 'str') -> 'None'",
+      "return_annotation": "None"
+    },
+    {
+      "case_id": "library_prepare",
+      "status": "PASS",
+      "detail": "元素库副本已打开（260902_web元素），Runtime 0.1.0 协议 1，进入时 3 个标签（耗时 0.22s）",
+      "elapsed": 0.224,
+      "runtime_version": "0.1.0",
+      "tabs_before": 3
+    },
+    {
+      "case_id": "page_prepare",
+      "status": "PASS",
+      "detail": "目标页面已打开：title='iframe + Shadow 表单测试'（期望 'iframe + Shadow 表单测试'）（耗时 0.62s）",
+      "elapsed": 0.62,
+      "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+      "title": "iframe + Shadow 表单测试"
+    },
+    {
+      "case_id": "dynamic_id_precondition",
+      "status": "PASS",
+      "detail": "动态 ID 已关闭，DOM 实际 id='form-controls-native-text'（本轮进入时即为关闭）（耗时 0.02s）",
+      "elapsed": 0.018,
+      "text_id": "form-controls-native-text",
+      "turned_off": false
+    },
+    {
+      "case_id": "element_bind",
+      "status": "PASS",
+      "detail": "主元素 find_all 命中 1 个；输入框/文本域/radio label/提交按钮全部绑定成功（耗时 0.11s）",
+      "elapsed": 0.114,
+      "hits": 1,
+      "element_id": "rt:web:36554e27e5eb4fcf87abf878913e934b"
+    },
+    {
+      "case_id": "return_none_and_roundtrip",
+      "status": "PASS",
+      "detail": "返回 None；get_value 回读 'uiautoma-set-value-probe'；页面侧 el.value 'uiautoma-set-value-probe'——三方一致（耗时 0.06s）",
+      "elapsed": 0.056,
+      "returned": "None",
+      "readback": "uiautoma-set-value-probe",
+      "dom_value": "uiautoma-set-value-probe"
+    },
+    {
+      "case_id": "no_input_event",
+      "status": "PASS",
+      "detail": "写值后 input/change 监听计数仍为 0，符合 docstring「不触发输入事件」（耗时 0.00s）",
+      "elapsed": 0.0,
+      "event_count": 0
+    },
+    {
+      "case_id": "event_counter_control",
+      "status": "PASS",
+      "detail": "对照路径派发真实 input 事件后计数变为 1，证明计数器有效、上一条非空断言（耗时 0.03s）",
+      "elapsed": 0.03,
+      "event_count": 1
+    },
+    {
+      "case_id": "no_focus_change",
+      "status": "PASS",
+      "detail": "写值前后 shadow root 的 activeElement 均为 None，未被聚焦（耗时 0.06s）",
+      "elapsed": 0.063,
+      "focus_before": null,
+      "focus_after": null
+    },
+    {
+      "case_id": "overwrite_not_append",
+      "status": "PASS",
+      "detail": "连续两次写入后为 'B'，是覆盖而不是追加（耗时 0.05s）",
+      "elapsed": 0.046,
+      "value": "B"
+    },
+    {
+      "case_id": "empty_string",
+      "status": "PASS",
+      "detail": "写入空串后回读为空字符串 ''（耗时 0.03s）",
+      "elapsed": 0.03,
+      "value": ""
+    },
+    {
+      "case_id": "newline_sanitized_text_input",
+      "status": "PASS",
+      "detail": "<input type=text> 写入 'a\\nb' 回读 'ab'，符合 value sanitization 去换行语义（耗时 0.03s）",
+      "elapsed": 0.031,
+      "value": "ab"
+    },
+    {
+      "case_id": "newline_preserved_textarea",
+      "status": "PASS",
+      "detail": "<textarea> 写入 'a\\nb' 回读 'a\\nb'，换行被保留（与 input 形成对照）（耗时 0.03s）",
+      "elapsed": 0.03,
+      "value": "a\nb"
+    },
+    {
+      "case_id": "non_string_coerced",
+      "status": "PASS",
+      "detail": "SDK 侧 str(value) 强制转换：123 → '123'，None → 'None'（耗时 0.06s）",
+      "elapsed": 0.063,
+      "coerced_int": "123",
+      "coerced_none": "None"
+    },
+    {
+      "case_id": "non_form_element_expando_not_serialized",
+      "status": "PASS",
+      "detail": "非输入元素不报错：get_value 读回 'uiautoma-set-value-probe'，但 get_html 中不含该 value 属性——说明只是 JS expando，没有进入 DOM（耗时 0.06s）",
+      "elapsed": 0.062,
+      "label_read": "uiautoma-set-value-probe",
+      "label_attr": "uiautoma-set-value-probe",
+      "serialized": false
+    },
+    {
+      "case_id": "form_state_not_synced",
+      "status": "PASS",
+      "detail": "A/B 对照成立：基线快照 text 为空；set_value 写入后快照仍不含该值（未触发事件）；对照路径派发事件后快照立即包含该值（耗时 3.74s）",
+      "elapsed": 3.74,
+      "baseline_clean": true,
+      "set_not_seen": true,
+      "dispatch_seen": true
+    },
+    {
+      "case_id": "param_missing",
+      "status": "PASS",
+      "detail": "缺少必填参数被 TypeError 拒绝：WebElement.set_value() missing 1 required positional argument: 'value'（耗时 0.03s）",
+      "elapsed": 0.025
+    },
+    {
+      "case_id": "param_extra_positional",
+      "status": "PASS",
+      "detail": "多余位置参数被 TypeError 拒绝：WebElement.set_value() takes 2 positional arguments but 3 were given（耗时 0.00s）",
+      "elapsed": 0.0
+    },
+    {
+      "case_id": "param_keyword",
+      "status": "PASS",
+      "detail": "value 可用关键字传入并正确写入（回读 'uiautoma-set-value-probe-kw'）（耗时 0.02s）",
+      "elapsed": 0.024
+    },
+    {
+      "case_id": "stale_page_reference",
+      "status": "PASS",
+      "detail": "关闭后写入被拒绝：ActionError trace=stale_page_reference 消息=网页对象已失效（耗时 0.08s）",
+      "elapsed": 0.08
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "detail": "测试页面与 Package 已关闭，元素库副本已删除；标签数 3 → 3（用户可能同时浏览，仅作诊断）（耗时 0.87s）",
+      "elapsed": 0.866,
+      "tabs_before": 3,
+      "tabs_after": 3
+    }
+  ]
+}
+
