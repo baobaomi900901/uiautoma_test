@@ -15,8 +15,8 @@ WebElement.get_value(self) -> str | None
 
 | 层 | 位置 | 事实 |
 | --- | --- | --- |
-| SDK 公开对象 | `sdk/src/uiautoma/web/element.py:548` | `get_value(self) -> str | None`，无参数，委托 `self._raw.get_value()` |
-| SDK Raw | `sdk/src/uiautoma/_core/client.py:3944` | `get_value(*, timeout: float = 5.0) -> str | None`；docstring「读取 Web 表单元素当前 value property」；`None` 原样返回，其余 `str(...)` |
+| SDK 公开对象 | `sdk/src/uiautoma/web/element.py:548` | `get_value(self) -> str \| None`，无参数，委托 `self._raw.get_value()` |
+| SDK Raw | `sdk/src/uiautoma/_core/client.py:3944` | `get_value(*, timeout: float = 5.0) -> str \| None`；docstring「读取 Web 表单元素当前 value property」；`None` 原样返回，其余 `str(...)` |
 | RPC 名 | — | `web.get_value` |
 | 能力/参数 | `runtime/services/capabilities.py:274,483` | 必填 `package_token` / `element_id` / `timeout_ms`；capability `web_dom_actions_stage5` |
 | Runtime 分发 | `runtime/services/pipe_server.py` | `_handle_web_get_value` → `action_service.web_get_value_element` |
