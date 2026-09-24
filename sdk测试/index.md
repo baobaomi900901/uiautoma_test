@@ -53,7 +53,7 @@
 | `uiautoma.web.WebElement.get_all_attributes()` | `VERIFIED` | [`web/test_web_element_get_all_attributes.py`](web/test_web_element_get_all_attributes.py) | [`web/evidence/get_all_attributes.md`](web/evidence/get_all_attributes.md) | [`sdk/docs/web/get_all_attributes.md`](../../sdk/docs/web/get_all_attributes.md) |
 | `uiautoma.web.WebElement.set_attribute()` | `READY_FOR_LIVE` | [`web/test_web_element_set_attribute_get_attribute.py`](web/test_web_element_set_attribute_get_attribute.py) | [`web/evidence/set_attribute.md`](web/evidence/set_attribute.md) | [`sdk/docs/web/set_attribute.md`](../../sdk/docs/web/set_attribute.md) |
 | `uiautoma.web.WebElement.select()` | `VERIFIED`（2026-09-24：13/14 PASS + 1 KNOWN，连续 3 次退出码 0；标准 `<select>`） | [`web/test_web_element_select.py`](web/test_web_element_select.py) | [`web/evidence/select.md`](web/evidence/select.md) | [`sdk/docs/web/select.md`](../../sdk/docs/web/select.md) |
-| `uiautoma.web.WebElement.select_by_index()` | `VERIFIED` | [`web/test_web_element_select_by_index.py`](web/test_web_element_select_by_index.py) | [`web/evidence/select_by_index.md`](web/evidence/select_by_index.md) | [`sdk/docs/web/select_by_index.md`](../../sdk/docs/web/select_by_index.md) |
+| `uiautoma.web.WebElement.select_by_index()` | `VERIFIED`（2026-09-24：17/18 PASS + 1 KNOWN，连续 3 次退出码 0；标准 `<select>`） | [`web/test_web_element_select_by_index.py`](web/test_web_element_select_by_index.py) | [`web/evidence/select_by_index.md`](web/evidence/select_by_index.md) | [`sdk/docs/web/select_by_index.md`](../../sdk/docs/web/select_by_index.md) |
 | `uiautoma.web.WebElement.select_multiple()` | `VERIFIED`（2026-09-24：20/21 PASS + 1 KNOWN，连续 3 次退出码 0；标准 `<select multiple>`） | [`web/test_web_element_select_multiple.py`](web/test_web_element_select_multiple.py) | [`web/evidence/select_multiple.md`](web/evidence/select_multiple.md) | [`sdk/docs/web/select_multiple.md`](../../sdk/docs/web/select_multiple.md) |
 | `uiautoma.web.WebElement.select_multiple_by_index()` | `READY_FOR_LIVE` | [`web/test_web_element_select_multiple_by_index.py`](web/test_web_element_select_multiple_by_index.py) | [`web/evidence/select_multiple_by_index.md`](web/evidence/select_multiple_by_index.md) | [`sdk/docs/web/select_multiple_by_index.md`](../../sdk/docs/web/select_multiple_by_index.md) |
 | `uiautoma.web.WebElement.get_select_options()` | `READY_FOR_LIVE` | [`web/test_web_element_get_select_options.py`](web/test_web_element_get_select_options.py) | [`web/evidence/get_select_options.md`](web/evidence/get_select_options.md) | [`sdk/docs/web/get_select_options.md`](../../sdk/docs/web/get_select_options.md) |
@@ -105,6 +105,13 @@ App 中确认双匹配并重新抓取，稳定 Ant ID 成为必需条件；在 `
 确证；Ant 库元素是 `input[role=combobox]`，当前 `select()` 按 `element_not_selectable`
 明确拒绝，属已记录的自定义控件边界。旧 `mode='value'` 记录仅适用于 2026-08-09 快照；
 当前合同接受 `fuzzy`、`exact`、`regex`，详见 `web/evidence/select.md`。
+
+`WebElement.select_by_index()` 于 2026-09-24 在 `D:\code\desktop`
+`e08eadd0d6d921ea11579e4acfb894c1c4cee038` 的 dev Runtime 上，以 iframe / Shadow
+靶场的原生 `select#form-controls-native-city` 连续完成 3 次真实复验：每轮 17/18 `PASS`、
+1 `KNOWN`、退出码 0。索引 0、1、2、3、-1、-2 与正负越界的结果由 DOM 和页面提交的
+`city` JSON 确证；Ant 自定义 combobox 按 `element_not_selectable` 拒绝，详见
+`web/evidence/select_by_index.md`。
 
 `WebElement.set_attribute()` 于 2026-08-08 在 Chrome/`form-controls` 完成真实探测：公开
 签名与资源清理通过，但调用抛出 `UnsupportedActionError`（`web.element.set_attribute`

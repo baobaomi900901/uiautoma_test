@@ -1,0 +1,136 @@
+{
+  "api": "uiautoma.web.WebElement.select_by_index",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "e08eadd0d6d921ea11579e4acfb894c1c4cee038",
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "select_by_index(self, index: int, delay_after: float=1) -> None",
+      "actual": "(self, index: 'int', delay_after: 'float' = 1) -> 'None'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/元素库可用；Ant 为 combobox、原生为标准 select；五项 option 符合靶场",
+      "actual": "原标签数=5；开关原状态='false'；Ant={'display': '请选择城市', 'role': 'combobox', 'tag': 'INPUT', 'value': ''}；原生 options=[('请选择城市', ''), ('北京', 'beijing'), ('上海', 'shanghai'), ('广州', 'guangzhou'), ('深圳', 'shenzhen')]",
+      "elapsed_ms": 2611.9
+    },
+    {
+      "case_id": "ant_custom_combobox",
+      "status": "KNOWN",
+      "expected": "Ant 库元素为 input[role=combobox]；select_by_index(1) 拒绝且无状态变化",
+      "actual": "ActionError: 此元素不支持“设置下拉框”操作。非标准下拉框请使用“点击元素”操作，展开后点击目标选项 [trace=element_not_selectable]；前={'display': '请选择城市', 'role': 'combobox', 'tag': 'INPUT', 'value': ''}；后={'display': '请选择城市', 'role': 'combobox', 'tag': 'INPUT', 'value': ''}",
+      "elapsed_ms": 1713.0
+    },
+    {
+      "case_id": "index_one_default",
+      "status": "PASS",
+      "expected": "select_by_index(1) 返回 None；DOM value='beijing'；提交 city='beijing'；重置 value=''",
+      "actual": "返回=None，DOM value='beijing'，提交 city='beijing'，重置 value=''，调用耗时=1014.6ms",
+      "elapsed_ms": 4654.3
+    },
+    {
+      "case_id": "index_two_positional_delay",
+      "status": "PASS",
+      "expected": "select_by_index(2) 返回 None；DOM value='shanghai'；提交 city='shanghai'；重置 value=''",
+      "actual": "返回=None，DOM value='shanghai'，提交 city='shanghai'，重置 value=''，调用耗时=117.0ms",
+      "elapsed_ms": 3977.3
+    },
+    {
+      "case_id": "index_zero_placeholder",
+      "status": "PASS",
+      "expected": "先选择北京；select_by_index(0) 返回 None；DOM value=''；提交 city=''；重置 value=''",
+      "actual": "返回=None，DOM value=''，提交 city=''，重置 value=''，调用耗时=108.9ms",
+      "elapsed_ms": 4052.3
+    },
+    {
+      "case_id": "negative_last",
+      "status": "PASS",
+      "expected": "select_by_index(-1) 返回 None；DOM value='shenzhen'；提交 city='shenzhen'；重置 value=''",
+      "actual": "返回=None，DOM value='shenzhen'，提交 city='shenzhen'，重置 value=''，调用耗时=115.9ms",
+      "elapsed_ms": 3944.0
+    },
+    {
+      "case_id": "negative_second_last",
+      "status": "PASS",
+      "expected": "select_by_index(-2) 返回 None；DOM value='guangzhou'；提交 city='guangzhou'；重置 value=''",
+      "actual": "返回=None，DOM value='guangzhou'，提交 city='guangzhou'，重置 value=''，调用耗时=116.1ms",
+      "elapsed_ms": 4029.5
+    },
+    {
+      "case_id": "positive_out_of_range",
+      "status": "PASS",
+      "expected": "先选择北京；select_by_index(99) 返回 None；DOM value='beijing'；提交 city='beijing'；重置 value=''",
+      "actual": "返回=None，DOM value='beijing'，提交 city='beijing'，重置 value=''，调用耗时=110.2ms",
+      "elapsed_ms": 3983.7
+    },
+    {
+      "case_id": "negative_out_of_range",
+      "status": "PASS",
+      "expected": "先选择北京；select_by_index(-99) 返回 None；DOM value='beijing'；提交 city='beijing'；重置 value=''",
+      "actual": "返回=None，DOM value='beijing'，提交 city='beijing'，重置 value=''，调用耗时=112.4ms",
+      "elapsed_ms": 4048.2
+    },
+    {
+      "case_id": "keyword_index",
+      "status": "PASS",
+      "expected": "select_by_index(3) 返回 None；DOM value='guangzhou'；提交 city='guangzhou'；重置 value=''",
+      "actual": "返回=None，DOM value='guangzhou'，提交 city='guangzhou'，重置 value=''，调用耗时=116.1ms",
+      "elapsed_ms": 3953.7
+    },
+    {
+      "case_id": "bool_index",
+      "status": "PASS",
+      "expected": "bool_index 抛出 InvalidParamsError 且含 'index'；DOM value 不变",
+      "actual": "InvalidParamsError: index 必须是整数；DOM value=''",
+      "elapsed_ms": 1672.0
+    },
+    {
+      "case_id": "float_index",
+      "status": "PASS",
+      "expected": "float_index 抛出 InvalidParamsError 且含 'index'；DOM value 不变",
+      "actual": "InvalidParamsError: index 必须是整数；DOM value=''",
+      "elapsed_ms": 1659.9
+    },
+    {
+      "case_id": "string_index",
+      "status": "PASS",
+      "expected": "string_index 抛出 InvalidParamsError 且含 'index'；DOM value 不变",
+      "actual": "InvalidParamsError: index 必须是整数；DOM value=''",
+      "elapsed_ms": 1666.9
+    },
+    {
+      "case_id": "none_index",
+      "status": "PASS",
+      "expected": "none_index 抛出 InvalidParamsError 且含 'index'；DOM value 不变",
+      "actual": "InvalidParamsError: index 必须是整数；DOM value=''",
+      "elapsed_ms": 1667.0
+    },
+    {
+      "case_id": "index_missing",
+      "status": "PASS",
+      "expected": "index_missing 抛出 TypeError 且含 'index'；DOM value 不变",
+      "actual": "TypeError: WebElement.select_by_index() missing 1 required positional argument: 'index'；DOM value=''",
+      "elapsed_ms": 1670.8
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "库连接关闭后抛 StalePackageError",
+      "actual": "StalePackageError: Package 已关闭；请重新调用 current() 或 open() 获取新会话",
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "恢复开关、关闭本次标签和库连接、删除临时副本；追踪本次标签 ID",
+      "actual": "逐项复核通过；本次标签已关闭；外部标签变动 +0/-0；总数 5->5",
+      "elapsed_ms": 84.9
+    }
+  ],
+  "exit_code": 0
+}
