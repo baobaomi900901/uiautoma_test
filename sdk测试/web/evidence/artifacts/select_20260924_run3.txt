@@ -1,0 +1,108 @@
+{
+  "api": "uiautoma.web.WebElement.select",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "e08eadd0d6d921ea11579e4acfb894c1c4cee038",
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "select(self, item: str, *, mode='fuzzy', delay_after=1) -> None",
+      "actual": "(self, item: 'str', *, mode: 'str' = 'fuzzy', delay_after: 'float' = 1) -> 'None'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/元素库可用；Ant 为 combobox、原生为标准 select；五项 option 符合靶场",
+      "actual": "原标签数=2；开关原状态='false'；Ant={'display': '请选择城市', 'role': 'combobox', 'tag': 'INPUT', 'value': ''}；原生 options=[('请选择城市', ''), ('北京', 'beijing'), ('上海', 'shanghai'), ('广州', 'guangzhou'), ('深圳', 'shenzhen')]",
+      "elapsed_ms": 949.1
+    },
+    {
+      "case_id": "ant_custom_combobox",
+      "status": "KNOWN",
+      "expected": "Ant 库元素为 input[role=combobox]；select('北京', exact) 拒绝且无状态变化",
+      "actual": "ActionError: 此元素不支持“设置下拉框”操作。非标准下拉框请使用“点击元素”操作，展开后点击目标选项 [trace=element_not_selectable]；前={'display': '请选择城市', 'role': 'combobox', 'tag': 'INPUT', 'value': ''}；后={'display': '请选择城市', 'role': 'combobox', 'tag': 'INPUT', 'value': ''}",
+      "elapsed_ms": 1702.9
+    },
+    {
+      "case_id": "fuzzy_default",
+      "status": "PASS",
+      "expected": "select('京', mode='fuzzy') 返回 None；DOM value='beijing'；提交 city='beijing'；重置 value=''",
+      "actual": "返回=None，DOM value='beijing'，提交 city='beijing'，重置 value=''，调用耗时=1015.7ms",
+      "elapsed_ms": 5517.2
+    },
+    {
+      "case_id": "exact_shanghai",
+      "status": "PASS",
+      "expected": "select('上海', mode='exact') 返回 None；DOM value='shanghai'；提交 city='shanghai'；重置 value=''",
+      "actual": "返回=None，DOM value='shanghai'，提交 city='shanghai'，重置 value=''，调用耗时=66.6ms",
+      "elapsed_ms": 3997.6
+    },
+    {
+      "case_id": "regex_guangzhou",
+      "status": "PASS",
+      "expected": "select('^广', mode='regex') 返回 None；DOM value='guangzhou'；提交 city='guangzhou'；重置 value=''",
+      "actual": "返回=None，DOM value='guangzhou'，提交 city='guangzhou'，重置 value=''，调用耗时=65.8ms",
+      "elapsed_ms": 3998.4
+    },
+    {
+      "case_id": "exact_no_match",
+      "status": "PASS",
+      "expected": "先选择北京；select('不存在城市', mode='exact') 返回 None；DOM value='beijing'；提交 city='beijing'；重置 value=''",
+      "actual": "返回=None，DOM value='beijing'，提交 city='beijing'，重置 value=''，调用耗时=61.3ms",
+      "elapsed_ms": 3999.5
+    },
+    {
+      "case_id": "exact_case_sensitive",
+      "status": "PASS",
+      "expected": "select('beijing', mode='exact') 返回 None；DOM value=''；提交 city=''；重置 value=''",
+      "actual": "返回=None，DOM value=''，提交 city=''，重置 value=''，调用耗时=66.4ms",
+      "elapsed_ms": 4002.6
+    },
+    {
+      "case_id": "mode_value_removed",
+      "status": "PASS",
+      "expected": "mode='value' 抛出 InvalidParamsError 且含 'mode'；DOM value 不变",
+      "actual": "InvalidParamsError: mode 必须是 'fuzzy'、'exact' 或 'regex'；DOM value=''",
+      "elapsed_ms": 1670.2
+    },
+    {
+      "case_id": "regex_invalid",
+      "status": "PASS",
+      "expected": "mode='regex', item='[' 抛出 InvalidParamsError 且含 '正则'；DOM value 不变",
+      "actual": "InvalidParamsError: 选项匹配的正则表达式无效 [trace=invalid_params]；DOM value=''",
+      "elapsed_ms": 1682.8
+    },
+    {
+      "case_id": "item_missing",
+      "status": "PASS",
+      "expected": "缺少 item 抛出 TypeError 且含 'item'；DOM value 不变",
+      "actual": "TypeError: WebElement.select() missing 1 required positional argument: 'item'；DOM value=''",
+      "elapsed_ms": 1664.4
+    },
+    {
+      "case_id": "mode_positional",
+      "status": "PASS",
+      "expected": "mode 以位置传入 抛出 TypeError 且含 'positional'；DOM value 不变",
+      "actual": "TypeError: WebElement.select() takes 2 positional arguments but 3 were given；DOM value=''",
+      "elapsed_ms": 1665.0
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "库连接关闭后抛 StalePackageError",
+      "actual": "StalePackageError: Package 已关闭；请重新调用 current() 或 open() 获取新会话",
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "恢复开关、关闭本次标签和库连接、删除临时副本、标签数不变",
+      "actual": "逐项复核通过",
+      "elapsed_ms": 96.0
+    }
+  ],
+  "exit_code": 0
+}

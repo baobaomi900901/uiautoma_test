@@ -1,5 +1,19 @@
 # `uiautoma.web.WebElement.select()` 验证证据
 
+## 2026-09-24 iframe / Shadow 表单复验
+
+- **结果**：`VERIFIED`（标准原生 `<select>`）。完整脚本连续 3 次均为 `13/14 PASS`、`1 KNOWN`、`0 FAIL`、`0 BLOCKED`，退出码 `0`；`cleanup` 每轮 `PASS`。`KNOWN` 是 Ant 自定义 combobox 的明确能力边界，不表示 Ant 选项被成功选中。
+- **源码快照与环境**：只读产品 worktree `D:\code\desktop`，commit `e08eadd0d6d921ea11579e4acfb894c1c4cee038`；本次 dev Runtime、Chrome、<https://baobaomi900901.github.io/xpath/#/iframe-shadow-form>，元素库 `D:\code\元素库\260902_web元素` 的临时副本。以下结论仅对应此快照与环境。
+- **合同**：`select(self, item: str, *, mode: str='fuzzy', delay_after: float=1) -> None`；`item` 必填，`mode` 与 `delay_after` 仅可按名称传入。当前源码接受 `fuzzy`、`exact`、`regex`，不接受旧记录里的 `value`；无效 `mode` 和无效正则抛 `InvalidParamsError`。库连接关闭后再调用抛 `StalePackageError`。
+- **实现链**：`WebElement.select` → `RawWebElement.select` → `web.action.select` → `ActionService.web_select_element` → Page Engine `selectOption`。引擎先要求目标标签为 `<select>`，否则返回 `element_not_selectable`。
+- **真实场景与独立确证**：原生库元素 `web靶场_表单测试_原生_select单选` 唯一对应 `select#form-controls-native-city`。从靶场 DOM 确认选项为“请选择城市”/空值、北京/`beijing`、上海/`shanghai`、广州/`guangzhou`、深圳/`shenzhen`。调用 `select()` 后独立读取 DOM `value`，再点击页面“提交”并读取新产生的 `native-result` JSON 的 `city`，不以方法返回值代替状态证据。默认模糊匹配“京”得到 `beijing`（调用约 1 秒）；精确“上海”得到 `shanghai`；正则 `^广` 得到 `guangzhou`；不存在的选项保留原来选中的北京；精确小写 `beijing` 不匹配中文选项。每例重置后复核空值；无选择时提交 `city=''`，不是 `null`。
+- **Ant 边界**：库元素 `web靶场_表单测试_ant_select单选` 唯一对应 `input#form-controls-ant-city[role=combobox]`，不是 HTML `<select>`。`select('北京', mode='exact')` 抛 `ActionError`，trace `element_not_selectable`，前后显示和值不变。错误文案提示对非标准下拉框先点击控件、再点击目标选项；该点击流程属于其他 API，本轮没有把它算作 `select()` 成功。
+- **判据修订**：初次脚本曾在提交前直接改写 React 结果区文本，导致五个用例读不到新 JSON；去掉该探针后页面正常提交。独立探针证实页面“重置”会清空旧结果区，正式脚本只等待结果区从重置后的文本变为新的 JSON。另将未选择时的 `city` 期望从错误的 `null` 改为靶场实测的 `''`。这些都是测试判据修正，不计为产品缺陷。下方 2026-08-09 的 `mode='value'` 结论属于旧源码快照，不能套用当前合同。
+- **收尾与排除**：每轮关闭本次标签和元素库连接、删除临时库副本、复核 Chrome 标签数与进入前一致，动态 ID 开关恢复原状态。未覆盖 Edge、CEF、Ant 自定义选项的点击流程、多选 `select_multiple()`、动态 ID 开启或超大选项列表；不读写系统剪贴板。
+- **复测**：从 `D:\code\元素库\sdk测试` 运行 `uv run .\web\test_web_element_select_iframe_shadow_form.py --json --report-file .\web\evidence\artifacts\select_20260924_run1.txt`。原始报告：[第 1 轮](artifacts/select_20260924_run1.txt)、[第 2 轮](artifacts/select_20260924_run2.txt)、[第 3 轮](artifacts/select_20260924_run3.txt)。退出码 `0` 为全部通过（允许 `KNOWN`），`1` 为失败，`2` 为环境阻塞。
+
+下列 2026-08-09 的 `form-controls` 与 `select_html` 记录保留为历史证据。
+
 ```yaml
 api: "uiautoma.web.WebElement.select"
 lifecycle: "VERIFIED"
