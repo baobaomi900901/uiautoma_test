@@ -264,13 +264,13 @@
       "tag": "input",
       "required": [
         { "name": "type", "value": "checkbox" },
-        { "name": "value", "value": "音乐" }
+        { "name": "id", "value": "form-controls-ant-hobbyMusic" }
       ],
       "optional": [
         { "name": "class", "value": "ant-checkbox-input" },
         { "name": "index-of-type", "value": 0 },
-        { "name": "index", "value": 0 },
-        { "name": "id", "value": "form-controls-ant-hobbyMusic_lx3lSAYhH3UH" }
+        { "name": "value", "value": "音乐" },
+        { "name": "index", "value": 0 }
       ]
     }
   ],
@@ -278,7 +278,7 @@
     "enabled": false,
     "segments": [
       "//iframe[contains(@src,'/xpath/#/iframe-shadow-form-content')]",
-      "//div[@id='form-shadow-host']/uiautomaShadowRoot//input[@type='checkbox'][@id='form-controls-ant-hobbyMusic_lx3lSAYhH3UH']"
+      "//div[@id='form-shadow-host']/uiautomaShadowRoot//input[@type='checkbox'][@id='form-controls-ant-hobbyMusic']"
     ]
   }
 }

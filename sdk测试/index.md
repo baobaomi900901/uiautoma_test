@@ -46,7 +46,7 @@
 | `uiautoma.web.WebElement.get_html()` | `VERIFIED`（17/17；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_get_html.py`](web/test_web_element_get_html.py) | [`web/evidence/get_html.md`](web/evidence/get_html.md) | [`sdk/docs/web/get_html.md`](../../sdk/docs/web/get_html.md) |
 | `uiautoma.web.WebElement.get_value()` | `VERIFIED`（17/17；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_get_value.py`](web/test_web_element_get_value.py) | [`web/evidence/get_value.md`](web/evidence/get_value.md) | [`sdk/docs/web/get_value.md`](../../sdk/docs/web/get_value.md) |
 | `uiautoma.web.WebElement.set_value()` | `VERIFIED`（21/21；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_set_value.py`](web/test_web_element_set_value.py) | [`web/evidence/set_value.md`](web/evidence/set_value.md) | [`sdk/docs/web/set_value.md`](../../sdk/docs/web/set_value.md) |
-| `uiautoma.web.WebElement.check()` | `READY_FOR_LIVE` | [`web/test_web_element_check.py`](web/test_web_element_check.py) | [`web/evidence/check.md`](web/evidence/check.md) | [`sdk/docs/web/check.md`](../../sdk/docs/web/check.md) |
+| `uiautoma.web.WebElement.check()` | `VERIFIED`（2026-09-24：61/61 PASS，连续 3 次退出码 0） | [`web/test_web_element_check_iframe_shadow_form.py`](web/test_web_element_check_iframe_shadow_form.py) | [`web/evidence/check.md`](web/evidence/check.md) | [`sdk/docs/web/check.md`](../../sdk/docs/web/check.md) |
 | `uiautoma.web.WebElement.is_checked()` | `READY_FOR_LIVE` | [`web/test_web_element_is_checked.py`](web/test_web_element_is_checked.py) | [`web/evidence/is_checked.md`](web/evidence/is_checked.md) | [`sdk/docs/web/is_checked.md`](../../sdk/docs/web/is_checked.md) |
 | `uiautoma.web.WebElement.is_enabled()` | `READY_FOR_LIVE` | [`web/test_web_element_is_enabled.py`](web/test_web_element_is_enabled.py) | [`web/evidence/is_enabled.md`](web/evidence/is_enabled.md) | [`sdk/docs/web/is_enabled.md`](../../sdk/docs/web/is_enabled.md) |
 | `uiautoma.web.WebElement.get_attribute()` | `VERIFIED` | [`web/test_web_element_set_attribute_get_attribute.py`](web/test_web_element_set_attribute_get_attribute.py) | [`web/evidence/get_attribute.md`](web/evidence/get_attribute.md) | [`sdk/docs/web/get_attribute.md`](../../sdk/docs/web/get_attribute.md) |
@@ -86,9 +86,17 @@
 `handle_save_dialog()` 的默认保存场景曾真实通过，但 `wait_complete=True` 已真实复现
 `web_download_timeout`；该缺陷修复并完成当前基线复验前不能进入 `VERIFIED`。
 
-`WebElement.check()` 于 2026-08-08 在 Chrome/`form-controls` 完成真实探测：公开签名与
-资源清理通过，但 label 目标报 `element_not_checkable`，且对 React/Ant 受控复选框
-`check()` 返回成功后真实表单/UI 状态不更新；缺陷修复并复验前不能进入 `VERIFIED`。
+`WebElement.check()` 于 2026-08-08 在旧源码与 Chrome/`form-controls` 上的历史探测中，
+公开签名与资源清理通过，但 label 目标报 `element_not_checkable`，且 React/Ant 受控复选框
+`check()` 返回成功后真实表单/UI 状态不更新。以下是当前源码快照的新证据：
+2026-09-23 使用当前 iframe / Shadow 靶场和两侧新元素库复测，修正脚本时序后，
+Ant 与原生的已定位 `input`、`label` 正向勾选和 checkbox 状态切换均通过 DOM 与提交值验证；
+旧版失败结论不适用于本次源码快照。按用户要求移除剪贴板基线后，Ant「音乐」label 已通过，
+仅 Ant「音乐」input 的旧抓取选择器同时匹配 Ant 与原生两个节点。2026-09-24 用户在
+App 中确认双匹配并重新抓取，稳定 Ant ID 成为必需条件；在 `D:\code\desktop`
+`e08eadd0d6d921ea11579e4acfb894c1c4cee038` 的 dev Runtime 上连续 3 次
+`61/61 PASS`，原阻塞项的 DOM 勾选、提交 `hobbies=['音乐']` 和重置均通过，清理也通过。
+状态升为 `VERIFIED`；9 月 23 日的阻塞保留为历史证据，详见 `web/evidence/check.md`。
 
 `WebElement.set_attribute()` 于 2026-08-08 在 Chrome/`form-controls` 完成真实探测：公开
 签名与资源清理通过，但调用抛出 `UnsupportedActionError`（`web.element.set_attribute`

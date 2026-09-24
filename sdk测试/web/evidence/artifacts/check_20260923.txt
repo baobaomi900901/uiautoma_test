@@ -1,0 +1,437 @@
+{
+  "api": "uiautoma.web.WebElement.check",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "31b5b714a6c2ab1e88a5dfc39d1a5cfba2ada098",
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "check(self, mode='check', delay_after=1) -> None；参数可按位置或名称传入",
+      "actual": "(self, mode: 'str' = 'check', delay_after: 'float' = 1) -> 'None'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/元素库/靶场可用，动态 ID 关闭",
+      "actual": "原标签数=9，开关原状态='false'，元素数=83",
+      "elapsed_ms": 2082.5
+    },
+    {
+      "case_id": "ant_radio_input_男_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值='male'",
+      "actual": "返回=None, DOM checked=True, 提交 gender='male', 重置 checked=False, check 耗时=1011.1ms",
+      "elapsed_ms": 4517.0
+    },
+    {
+      "case_id": "ant_radio_input_女_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值='female'",
+      "actual": "返回=None, DOM checked=True, 提交 gender='female', 重置 checked=False, check 耗时=63.7ms",
+      "elapsed_ms": 3997.5
+    },
+    {
+      "case_id": "ant_checkbox_input_全选_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值=['阅读', '运动', '音乐', '旅行']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['阅读', '运动', '音乐', '旅行'], 重置 checked=False, check 耗时=61.3ms",
+      "elapsed_ms": 4007.9
+    },
+    {
+      "case_id": "ant_checkbox_input_阅读_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值=['阅读']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['阅读'], 重置 checked=False, check 耗时=62.6ms",
+      "elapsed_ms": 4009.3
+    },
+    {
+      "case_id": "ant_checkbox_input_运动_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值=['运动']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['运动'], 重置 checked=False, check 耗时=63.5ms",
+      "elapsed_ms": 3990.3
+    },
+    {
+      "case_id": "ant_checkbox_input_音乐_check",
+      "status": "BLOCKED",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值=['音乐']",
+      "actual": "AmbiguousElementError: 元素匹配结果不唯一；元素库选择器匹配 2 个节点，id=['form-controls-ant-hobbyMusic', 'form-controls-native-hobbyMusic']",
+      "elapsed_ms": 1804.5
+    },
+    {
+      "case_id": "ant_checkbox_input_旅行_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值=['旅行']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['旅行'], 重置 checked=False, check 耗时=62.8ms",
+      "elapsed_ms": 4217.4
+    },
+    {
+      "case_id": "ant_input_mode_1_check",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1302.1
+    },
+    {
+      "case_id": "ant_input_mode_2_check",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1074.3
+    },
+    {
+      "case_id": "ant_input_mode_3_uncheck",
+      "status": "PASS",
+      "expected": "返回 None，checked=False，提交值符合预期",
+      "actual": "返回=None，checked=False，hobbies=[]",
+      "elapsed_ms": 2157.0
+    },
+    {
+      "case_id": "ant_input_mode_4_toggle",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1602.4
+    },
+    {
+      "case_id": "ant_input_mode_5_toggle",
+      "status": "PASS",
+      "expected": "返回 None，checked=False，提交值符合预期",
+      "actual": "返回=None，checked=False，hobbies=[]",
+      "elapsed_ms": 1610.3
+    },
+    {
+      "case_id": "ant_radio_label_男_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值='male'",
+      "actual": "返回=None, DOM checked=True, 提交 gender='male', 重置 checked=False, check 耗时=63.4ms",
+      "elapsed_ms": 4607.8
+    },
+    {
+      "case_id": "ant_radio_label_女_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值='female'",
+      "actual": "返回=None, DOM checked=True, 提交 gender='female', 重置 checked=False, check 耗时=62.2ms",
+      "elapsed_ms": 3983.1
+    },
+    {
+      "case_id": "ant_checkbox_label_全选_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值=['阅读', '运动', '音乐', '旅行']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['阅读', '运动', '音乐', '旅行'], 重置 checked=False, check 耗时=62.1ms",
+      "elapsed_ms": 4017.6
+    },
+    {
+      "case_id": "ant_checkbox_label_阅读_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值=['阅读']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['阅读'], 重置 checked=False, check 耗时=62.4ms",
+      "elapsed_ms": 3983.7
+    },
+    {
+      "case_id": "ant_checkbox_label_运动_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值=['运动']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['运动'], 重置 checked=False, check 耗时=62.6ms",
+      "elapsed_ms": 4002.1
+    },
+    {
+      "case_id": "ant_checkbox_label_音乐_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值=['音乐']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['音乐'], 重置 checked=False, check 耗时=63.1ms",
+      "elapsed_ms": 4014.3
+    },
+    {
+      "case_id": "ant_checkbox_label_旅行_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值=['旅行']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['旅行'], 重置 checked=False, check 耗时=63.1ms",
+      "elapsed_ms": 3974.5
+    },
+    {
+      "case_id": "ant_label_mode_1_check",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1394.1
+    },
+    {
+      "case_id": "ant_label_mode_2_check",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1065.3
+    },
+    {
+      "case_id": "ant_label_mode_3_uncheck",
+      "status": "PASS",
+      "expected": "返回 None，checked=False，提交值符合预期",
+      "actual": "返回=None，checked=False，hobbies=[]",
+      "elapsed_ms": 2080.0
+    },
+    {
+      "case_id": "ant_label_mode_4_toggle",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1609.8
+    },
+    {
+      "case_id": "ant_label_mode_5_toggle",
+      "status": "PASS",
+      "expected": "返回 None，checked=False，提交值符合预期",
+      "actual": "返回=None，checked=False，hobbies=[]",
+      "elapsed_ms": 1621.3
+    },
+    {
+      "case_id": "ant_mode_invalid",
+      "status": "PASS",
+      "expected": "InvalidParamsError 含 mode",
+      "actual": "InvalidParamsError: mode 必须是 'check'、'uncheck' 或 'toggle'",
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "ant_delay_negative",
+      "status": "PASS",
+      "expected": "InvalidParamsError 含 delay_after",
+      "actual": "InvalidParamsError: delay_after 不能小于 0",
+      "elapsed_ms": 4.5
+    },
+    {
+      "case_id": "ant_delay_text",
+      "status": "PASS",
+      "expected": "InvalidParamsError 含 delay_after",
+      "actual": "InvalidParamsError: delay_after 必须是数字",
+      "elapsed_ms": 15.1
+    },
+    {
+      "case_id": "ant_radio_uncheck",
+      "status": "PASS",
+      "expected": "ActionError/radio_cannot_uncheck",
+      "actual": "ActionError: 单选框不支持取消选中或取反 [trace=radio_cannot_uncheck]",
+      "elapsed_ms": 9.6
+    },
+    {
+      "case_id": "ant_radio_toggle",
+      "status": "PASS",
+      "expected": "ActionError/radio_cannot_uncheck",
+      "actual": "ActionError: 单选框不支持取消选中或取反 [trace=radio_cannot_uncheck]",
+      "elapsed_ms": 16.0
+    },
+    {
+      "case_id": "原生_radio_input_男_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值='male'",
+      "actual": "返回=None, DOM checked=True, 提交 gender='male', 重置 checked=False, check 耗时=63.3ms",
+      "elapsed_ms": 4520.4
+    },
+    {
+      "case_id": "原生_radio_input_女_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值='female'",
+      "actual": "返回=None, DOM checked=True, 提交 gender='female', 重置 checked=False, check 耗时=62.8ms",
+      "elapsed_ms": 3996.7
+    },
+    {
+      "case_id": "原生_checkbox_input_全选_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值=['阅读', '运动', '音乐', '旅行']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['阅读', '运动', '音乐', '旅行'], 重置 checked=False, check 耗时=62.2ms",
+      "elapsed_ms": 3983.9
+    },
+    {
+      "case_id": "原生_checkbox_input_阅读_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值=['阅读']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['阅读'], 重置 checked=False, check 耗时=55.1ms",
+      "elapsed_ms": 3986.3
+    },
+    {
+      "case_id": "原生_checkbox_input_运动_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值=['运动']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['运动'], 重置 checked=False, check 耗时=62.9ms",
+      "elapsed_ms": 4041.0
+    },
+    {
+      "case_id": "原生_checkbox_input_音乐_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值=['音乐']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['音乐'], 重置 checked=False, check 耗时=62.2ms",
+      "elapsed_ms": 3976.9
+    },
+    {
+      "case_id": "原生_checkbox_input_旅行_check",
+      "status": "PASS",
+      "expected": "input 的 check(check) 返回 None；DOM checked=True；提交值=['旅行']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['旅行'], 重置 checked=False, check 耗时=63.1ms",
+      "elapsed_ms": 4043.1
+    },
+    {
+      "case_id": "原生_input_mode_1_check",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1301.5
+    },
+    {
+      "case_id": "原生_input_mode_2_check",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1070.1
+    },
+    {
+      "case_id": "原生_input_mode_3_uncheck",
+      "status": "PASS",
+      "expected": "返回 None，checked=False，提交值符合预期",
+      "actual": "返回=None，checked=False，hobbies=[]",
+      "elapsed_ms": 2134.4
+    },
+    {
+      "case_id": "原生_input_mode_4_toggle",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1619.4
+    },
+    {
+      "case_id": "原生_input_mode_5_toggle",
+      "status": "PASS",
+      "expected": "返回 None，checked=False，提交值符合预期",
+      "actual": "返回=None，checked=False，hobbies=[]",
+      "elapsed_ms": 1609.1
+    },
+    {
+      "case_id": "原生_radio_label_男_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值='male'",
+      "actual": "返回=None, DOM checked=True, 提交 gender='male', 重置 checked=False, check 耗时=63.3ms",
+      "elapsed_ms": 4589.6
+    },
+    {
+      "case_id": "原生_radio_label_女_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值='female'",
+      "actual": "返回=None, DOM checked=True, 提交 gender='female', 重置 checked=False, check 耗时=63.2ms",
+      "elapsed_ms": 3976.6
+    },
+    {
+      "case_id": "原生_checkbox_label_全选_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值=['阅读', '运动', '音乐', '旅行']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['阅读', '运动', '音乐', '旅行'], 重置 checked=False, check 耗时=62.5ms",
+      "elapsed_ms": 4040.8
+    },
+    {
+      "case_id": "原生_checkbox_label_阅读_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值=['阅读']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['阅读'], 重置 checked=False, check 耗时=62.7ms",
+      "elapsed_ms": 3971.3
+    },
+    {
+      "case_id": "原生_checkbox_label_运动_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值=['运动']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['运动'], 重置 checked=False, check 耗时=61.4ms",
+      "elapsed_ms": 4006.5
+    },
+    {
+      "case_id": "原生_checkbox_label_音乐_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值=['音乐']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['音乐'], 重置 checked=False, check 耗时=63.3ms",
+      "elapsed_ms": 4001.4
+    },
+    {
+      "case_id": "原生_checkbox_label_旅行_check",
+      "status": "PASS",
+      "expected": "label 的 check(check) 返回 None；DOM checked=True；提交值=['旅行']",
+      "actual": "返回=None, DOM checked=True, 提交 hobbies=['旅行'], 重置 checked=False, check 耗时=62.6ms",
+      "elapsed_ms": 3998.8
+    },
+    {
+      "case_id": "原生_label_mode_1_check",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1395.0
+    },
+    {
+      "case_id": "原生_label_mode_2_check",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1085.2
+    },
+    {
+      "case_id": "原生_label_mode_3_uncheck",
+      "status": "PASS",
+      "expected": "返回 None，checked=False，提交值符合预期",
+      "actual": "返回=None，checked=False，hobbies=[]",
+      "elapsed_ms": 2135.6
+    },
+    {
+      "case_id": "原生_label_mode_4_toggle",
+      "status": "PASS",
+      "expected": "返回 None，checked=True，提交值符合预期",
+      "actual": "返回=None，checked=True，hobbies=['阅读']",
+      "elapsed_ms": 1533.1
+    },
+    {
+      "case_id": "原生_label_mode_5_toggle",
+      "status": "PASS",
+      "expected": "返回 None，checked=False，提交值符合预期",
+      "actual": "返回=None，checked=False，hobbies=[]",
+      "elapsed_ms": 1617.5
+    },
+    {
+      "case_id": "原生_mode_invalid",
+      "status": "PASS",
+      "expected": "InvalidParamsError 含 mode",
+      "actual": "InvalidParamsError: mode 必须是 'check'、'uncheck' 或 'toggle'",
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "原生_delay_negative",
+      "status": "PASS",
+      "expected": "InvalidParamsError 含 delay_after",
+      "actual": "InvalidParamsError: delay_after 不能小于 0",
+      "elapsed_ms": 5.4
+    },
+    {
+      "case_id": "原生_delay_text",
+      "status": "PASS",
+      "expected": "InvalidParamsError 含 delay_after",
+      "actual": "InvalidParamsError: delay_after 必须是数字",
+      "elapsed_ms": 16.2
+    },
+    {
+      "case_id": "原生_radio_uncheck",
+      "status": "PASS",
+      "expected": "ActionError/radio_cannot_uncheck",
+      "actual": "ActionError: 单选框不支持取消选中或取反 [trace=radio_cannot_uncheck]",
+      "elapsed_ms": 9.6
+    },
+    {
+      "case_id": "原生_radio_toggle",
+      "status": "PASS",
+      "expected": "ActionError/radio_cannot_uncheck",
+      "actual": "ActionError: 单选框不支持取消选中或取反 [trace=radio_cannot_uncheck]",
+      "elapsed_ms": 14.8
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "动态 ID 开关恢复；本次页面与元素库连接关闭，临时副本删除，标签数恢复",
+      "actual": "逐项复核通过",
+      "elapsed_ms": 110.9
+    }
+  ],
+  "exit_code": 2
+}
