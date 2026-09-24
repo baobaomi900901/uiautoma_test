@@ -1,0 +1,171 @@
+{
+  "api": "uiautoma.web.WebElement.select_multiple_by_index",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "e08eadd0d6d921ea11579e4acfb894c1c4cee038",
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "select_multiple_by_index(self, indexes: list[int], *, append=False, delay_after=1) -> None",
+      "actual": "(self, indexes: 'list[int]', *, append: 'bool' = False, delay_after: 'float' = 1) -> 'None'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/库可用；原生 select multiple 四项 option；Ant 为 div",
+      "actual": "原标签数=6；开关原状态='false'；原生 options=[('北京', 'beijing'), ('上海', 'shanghai'), ('广州', 'guangzhou'), ('深圳', 'shenzhen')]；Ant={'tag': 'DIV', 'text': '\\xa0请选择城市（可多选）', 'value': ''}",
+      "elapsed_ms": 1084.7
+    },
+    {
+      "case_id": "ant_custom_multiselect",
+      "status": "KNOWN",
+      "expected": "Ant 库元素是 div；select_multiple_by_index([0,1]) 抛 ActionError/element_not_selectable，状态不变",
+      "actual": "ActionError: 此元素不支持“设置下拉框”操作。非标准下拉框请使用“点击元素”操作，展开后点击目标选项 [trace=element_not_selectable]；Ant 前={'tag': 'DIV', 'text': '\\xa0请选择城市（可多选）', 'value': ''}；后={'tag': 'DIV', 'text': '\\xa0请选择城市（可多选）', 'value': ''}",
+      "elapsed_ms": 204.5
+    },
+    {
+      "case_id": "indexes_default",
+      "status": "PASS",
+      "expected": "select_multiple_by_index([0, 2], append=False) 返回 None；DOM 与提交 cities=['beijing', 'guangzhou']；重置=[]",
+      "actual": "返回=None，DOM=['beijing', 'guangzhou']，提交 cities=['beijing', 'guangzhou']，重置=[]，调用耗时=1016.4ms",
+      "elapsed_ms": 4962.4
+    },
+    {
+      "case_id": "negative_indexes",
+      "status": "PASS",
+      "expected": "select_multiple_by_index([-1, -2], append=False) 返回 None；DOM 与提交 cities=['guangzhou', 'shenzhen']；重置=[]",
+      "actual": "返回=None，DOM=['guangzhou', 'shenzhen']，提交 cities=['guangzhou', 'shenzhen']，重置=[]，调用耗时=116.1ms",
+      "elapsed_ms": 3965.9
+    },
+    {
+      "case_id": "unordered_indexes",
+      "status": "PASS",
+      "expected": "select_multiple_by_index([2, 0], append=False) 返回 None；DOM 与提交 cities=['beijing', 'guangzhou']；重置=[]",
+      "actual": "返回=None，DOM=['beijing', 'guangzhou']，提交 cities=['beijing', 'guangzhou']，重置=[]，调用耗时=114.9ms",
+      "elapsed_ms": 4047.6
+    },
+    {
+      "case_id": "duplicate_indexes",
+      "status": "PASS",
+      "expected": "select_multiple_by_index([1, 1], append=False) 返回 None；DOM 与提交 cities=['shanghai']；重置=[]",
+      "actual": "返回=None，DOM=['shanghai']，提交 cities=['shanghai']，重置=[]，调用耗时=114.8ms",
+      "elapsed_ms": 3950.0
+    },
+    {
+      "case_id": "append_true",
+      "status": "PASS",
+      "expected": "预选北京；select_multiple_by_index([2], append=True) 返回 None；DOM 与提交 cities=['beijing', 'guangzhou']；重置=[]",
+      "actual": "返回=None，DOM=['beijing', 'guangzhou']，提交 cities=['beijing', 'guangzhou']，重置=[]，调用耗时=114.2ms",
+      "elapsed_ms": 4020.2
+    },
+    {
+      "case_id": "append_false",
+      "status": "PASS",
+      "expected": "预选北京；select_multiple_by_index([2], append=False) 返回 None；DOM 与提交 cities=['guangzhou']；重置=[]",
+      "actual": "返回=None，DOM=['guangzhou']，提交 cities=['guangzhou']，重置=[]，调用耗时=114.9ms",
+      "elapsed_ms": 4022.9
+    },
+    {
+      "case_id": "empty_replace",
+      "status": "PASS",
+      "expected": "预选北京；select_multiple_by_index([], append=False) 返回 None；DOM 与提交 cities=[]；重置=[]",
+      "actual": "返回=None，DOM=[]，提交 cities=[]，重置=[]，调用耗时=113.5ms",
+      "elapsed_ms": 4026.3
+    },
+    {
+      "case_id": "empty_append",
+      "status": "PASS",
+      "expected": "预选北京；select_multiple_by_index([], append=True) 返回 None；DOM 与提交 cities=['beijing']；重置=[]",
+      "actual": "返回=None，DOM=['beijing']，提交 cities=['beijing']，重置=[]，调用耗时=114.4ms",
+      "elapsed_ms": 3930.4
+    },
+    {
+      "case_id": "out_of_range_replace",
+      "status": "PASS",
+      "expected": "预选北京；select_multiple_by_index([99, -99], append=False) 返回 None；DOM 与提交 cities=[]；重置=[]",
+      "actual": "返回=None，DOM=[]，提交 cities=[]，重置=[]，调用耗时=112.4ms",
+      "elapsed_ms": 4012.9
+    },
+    {
+      "case_id": "out_of_range_append",
+      "status": "PASS",
+      "expected": "预选北京；select_multiple_by_index([99, -99], append=True) 返回 None；DOM 与提交 cities=['beijing']；重置=[]",
+      "actual": "返回=None，DOM=['beijing']，提交 cities=['beijing']，重置=[]，调用耗时=112.0ms",
+      "elapsed_ms": 4012.8
+    },
+    {
+      "case_id": "mixed_valid_out_of_range",
+      "status": "PASS",
+      "expected": "select_multiple_by_index([99, 3, -99], append=False) 返回 None；DOM 与提交 cities=['shenzhen']；重置=[]",
+      "actual": "返回=None，DOM=['shenzhen']，提交 cities=['shenzhen']，重置=[]，调用耗时=116.5ms",
+      "elapsed_ms": 3964.3
+    },
+    {
+      "case_id": "keyword_indexes",
+      "status": "PASS",
+      "expected": "select_multiple_by_index([1], append=False) 返回 None；DOM 与提交 cities=['shanghai']；重置=[]",
+      "actual": "返回=None，DOM=['shanghai']，提交 cities=['shanghai']，重置=[]，调用耗时=116.5ms",
+      "elapsed_ms": 4048.4
+    },
+    {
+      "case_id": "indexes_tuple",
+      "status": "PASS",
+      "expected": "indexes_tuple 抛 InvalidParamsError，错误含 'indexes'；DOM 不变",
+      "actual": "InvalidParamsError: indexes 必须是整数列表；前=[]；后=[]",
+      "elapsed_ms": 1688.6
+    },
+    {
+      "case_id": "indexes_mixed",
+      "status": "PASS",
+      "expected": "indexes_mixed 抛 InvalidParamsError，错误含 'indexes'；DOM 不变",
+      "actual": "InvalidParamsError: indexes 必须是整数列表；前=[]；后=[]",
+      "elapsed_ms": 1683.6
+    },
+    {
+      "case_id": "indexes_bool",
+      "status": "PASS",
+      "expected": "indexes_bool 抛 InvalidParamsError，错误含 'indexes'；DOM 不变",
+      "actual": "InvalidParamsError: indexes 必须是整数列表；前=[]；后=[]",
+      "elapsed_ms": 1681.2
+    },
+    {
+      "case_id": "indexes_float",
+      "status": "PASS",
+      "expected": "indexes_float 抛 InvalidParamsError，错误含 'indexes'；DOM 不变",
+      "actual": "InvalidParamsError: indexes 必须是整数列表；前=[]；后=[]",
+      "elapsed_ms": 1678.5
+    },
+    {
+      "case_id": "indexes_missing",
+      "status": "PASS",
+      "expected": "indexes_missing 抛 TypeError，错误含 'indexes'；DOM 不变",
+      "actual": "TypeError: WebElement.select_multiple_by_index() missing 1 required positional argument: 'indexes'；前=[]；后=[]",
+      "elapsed_ms": 1683.3
+    },
+    {
+      "case_id": "append_positional",
+      "status": "PASS",
+      "expected": "append_positional 抛 TypeError，错误含 'positional'；DOM 不变",
+      "actual": "TypeError: WebElement.select_multiple_by_index() takes 2 positional arguments but 3 were given；前=[]；后=[]",
+      "elapsed_ms": 1691.5
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "库连接关闭后抛 StalePackageError",
+      "actual": "StalePackageError: Package 已关闭；请重新调用 current() 或 open() 获取新会话",
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "恢复开关、关闭本次标签和库连接、删除临时副本；独立追踪本次标签 ID",
+      "actual": "逐项复核通过；本次标签已关闭；外部标签变动 +0/-0；总数 6->6",
+      "elapsed_ms": 99.5
+    }
+  ],
+  "exit_code": 0
+}

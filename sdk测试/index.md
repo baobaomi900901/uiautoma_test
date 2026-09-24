@@ -55,7 +55,7 @@
 | `uiautoma.web.WebElement.select()` | `VERIFIED`（2026-09-24：13/14 PASS + 1 KNOWN，连续 3 次退出码 0；标准 `<select>`） | [`web/test_web_element_select.py`](web/test_web_element_select.py) | [`web/evidence/select.md`](web/evidence/select.md) | [`sdk/docs/web/select.md`](../../sdk/docs/web/select.md) |
 | `uiautoma.web.WebElement.select_by_index()` | `VERIFIED`（2026-09-24：17/18 PASS + 1 KNOWN，连续 3 次退出码 0；标准 `<select>`） | [`web/test_web_element_select_by_index.py`](web/test_web_element_select_by_index.py) | [`web/evidence/select_by_index.md`](web/evidence/select_by_index.md) | [`sdk/docs/web/select_by_index.md`](../../sdk/docs/web/select_by_index.md) |
 | `uiautoma.web.WebElement.select_multiple()` | `VERIFIED`（2026-09-24：20/21 PASS + 1 KNOWN，连续 3 次退出码 0；标准 `<select multiple>`） | [`web/test_web_element_select_multiple.py`](web/test_web_element_select_multiple.py) | [`web/evidence/select_multiple.md`](web/evidence/select_multiple.md) | [`sdk/docs/web/select_multiple.md`](../../sdk/docs/web/select_multiple.md) |
-| `uiautoma.web.WebElement.select_multiple_by_index()` | `READY_FOR_LIVE` | [`web/test_web_element_select_multiple_by_index.py`](web/test_web_element_select_multiple_by_index.py) | [`web/evidence/select_multiple_by_index.md`](web/evidence/select_multiple_by_index.md) | [`sdk/docs/web/select_multiple_by_index.md`](../../sdk/docs/web/select_multiple_by_index.md) |
+| `uiautoma.web.WebElement.select_multiple_by_index()` | `VERIFIED`（2026-09-24：22/23 PASS + 1 KNOWN，连续 3 次退出码 0；标准 `<select multiple>`） | [`web/test_web_element_select_multiple_by_index.py`](web/test_web_element_select_multiple_by_index.py) | [`web/evidence/select_multiple_by_index.md`](web/evidence/select_multiple_by_index.md) | [`sdk/docs/web/select_multiple_by_index.md`](../../sdk/docs/web/select_multiple_by_index.md) |
 | `uiautoma.web.WebElement.get_select_options()` | `READY_FOR_LIVE` | [`web/test_web_element_get_select_options.py`](web/test_web_element_get_select_options.py) | [`web/evidence/get_select_options.md`](web/evidence/get_select_options.md) | [`sdk/docs/web/get_select_options.md`](../../sdk/docs/web/get_select_options.md) |
 | `uiautoma.web.WebElement.get_all_select_items()` | `READY_FOR_LIVE` | [`web/test_web_element_get_all_select_items.py`](web/test_web_element_get_all_select_items.py) | [`web/evidence/get_all_select_items.md`](web/evidence/get_all_select_items.md) | [`sdk/docs/web/get_all_select_items.md`](../../sdk/docs/web/get_all_select_items.md) |
 | `uiautoma.web.WebElement.get_selected_item()` | `READY_FOR_LIVE` | [`web/test_web_element_get_selected_item.py`](web/test_web_element_get_selected_item.py) | [`web/evidence/get_selected_item.md`](web/evidence/get_selected_item.md) | [`sdk/docs/web/get_selected_item.md`](../../sdk/docs/web/get_selected_item.md) |
@@ -123,8 +123,13 @@ App 中确认双匹配并重新抓取，稳定 Ant ID 成为必需条件；在 `
 20/21 `PASS`、1 `KNOWN`、退出码 0。模糊、精确、正则、追加、覆盖、空列表与无匹配的
 选中状态均由 DOM 和页面提交的 `cities` JSON 确证；Ant 库元素是自定义 `div`，当前
 `select_multiple()` 明确拒绝，详见 `web/evidence/select_multiple.md`。2026-08-09 的
-`UnsupportedActionError` 仅适用于旧源码快照。`select_multiple_by_index()` 在该旧快照
-同样抛 `UnsupportedActionError`，本轮未复验，仍为 `READY_FOR_LIVE`。
+`UnsupportedActionError` 仅适用于旧源码快照。
+
+`WebElement.select_multiple_by_index()` 于 2026-09-24 在同一产品快照与 dev Runtime 上，
+以原生 `select#form-controls-native-cities[multiple]` 连续完成 3 次真实复验：每轮
+22/23 `PASS`、1 `KNOWN`、退出码 0。负索引、重复索引、越界、追加、覆盖、空列表和无效
+参数均经 DOM 与页面提交的 `cities` JSON 确证；Ant 自定义多选控件按
+`element_not_selectable` 拒绝，详见 `web/evidence/select_multiple_by_index.md`。
 
 `WebElement.get_select_options()` 于 2026-08-09 在 Chrome/`form-controls`、元素
 `select_html` 上完成真实探测：公开签名与资源清理通过，但调用抛出
