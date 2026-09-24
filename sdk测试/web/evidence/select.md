@@ -10,9 +10,9 @@
 - **Ant 边界**：库元素 `web靶场_表单测试_ant_select单选` 唯一对应 `input#form-controls-ant-city[role=combobox]`，不是 HTML `<select>`。`select('北京', mode='exact')` 抛 `ActionError`，trace `element_not_selectable`，前后显示和值不变。错误文案提示对非标准下拉框先点击控件、再点击目标选项；该点击流程属于其他 API，本轮没有把它算作 `select()` 成功。
 - **判据修订**：初次脚本曾在提交前直接改写 React 结果区文本，导致五个用例读不到新 JSON；去掉该探针后页面正常提交。独立探针证实页面“重置”会清空旧结果区，正式脚本只等待结果区从重置后的文本变为新的 JSON。另将未选择时的 `city` 期望从错误的 `null` 改为靶场实测的 `''`。这些都是测试判据修正，不计为产品缺陷。下方 2026-08-09 的 `mode='value'` 结论属于旧源码快照，不能套用当前合同。
 - **收尾与排除**：每轮关闭本次标签和元素库连接、删除临时库副本、复核 Chrome 标签数与进入前一致，动态 ID 开关恢复原状态。未覆盖 Edge、CEF、Ant 自定义选项的点击流程、多选 `select_multiple()`、动态 ID 开启或超大选项列表；不读写系统剪贴板。
-- **复测**：从 `D:\code\元素库\sdk测试` 运行 `uv run .\web\test_web_element_select_iframe_shadow_form.py --json --report-file .\web\evidence\artifacts\select_20260924_run1.txt`。原始报告：[第 1 轮](artifacts/select_20260924_run1.txt)、[第 2 轮](artifacts/select_20260924_run2.txt)、[第 3 轮](artifacts/select_20260924_run3.txt)。退出码 `0` 为全部通过（允许 `KNOWN`），`1` 为失败，`2` 为环境阻塞。
+- **复测**：从 `D:\code\元素库\sdk测试` 运行 `uv run .\web\test_web_element_select.py --json --report-file .\web\evidence\artifacts\select_20260924_run1.txt`。原始报告：[第 1 轮](artifacts/select_20260924_run1.txt)、[第 2 轮](artifacts/select_20260924_run2.txt)、[第 3 轮](artifacts/select_20260924_run3.txt)。退出码 `0` 为全部通过（允许 `KNOWN`），`1` 为失败，`2` 为环境阻塞。
 
-下列 2026-08-09 的 `form-controls` 与 `select_html` 记录保留为历史证据。
+下列 2026-08-09 的 `form-controls` 与 `select_html` 记录保留为历史证据；对应的本地旧脚本已归档为 [`test_web_element_select_legacy_20260809.py`](../test_web_element_select_legacy_20260809.py)。
 
 ```yaml
 api: "uiautoma.web.WebElement.select"
