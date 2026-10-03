@@ -1,0 +1,129 @@
+{
+  "api": "uiautoma.web.WebElement.get_all_select_items",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "f63c5cfc27a3ff8c4f3a86acc665bcb601d1a0ac",
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "get_all_select_items(self) -> list[str]",
+      "actual": "(self) -> 'list[str]'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/库可用，四元素唯一映射，原生 option 与页面静态清单一致",
+      "actual": "原标签数=4；开关原状态='false'；单选={'multiple': False, 'options': [{'name': '请选择城市', 'selected': True, 'value': ''}, {'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}], 'tag': 'SELECT'}；多选={'multiple': True, 'options': [{'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}], 'tag': 'SELECT'}",
+      "elapsed_ms": 2103.8
+    },
+    {
+      "case_id": "native_single_initial",
+      "status": "PASS",
+      "expected": "web靶场_表单测试_原生_select单选 返回 5 个文本，顺序与页面 DOM 一致；读取不改 DOM",
+      "actual": "返回=['请选择城市', '北京', '上海', '广州', '深圳']；DOM 前=[{'name': '请选择城市', 'selected': True, 'value': ''}, {'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}]；后=[{'name': '请选择城市', 'selected': True, 'value': ''}, {'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}]",
+      "elapsed_ms": 102.3
+    },
+    {
+      "case_id": "native_multi_initial",
+      "status": "PASS",
+      "expected": "web靶场_表单测试_原生_select多选_options_面板 返回 4 个文本，顺序与页面 DOM 一致；读取不改 DOM",
+      "actual": "返回=['北京', '上海', '广州', '深圳']；DOM 前=[{'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}]；后=[{'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}]",
+      "elapsed_ms": 108.3
+    },
+    {
+      "case_id": "ant_single_combobox",
+      "status": "KNOWN",
+      "expected": "Ant INPUT 调用 get_all_select_items() 抛 ActionError/element_options_not_readable；DOM 不变",
+      "actual": "ActionError: 此元素不支持“获取下拉框选项”操作。非标准下拉框请展开后查找选项元素并读取文本 [trace=element_options_not_readable]；前={'display': '请选择城市', 'tag': 'INPUT', 'value': ''}；后={'display': '请选择城市', 'tag': 'INPUT', 'value': ''}",
+      "elapsed_ms": 94.3
+    },
+    {
+      "case_id": "ant_multi_combobox",
+      "status": "KNOWN",
+      "expected": "Ant DIV 调用 get_all_select_items() 抛 ActionError/element_options_not_readable；DOM 不变",
+      "actual": "ActionError: 此元素不支持“获取下拉框选项”操作。非标准下拉框请展开后查找选项元素并读取文本 [trace=element_options_not_readable]；前={'display': '\\xa0请选择城市（可多选）', 'tag': 'DIV', 'value': ''}；后={'display': '\\xa0请选择城市（可多选）', 'tag': 'DIV', 'value': ''}",
+      "elapsed_ms": 92.5
+    },
+    {
+      "case_id": "native_single_selected",
+      "status": "PASS",
+      "expected": "选中 ['shanghai'] 后仍返回全部 5 项，顺序与 DOM 一致",
+      "actual": "选中值=['shanghai']；返回=['请选择城市', '北京', '上海', '广州', '深圳']；DOM=[{'name': '请选择城市', 'selected': False, 'value': ''}, {'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': True, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}]",
+      "elapsed_ms": 343.0
+    },
+    {
+      "case_id": "native_multi_selected",
+      "status": "PASS",
+      "expected": "选中 ['beijing', 'guangzhou'] 后仍返回全部 4 项，顺序与 DOM 一致",
+      "actual": "选中值=['beijing', 'guangzhou']；返回=['北京', '上海', '广州', '深圳']；DOM=[{'name': '北京', 'selected': True, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': True, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}]",
+      "elapsed_ms": 344.1
+    },
+    {
+      "case_id": "repeated_read_no_mutation",
+      "status": "PASS",
+      "expected": "连续读取两次，两侧列表相同且页面 DOM 不变",
+      "actual": "单选两次=[['请选择城市', '北京', '上海', '广州', '深圳'], ['请选择城市', '北京', '上海', '广州', '深圳']]；多选两次=[['北京', '上海', '广州', '深圳'], ['北京', '上海', '广州', '深圳']]；DOM 不变=True",
+      "elapsed_ms": 172.5
+    },
+    {
+      "case_id": "reset_selected_flags",
+      "status": "PASS",
+      "expected": "页面重置后单选占位项 selected=True、多选四项均未选；两侧仍返回全部文本",
+      "actual": "单选=['请选择城市', '北京', '上海', '广州', '深圳']；多选=['北京', '上海', '广州', '深圳']",
+      "elapsed_ms": 1796.8
+    },
+    {
+      "case_id": "duplicate_options",
+      "status": "PASS",
+      "expected": "重复北京 option 保留两个文本且顺序与 DOM 一致；恢复原选项",
+      "actual": "返回=['请选择城市', '北京', '上海', '广州', '深圳', '北京']；DOM=[{'name': '请选择城市', 'selected': True, 'value': ''}, {'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}, {'name': '北京', 'selected': False, 'value': 'beijing'}]；恢复=[{'name': '请选择城市', 'selected': True, 'value': ''}, {'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}]",
+      "elapsed_ms": 160.4
+    },
+    {
+      "case_id": "nbsp_normalization",
+      "status": "PASS",
+      "expected": "DOM option 文本含 U+00A0，返回文本将其改为普通空格；恢复原选项",
+      "actual": "返回=['请选择城市', '北京', '上海', '广州', '深圳', '甲 乙']；DOM末项={'name': '甲\\xa0乙', 'selected': False, 'value': 'nbsp'}；读取不改DOM=True；恢复=[{'name': '请选择城市', 'selected': True, 'value': ''}, {'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}]",
+      "elapsed_ms": 168.4
+    },
+    {
+      "case_id": "empty_options",
+      "status": "PASS",
+      "expected": "DOM option 清空后返回 []；恢复原选项",
+      "actual": "返回=[]；DOM=[]；恢复=[{'name': '请选择城市', 'selected': True, 'value': ''}, {'name': '北京', 'selected': False, 'value': 'beijing'}, {'name': '上海', 'selected': False, 'value': 'shanghai'}, {'name': '广州', 'selected': False, 'value': 'guangzhou'}, {'name': '深圳', 'selected': False, 'value': 'shenzhen'}]",
+      "elapsed_ms": 168.2
+    },
+    {
+      "case_id": "non_select_input",
+      "status": "PASS",
+      "expected": "普通 input 调用 get_all_select_items() 抛 ActionError/element_options_not_readable；DOM 不变",
+      "actual": "ActionError: 此元素不支持“获取下拉框选项”操作。非标准下拉框请展开后查找选项元素并读取文本 [trace=element_options_not_readable]；DOM 不变=True",
+      "elapsed_ms": 109.1
+    },
+    {
+      "case_id": "unexpected_argument",
+      "status": "PASS",
+      "expected": "额外位置参数抛 TypeError；DOM 不变",
+      "actual": "TypeError: WebElement.get_all_select_items() takes 1 positional argument but 2 were given；DOM 不变=True",
+      "elapsed_ms": 76.4
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "库连接关闭后抛 StalePackageError",
+      "actual": "StalePackageError: Package 已关闭；请重新调用 current() 或 open() 获取新会话",
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "恢复开关、关闭本次标签和库连接、删除临时副本；追踪本次标签 ID",
+      "actual": "逐项复核通过；本次标签已关闭；外部标签变动 +0/-0；总数 4->4",
+      "elapsed_ms": 242.1
+    }
+  ],
+  "exit_code": 0
+}
