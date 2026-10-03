@@ -56,7 +56,7 @@
 | `uiautoma.web.WebElement.select_by_index()` | `VERIFIED`（2026-09-24：17/18 PASS + 1 KNOWN，连续 3 次退出码 0；标准 `<select>`） | [`web/test_web_element_select_by_index.py`](web/test_web_element_select_by_index.py) | [`web/evidence/select_by_index.md`](web/evidence/select_by_index.md) | [`sdk/docs/web/select_by_index.md`](../../sdk/docs/web/select_by_index.md) |
 | `uiautoma.web.WebElement.select_multiple()` | `VERIFIED`（2026-09-24：20/21 PASS + 1 KNOWN，连续 3 次退出码 0；标准 `<select multiple>`） | [`web/test_web_element_select_multiple.py`](web/test_web_element_select_multiple.py) | [`web/evidence/select_multiple.md`](web/evidence/select_multiple.md) | [`sdk/docs/web/select_multiple.md`](../../sdk/docs/web/select_multiple.md) |
 | `uiautoma.web.WebElement.select_multiple_by_index()` | `VERIFIED`（2026-09-24：22/23 PASS + 1 KNOWN，连续 3 次退出码 0；标准 `<select multiple>`） | [`web/test_web_element_select_multiple_by_index.py`](web/test_web_element_select_multiple_by_index.py) | [`web/evidence/select_multiple_by_index.md`](web/evidence/select_multiple_by_index.md) | [`sdk/docs/web/select_multiple_by_index.md`](../../sdk/docs/web/select_multiple_by_index.md) |
-| `uiautoma.web.WebElement.get_select_options()` | `READY_FOR_LIVE` | [`web/test_web_element_get_select_options.py`](web/test_web_element_get_select_options.py) | [`web/evidence/get_select_options.md`](web/evidence/get_select_options.md) | [`sdk/docs/web/get_select_options.md`](../../sdk/docs/web/get_select_options.md) |
+| `uiautoma.web.WebElement.get_select_options()` | `VERIFIED`（2026-10-03：14/16 PASS + 2 KNOWN，连续 3 次退出码 0；标准 `<select>`） | [`web/test_web_element_get_select_options.py`](web/test_web_element_get_select_options.py) | [`web/evidence/get_select_options.md`](web/evidence/get_select_options.md) | [`sdk/docs/web/get_select_options.md`](../../sdk/docs/web/get_select_options.md) |
 | `uiautoma.web.WebElement.get_all_select_items()` | `READY_FOR_LIVE` | [`web/test_web_element_get_all_select_items.py`](web/test_web_element_get_all_select_items.py) | [`web/evidence/get_all_select_items.md`](web/evidence/get_all_select_items.md) | [`sdk/docs/web/get_all_select_items.md`](../../sdk/docs/web/get_all_select_items.md) |
 | `uiautoma.web.WebElement.get_selected_item()` | `READY_FOR_LIVE` | [`web/test_web_element_get_selected_item.py`](web/test_web_element_get_selected_item.py) | [`web/evidence/get_selected_item.md`](web/evidence/get_selected_item.md) | [`sdk/docs/web/get_selected_item.md`](../../sdk/docs/web/get_selected_item.md) |
 | `uiautoma.web.WebElement.get_bounding()` | `VERIFIED` | [`web/test_web_element_get_bounding.py`](web/test_web_element_get_bounding.py) | [`web/evidence/get_bounding.md`](web/evidence/get_bounding.md) | [`sdk/docs/web/get_bounding.md`](../../sdk/docs/web/get_bounding.md) |
@@ -131,10 +131,12 @@ App 中确认双匹配并重新抓取，稳定 Ant ID 成为必需条件；在 `
 参数均经 DOM 与页面提交的 `cities` JSON 确证；Ant 自定义多选控件按
 `element_not_selectable` 拒绝，详见 `web/evidence/select_multiple_by_index.md`。
 
-`WebElement.get_select_options()` 于 2026-08-09 在 Chrome/`form-controls`、元素
-`select_html` 上完成真实探测：公开签名与资源清理通过，但调用抛出
-`UnsupportedActionError`（`web.element.get_select_options` 当前版本暂不支持）；实现并
-复验通过前不能进入 `VERIFIED`。
+`WebElement.get_select_options()` 于 2026-10-03 在产品快照
+`f63c5cfc27a3ff8c4f3a86acc665bcb601d1a0ac` 与 dev Runtime 上，以原生单选和
+多选完成 3 次真实复验：每轮 14/16 `PASS`、2 `KNOWN`、退出码 0。返回项的文本、
+值、选中状态及顺序与页面 DOM 一致；重复项、空列表、重置、无效目标和清理均已
+覆盖。Ant 自定义控件按 `element_options_not_readable` 拒绝，详见
+`web/evidence/get_select_options.md`。2026-08-09 的 `UnsupportedActionError` 为旧快照结论。
 
 `WebElement.get_all_select_items()` 于 2026-08-09 在 Chrome/`form-controls`、元素
 `select_html` 上完成真实探测：公开签名与资源清理通过，但调用抛出
