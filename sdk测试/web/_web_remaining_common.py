@@ -81,8 +81,9 @@ class Skip(Exception):
 
 
 class Context:
-    def __init__(self, api):
+    def __init__(self, api, progress=False):
         self.api = api
+        self.progress = progress
         self.rows = []
         self.page = self.package = self.reference = None
         self.previous_switch = None
@@ -102,6 +103,17 @@ class Context:
         except Exception as exc:
             trace=getattr(exc,'trace_info','')
             actual = {'exception':type(exc).__name__, 'message':str(exc), 'trace':trace}
+            if self.api == 'web.handle_upload_dialog':
+                actual.update(getattr(exc, '_upload_test_details', {}))
+                response = getattr(exc, 'response', None)
+                if response is None:
+                    response = getattr(getattr(exc, 'result', None), 'raw', None)
+                for _ in range(8):
+                    if not isinstance(response, dict): break
+                    if response.get('missing_capabilities'):
+                        actual['missing_capabilities'] = response['missing_capabilities']
+                        actual['provider_reason'] = response.get('log_lines', [])
+                    response = response.get('raw')
             if trace in {'uiautomation_provider_unavailable','browser_host_window_mismatch'}:
                 status='KNOWN'
                 actual['skip']='当前原生 Provider/浏览器窗口环境不可用，跳过此分支'
@@ -479,16 +491,30 @@ def upload(c):
         c.case('missing_file','不存在文件抛 InvalidParamsError',lambda:c.raises(InvalidParamsError,lambda:e.upload(str(c.tmp/'missing.txt'))))
         c.case('invalid_timeout','非法超时抛 InvalidParamsError',lambda:c.raises(InvalidParamsError,lambda:e.upload(str(path),dialog_timeout=-2)))
     else:
+        def handle(result):
+            stage = 'click_upload_input'
+            api_called = False
+            try:
+                if c.progress:
+                    print(f'[{result}] 点击上传控件，尝试唤起文件选择窗口…', flush=True)
+                e.click(simulative=True,delay_after=.1)
+                stage = 'handle_upload_dialog'
+                if c.progress:
+                    print(f'[{result}] 点击已返回，调用 handle_upload_dialog({result})…', flush=True)
+                api_called = True
+                return web.handle_upload_dialog(str(path) if result=='ok' else [],result,'chrome',
+                    clipboard_input=(result=='cancel'),wait_appear_timeout=8)
+            except Exception as exc:
+                exc._upload_test_details = {'stage':stage,'api_called':api_called}
+                raise
         def run():
-            e.click(simulative=True,delay_after=.1)
-            returned=web.handle_upload_dialog(str(path),'ok','chrome',clipboard_input=False,wait_appear_timeout=8)
+            returned=handle('ok')
             actual=selected_files()
             return c.expect(returned is None and actual==[{'name':path.name,'size':path.stat().st_size}],actual)
         c.case('choose_file','处理真实文件对话框，DOM FileList 与磁盘一致',run)
         def cancel():
-            e.click(simulative=True,delay_after=.1)
             before=selected_files()
-            returned=web.handle_upload_dialog([],'cancel','chrome',wait_appear_timeout=8)
+            returned=handle('cancel')
             return c.expect(returned is None and selected_files()==before,{'return':returned,'files':before})
         c.case('cancel','取消文件对话框保留原文件',cancel)
         c.case('invalid_result','非法 dialog_result 抛 InvalidParamsError',lambda:c.raises(InvalidParamsError,lambda:web.handle_upload_dialog([],'bad','chrome')))
@@ -553,8 +579,8 @@ CASES={'name':name,'get_selected_item':selected,'set_attribute':attributes,'get_
        'go_back':back,'handle_upload_dialog':upload}
 
 
-def run_api(api,contract_only=False):
-    c=Context(api)
+def run_api(api,contract_only=False,progress=False):
+    c=Context(api,progress=progress)
     contracts=json.loads(CONTRACT_FILE.read_text(encoding='utf-8'))
     contract=contracts['apis'][api]
     c.case('api_contract','公开签名与只读源码快照一致',lambda:c.expect(str(inspect.signature(api_object(api)))==contract['signature'],str(inspect.signature(api_object(api)))))
@@ -607,7 +633,7 @@ def main(default_api=None):
     TARGET_OVERRIDE=a.target_url
     if a.freeze_contracts:freeze_contracts();return 0
     if not a.api:p.error('--api is required')
-    report,code=run_api(a.api,a.contract_only)
+    report,code=run_api(a.api,a.contract_only,progress=not a.json)
     if a.report_file:
         a.report_file.parent.mkdir(parents=True,exist_ok=True)
         a.report_file.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

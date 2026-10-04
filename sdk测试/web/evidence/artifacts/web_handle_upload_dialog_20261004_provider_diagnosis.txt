@@ -1,0 +1,12 @@
+[ok] 点击上传控件，尝试唤起文件选择窗口…
+[cancel] 点击上传控件，尝试唤起文件选择窗口…
+UIAutoma Web API 测试
+API     : uiautoma.web.handle_upload_dialog
+页面    : https://baobaomi900901.github.io/xpath/#/upload-dialog-test
+01/06 [92m[通过][0m api_contract 期望 公开签名与只读源码快照一致；实测 (file_names: 'str | list[str]', dialog_result: 'str' = 'ok', mode: 'str' = 'auto', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, wait_appear_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'；0.2ms
+02/06 [92m[通过][0m environment 期望 Runtime/Chrome/现有靶场与临时库可用；实测 {'url': 'https://baobaomi900901.github.io/xpath/#/upload-dialog-test', 'baseline_tabs': 1, 'library': 'D:\\code\\元素库\\260902_web元素', 'temporary_library': 'D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\4753b31044a14921aba9836905e838da\\library'}；1404.8ms
+03/06 [93m[已知/跳过][0m choose_file 期望 处理真实文件对话框，DOM FileList 与磁盘一致；实测 {'exception': 'ActionError', 'message': '元素自动化服务暂不可用，请稍后重试', 'trace': 'uiautomation_provider_unavailable', 'stage': 'click_upload_input', 'api_called': False, 'missing_capabilities': ['capture_web_from_ref', 'win32_observation_actions', 'win32_observation_sessions'], 'provider_reason': ['UIAutoma.UIAutomation.Provider at D:\\code\\desktop\\assets\\provider\\UIAutoma.UIAutomation.Provider.exe is missing required capabilities: capture_web_from_ref, win32_observation_actions, win32_observation_sessions'], 'skip': '当前原生 Provider/浏览器窗口环境不可用，跳过此分支'}；242.4ms
+04/06 [93m[已知/跳过][0m cancel 期望 取消文件对话框保留原文件；实测 {'exception': 'ActionError', 'message': '元素自动化服务暂不可用，请稍后重试', 'trace': 'uiautomation_provider_unavailable', 'stage': 'click_upload_input', 'api_called': False, 'missing_capabilities': ['capture_web_from_ref', 'win32_observation_actions', 'win32_observation_sessions'], 'provider_reason': ['UIAutoma.UIAutomation.Provider at D:\\code\\desktop\\assets\\provider\\UIAutoma.UIAutomation.Provider.exe is missing required capabilities: capture_web_from_ref, win32_observation_actions, win32_observation_sessions'], 'skip': '当前原生 Provider/浏览器窗口环境不可用，跳过此分支'}；326.7ms
+05/06 [92m[通过][0m invalid_result 期望 非法 dialog_result 抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': 'dialog_result 必须为 ok 或 cancel', 'trace': ''}；0.5ms
+06/06 [92m[通过][0m cleanup 期望 关闭本次页面和库、删除临时目录、复核标签和文件弹窗；实测 {'errors': [], 'own_tab_closed': True, 'temporary_copy_removed': True, 'tab_count': '1->1', 'external_added': [], 'external_removed': [], 'new_dialogs': []}；234.8ms
+SKIPPED · 4/6 通过 · 2 已知/跳过 · 退出码 0
