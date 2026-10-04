@@ -1,0 +1,250 @@
+{
+  "api": "element.get_anchor_viewport_position",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, *, anchor: 'object | None' = None) -> 'tuple[int, int]'",
+    "docstring": "获取网页元素相对于整个网页可视区域左上角的锚点坐标。\n\nArgs:\n    anchor: 要获取坐标的位置及偏移量，默认 None，获取元素中心且无偏移。\n        可直接传位置字符串，\n        或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n        位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n        middle_left（左中）、middle_center（中心）、middle_right（右中）、\n        bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n        偏移单位为像素，水平正值向右，垂直正值向下。\n\nReturns:\n    坐标 (x, y)，单位为 CSS 像素。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 781,
+    "source": "    def get_anchor_viewport_position(self, *, anchor: object | None = None) -> tuple[int, int]:\n        \"\"\"获取网页元素相对于整个网页可视区域左上角的锚点坐标。\n\n        Args:\n            anchor: 要获取坐标的位置及偏移量，默认 None，获取元素中心且无偏移。\n                可直接传位置字符串，\n                或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n                位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n                middle_left（左中）、middle_center（中心）、middle_right（右中）、\n                bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n                偏移单位为像素，水平正值向右，垂直正值向下。\n\n        Returns:\n            坐标 (x, y)，单位为 CSS 像素。\n        \"\"\"\n        return tuple(self._raw.geometry(kind=\"viewport_anchor\", pt=anchor_to_pt(anchor))[\"point\"])\n",
+    "implementation_chain": "web.get_geometry(kind=viewport_anchor) → ActionService.web_get_geometry → Page Engine geometry → 顶层视口锚点计算",
+    "script": "web/test_web_element_get_anchor_viewport_position_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, *, anchor: 'object | None' = None) -> 'tuple[int, int]'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\f75a43a1c89145a3a2a51607868990ee\\library"
+      },
+      "elapsed_ms": 1486.5
+    },
+    {
+      "case_id": "anchor_0",
+      "status": "PASS",
+      "expected": "锚点和偏移与真实矩形计算一致",
+      "actual": {
+        "actual": [
+          1489,
+          460
+        ],
+        "expected": [
+          1489,
+          460
+        ],
+        "dom": {
+          "dpr": 1.25,
+          "height": 32,
+          "width": 894.2999877929688,
+          "x": 1041.9000358581543,
+          "y": 443.7750244140625
+        },
+        "reference_rect": {
+          "x": 1042,
+          "y": 444,
+          "width": 894,
+          "height": 32
+        }
+      },
+      "elapsed_ms": 31.0
+    },
+    {
+      "case_id": "anchor_1",
+      "status": "PASS",
+      "expected": "锚点和偏移与真实矩形计算一致",
+      "actual": {
+        "actual": [
+          1042,
+          444
+        ],
+        "expected": [
+          1042,
+          444
+        ],
+        "dom": {
+          "dpr": 1.25,
+          "height": 32,
+          "width": 894.2999877929688,
+          "x": 1041.9000358581543,
+          "y": 443.7750244140625
+        },
+        "reference_rect": {
+          "x": 1042,
+          "y": 444,
+          "width": 894,
+          "height": 32
+        }
+      },
+      "elapsed_ms": 31.3
+    },
+    {
+      "case_id": "anchor_2",
+      "status": "PASS",
+      "expected": "锚点和偏移与真实矩形计算一致",
+      "actual": {
+        "actual": [
+          1936,
+          476
+        ],
+        "expected": [
+          1936,
+          476
+        ],
+        "dom": {
+          "dpr": 1.25,
+          "height": 32,
+          "width": 894.2999877929688,
+          "x": 1041.9000358581543,
+          "y": 443.7750244140625
+        },
+        "reference_rect": {
+          "x": 1042,
+          "y": 444,
+          "width": 894,
+          "height": 32
+        }
+      },
+      "elapsed_ms": 41.5
+    },
+    {
+      "case_id": "anchor_3",
+      "status": "PASS",
+      "expected": "锚点和偏移与真实矩形计算一致",
+      "actual": {
+        "actual": [
+          1489,
+          444
+        ],
+        "expected": [
+          1489,
+          444
+        ],
+        "dom": {
+          "dpr": 1.25,
+          "height": 32,
+          "width": 894.2999877929688,
+          "x": 1041.9000358581543,
+          "y": 443.7750244140625
+        },
+        "reference_rect": {
+          "x": 1042,
+          "y": 444,
+          "width": 894,
+          "height": 32
+        }
+      },
+      "elapsed_ms": 31.7
+    },
+    {
+      "case_id": "anchor_4",
+      "status": "PASS",
+      "expected": "锚点和偏移与真实矩形计算一致",
+      "actual": {
+        "actual": [
+          1939,
+          458
+        ],
+        "expected": [
+          1939,
+          458
+        ],
+        "dom": {
+          "dpr": 1.25,
+          "height": 32,
+          "width": 894.2999877929688,
+          "x": 1041.9000358581543,
+          "y": 443.7750244140625
+        },
+        "reference_rect": {
+          "x": 1042,
+          "y": 444,
+          "width": 894,
+          "height": 32
+        }
+      },
+      "elapsed_ms": 33.9
+    },
+    {
+      "case_id": "anchor_5",
+      "status": "PASS",
+      "expected": "锚点和偏移与真实矩形计算一致",
+      "actual": {
+        "actual": [
+          1044,
+          473
+        ],
+        "expected": [
+          1044,
+          473
+        ],
+        "dom": {
+          "dpr": 1.25,
+          "height": 32,
+          "width": 894.2999877929688,
+          "x": 1041.9000358581543,
+          "y": 443.7750244140625
+        },
+        "reference_rect": {
+          "x": 1042,
+          "y": 444,
+          "width": 894,
+          "height": 32
+        }
+      },
+      "elapsed_ms": 24.3
+    },
+    {
+      "case_id": "invalid_anchor",
+      "status": "PASS",
+      "expected": "无效锚点抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：bad",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 204.5
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    }
+  ],
+  "exit_code": 0
+}
