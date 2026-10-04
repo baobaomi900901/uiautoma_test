@@ -1,0 +1,150 @@
+{
+  "api": "element.get_scroll",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/geometry-test",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, *, direction: 'str' = 'vertical', location: 'str' = 'current', search_up: 'bool' = False) -> 'float'",
+    "docstring": "获取滚动条位置。\n\nArgs:\n    direction: 滚动条方向，默认 vertical（上下），可选 horizontal（左右）。\n    location: 滚动条位置，默认 current（当前位置），可选 bottom（底部位置）。\n    search_up: 若当前元素无滚动条，是否向上搜索具有滚动条的元素，默认 False。\n\nReturns:\n    滚动条位置；bottom 返回滚动内容的总高度或总宽度。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 934,
+    "source": "    def get_scroll(self, *, direction: str = \"vertical\", location: str = \"current\", search_up: bool = False) -> float:\n        \"\"\"获取滚动条位置。\n\n        Args:\n            direction: 滚动条方向，默认 vertical（上下），可选 horizontal（左右）。\n            location: 滚动条位置，默认 current（当前位置），可选 bottom（底部位置）。\n            search_up: 若当前元素无滚动条，是否向上搜索具有滚动条的元素，默认 False。\n\n        Returns:\n            滚动条位置；bottom 返回滚动内容的总高度或总宽度。\n        \"\"\"\n        if direction not in {\"vertical\", \"horizontal\"} or location not in {\"current\", \"bottom\"}:\n            raise InvalidParamsError(\"滚动方向或位置无效\")\n        return self._raw.get_scroll(direction=direction, location=location, search_up=bool(search_up))\n",
+    "implementation_chain": "web.get_scroll → ActionService.web_get_scroll → Page Engine get_scroll",
+    "script": "web/test_web_element_get_scroll_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, *, direction: 'str' = 'vertical', location: 'str' = 'current', search_up: 'bool' = False) -> 'float'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/geometry-test",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\b6082c7940434cd0b22051f04a3bef24\\library"
+      },
+      "elapsed_ms": 1118.7
+    },
+    {
+      "case_id": "current_0",
+      "status": "PASS",
+      "expected": "读取实际 scrollTop",
+      "actual": {
+        "result": 0.0,
+        "dom": {
+          "client": 420,
+          "height": 3000,
+          "left": 0,
+          "top": 0,
+          "width": 1155
+        }
+      },
+      "elapsed_ms": 41.8
+    },
+    {
+      "case_id": "current_137",
+      "status": "PASS",
+      "expected": "读取实际 scrollTop",
+      "actual": {
+        "result": 136.8000030517578,
+        "dom": {
+          "client": 420,
+          "height": 3000,
+          "left": 0,
+          "top": 136.8000030517578,
+          "width": 1155
+        }
+      },
+      "elapsed_ms": 48.6
+    },
+    {
+      "case_id": "current_400",
+      "status": "PASS",
+      "expected": "读取实际 scrollTop",
+      "actual": {
+        "result": 400.0,
+        "dom": {
+          "client": 420,
+          "height": 3000,
+          "left": 0,
+          "top": 400,
+          "width": 1155
+        }
+      },
+      "elapsed_ms": 38.8
+    },
+    {
+      "case_id": "bottom_vertical",
+      "status": "PASS",
+      "expected": "bottom 返回内容总高度/宽度",
+      "actual": {
+        "client": 420,
+        "height": 3000,
+        "left": 0,
+        "top": 400,
+        "width": 1155
+      },
+      "elapsed_ms": 33.2
+    },
+    {
+      "case_id": "bottom_horizontal",
+      "status": "PASS",
+      "expected": "bottom 返回内容总高度/宽度",
+      "actual": {
+        "client": 420,
+        "height": 3000,
+        "left": 0,
+        "top": 400,
+        "width": 1155
+      },
+      "elapsed_ms": 32.9
+    },
+    {
+      "case_id": "invalid_direction",
+      "status": "PASS",
+      "expected": "错误方向抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "滚动方向或位置无效",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 473.5
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    }
+  ],
+  "exit_code": 0
+}
