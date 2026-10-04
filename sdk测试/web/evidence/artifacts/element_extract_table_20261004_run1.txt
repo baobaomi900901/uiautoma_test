@@ -1,0 +1,36 @@
+{
+  "api": "element.extract_table",
+  "lifecycle": "SKIPPED",
+  "url": null,
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self) -> 'list[list[str]]'",
+    "docstring": "提取表格内容。\n\nReturns:\n    ``list[list[str]]``：二维表格文本。\n\nRaises:\n    UnsupportedActionError: 当前版本暂未实现 Web 表格提取。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 798,
+    "source": "    def extract_table(self) -> list[list[str]]:\n        \"\"\"提取表格内容。\n\n        Returns:\n            ``list[list[str]]``：二维表格文本。\n\n        Raises:\n            UnsupportedActionError: 当前版本暂未实现 Web 表格提取。\n        \"\"\"\n\n        raise unsupported(\"web.element.extract_table\")\n",
+    "implementation_chain": "SDK 直接抛 UnsupportedActionError；无正向实现链",
+    "script": "web/test_web_element_extract_table_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self) -> 'list[list[str]]'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "skip",
+      "status": "KNOWN",
+      "expected": "需要真实正向场景",
+      "actual": {
+        "skip": "当前源码直接抛 UnsupportedActionError，未实现表格提取"
+      },
+      "elapsed_ms": 0
+    }
+  ],
+  "exit_code": 0
+}
