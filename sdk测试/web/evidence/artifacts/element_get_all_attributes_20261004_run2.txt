@@ -1,0 +1,120 @@
+{
+  "api": "element.get_all_attributes",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self) -> 'dict[str, str]'",
+    "docstring": "获取网页元素的全部属性值。\n\nReturns:\n    ``dict[str, str]``：元素属性名与属性值组成的字典。\n\nRaises:\n    ActionError: 元素已失效或属性读取失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 737,
+    "source": "    def get_all_attributes(self) -> dict[str, str]:\n        \"\"\"获取网页元素的全部属性值。\n\n        Returns:\n            ``dict[str, str]``：元素属性名与属性值组成的字典。\n\n        Raises:\n            ActionError: 元素已失效或属性读取失败。\n        \"\"\"\n\n        return self._raw.get_all_attributes()\n",
+    "implementation_chain": "web.get_all_attributes → ActionService.web_get_all_attributes_element → Page Engine get_all_attributes",
+    "script": "web/test_web_element_get_all_attributes_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self) -> 'dict[str, str]'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\297dbd1f68fb4479ad5bb945423d7629\\library"
+      },
+      "elapsed_ms": 1554.7
+    },
+    {
+      "case_id": "native",
+      "status": "PASS",
+      "expected": "真实元素属性与 DOM 对照，修改后恢复",
+      "actual": {
+        "actual": {
+          "id": "form-controls-native-text",
+          "placeholder": "请输入文本",
+          "style": "width: 100%; height: 32px; padding: 4px 11px; font-size: 14px; line-height: 22px; border-radius: 6px; border: 1px solid rgb(217, 217, 217); box-sizing: border-box; outline: none; transition: 0.2s; background: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.88);",
+          "type": "text",
+          "value": ""
+        },
+        "independent_dom": {
+          "id": "form-controls-native-text",
+          "placeholder": "请输入文本",
+          "style": "width: 100%; height: 32px; padding: 4px 11px; font-size: 14px; line-height: 22px; border-radius: 6px; border: 1px solid rgb(217, 217, 217); box-sizing: border-box; outline: none; transition: 0.2s; background: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.88);",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "elapsed_ms": 58.5
+    },
+    {
+      "case_id": "ant",
+      "status": "PASS",
+      "expected": "真实元素属性与 DOM 对照，修改后恢复",
+      "actual": {
+        "actual": {
+          "class": "ant-input css-mncuj7 ant-input-outlined",
+          "id": "form-controls-ant-text",
+          "placeholder": "请输入文本",
+          "type": "text",
+          "value": ""
+        },
+        "independent_dom": {
+          "class": "ant-input css-mncuj7 ant-input-outlined",
+          "id": "form-controls-ant-text",
+          "placeholder": "请输入文本",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "elapsed_ms": 75.5
+    },
+    {
+      "case_id": "extra_argument",
+      "status": "PASS",
+      "expected": "多余位置参数抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.get_all_attributes() takes 1 positional argument but 3 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 26.9
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 227.8
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    }
+  ],
+  "exit_code": 0
+}
