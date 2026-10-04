@@ -1,0 +1,76 @@
+{
+  "api": "element.download",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/download-dialog-test",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, file_folder: 'str', *, file_name: 'str | None' = None, overwrite: 'bool' = True, wait_complete: 'bool' = True, wait_complete_timeout: 'float' = 300, simulative: 'bool' = False, clipboard_input: 'bool' = True, dialog_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'str'",
+    "docstring": "下载文件。\n\nArgs:\n    file_folder: 保存下载文件的文件夹完整路径。\n    file_name: 保存文件名，默认 None，使用下载资源默认名称；没有默认名称时自动生成。\n    overwrite: 同名文件是否覆盖，默认 True；False 自动添加后缀。\n    wait_complete: 是否等待下载完成，默认 True；无保存对话框的下载需要开启。\n    wait_complete_timeout: 等待下载完成的时间，单位为秒，默认 300；0 仅检查当前状态，-1 一直等待。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    dialog_timeout: 点击后等待下载或保存对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    文件完整路径；不等待完成时，文件可能仍在下载。\n\nRaises:\n    InvalidParamsError: 保存路径或输入参数无效。\n    ActionError: 元素已失效、下载失败或等待超时。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 1048,
+    "source": "    def download(\n        self,\n        file_folder: str,\n        *,\n        file_name: str | None = None,\n        overwrite: bool = True,\n        wait_complete: bool = True,\n        wait_complete_timeout: float = 300,\n        simulative: bool = False,\n        clipboard_input: bool = True,\n        dialog_timeout: float = 20,\n        force_ime_eng: bool = False,\n        send_key_delay: int = 50,\n        focus_timeout: int = 1000,\n    ) -> str:\n        \"\"\"下载文件。\n\n        Args:\n            file_folder: 保存下载文件的文件夹完整路径。\n            file_name: 保存文件名，默认 None，使用下载资源默认名称；没有默认名称时自动生成。\n            overwrite: 同名文件是否覆盖，默认 True；False 自动添加后缀。\n            wait_complete: 是否等待下载完成，默认 True；无保存对话框的下载需要开启。\n            wait_complete_timeout: 等待下载完成的时间，单位为秒，默认 300；0 仅检查当前状态，-1 一直等待。\n            simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n            clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n            dialog_timeout: 点击后等待下载或保存对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n            force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n            send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n            focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\n        Returns:\n            文件完整路径；不等待完成时，文件可能仍在下载。\n\n        Raises:\n            InvalidParamsError: 保存路径或输入参数无效。\n            ActionError: 元素已失效、下载失败或等待超时。\n        \"\"\"\n\n        from ._file_dialog import input_params, save_params, timeout_ms, result_path\n        input_options = input_params(simulative=simulative, clipboard_input=clipboard_input,\n            force_ime_eng=force_ime_eng, send_key_delay=send_key_delay, focus_timeout=focus_timeout)\n        save_params(file_folder=file_folder, file_name=file_name, overwrite=overwrite,\n            wait_complete=wait_complete, wait_complete_timeout=wait_complete_timeout)\n        timeout_ms(dialog_timeout, \"dialog_timeout\")\n        result = self._raw.download(\n            output_dir=file_folder,\n            filename=file_name,\n            overwrite=overwrite, wait_complete=wait_complete,\n            wait_complete_timeout=wait_complete_timeout,\n            click_timeout=dialog_timeout,\n            **input_options,\n        )\n        action = ActionResult.from_payload(result)\n        self.last_result = action\n        action.raise_for_error()\n        return result_path(result)\n",
+    "implementation_chain": "web.download.element → ActionService.web_download_element → download_begin/status/release、保存对话框与移动完整下载文件",
+    "script": "web/test_web_element_download_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, file_folder: 'str', *, file_name: 'str | None' = None, overwrite: 'bool' = True, wait_complete: 'bool' = True, wait_complete_timeout: 'float' = 300, simulative: 'bool' = False, clipboard_input: 'bool' = True, dialog_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'str'",
+      "elapsed_ms": 0.3
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/download-dialog-test",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\5bca996f01c14f18bc5205728f08d6fa\\library"
+      },
+      "elapsed_ms": 1058.8
+    },
+    {
+      "case_id": "real_download",
+      "status": "PASS",
+      "expected": "返回文件路径，字节与独立 HTTP 读取的 demo.txt 相同",
+      "actual": {
+        "path": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\5bca996f01c14f18bc5205728f08d6fa\\received.txt",
+        "bytes": 55,
+        "matches_independent_http": true
+      },
+      "elapsed_ms": 3273.3
+    },
+    {
+      "case_id": "invalid_timeout",
+      "status": "PASS",
+      "expected": "非法等待时间抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "dialog_timeout 必须为 -1 或非负数",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 204.5
+    }
+  ],
+  "exit_code": 0
+}
