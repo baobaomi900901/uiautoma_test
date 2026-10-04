@@ -75,6 +75,7 @@
 | `uiautoma.web.WebElement.get_anchor_viewport_position()` | `VERIFIED`（2026-10-04；11/11 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_get_anchor_viewport_position_20261004.py](web/test_web_element_get_anchor_viewport_position_20261004.py) | [web/evidence/element_get_anchor_viewport_position_20261004.md](web/evidence/element_get_anchor_viewport_position_20261004.md) | — |
 | `uiautoma.web.WebElement.is_displayed()` | `VERIFIED`（2026-10-04；7/7 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_is_displayed_20261004.py](web/test_web_element_is_displayed_20261004.py) | [web/evidence/element_is_displayed_20261004.md](web/evidence/element_is_displayed_20261004.md) | — |
 | `uiautoma.web.WebElement.execute_javascript()` | `VERIFIED`（2026-10-04；10/10 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_execute_javascript_20261004.py](web/test_web_element_execute_javascript_20261004.py) | [web/evidence/element_execute_javascript_20261004.md](web/evidence/element_execute_javascript_20261004.md) | — |
+| `uiautoma.web.WebElement.scroll_to()` | `VERIFIED`（2026-10-04；9/9 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_scroll_to_20261004.py](web/test_web_element_scroll_to_20261004.py) | [web/evidence/element_scroll_to_20261004.md](web/evidence/element_scroll_to_20261004.md) | — |
 
 `uiautoma.web.WebElement.click()`、`dblclick()`、`hover()`、`focus()` 已于 2026-08-07，
 `parent()`、`children()`、`child_at()`、`previous_sibling()`、`next_sibling()`、

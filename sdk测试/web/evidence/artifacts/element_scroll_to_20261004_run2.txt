@@ -1,0 +1,144 @@
+{
+  "api": "element.scroll_to",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/geometry-test",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, *, location: 'str' = 'bottom', behavior: 'str' = 'instant', top: 'int' = 0, left: 'int' = 0, search_up: 'bool' = False) -> 'None'",
+    "docstring": "在当前网页指定的元素上滚动鼠标滚轮。\n\nArgs:\n    location: 滚动位置，默认 bottom（底部），可选 top（顶部）、point（指定位置）、one_screen（向下一屏）。\n    behavior: 滚动效果，默认 instant（瞬间），可选 smooth（平滑）。\n    top: 指定位置的纵坐标，单位为 CSS 像素，仅 point 生效。\n    left: 指定位置的横坐标，单位为 CSS 像素，仅 point 生效。\n    search_up: 若当前元素无滚动条，是否向上搜索具有滚动条的元素，默认 False。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 918,
+    "source": "    def scroll_to(self, *, location: str = \"bottom\", behavior: str = \"instant\", top: int = 0,\n                  left: int = 0, search_up: bool = False) -> None:\n        \"\"\"在当前网页指定的元素上滚动鼠标滚轮。\n\n        Args:\n            location: 滚动位置，默认 bottom（底部），可选 top（顶部）、point（指定位置）、one_screen（向下一屏）。\n            behavior: 滚动效果，默认 instant（瞬间），可选 smooth（平滑）。\n            top: 指定位置的纵坐标，单位为 CSS 像素，仅 point 生效。\n            left: 指定位置的横坐标，单位为 CSS 像素，仅 point 生效。\n            search_up: 若当前元素无滚动条，是否向上搜索具有滚动条的元素，默认 False。\n        \"\"\"\n        if location not in {\"bottom\", \"top\", \"point\", \"one_screen\"} or behavior not in {\"instant\", \"smooth\"}:\n            raise InvalidParamsError(\"滚动位置或滚动效果无效\")\n        result = self._raw.scroll(location=location, behavior=behavior, top=int(top), left=int(left), search_up=bool(search_up))\n        self._finish(result, 0)\n",
+    "implementation_chain": "web.action.scroll → ActionService.web_scroll_element → Page Engine scroll",
+    "script": "web/test_web_element_scroll_to_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, *, location: 'str' = 'bottom', behavior: 'str' = 'instant', top: 'int' = 0, left: 'int' = 0, search_up: 'bool' = False) -> 'None'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/geometry-test",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\1897bd2e606b4ccf838338a40d0e0318\\library"
+      },
+      "elapsed_ms": 1140.4
+    },
+    {
+      "case_id": "point",
+      "status": "PASS",
+      "expected": "滚动后 DOM scrollTop 到达目标",
+      "actual": {
+        "return": null,
+        "dom": {
+          "client": 420,
+          "height": 3000,
+          "left": 0,
+          "top": 136.8000030517578,
+          "width": 1155
+        },
+        "expected_top": 137
+      },
+      "elapsed_ms": 36.7
+    },
+    {
+      "case_id": "top",
+      "status": "PASS",
+      "expected": "滚动后 DOM scrollTop 到达目标",
+      "actual": {
+        "return": null,
+        "dom": {
+          "client": 420,
+          "height": 3000,
+          "left": 0,
+          "top": 0,
+          "width": 1155
+        },
+        "expected_top": 0
+      },
+      "elapsed_ms": 21.0
+    },
+    {
+      "case_id": "one_screen",
+      "status": "PASS",
+      "expected": "滚动后 DOM scrollTop 到达目标",
+      "actual": {
+        "return": null,
+        "dom": {
+          "client": 420,
+          "height": 3000,
+          "left": 0,
+          "top": 420,
+          "width": 1155
+        },
+        "expected_top": 420
+      },
+      "elapsed_ms": 48.5
+    },
+    {
+      "case_id": "bottom",
+      "status": "PASS",
+      "expected": "滚动后 DOM scrollTop 到达目标",
+      "actual": {
+        "return": null,
+        "dom": {
+          "client": 420,
+          "height": 3000,
+          "left": 0,
+          "top": 2580,
+          "width": 1155
+        },
+        "expected_top": 2580
+      },
+      "elapsed_ms": 22.2
+    },
+    {
+      "case_id": "invalid_location",
+      "status": "PASS",
+      "expected": "错误位置抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "滚动位置或滚动效果无效",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_behavior",
+      "status": "PASS",
+      "expected": "错误滚动效果抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "滚动位置或滚动效果无效",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 197.1
+    }
+  ],
+  "exit_code": 0
+}
