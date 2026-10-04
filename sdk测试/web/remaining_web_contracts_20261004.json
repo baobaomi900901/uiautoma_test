@@ -1,0 +1,267 @@
+{
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "apis": {
+    "element.name": {
+      "signature": "(self) -> 'str'",
+      "docstring": "元素名称。\n\nReturns:\n    ``str``：获取元素时的名称。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 63,
+      "source": "    @property\n    def name(self) -> str:\n        \"\"\"元素名称。\n\n        Returns:\n            ``str``：获取元素时的名称。\n        \"\"\"\n\n        return self._raw.name\n",
+      "implementation_chain": "页面引擎 runtimeElementReference.name → RawWebElement.name → WebElement.name",
+      "script": "web/test_web_element_name_20261004.py"
+    },
+    "element.get_selected_item": {
+      "signature": "(self) -> 'list[str]'",
+      "docstring": "获取网页下拉框当前选中项的文本。\n\nReturns:\n    list[str]：选中项目文本列表。\n\nRaises:\n    ActionError: 获取选项失败。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 697,
+      "source": "    def get_selected_item(self) -> list[str]:\n        \"\"\"获取网页下拉框当前选中项的文本。\n\n        Returns:\n            list[str]：选中项目文本列表。\n\n        Raises:\n            ActionError: 获取选项失败。\n        \"\"\"\n\n        return [option[\"name\"].replace(\"\\u00a0\", \" \") for option in self._raw.get_select_options() if option[\"selected\"]]\n",
+      "implementation_chain": "RawWebElement.get_select_options → web.get_select_options → ActionService.web_get_select_options → Page Engine get_select_options → selected 文本筛选",
+      "script": "web/test_web_element_get_selected_item_20261004.py"
+    },
+    "element.set_attribute": {
+      "signature": "(self, name: 'str', value: 'str') -> 'None'",
+      "docstring": "设置当前元素的属性。\n\nArgs:\n    name: 属性名称，字符串类型。\n    value: 属性值，字符串类型。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 709,
+      "source": "    def set_attribute(self, name: str, value: str) -> None:\n        \"\"\"设置当前元素的属性。\n\n        Args:\n            name: 属性名称，字符串类型。\n            value: 属性值，字符串类型。\n        \"\"\"\n\n        if not isinstance(name, str) or not name or not isinstance(value, str):\n            raise InvalidParamsError(\"属性名称与值必须为字符串，名称不能为空\")\n        self._raw._session._run_web_value(\"web.element.set_attribute\", self._raw.id,\n            name=name, value=value, timeout_ms=5000)\n",
+      "implementation_chain": "web.element.set_attribute → ActionService.web_set_attribute_element → Page Engine set_attribute",
+      "script": "web/test_web_element_set_attribute_20261004.py"
+    },
+    "element.get_attribute": {
+      "signature": "(self, name: 'str') -> 'str | None'",
+      "docstring": "获取网页元素的属性值。\n\nArgs:\n    name: 元素属性名称。指定 ``\"full_url\"`` 时获取完整链接或图片地址。\n\nReturns:\n    ``str | None``：属性值；属性不存在时返回 ``None``。\n\nRaises:\n    InvalidParamsError: 属性名为空或包含非法字符。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 722,
+      "source": "    def get_attribute(self, name: str) -> str | None:\n        \"\"\"获取网页元素的属性值。\n\n        Args:\n            name: 元素属性名称。指定 ``\"full_url\"`` 时获取完整链接或图片地址。\n\n        Returns:\n            ``str | None``：属性值；属性不存在时返回 ``None``。\n\n        Raises:\n            InvalidParamsError: 属性名为空或包含非法字符。\n        \"\"\"\n\n        return self._raw.get_attribute(name)\n",
+      "implementation_chain": "web.get_attribute → ActionService.web_get_attribute_element → Page Engine get_attribute",
+      "script": "web/test_web_element_get_attribute_20261004.py"
+    },
+    "element.get_all_attributes": {
+      "signature": "(self) -> 'dict[str, str]'",
+      "docstring": "获取网页元素的全部属性值。\n\nReturns:\n    ``dict[str, str]``：元素属性名与属性值组成的字典。\n\nRaises:\n    ActionError: 元素已失效或属性读取失败。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 737,
+      "source": "    def get_all_attributes(self) -> dict[str, str]:\n        \"\"\"获取网页元素的全部属性值。\n\n        Returns:\n            ``dict[str, str]``：元素属性名与属性值组成的字典。\n\n        Raises:\n            ActionError: 元素已失效或属性读取失败。\n        \"\"\"\n\n        return self._raw.get_all_attributes()\n",
+      "implementation_chain": "web.get_all_attributes → ActionService.web_get_all_attributes_element → Page Engine get_all_attributes",
+      "script": "web/test_web_element_get_all_attributes_20261004.py"
+    },
+    "element.get_bounding": {
+      "signature": "(self, to96dpi: 'bool' = True, relative_to: 'str' = 'screen') -> 'dict[str, int]'",
+      "docstring": "获取网页元素的位置和尺寸。\n\nArgs:\n    to96dpi: 是否将位置和尺寸转换为 96 DPI 对应的像素值，默认 True。\n    relative_to: 坐标参照，默认 \"screen\"（屏幕），可选 \"window\"（浏览器客户区）。\n\nReturns:\n    包含 x、y、width、height 的字典；x、y 相对于屏幕或浏览器客户区左上角。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 749,
+      "source": "    def get_bounding(self, to96dpi: bool = True, relative_to: str = \"screen\") -> dict[str, int]:\n        \"\"\"获取网页元素的位置和尺寸。\n\n        Args:\n            to96dpi: 是否将位置和尺寸转换为 96 DPI 对应的像素值，默认 True。\n            relative_to: 坐标参照，默认 \"screen\"（屏幕），可选 \"window\"（浏览器客户区）。\n\n        Returns:\n            包含 x、y、width、height 的字典；x、y 相对于屏幕或浏览器客户区左上角。\n        \"\"\"\n        if relative_to not in {\"screen\", \"window\"}:\n            raise InvalidParamsError(\"relative_to 必须是 screen 或 window\")\n        return self._raw.geometry(kind=\"bounding\", relative_to=relative_to, to96dpi=to96dpi)[\"rect\"]\n",
+      "implementation_chain": "web.get_geometry(kind=bounding) → ActionService.web_get_geometry → Provider 物理坐标转换",
+      "script": "web/test_web_element_get_bounding_20261004.py"
+    },
+    "element.get_anchor_position": {
+      "signature": "(self, *, anchor: 'object | None' = None, to96dpi: 'bool' = True) -> 'tuple[int, int]'",
+      "docstring": "获取网页元素的锚点坐标。\n\nArgs:\n    anchor: 要获取坐标的位置及偏移量，默认 None，获取元素中心且无偏移。\n        可直接传位置字符串，\n        或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n        位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n        middle_left（左中）、middle_center（中心）、middle_right（右中）、\n        bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n        偏移单位为像素，水平正值向右，垂直正值向下。\n    to96dpi: 是否将锚点坐标转换为 96 DPI 对应的像素值，默认 True。\n\nReturns:\n    锚点的屏幕坐标 (x, y)。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 763,
+      "source": "    def get_anchor_position(self, *, anchor: object | None = None, to96dpi: bool = True) -> tuple[int, int]:\n        \"\"\"获取网页元素的锚点坐标。\n\n        Args:\n            anchor: 要获取坐标的位置及偏移量，默认 None，获取元素中心且无偏移。\n                可直接传位置字符串，\n                或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n                位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n                middle_left（左中）、middle_center（中心）、middle_right（右中）、\n                bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n                偏移单位为像素，水平正值向右，垂直正值向下。\n            to96dpi: 是否将锚点坐标转换为 96 DPI 对应的像素值，默认 True。\n\n        Returns:\n            锚点的屏幕坐标 (x, y)。\n        \"\"\"\n        return tuple(self._raw.geometry(kind=\"anchor\", to96dpi=to96dpi, pt=anchor_to_pt(anchor))[\"point\"])\n",
+      "implementation_chain": "web.get_geometry(kind=anchor) → ActionService.web_get_geometry → Provider 物理坐标转换与锚点计算",
+      "script": "web/test_web_element_get_anchor_position_20261004.py"
+    },
+    "element.get_anchor_viewport_position": {
+      "signature": "(self, *, anchor: 'object | None' = None) -> 'tuple[int, int]'",
+      "docstring": "获取网页元素相对于整个网页可视区域左上角的锚点坐标。\n\nArgs:\n    anchor: 要获取坐标的位置及偏移量，默认 None，获取元素中心且无偏移。\n        可直接传位置字符串，\n        或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n        位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n        middle_left（左中）、middle_center（中心）、middle_right（右中）、\n        bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n        偏移单位为像素，水平正值向右，垂直正值向下。\n\nReturns:\n    坐标 (x, y)，单位为 CSS 像素。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 781,
+      "source": "    def get_anchor_viewport_position(self, *, anchor: object | None = None) -> tuple[int, int]:\n        \"\"\"获取网页元素相对于整个网页可视区域左上角的锚点坐标。\n\n        Args:\n            anchor: 要获取坐标的位置及偏移量，默认 None，获取元素中心且无偏移。\n                可直接传位置字符串，\n                或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n                位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n                middle_left（左中）、middle_center（中心）、middle_right（右中）、\n                bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n                偏移单位为像素，水平正值向右，垂直正值向下。\n\n        Returns:\n            坐标 (x, y)，单位为 CSS 像素。\n        \"\"\"\n        return tuple(self._raw.geometry(kind=\"viewport_anchor\", pt=anchor_to_pt(anchor))[\"point\"])\n",
+      "implementation_chain": "web.get_geometry(kind=viewport_anchor) → ActionService.web_get_geometry → Page Engine geometry → 顶层视口锚点计算",
+      "script": "web/test_web_element_get_anchor_viewport_position_20261004.py"
+    },
+    "element.screenshot": {
+      "signature": "(self, folder_path: 'str', *, file_name: 'str | None' = None) -> 'str'",
+      "docstring": "截取元素图片到文件。\n\nArgs:\n    folder_path: 保存目录，类型为 ``str``。\n    file_name: 文件名，默认 ``None``，自动生成名称。\n\nReturns:\n    ``str``：保存后的文件路径。\n\nRaises:\n    ActionError: 元素已失效、截图失败或文件无法保存。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 825,
+      "source": "    def screenshot(self, folder_path: str, *, file_name: str | None = None) -> str:\n        \"\"\"截取元素图片到文件。\n\n        Args:\n            folder_path: 保存目录，类型为 ``str``。\n            file_name: 文件名，默认 ``None``，自动生成名称。\n\n        Returns:\n            ``str``：保存后的文件路径。\n\n        Raises:\n            ActionError: 元素已失效、截图失败或文件无法保存。\n        \"\"\"\n\n        result = self._raw.screenshot(**file_options(folder_path, file_name))\n        action = ActionResult.from_payload(result)\n        self.last_result = action\n        action.raise_for_error()\n        return saved_path(result)\n",
+      "implementation_chain": "web.screenshot.element → ActionService.web_element_screenshot → CDP screenshot/crop → SDK 保存路径",
+      "script": "web/test_web_element_screenshot_20261004.py"
+    },
+    "element.is_checked": {
+      "signature": "(self) -> 'bool'",
+      "docstring": "判断网页复选框或单选框是否被选中。\n\nReturns:\n    ``bool``：选中返回 ``True``，否则返回 ``False``。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 857,
+      "source": "    def is_checked(self) -> bool:\n        \"\"\"判断网页复选框或单选框是否被选中。\n\n        Returns:\n            ``bool``：选中返回 ``True``，否则返回 ``False``。\n        \"\"\"\n\n        return self._raw.is_checked()\n",
+      "implementation_chain": "web.is_checked → ActionService.web_is_checked_element → Page Engine is_checked（IDL checked）",
+      "script": "web/test_web_element_is_checked_20261004.py"
+    },
+    "element.is_enabled": {
+      "signature": "(self) -> 'bool'",
+      "docstring": "判断网页元素是否可用。\n\nReturns:\n    ``bool``：可用返回 ``True``，否则返回 ``False``。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 866,
+      "source": "    def is_enabled(self) -> bool:\n        \"\"\"判断网页元素是否可用。\n\n        Returns:\n            ``bool``：可用返回 ``True``，否则返回 ``False``。\n        \"\"\"\n\n        return self._raw.is_enabled()\n",
+      "implementation_chain": "web.is_enabled → ActionService.web_is_enabled_element → Page Engine is_enabled（disabled/aria-disabled/class）",
+      "script": "web/test_web_element_is_enabled_20261004.py"
+    },
+    "element.is_displayed": {
+      "signature": "(self) -> 'bool'",
+      "docstring": "判断网页元素是否可见。\n\nReturns:\n    ``bool``：可见返回 ``True``，否则返回 ``False``。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 875,
+      "source": "    def is_displayed(self) -> bool:\n        \"\"\"判断网页元素是否可见。\n\n        Returns:\n            ``bool``：可见返回 ``True``，否则返回 ``False``。\n        \"\"\"\n\n        return self._raw.is_displayed()\n",
+      "implementation_chain": "web.is_displayed → ActionService.web_is_displayed_element → Page Engine elementIsDisplayed",
+      "script": "web/test_web_element_is_displayed_20261004.py"
+    },
+    "element.execute_javascript": {
+      "signature": "(self, code: 'str', argument: 'object | None' = None, execution_world: 'str' = 'ISOLATED') -> 'Any'",
+      "docstring": "在当前元素上执行 JavaScript 脚本。\n\nArgs:\n    code: 要执行的 JS 脚本，必须为 JavaScript 函数字符串，如：\n\n        ```python\n        \"\"\"\n        function (element, args) {\n            // element 表示当前 HTML 元素\n            // args 表示输入的参数\n            return args;\n        }\n        \"\"\"\n        ```\n\n    argument: 要传入 JS 函数的参数，支持字符串、数字、布尔值、列表和字典。\n        默认 None，函数收到 undefined；列表和字典无需先转为 JSON 字符串。\n    execution_world: 运行环境，支持 \"ISOLATED\"（隔离环境）和 \"MAIN\"（网页环境），\n        默认为 \"ISOLATED\"。\n\nReturns:\n    Any：返回 JS 脚本执行结果；无返回值、undefined 和 null 返回 None。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 884,
+      "source": "    def execute_javascript(\n        self,\n        code: str,\n        argument: object | None = None,\n        execution_world: str = \"ISOLATED\",\n    ) -> Any:\n        '''在当前元素上执行 JavaScript 脚本。\n\n        Args:\n            code: 要执行的 JS 脚本，必须为 JavaScript 函数字符串，如：\n\n                ```python\n                \"\"\"\n                function (element, args) {\n                    // element 表示当前 HTML 元素\n                    // args 表示输入的参数\n                    return args;\n                }\n                \"\"\"\n                ```\n\n            argument: 要传入 JS 函数的参数，支持字符串、数字、布尔值、列表和字典。\n                默认 None，函数收到 undefined；列表和字典无需先转为 JSON 字符串。\n            execution_world: 运行环境，支持 \"ISOLATED\"（隔离环境）和 \"MAIN\"（网页环境），\n                默认为 \"ISOLATED\"。\n\n        Returns:\n            Any：返回 JS 脚本执行结果；无返回值、undefined 和 null 返回 None。\n        '''\n\n        if execution_world not in {\"ISOLATED\", \"MAIN\"}:\n            raise InvalidParamsError(\"execution_world 必须为 ISOLATED 或 MAIN\")\n        return self._raw.evaluate_js(str(code), argument=argument, execution_world=execution_world)\n",
+      "implementation_chain": "web.evaluate_js → ActionService.web_evaluate_js_element → execute_element_javascript（指定执行环境、绑定真实元素）",
+      "script": "web/test_web_element_execute_javascript_20261004.py"
+    },
+    "element.scroll_to": {
+      "signature": "(self, *, location: 'str' = 'bottom', behavior: 'str' = 'instant', top: 'int' = 0, left: 'int' = 0, search_up: 'bool' = False) -> 'None'",
+      "docstring": "在当前网页指定的元素上滚动鼠标滚轮。\n\nArgs:\n    location: 滚动位置，默认 bottom（底部），可选 top（顶部）、point（指定位置）、one_screen（向下一屏）。\n    behavior: 滚动效果，默认 instant（瞬间），可选 smooth（平滑）。\n    top: 指定位置的纵坐标，单位为 CSS 像素，仅 point 生效。\n    left: 指定位置的横坐标，单位为 CSS 像素，仅 point 生效。\n    search_up: 若当前元素无滚动条，是否向上搜索具有滚动条的元素，默认 False。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 918,
+      "source": "    def scroll_to(self, *, location: str = \"bottom\", behavior: str = \"instant\", top: int = 0,\n                  left: int = 0, search_up: bool = False) -> None:\n        \"\"\"在当前网页指定的元素上滚动鼠标滚轮。\n\n        Args:\n            location: 滚动位置，默认 bottom（底部），可选 top（顶部）、point（指定位置）、one_screen（向下一屏）。\n            behavior: 滚动效果，默认 instant（瞬间），可选 smooth（平滑）。\n            top: 指定位置的纵坐标，单位为 CSS 像素，仅 point 生效。\n            left: 指定位置的横坐标，单位为 CSS 像素，仅 point 生效。\n            search_up: 若当前元素无滚动条，是否向上搜索具有滚动条的元素，默认 False。\n        \"\"\"\n        if location not in {\"bottom\", \"top\", \"point\", \"one_screen\"} or behavior not in {\"instant\", \"smooth\"}:\n            raise InvalidParamsError(\"滚动位置或滚动效果无效\")\n        result = self._raw.scroll(location=location, behavior=behavior, top=int(top), left=int(left), search_up=bool(search_up))\n        self._finish(result, 0)\n",
+      "implementation_chain": "web.action.scroll → ActionService.web_scroll_element → Page Engine scroll",
+      "script": "web/test_web_element_scroll_to_20261004.py"
+    },
+    "element.get_scroll": {
+      "signature": "(self, *, direction: 'str' = 'vertical', location: 'str' = 'current', search_up: 'bool' = False) -> 'float'",
+      "docstring": "获取滚动条位置。\n\nArgs:\n    direction: 滚动条方向，默认 vertical（上下），可选 horizontal（左右）。\n    location: 滚动条位置，默认 current（当前位置），可选 bottom（底部位置）。\n    search_up: 若当前元素无滚动条，是否向上搜索具有滚动条的元素，默认 False。\n\nReturns:\n    滚动条位置；bottom 返回滚动内容的总高度或总宽度。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 934,
+      "source": "    def get_scroll(self, *, direction: str = \"vertical\", location: str = \"current\", search_up: bool = False) -> float:\n        \"\"\"获取滚动条位置。\n\n        Args:\n            direction: 滚动条方向，默认 vertical（上下），可选 horizontal（左右）。\n            location: 滚动条位置，默认 current（当前位置），可选 bottom（底部位置）。\n            search_up: 若当前元素无滚动条，是否向上搜索具有滚动条的元素，默认 False。\n\n        Returns:\n            滚动条位置；bottom 返回滚动内容的总高度或总宽度。\n        \"\"\"\n        if direction not in {\"vertical\", \"horizontal\"} or location not in {\"current\", \"bottom\"}:\n            raise InvalidParamsError(\"滚动方向或位置无效\")\n        return self._raw.get_scroll(direction=direction, location=location, search_up=bool(search_up))\n",
+      "implementation_chain": "web.get_scroll → ActionService.web_get_scroll → Page Engine get_scroll",
+      "script": "web/test_web_element_get_scroll_20261004.py"
+    },
+    "element.drag_to": {
+      "signature": "(self, *, simulative: 'bool' = True, behavior: 'str' = 'smooth', top: 'int' = 0, left: 'int' = 0, delay_after: 'float' = 1, anchor: 'object | None' = None, move_speed: 'str' = 'middle') -> 'None'",
+      "docstring": "拖拽网页元素到指定位置。\n\nArgs:\n    simulative: 是否模拟人工拖拽，默认 True；False 或静默运行时使用网页事件。\n    behavior: 拖拽效果，smooth 表示平滑拖拽（默认），instant 表示瞬间拖拽。\n    top: 从实际按下位置开始的纵向位移，正值向下，负值向上。\n    left: 从实际按下位置开始的横向位移，正值向右，负值向左。\n        top、left 的单位均为网页 CSS 像素，不因模拟方式或浏览器缩放而改变。\n    delay_after: 指令执行成功后延迟执行的时间，单位秒，默认 1。\n    anchor: 鼠标在拖拽元素中按下的位置及偏移量，默认 None，在元素中心按下且无偏移。\n        可直接传位置字符串，\n        或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n        位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n        middle_left（左中）、middle_center（中心）、middle_right（右中）、\n        bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n        偏移单位为像素，水平正值向右，垂直正值向下。\n        起点按锚点确定；随机抓取位置不改变 top、left 指定的拖动距离。\n    move_speed: 移动速度，默认 middle（中速），可选 instant（瞬间）、fast（快速）、slow（慢速）；\n        仅实际鼠标拖拽生效。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 949,
+      "source": "    def drag_to(self, *, simulative: bool = True, behavior: str = \"smooth\", top: int = 0, left: int = 0,\n                delay_after: float = 1, anchor: object | None = None, move_speed: str = \"middle\") -> None:\n        \"\"\"拖拽网页元素到指定位置。\n\n        Args:\n            simulative: 是否模拟人工拖拽，默认 True；False 或静默运行时使用网页事件。\n            behavior: 拖拽效果，smooth 表示平滑拖拽（默认），instant 表示瞬间拖拽。\n            top: 从实际按下位置开始的纵向位移，正值向下，负值向上。\n            left: 从实际按下位置开始的横向位移，正值向右，负值向左。\n                top、left 的单位均为网页 CSS 像素，不因模拟方式或浏览器缩放而改变。\n            delay_after: 指令执行成功后延迟执行的时间，单位秒，默认 1。\n            anchor: 鼠标在拖拽元素中按下的位置及偏移量，默认 None，在元素中心按下且无偏移。\n                可直接传位置字符串，\n                或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n                位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n                middle_left（左中）、middle_center（中心）、middle_right（右中）、\n                bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n                偏移单位为像素，水平正值向右，垂直正值向下。\n                起点按锚点确定；随机抓取位置不改变 top、left 指定的拖动距离。\n            move_speed: 移动速度，默认 middle（中速），可选 instant（瞬间）、fast（快速）、slow（慢速）；\n                仅实际鼠标拖拽生效。\n        \"\"\"\n        if not isinstance(behavior, str) or behavior not in {\"smooth\", \"instant\"}:\n            raise InvalidParamsError(\"拖拽效果必须是 smooth 或 instant\")\n        if move_speed not in {\"instant\", \"fast\", \"middle\", \"slow\"}:\n            raise InvalidParamsError(\"移动速度无效\")\n        result = self._raw.drag(left=int(left), top=int(top), simulative=boolean_param(simulative, \"simulative\"),\n            pt=anchor_to_pt(anchor), move_speed=move_speed, behavior=behavior)\n        self._finish(result, delay_after)\n",
+      "implementation_chain": "web.action.drag → ActionService.web_drag_element → Page Engine/Provider 按 simulative 路由",
+      "script": "web/test_web_element_drag_to_20261004.py"
+    },
+    "element.drag_to_by_cdp": {
+      "signature": "(self, *, target_x: 'int' = 0, target_y: 'int' = 0, target_type: 'str' = 'viewport', delay_after: 'float' = 1, anchor: 'object | None' = None, move_speed: 'str' = 'middle') -> 'None'",
+      "docstring": "拖拽网页元素到指定位置。\n\nArgs:\n    target_x: 目标点的横坐标。\n    target_y: 目标点的纵坐标。\n    target_type: 目标坐标参照，默认 viewport（整个网页可视区域左上角，CSS 像素），\n        可选 screen（屏幕左上角，物理像素）。\n    delay_after: 指令执行成功后延迟执行的时间，单位秒，默认 1。\n    anchor: 鼠标在拖拽元素中按下的位置及偏移量，默认 None，在元素中心按下且无偏移。\n        可直接传位置字符串，\n        或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n        位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n        middle_left（左中）、middle_center（中心）、middle_right（右中）、\n        bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n        偏移单位为 CSS 像素，水平正值向右，垂直正值向下。\n    move_speed: 移动速度，默认 middle（中速），可选 instant（瞬间）、fast（快速）、slow（慢速）。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 979,
+      "source": "    def drag_to_by_cdp(self, *, target_x: int = 0, target_y: int = 0, target_type: str = \"viewport\",\n                       delay_after: float = 1, anchor: object | None = None, move_speed: str = \"middle\") -> None:\n        \"\"\"拖拽网页元素到指定位置。\n\n        Args:\n            target_x: 目标点的横坐标。\n            target_y: 目标点的纵坐标。\n            target_type: 目标坐标参照，默认 viewport（整个网页可视区域左上角，CSS 像素），\n                可选 screen（屏幕左上角，物理像素）。\n            delay_after: 指令执行成功后延迟执行的时间，单位秒，默认 1。\n            anchor: 鼠标在拖拽元素中按下的位置及偏移量，默认 None，在元素中心按下且无偏移。\n                可直接传位置字符串，\n                或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n                位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n                middle_left（左中）、middle_center（中心）、middle_right（右中）、\n                bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n                偏移单位为 CSS 像素，水平正值向右，垂直正值向下。\n            move_speed: 移动速度，默认 middle（中速），可选 instant（瞬间）、fast（快速）、slow（慢速）。\n        \"\"\"\n        if target_type not in {\"viewport\", \"screen\"} or move_speed not in {\"instant\", \"fast\", \"middle\", \"slow\"}:\n            raise InvalidParamsError(\"目标坐标类型或移动速度无效\")\n        result = self._raw.drag(simulative=False, mode=\"cdp\", target_x=int(target_x), target_y=int(target_y),\n            target_type=target_type, pt=anchor_to_pt(anchor), move_speed=move_speed)\n        self._finish(result, delay_after)\n",
+      "implementation_chain": "web.action.drag(mode=cdp) → ActionService.web_drag_element → CDP 输入事件",
+      "script": "web/test_web_element_drag_to_by_cdp_20261004.py"
+    },
+    "element.upload": {
+      "signature": "(self, file_names: 'str | list[str]', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, dialog_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'",
+      "docstring": "上传文件。\n\nArgs:\n    file_names: 待上传文件的完整路径，可传入单个路径或路径列表。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    dialog_timeout: 点击上传按钮后等待文件选择框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 文件路径或输入参数无效。\n    ActionError: 元素已失效、文件不可用或上传失败。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 1004,
+      "source": "    def upload(\n        self,\n        file_names: str | list[str],\n        *,\n        simulative: bool = False,\n        clipboard_input: bool = True,\n        dialog_timeout: float = 20,\n        force_ime_eng: bool = False,\n        send_key_delay: int = 50,\n        focus_timeout: int = 1000,\n    ) -> None:\n        \"\"\"上传文件。\n\n        Args:\n            file_names: 待上传文件的完整路径，可传入单个路径或路径列表。\n            simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n            clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n            dialog_timeout: 点击上传按钮后等待文件选择框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n            force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n            send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n            focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\n        Returns:\n            None。\n\n        Raises:\n            InvalidParamsError: 文件路径或输入参数无效。\n            ActionError: 元素已失效、文件不可用或上传失败。\n        \"\"\"\n\n        import math\n        if isinstance(dialog_timeout, bool) or not isinstance(dialog_timeout, (int, float)) or not math.isfinite(dialog_timeout) or (dialog_timeout < 0 and dialog_timeout != -1):\n            raise InvalidParamsError(\"dialog_timeout 必须为 -1 或非负数\")\n        for key, value, minimum in ((\"send_key_delay\", send_key_delay, 0), (\"focus_timeout\", focus_timeout, -1)):\n            if not isinstance(value, int) or isinstance(value, bool) or value < minimum:\n                raise InvalidParamsError(f\"{key} 参数无效\")\n        for key, value in ((\"simulative\", simulative), (\"clipboard_input\", clipboard_input), (\"force_ime_eng\", force_ime_eng)):\n            if not isinstance(value, bool):\n                raise InvalidParamsError(f\"{key} 必须为布尔值\")\n        result = self._raw.upload(file_names, timeout=dialog_timeout, simulative=simulative,\n            clipboard_input=clipboard_input, force_ime_eng=force_ime_eng,\n            send_key_delay=send_key_delay, focus_timeout=focus_timeout)\n        self._finish(result, 0)\n",
+      "implementation_chain": "web.upload.file_input → ActionService.web_upload_element → CDP FileList/文件对话框",
+      "script": "web/test_web_element_upload_20261004.py"
+    },
+    "element.download": {
+      "signature": "(self, file_folder: 'str', *, file_name: 'str | None' = None, overwrite: 'bool' = True, wait_complete: 'bool' = True, wait_complete_timeout: 'float' = 300, simulative: 'bool' = False, clipboard_input: 'bool' = True, dialog_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'str'",
+      "docstring": "下载文件。\n\nArgs:\n    file_folder: 保存下载文件的文件夹完整路径。\n    file_name: 保存文件名，默认 None，使用下载资源默认名称；没有默认名称时自动生成。\n    overwrite: 同名文件是否覆盖，默认 True；False 自动添加后缀。\n    wait_complete: 是否等待下载完成，默认 True；无保存对话框的下载需要开启。\n    wait_complete_timeout: 等待下载完成的时间，单位为秒，默认 300；0 仅检查当前状态，-1 一直等待。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    dialog_timeout: 点击后等待下载或保存对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    文件完整路径；不等待完成时，文件可能仍在下载。\n\nRaises:\n    InvalidParamsError: 保存路径或输入参数无效。\n    ActionError: 元素已失效、下载失败或等待超时。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 1048,
+      "source": "    def download(\n        self,\n        file_folder: str,\n        *,\n        file_name: str | None = None,\n        overwrite: bool = True,\n        wait_complete: bool = True,\n        wait_complete_timeout: float = 300,\n        simulative: bool = False,\n        clipboard_input: bool = True,\n        dialog_timeout: float = 20,\n        force_ime_eng: bool = False,\n        send_key_delay: int = 50,\n        focus_timeout: int = 1000,\n    ) -> str:\n        \"\"\"下载文件。\n\n        Args:\n            file_folder: 保存下载文件的文件夹完整路径。\n            file_name: 保存文件名，默认 None，使用下载资源默认名称；没有默认名称时自动生成。\n            overwrite: 同名文件是否覆盖，默认 True；False 自动添加后缀。\n            wait_complete: 是否等待下载完成，默认 True；无保存对话框的下载需要开启。\n            wait_complete_timeout: 等待下载完成的时间，单位为秒，默认 300；0 仅检查当前状态，-1 一直等待。\n            simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n            clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n            dialog_timeout: 点击后等待下载或保存对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n            force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n            send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n            focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\n        Returns:\n            文件完整路径；不等待完成时，文件可能仍在下载。\n\n        Raises:\n            InvalidParamsError: 保存路径或输入参数无效。\n            ActionError: 元素已失效、下载失败或等待超时。\n        \"\"\"\n\n        from ._file_dialog import input_params, save_params, timeout_ms, result_path\n        input_options = input_params(simulative=simulative, clipboard_input=clipboard_input,\n            force_ime_eng=force_ime_eng, send_key_delay=send_key_delay, focus_timeout=focus_timeout)\n        save_params(file_folder=file_folder, file_name=file_name, overwrite=overwrite,\n            wait_complete=wait_complete, wait_complete_timeout=wait_complete_timeout)\n        timeout_ms(dialog_timeout, \"dialog_timeout\")\n        result = self._raw.download(\n            output_dir=file_folder,\n            filename=file_name,\n            overwrite=overwrite, wait_complete=wait_complete,\n            wait_complete_timeout=wait_complete_timeout,\n            click_timeout=dialog_timeout,\n            **input_options,\n        )\n        action = ActionResult.from_payload(result)\n        self.last_result = action\n        action.raise_for_error()\n        return result_path(result)\n",
+      "implementation_chain": "web.download.element → ActionService.web_download_element → download_begin/status/release、保存对话框与移动完整下载文件",
+      "script": "web/test_web_element_download_20261004.py"
+    },
+    "element.highlight": {
+      "signature": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'",
+      "docstring": "高亮显示当前网页元素。\n\n激活元素所在网页和浏览器窗口，将元素滚动到可见区域后显示高亮框。\n即使网页以静默方式获取，调用本方法也会激活窗口。\n\nArgs:\n    duration: 高亮持续时间，单位秒，默认 1；0 表示立即清除。\n    delay_after: 高亮结束后等待时间，单位秒，默认 0。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 持续时间无效。\n    ActionError: 元素失效、不可见或高亮失败。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 1105,
+      "source": "    def highlight(self, duration: float = 1.0, delay_after: float = 0) -> None:\n        \"\"\"高亮显示当前网页元素。\n\n        激活元素所在网页和浏览器窗口，将元素滚动到可见区域后显示高亮框。\n        即使网页以静默方式获取，调用本方法也会激活窗口。\n\n        Args:\n            duration: 高亮持续时间，单位秒，默认 1；0 表示立即清除。\n            delay_after: 高亮结束后等待时间，单位秒，默认 0。\n\n        Returns:\n            None。\n\n        Raises:\n            InvalidParamsError: 持续时间无效。\n            ActionError: 元素失效、不可见或高亮失败。\n        \"\"\"\n        self._finish(self._raw.highlight(duration=duration), delay_after)\n",
+      "implementation_chain": "web.action.highlight → ActionService.web_highlight_element → Provider 几何 → Win32 高亮覆盖窗口",
+      "script": "web/test_web_element_highlight_20261004.py"
+    },
+    "browser.go_back": {
+      "signature": "(self, *, load_timeout: 'float' = 20) -> 'None'",
+      "docstring": "浏览器后退。\n\nArgs:\n    load_timeout: 等待加载的秒数，默认 ``20``；``0`` 不等待加载完成，\n        ``-1`` 一直等待。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效、加载超时或后退失败。",
+      "source_file": "sdk\\src\\uiautoma\\web\\browser.py",
+      "source_line": 162,
+      "source": "    def go_back(self, *, load_timeout: float = 20) -> None:\n        \"\"\"浏览器后退。\n\n        Args:\n            load_timeout: 等待加载的秒数，默认 ``20``；``0`` 不等待加载完成，\n                ``-1`` 一直等待。\n\n        Returns:\n            ``None``。\n\n        Raises:\n            ActionError: 网页对象已失效、加载超时或后退失败。\n        \"\"\"\n\n        self._runtime_client().web_back(\n            **self._browser_params(timeout_ms=_timeout_ms(load_timeout, 20)),\n        ).raise_for_error()\n",
+      "implementation_chain": "web.browser.back → ActionService 浏览器后退 → Chrome back/history readiness",
+      "script": "web/test_web_browser_go_back_20261004.py"
+    },
+    "web.handle_upload_dialog": {
+      "signature": "(file_names: 'str | list[str]', dialog_result: 'str' = 'ok', mode: 'str' = 'auto', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, wait_appear_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'",
+      "docstring": "处理浏览器的文件上传对话框。\n\nArgs:\n    file_names: 待上传文件的完整路径，可传入单个路径或路径列表；确认时文件必须存在，取消时不使用此参数。\n    dialog_result: 处理方式，默认 ok（确定），可选 cancel（取消）。\n    mode: 浏览器类型，默认 auto（自动选择），可选 chrome、edge。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 文件路径或输入参数无效。\n    UIAError: 对话框未出现、存在多个匹配对话框或上传失败。",
+      "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+      "source_line": 420,
+      "source": "def handle_upload_dialog(\n    file_names: str | list[str], dialog_result: str = \"ok\", mode: str = \"auto\", *,\n    simulative: bool = False, clipboard_input: bool = True, wait_appear_timeout: float = 20,\n    force_ime_eng: bool = False, send_key_delay: int = 50, focus_timeout: int = 1000,\n) -> None:\n    \"\"\"处理浏览器的文件上传对话框。\n\n    Args:\n        file_names: 待上传文件的完整路径，可传入单个路径或路径列表；确认时文件必须存在，取消时不使用此参数。\n        dialog_result: 处理方式，默认 ok（确定），可选 cancel（取消）。\n        mode: 浏览器类型，默认 auto（自动选择），可选 chrome、edge。\n        simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n        clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n        wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n        force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n        send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n        focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\n    Returns:\n        None。\n\n    Raises:\n        InvalidParamsError: 文件路径或输入参数无效。\n        UIAError: 对话框未出现、存在多个匹配对话框或上传失败。\n    \"\"\"\n    from ._file_dialog import input_params, timeout_ms\n    if dialog_result not in {\"ok\", \"cancel\"}:\n        raise InvalidParamsError(\"dialog_result 必须为 ok 或 cancel\")\n    options = input_params(simulative=simulative, clipboard_input=clipboard_input,\n        force_ime_eng=force_ime_eng, send_key_delay=send_key_delay, focus_timeout=focus_timeout)\n    get_client().web_file_dialog(\"upload\", mode=_normalize_mode(mode), file_paths=file_names,\n        dialog_result=dialog_result, timeout_ms=timeout_ms(wait_appear_timeout, \"wait_appear_timeout\"), **options)\n",
+      "implementation_chain": "web.dialog.upload → ActionService 文件对话框绑定/输入/确认",
+      "script": "web/test_web_handle_upload_dialog_20261004.py"
+    },
+    "web.auto_handle_popup": {
+      "signature": "(handle_method: 'str', close_button=None, element_selector=None, process: 'str | None' = None, package=None) -> 'None'",
+      "docstring": "注册自动关闭网页弹窗的规则，对随后获取或打开的网页生效。\n\nArgs:\n    handle_method: 处理方式，支持 \"close_dialog\"（点击关闭按钮）；\n        \"execute_process\"（执行子流程）暂不支持。\n    close_button: 关闭按钮的元素名称或 Web Selector；close_dialog 时必填，不支持跨 iframe。\n    element_selector: 触发子流程的元素选择器；当前暂不使用。\n    process: 要执行的子流程名称，不带 .py；当前暂不使用。\n    package: 子流程所在的 Python 包名；当前暂不使用。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 处理方式、关闭按钮无效或规则重复。\n    UnsupportedActionError: 使用了暂不支持的执行子流程方式。",
+      "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+      "source_line": 454,
+      "source": "def auto_handle_popup(handle_method: str, close_button=None, element_selector=None, process: str | None = None, package=None) -> None:\n    \"\"\"注册自动关闭网页弹窗的规则，对随后获取或打开的网页生效。\n\n    Args:\n        handle_method: 处理方式，支持 \"close_dialog\"（点击关闭按钮）；\n            \"execute_process\"（执行子流程）暂不支持。\n        close_button: 关闭按钮的元素名称或 Web Selector；close_dialog 时必填，不支持跨 iframe。\n        element_selector: 触发子流程的元素选择器；当前暂不使用。\n        process: 要执行的子流程名称，不带 .py；当前暂不使用。\n        package: 子流程所在的 Python 包名；当前暂不使用。\n\n    Returns:\n        ``None``。\n\n    Raises:\n        InvalidParamsError: 处理方式、关闭按钮无效或规则重复。\n        UnsupportedActionError: 使用了暂不支持的执行子流程方式。\n    \"\"\"\n    if handle_method == \"execute_process\":\n        raise UnsupportedActionError(\"当前版本暂不支持弹窗执行子流程\")\n    if handle_method != \"close_dialog\":\n        raise InvalidParamsError(\"弹窗处理方式必须为 close_dialog\")\n    from .._context import get_package\n    from .element import _saved_query\n    import uuid\n    query = _saved_query(close_button)\n    session = get_package()\n    client = get_client()\n    owner = client._web_popup_owner or uuid.uuid4().hex\n    client._run_web_browser_value(\"web.popup.add\", owner=owner, handle_method=handle_method,\n        query=query, package_token=session.package_token, state_revision=session.state_revision)\n    client._web_popup_owner = owner\n",
+      "implementation_chain": "web.popup.add → ActionService.web_popup_add → PopupRules",
+      "script": "web/test_web_auto_handle_popup_20261004.py"
+    },
+    "web.remove_all_auto_handle_popup": {
+      "signature": "() -> 'None'",
+      "docstring": "移除当前连接注册的所有网页弹窗自动处理规则。\n\nReturns:\n    ``None``。",
+      "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+      "source_line": 488,
+      "source": "def remove_all_auto_handle_popup() -> None:\n    \"\"\"移除当前连接注册的所有网页弹窗自动处理规则。\n\n    Returns:\n        ``None``。\n\n    \"\"\"\n    client = get_client()\n    if client._web_popup_owner:\n        client._run_web_browser_value(\"web.popup.remove_all\", owner=client._web_popup_owner)\n        client._web_popup_owner = \"\"\n",
+      "implementation_chain": "web.popup.remove_all → ActionService.web_popup_remove_all → PopupRules.remove",
+      "script": "web/test_web_remove_all_auto_handle_popup_20261004.py"
+    },
+    "web.set_user_environment_fingerprint": {
+      "signature": "(mode: 'str', env_name=None) -> 'None'",
+      "docstring": "选择指纹浏览器中已有的用户环境，当前版本暂不支持。\n\nArgs:\n    mode: 指纹浏览器类型；普通 Chrome 和 Edge 不适用。\n    env_name: 指纹浏览器中已有的环境名称。\n\nReturns:\n    ``None``。\n\nRaises:\n    UnsupportedActionError: 当前版本暂不支持选择指纹浏览器环境。",
+      "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+      "source_line": 523,
+      "source": "def set_user_environment_fingerprint(mode: str, env_name=None) -> None:\n    \"\"\"选择指纹浏览器中已有的用户环境，当前版本暂不支持。\n\n    Args:\n        mode: 指纹浏览器类型；普通 Chrome 和 Edge 不适用。\n        env_name: 指纹浏览器中已有的环境名称。\n\n    Returns:\n        ``None``。\n\n    Raises:\n        UnsupportedActionError: 当前版本暂不支持选择指纹浏览器环境。\n    \"\"\"\n\n    raise unsupported(\"web.set_user_environment_fingerprint\")\n",
+      "implementation_chain": "SDK 直接抛 UnsupportedActionError；无正向实现链",
+      "script": "web/test_web_set_user_environment_fingerprint_20261004.py"
+    },
+    "browser.stop_load": {
+      "signature": "(self) -> 'None'",
+      "docstring": "停止页面加载。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效或停止加载失败。",
+      "source_file": "sdk\\src\\uiautoma\\web\\browser.py",
+      "source_line": 220,
+      "source": "    def stop_load(self) -> None:\n        \"\"\"停止页面加载。\n\n        Returns:\n            ``None``。\n\n        Raises:\n            ActionError: 网页对象已失效或停止加载失败。\n        \"\"\"\n\n        self._runtime_client().web_browser_stop_load(\n            **self._browser_params(timeout_ms=2000),\n        ).raise_for_error()\n",
+      "implementation_chain": "SDK 直接抛 UnsupportedActionError；无正向实现链",
+      "script": "web/test_web_browser_stop_load_20261004.py"
+    },
+    "browser.extract_table": {
+      "signature": "(self, table_selector: 'object', *, exclude_thead: 'bool' = False, timeout: 'float' = 20) -> 'list[list[str]]'",
+      "docstring": "提取页面表格。\n\nArgs:\n    table_selector: 表格元素选择器。\n    exclude_thead: 是否排除表头，类型为 ``bool``。\n    timeout: 查找超时时间，单位秒。\n\nReturns:\n    ``list[list[str]]``：二维表格文本。\n\nRaises:\n    UnsupportedActionError: 当前版本暂未实现页面级表格提取。",
+      "source_file": "sdk\\src\\uiautoma\\web\\browser.py",
+      "source_line": 717,
+      "source": "    def extract_table(self, table_selector: object, *, exclude_thead: bool = False, timeout: float = 20) -> list[list[str]]:\n        \"\"\"提取页面表格。\n\n        Args:\n            table_selector: 表格元素选择器。\n            exclude_thead: 是否排除表头，类型为 ``bool``。\n            timeout: 查找超时时间，单位秒。\n\n        Returns:\n            ``list[list[str]]``：二维表格文本。\n\n        Raises:\n            UnsupportedActionError: 当前版本暂未实现页面级表格提取。\n        \"\"\"\n\n        raise unsupported(\"web.browser.extract_table\")\n",
+      "implementation_chain": "SDK 直接抛 UnsupportedActionError；无正向实现链",
+      "script": "web/test_web_browser_extract_table_20261004.py"
+    },
+    "element.extract_table": {
+      "signature": "(self) -> 'list[list[str]]'",
+      "docstring": "提取表格内容。\n\nReturns:\n    ``list[list[str]]``：二维表格文本。\n\nRaises:\n    UnsupportedActionError: 当前版本暂未实现 Web 表格提取。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 798,
+      "source": "    def extract_table(self) -> list[list[str]]:\n        \"\"\"提取表格内容。\n\n        Returns:\n            ``list[list[str]]``：二维表格文本。\n\n        Raises:\n            UnsupportedActionError: 当前版本暂未实现 Web 表格提取。\n        \"\"\"\n\n        raise unsupported(\"web.element.extract_table\")\n",
+      "implementation_chain": "SDK 直接抛 UnsupportedActionError；无正向实现链",
+      "script": "web/test_web_element_extract_table_20261004.py"
+    },
+    "element.get_basetable_value": {
+      "signature": "(self, *, exclude_thead: 'bool' = False) -> 'list[list[str]]'",
+      "docstring": "提取基础表格内容。\n\nArgs:\n    exclude_thead: 是否排除表头，类型为 ``bool``。\n\nReturns:\n    ``list[list[str]]``：二维表格文本。\n\nRaises:\n    UnsupportedActionError: 当前版本暂未实现 Web 表格提取。",
+      "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+      "source_line": 810,
+      "source": "    def get_basetable_value(self, *, exclude_thead: bool = False) -> list[list[str]]:\n        \"\"\"提取基础表格内容。\n\n        Args:\n            exclude_thead: 是否排除表头，类型为 ``bool``。\n\n        Returns:\n            ``list[list[str]]``：二维表格文本。\n\n        Raises:\n            UnsupportedActionError: 当前版本暂未实现 Web 表格提取。\n        \"\"\"\n\n        raise unsupported(\"web.element.get_basetable_value\")\n",
+      "implementation_chain": "SDK 直接抛 UnsupportedActionError；无正向实现链",
+      "script": "web/test_web_element_get_basetable_value_20261004.py"
+    }
+  }
+}
