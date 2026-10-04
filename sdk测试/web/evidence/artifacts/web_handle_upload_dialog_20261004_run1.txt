@@ -1,0 +1,89 @@
+{
+  "api": "web.handle_upload_dialog",
+  "lifecycle": "SKIPPED",
+  "url": "https://baobaomi900901.github.io/xpath/#/upload-dialog-test",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(file_names: 'str | list[str]', dialog_result: 'str' = 'ok', mode: 'str' = 'auto', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, wait_appear_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'",
+    "docstring": "处理浏览器的文件上传对话框。\n\nArgs:\n    file_names: 待上传文件的完整路径，可传入单个路径或路径列表；确认时文件必须存在，取消时不使用此参数。\n    dialog_result: 处理方式，默认 ok（确定），可选 cancel（取消）。\n    mode: 浏览器类型，默认 auto（自动选择），可选 chrome、edge。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 文件路径或输入参数无效。\n    UIAError: 对话框未出现、存在多个匹配对话框或上传失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+    "source_line": 420,
+    "source": "def handle_upload_dialog(\n    file_names: str | list[str], dialog_result: str = \"ok\", mode: str = \"auto\", *,\n    simulative: bool = False, clipboard_input: bool = True, wait_appear_timeout: float = 20,\n    force_ime_eng: bool = False, send_key_delay: int = 50, focus_timeout: int = 1000,\n) -> None:\n    \"\"\"处理浏览器的文件上传对话框。\n\n    Args:\n        file_names: 待上传文件的完整路径，可传入单个路径或路径列表；确认时文件必须存在，取消时不使用此参数。\n        dialog_result: 处理方式，默认 ok（确定），可选 cancel（取消）。\n        mode: 浏览器类型，默认 auto（自动选择），可选 chrome、edge。\n        simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n        clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n        wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n        force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n        send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n        focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\n    Returns:\n        None。\n\n    Raises:\n        InvalidParamsError: 文件路径或输入参数无效。\n        UIAError: 对话框未出现、存在多个匹配对话框或上传失败。\n    \"\"\"\n    from ._file_dialog import input_params, timeout_ms\n    if dialog_result not in {\"ok\", \"cancel\"}:\n        raise InvalidParamsError(\"dialog_result 必须为 ok 或 cancel\")\n    options = input_params(simulative=simulative, clipboard_input=clipboard_input,\n        force_ime_eng=force_ime_eng, send_key_delay=send_key_delay, focus_timeout=focus_timeout)\n    get_client().web_file_dialog(\"upload\", mode=_normalize_mode(mode), file_paths=file_names,\n        dialog_result=dialog_result, timeout_ms=timeout_ms(wait_appear_timeout, \"wait_appear_timeout\"), **options)\n",
+    "implementation_chain": "web.dialog.upload → ActionService 文件对话框绑定/输入/确认",
+    "script": "web/test_web_handle_upload_dialog_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(file_names: 'str | list[str]', dialog_result: 'str' = 'ok', mode: 'str' = 'auto', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, wait_appear_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/upload-dialog-test",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\8480fe36de42403388da000b6415c3c4\\library"
+      },
+      "elapsed_ms": 1061.4
+    },
+    {
+      "case_id": "choose_file",
+      "status": "KNOWN",
+      "expected": "处理真实文件对话框，DOM FileList 与磁盘一致",
+      "actual": {
+        "exception": "ActionError",
+        "message": "元素自动化服务暂不可用，请稍后重试",
+        "trace": "uiautomation_provider_unavailable",
+        "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+      },
+      "elapsed_ms": 177.2
+    },
+    {
+      "case_id": "cancel",
+      "status": "KNOWN",
+      "expected": "取消文件对话框保留原文件",
+      "actual": {
+        "exception": "ActionError",
+        "message": "元素自动化服务暂不可用，请稍后重试",
+        "trace": "uiautomation_provider_unavailable",
+        "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+      },
+      "elapsed_ms": 207.4
+    },
+    {
+      "case_id": "invalid_result",
+      "status": "PASS",
+      "expected": "非法 dialog_result 抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "dialog_result 必须为 ok 或 cancel",
+        "trace": ""
+      },
+      "elapsed_ms": 0.5
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 207.2
+    }
+  ],
+  "exit_code": 0
+}
