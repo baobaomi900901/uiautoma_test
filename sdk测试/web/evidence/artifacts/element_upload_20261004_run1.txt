@@ -1,0 +1,88 @@
+{
+  "api": "element.upload",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/upload-dialog-test",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, file_names: 'str | list[str]', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, dialog_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'",
+    "docstring": "上传文件。\n\nArgs:\n    file_names: 待上传文件的完整路径，可传入单个路径或路径列表。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    dialog_timeout: 点击上传按钮后等待文件选择框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 文件路径或输入参数无效。\n    ActionError: 元素已失效、文件不可用或上传失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 1004,
+    "source": "    def upload(\n        self,\n        file_names: str | list[str],\n        *,\n        simulative: bool = False,\n        clipboard_input: bool = True,\n        dialog_timeout: float = 20,\n        force_ime_eng: bool = False,\n        send_key_delay: int = 50,\n        focus_timeout: int = 1000,\n    ) -> None:\n        \"\"\"上传文件。\n\n        Args:\n            file_names: 待上传文件的完整路径，可传入单个路径或路径列表。\n            simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n            clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n            dialog_timeout: 点击上传按钮后等待文件选择框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n            force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n            send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n            focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\n        Returns:\n            None。\n\n        Raises:\n            InvalidParamsError: 文件路径或输入参数无效。\n            ActionError: 元素已失效、文件不可用或上传失败。\n        \"\"\"\n\n        import math\n        if isinstance(dialog_timeout, bool) or not isinstance(dialog_timeout, (int, float)) or not math.isfinite(dialog_timeout) or (dialog_timeout < 0 and dialog_timeout != -1):\n            raise InvalidParamsError(\"dialog_timeout 必须为 -1 或非负数\")\n        for key, value, minimum in ((\"send_key_delay\", send_key_delay, 0), (\"focus_timeout\", focus_timeout, -1)):\n            if not isinstance(value, int) or isinstance(value, bool) or value < minimum:\n                raise InvalidParamsError(f\"{key} 参数无效\")\n        for key, value in ((\"simulative\", simulative), (\"clipboard_input\", clipboard_input), (\"force_ime_eng\", force_ime_eng)):\n            if not isinstance(value, bool):\n                raise InvalidParamsError(f\"{key} 必须为布尔值\")\n        result = self._raw.upload(file_names, timeout=dialog_timeout, simulative=simulative,\n            clipboard_input=clipboard_input, force_ime_eng=force_ime_eng,\n            send_key_delay=send_key_delay, focus_timeout=focus_timeout)\n        self._finish(result, 0)\n",
+    "implementation_chain": "web.upload.file_input → ActionService.web_upload_element → CDP FileList/文件对话框",
+    "script": "web/test_web_element_upload_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, file_names: 'str | list[str]', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, dialog_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/upload-dialog-test",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\2ec582898dee40ffbb8d17e87d09359e\\library"
+      },
+      "elapsed_ms": 1036.3
+    },
+    {
+      "case_id": "real_file",
+      "status": "PASS",
+      "expected": "上传返回 None，DOM FileList 文件名与大小一致",
+      "actual": [
+        {
+          "name": "upload.txt",
+          "size": 28
+        }
+      ],
+      "elapsed_ms": 2992.1
+    },
+    {
+      "case_id": "missing_file",
+      "status": "PASS",
+      "expected": "不存在文件抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "上传文件不存在或不是文件：D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\2ec582898dee40ffbb8d17e87d09359e\\missing.txt",
+        "trace": "invalid_params"
+      },
+      "elapsed_ms": 0.8
+    },
+    {
+      "case_id": "invalid_timeout",
+      "status": "PASS",
+      "expected": "非法超时抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "dialog_timeout 必须为 -1 或非负数",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 201.8
+    }
+  ],
+  "exit_code": 0
+}
