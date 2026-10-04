@@ -1,0 +1,75 @@
+{
+  "api": "browser.go_back",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, *, load_timeout: 'float' = 20) -> 'None'",
+    "docstring": "浏览器后退。\n\nArgs:\n    load_timeout: 等待加载的秒数，默认 ``20``；``0`` 不等待加载完成，\n        ``-1`` 一直等待。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效、加载超时或后退失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\browser.py",
+    "source_line": 162,
+    "source": "    def go_back(self, *, load_timeout: float = 20) -> None:\n        \"\"\"浏览器后退。\n\n        Args:\n            load_timeout: 等待加载的秒数，默认 ``20``；``0`` 不等待加载完成，\n                ``-1`` 一直等待。\n\n        Returns:\n            ``None``。\n\n        Raises:\n            ActionError: 网页对象已失效、加载超时或后退失败。\n        \"\"\"\n\n        self._runtime_client().web_back(\n            **self._browser_params(timeout_ms=_timeout_ms(load_timeout, 20)),\n        ).raise_for_error()\n",
+    "implementation_chain": "web.browser.back → ActionService 浏览器后退 → Chrome back/history readiness",
+    "script": "web/test_web_browser_go_back_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, *, load_timeout: 'float' = 20) -> 'None'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\634d5c0c646841eb8b261979dbdebc09\\library"
+      },
+      "elapsed_ms": 1534.8
+    },
+    {
+      "case_id": "first_back",
+      "status": "PASS",
+      "expected": "首次后退回到原 URL，页面实际地址确证",
+      "actual": {
+        "return": null,
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+      },
+      "elapsed_ms": 391.3
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "expected": "仅关键字 load_timeout 不接受位置值",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebBrowser.go_back() takes 1 positional argument but 2 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 218.9
+    }
+  ],
+  "exit_code": 0
+}
