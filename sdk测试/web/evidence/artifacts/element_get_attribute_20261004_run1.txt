@@ -1,0 +1,127 @@
+{
+  "api": "element.get_attribute",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, name: 'str') -> 'str | None'",
+    "docstring": "获取网页元素的属性值。\n\nArgs:\n    name: 元素属性名称。指定 ``\"full_url\"`` 时获取完整链接或图片地址。\n\nReturns:\n    ``str | None``：属性值；属性不存在时返回 ``None``。\n\nRaises:\n    InvalidParamsError: 属性名为空或包含非法字符。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 722,
+    "source": "    def get_attribute(self, name: str) -> str | None:\n        \"\"\"获取网页元素的属性值。\n\n        Args:\n            name: 元素属性名称。指定 ``\"full_url\"`` 时获取完整链接或图片地址。\n\n        Returns:\n            ``str | None``：属性值；属性不存在时返回 ``None``。\n\n        Raises:\n            InvalidParamsError: 属性名为空或包含非法字符。\n        \"\"\"\n\n        return self._raw.get_attribute(name)\n",
+    "implementation_chain": "web.get_attribute → ActionService.web_get_attribute_element → Page Engine get_attribute",
+    "script": "web/test_web_element_get_attribute_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, name: 'str') -> 'str | None'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\a2c17a4826ac4df099f77961473b994a\\library"
+      },
+      "elapsed_ms": 1583.8
+    },
+    {
+      "case_id": "native",
+      "status": "PASS",
+      "expected": "真实元素属性与 DOM 对照，修改后恢复",
+      "actual": {
+        "actual": {
+          "id": "form-controls-native-text",
+          "type": "text",
+          "placeholder": "请输入文本",
+          "data-uiautoma-absent": null
+        },
+        "independent_dom": {
+          "id": "form-controls-native-text",
+          "type": "text",
+          "placeholder": "请输入文本",
+          "data-uiautoma-absent": null
+        }
+      },
+      "elapsed_ms": 127.6
+    },
+    {
+      "case_id": "ant",
+      "status": "PASS",
+      "expected": "真实元素属性与 DOM 对照，修改后恢复",
+      "actual": {
+        "actual": {
+          "id": "form-controls-ant-text",
+          "type": "text",
+          "placeholder": "请输入文本",
+          "data-uiautoma-absent": null
+        },
+        "independent_dom": {
+          "id": "form-controls-ant-text",
+          "type": "text",
+          "placeholder": "请输入文本",
+          "data-uiautoma-absent": null
+        }
+      },
+      "elapsed_ms": 131.8
+    },
+    {
+      "case_id": "empty_name",
+      "status": "PASS",
+      "expected": "空属性名抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "属性名不能为空",
+        "trace": ""
+      },
+      "elapsed_ms": 23.7
+    },
+    {
+      "case_id": "extra_argument",
+      "status": "PASS",
+      "expected": "多余位置参数抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.get_attribute() takes 2 positional arguments but 3 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 20.3
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 199.8
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    }
+  ],
+  "exit_code": 0
+}
