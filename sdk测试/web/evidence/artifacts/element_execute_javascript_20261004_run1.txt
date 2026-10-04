@@ -1,0 +1,177 @@
+{
+  "api": "element.execute_javascript",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, code: 'str', argument: 'object | None' = None, execution_world: 'str' = 'ISOLATED') -> 'Any'",
+    "docstring": "在当前元素上执行 JavaScript 脚本。\n\nArgs:\n    code: 要执行的 JS 脚本，必须为 JavaScript 函数字符串，如：\n\n        ```python\n        \"\"\"\n        function (element, args) {\n            // element 表示当前 HTML 元素\n            // args 表示输入的参数\n            return args;\n        }\n        \"\"\"\n        ```\n\n    argument: 要传入 JS 函数的参数，支持字符串、数字、布尔值、列表和字典。\n        默认 None，函数收到 undefined；列表和字典无需先转为 JSON 字符串。\n    execution_world: 运行环境，支持 \"ISOLATED\"（隔离环境）和 \"MAIN\"（网页环境），\n        默认为 \"ISOLATED\"。\n\nReturns:\n    Any：返回 JS 脚本执行结果；无返回值、undefined 和 null 返回 None。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 884,
+    "source": "    def execute_javascript(\n        self,\n        code: str,\n        argument: object | None = None,\n        execution_world: str = \"ISOLATED\",\n    ) -> Any:\n        '''在当前元素上执行 JavaScript 脚本。\n\n        Args:\n            code: 要执行的 JS 脚本，必须为 JavaScript 函数字符串，如：\n\n                ```python\n                \"\"\"\n                function (element, args) {\n                    // element 表示当前 HTML 元素\n                    // args 表示输入的参数\n                    return args;\n                }\n                \"\"\"\n                ```\n\n            argument: 要传入 JS 函数的参数，支持字符串、数字、布尔值、列表和字典。\n                默认 None，函数收到 undefined；列表和字典无需先转为 JSON 字符串。\n            execution_world: 运行环境，支持 \"ISOLATED\"（隔离环境）和 \"MAIN\"（网页环境），\n                默认为 \"ISOLATED\"。\n\n        Returns:\n            Any：返回 JS 脚本执行结果；无返回值、undefined 和 null 返回 None。\n        '''\n\n        if execution_world not in {\"ISOLATED\", \"MAIN\"}:\n            raise InvalidParamsError(\"execution_world 必须为 ISOLATED 或 MAIN\")\n        return self._raw.evaluate_js(str(code), argument=argument, execution_world=execution_world)\n",
+    "implementation_chain": "web.evaluate_js → ActionService.web_evaluate_js_element → execute_element_javascript（指定执行环境、绑定真实元素）",
+    "script": "web/test_web_element_execute_javascript_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, code: 'str', argument: 'object | None' = None, execution_world: 'str' = 'ISOLATED') -> 'Any'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\1815be2459814ad3ae6f313ea51ac3ce\\library"
+      },
+      "elapsed_ms": 1479.0
+    },
+    {
+      "case_id": "roundtrip_ISOLATED",
+      "status": "PASS",
+      "expected": "跨 iframe/Shadow 绑定真实 element，JSON 参数和结果保真",
+      "actual": {
+        "actual": {
+          "args": {
+            "nested": {
+              "x": 2
+            },
+            "音乐": [
+              "甲",
+              1,
+              true,
+              null
+            ]
+          },
+          "id": "form-controls-native-text",
+          "tag": "INPUT"
+        },
+        "expected": {
+          "id": "form-controls-native-text",
+          "tag": "INPUT",
+          "args": {
+            "音乐": [
+              "甲",
+              1,
+              true,
+              null
+            ],
+            "nested": {
+              "x": 2
+            }
+          }
+        }
+      },
+      "elapsed_ms": 22.4
+    },
+    {
+      "case_id": "roundtrip_MAIN",
+      "status": "PASS",
+      "expected": "跨 iframe/Shadow 绑定真实 element，JSON 参数和结果保真",
+      "actual": {
+        "actual": {
+          "args": {
+            "nested": {
+              "x": 2
+            },
+            "音乐": [
+              "甲",
+              1,
+              true,
+              null
+            ]
+          },
+          "id": "form-controls-native-text",
+          "tag": "INPUT"
+        },
+        "expected": {
+          "id": "form-controls-native-text",
+          "tag": "INPUT",
+          "args": {
+            "音乐": [
+              "甲",
+              1,
+              true,
+              null
+            ],
+            "nested": {
+              "x": 2
+            }
+          }
+        }
+      },
+      "elapsed_ms": 14.9
+    },
+    {
+      "case_id": "null",
+      "status": "PASS",
+      "expected": "JS null 返回 None",
+      "actual": "None",
+      "elapsed_ms": 19.3
+    },
+    {
+      "case_id": "undefined",
+      "status": "PASS",
+      "expected": "JS undefined 返回 None",
+      "actual": "None",
+      "elapsed_ms": 28.8
+    },
+    {
+      "case_id": "invalid_world",
+      "status": "PASS",
+      "expected": "错误执行环境抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "execution_world 必须为 ISOLATED 或 MAIN",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "script_error",
+      "status": "PASS",
+      "expected": "脚本异常抛 ActionError",
+      "actual": {
+        "exception": "ActionError",
+        "message": "Error: uiautoma-probe\n    at fn (<anonymous>:3:44)\n    at HTMLInputElement.<anonymous> (<anonymous>:6:28)",
+        "trace": "execute_javascript_failed"
+      },
+      "elapsed_ms": 26.5
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 207.8
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    }
+  ],
+  "exit_code": 0
+}
