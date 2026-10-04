@@ -1,0 +1,36 @@
+{
+  "api": "web.set_user_environment_fingerprint",
+  "lifecycle": "SKIPPED",
+  "url": null,
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(mode: 'str', env_name=None) -> 'None'",
+    "docstring": "选择指纹浏览器中已有的用户环境，当前版本暂不支持。\n\nArgs:\n    mode: 指纹浏览器类型；普通 Chrome 和 Edge 不适用。\n    env_name: 指纹浏览器中已有的环境名称。\n\nReturns:\n    ``None``。\n\nRaises:\n    UnsupportedActionError: 当前版本暂不支持选择指纹浏览器环境。",
+    "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+    "source_line": 523,
+    "source": "def set_user_environment_fingerprint(mode: str, env_name=None) -> None:\n    \"\"\"选择指纹浏览器中已有的用户环境，当前版本暂不支持。\n\n    Args:\n        mode: 指纹浏览器类型；普通 Chrome 和 Edge 不适用。\n        env_name: 指纹浏览器中已有的环境名称。\n\n    Returns:\n        ``None``。\n\n    Raises:\n        UnsupportedActionError: 当前版本暂不支持选择指纹浏览器环境。\n    \"\"\"\n\n    raise unsupported(\"web.set_user_environment_fingerprint\")\n",
+    "implementation_chain": "SDK 直接抛 UnsupportedActionError；无正向实现链",
+    "script": "web/test_web_set_user_environment_fingerprint_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(mode: 'str', env_name=None) -> 'None'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "skip",
+      "status": "KNOWN",
+      "expected": "需要真实正向场景",
+      "actual": {
+        "skip": "当前源码直接抛 UnsupportedActionError，未实现指纹浏览器环境"
+      },
+      "elapsed_ms": 0
+    }
+  ],
+  "exit_code": 0
+}
