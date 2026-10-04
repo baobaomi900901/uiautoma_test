@@ -1,0 +1,36 @@
+{
+  "api": "web.remove_all_auto_handle_popup",
+  "lifecycle": "SKIPPED",
+  "url": null,
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "() -> 'None'",
+    "docstring": "移除当前连接注册的所有网页弹窗自动处理规则。\n\nReturns:\n    ``None``。",
+    "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+    "source_line": 488,
+    "source": "def remove_all_auto_handle_popup() -> None:\n    \"\"\"移除当前连接注册的所有网页弹窗自动处理规则。\n\n    Returns:\n        ``None``。\n\n    \"\"\"\n    client = get_client()\n    if client._web_popup_owner:\n        client._run_web_browser_value(\"web.popup.remove_all\", owner=client._web_popup_owner)\n        client._web_popup_owner = \"\"\n",
+    "implementation_chain": "web.popup.remove_all → ActionService.web_popup_remove_all → PopupRules.remove",
+    "script": "web/test_web_remove_all_auto_handle_popup_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "() -> 'None'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "skip",
+      "status": "KNOWN",
+      "expected": "需要真实正向场景",
+      "actual": {
+        "skip": "缺少可观察自动关闭效果的 DOM 弹窗/关闭按钮，无法证明规则移除后的真实行为"
+      },
+      "elapsed_ms": 0
+    }
+  ],
+  "exit_code": 0
+}
