@@ -1,5 +1,7 @@
 # `uiautoma.web.auto_handle_popup()` 验证证据（2026-10-04）
 
+> 2026-10-05 修正：此前“现有靶场只有 JavaScript 原生弹窗”的判断撤回。只读源码 worktree `D:\code\xpath`、commit `c886261211541cd48224dda51dc566af4710df16` 的 `WEB\src\pages\KeysClickTestPage.tsx:420` 已有 Ant Design DOM Modal。可使用 `#/keys-click-test` → “遮挡点击测试” → “打开遮挡弹窗”；本机库尚未保存该弹窗的关闭按钮，真实验收仍未执行，状态与历史计数保持 SKIPPED。
+
 ## 用途与合同
 
 注册自动关闭网页弹窗的规则，对随后获取或打开的网页生效。
@@ -37,7 +39,7 @@ auto_handle_popup(handle_method: str, close_button=None, element_selector=None, 
 
 跳过原因：
 
-- 现有靶场只有 JavaScript 原生弹窗；缺少自动关闭规则所需的 DOM 弹窗及保存的关闭按钮
+- 可用 DOM 场景已存在于 `#/keys-click-test`；缺少库中已保存的弹窗关闭按钮。旧原始报告中的跳过文案保留作历史记录，按上述修正理解。
 
 本次仅验收报告列出的场景；未列出的浏览器模式、DPI、参照系、控件种类、超大输入、网络异常或原生交互路径均不宣称通过。SKIPPED 的合同检查通过不等于实际功能通过。
 

@@ -39,7 +39,7 @@ ANT_MULTI = 'web靶场_表单测试_ant_select多选'
 RESET = 'web靶场_表单测试_原生_重置'
 ROOT_JS = "document.querySelector('#iframe-shadow-form').contentDocument.querySelector('#form-shadow-host').shadowRoot"
 SKIPS = {
-    'web.auto_handle_popup': '现有靶场只有 JavaScript 原生弹窗；缺少自动关闭规则所需的 DOM 弹窗及保存的关闭按钮',
+    'web.auto_handle_popup': 'keys-click-test 已有 DOM 遮挡弹窗；当前元素库缺少已保存的弹窗关闭按钮，尚未执行真实自动关闭验收',
     'web.remove_all_auto_handle_popup': '缺少可观察自动关闭效果的 DOM 弹窗/关闭按钮，无法证明规则移除后的真实行为',
     'web.set_user_environment_fingerprint': '当前源码直接抛 UnsupportedActionError，未实现指纹浏览器环境',
     'browser.stop_load': '缺少加载持续不完成的现有靶场；完整加载页不能验证中止待处理导航',

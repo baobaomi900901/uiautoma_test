@@ -32,7 +32,7 @@
 | `uiautoma.web.WebElement.highlight()` | SKIPPED | 6/8 PASS + 0 FAIL + 2 KNOWN | 1 | [报告](element_highlight_20261004.md)；当前原生 Provider/浏览器窗口环境不可用，跳过此分支 |
 | `uiautoma.web.WebBrowser.go_back()` | VERIFIED | 5/5 PASS + 0 FAIL + 0 KNOWN | 3 | [报告](browser_go_back_20261004.md) |
 | `uiautoma.web.handle_upload_dialog()` | SKIPPED | 4/6 PASS + 0 FAIL + 2 KNOWN | 1 | [报告](web_handle_upload_dialog_20261004.md)；当前原生 Provider/浏览器窗口环境不可用，跳过此分支 |
-| `uiautoma.web.auto_handle_popup()` | SKIPPED | 1/2 PASS + 0 FAIL + 1 KNOWN | 1 | [报告](web_auto_handle_popup_20261004.md)；现有靶场只有 JavaScript 原生弹窗；缺少自动关闭规则所需的 DOM 弹窗及保存的关闭按钮 |
+| `uiautoma.web.auto_handle_popup()` | SKIPPED | 1/2 PASS + 0 FAIL + 1 KNOWN | 1 | [报告](web_auto_handle_popup_20261004.md)；2026-10-05 修正：keys-click-test 已有 DOM Modal，尚缺已保存的关闭按钮；旧“只有 JavaScript 原生弹窗”判断撤回 |
 | `uiautoma.web.remove_all_auto_handle_popup()` | SKIPPED | 1/2 PASS + 0 FAIL + 1 KNOWN | 1 | [报告](web_remove_all_auto_handle_popup_20261004.md)；缺少可观察自动关闭效果的 DOM 弹窗/关闭按钮，无法证明规则移除后的真实行为 |
 | `uiautoma.web.set_user_environment_fingerprint()` | SKIPPED | 1/2 PASS + 0 FAIL + 1 KNOWN | 1 | [报告](web_set_user_environment_fingerprint_20261004.md)；当前源码直接抛 UnsupportedActionError，未实现指纹浏览器环境 |
 | `uiautoma.web.WebBrowser.stop_load()` | SKIPPED | 1/2 PASS + 0 FAIL + 1 KNOWN | 1 | [报告](browser_stop_load_20261004.md)；缺少加载持续不完成的现有靶场；完整加载页不能验证中止待处理导航 |
@@ -46,7 +46,7 @@
 
 ## 跳过与通过范围
 
-- 缺少合适 DOM 弹窗与库中关闭按钮：auto_handle_popup / remove_all_auto_handle_popup。
+- 尚缺库中关闭按钮：auto_handle_popup / remove_all_auto_handle_popup。2026-10-05 核对已发现 keys-click-test 的 DOM Modal；本批次旧原始报告保留，真实自动关闭验收仍未执行。
 - 缺少持续加载页面：stop_load。
 - 当前源码未实现：fingerprint / 两个 extract_table / get_basetable_value。
 - 原生 Provider 不可用：get_bounding / get_anchor_position / highlight / handle_upload_dialog；drag_to 的 simulative=True 分支也跳过。
