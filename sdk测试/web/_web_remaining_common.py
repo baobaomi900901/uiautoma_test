@@ -482,42 +482,83 @@ def upload(c):
     path=c.tmp/'upload.txt';path.write_text('uiautoma real upload\n音乐',encoding='utf-8')
     e=c.el('web靶场_上传对话框测试 _原生_上传组件')
     def selected_files():return c.js("[...document.getElementById('input-upload-single').files].map(f=>({name:f.name,size:f.size}))",form=False)
-    if c.api=='element.upload':
-        def run():
-            returned=e.upload(str(path),simulative=False,clipboard_input=False,dialog_timeout=8)
-            actual=selected_files()
-            return c.expect(returned is None and actual==[{'name':path.name,'size':path.stat().st_size}],actual)
-        c.case('real_file','上传返回 None，DOM FileList 文件名与大小一致',run)
-        c.case('missing_file','不存在文件抛 InvalidParamsError',lambda:c.raises(InvalidParamsError,lambda:e.upload(str(c.tmp/'missing.txt'))))
-        c.case('invalid_timeout','非法超时抛 InvalidParamsError',lambda:c.raises(InvalidParamsError,lambda:e.upload(str(path),dialog_timeout=-2)))
-    else:
-        def handle(result):
+    def run():
+        returned=e.upload(str(path),simulative=False,clipboard_input=False,dialog_timeout=8)
+        actual=selected_files()
+        return c.expect(returned is None and actual==[{'name':path.name,'size':path.stat().st_size}],actual)
+    c.case('real_file','上传返回 None，DOM FileList 文件名与大小一致',run)
+    c.case('missing_file','不存在文件抛 InvalidParamsError',lambda:c.raises(InvalidParamsError,lambda:e.upload(str(c.tmp/'missing.txt'))))
+    c.case('invalid_timeout','非法超时抛 InvalidParamsError',lambda:c.raises(InvalidParamsError,lambda:e.upload(str(path),dialog_timeout=-2)))
+
+
+def upload_dialog(c):
+    paths = [c.tmp/'upload_甲.txt', c.tmp/'upload_乙.txt']
+    for i, path in enumerate(paths):
+        path.write_text('uiautoma upload test '+str(i)+'\n音乐', encoding='utf-8')
+    targets = [
+        ('single_element','web靶场_单文件上传测试_按钮','input-upload-single',False,'choose_file','cancel'),
+        ('multiple_element','web靶场_多文件上传测试_按钮','input-upload-multiple',True,'choose_multiple_files','cancel_multiple'),
+    ]
+
+    def selected_files(node_id):
+        return c.js('[...document.getElementById(args).files].map(f=>({name:f.name,size:f.size}))',node_id,form=False)
+
+    def handle(element,name,file_names,result):
+        stage, api_called, observed = 'activate_page', False, {}
+        try:
+            c.page.activate()
+            before_dialogs = set(native_windows('#32770'))
             stage = 'click_upload_input'
-            api_called = False
-            try:
-                if c.progress:
-                    print(f'[{result}] 点击上传控件，尝试唤起文件选择窗口…', flush=True)
-                e.click(simulative=True,delay_after=.1)
-                stage = 'handle_upload_dialog'
-                if c.progress:
-                    print(f'[{result}] 点击已返回，调用 handle_upload_dialog({result})…', flush=True)
-                api_called = True
-                return web.handle_upload_dialog(str(path) if result=='ok' else [],result,'chrome',
-                    clipboard_input=(result=='cancel'),wait_appear_timeout=8)
-            except Exception as exc:
-                exc._upload_test_details = {'stage':stage,'api_called':api_called}
-                raise
-        def run():
-            returned=handle('ok')
-            actual=selected_files()
-            return c.expect(returned is None and actual==[{'name':path.name,'size':path.stat().st_size}],actual)
-        c.case('choose_file','处理真实文件对话框，DOM FileList 与磁盘一致',run)
+            if c.progress:
+                print(f'[{result}] 点击 {name}，唤起文件选择窗口…',flush=True)
+            element.click(simulative=True,delay_after=.1)
+            stage = 'observe_upload_dialog'
+            observed = c.wait(lambda:{hwnd:info for hwnd,info in native_windows('#32770').items()
+                if hwnd not in before_dialogs and info['owner']==c.dialog_owner},bool,timeout=3)
+            c.expect(len(observed)==1,{'dialogs':observed})
+            if c.progress:
+                print(f'[{result}] 已观察到文件选择窗口 {list(observed)}，停留 1 秒…',flush=True)
+            time.sleep(1)
+            stage, api_called = 'handle_upload_dialog', True
+            returned = web.handle_upload_dialog(file_names,result,'chrome',clipboard_input=False,wait_appear_timeout=8)
+            stage = 'observe_dialog_closed'
+            c.wait(lambda:not(set(observed)&set(native_windows('#32770'))),bool,timeout=3)
+            return {'return':returned,'element_name':name,'dialog_hwnds':list(observed),
+                    'dialog_observed':True,'dialog_closed':True}
+        except Exception as exc:
+            exc._upload_test_details = {'stage':stage,'api_called':api_called,
+                                       'element_name':name,'dialog_observed':bool(observed)}
+            raise
+
+    for prepare_id,name,node_id,multiple,choose_id,cancel_id in targets:
+        element = None
+        def prepare():
+            nonlocal element
+            element = c.el(name)
+            actual = c.js('(()=>{const e=document.getElementById(args);return e?{id:e.id,tag:e.tagName,type:e.type,multiple:e.multiple}:null})()',node_id,form=False)
+            actual_id = element.get_attribute('id')
+            return c.expect(actual_id==node_id and actual=={'id':node_id,'tag':'INPUT','type':'file','multiple':multiple},
+                {'element_name':name,'element_id':actual_id,'dom':actual})
+        prepared = c.case(prepare_id,'用户指定库元素映射到对应 file input，multiple 属性正确',prepare)=='PASS'
+        chosen = paths if multiple else paths[:1]
+        expected = [{'name':p.name,'size':p.stat().st_size} for p in chosen]
+        def choose():
+            if not prepared: raise Skip('指定上传元素的准备检查未通过')
+            file_names = [str(p) for p in chosen] if multiple else str(chosen[0])
+            detail = handle(element,name,file_names,'ok')
+            actual = selected_files(node_id)
+            detail.update({'files':actual,'expected_files':expected})
+            return c.expect(detail['return'] is None and sorted(actual,key=lambda f:f['name'])==sorted(expected,key=lambda f:f['name']),detail)
+        accepted = c.case(choose_id,'真实窗口确认返回 None，DOM FileList 文件名和大小与磁盘一致',choose)=='PASS'
         def cancel():
-            before=selected_files()
-            returned=handle('cancel')
-            return c.expect(returned is None and selected_files()==before,{'return':returned,'files':before})
-        c.case('cancel','取消文件对话框保留原文件',cancel)
-        c.case('invalid_result','非法 dialog_result 抛 InvalidParamsError',lambda:c.raises(InvalidParamsError,lambda:web.handle_upload_dialog([],'bad','chrome')))
+            if not accepted: raise Skip('确认文件未通过，无法验证取消保留原文件')
+            before = selected_files(node_id)
+            detail = handle(element,name,[],'cancel')
+            after = selected_files(node_id)
+            detail.update({'before_files':before,'after_files':after})
+            return c.expect(detail['return'] is None and before==after,detail)
+        c.case(cancel_id,'真实窗口取消返回 None，DOM FileList 保留原文件',cancel)
+    c.case('invalid_result','非法 dialog_result 抛 InvalidParamsError',lambda:c.raises(InvalidParamsError,lambda:web.handle_upload_dialog([],'bad','chrome')))
 
 
 def download(c):
@@ -576,7 +617,7 @@ CASES={'name':name,'get_selected_item':selected,'set_attribute':attributes,'get_
        'execute_javascript':javascript,'scroll_to':scroll,'get_scroll':scroll,'get_bounding':geometry,
        'get_anchor_position':geometry,'get_anchor_viewport_position':geometry,'screenshot':screenshot,
        'drag_to':drag,'drag_to_by_cdp':drag,'upload':upload,'download':download,'highlight':highlight,
-       'go_back':back,'handle_upload_dialog':upload}
+       'go_back':back,'handle_upload_dialog':upload_dialog}
 
 
 def run_api(api,contract_only=False,progress=False):
@@ -606,10 +647,12 @@ def run_api(api,contract_only=False,progress=False):
             'element.get_bounding':['screenFalse','windowFalse'],
             'element.get_anchor_position':['anchor_0'],
             'element.highlight':['visible_overlay'],
-            'web.handle_upload_dialog':['choose_file'],
+            'web.handle_upload_dialog':['choose_file','cancel','choose_multiple_files','cancel_multiple'],
             'element.drag_to':['move_False'],
         }.get(api,[])
         required_skipped=bool(canonical) and not any(r['case_id'] in canonical and r['status']=='PASS' for r in c.rows)
+        if api=='web.handle_upload_dialog':
+            required_skipped=not set(canonical).issubset({r['case_id'] for r in c.rows if r['status']=='PASS'})
         lifecycle='READY_FOR_LIVE' if any(r['status']=='FAIL' for r in c.rows) else 'SKIPPED' if required_skipped or any(r['case_id']=='skip' for r in c.rows) else 'VERIFIED'
     code=1 if any(r['status']=='FAIL' for r in c.rows) else 0
     commit=subprocess.check_output(['git','-C',str(PRODUCT),'rev-parse','HEAD'],text=True).strip()

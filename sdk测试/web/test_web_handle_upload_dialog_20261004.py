@@ -1,4 +1,4 @@
-"""web.handle_upload_dialog：现有靶场真实验收（2026-10-04）。"""
+"""web.handle_upload_dialog：2026-10-05 按指定单/多文件库元素复测，保留原运行入口。"""
 from _web_remaining_common import main
 
 __test__ = False

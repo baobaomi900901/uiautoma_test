@@ -1,6 +1,6 @@
 # 上传对话框测试无法唤起窗口：Provider 缺少 Runtime 要求的能力
 
-状态：产品侧交接草稿，尚未提交 Issue。分类：Runtime 与 Provider 能力合同不兼容；`handle_upload_dialog()` 正向功能尚未验收。
+状态：历史诊断草稿，尚未提交 Issue。2026-10-05 本机 Provider 更新为 `a18ff222a6c237cce0c5b39b93d92aa26f34946b` 后，按用户指定单/多文件元素连续 3 轮 10/10 PASS，此阻塞未再复现；见 [最新证据](../../web/evidence/web_handle_upload_dialog_20261005.md)。以下保留 2026-10-04 的快照与复现记录，当时 `handle_upload_dialog()` 正向功能尚未验收。
 
 ## 源码与运行环境快照
 

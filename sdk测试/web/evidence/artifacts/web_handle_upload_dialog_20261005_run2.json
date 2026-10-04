@@ -1,0 +1,221 @@
+{
+  "api": "web.handle_upload_dialog",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/upload-dialog-test",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(file_names: 'str | list[str]', dialog_result: 'str' = 'ok', mode: 'str' = 'auto', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, wait_appear_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'",
+    "docstring": "处理浏览器的文件上传对话框。\n\nArgs:\n    file_names: 待上传文件的完整路径，可传入单个路径或路径列表；确认时文件必须存在，取消时不使用此参数。\n    dialog_result: 处理方式，默认 ok（确定），可选 cancel（取消）。\n    mode: 浏览器类型，默认 auto（自动选择），可选 chrome、edge。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 文件路径或输入参数无效。\n    UIAError: 对话框未出现、存在多个匹配对话框或上传失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+    "source_line": 420,
+    "source": "def handle_upload_dialog(\n    file_names: str | list[str], dialog_result: str = \"ok\", mode: str = \"auto\", *,\n    simulative: bool = False, clipboard_input: bool = True, wait_appear_timeout: float = 20,\n    force_ime_eng: bool = False, send_key_delay: int = 50, focus_timeout: int = 1000,\n) -> None:\n    \"\"\"处理浏览器的文件上传对话框。\n\n    Args:\n        file_names: 待上传文件的完整路径，可传入单个路径或路径列表；确认时文件必须存在，取消时不使用此参数。\n        dialog_result: 处理方式，默认 ok（确定），可选 cancel（取消）。\n        mode: 浏览器类型，默认 auto（自动选择），可选 chrome、edge。\n        simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n        clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n        wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n        force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n        send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n        focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\n    Returns:\n        None。\n\n    Raises:\n        InvalidParamsError: 文件路径或输入参数无效。\n        UIAError: 对话框未出现、存在多个匹配对话框或上传失败。\n    \"\"\"\n    from ._file_dialog import input_params, timeout_ms\n    if dialog_result not in {\"ok\", \"cancel\"}:\n        raise InvalidParamsError(\"dialog_result 必须为 ok 或 cancel\")\n    options = input_params(simulative=simulative, clipboard_input=clipboard_input,\n        force_ime_eng=force_ime_eng, send_key_delay=send_key_delay, focus_timeout=focus_timeout)\n    get_client().web_file_dialog(\"upload\", mode=_normalize_mode(mode), file_paths=file_names,\n        dialog_result=dialog_result, timeout_ms=timeout_ms(wait_appear_timeout, \"wait_appear_timeout\"), **options)\n",
+    "implementation_chain": "web.dialog.upload → ActionService 文件对话框绑定/输入/确认",
+    "script": "web/test_web_handle_upload_dialog_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(file_names: 'str | list[str]', dialog_result: 'str' = 'ok', mode: 'str' = 'auto', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, wait_appear_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'",
+      "elapsed_ms": 0.3
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/upload-dialog-test",
+        "baseline_tabs": 2,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\469d2f52460346ffa0276e2f789036ed\\library"
+      },
+      "elapsed_ms": 1220.6
+    },
+    {
+      "case_id": "single_element",
+      "status": "PASS",
+      "expected": "用户指定库元素映射到对应 file input，multiple 属性正确",
+      "actual": {
+        "element_name": "web靶场_单文件上传测试_按钮",
+        "element_id": "input-upload-single",
+        "dom": {
+          "id": "input-upload-single",
+          "multiple": false,
+          "tag": "INPUT",
+          "type": "file"
+        }
+      },
+      "elapsed_ms": 95.3
+    },
+    {
+      "case_id": "choose_file",
+      "status": "PASS",
+      "expected": "真实窗口确认返回 None，DOM FileList 文件名和大小与磁盘一致",
+      "actual": {
+        "return": null,
+        "element_name": "web靶场_单文件上传测试_按钮",
+        "dialog_hwnds": [
+          1184078
+        ],
+        "dialog_observed": true,
+        "dialog_closed": true,
+        "files": [
+          {
+            "name": "upload_甲.txt",
+            "size": 30
+          }
+        ],
+        "expected_files": [
+          {
+            "name": "upload_甲.txt",
+            "size": 30
+          }
+        ]
+      },
+      "elapsed_ms": 4337.4
+    },
+    {
+      "case_id": "cancel",
+      "status": "PASS",
+      "expected": "真实窗口取消返回 None，DOM FileList 保留原文件",
+      "actual": {
+        "return": null,
+        "element_name": "web靶场_单文件上传测试_按钮",
+        "dialog_hwnds": [
+          1839462
+        ],
+        "dialog_observed": true,
+        "dialog_closed": true,
+        "before_files": [
+          {
+            "name": "upload_甲.txt",
+            "size": 30
+          }
+        ],
+        "after_files": [
+          {
+            "name": "upload_甲.txt",
+            "size": 30
+          }
+        ]
+      },
+      "elapsed_ms": 3522.5
+    },
+    {
+      "case_id": "multiple_element",
+      "status": "PASS",
+      "expected": "用户指定库元素映射到对应 file input，multiple 属性正确",
+      "actual": {
+        "element_name": "web靶场_多文件上传测试_按钮",
+        "element_id": "input-upload-multiple",
+        "dom": {
+          "id": "input-upload-multiple",
+          "multiple": true,
+          "tag": "INPUT",
+          "type": "file"
+        }
+      },
+      "elapsed_ms": 55.6
+    },
+    {
+      "case_id": "choose_multiple_files",
+      "status": "PASS",
+      "expected": "真实窗口确认返回 None，DOM FileList 文件名和大小与磁盘一致",
+      "actual": {
+        "return": null,
+        "element_name": "web靶场_多文件上传测试_按钮",
+        "dialog_hwnds": [
+          1315032
+        ],
+        "dialog_observed": true,
+        "dialog_closed": true,
+        "files": [
+          {
+            "name": "upload_甲.txt",
+            "size": 30
+          },
+          {
+            "name": "upload_乙.txt",
+            "size": 30
+          }
+        ],
+        "expected_files": [
+          {
+            "name": "upload_甲.txt",
+            "size": 30
+          },
+          {
+            "name": "upload_乙.txt",
+            "size": 30
+          }
+        ]
+      },
+      "elapsed_ms": 3988.7
+    },
+    {
+      "case_id": "cancel_multiple",
+      "status": "PASS",
+      "expected": "真实窗口取消返回 None，DOM FileList 保留原文件",
+      "actual": {
+        "return": null,
+        "element_name": "web靶场_多文件上传测试_按钮",
+        "dialog_hwnds": [
+          1315012
+        ],
+        "dialog_observed": true,
+        "dialog_closed": true,
+        "before_files": [
+          {
+            "name": "upload_甲.txt",
+            "size": 30
+          },
+          {
+            "name": "upload_乙.txt",
+            "size": 30
+          }
+        ],
+        "after_files": [
+          {
+            "name": "upload_甲.txt",
+            "size": 30
+          },
+          {
+            "name": "upload_乙.txt",
+            "size": 30
+          }
+        ]
+      },
+      "elapsed_ms": 3474.5
+    },
+    {
+      "case_id": "invalid_result",
+      "status": "PASS",
+      "expected": "非法 dialog_result 抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "dialog_result 必须为 ok 或 cancel",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "2->2",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 232.9
+    }
+  ],
+  "exit_code": 0
+}

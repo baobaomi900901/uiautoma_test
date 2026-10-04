@@ -1,5 +1,7 @@
 # `uiautoma.web.handle_upload_dialog()` 验证证据（2026-10-04）
 
+> 本文保留旧 Provider 下的历史阻塞。2026-10-05 已按用户指定单/多文件元素复测，连续 3 轮 10/10 PASS；最新结论见 [2026-10-05 证据](web_handle_upload_dialog_20261005.md)。
+
 ## 用途与合同
 
 处理浏览器的文件上传对话框。

@@ -2,7 +2,9 @@
 
 生命周期状态：`DRAFT`、`READY_FOR_LIVE`、`VERIFIED`；按用户要求无法满足条件的本轮项目记 `SKIPPED`，不表示功能通过。
 
-最新批次（2026-10-04）：29 项中 17 VERIFIED、1 失败、11 SKIPPED；详见 [剩余 Web API 实测汇总](web/evidence/remaining_web_20261004.md)。
+最新增量复测（2026-10-05）：`handle_upload_dialog()` 按用户指定单/多文件元素连续 3 轮 10/10 PASS，状态更新为 VERIFIED；[最新证据](web/evidence/web_handle_upload_dialog_20261005.md)。合并本次结果后的 29 项状态为 18 VERIFIED、1 失败、10 SKIPPED。
+
+历史批次（2026-10-04）：29 项中 17 VERIFIED、1 失败、11 SKIPPED；详见 [剩余 Web API 实测汇总](web/evidence/remaining_web_20261004.md)。
 
 > 测一个新 API 时按 [`AGENTS.md`](AGENTS.md) 的 TEST WORKFLOW 走 7 步；
 > 判据细则（状态模型、期望值来源、独立确证、抖动治理、脚本与证据骨架、反模式）见
@@ -68,7 +70,7 @@
 | `uiautoma.web.WebElement.download()` | `VERIFIED`（2026-10-04；5/5 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_download_20261004.py](web/test_web_element_download_20261004.py) | [web/evidence/element_download_20261004.md](web/evidence/element_download_20261004.md) | [`sdk/docs/web/download.md`](../../sdk/docs/web/download.md) |
 | `uiautoma.web.close_all()` | `VERIFIED`（9/9） | [`web/test_web_close_all_form.py`](web/test_web_close_all_form.py) | [`web/evidence/close_all_current.md`](web/evidence/close_all_current.md) | [`sdk/docs/web/close_all.md`](../../sdk/docs/web/close_all.md) |
 | `uiautoma.web.handle_save_dialog()` | `VERIFIED`（7/7；2026-09-15复测，扩展场景待测） | [`web/test_web_handle_save_dialog_current.py`](web/test_web_handle_save_dialog_current.py) | [`web/evidence/handle_save_dialog_current.md`](web/evidence/handle_save_dialog_current.md) | [`sdk/docs/web/handle_save_dialog.md`](../../sdk/docs/web/handle_save_dialog.md) |
-| `uiautoma.web.handle_upload_dialog()` | `SKIPPED`（2026-10-04；4/6 PASS + 0 FAIL + 2 KNOWN；2 轮；点击阶段 Provider 能力不兼容） | [web/test_web_handle_upload_dialog_20261004.py](web/test_web_handle_upload_dialog_20261004.py) | [web/evidence/web_handle_upload_dialog_20261004.md](web/evidence/web_handle_upload_dialog_20261004.md) | [`sdk/docs/web/handle_upload_dialog.md`](../../sdk/docs/web/handle_upload_dialog.md) |
+| `uiautoma.web.handle_upload_dialog()` | `VERIFIED`（2026-10-05；10/10 PASS + 0 FAIL + 0 KNOWN；连续 3 轮；指定单/多文件库元素） | [web/test_web_handle_upload_dialog_20261004.py](web/test_web_handle_upload_dialog_20261004.py) | [web/evidence/web_handle_upload_dialog_20261005.md](web/evidence/web_handle_upload_dialog_20261005.md) | [`sdk/docs/web/handle_upload_dialog.md`](../../sdk/docs/web/handle_upload_dialog.md) |
 | `uiautoma.web.set_cookie()` | `READY_FOR_LIVE` | [`web/test_web_set_cookie_get_cookie.py`](web/test_web_set_cookie_get_cookie.py) | [`web/evidence/set_cookie.md`](web/evidence/set_cookie.md) | [`sdk/docs/web/set_cookie.md`](../../sdk/docs/web/set_cookie.md) |
 | `uiautoma.web.get_cookie()` | `READY_FOR_LIVE` | [`web/test_web_set_cookie_get_cookie.py`](web/test_web_set_cookie_get_cookie.py) | [`web/evidence/get_cookie.md`](web/evidence/get_cookie.md) | [`sdk/docs/web/get_cookie.md`](../../sdk/docs/web/get_cookie.md) |
 | `uiautoma.web.remove_cookie()` | `READY_FOR_LIVE` | [`web/test_web_remove_cookie.py`](web/test_web_remove_cookie.py) | [`web/evidence/remove_cookie.md`](web/evidence/remove_cookie.md) | [`sdk/docs/web/remove_cookie.md`](../../sdk/docs/web/remove_cookie.md) |
@@ -289,7 +291,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.clear_cookies()` | `VERIFIED`（10/10） | `web/test_web_clear_cookies.py` | `web/evidence/clear_cookies.md` |
 | `uiautoma.web.close_all()` | `VERIFIED`（9/9） | `web/test_web_close_all_form.py` | `web/evidence/close_all_current.md` |
 | `uiautoma.web.handle_save_dialog()` | `VERIFIED`（7/7；2026-09-15复测，扩展场景待测） | `web/test_web_handle_save_dialog_current.py` | `web/evidence/handle_save_dialog_current.md` |
-| `uiautoma.web.handle_upload_dialog()` | `SKIPPED`（2026-10-04；4/6 PASS + 0 FAIL + 2 KNOWN；2 轮；点击阶段 Provider 能力不兼容） | [web/test_web_handle_upload_dialog_20261004.py](web/test_web_handle_upload_dialog_20261004.py) | [web/evidence/web_handle_upload_dialog_20261004.md](web/evidence/web_handle_upload_dialog_20261004.md) |
+| `uiautoma.web.handle_upload_dialog()` | `VERIFIED`（2026-10-05；10/10 PASS + 0 FAIL + 0 KNOWN；连续 3 轮；指定单/多文件库元素） | [web/test_web_handle_upload_dialog_20261004.py](web/test_web_handle_upload_dialog_20261004.py) | [web/evidence/web_handle_upload_dialog_20261005.md](web/evidence/web_handle_upload_dialog_20261005.md) |
 | `uiautoma.web.set_user_environment()` | `VERIFIED`（6/6；含预期环境状态） | `web/test_web_set_user_environment_profiles.py` | `web/evidence/set_user_environment.md` |
 | `uiautoma.web.reset_user_environment()` | `VERIFIED`（7/7） | `web/test_web_reset_user_environment.py` | `web/evidence/reset_user_environment.md` |
 | `uiautoma.web.WebBrowser.id` | `已移除`（`44c8e91f` 收敛公开接口）；脚本改为「成员收敛 + 替代方式」契约（8/8，2026-09-18 新基线） | `web/test_web_browser_id.py` | `web/evidence/baseline_adaptation.md` |
