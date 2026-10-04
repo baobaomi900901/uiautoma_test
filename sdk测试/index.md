@@ -335,7 +335,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.screenshot()` | `VERIFIED`（21/21；2026-09-15；产物字节独立解析确证尺寸） | `web/test_web_browser_screenshot.py` | `web/evidence/browser_screenshot.md` |
 | `uiautoma.web.WebBrowser.screenshot_to_clipboard()` | `VERIFIED`（23/23；2026-09-15；ctypes 独立读 CF_DIB + 与文件截图三角像素比对） | `web/test_web_browser_screenshot_to_clipboard.py` | `web/evidence/screenshot_to_clipboard.md` |
 | `uiautoma.web.WebElement.screenshot_to_clipboard()` | `VERIFIED`（18/18；2026-09-15；ctypes 独立读 CF_DIB + 活矩形裁切偏移扫描验取景，Issue #20 在 dpr=1 未复现） | `web/test_web_element_screenshot_to_clipboard.py` | `web/evidence/element_screenshot_to_clipboard.md` |
-| `uiautoma.web.WebBrowser.stop_load()` | `BLOCKED`（10/12 + 2 `BLOCKED` + 1 `KNOWN`，退出码 2；2026-09-18：地址形态探测按边界约定删除，中止「待处理导航」的正向路径需靶场提供「加载永不完成」页面） | `web/test_web_browser_stop_load.py` | `web/evidence/stop_load.md` |
+| `uiautoma.web.WebBrowser.stop_load()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_browser_stop_load_20261004.py](web/test_web_browser_stop_load_20261004.py) | [web/evidence/browser_stop_load_20261004.md](web/evidence/browser_stop_load_20261004.md) |
 | `uiautoma.web.WebBrowser.wait_appear()` | `VERIFIED`（31/31 + 1 边界；2026-09-15；连续 3 次全绿；canonical 为靶场自计时页 delayed-element.html，测试侧零调度） | `web/test_web_browser_wait_appear.py` | `web/evidence/wait_appear.md` |
 | `uiautoma.web.WebBrowser.wait_disappear()` | `VERIFIED`（32/32 无边界；2026-09-15；连续 3 次全绿；含「隐藏≠消失」与 React 销毁节点即判消失） | `web/test_web_browser_wait_disappear.py` | `web/evidence/wait_disappear.md` |
 | `uiautoma.web.WebBrowser.http_request()` | `VERIFIED`（41/41；2026-09-18 新基线复跑；地址形态探测已删除，`connect_timeout` 语义改由回显服务 `/delay` 覆盖） | `web/test_web_browser_http_request.py` | `web/evidence/http_request.md` |

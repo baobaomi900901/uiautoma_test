@@ -1,0 +1,36 @@
+{
+  "api": "browser.stop_load",
+  "lifecycle": "SKIPPED",
+  "url": null,
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self) -> 'None'",
+    "docstring": "停止页面加载。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效或停止加载失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\browser.py",
+    "source_line": 220,
+    "source": "    def stop_load(self) -> None:\n        \"\"\"停止页面加载。\n\n        Returns:\n            ``None``。\n\n        Raises:\n            ActionError: 网页对象已失效或停止加载失败。\n        \"\"\"\n\n        self._runtime_client().web_browser_stop_load(\n            **self._browser_params(timeout_ms=2000),\n        ).raise_for_error()\n",
+    "implementation_chain": "SDK 直接抛 UnsupportedActionError；无正向实现链",
+    "script": "web/test_web_browser_stop_load_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self) -> 'None'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "skip",
+      "status": "KNOWN",
+      "expected": "需要真实正向场景",
+      "actual": {
+        "skip": "缺少加载持续不完成的现有靶场；完整加载页不能验证中止待处理导航"
+      },
+      "elapsed_ms": 0
+    }
+  ],
+  "exit_code": 0
+}
