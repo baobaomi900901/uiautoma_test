@@ -19,6 +19,7 @@ import uuid
 ROOT = Path(r'D:\code\元素库\sdk测试')
 PRODUCT = Path(r'D:\code\desktop')
 LIBRARY = Path(r'D:\code\元素库\260902_web元素')
+sys.dont_write_bytecode = True
 sys.path.insert(0, str(PRODUCT / 'sdk' / 'src'))
 sys.path.insert(0, str(ROOT / 'web'))
 from uiautoma import web, open as open_package, ActionError, InvalidParamsError, HostUnavailableError
@@ -612,10 +613,13 @@ def main(default_api=None):
         a.report_file.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     if a.json:print(json.dumps(report,ensure_ascii=True,indent=2))
     else:
-        print('UIAutoma Web API 测试\nAPI     : '+a.api+'\n页面    : '+BASE)
+        owner={'element':'uiautoma.web.WebElement','browser':'uiautoma.web.WebBrowser','web':'uiautoma.web'}
+        kind,method=a.api.split('.')
+        print('UIAutoma Web API 测试\nAPI     : '+owner[kind]+'.'+method+'\n页面    : '+str(report['url'] or '场景条件不满足，已跳过'))
         for i,r in enumerate(report['results'],1):
             color='\x1b[92m' if r['status']=='PASS' else '\x1b[91m' if r['status']=='FAIL' else '\x1b[93m'
-            print(f"{i:02}/{len(report['results']):02} {color}[{r['status']}]\x1b[0m {r['case_id']} 期望 {r['expected']}；实测 {r['actual']}；{r['elapsed_ms']}ms")
+            label={'PASS':'通过','FAIL':'失败','KNOWN':'已知/跳过'}[r['status']]
+            print(f"{i:02}/{len(report['results']):02} {color}[{label}]\x1b[0m {r['case_id']} 期望 {r['expected']}；实测 {r['actual']}；{r['elapsed_ms']}ms")
         passed=sum(r['status']=='PASS' for r in report['results']);known=sum(r['status']=='KNOWN' for r in report['results'])
         print(f"{report['lifecycle']} · {passed}/{len(report['results'])} 通过 · {known} 已知/跳过 · 退出码 {code}")
     return code

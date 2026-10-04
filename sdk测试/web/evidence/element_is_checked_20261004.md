@@ -48,7 +48,7 @@ is_checked(self) -> bool
 
 原生与 Ant 音乐 input 的初始、勾选、取消状态均与 DOM IDL checked 对照；普通文本 input 的 IDL checked 为 False，不能把它误判成必抛异常。
 
-闭包连接的生命周期判据采用本次 SDK 的 `HostUnavailableError`（包含“连接已关闭”）；旧快照的错误类型不作为本次期望。
+关闭连接的生命周期判据采用本次 SDK 的 `HostUnavailableError`（包含“连接已关闭”）；旧快照的错误类型不作为本次期望。
 
 本次仅验收报告列出的场景；未列出的浏览器模式、DPI、参照系、控件种类、超大输入、网络异常或原生交互路径均不宣称通过。SKIPPED 的合同检查通过不等于实际功能通过。
 

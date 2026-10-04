@@ -1,0 +1,2776 @@
+[
+  {
+    "api": "element.name",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self) -> 'str'",
+        "elapsed_ms": 0.1
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\298cbd81a94f4ac183b1d859a64f85ab\\library"
+        },
+        "elapsed_ms": 1551.3
+      },
+      {
+        "case_id": "web靶场_表单测试_原生_输入框",
+        "status": "PASS",
+        "expected": "对象 name 为获取时的 DOM 文本/值/标签名，与现场 DOM 对照",
+        "actual": {
+          "library_name": "web靶场_表单测试_原生_输入框",
+          "runtime_name": "INPUT",
+          "independent_dom_name": "INPUT"
+        },
+        "elapsed_ms": 50.9
+      },
+      {
+        "case_id": "web靶场_表单测试_ant_输入框",
+        "status": "PASS",
+        "expected": "对象 name 为获取时的 DOM 文本/值/标签名，与现场 DOM 对照",
+        "actual": {
+          "library_name": "web靶场_表单测试_ant_输入框",
+          "runtime_name": "INPUT",
+          "independent_dom_name": "INPUT"
+        },
+        "elapsed_ms": 42.8
+      },
+      {
+        "case_id": "web靶场_表单测试_原生_select单选",
+        "status": "PASS",
+        "expected": "对象 name 为获取时的 DOM 文本/值/标签名，与现场 DOM 对照",
+        "actual": {
+          "library_name": "web靶场_表单测试_原生_select单选",
+          "runtime_name": "请选择城市\n北京\n上海\n广州\n深圳",
+          "independent_dom_name": "请选择城市\n北京\n上海\n广州\n深圳"
+        },
+        "elapsed_ms": 35.5
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 183.2
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.get_selected_item",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self) -> 'list[str]'",
+        "elapsed_ms": 0.1
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\4d5b948699bf4aa69f70866aa86200ce\\library"
+        },
+        "elapsed_ms": 1715.9
+      },
+      {
+        "case_id": "initial_form-controls-native-city",
+        "status": "PASS",
+        "expected": "读取当前选中项目，DOM 前后不变",
+        "actual": {
+          "result": [
+            "请选择城市"
+          ],
+          "dom": [
+            {
+              "selected": true,
+              "text": "请选择城市",
+              "value": ""
+            },
+            {
+              "selected": false,
+              "text": "北京",
+              "value": "beijing"
+            },
+            {
+              "selected": false,
+              "text": "上海",
+              "value": "shanghai"
+            },
+            {
+              "selected": false,
+              "text": "广州",
+              "value": "guangzhou"
+            },
+            {
+              "selected": false,
+              "text": "深圳",
+              "value": "shenzhen"
+            }
+          ],
+          "unchanged": true
+        },
+        "elapsed_ms": 102.6
+      },
+      {
+        "case_id": "initial_form-controls-native-cities",
+        "status": "PASS",
+        "expected": "读取当前选中项目，DOM 前后不变",
+        "actual": {
+          "result": [],
+          "dom": [
+            {
+              "selected": false,
+              "text": "北京",
+              "value": "beijing"
+            },
+            {
+              "selected": false,
+              "text": "上海",
+              "value": "shanghai"
+            },
+            {
+              "selected": false,
+              "text": "广州",
+              "value": "guangzhou"
+            },
+            {
+              "selected": false,
+              "text": "深圳",
+              "value": "shenzhen"
+            }
+          ],
+          "unchanged": true
+        },
+        "elapsed_ms": 111.7
+      },
+      {
+        "case_id": "single_changed",
+        "status": "PASS",
+        "expected": "单选上海返回 [上海]",
+        "actual": {
+          "result": [
+            "上海"
+          ],
+          "dom": [
+            {
+              "selected": false,
+              "text": "请选择城市",
+              "value": ""
+            },
+            {
+              "selected": false,
+              "text": "北京",
+              "value": "beijing"
+            },
+            {
+              "selected": true,
+              "text": "上海",
+              "value": "shanghai"
+            },
+            {
+              "selected": false,
+              "text": "广州",
+              "value": "guangzhou"
+            },
+            {
+              "selected": false,
+              "text": "深圳",
+              "value": "shenzhen"
+            }
+          ],
+          "unchanged": true
+        },
+        "elapsed_ms": 60.3
+      },
+      {
+        "case_id": "multi_changed",
+        "status": "PASS",
+        "expected": "多选返回北京、广州，按 DOM 顺序",
+        "actual": {
+          "result": [
+            "北京",
+            "广州"
+          ],
+          "dom": [
+            {
+              "selected": true,
+              "text": "北京",
+              "value": "beijing"
+            },
+            {
+              "selected": false,
+              "text": "上海",
+              "value": "shanghai"
+            },
+            {
+              "selected": true,
+              "text": "广州",
+              "value": "guangzhou"
+            },
+            {
+              "selected": false,
+              "text": "深圳",
+              "value": "shenzhen"
+            }
+          ],
+          "unchanged": true
+        },
+        "elapsed_ms": 82.3
+      },
+      {
+        "case_id": "reset",
+        "status": "PASS",
+        "expected": "重置后多选返回空列表",
+        "actual": {
+          "result": [],
+          "dom": [
+            {
+              "selected": false,
+              "text": "北京",
+              "value": "beijing"
+            },
+            {
+              "selected": false,
+              "text": "上海",
+              "value": "shanghai"
+            },
+            {
+              "selected": false,
+              "text": "广州",
+              "value": "guangzhou"
+            },
+            {
+              "selected": false,
+              "text": "深圳",
+              "value": "shenzhen"
+            }
+          ],
+          "unchanged": true
+        },
+        "elapsed_ms": 70.2
+      },
+      {
+        "case_id": "ant_web靶场_表单测试_ant_select单选",
+        "status": "KNOWN",
+        "expected": "非 SELECT 抛 ActionError/element_options_not_readable",
+        "actual": {
+          "exception": "ActionError",
+          "message": "此元素不支持“获取下拉框选项”操作。非标准下拉框请展开后查找选项元素并读取文本",
+          "trace": "element_options_not_readable"
+        },
+        "elapsed_ms": 33.1
+      },
+      {
+        "case_id": "ant_web靶场_表单测试_ant_select多选",
+        "status": "KNOWN",
+        "expected": "非 SELECT 抛 ActionError/element_options_not_readable",
+        "actual": {
+          "exception": "ActionError",
+          "message": "此元素不支持“获取下拉框选项”操作。非标准下拉框请展开后查找选项元素并读取文本",
+          "trace": "element_options_not_readable"
+        },
+        "elapsed_ms": 29.6
+      },
+      {
+        "case_id": "no_extra_parameter",
+        "status": "PASS",
+        "expected": "多余位置参数抛 TypeError",
+        "actual": {
+          "exception": "TypeError",
+          "message": "WebElement.get_selected_item() takes 1 positional argument but 2 were given",
+          "trace": ""
+        },
+        "elapsed_ms": 25.1
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 185.2
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.set_attribute",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, name: 'str', value: 'str') -> 'None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\3c0e056175ab41dbb8c9eeab3c8be0b0\\library"
+        },
+        "elapsed_ms": 1447.1
+      },
+      {
+        "case_id": "native",
+        "status": "PASS",
+        "expected": "真实元素属性与 DOM 对照，修改后恢复",
+        "actual": {
+          "return": null,
+          "dom_attribute": "音乐 \" <&>"
+        },
+        "elapsed_ms": 141.7
+      },
+      {
+        "case_id": "ant",
+        "status": "PASS",
+        "expected": "真实元素属性与 DOM 对照，修改后恢复",
+        "actual": {
+          "return": null,
+          "dom_attribute": "音乐 \" <&>"
+        },
+        "elapsed_ms": 120.1
+      },
+      {
+        "case_id": "empty_name",
+        "status": "PASS",
+        "expected": "空属性名抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "属性名称与值必须为字符串，名称不能为空",
+          "trace": ""
+        },
+        "elapsed_ms": 26.4
+      },
+      {
+        "case_id": "nonstring_value",
+        "status": "PASS",
+        "expected": "非字符串属性值抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "属性名称与值必须为字符串，名称不能为空",
+          "trace": ""
+        },
+        "elapsed_ms": 30.9
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 201.3
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.get_attribute",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, name: 'str') -> 'str | None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\f60194e3a9e64229a872c82c5750ef70\\library"
+        },
+        "elapsed_ms": 1545.5
+      },
+      {
+        "case_id": "native",
+        "status": "PASS",
+        "expected": "真实元素属性与 DOM 对照，修改后恢复",
+        "actual": {
+          "actual": {
+            "id": "form-controls-native-text",
+            "type": "text",
+            "placeholder": "请输入文本",
+            "data-uiautoma-absent": null
+          },
+          "independent_dom": {
+            "id": "form-controls-native-text",
+            "type": "text",
+            "placeholder": "请输入文本",
+            "data-uiautoma-absent": null
+          }
+        },
+        "elapsed_ms": 129.0
+      },
+      {
+        "case_id": "ant",
+        "status": "PASS",
+        "expected": "真实元素属性与 DOM 对照，修改后恢复",
+        "actual": {
+          "actual": {
+            "id": "form-controls-ant-text",
+            "type": "text",
+            "placeholder": "请输入文本",
+            "data-uiautoma-absent": null
+          },
+          "independent_dom": {
+            "id": "form-controls-ant-text",
+            "type": "text",
+            "placeholder": "请输入文本",
+            "data-uiautoma-absent": null
+          }
+        },
+        "elapsed_ms": 133.6
+      },
+      {
+        "case_id": "empty_name",
+        "status": "PASS",
+        "expected": "空属性名抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "属性名不能为空",
+          "trace": ""
+        },
+        "elapsed_ms": 36.8
+      },
+      {
+        "case_id": "extra_argument",
+        "status": "PASS",
+        "expected": "多余位置参数抛 TypeError",
+        "actual": {
+          "exception": "TypeError",
+          "message": "WebElement.get_attribute() takes 2 positional arguments but 3 were given",
+          "trace": ""
+        },
+        "elapsed_ms": 25.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 210.2
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.get_all_attributes",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self) -> 'dict[str, str]'",
+        "elapsed_ms": 0.1
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\975208e801554ca89b118d754e0091f5\\library"
+        },
+        "elapsed_ms": 1623.4
+      },
+      {
+        "case_id": "native",
+        "status": "PASS",
+        "expected": "真实元素属性与 DOM 对照，修改后恢复",
+        "actual": {
+          "actual": {
+            "id": "form-controls-native-text",
+            "placeholder": "请输入文本",
+            "style": "width: 100%; height: 32px; padding: 4px 11px; font-size: 14px; line-height: 22px; border-radius: 6px; border: 1px solid rgb(217, 217, 217); box-sizing: border-box; outline: none; transition: 0.2s; background: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.88);",
+            "type": "text",
+            "value": ""
+          },
+          "independent_dom": {
+            "id": "form-controls-native-text",
+            "placeholder": "请输入文本",
+            "style": "width: 100%; height: 32px; padding: 4px 11px; font-size: 14px; line-height: 22px; border-radius: 6px; border: 1px solid rgb(217, 217, 217); box-sizing: border-box; outline: none; transition: 0.2s; background: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.88);",
+            "type": "text",
+            "value": ""
+          }
+        },
+        "elapsed_ms": 88.0
+      },
+      {
+        "case_id": "ant",
+        "status": "PASS",
+        "expected": "真实元素属性与 DOM 对照，修改后恢复",
+        "actual": {
+          "actual": {
+            "class": "ant-input css-mncuj7 ant-input-outlined",
+            "id": "form-controls-ant-text",
+            "placeholder": "请输入文本",
+            "type": "text",
+            "value": ""
+          },
+          "independent_dom": {
+            "class": "ant-input css-mncuj7 ant-input-outlined",
+            "id": "form-controls-ant-text",
+            "placeholder": "请输入文本",
+            "type": "text",
+            "value": ""
+          }
+        },
+        "elapsed_ms": 397.1
+      },
+      {
+        "case_id": "extra_argument",
+        "status": "PASS",
+        "expected": "多余位置参数抛 TypeError",
+        "actual": {
+          "exception": "TypeError",
+          "message": "WebElement.get_all_attributes() takes 1 positional argument but 3 were given",
+          "trace": ""
+        },
+        "elapsed_ms": 429.8
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 381.3
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.get_bounding",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, to96dpi: 'bool' = True, relative_to: 'str' = 'screen') -> 'dict[str, int]'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\09aa754a6a2e4ef5930da1be330dc0ce\\library"
+        },
+        "elapsed_ms": 1519.6
+      },
+      {
+        "case_id": "screenFalse",
+        "status": "KNOWN",
+        "expected": "尺寸与 DOM × devicePixelRatio 一致，返回整数矩形",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 223.3
+      },
+      {
+        "case_id": "screenTrue",
+        "status": "KNOWN",
+        "expected": "尺寸与 DOM × devicePixelRatio 一致，返回整数矩形",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 185.8
+      },
+      {
+        "case_id": "windowFalse",
+        "status": "KNOWN",
+        "expected": "尺寸与 DOM × devicePixelRatio 一致，返回整数矩形",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 215.2
+      },
+      {
+        "case_id": "windowTrue",
+        "status": "KNOWN",
+        "expected": "尺寸与 DOM × devicePixelRatio 一致，返回整数矩形",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 218.8
+      },
+      {
+        "case_id": "invalid_reference",
+        "status": "PASS",
+        "expected": "非法坐标参照抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "relative_to 必须是 screen 或 window",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 225.5
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.get_anchor_position",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, *, anchor: 'object | None' = None, to96dpi: 'bool' = True) -> 'tuple[int, int]'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\195db57dba7848e5949ba09be41b6bba\\library"
+        },
+        "elapsed_ms": 1463.7
+      },
+      {
+        "case_id": "anchor_0",
+        "status": "KNOWN",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 229.6
+      },
+      {
+        "case_id": "anchor_1",
+        "status": "KNOWN",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 199.5
+      },
+      {
+        "case_id": "anchor_2",
+        "status": "KNOWN",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 205.7
+      },
+      {
+        "case_id": "anchor_3",
+        "status": "KNOWN",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 225.8
+      },
+      {
+        "case_id": "anchor_4",
+        "status": "KNOWN",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 224.2
+      },
+      {
+        "case_id": "anchor_5",
+        "status": "KNOWN",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 176.8
+      },
+      {
+        "case_id": "invalid_anchor",
+        "status": "PASS",
+        "expected": "无效锚点抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "不支持的锚点：bad",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 221.8
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.get_anchor_viewport_position",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, *, anchor: 'object | None' = None) -> 'tuple[int, int]'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\008255e5b0ec4c6b8a1473e67f42afb0\\library"
+        },
+        "elapsed_ms": 1509.5
+      },
+      {
+        "case_id": "anchor_0",
+        "status": "PASS",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "actual": [
+            1489,
+            460
+          ],
+          "expected": [
+            1489,
+            460
+          ],
+          "dom": {
+            "dpr": 1.25,
+            "height": 32,
+            "width": 894.2999877929688,
+            "x": 1041.9000358581543,
+            "y": 443.7750244140625
+          },
+          "reference_rect": {
+            "x": 1042,
+            "y": 444,
+            "width": 894,
+            "height": 32
+          }
+        },
+        "elapsed_ms": 37.8
+      },
+      {
+        "case_id": "anchor_1",
+        "status": "PASS",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "actual": [
+            1042,
+            444
+          ],
+          "expected": [
+            1042,
+            444
+          ],
+          "dom": {
+            "dpr": 1.25,
+            "height": 32,
+            "width": 894.2999877929688,
+            "x": 1041.9000358581543,
+            "y": 443.7750244140625
+          },
+          "reference_rect": {
+            "x": 1042,
+            "y": 444,
+            "width": 894,
+            "height": 32
+          }
+        },
+        "elapsed_ms": 34.3
+      },
+      {
+        "case_id": "anchor_2",
+        "status": "PASS",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "actual": [
+            1936,
+            476
+          ],
+          "expected": [
+            1936,
+            476
+          ],
+          "dom": {
+            "dpr": 1.25,
+            "height": 32,
+            "width": 894.2999877929688,
+            "x": 1041.9000358581543,
+            "y": 443.7750244140625
+          },
+          "reference_rect": {
+            "x": 1042,
+            "y": 444,
+            "width": 894,
+            "height": 32
+          }
+        },
+        "elapsed_ms": 23.7
+      },
+      {
+        "case_id": "anchor_3",
+        "status": "PASS",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "actual": [
+            1489,
+            444
+          ],
+          "expected": [
+            1489,
+            444
+          ],
+          "dom": {
+            "dpr": 1.25,
+            "height": 32,
+            "width": 894.2999877929688,
+            "x": 1041.9000358581543,
+            "y": 443.7750244140625
+          },
+          "reference_rect": {
+            "x": 1042,
+            "y": 444,
+            "width": 894,
+            "height": 32
+          }
+        },
+        "elapsed_ms": 33.5
+      },
+      {
+        "case_id": "anchor_4",
+        "status": "PASS",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "actual": [
+            1939,
+            458
+          ],
+          "expected": [
+            1939,
+            458
+          ],
+          "dom": {
+            "dpr": 1.25,
+            "height": 32,
+            "width": 894.2999877929688,
+            "x": 1041.9000358581543,
+            "y": 443.7750244140625
+          },
+          "reference_rect": {
+            "x": 1042,
+            "y": 444,
+            "width": 894,
+            "height": 32
+          }
+        },
+        "elapsed_ms": 44.1
+      },
+      {
+        "case_id": "anchor_5",
+        "status": "PASS",
+        "expected": "锚点和偏移与真实矩形计算一致",
+        "actual": {
+          "actual": [
+            1044,
+            473
+          ],
+          "expected": [
+            1044,
+            473
+          ],
+          "dom": {
+            "dpr": 1.25,
+            "height": 32,
+            "width": 894.2999877929688,
+            "x": 1041.9000358581543,
+            "y": 443.7750244140625
+          },
+          "reference_rect": {
+            "x": 1042,
+            "y": 444,
+            "width": 894,
+            "height": 32
+          }
+        },
+        "elapsed_ms": 29.0
+      },
+      {
+        "case_id": "invalid_anchor",
+        "status": "PASS",
+        "expected": "无效锚点抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "不支持的锚点：bad",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 201.1
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.screenshot",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, folder_path: 'str', *, file_name: 'str | None' = None) -> 'str'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\acdf88125cc344cb8547edbdfe21e163\\library"
+        },
+        "elapsed_ms": 1509.1
+      },
+      {
+        "case_id": "file_and_framing",
+        "status": "PASS",
+        "expected": "PNG 尺寸与 DOM 一致，取景与页面 PNG 对照（±1px 扫描、差异<2.5%）",
+        "actual": {
+          "saved_path": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\acdf88125cc344cb8547edbdfe21e163\\element.png",
+          "png_size": [
+            1119,
+            40
+          ],
+          "dom_size": [
+            1118,
+            40
+          ],
+          "best_pixel_compare": [
+            3200,
+            134280,
+            0,
+            0
+          ]
+        },
+        "elapsed_ms": 6990.6
+      },
+      {
+        "case_id": "invalid_filename",
+        "status": "PASS",
+        "expected": "非法文件名抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "截图文件名不能包含目录或非法字符",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 228.2
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.is_checked",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self) -> 'bool'",
+        "elapsed_ms": 0.1
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\b6877162b8244f639548ad8a8103f069\\library"
+        },
+        "elapsed_ms": 1542.2
+      },
+      {
+        "case_id": "原生_initial",
+        "status": "PASS",
+        "expected": "IDL checked 与读取值一致；调用不改 DOM",
+        "actual": {
+          "result": false,
+          "dom_checked": false,
+          "checked_attribute": null
+        },
+        "elapsed_ms": 79.7
+      },
+      {
+        "case_id": "原生_check",
+        "status": "PASS",
+        "expected": "IDL checked 与读取值一致；调用不改 DOM",
+        "actual": {
+          "result": true,
+          "dom_checked": true,
+          "checked_attribute": null
+        },
+        "elapsed_ms": 290.5
+      },
+      {
+        "case_id": "原生_uncheck",
+        "status": "PASS",
+        "expected": "IDL checked 与读取值一致；调用不改 DOM",
+        "actual": {
+          "result": false,
+          "dom_checked": false,
+          "checked_attribute": null
+        },
+        "elapsed_ms": 280.6
+      },
+      {
+        "case_id": "ant_initial",
+        "status": "PASS",
+        "expected": "IDL checked 与读取值一致；调用不改 DOM",
+        "actual": {
+          "result": false,
+          "dom_checked": false,
+          "checked_attribute": null
+        },
+        "elapsed_ms": 57.3
+      },
+      {
+        "case_id": "ant_check",
+        "status": "PASS",
+        "expected": "IDL checked 与读取值一致；调用不改 DOM",
+        "actual": {
+          "result": true,
+          "dom_checked": true,
+          "checked_attribute": null
+        },
+        "elapsed_ms": 258.2
+      },
+      {
+        "case_id": "ant_uncheck",
+        "status": "PASS",
+        "expected": "IDL checked 与读取值一致；调用不改 DOM",
+        "actual": {
+          "result": false,
+          "dom_checked": false,
+          "checked_attribute": null
+        },
+        "elapsed_ms": 282.7
+      },
+      {
+        "case_id": "text_input",
+        "status": "PASS",
+        "expected": "普通文本 input 的 IDL checked 为 False，API 同样返回 False",
+        "actual": {
+          "dom": {
+            "attrs": {
+              "id": "form-controls-native-text",
+              "placeholder": "请输入文本",
+              "style": "width: 100%; height: 32px; padding: 4px 11px; font-size: 14px; line-height: 22px; border-radius: 6px; border: 1px solid rgb(217, 217, 217); box-sizing: border-box; outline: none; transition: 0.2s; background: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.88);",
+              "type": "text",
+              "value": ""
+            },
+            "checked": false,
+            "disabled": false,
+            "display": "inline-block",
+            "id": "form-controls-native-text",
+            "tag": "INPUT",
+            "type": "text",
+            "value": "",
+            "visibility": "visible"
+          },
+          "result": false
+        },
+        "elapsed_ms": 84.7
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 237.2
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.is_enabled",
+    "lifecycle": "READY_FOR_LIVE",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self) -> 'bool'",
+        "elapsed_ms": 0.1
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\beb3b39aa5604020845b04c1206169ab\\library"
+        },
+        "elapsed_ms": 1481.8
+      },
+      {
+        "case_id": "form-controls-native-text",
+        "status": "PASS",
+        "expected": "真实启用/禁用状态与 DOM disabled 一致",
+        "actual": {
+          "attrs": {
+            "id": "form-controls-native-text",
+            "placeholder": "请输入文本",
+            "style": "width: 100%; height: 32px; padding: 4px 11px; font-size: 14px; line-height: 22px; border-radius: 6px; border: 1px solid rgb(217, 217, 217); box-sizing: border-box; outline: none; transition: 0.2s; background: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.88);",
+            "type": "text",
+            "value": ""
+          },
+          "checked": false,
+          "disabled": false,
+          "display": "inline-block",
+          "id": "form-controls-native-text",
+          "tag": "INPUT",
+          "type": "text",
+          "value": "",
+          "visibility": "visible"
+        },
+        "elapsed_ms": 136.2
+      },
+      {
+        "case_id": "form-controls-native-disabled",
+        "status": "PASS",
+        "expected": "真实启用/禁用状态与 DOM disabled 一致",
+        "actual": {
+          "attrs": {
+            "disabled": "",
+            "id": "form-controls-native-disabled",
+            "style": "width: 100%; height: 32px; padding: 4px 11px; font-size: 14px; line-height: 22px; border-radius: 6px; border: 1px solid rgb(217, 217, 217); box-sizing: border-box; outline: none; transition: 0.2s; background: rgba(0, 0, 0, 0.04); color: rgba(0, 0, 0, 0.25); cursor: not-allowed;",
+            "type": "text",
+            "value": "不可编辑"
+          },
+          "checked": false,
+          "disabled": true,
+          "display": "inline-block",
+          "id": "form-controls-native-disabled",
+          "tag": "INPUT",
+          "type": "text",
+          "value": "不可编辑",
+          "visibility": "visible"
+        },
+        "elapsed_ms": 270.6
+      },
+      {
+        "case_id": "form-controls-ant-disabled",
+        "status": "PASS",
+        "expected": "真实启用/禁用状态与 DOM disabled 一致",
+        "actual": {
+          "attrs": {
+            "class": "ant-input ant-input-disabled css-mncuj7 ant-input-outlined",
+            "disabled": "",
+            "id": "form-controls-ant-disabled",
+            "type": "text",
+            "value": "不可编辑"
+          },
+          "checked": false,
+          "disabled": true,
+          "display": "inline-block",
+          "id": "form-controls-ant-disabled",
+          "tag": "INPUT",
+          "type": "text",
+          "value": "不可编辑",
+          "visibility": "visible"
+        },
+        "elapsed_ms": 288.7
+      },
+      {
+        "case_id": "toggle_disabled",
+        "status": "PASS",
+        "expected": "动态禁用 False，恢复 True",
+        "actual": {
+          "disabled_result": false,
+          "enabled_result": true
+        },
+        "elapsed_ms": 143.4
+      },
+      {
+        "case_id": "boolean_disabled_attribute",
+        "status": "FAIL",
+        "expected": "HTML 布尔 disabled 属性存在时即禁用，包括值 false",
+        "actual": {
+          "exception": "AssertionError",
+          "message": "{'actual': True, 'dom_disabled': True, 'attribute': 'false'}",
+          "trace": ""
+        },
+        "elapsed_ms": 84.2
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 211.4
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 1
+  },
+  {
+    "api": "element.is_displayed",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self) -> 'bool'",
+        "elapsed_ms": 0.1
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\26986e0a440842ccb86fa739669cb6bb\\library"
+        },
+        "elapsed_ms": 1505.2
+      },
+      {
+        "case_id": "visible",
+        "status": "PASS",
+        "expected": "显示状态与 clientRects/computedStyle 对照",
+        "actual": {
+          "actual": true,
+          "dom_visible": true
+        },
+        "elapsed_ms": 45.6
+      },
+      {
+        "case_id": "display_none",
+        "status": "PASS",
+        "expected": "显示状态与 clientRects/computedStyle 对照",
+        "actual": {
+          "actual": false,
+          "dom_visible": false
+        },
+        "elapsed_ms": 49.3
+      },
+      {
+        "case_id": "visibility_hidden",
+        "status": "PASS",
+        "expected": "显示状态与 clientRects/computedStyle 对照",
+        "actual": {
+          "actual": false,
+          "dom_visible": false
+        },
+        "elapsed_ms": 41.3
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 216.7
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.execute_javascript",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, code: 'str', argument: 'object | None' = None, execution_world: 'str' = 'ISOLATED') -> 'Any'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\8df0f70332fa4c6ba24662180fcdc73c\\library"
+        },
+        "elapsed_ms": 1485.5
+      },
+      {
+        "case_id": "roundtrip_ISOLATED",
+        "status": "PASS",
+        "expected": "跨 iframe/Shadow 绑定真实 element，JSON 参数和结果保真",
+        "actual": {
+          "actual": {
+            "args": {
+              "nested": {
+                "x": 2
+              },
+              "音乐": [
+                "甲",
+                1,
+                true,
+                null
+              ]
+            },
+            "id": "form-controls-native-text",
+            "tag": "INPUT"
+          },
+          "expected": {
+            "id": "form-controls-native-text",
+            "tag": "INPUT",
+            "args": {
+              "音乐": [
+                "甲",
+                1,
+                true,
+                null
+              ],
+              "nested": {
+                "x": 2
+              }
+            }
+          }
+        },
+        "elapsed_ms": 28.9
+      },
+      {
+        "case_id": "roundtrip_MAIN",
+        "status": "PASS",
+        "expected": "跨 iframe/Shadow 绑定真实 element，JSON 参数和结果保真",
+        "actual": {
+          "actual": {
+            "args": {
+              "nested": {
+                "x": 2
+              },
+              "音乐": [
+                "甲",
+                1,
+                true,
+                null
+              ]
+            },
+            "id": "form-controls-native-text",
+            "tag": "INPUT"
+          },
+          "expected": {
+            "id": "form-controls-native-text",
+            "tag": "INPUT",
+            "args": {
+              "音乐": [
+                "甲",
+                1,
+                true,
+                null
+              ],
+              "nested": {
+                "x": 2
+              }
+            }
+          }
+        },
+        "elapsed_ms": 17.2
+      },
+      {
+        "case_id": "null",
+        "status": "PASS",
+        "expected": "JS null 返回 None",
+        "actual": "None",
+        "elapsed_ms": 16.8
+      },
+      {
+        "case_id": "undefined",
+        "status": "PASS",
+        "expected": "JS undefined 返回 None",
+        "actual": "None",
+        "elapsed_ms": 14.3
+      },
+      {
+        "case_id": "invalid_world",
+        "status": "PASS",
+        "expected": "错误执行环境抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "execution_world 必须为 ISOLATED 或 MAIN",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "script_error",
+        "status": "PASS",
+        "expected": "脚本异常抛 ActionError",
+        "actual": {
+          "exception": "ActionError",
+          "message": "Error: uiautoma-probe\n    at fn (<anonymous>:3:44)\n    at HTMLInputElement.<anonymous> (<anonymous>:6:28)",
+          "trace": "execute_javascript_failed"
+        },
+        "elapsed_ms": 17.1
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 213.5
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.scroll_to",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, *, location: 'str' = 'bottom', behavior: 'str' = 'instant', top: 'int' = 0, left: 'int' = 0, search_up: 'bool' = False) -> 'None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/geometry-test",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\1f3f30f221d54fb2b01f6beab786025b\\library"
+        },
+        "elapsed_ms": 1120.5
+      },
+      {
+        "case_id": "point",
+        "status": "PASS",
+        "expected": "滚动后 DOM scrollTop 到达目标",
+        "actual": {
+          "return": null,
+          "dom": {
+            "client": 420,
+            "height": 3000,
+            "left": 0,
+            "top": 136.8000030517578,
+            "width": 1155
+          },
+          "expected_top": 137
+        },
+        "elapsed_ms": 35.2
+      },
+      {
+        "case_id": "top",
+        "status": "PASS",
+        "expected": "滚动后 DOM scrollTop 到达目标",
+        "actual": {
+          "return": null,
+          "dom": {
+            "client": 420,
+            "height": 3000,
+            "left": 0,
+            "top": 0,
+            "width": 1155
+          },
+          "expected_top": 0
+        },
+        "elapsed_ms": 28.1
+      },
+      {
+        "case_id": "one_screen",
+        "status": "PASS",
+        "expected": "滚动后 DOM scrollTop 到达目标",
+        "actual": {
+          "return": null,
+          "dom": {
+            "client": 420,
+            "height": 3000,
+            "left": 0,
+            "top": 420,
+            "width": 1155
+          },
+          "expected_top": 420
+        },
+        "elapsed_ms": 36.2
+      },
+      {
+        "case_id": "bottom",
+        "status": "PASS",
+        "expected": "滚动后 DOM scrollTop 到达目标",
+        "actual": {
+          "return": null,
+          "dom": {
+            "client": 420,
+            "height": 3000,
+            "left": 0,
+            "top": 2580,
+            "width": 1155
+          },
+          "expected_top": 2580
+        },
+        "elapsed_ms": 29.3
+      },
+      {
+        "case_id": "invalid_location",
+        "status": "PASS",
+        "expected": "错误位置抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "滚动位置或滚动效果无效",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "invalid_behavior",
+        "status": "PASS",
+        "expected": "错误滚动效果抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "滚动位置或滚动效果无效",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 209.1
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.get_scroll",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, *, direction: 'str' = 'vertical', location: 'str' = 'current', search_up: 'bool' = False) -> 'float'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/geometry-test",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\f31bce35185b493f83ff6361fe71e491\\library"
+        },
+        "elapsed_ms": 1122.3
+      },
+      {
+        "case_id": "current_0",
+        "status": "PASS",
+        "expected": "读取实际 scrollTop",
+        "actual": {
+          "result": 0.0,
+          "dom": {
+            "client": 420,
+            "height": 3000,
+            "left": 0,
+            "top": 0,
+            "width": 1155
+          }
+        },
+        "elapsed_ms": 36.9
+      },
+      {
+        "case_id": "current_137",
+        "status": "PASS",
+        "expected": "读取实际 scrollTop",
+        "actual": {
+          "result": 136.8000030517578,
+          "dom": {
+            "client": 420,
+            "height": 3000,
+            "left": 0,
+            "top": 136.8000030517578,
+            "width": 1155
+          }
+        },
+        "elapsed_ms": 61.7
+      },
+      {
+        "case_id": "current_400",
+        "status": "PASS",
+        "expected": "读取实际 scrollTop",
+        "actual": {
+          "result": 400.0,
+          "dom": {
+            "client": 420,
+            "height": 3000,
+            "left": 0,
+            "top": 400,
+            "width": 1155
+          }
+        },
+        "elapsed_ms": 43.0
+      },
+      {
+        "case_id": "bottom_vertical",
+        "status": "PASS",
+        "expected": "bottom 返回内容总高度/宽度",
+        "actual": {
+          "client": 420,
+          "height": 3000,
+          "left": 0,
+          "top": 400,
+          "width": 1155
+        },
+        "elapsed_ms": 32.9
+      },
+      {
+        "case_id": "bottom_horizontal",
+        "status": "PASS",
+        "expected": "bottom 返回内容总高度/宽度",
+        "actual": {
+          "client": 420,
+          "height": 3000,
+          "left": 0,
+          "top": 400,
+          "width": 1155
+        },
+        "elapsed_ms": 44.3
+      },
+      {
+        "case_id": "invalid_direction",
+        "status": "PASS",
+        "expected": "错误方向抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "滚动方向或位置无效",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 214.3
+      },
+      {
+        "case_id": "closed_package",
+        "status": "PASS",
+        "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+        "actual": {
+          "exception": "HostUnavailableError",
+          "message": "元素对象所属连接已关闭，请重新获取对象",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.drag_to",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, *, simulative: 'bool' = True, behavior: 'str' = 'smooth', top: 'int' = 0, left: 'int' = 0, delay_after: 'float' = 1, anchor: 'object | None' = None, move_speed: 'str' = 'middle') -> 'None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/geometry-test",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\9c689a475099486092939693969e9546\\library"
+        },
+        "elapsed_ms": 1010.7
+      },
+      {
+        "case_id": "move_False",
+        "status": "PASS",
+        "expected": "拖动位移 (+40,+25)，DOM 和页面停止日志同时确证",
+        "actual": {
+          "return": null,
+          "mode": false,
+          "delta": [
+            39.79998779296875,
+            24.787506103515625
+          ],
+          "before": {
+            "height": 64,
+            "logs": 1,
+            "width": 100,
+            "x": 576.7125244140625,
+            "y": 511.5874938964844
+          },
+          "after": {
+            "height": 64,
+            "logs": 2,
+            "width": 100,
+            "x": 616.5125122070312,
+            "y": 536.375
+          }
+        },
+        "elapsed_ms": 728.7
+      },
+      {
+        "case_id": "move_True",
+        "status": "KNOWN",
+        "expected": "拖动位移 (+40,+25)，DOM 和页面停止日志同时确证",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 479.5
+      },
+      {
+        "case_id": "invalid_behavior",
+        "status": "PASS",
+        "expected": "错误行为抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "拖拽效果必须是 smooth 或 instant",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "invalid_mode",
+        "status": "PASS",
+        "expected": "非 bool simulative 抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "simulative 必须是布尔值 True 或 False",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 205.8
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.drag_to_by_cdp",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, *, target_x: 'int' = 0, target_y: 'int' = 0, target_type: 'str' = 'viewport', delay_after: 'float' = 1, anchor: 'object | None' = None, move_speed: 'str' = 'middle') -> 'None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/geometry-test",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\c272e152ca084df88c7225842561e6d3\\library"
+        },
+        "elapsed_ms": 1048.6
+      },
+      {
+        "case_id": "move_cdp",
+        "status": "PASS",
+        "expected": "拖动位移 (+40,+25)，DOM 和页面停止日志同时确证",
+        "actual": {
+          "return": null,
+          "mode": "cdp",
+          "delta": [
+            40.79998779296875,
+            25.787506103515625
+          ],
+          "before": {
+            "height": 64,
+            "logs": 1,
+            "width": 100,
+            "x": 576.7125244140625,
+            "y": 511.5874938964844
+          },
+          "after": {
+            "height": 64,
+            "logs": 2,
+            "width": 100,
+            "x": 617.5125122070312,
+            "y": 537.375
+          }
+        },
+        "elapsed_ms": 904.4
+      },
+      {
+        "case_id": "invalid_target_type",
+        "status": "PASS",
+        "expected": "错误目标参照抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "目标坐标类型或移动速度无效",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 198.5
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.upload",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, file_names: 'str | list[str]', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, dialog_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/upload-dialog-test",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\087def4c2e1e4a42b8ed32c4e5cd2cba\\library"
+        },
+        "elapsed_ms": 1065.6
+      },
+      {
+        "case_id": "real_file",
+        "status": "PASS",
+        "expected": "上传返回 None，DOM FileList 文件名与大小一致",
+        "actual": [
+          {
+            "name": "upload.txt",
+            "size": 28
+          }
+        ],
+        "elapsed_ms": 2987.4
+      },
+      {
+        "case_id": "missing_file",
+        "status": "PASS",
+        "expected": "不存在文件抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "上传文件不存在或不是文件：D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\087def4c2e1e4a42b8ed32c4e5cd2cba\\missing.txt",
+          "trace": "invalid_params"
+        },
+        "elapsed_ms": 0.7
+      },
+      {
+        "case_id": "invalid_timeout",
+        "status": "PASS",
+        "expected": "非法超时抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "dialog_timeout 必须为 -1 或非负数",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 195.3
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.download",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, file_folder: 'str', *, file_name: 'str | None' = None, overwrite: 'bool' = True, wait_complete: 'bool' = True, wait_complete_timeout: 'float' = 300, simulative: 'bool' = False, clipboard_input: 'bool' = True, dialog_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'str'",
+        "elapsed_ms": 0.3
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/download-dialog-test",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\b69acf49f48a44a3b9219ddff68dd5ad\\library"
+        },
+        "elapsed_ms": 1057.2
+      },
+      {
+        "case_id": "real_download",
+        "status": "PASS",
+        "expected": "返回文件路径，字节与独立 HTTP 读取的 demo.txt 相同",
+        "actual": {
+          "path": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\b69acf49f48a44a3b9219ddff68dd5ad\\received.txt",
+          "bytes": 55,
+          "matches_independent_http": true
+        },
+        "elapsed_ms": 3413.7
+      },
+      {
+        "case_id": "invalid_timeout",
+        "status": "PASS",
+        "expected": "非法等待时间抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "dialog_timeout 必须为 -1 或非负数",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 205.8
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.highlight",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\b8693711c2174316b9b84a3520220d3c\\library"
+        },
+        "elapsed_ms": 1501.2
+      },
+      {
+        "case_id": "visible_overlay",
+        "status": "KNOWN",
+        "expected": "独立 Win32 观察高亮窗出现并移除，持续时间与后置等待生效",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 242.0
+      },
+      {
+        "case_id": "zero",
+        "status": "KNOWN",
+        "expected": "duration=0 返回 None",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 242.1
+      },
+      {
+        "case_id": "invalid_-1",
+        "status": "PASS",
+        "expected": "非法 duration 抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "duration 必须是非负的有限秒数",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "invalid_True",
+        "status": "PASS",
+        "expected": "非法 duration 抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "duration 必须是非负的有限秒数",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "invalid_nan",
+        "status": "PASS",
+        "expected": "非法 duration 抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "duration 必须是非负的有限秒数",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 204.6
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "browser.go_back",
+    "lifecycle": "VERIFIED",
+    "rounds": 3,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, *, load_timeout: 'float' = 20) -> 'None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\0062779345e84b9884339754a45e9672\\library"
+        },
+        "elapsed_ms": 1515.4
+      },
+      {
+        "case_id": "first_back",
+        "status": "PASS",
+        "expected": "首次后退回到原 URL，页面实际地址确证",
+        "actual": {
+          "return": null,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
+        },
+        "elapsed_ms": 386.7
+      },
+      {
+        "case_id": "extra_positional",
+        "status": "PASS",
+        "expected": "仅关键字 load_timeout 不接受位置值",
+        "actual": {
+          "exception": "TypeError",
+          "message": "WebBrowser.go_back() takes 1 positional argument but 2 were given",
+          "trace": ""
+        },
+        "elapsed_ms": 0.0
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 205.1
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "web.handle_upload_dialog",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(file_names: 'str | list[str]', dialog_result: 'str' = 'ok', mode: 'str' = 'auto', *, simulative: 'bool' = False, clipboard_input: 'bool' = True, wait_appear_timeout: 'float' = 20, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000) -> 'None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "environment",
+        "status": "PASS",
+        "expected": "Runtime/Chrome/现有靶场与临时库可用",
+        "actual": {
+          "url": "https://baobaomi900901.github.io/xpath/#/upload-dialog-test",
+          "baseline_tabs": 1,
+          "library": "D:\\code\\元素库\\260902_web元素",
+          "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\8480fe36de42403388da000b6415c3c4\\library"
+        },
+        "elapsed_ms": 1061.4
+      },
+      {
+        "case_id": "choose_file",
+        "status": "KNOWN",
+        "expected": "处理真实文件对话框，DOM FileList 与磁盘一致",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 177.2
+      },
+      {
+        "case_id": "cancel",
+        "status": "KNOWN",
+        "expected": "取消文件对话框保留原文件",
+        "actual": {
+          "exception": "ActionError",
+          "message": "元素自动化服务暂不可用，请稍后重试",
+          "trace": "uiautomation_provider_unavailable",
+          "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+        },
+        "elapsed_ms": 207.4
+      },
+      {
+        "case_id": "invalid_result",
+        "status": "PASS",
+        "expected": "非法 dialog_result 抛 InvalidParamsError",
+        "actual": {
+          "exception": "InvalidParamsError",
+          "message": "dialog_result 必须为 ok 或 cancel",
+          "trace": ""
+        },
+        "elapsed_ms": 0.5
+      },
+      {
+        "case_id": "cleanup",
+        "status": "PASS",
+        "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+        "actual": {
+          "errors": [],
+          "own_tab_closed": true,
+          "temporary_copy_removed": true,
+          "tab_count": "1->1",
+          "external_added": [],
+          "external_removed": [],
+          "new_dialogs": []
+        },
+        "elapsed_ms": 207.2
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "web.auto_handle_popup",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(handle_method: 'str', close_button=None, element_selector=None, process: 'str | None' = None, package=None) -> 'None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "skip",
+        "status": "KNOWN",
+        "expected": "需要真实正向场景",
+        "actual": {
+          "skip": "现有靶场只有 JavaScript 原生弹窗；缺少自动关闭规则所需的 DOM 弹窗及保存的关闭按钮"
+        },
+        "elapsed_ms": 0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "web.remove_all_auto_handle_popup",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "() -> 'None'",
+        "elapsed_ms": 0.1
+      },
+      {
+        "case_id": "skip",
+        "status": "KNOWN",
+        "expected": "需要真实正向场景",
+        "actual": {
+          "skip": "缺少可观察自动关闭效果的 DOM 弹窗/关闭按钮，无法证明规则移除后的真实行为"
+        },
+        "elapsed_ms": 0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "web.set_user_environment_fingerprint",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(mode: 'str', env_name=None) -> 'None'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "skip",
+        "status": "KNOWN",
+        "expected": "需要真实正向场景",
+        "actual": {
+          "skip": "当前源码直接抛 UnsupportedActionError，未实现指纹浏览器环境"
+        },
+        "elapsed_ms": 0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "browser.stop_load",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self) -> 'None'",
+        "elapsed_ms": 0.1
+      },
+      {
+        "case_id": "skip",
+        "status": "KNOWN",
+        "expected": "需要真实正向场景",
+        "actual": {
+          "skip": "缺少加载持续不完成的现有靶场；完整加载页不能验证中止待处理导航"
+        },
+        "elapsed_ms": 0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "browser.extract_table",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, table_selector: 'object', *, exclude_thead: 'bool' = False, timeout: 'float' = 20) -> 'list[list[str]]'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "skip",
+        "status": "KNOWN",
+        "expected": "需要真实正向场景",
+        "actual": {
+          "skip": "当前源码直接抛 UnsupportedActionError，未实现表格提取"
+        },
+        "elapsed_ms": 0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.extract_table",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self) -> 'list[list[str]]'",
+        "elapsed_ms": 0.1
+      },
+      {
+        "case_id": "skip",
+        "status": "KNOWN",
+        "expected": "需要真实正向场景",
+        "actual": {
+          "skip": "当前源码直接抛 UnsupportedActionError，未实现表格提取"
+        },
+        "elapsed_ms": 0
+      }
+    ],
+    "exit_code": 0
+  },
+  {
+    "api": "element.get_basetable_value",
+    "lifecycle": "SKIPPED",
+    "rounds": 1,
+    "stable": true,
+    "results": [
+      {
+        "case_id": "api_contract",
+        "status": "PASS",
+        "expected": "公开签名与只读源码快照一致",
+        "actual": "(self, *, exclude_thead: 'bool' = False) -> 'list[list[str]]'",
+        "elapsed_ms": 0.2
+      },
+      {
+        "case_id": "skip",
+        "status": "KNOWN",
+        "expected": "需要真实正向场景",
+        "actual": {
+          "skip": "当前源码直接抛 UnsupportedActionError，未实现基础表格提取"
+        },
+        "elapsed_ms": 0
+      }
+    ],
+    "exit_code": 0
+  }
+]

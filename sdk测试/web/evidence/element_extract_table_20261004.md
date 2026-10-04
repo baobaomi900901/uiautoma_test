@@ -39,8 +39,6 @@ extract_table(self) -> list[list[str]]
 
 - 当前源码直接抛 UnsupportedActionError，未实现表格提取
 
-闭包连接的生命周期判据采用本次 SDK 的 `HostUnavailableError`（包含“连接已关闭”）；旧快照的错误类型不作为本次期望。
-
 本次仅验收报告列出的场景；未列出的浏览器模式、DPI、参照系、控件种类、超大输入、网络异常或原生交互路径均不宣称通过。SKIPPED 的合同检查通过不等于实际功能通过。
 
 ## 资源清理与复测

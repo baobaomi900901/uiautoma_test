@@ -46,7 +46,7 @@ is_enabled(self) -> bool
 
 三轮均在 boolean_disabled_attribute 失败：disabled="false" 时 DOM disabled=True，API 返回 True。标准布尔属性由是否存在决定，字符串 false 不是移除属性；判据见 [HTML Standard](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes)。缺陷草稿与复现入口见 [交接材料](../../issues/drafts/is_enabled_disabled_false_20261004.md)。历史 disabled 空串问题本轮通过，不能据此宣称所有禁用判断已修复。
 
-闭包连接的生命周期判据采用本次 SDK 的 `HostUnavailableError`（包含“连接已关闭”）；旧快照的错误类型不作为本次期望。
+关闭连接的生命周期判据采用本次 SDK 的 `HostUnavailableError`（包含“连接已关闭”）；旧快照的错误类型不作为本次期望。
 
 本次仅验收报告列出的场景；未列出的浏览器模式、DPI、参照系、控件种类、超大输入、网络异常或原生交互路径均不宣称通过。SKIPPED 的合同检查通过不等于实际功能通过。
 

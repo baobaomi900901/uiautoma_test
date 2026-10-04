@@ -1,6 +1,8 @@
 # SDK 持久化测试状态
 
-生命周期状态：`DRAFT`、`READY_FOR_LIVE`、`VERIFIED`。
+生命周期状态：`DRAFT`、`READY_FOR_LIVE`、`VERIFIED`；按用户要求无法满足条件的本轮项目记 `SKIPPED`，不表示功能通过。
+
+最新批次（2026-10-04）：29 项中 17 VERIFIED、1 失败、11 SKIPPED；详见 [剩余 Web API 实测汇总](web/evidence/remaining_web_20261004.md)。
 
 > 测一个新 API 时按 [`AGENTS.md`](AGENTS.md) 的 TEST WORKFLOW 走 7 步；
 > 判据细则（状态模型、期望值来源、独立确证、抖动治理、脚本与证据骨架、反模式）见
@@ -84,6 +86,10 @@
 | `uiautoma.web.set_user_environment_fingerprint()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_set_user_environment_fingerprint_20261004.py](web/test_web_set_user_environment_fingerprint_20261004.py) | [web/evidence/web_set_user_environment_fingerprint_20261004.md](web/evidence/web_set_user_environment_fingerprint_20261004.md) | — |
 | `uiautoma.web.WebElement.extract_table()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_element_extract_table_20261004.py](web/test_web_element_extract_table_20261004.py) | [web/evidence/element_extract_table_20261004.md](web/evidence/element_extract_table_20261004.md) | — |
 | `uiautoma.web.WebElement.get_basetable_value()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_element_get_basetable_value_20261004.py](web/test_web_element_get_basetable_value_20261004.py) | [web/evidence/element_get_basetable_value_20261004.md](web/evidence/element_get_basetable_value_20261004.md) | — |
+
+## 历史实测说明（2026-08 至 2026-10-03）
+
+以下保留旧快照的原结论；2026-10-04 这 29 项的最新状态以表格及批次报告为准。
 
 `uiautoma.web.WebElement.click()`、`dblclick()`、`hover()`、`focus()` 已于 2026-08-07，
 `parent()`、`children()`、`child_at()`、`previous_sibling()`、`next_sibling()`、
