@@ -1,0 +1,275 @@
+{
+  "api": "element.get_selected_item",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self) -> 'list[str]'",
+    "docstring": "获取网页下拉框当前选中项的文本。\n\nReturns:\n    list[str]：选中项目文本列表。\n\nRaises:\n    ActionError: 获取选项失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 697,
+    "source": "    def get_selected_item(self) -> list[str]:\n        \"\"\"获取网页下拉框当前选中项的文本。\n\n        Returns:\n            list[str]：选中项目文本列表。\n\n        Raises:\n            ActionError: 获取选项失败。\n        \"\"\"\n\n        return [option[\"name\"].replace(\"\\u00a0\", \" \") for option in self._raw.get_select_options() if option[\"selected\"]]\n",
+    "implementation_chain": "RawWebElement.get_select_options → web.get_select_options → ActionService.web_get_select_options → Page Engine get_select_options → selected 文本筛选",
+    "script": "web/test_web_element_get_selected_item_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self) -> 'list[str]'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\b9d0f8b74cce4718a4adf533c1aa9ba9\\library"
+      },
+      "elapsed_ms": 1874.4
+    },
+    {
+      "case_id": "initial_form-controls-native-city",
+      "status": "PASS",
+      "expected": "读取当前选中项目，DOM 前后不变",
+      "actual": {
+        "result": [
+          "请选择城市"
+        ],
+        "dom": [
+          {
+            "selected": true,
+            "text": "请选择城市",
+            "value": ""
+          },
+          {
+            "selected": false,
+            "text": "北京",
+            "value": "beijing"
+          },
+          {
+            "selected": false,
+            "text": "上海",
+            "value": "shanghai"
+          },
+          {
+            "selected": false,
+            "text": "广州",
+            "value": "guangzhou"
+          },
+          {
+            "selected": false,
+            "text": "深圳",
+            "value": "shenzhen"
+          }
+        ],
+        "unchanged": true
+      },
+      "elapsed_ms": 134.5
+    },
+    {
+      "case_id": "initial_form-controls-native-cities",
+      "status": "PASS",
+      "expected": "读取当前选中项目，DOM 前后不变",
+      "actual": {
+        "result": [],
+        "dom": [
+          {
+            "selected": false,
+            "text": "北京",
+            "value": "beijing"
+          },
+          {
+            "selected": false,
+            "text": "上海",
+            "value": "shanghai"
+          },
+          {
+            "selected": false,
+            "text": "广州",
+            "value": "guangzhou"
+          },
+          {
+            "selected": false,
+            "text": "深圳",
+            "value": "shenzhen"
+          }
+        ],
+        "unchanged": true
+      },
+      "elapsed_ms": 99.1
+    },
+    {
+      "case_id": "single_changed",
+      "status": "PASS",
+      "expected": "单选上海返回 [上海]",
+      "actual": {
+        "result": [
+          "上海"
+        ],
+        "dom": [
+          {
+            "selected": false,
+            "text": "请选择城市",
+            "value": ""
+          },
+          {
+            "selected": false,
+            "text": "北京",
+            "value": "beijing"
+          },
+          {
+            "selected": true,
+            "text": "上海",
+            "value": "shanghai"
+          },
+          {
+            "selected": false,
+            "text": "广州",
+            "value": "guangzhou"
+          },
+          {
+            "selected": false,
+            "text": "深圳",
+            "value": "shenzhen"
+          }
+        ],
+        "unchanged": true
+      },
+      "elapsed_ms": 90.6
+    },
+    {
+      "case_id": "multi_changed",
+      "status": "PASS",
+      "expected": "多选返回北京、广州，按 DOM 顺序",
+      "actual": {
+        "result": [
+          "北京",
+          "广州"
+        ],
+        "dom": [
+          {
+            "selected": true,
+            "text": "北京",
+            "value": "beijing"
+          },
+          {
+            "selected": false,
+            "text": "上海",
+            "value": "shanghai"
+          },
+          {
+            "selected": true,
+            "text": "广州",
+            "value": "guangzhou"
+          },
+          {
+            "selected": false,
+            "text": "深圳",
+            "value": "shenzhen"
+          }
+        ],
+        "unchanged": true
+      },
+      "elapsed_ms": 86.0
+    },
+    {
+      "case_id": "reset",
+      "status": "PASS",
+      "expected": "重置后多选返回空列表",
+      "actual": {
+        "result": [],
+        "dom": [
+          {
+            "selected": false,
+            "text": "北京",
+            "value": "beijing"
+          },
+          {
+            "selected": false,
+            "text": "上海",
+            "value": "shanghai"
+          },
+          {
+            "selected": false,
+            "text": "广州",
+            "value": "guangzhou"
+          },
+          {
+            "selected": false,
+            "text": "深圳",
+            "value": "shenzhen"
+          }
+        ],
+        "unchanged": true
+      },
+      "elapsed_ms": 85.7
+    },
+    {
+      "case_id": "ant_web靶场_表单测试_ant_select单选",
+      "status": "KNOWN",
+      "expected": "非 SELECT 抛 ActionError/element_options_not_readable",
+      "actual": {
+        "exception": "ActionError",
+        "message": "此元素不支持“获取下拉框选项”操作。非标准下拉框请展开后查找选项元素并读取文本",
+        "trace": "element_options_not_readable"
+      },
+      "elapsed_ms": 55.4
+    },
+    {
+      "case_id": "ant_web靶场_表单测试_ant_select多选",
+      "status": "KNOWN",
+      "expected": "非 SELECT 抛 ActionError/element_options_not_readable",
+      "actual": {
+        "exception": "ActionError",
+        "message": "此元素不支持“获取下拉框选项”操作。非标准下拉框请展开后查找选项元素并读取文本",
+        "trace": "element_options_not_readable"
+      },
+      "elapsed_ms": 45.9
+    },
+    {
+      "case_id": "no_extra_parameter",
+      "status": "PASS",
+      "expected": "多余位置参数抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.get_selected_item() takes 1 positional argument but 2 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 30.1
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 275.5
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    }
+  ],
+  "exit_code": 0
+}
