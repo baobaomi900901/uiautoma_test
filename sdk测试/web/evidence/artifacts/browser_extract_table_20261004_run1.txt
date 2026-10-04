@@ -1,0 +1,36 @@
+{
+  "api": "browser.extract_table",
+  "lifecycle": "SKIPPED",
+  "url": null,
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, table_selector: 'object', *, exclude_thead: 'bool' = False, timeout: 'float' = 20) -> 'list[list[str]]'",
+    "docstring": "提取页面表格。\n\nArgs:\n    table_selector: 表格元素选择器。\n    exclude_thead: 是否排除表头，类型为 ``bool``。\n    timeout: 查找超时时间，单位秒。\n\nReturns:\n    ``list[list[str]]``：二维表格文本。\n\nRaises:\n    UnsupportedActionError: 当前版本暂未实现页面级表格提取。",
+    "source_file": "sdk\\src\\uiautoma\\web\\browser.py",
+    "source_line": 717,
+    "source": "    def extract_table(self, table_selector: object, *, exclude_thead: bool = False, timeout: float = 20) -> list[list[str]]:\n        \"\"\"提取页面表格。\n\n        Args:\n            table_selector: 表格元素选择器。\n            exclude_thead: 是否排除表头，类型为 ``bool``。\n            timeout: 查找超时时间，单位秒。\n\n        Returns:\n            ``list[list[str]]``：二维表格文本。\n\n        Raises:\n            UnsupportedActionError: 当前版本暂未实现页面级表格提取。\n        \"\"\"\n\n        raise unsupported(\"web.browser.extract_table\")\n",
+    "implementation_chain": "SDK 直接抛 UnsupportedActionError；无正向实现链",
+    "script": "web/test_web_browser_extract_table_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, table_selector: 'object', *, exclude_thead: 'bool' = False, timeout: 'float' = 20) -> 'list[list[str]]'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "skip",
+      "status": "KNOWN",
+      "expected": "需要真实正向场景",
+      "actual": {
+        "skip": "当前源码直接抛 UnsupportedActionError，未实现表格提取"
+      },
+      "elapsed_ms": 0
+    }
+  ],
+  "exit_code": 0
+}

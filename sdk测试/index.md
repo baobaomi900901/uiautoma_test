@@ -331,7 +331,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.find_by_xpath()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_by_xpath.py` | `web/evidence/find_by_xpath.md` |
 | `uiautoma.web.WebBrowser.find_all_by_xpath()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_all_by_xpath.py` | `web/evidence/find_all_by_xpath.md` |
 | `uiautoma.web.WebBrowser.is_element_displayed()` | `VERIFIED`（20/20；2026-09-15；活推导分类唯一 52/多命中 10/本页不存在 8） | `web/test_web_browser_is_element_displayed.py` | `web/evidence/is_element_displayed.md` |
-| `uiautoma.web.WebBrowser.extract_table()` | `未实现`（已验合同 11/11：必抛 `UnsupportedActionError`，零 Runtime 交互） | `web/test_web_browser_extract_table.py` | `web/evidence/extract_table.md` |
+| `uiautoma.web.WebBrowser.extract_table()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_browser_extract_table_20261004.py](web/test_web_browser_extract_table_20261004.py) | [web/evidence/browser_extract_table_20261004.md](web/evidence/browser_extract_table_20261004.md) |
 | `uiautoma.web.WebBrowser.screenshot()` | `VERIFIED`（21/21；2026-09-15；产物字节独立解析确证尺寸） | `web/test_web_browser_screenshot.py` | `web/evidence/browser_screenshot.md` |
 | `uiautoma.web.WebBrowser.screenshot_to_clipboard()` | `VERIFIED`（23/23；2026-09-15；ctypes 独立读 CF_DIB + 与文件截图三角像素比对） | `web/test_web_browser_screenshot_to_clipboard.py` | `web/evidence/screenshot_to_clipboard.md` |
 | `uiautoma.web.WebElement.screenshot_to_clipboard()` | `VERIFIED`（18/18；2026-09-15；ctypes 独立读 CF_DIB + 活矩形裁切偏移扫描验取景，Issue #20 在 dpr=1 未复现） | `web/test_web_element_screenshot_to_clipboard.py` | `web/evidence/element_screenshot_to_clipboard.md` |
