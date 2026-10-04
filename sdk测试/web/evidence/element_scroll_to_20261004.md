@@ -5,7 +5,7 @@
 在当前网页指定的元素上滚动鼠标滚轮。
 
 ```python
-scroll_to(self, *, location: str = "bottom", behavior: str = "instant", top: int = 0,
+scroll_to(self, *, location: str='bottom', behavior: str='instant', top: int=0, left: int=0, search_up: bool=False) -> None
 ```
 
 - 被测 worktree：`D:\code\desktop`；commit：`cb9332d1a04c09e04df54af958e028b2bc45af9b`。结论只绑定该源码快照和本次 dev Runtime。

@@ -5,7 +5,7 @@
 上传文件。
 
 ```python
-upload(
+upload(self, file_names: str | list[str], *, simulative: bool=False, clipboard_input: bool=True, dialog_timeout: float=20, force_ime_eng: bool=False, send_key_delay: int=50, focus_timeout: int=1000) -> None
 ```
 
 - 被测 worktree：`D:\code\desktop`；commit：`cb9332d1a04c09e04df54af958e028b2bc45af9b`。结论只绑定该源码快照和本次 dev Runtime。

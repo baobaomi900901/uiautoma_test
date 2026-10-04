@@ -5,7 +5,7 @@
 在当前元素上执行 JavaScript 脚本。
 
 ```python
-execute_javascript(
+execute_javascript(self, code: str, argument: object | None=None, execution_world: str='ISOLATED') -> Any
 ```
 
 - 被测 worktree：`D:\code\desktop`；commit：`cb9332d1a04c09e04df54af958e028b2bc45af9b`。结论只绑定该源码快照和本次 dev Runtime。

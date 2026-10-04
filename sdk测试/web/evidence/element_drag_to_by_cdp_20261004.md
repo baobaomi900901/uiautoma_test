@@ -5,7 +5,7 @@
 拖拽网页元素到指定位置。
 
 ```python
-drag_to_by_cdp(self, *, target_x: int = 0, target_y: int = 0, target_type: str = "viewport",
+drag_to_by_cdp(self, *, target_x: int=0, target_y: int=0, target_type: str='viewport', delay_after: float=1, anchor: object | None=None, move_speed: str='middle') -> None
 ```
 
 - 被测 worktree：`D:\code\desktop`；commit：`cb9332d1a04c09e04df54af958e028b2bc45af9b`。结论只绑定该源码快照和本次 dev Runtime。

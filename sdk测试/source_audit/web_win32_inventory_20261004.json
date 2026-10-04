@@ -1,0 +1,1379 @@
+{
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "comparison": [
+    {
+      "baseline": "f63c5cfc",
+      "added": [],
+      "removed": [],
+      "signature_changed": []
+    },
+    {
+      "baseline": "e08eadd0",
+      "added": [],
+      "removed": [],
+      "signature_changed": []
+    }
+  ],
+  "scope": "Public named functions, methods and properties; includes unsupported placeholders; excludes fields and internal APIs.",
+  "apis": {
+    "uiautoma.web.create": {
+      "signature": "create(url: str, mode: str='auto', *, load_timeout: float=20, stop_if_timeout: bool=False, silent_running: bool=False, executable_path: str | None=None, arguments: object | None=None) -> WebBrowser",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 49,
+      "property": false,
+      "docstring": "打开新网页，并按指定时间等待加载完成。\n\nArgs:\n    url: 目标网址，类型为 ``str``；省略协议时自动补充 ``https://``。\n    mode: 浏览器类型，默认 ``\"auto\"``，自动选择；``\"chrome\"`` 使用 Chrome，\n        ``\"edge\"`` 使用 Edge。\n    load_timeout: 等待加载的秒数，默认 ``20``；``0`` 不等待加载完成，\n        ``-1`` 一直等待。\n    stop_if_timeout: 加载超时后是否停止加载，默认 ``False``；超时仍会抛出异常。\n    silent_running: 是否启用静默运行，默认 ``False``；开启后通过 API 操作该网页，不抢占鼠标键盘。\n    executable_path: 浏览器程序路径，默认 ``None``，自动查找；仅启动浏览器时使用。\n    arguments: 浏览器支持的启动参数，接受字符串、列表或元组，默认 ``None``；\n        仅启动浏览器时使用。\n\nReturns:\n    ``WebBrowser``：新打开的网页对象，刷新后仍可使用。\n\nRaises:\n    InvalidParamsError: 网址、浏览器类型、可执行文件或启动参数无效。\n    UIAError: 浏览器无法启动或连接、网页打开失败或加载超时。"
+    },
+    "uiautoma.web.get": {
+      "signature": "get(title: str | None=None, url: str | None=None, mode: str='auto', *, load_timeout: float=20, use_wildcard: bool=False, stop_if_timeout: bool=False, open_page: bool=False, page_url: str | None=None, silent_running: bool=False) -> WebBrowser",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 86,
+      "property": false,
+      "docstring": "根据标题或网址获取已打开的网页，默认激活网页所在窗口。\n\n默认按包含关系匹配；同时指定标题和网址时，两项都必须匹配。\n有多个匹配网页时优先返回较新打开的网页。\n\nArgs:\n    title: 标题筛选字符串，默认 ``None``，不限制标题。\n    url: 网址筛选字符串，默认 ``None``，不限制网址。\n    mode: 浏览器类型，默认 ``\"auto\"``（自动选择）；可选 ``\"chrome\"``（Chrome）、\n        ``\"edge\"``（Edge）。\n    load_timeout: 查找网页并等待加载的秒数，默认 ``20``；``0`` 只查一次且不等待加载，\n        ``-1`` 一直等待。\n    use_wildcard: 是否使用通配符匹配，默认 ``False``；``True`` 时可用\n        ``*`` 匹配任意长度字符、``?`` 匹配单个字符。\n    stop_if_timeout: 加载超时后是否停止加载，默认 ``False``；超时仍会抛出异常。\n    open_page: 未匹配到网页时是否新建网页，默认 ``False``；支持 Chrome 和 Edge，新建页面受浏览器启动与扩展连接状态限制。\n    page_url: 新建网页的目标网址，默认 ``None``，使用 ``url``；仅在\n        ``open_page=True`` 时可指定，新建时必须有有效网址。\n    silent_running: 是否启用静默运行，默认 ``False``；开启后通过 API 操作该网页，不抢占鼠标键盘。\n\nReturns:\n    ``WebBrowser``：匹配到的或新建的网页对象。\n\nRaises:\n    InvalidParamsError: 未启用新建网页却指定了 ``page_url``，或新建参数无效。\n    UIAError: 未找到网页、浏览器连接不可用或加载超时。"
+    },
+    "uiautoma.web.get_active": {
+      "signature": "get_active(mode: str='auto', *, load_timeout: float=20, stop_if_timeout: bool=False, silent_running: bool=False) -> WebBrowser",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 132,
+      "property": false,
+      "docstring": "获取浏览器当前选中的网页，并等待加载完成；非静默运行时激活所在窗口。\n\nArgs:\n    mode: 浏览器类型，默认 ``\"auto\"``（自动选择）；可选 ``\"chrome\"``（Chrome）、``\"edge\"``（Edge）。\n    load_timeout: 等待加载的秒数，默认 ``20``；``0`` 不等待加载完成，``-1`` 一直等待。\n    stop_if_timeout: 加载超时后是否停止加载，默认 ``False``；超时仍会抛出异常。\n    silent_running: 是否启用静默运行，默认 ``False``；开启后通过 API 操作该网页，不抢占鼠标键盘。\n\nReturns:\n    ``WebBrowser``：当前选中的网页对象。\n\nRaises:\n    UIAError: 没有活动网页、浏览器连接不可用或加载超时。"
+    },
+    "uiautoma.web.get_all": {
+      "signature": "get_all(mode: str='auto', *, title: str | None=None, url: str | None=None, use_wildcard: bool=False, silent_running: bool=False) -> list[WebBrowser]",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 156,
+      "property": false,
+      "docstring": "获取已连接浏览器中匹配的网页列表。\n\nArgs:\n    mode: 浏览器类型，默认 ``\"auto\"``（自动选择）；可选 ``\"chrome\"``（Chrome）、``\"edge\"``（Edge）。\n    title: 标题筛选字符串，默认 ``None``，不限制标题。\n    url: 网址筛选字符串，默认 ``None``，不限制网址；与标题筛选同时生效。\n    use_wildcard: 是否使用通配符匹配，默认 ``False``，按包含关系匹配；\n        ``True`` 时可用 ``*`` 匹配任意长度字符、``?`` 匹配单个字符。\n    silent_running: 是否启用静默运行，默认 ``False``；开启后通过 API 操作这些网页，不抢占鼠标键盘。\n\nReturns:\n    ``list[WebBrowser]``：按窗口分组、窗口内从左到右排列的网页列表；未找到时返回空列表。\n\nRaises:\n    UIAError: 浏览器连接不可用或读取网页列表失败。"
+    },
+    "uiautoma.web.get_cookies": {
+      "signature": "get_cookies(url: str, mode: str='auto', *, name=None, domain=None, path=None, partition_key=None, secure=None, session=None) -> list",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 204,
+      "property": false,
+      "docstring": "获取指定网址中符合条件的 Cookie 列表。\n\nArgs:\n    url: 用于筛选的网址，需包含协议；传空字符串表示不按网址筛选。\n    mode: 浏览器类型，支持 \"auto\"（自动选择）、\"chrome\"（Chrome）和 \"edge\"（Edge），默认 \"auto\"。\n    name: 按 Cookie 名称筛选，默认 None，不限制名称。\n    domain: 按域名及其子域名筛选，例如 \".example.com\"；默认 None，不限制域名。\n    path: 按路径筛选，例如 \"/\"；默认 None，不限制路径。\n    secure: 默认 None，不筛选；True 获取安全 Cookie，False 获取非安全 Cookie。\n    session: 默认 None，不筛选；True 获取会话 Cookie，False 获取持久 Cookie。\n    partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n        {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n        has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。\n\nReturns:\n    list[dict]：返回 Cookie 列表，列表项包含 name、value、domain、path、httpOnly 等键，\n    可通过 item['value'] 获取 Cookie 值；未匹配时返回 []。"
+    },
+    "uiautoma.web.get_cookie": {
+      "signature": "get_cookie(url: str, mode: str='auto', *, name=None) -> dict",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 246,
+      "property": false,
+      "docstring": "获取指定网址中指定名称的 Cookie。\n\nArgs:\n    url: Cookie 对应的网址，需包含协议，例如 \"https://example.com\"。\n    mode: 浏览器类型，支持 \"auto\"（自动选择）、\"chrome\"（Chrome）和 \"edge\"（Edge），默认 \"auto\"。\n    name: 要获取的 Cookie 名称，必须指定。\n\nReturns:\n    dict：返回 Cookie 信息，包含 name、value、domain、path、httpOnly 等键，\n    可通过 cookie['value'] 获取 Cookie 值；未匹配时返回 {}。"
+    },
+    "uiautoma.web.set_cookie": {
+      "signature": "set_cookie(url: str, mode: str='auto', *, name=None, value=None, sessionCookie: bool=True, expires: int=100, domain=None, path=None, httpOnly: bool=False, secure: bool=False) -> None",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 265,
+      "property": false,
+      "docstring": "设置指定网址的 Cookie，已存在时覆盖。\n\nArgs:\n    url: Cookie 对应的网址，需包含协议，例如 \"https://example.com\"。\n    mode: 浏览器类型，支持 \"auto\"（自动选择）、\"chrome\"（Chrome）和 \"edge\"（Edge），默认 \"auto\"。\n    name: Cookie 名称，必须指定。\n    value: Cookie 值，默认 None，设置为空字符串。\n    sessionCookie: 是否设置为会话 Cookie，默认 True；False 为持久 Cookie。\n    expires: 持久 Cookie 的有效期，单位秒，默认 100；会话 Cookie 不使用此参数。\n    domain: Cookie 域名，默认使用网址的域名。\n    path: Cookie 路径，默认使用网址的路径。\n    httpOnly: 是否标记为 HttpOnly，默认 False。\n    secure: 是否标记为 Secure，默认 False。"
+    },
+    "uiautoma.web.remove_cookie": {
+      "signature": "remove_cookie(url: str, name: str, mode: str='auto', *, partition_key=None) -> None",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 309,
+      "property": false,
+      "docstring": "移除指定网址中指定名称的 Cookie。\n\nArgs:\n    url: Cookie 对应的网址，需包含协议，例如 \"https://example.com\"。\n    mode: 浏览器类型，支持 \"auto\"（自动选择）、\"chrome\"（Chrome）和 \"edge\"（Edge），默认 \"auto\"。\n    name: 要移除的 Cookie 名称。\n    partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n        {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n        has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。"
+    },
+    "uiautoma.web.clear_cookies": {
+      "signature": "clear_cookies(url: str='', mode: str='auto', *, domain: str | None=None, partition_key=None) -> None",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 335,
+      "property": false,
+      "docstring": "清除符合条件的 Cookie。\n\nArgs:\n    url: 用于筛选的网址，默认空字符串，不按网址筛选。\n    mode: 浏览器类型，支持 \"auto\"（自动选择）、\"chrome\"（Chrome）和 \"edge\"（Edge），默认 \"auto\"。\n    domain: 按域名及其子域名筛选，默认 None，不限制域名。\n    partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n        {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n        has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。"
+    },
+    "uiautoma.web.close_all": {
+      "signature": "close_all(mode: str='auto', *, task_kill: bool=False, ignore_beforeunload: bool=False) -> None",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 360,
+      "property": false,
+      "docstring": "关闭指定浏览器的全部网页。\n\nArgs:\n    mode: 浏览器类型，支持 \"auto\"（自动选择）、\"chrome\"（Chrome）和 \"edge\"（Edge），默认 \"auto\"。\n    task_kill: 是否在关闭网页后结束浏览器进程，默认 False；已选择用户环境时只能使用 False。\n    ignore_beforeunload: 是否忽略关闭前的“确认离开页面”对话框，默认 False；True 自动确认离开。\n        task_kill=True 时，结束进程不会等待确认。"
+    },
+    "uiautoma.web.handle_save_dialog": {
+      "signature": "handle_save_dialog(file_folder: str, dialog_result: str='ok', mode: str='auto', *, file_name: str | None=None, overwrite: bool=True, wait_complete: bool=False, wait_complete_timeout: float=300, simulative: bool=False, clipboard_input: bool=True, wait_appear_timeout: float=20, force_ime_eng: bool=False, send_key_delay: int=50, focus_timeout: int=1000) -> str",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 377,
+      "property": false,
+      "docstring": "处理浏览器的文件保存对话框。\n\nArgs:\n    file_folder: 文件保存目录的完整路径。\n    dialog_result: 处理方式，默认 ok（确定），可选 cancel（取消）。\n    mode: 浏览器类型，默认 auto（自动选择），可选 chrome、edge。\n    file_name: 保存文件名，默认 None，使用对话框中的名称；没有名称时自动生成。\n    overwrite: 同名文件是否覆盖，默认 True；False 自动添加后缀。\n    wait_complete: 是否等待下载完成，默认 False。\n    wait_complete_timeout: 等待下载完成的时间，单位为秒，默认 300；0 仅检查当前状态，-1 一直等待。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    文件完整路径；取消时返回空字符串，不等待完成时文件可能仍在下载。\n\nRaises:\n    InvalidParamsError: 参数无效。\n    UIAError: 对话框未出现、存在多个匹配对话框或保存失败。"
+    },
+    "uiautoma.web.handle_upload_dialog": {
+      "signature": "handle_upload_dialog(file_names: str | list[str], dialog_result: str='ok', mode: str='auto', *, simulative: bool=False, clipboard_input: bool=True, wait_appear_timeout: float=20, force_ime_eng: bool=False, send_key_delay: int=50, focus_timeout: int=1000) -> None",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 420,
+      "property": false,
+      "docstring": "处理浏览器的文件上传对话框。\n\nArgs:\n    file_names: 待上传文件的完整路径，可传入单个路径或路径列表；确认时文件必须存在，取消时不使用此参数。\n    dialog_result: 处理方式，默认 ok（确定），可选 cancel（取消）。\n    mode: 浏览器类型，默认 auto（自动选择），可选 chrome、edge。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 文件路径或输入参数无效。\n    UIAError: 对话框未出现、存在多个匹配对话框或上传失败。"
+    },
+    "uiautoma.web.auto_handle_popup": {
+      "signature": "auto_handle_popup(handle_method: str, close_button=None, element_selector=None, process: str | None=None, package=None) -> None",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 454,
+      "property": false,
+      "docstring": "注册自动关闭网页弹窗的规则，对随后获取或打开的网页生效。\n\nArgs:\n    handle_method: 处理方式，支持 \"close_dialog\"（点击关闭按钮）；\n        \"execute_process\"（执行子流程）暂不支持。\n    close_button: 关闭按钮的元素名称或 Web Selector；close_dialog 时必填，不支持跨 iframe。\n    element_selector: 触发子流程的元素选择器；当前暂不使用。\n    process: 要执行的子流程名称，不带 .py；当前暂不使用。\n    package: 子流程所在的 Python 包名；当前暂不使用。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 处理方式、关闭按钮无效或规则重复。\n    UnsupportedActionError: 使用了暂不支持的执行子流程方式。"
+    },
+    "uiautoma.web.remove_all_auto_handle_popup": {
+      "signature": "remove_all_auto_handle_popup() -> None",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 488,
+      "property": false,
+      "docstring": "移除当前连接注册的所有网页弹窗自动处理规则。\n\nReturns:\n    ``None``。"
+    },
+    "uiautoma.web.set_user_environment": {
+      "signature": "set_user_environment(mode: str, profile_name=None, specifield_userdata: bool=False, user_data_dir=None) -> None",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 501,
+      "property": false,
+      "docstring": "选择浏览器用户环境，后续获取或打开网页时使用。\n\nArgs:\n    mode: 浏览器类型，可选 \"chrome\"、\"edge\"；\"auto\" 按 Chrome 设置。\n    profile_name: 已有用户环境的显示名称或配置目录名，例如 \"个人\"、\"Default\"、\"Profile 1\"。\n    specifield_userdata: 是否使用指定的用户数据目录，默认 False，使用浏览器默认目录。\n    user_data_dir: 用户数据目录；specifield_userdata=True 时必填。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 用户环境不存在、重名或目录无效。"
+    },
+    "uiautoma.web.set_user_environment_fingerprint": {
+      "signature": "set_user_environment_fingerprint(mode: str, env_name=None) -> None",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 523,
+      "property": false,
+      "docstring": "选择指纹浏览器中已有的用户环境，当前版本暂不支持。\n\nArgs:\n    mode: 指纹浏览器类型；普通 Chrome 和 Edge 不适用。\n    env_name: 指纹浏览器中已有的环境名称。\n\nReturns:\n    ``None``。\n\nRaises:\n    UnsupportedActionError: 当前版本暂不支持选择指纹浏览器环境。"
+    },
+    "uiautoma.web.reset_user_environment": {
+      "signature": "reset_user_environment(mode: str) -> None",
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "line": 540,
+      "property": false,
+      "docstring": "取消已选择的浏览器用户环境，恢复默认的网页获取和打开方式。\n\n不关闭已打开的网页，也不删除用户环境数据。\n\nArgs:\n    mode: 浏览器类型，可选 \"chrome\"、\"edge\"；\"auto\" 取消两种浏览器的环境选择。\n\nReturns:\n    ``None``。"
+    },
+    "uiautoma.web.WebBrowser.get_url": {
+      "signature": "get_url(self) -> str",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 67,
+      "property": false,
+      "docstring": "获取网页地址。\n\nReturns:\n    ``str``：当前网页地址；没有地址时为空字符串。"
+    },
+    "uiautoma.web.WebBrowser.get_title": {
+      "signature": "get_title(self) -> str",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 77,
+      "property": false,
+      "docstring": "获取网页标题。\n\nReturns:\n    ``str``：当前网页标题；没有标题时为空字符串。"
+    },
+    "uiautoma.web.WebBrowser.get_text": {
+      "signature": "get_text(self) -> str",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 87,
+      "property": false,
+      "docstring": "读取页面可见文本。\n\nReturns:\n    ``str``。\n\nRaises:\n    ActionError: 网页对象已失效或文本读取失败。"
+    },
+    "uiautoma.web.WebBrowser.get_html": {
+      "signature": "get_html(self) -> str",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 99,
+      "property": false,
+      "docstring": "读取页面 HTML。\n\nReturns:\n    ``str``：当前页面的 HTML 源码。\n\nRaises:\n    ActionError: 网页对象已失效或读取失败。"
+    },
+    "uiautoma.web.WebBrowser.activate": {
+      "signature": "activate(self) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 112,
+      "property": false,
+      "docstring": "选中当前标签页，并激活所在的浏览器窗口。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效或激活失败。"
+    },
+    "uiautoma.web.WebBrowser.activateTab": {
+      "signature": "activateTab(self) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 126,
+      "property": false,
+      "docstring": "激活当前标签页及所在的浏览器窗口。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效或激活失败。"
+    },
+    "uiautoma.web.WebBrowser.navigate": {
+      "signature": "navigate(self, url: str, *, load_timeout: float=20) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 138,
+      "property": false,
+      "docstring": "导航到指定 URL。\n\nArgs:\n    url: 目标网址，类型为 ``str``；省略协议时自动补充 ``https://``。\n    load_timeout: 等待加载的秒数，默认 ``20``；``0`` 不等待加载完成，\n        ``-1`` 一直等待。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 目标网址为空。\n    ActionError: 网页对象已失效、加载超时或导航失败。"
+    },
+    "uiautoma.web.WebBrowser.go_back": {
+      "signature": "go_back(self, *, load_timeout: float=20) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 162,
+      "property": false,
+      "docstring": "浏览器后退。\n\nArgs:\n    load_timeout: 等待加载的秒数，默认 ``20``；``0`` 不等待加载完成，\n        ``-1`` 一直等待。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效、加载超时或后退失败。"
+    },
+    "uiautoma.web.WebBrowser.go_forward": {
+      "signature": "go_forward(self, *, load_timeout: float=20) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 180,
+      "property": false,
+      "docstring": "浏览器前进。\n\nArgs:\n    load_timeout: 等待加载的秒数，默认 ``20``；``0`` 不等待加载完成，\n        ``-1`` 一直等待。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效、加载超时或前进失败。"
+    },
+    "uiautoma.web.WebBrowser.reload": {
+      "signature": "reload(self, ignore_cache: bool=False, *, load_timeout: float=20) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 198,
+      "property": false,
+      "docstring": "刷新页面。\n\n刷新后本网页对象仍可使用；刷新前找到的元素必须重新查找后才能操作。\n\nArgs:\n    ignore_cache: 是否忽略缓存，默认 ``False``。\n    load_timeout: 等待加载的秒数，默认 ``20``；``0`` 不等待加载完成，\n        ``-1`` 一直等待。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效、加载超时或刷新失败。"
+    },
+    "uiautoma.web.WebBrowser.stop_load": {
+      "signature": "stop_load(self) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 220,
+      "property": false,
+      "docstring": "停止页面加载。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效或停止加载失败。"
+    },
+    "uiautoma.web.WebBrowser.is_load_completed": {
+      "signature": "is_load_completed(self) -> bool",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 234,
+      "property": false,
+      "docstring": "判断页面是否加载完成。\n\nReturns:\n    ``bool``：页面已加载完成时为 ``True``，否则为 ``False``。\n\nRaises:\n    ActionError: 网页加载失败、网页对象已失效或加载状态读取失败。"
+    },
+    "uiautoma.web.WebBrowser.wait_load_completed": {
+      "signature": "wait_load_completed(self, timeout: float=20) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 249,
+      "property": false,
+      "docstring": "等待页面加载完成。\n\nArgs:\n    timeout: 等待秒数，默认 ``20``；``0`` 不等待加载完成，\n        ``-1`` 一直等待。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页加载失败、网页对象已失效或等待加载超时。"
+    },
+    "uiautoma.web.WebBrowser.close": {
+      "signature": "close(self, *, ignore_beforeunload: bool=False) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 270,
+      "property": false,
+      "docstring": "关闭当前网页。\n\nArgs:\n    ignore_beforeunload: 是否忽略关闭前的“确认离开页面”对话框，默认 False；True 自动确认离开。"
+    },
+    "uiautoma.web.WebBrowser.execute_javascript": {
+      "signature": "execute_javascript(self, code: str, argument: object | None=None, execution_world: str='ISOLATED') -> Any",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 282,
+      "property": false,
+      "docstring": "在当前网页上执行 JavaScript 脚本。\n\nArgs:\n    code: 要执行的 JS 脚本，必须为 JavaScript 函数字符串，如：\n\n        ```python\n        \"\"\"\n        function (element, args) {\n            // element 为 null\n            // args 表示输入的参数\n            return args;\n        }\n        \"\"\"\n        ```\n\n    argument: 要传入 JS 函数的参数，支持字符串、数字、布尔值、列表和字典。\n        默认 None，函数收到 undefined；列表和字典无需先转为 JSON 字符串。\n    execution_world: 运行环境，支持 \"ISOLATED\"（隔离环境）和 \"MAIN\"（网页环境），\n        默认为 \"ISOLATED\"。\n\nReturns:\n    Any：返回 JS 脚本执行结果；无返回值、undefined 和 null 返回 None。"
+    },
+    "uiautoma.web.WebBrowser.scroll_to": {
+      "signature": "scroll_to(self, *, location: str='bottom', behavior: str='smooth', top: int=0, left: int=0) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 320,
+      "property": false,
+      "docstring": "滚动页面到指定位置。\n\nArgs:\n    location: 滚动位置，默认 bottom（底部），可选 top（顶部）、point（指定位置）。\n    behavior: 滚动效果，默认 smooth（平滑），可选 instant（瞬间）。\n    top: 距页面顶部的距离，单位为 CSS 像素，默认 0；仅 point 生效。\n    left: 距页面左侧的距离，单位为 CSS 像素，默认 0；仅 point 生效。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 目标位置或滚动方式无效。\n    ActionError: 网页对象已失效或滚动失败。"
+    },
+    "uiautoma.web.WebBrowser.handle_javascript_dialog": {
+      "signature": "handle_javascript_dialog(self, dialog_result: str='ok', *, text: str | None=None, wait_appear_timeout: float=20) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 349,
+      "property": false,
+      "docstring": "处理网页弹出的提示框、确认框或输入框。\n\nArgs:\n    dialog_result: 处理方式，默认 ok（确定），可选 cancel（取消）。\n    text: 输入框中要填写的文本，默认 None，保留原内容；取消时忽略。\n    wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 对话框处理方式无效。\n    ActionError: 对话框未出现或处理失败。"
+    },
+    "uiautoma.web.WebBrowser.get_javascript_dialog_text": {
+      "signature": "get_javascript_dialog_text(self, *, wait_appear_timeout: float=20) -> str",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 387,
+      "property": false,
+      "docstring": "获取网页弹出的对话框文本。\n\nArgs:\n    wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n\nReturns:\n    对话框中显示的文本。\n\nRaises:\n    ActionError: 网页对象已失效、对话框未出现或读取失败。"
+    },
+    "uiautoma.web.WebBrowser.get_scroll": {
+      "signature": "get_scroll(self, *, direction: str='vertical', location: str='current') -> float",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 407,
+      "property": false,
+      "docstring": "获取网页滚动条位置。\n\nArgs:\n    direction: 滚动条方向，默认 vertical（上下），可选 horizontal（左右）。\n    location: 滚动条位置，默认 current（当前位置），可选 bottom（底部位置）。\n\nReturns:\n    滚动条位置；bottom 返回滚动内容的总高度或总宽度。\n\nRaises:\n    ActionError: 网页对象已失效或读取失败。"
+    },
+    "uiautoma.web.WebBrowser.wait_appear": {
+      "signature": "wait_appear(self, selector_or_element: object, timeout: float=20) -> bool",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 431,
+      "property": false,
+      "docstring": "等待网页元素出现。\n\nArgs:\n    selector_or_element: 要等待的目标元素，支持元素名称字符串、Selector 对象或 WebElement 对象。\n    timeout: 等待元素出现的超时时间，单位秒，默认 20；0 表示只检查一次，-1 表示一直等待。\n\nReturns:\n    bool：超时前元素出现返回 True，否则返回 False。"
+    },
+    "uiautoma.web.WebBrowser.wait_disappear": {
+      "signature": "wait_disappear(self, selector_or_element: object, timeout: float=20) -> bool",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 443,
+      "property": false,
+      "docstring": "等待网页元素消失。\n\nArgs:\n    selector_or_element: 要等待的目标元素，支持元素名称字符串、Selector 对象或 WebElement 对象。\n    timeout: 等待元素消失的超时时间，单位秒，默认 20；0 表示只检查一次，-1 表示一直等待。\n\nReturns:\n    bool：超时前元素消失返回 True，否则返回 False。"
+    },
+    "uiautoma.web.WebBrowser.get_cookies": {
+      "signature": "get_cookies(self, *, name=None, domain=None, path=None, secure=None, session=None, partition_key=None) -> list",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 477,
+      "property": false,
+      "docstring": "获取当前网页中符合条件的 Cookie 列表。\n\nArgs:\n    name: 按 Cookie 名称筛选，默认 None，不限制名称。\n    domain: 按域名及其子域名筛选，例如 \".example.com\"；默认 None，不限制域名。\n    path: 按路径筛选，例如 \"/\"；默认 None，不限制路径。\n    secure: 默认 None，不筛选；True 获取安全 Cookie，False 获取非安全 Cookie。\n    session: 默认 None，不筛选；True 获取会话 Cookie，False 获取持久 Cookie。\n    partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n        {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n        has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。\n\nReturns:\n    list[dict]：返回 Cookie 列表，列表项包含 name、value、domain、path、httpOnly 等键，\n    可通过 item['value'] 获取 Cookie 值；未匹配时返回 []。"
+    },
+    "uiautoma.web.WebBrowser.get_cookie": {
+      "signature": "get_cookie(self, *, name=None) -> dict",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 503,
+      "property": false,
+      "docstring": "获取当前网页中指定名称的 Cookie。\n\nArgs:\n    name: 要获取的 Cookie 名称，必须指定。\n\nReturns:\n    dict：返回 Cookie 信息，包含 name、value、domain、path、httpOnly 等键，\n    可通过 cookie['value'] 获取 Cookie 值；未匹配时返回 {}。"
+    },
+    "uiautoma.web.WebBrowser.set_cookie": {
+      "signature": "set_cookie(self, *, name=None, value=None, sessionCookie: bool=False, expires: float=100, domain=None, path=None, httpOnly: bool=False, secure: bool=False) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 515,
+      "property": false,
+      "docstring": "设置当前网页的 Cookie，已存在时覆盖。\n\nArgs:\n    name: Cookie 名称，必须指定。\n    value: Cookie 值，默认 None，设置为空字符串。\n    sessionCookie: 是否设置为会话 Cookie，默认 False；False 为持久 Cookie。\n    expires: 持久 Cookie 的有效期，单位秒，默认 100；会话 Cookie 不使用此参数。\n    domain: Cookie 域名，默认使用网址的域名。\n    path: Cookie 路径，默认使用网址的路径。\n    httpOnly: 是否标记为 HttpOnly，默认 False。\n    secure: 是否标记为 Secure，默认 False。"
+    },
+    "uiautoma.web.WebBrowser.remove_cookie": {
+      "signature": "remove_cookie(self, name: str, *, partition_key=None) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 532,
+      "property": false,
+      "docstring": "移除当前网页中指定名称的 Cookie。\n\nArgs:\n    name: 要移除的 Cookie 名称。\n    partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n        {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n        has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。"
+    },
+    "uiautoma.web.WebBrowser.clear_cookies": {
+      "signature": "clear_cookies(self, *, partition_key=None) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 545,
+      "property": false,
+      "docstring": "清除当前网页的 Cookie。\n\nArgs:\n    partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n        {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n        has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。"
+    },
+    "uiautoma.web.WebBrowser.start_monitor_network": {
+      "signature": "start_monitor_network(self, *, url: str='', use_wildcard: bool=False, resource_type: str='All') -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 557,
+      "property": false,
+      "docstring": "开始监听当前网页的网络请求。\n\nArgs:\n    url: 资源网址，默认空字符串，不按网址筛选。\n    use_wildcard: 是否使用通配符，默认 False，按完整网址匹配；True 可使用 * 和 ?，例如 \"*/api/*\"。\n    resource_type: 资源类型，默认 \"All\"；支持 All、XHR、Script、Stylesheet、Image、Media、Font、\n        Document、WebSocket、Manifest、TextTrack、Fetch、EventSource、Other。\n        多个类型可使用 | 连接，例如 \"Fetch|Script\"。\n        Other 包含 TextTrack、EventSource 和 Manifest。"
+    },
+    "uiautoma.web.WebBrowser.get_responses": {
+      "signature": "get_responses(self, *, url: str='', use_wildcard: bool=False, resource_type: str='All') -> list",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 571,
+      "property": false,
+      "docstring": "获取监听到的网络响应。\n\nArgs:\n    url: 资源网址，默认空字符串，不按网址筛选。\n    use_wildcard: 是否使用通配符，默认 False，按完整网址匹配；True 可使用 * 和 ?，例如 \"*/api/*\"。\n    resource_type: 资源类型，默认 \"All\"；支持 All、XHR、Script、Stylesheet、Image、Media、Font、\n        Document、WebSocket、Manifest、TextTrack、Fetch、EventSource、Other。\n        多个类型可使用 | 连接，例如 \"Fetch|Script\"。\n        Other 包含 TextTrack、EventSource 和 Manifest。\n\nReturns:\n    list[dict]：返回符合条件的响应列表，列表项包含 url、type、headers、body、status、\n    base64Encoded、requestHeaders、requestBody、method 等键，可通过 item['body'] 获取响应内容。\n    未匹配时返回 []；未收到响应的失败请求不返回。"
+    },
+    "uiautoma.web.WebBrowser.stop_monitor_network": {
+      "signature": "stop_monitor_network(self) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 590,
+      "property": false,
+      "docstring": "停止监听当前网页的网络请求。"
+    },
+    "uiautoma.web.WebBrowser.http_request": {
+      "signature": "http_request(self, url: str, *, method: str='GET', headers=None, body=None, save_filename=None, connect_timeout: float=30, download_timeout: float=300) -> dict",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 594,
+      "property": false,
+      "docstring": "在当前网页中发送 HTTP 请求。\n\nArgs:\n    url: 请求网址，支持相对路径。\n    method: 请求方法，默认 \"GET\"，例如 \"POST\"、\"PUT\"、\"PATCH\"、\"DELETE\"、\"HEAD\"。\n    headers: 请求头，字典类型，默认 None，例如 {\"Content-Type\": \"application/json\"}。\n    body: 请求内容，字符串类型，默认 None；GET 和 HEAD 不可携带请求内容。\n    save_filename: 响应内容保存路径，默认 None，不保存文件。\n    connect_timeout: 连接超时时间，单位秒，默认 30，至少 1。\n    download_timeout: 读取响应内容的超时时间，单位秒，默认 300，至少 1。\n\nReturns:\n    dict：返回 status_code（状态码）、content_type（内容类型）、content_encoding（内容编码）\n    和 content（响应内容）。未保存时 content 为字符串，成功保存时为 bytes。\n    非 2xx 响应的 content 为空字符串，不保存文件。"
+    },
+    "uiautoma.web.WebBrowser.find_all": {
+      "signature": "find_all(self, selector: str | Selector, *, timeout: float=20) -> list[WebElement]",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 622,
+      "property": false,
+      "docstring": "在当前页面查找与已保存选择器匹配的全部元素。\n\nArgs:\n    selector: 元素库中的名称（``str``）或 Web 类型的 ``Selector`` 选择器。\n    timeout: 查找秒数，默认 ``20``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``list[WebElement]``：匹配的元素列表；超时仍未找到时返回空列表。"
+    },
+    "uiautoma.web.WebBrowser.find": {
+      "signature": "find(self, selector: str | Selector, *, timeout: float=20) -> WebElement",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 634,
+      "property": false,
+      "docstring": "在当前页面查找与已保存选择器匹配的唯一元素。\n\nArgs:\n    selector: 元素库中的名称（``str``）或 Web 类型的 ``Selector`` 选择器。\n    timeout: 查找秒数，默认 ``20``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``WebElement``：唯一匹配的元素，页面刷新后需要重新查找。\n\nRaises:\n    ElementNotFoundError: 超时仍未找到匹配元素。\n    AmbiguousElementError: 匹配到多个元素。"
+    },
+    "uiautoma.web.WebBrowser.find_all_by_css": {
+      "signature": "find_all_by_css(self, css_selector: str, *, timeout: float=20) -> list[WebElement]",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 650,
+      "property": false,
+      "docstring": "在当前页面查找与 CSS 选择器匹配的全部元素。\n\nArgs:\n    css_selector: CSS 选择器字符串，例如 ``\"input[type='text']\"``。\n    timeout: 查找秒数，默认 ``20``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``list[WebElement]``：匹配的元素列表；超时仍未找到时返回空列表。"
+    },
+    "uiautoma.web.WebBrowser.find_by_css": {
+      "signature": "find_by_css(self, css_selector: str, *, timeout: float=20) -> WebElement",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 662,
+      "property": false,
+      "docstring": "在当前页面查找与 CSS 选择器匹配的唯一元素。\n\nArgs:\n    css_selector: CSS 选择器字符串，例如 ``\"#submit\"``。\n    timeout: 查找秒数，默认 ``20``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``WebElement``：唯一匹配的元素。\n\nRaises:\n    ElementNotFoundError: 超时仍未找到匹配元素。\n    AmbiguousElementError: 匹配到多个元素。"
+    },
+    "uiautoma.web.WebBrowser.find_all_by_xpath": {
+      "signature": "find_all_by_xpath(self, xpath_selector: str, *, timeout: float=20) -> list[WebElement]",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 678,
+      "property": false,
+      "docstring": "在当前页面查找与 XPath 选择器匹配的全部元素。\n\nArgs:\n    xpath_selector: XPath 表达式字符串，例如 ``\"//input\"``。\n    timeout: 查找秒数，默认 ``20``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``list[WebElement]``：匹配的元素列表；超时仍未找到时返回空列表。"
+    },
+    "uiautoma.web.WebBrowser.find_by_xpath": {
+      "signature": "find_by_xpath(self, xpath_selector: str, *, timeout: float=20) -> WebElement",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 690,
+      "property": false,
+      "docstring": "在当前页面查找与 XPath 选择器匹配的唯一元素。\n\nArgs:\n    xpath_selector: XPath 表达式字符串，例如 ``\"//button[@id='submit']\"``。\n    timeout: 查找秒数，默认 ``20``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``WebElement``：唯一匹配的元素。\n\nRaises:\n    ElementNotFoundError: 超时仍未找到匹配元素。\n    AmbiguousElementError: 匹配到多个元素。"
+    },
+    "uiautoma.web.WebBrowser.is_element_displayed": {
+      "signature": "is_element_displayed(self, selector: str | Selector) -> bool",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 706,
+      "property": false,
+      "docstring": "判断当前页面是否存在能定位到的匹配元素。\n\nArgs:\n    selector: 元素库中的名称（``str``）或 Web 类型的 ``Selector`` 选择器。\n\nReturns:\n    ``bool``：至少一个匹配元素定位成功时为 ``True``，否则为 ``False``。"
+    },
+    "uiautoma.web.WebBrowser.extract_table": {
+      "signature": "extract_table(self, table_selector: object, *, exclude_thead: bool=False, timeout: float=20) -> list[list[str]]",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 717,
+      "property": false,
+      "docstring": "提取页面表格。\n\nArgs:\n    table_selector: 表格元素选择器。\n    exclude_thead: 是否排除表头，类型为 ``bool``。\n    timeout: 查找超时时间，单位秒。\n\nReturns:\n    ``list[list[str]]``：二维表格文本。\n\nRaises:\n    UnsupportedActionError: 当前版本暂未实现页面级表格提取。"
+    },
+    "uiautoma.web.WebBrowser.screenshot": {
+      "signature": "screenshot(self, folder_path: str, *, file_name: str | None=None, full_size: bool=True, piece_height: int=0, height: int=0) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 734,
+      "property": false,
+      "docstring": "截取页面图片到文件。\n\nArgs:\n    folder_path: 保存目录，类型为 ``str``。\n    file_name: 文件名，默认 ``None``，自动生成名称。\n    full_size: 默认 ``True``，截取完整页面；``False`` 仅截取当前视口。\n    piece_height: 整页截图每次截取的高度，单位为 100% 缩放下的 CSS 像素；0 自动选择。\n    height: 整页截图的最大高度，单位为 CSS 像素；0 使用 25000。视口截图忽略此参数。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效、截图失败或文件无法保存。"
+    },
+    "uiautoma.web.WebBrowser.screenshot_to_clipboard": {
+      "signature": "screenshot_to_clipboard(self, *, full_size: bool=True, piece_height: int=0, height: int=0) -> None",
+      "file": "sdk/src/uiautoma/web/browser.py",
+      "line": 757,
+      "property": false,
+      "docstring": "截取页面图片到剪贴板。\n\nArgs:\n    full_size: True 截取完整页面，False 截取当前可视区域。\n    piece_height: 整页截图每次截取的高度，单位为 100% 缩放下的 CSS 像素；0 自动选择。\n    height: 整页截图的最大高度，单位为 CSS 像素；0 使用 25000。视口截图忽略此参数。\n\nRaises:\n    ActionError: 网页对象已失效或截图写入剪贴板失败。"
+    },
+    "uiautoma.web.WebElement.id": {
+      "signature": "@property id(self) -> str",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 54,
+      "property": true,
+      "docstring": "当前网页元素的标识。\n\nReturns:\n    ``str``：当前元素对象的标识，不是元素库选择器的 ID。"
+    },
+    "uiautoma.web.WebElement.name": {
+      "signature": "@property name(self) -> str",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 64,
+      "property": true,
+      "docstring": "元素名称。\n\nReturns:\n    ``str``：获取元素时的名称。"
+    },
+    "uiautoma.web.WebElement.find": {
+      "signature": "find(self, selector: str | Selector, *, timeout: float=10) -> 'WebElement'",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 78,
+      "property": false,
+      "docstring": "在当前元素中查找与选择器匹配的唯一网页元素。\n\nArgs:\n    selector: 元素库中的选择器名称或 ``Selector`` 对象。\n    timeout: 查找超时时间，单位秒，默认 ``10``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``WebElement``：唯一匹配的网页元素。\n\nRaises:\n    ElementNotFoundError: 超时仍未找到匹配元素。\n    AmbiguousElementError: 找到多个匹配元素。"
+    },
+    "uiautoma.web.WebElement.find_all": {
+      "signature": "find_all(self, selector: str | Selector, *, timeout: float=10) -> list['WebElement']",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 94,
+      "property": false,
+      "docstring": "在当前元素中查找与选择器匹配的全部网页元素。\n\nArgs:\n    selector: 元素库中的选择器名称或 ``Selector`` 对象。\n    timeout: 查找超时时间，单位秒，默认 ``10``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``list[WebElement]``：匹配的网页元素列表；未找到时返回空列表。"
+    },
+    "uiautoma.web.WebElement.find_by_css": {
+      "signature": "find_by_css(self, css_selector: str, *, timeout: float=10) -> 'WebElement'",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 106,
+      "property": false,
+      "docstring": "在当前元素中查找符合 CSS 选择器的唯一网页元素。\n\nArgs:\n    css_selector: CSS 选择器字符串。\n    timeout: 查找超时时间，单位秒，默认 ``10``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``WebElement``：唯一匹配的网页元素。\n\nRaises:\n    ElementNotFoundError: 超时仍未找到匹配元素。\n    AmbiguousElementError: 找到多个匹配元素。"
+    },
+    "uiautoma.web.WebElement.find_all_by_css": {
+      "signature": "find_all_by_css(self, css_selector: str, *, timeout: float=10) -> list['WebElement']",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 122,
+      "property": false,
+      "docstring": "在当前元素中查找符合 CSS 选择器的全部网页元素。\n\nArgs:\n    css_selector: CSS 选择器字符串。\n    timeout: 查找超时时间，单位秒，默认 ``10``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``list[WebElement]``：匹配的网页元素列表；未找到时返回空列表。"
+    },
+    "uiautoma.web.WebElement.find_by_xpath": {
+      "signature": "find_by_xpath(self, xpath_selector: str, *, timeout: float=10) -> 'WebElement'",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 134,
+      "property": false,
+      "docstring": "查找符合 XPath 选择器的唯一网页元素。\n\nArgs:\n    xpath_selector: XPath 选择器字符串；相对路径以当前元素为起点。\n    timeout: 查找超时时间，单位秒，默认 ``10``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``WebElement``：唯一匹配的网页元素。\n\nRaises:\n    ElementNotFoundError: 超时仍未找到匹配元素。\n    AmbiguousElementError: 找到多个匹配元素。"
+    },
+    "uiautoma.web.WebElement.find_all_by_xpath": {
+      "signature": "find_all_by_xpath(self, xpath_selector: str, *, timeout: float=10) -> list['WebElement']",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 150,
+      "property": false,
+      "docstring": "查找符合 XPath 选择器的全部网页元素。\n\nArgs:\n    xpath_selector: XPath 选择器字符串；相对路径以当前元素为起点。\n    timeout: 查找超时时间，单位秒，默认 ``10``；``0`` 只查一次，``-1`` 一直等待。\n\nReturns:\n    ``list[WebElement]``：匹配的网页元素列表；未找到时返回空列表。"
+    },
+    "uiautoma.web.WebElement.parent": {
+      "signature": "parent(self, *, timeout: float=5.0) -> 'WebElement | None'",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 162,
+      "property": false,
+      "docstring": "获取父元素。\n\nArgs:\n    timeout: 获取超时时间，单位秒，默认 ``5``。\n\nReturns:\n    ``WebElement | None``：当前元素的父元素；没有父元素时返回 ``None``。"
+    },
+    "uiautoma.web.WebElement.children": {
+      "signature": "children(self, *, timeout: float=5.0) -> list['WebElement']",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 175,
+      "property": false,
+      "docstring": "获取子元素列表。\n\nArgs:\n    timeout: 获取超时时间，单位秒，默认 ``5``。\n\nReturns:\n    ``list[WebElement]``：直接子元素列表；没有子元素时返回空列表。"
+    },
+    "uiautoma.web.WebElement.child_at": {
+      "signature": "child_at(self, index: int, *, timeout: float=5.0) -> 'WebElement | None'",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 187,
+      "property": false,
+      "docstring": "按索引获取子元素。\n\nArgs:\n    index: 子元素的位置索引，从 ``0`` 开始计数。\n    timeout: 获取超时时间，单位秒，默认 ``5``。\n\nReturns:\n    ``WebElement | None``：指定位置的子元素；没有对应子元素时返回 ``None``。"
+    },
+    "uiautoma.web.WebElement.previous_sibling": {
+      "signature": "previous_sibling(self, *, timeout: float=5.0) -> 'WebElement | None'",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 201,
+      "property": false,
+      "docstring": "获取上一个兄弟元素。\n\nArgs:\n    timeout: 获取超时时间，单位秒，默认 ``5``。\n\nReturns:\n    ``WebElement | None``：上一个兄弟元素；没有对应元素时返回 ``None``。"
+    },
+    "uiautoma.web.WebElement.next_sibling": {
+      "signature": "next_sibling(self, *, timeout: float=5.0) -> 'WebElement | None'",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 214,
+      "property": false,
+      "docstring": "获取下一个兄弟元素。\n\nArgs:\n    timeout: 获取超时时间，单位秒，默认 ``5``。\n\nReturns:\n    ``WebElement | None``：下一个兄弟元素；没有对应元素时返回 ``None``。"
+    },
+    "uiautoma.web.WebElement.click": {
+      "signature": "click(self, *, button: str='left', simulative: bool=True, keys: str='none', delay_after: float=1, move_mouse: bool=False, anchor: object | None=None) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 227,
+      "property": false,
+      "docstring": "单击当前网页元素。\n\nArgs:\n    button: 鼠标按键，默认 ``\"left\"``（左键），可选 ``\"right\"``（右键）。\n    simulative: 是否模拟人工点击，默认 ``True``；静默运行时不生效。\n    keys: 键盘辅助键，默认 ``\"none\"``（无）；可选 ``\"alt\"``（Alt 键）、\n        ``\"ctrl\"``（Ctrl 键）、``\"shift\"``（Shift 键）、``\"win\"``（Windows 键）。\n    delay_after: 执行成功后的等待时间，单位秒，默认 ``1``。\n    move_mouse: 是否显示鼠标移动轨迹，默认 ``False``，不显示鼠标移动轨迹。\n    anchor: 点击位置，仅实际鼠标点击时生效。默认 ``None``，点击元素中心；可传\n        ``(位置, 水平偏移, 垂直偏移)``，如 ``(\"top_left\", 10, 10)``。\n        偏移单位为像素，水平正值向右、垂直正值向下，负值方向相反。\n        不需要偏移时可直接传位置字符串；也可传字典\n        ``{\"anchor\": \"top_left\", \"offset_x\": 10, \"offset_y\": 10}``。\n        位置可选 ``\"top_left\"``（左上）、``\"top_center\"``（上中）、\n        ``\"top_right\"``（右上）、``\"middle_left\"``（左中）、\n        ``\"middle_center\"``（中心）、``\"middle_right\"``（右中）、\n        ``\"bottom_left\"``（左下）、``\"bottom_center\"``（下中）、\n        ``\"bottom_right\"``（右下）、``\"random\"``（元素范围内随机位置）。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 鼠标按键、辅助键或锚点无效。\n    ElementNotFoundError: 元素已失效。\n    ActionError: 点击失败。"
+    },
+    "uiautoma.web.WebElement.dblclick": {
+      "signature": "dblclick(self, *, simulative: bool=True, delay_after: float=1, move_mouse: bool=False, anchor: object | None=None) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 275,
+      "property": false,
+      "docstring": "双击当前网页元素。\n\nArgs:\n    simulative: 是否模拟人工双击，默认 ``True``；静默运行时不生效。\n    delay_after: 执行成功后的等待时间，单位秒，默认 ``1``。\n    move_mouse: 是否显示鼠标移动轨迹，默认 ``False``；\n        仅实际鼠标双击时生效。\n    anchor: 双击位置，仅实际鼠标双击时生效。默认 ``None``，双击元素中心且无偏移；可传\n        ``(位置, 水平偏移, 垂直偏移)``，如 ``(\"top_left\", 10, 10)``。\n        偏移单位为像素，水平正值向右、垂直正值向下，负值方向相反。\n        不需要偏移时可直接传位置字符串；也可传字典\n        ``{\"anchor\": \"top_left\", \"offset_x\": 10, \"offset_y\": 10}``。\n        位置可选 ``\"top_left\"``（左上）、``\"top_center\"``（上中）、\n        ``\"top_right\"``（右上）、``\"middle_left\"``（左中）、\n        ``\"middle_center\"``（中心）、``\"middle_right\"``（右中）、\n        ``\"bottom_left\"``（左下）、``\"bottom_center\"``（下中）、\n        ``\"bottom_right\"``（右下）、``\"random\"``（元素范围内随机位置）。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 锚点无效。\n    ElementNotFoundError: 元素已失效。\n    ActionError: 双击失败。"
+    },
+    "uiautoma.web.WebElement.input": {
+      "signature": "input(self, text: str, *, simulative: bool=True, cdp_input: bool=False, append: bool=False, contains_hotkey: bool=False, force_ime_eng: bool=False, send_key_delay: int=50, focus_timeout: int=1000, delay_after: float=1, click_before_input: bool=True, anchor: object | None=None, input_check: bool=False, retry_times: int=3, check_value: str='') -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 322,
+      "property": false,
+      "docstring": "填写网页输入框。\n\nArgs:\n    text: 需要填写到网页输入框中的文本内容，可包含快捷键，类型为 ``str``。\n    simulative: 是否模拟人工输入，默认 ``True``；开启时模拟键盘输入，关闭时调用元素自身的接口填写。\n        静默运行时通过网页接口填写；显式开启极速直写时使用极速直写。\n    cdp_input: 是否使用极速直写输入，默认 ``False``；开启后优先使用此方式。\n    append: 是否追加输入，默认 ``False``；开启时在原内容末尾追加，关闭时覆盖原内容。\n    contains_hotkey: 文本是否包含快捷键，默认 ``False``；普通模拟输入和极速直写支持。\n        支持 ``^a``、``{Ctrl}{End}``、``+{TAB}``、``{LEFT 2}`` 等写法；\n        ``^``、``%``、``+`` 分别表示 Ctrl、Alt、Shift，Windows 键使用 ``{Win}``。\n        可用 ``{Ctrl}(ab)`` 在括号内保持 Ctrl；``#`` 为普通字符。\n        输入符号本身可写 ``{+}``、``{^}``、``{%}``、``{#}``、``{{}``、``{}}``。\n    force_ime_eng: 是否强制加载美式键盘，避免中文输入法影响，默认 ``False``，仅普通模拟输入时生效。\n    send_key_delay: 两次按键的间隔，单位毫秒，默认 ``50``；普通模拟输入和极速直写快捷键时生效。\n    focus_timeout: 获取焦点与输入之间的间隔，单位毫秒，默认 ``1000``；静默或极速直写时不生效。\n    delay_after: 执行成功后的等待时间，单位秒，默认 ``1``。\n    click_before_input: 输入前是否点击元素，默认 ``True``；极速直写时改为聚焦输入框。\n        关闭时模拟输入使用当前焦点，极速直写要求目标输入框已聚焦；网页接口填写时不生效。\n    anchor: 输入前点击的位置，仅使用实际鼠标且开启输入前点击时生效。\n        默认 ``None``（中心）；支持 ``\"top_left\"``、``\"top_center\"``、``\"top_right\"``、\n        ``\"middle_left\"``、``\"middle_center\"``、``\"middle_right\"``、\n        ``\"bottom_left\"``、``\"bottom_center\"``、``\"bottom_right\"`` 和 ``\"random\"``。\n        可传 ``(\"top_left\", 10, 10)`` 或\n        ``{\"anchor\": \"top_left\", \"offset_x\": 10, \"offset_y\": 10}``。\n        偏移单位为像素，正值向右、向下，负值方向相反。\n    input_check: 是否验证输入结果，默认 ``False``；开启后检查输入框内容，不一致时重新输入，\n        直到验证成功或重试次数用完；追加输入时只验证，不重新输入。\n    retry_times: 输入内容不一致后的重试次数，默认 ``3``，仅开启输入验证时生效；追加输入时不重试。\n    check_value: 输入完成后预期的完整内容，仅开启输入验证时生效。\n        默认空字符串，按 text 验证；追加输入或包含快捷键时必须填写。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 输入验证参数无效。\n    UnsupportedActionError: 输入方式不支持快捷键。\n    ActionError: 输入失败或内容不符合预期。"
+    },
+    "uiautoma.web.WebElement.clipboard_input": {
+      "signature": "clipboard_input(self, text: str, *, append: bool=False, focus_timeout: int=1000, delay_after: float=1, send_key_delay: int=50, click_before_input: bool=True, anchor: object | None=None, input_check: bool=False, retry_times: int=3, check_value: str='') -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 408,
+      "property": false,
+      "docstring": "通过剪贴板填写网页输入框，可避免输入法影响。\n\nArgs:\n    text: 需要通过剪贴板填写到网页输入框中的文本内容，类型为 ``str``。\n    append: 是否追加输入，默认 ``False``；开启时粘贴到原内容末尾，关闭时全选后粘贴并覆盖原内容。\n    focus_timeout: 输入前点击后到粘贴之间的间隔，单位毫秒，默认 ``1000``。\n    delay_after: 执行成功后的等待时间，单位秒，默认 ``1``。\n    send_key_delay: 按下 Ctrl 后、松开 Ctrl 前的按键间隔，单位毫秒，默认 ``50``。\n    click_before_input: 输入前是否点击元素，默认 ``True``；关闭时向当前焦点粘贴。\n    anchor: 粘贴前点击的位置，仅开启输入前点击时生效。\n        默认 ``None``（中心）；支持 ``\"top_left\"``、``\"top_center\"``、``\"top_right\"``、\n        ``\"middle_left\"``、``\"middle_center\"``、``\"middle_right\"``、\n        ``\"bottom_left\"``、``\"bottom_center\"``、``\"bottom_right\"`` 和 ``\"random\"``。\n        可传 ``(\"top_left\", 10, 10)`` 或\n        ``{\"anchor\": \"top_left\", \"offset_x\": 10, \"offset_y\": 10}``。\n        偏移单位为像素，正值向右、向下，负值方向相反。\n    input_check: 是否验证输入结果，默认 ``False``；开启后检查输入框内容，不一致时重新输入，\n        直到验证成功或重试次数用完；追加输入时只验证，不重新输入。\n    retry_times: 输入内容不一致后的重试次数，默认 ``3``，仅开启输入验证时生效；追加输入时不重试。\n    check_value: 输入完成后预期的完整内容，仅开启输入验证时生效。\n        默认空字符串，按 text 验证；追加输入时必须填写。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 输入验证参数无效。\n    ActionError: 输入失败或内容不符合预期。"
+    },
+    "uiautoma.web.WebElement.focus": {
+      "signature": "focus(self, *, timeout: float=5.0) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 472,
+      "property": false,
+      "docstring": "激活当前网页元素。\n\nArgs:\n    timeout: 动作超时时间，单位秒，默认 ``5``。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 元素操作失败。"
+    },
+    "uiautoma.web.WebElement.hover": {
+      "signature": "hover(self, simulative: bool=True, delay_after: float=1, anchor: object | None=None) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 488,
+      "property": false,
+      "docstring": "鼠标悬停当前网页元素。\n\nArgs:\n    simulative: 是否模拟人工悬停，默认 ``True``；静默运行时不生效。\n    delay_after: 执行成功后的等待时间，单位秒，默认 ``1``。\n    anchor: 悬停位置，仅实际鼠标悬停时生效。默认 ``None``，悬停在元素中心且无偏移；可传\n        ``(位置, 水平偏移, 垂直偏移)``，如 ``(\"top_left\", 10, 10)``。\n        偏移单位为像素，水平正值向右、垂直正值向下，负值方向相反。\n        不需要偏移时可直接传位置字符串；也可传字典\n        ``{\"anchor\": \"top_left\", \"offset_x\": 10, \"offset_y\": 10}``。\n        位置可选 ``\"top_left\"``（左上）、``\"top_center\"``（上中）、\n        ``\"top_right\"``（右上）、``\"middle_left\"``（左中）、\n        ``\"middle_center\"``（中心）、``\"middle_right\"``（右中）、\n        ``\"bottom_left\"``（左下）、``\"bottom_center\"``（下中）、\n        ``\"bottom_right\"``（右下）、``\"random\"``（元素范围内随机位置）。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 锚点无效。\n    ElementNotFoundError: 元素已失效。\n    ActionError: 元素操作失败。"
+    },
+    "uiautoma.web.WebElement.get_text": {
+      "signature": "get_text(self) -> str",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 524,
+      "property": false,
+      "docstring": "读取 Web 元素文本。\n\nReturns:\n    ``str``：元素的文本内容。\n\nRaises:\n    ActionError: 元素已失效或读取失败。"
+    },
+    "uiautoma.web.WebElement.get_html": {
+      "signature": "get_html(self) -> str",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 536,
+      "property": false,
+      "docstring": "读取 Web 元素 HTML。\n\nReturns:\n    ``str``：元素的 HTML 内容。\n\nRaises:\n    ActionError: 元素已失效或读取失败。"
+    },
+    "uiautoma.web.WebElement.get_value": {
+      "signature": "get_value(self) -> str | None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 548,
+      "property": false,
+      "docstring": "获取网页元素的值。\n\nReturns:\n    ``str | None``：元素的值；没有值时返回 ``None``。"
+    },
+    "uiautoma.web.WebElement.set_value": {
+      "signature": "set_value(self, value: str) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 557,
+      "property": false,
+      "docstring": "设置当前网页元素的文本值（value 属性），不改变输入焦点或触发输入事件。\n\nArgs:\n    value: 需要设置到网页元素上的文本值，类型为 ``str``。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 输入失败。"
+    },
+    "uiautoma.web.WebElement.check": {
+      "signature": "check(self, mode: str='check', delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 573,
+      "property": false,
+      "docstring": "设置复选框或单选框状态。\n\nArgs:\n    mode: 操作方式，默认 \"check\"（勾选），可选 \"uncheck\"（取消勾选）、\n        \"toggle\"（取反）；单选框只支持勾选。\n        已处于目标状态时不重复点击；状态变更通过点击执行。\n    delay_after: 执行成功后的等待时间，单位秒，默认 1。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: mode 不是 \"check\"、\"uncheck\" 或 \"toggle\"。\n    ActionError: 元素操作失败。"
+    },
+    "uiautoma.web.WebElement.select": {
+      "signature": "select(self, item: str, *, mode: str='fuzzy', delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 593,
+      "property": false,
+      "docstring": "按选项内容设置网页下拉框。\n\nArgs:\n    item: 目标项目文本，类型为 str。\n    mode: 匹配方式，默认 \"fuzzy\"（模糊匹配文本），可选\n        \"exact\"（精确匹配文本）、\"regex\"（正则匹配文本）。\n        区分大小写，选择第一个匹配项；没有匹配项时保留原选择。\n    delay_after: 执行成功后的等待时间，单位秒，默认 1。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: mode 不在支持枚举内。\n    ActionError: 元素操作失败。"
+    },
+    "uiautoma.web.WebElement.select_multiple": {
+      "signature": "select_multiple(self, items: list[str], *, mode: str='fuzzy', append: bool=False, delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 617,
+      "property": false,
+      "docstring": "按选项内容设置多选网页下拉框。\n\nArgs:\n    items: 目标项目文本列表，类型为 list[str]。\n    mode: 匹配方式，默认 \"fuzzy\"（包含文本），可选 \"exact\"（精确匹配）、\n        \"regex\"（正则匹配）；区分大小写，选择全部匹配项。\n    append: 是否保留原选中项并追加选择，默认 False，先取消原选择。\n        items 为空列表时不选中新项目；未匹配的项目忽略。\n    delay_after: 执行成功后的等待时间，单位秒，默认 1。\n\nRaises:\n    InvalidParamsError: 选项列表或匹配方式无效。\n    ActionError: 设置失败。"
+    },
+    "uiautoma.web.WebElement.select_by_index": {
+      "signature": "select_by_index(self, index: int, delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 636,
+      "property": false,
+      "docstring": "按下标设置网页下拉框。\n\nArgs:\n    index: 要选中项的下标，从 0 开始；-1 表示最后一项，-2 表示倒数第二项。\n        超出范围时保留原选择。\n    delay_after: 执行成功后的等待时间，单位秒，默认 1。\n\nReturns:\n    None。\n\nRaises:\n    ActionError: 元素操作失败。"
+    },
+    "uiautoma.web.WebElement.select_multiple_by_index": {
+      "signature": "select_multiple_by_index(self, indexes: list[int], *, append: bool=False, delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 654,
+      "property": false,
+      "docstring": "按下标设置多选网页下拉框。\n\nArgs:\n    indexes: 要选中项的下标列表，从 0 开始；-1 表示最后一项，-2 表示倒数第二项。\n        超出范围的下标忽略。\n    append: 是否保留原选中项并追加选择，默认 False，先取消原选择。\n        indexes 为空列表时不选中新项目。\n    delay_after: 执行成功后的等待时间，单位秒，默认 1。\n\nRaises:\n    InvalidParamsError: 下标列表无效。\n    ActionError: 设置失败。"
+    },
+    "uiautoma.web.WebElement.get_select_options": {
+      "signature": "get_select_options(self) -> list[dict[str, Any]]",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 672,
+      "property": false,
+      "docstring": "获取网页下拉框全部选项的信息。\n\nReturns:\n    按页面顺序返回字典列表，每项包含 name（文本）、value（值）、selected（是否选中）。\n    没有选项时返回空列表，重复文本和重复值分别保留。\n\nRaises:\n    ActionError: 获取选项失败。"
+    },
+    "uiautoma.web.WebElement.get_all_select_items": {
+      "signature": "get_all_select_items(self) -> list[str]",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 685,
+      "property": false,
+      "docstring": "获取网页下拉框全部选项的文本。\n\nReturns:\n    list[str]：项目文本列表。\n\nRaises:\n    ActionError: 获取选项失败。"
+    },
+    "uiautoma.web.WebElement.get_selected_item": {
+      "signature": "get_selected_item(self) -> list[str]",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 697,
+      "property": false,
+      "docstring": "获取网页下拉框当前选中项的文本。\n\nReturns:\n    list[str]：选中项目文本列表。\n\nRaises:\n    ActionError: 获取选项失败。"
+    },
+    "uiautoma.web.WebElement.set_attribute": {
+      "signature": "set_attribute(self, name: str, value: str) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 709,
+      "property": false,
+      "docstring": "设置当前元素的属性。\n\nArgs:\n    name: 属性名称，字符串类型。\n    value: 属性值，字符串类型。"
+    },
+    "uiautoma.web.WebElement.get_attribute": {
+      "signature": "get_attribute(self, name: str) -> str | None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 722,
+      "property": false,
+      "docstring": "获取网页元素的属性值。\n\nArgs:\n    name: 元素属性名称。指定 ``\"full_url\"`` 时获取完整链接或图片地址。\n\nReturns:\n    ``str | None``：属性值；属性不存在时返回 ``None``。\n\nRaises:\n    InvalidParamsError: 属性名为空或包含非法字符。"
+    },
+    "uiautoma.web.WebElement.get_all_attributes": {
+      "signature": "get_all_attributes(self) -> dict[str, str]",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 737,
+      "property": false,
+      "docstring": "获取网页元素的全部属性值。\n\nReturns:\n    ``dict[str, str]``：元素属性名与属性值组成的字典。\n\nRaises:\n    ActionError: 元素已失效或属性读取失败。"
+    },
+    "uiautoma.web.WebElement.get_bounding": {
+      "signature": "get_bounding(self, to96dpi: bool=True, relative_to: str='screen') -> dict[str, int]",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 749,
+      "property": false,
+      "docstring": "获取网页元素的位置和尺寸。\n\nArgs:\n    to96dpi: 是否将位置和尺寸转换为 96 DPI 对应的像素值，默认 True。\n    relative_to: 坐标参照，默认 \"screen\"（屏幕），可选 \"window\"（浏览器客户区）。\n\nReturns:\n    包含 x、y、width、height 的字典；x、y 相对于屏幕或浏览器客户区左上角。"
+    },
+    "uiautoma.web.WebElement.get_anchor_position": {
+      "signature": "get_anchor_position(self, *, anchor: object | None=None, to96dpi: bool=True) -> tuple[int, int]",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 763,
+      "property": false,
+      "docstring": "获取网页元素的锚点坐标。\n\nArgs:\n    anchor: 要获取坐标的位置及偏移量，默认 None，获取元素中心且无偏移。\n        可直接传位置字符串，\n        或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n        位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n        middle_left（左中）、middle_center（中心）、middle_right（右中）、\n        bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n        偏移单位为像素，水平正值向右，垂直正值向下。\n    to96dpi: 是否将锚点坐标转换为 96 DPI 对应的像素值，默认 True。\n\nReturns:\n    锚点的屏幕坐标 (x, y)。"
+    },
+    "uiautoma.web.WebElement.get_anchor_viewport_position": {
+      "signature": "get_anchor_viewport_position(self, *, anchor: object | None=None) -> tuple[int, int]",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 781,
+      "property": false,
+      "docstring": "获取网页元素相对于整个网页可视区域左上角的锚点坐标。\n\nArgs:\n    anchor: 要获取坐标的位置及偏移量，默认 None，获取元素中心且无偏移。\n        可直接传位置字符串，\n        或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n        位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n        middle_left（左中）、middle_center（中心）、middle_right（右中）、\n        bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n        偏移单位为像素，水平正值向右，垂直正值向下。\n\nReturns:\n    坐标 (x, y)，单位为 CSS 像素。"
+    },
+    "uiautoma.web.WebElement.extract_table": {
+      "signature": "extract_table(self) -> list[list[str]]",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 798,
+      "property": false,
+      "docstring": "提取表格内容。\n\nReturns:\n    ``list[list[str]]``：二维表格文本。\n\nRaises:\n    UnsupportedActionError: 当前版本暂未实现 Web 表格提取。"
+    },
+    "uiautoma.web.WebElement.get_basetable_value": {
+      "signature": "get_basetable_value(self, *, exclude_thead: bool=False) -> list[list[str]]",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 810,
+      "property": false,
+      "docstring": "提取基础表格内容。\n\nArgs:\n    exclude_thead: 是否排除表头，类型为 ``bool``。\n\nReturns:\n    ``list[list[str]]``：二维表格文本。\n\nRaises:\n    UnsupportedActionError: 当前版本暂未实现 Web 表格提取。"
+    },
+    "uiautoma.web.WebElement.screenshot": {
+      "signature": "screenshot(self, folder_path: str, *, file_name: str | None=None) -> str",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 825,
+      "property": false,
+      "docstring": "截取元素图片到文件。\n\nArgs:\n    folder_path: 保存目录，类型为 ``str``。\n    file_name: 文件名，默认 ``None``，自动生成名称。\n\nReturns:\n    ``str``：保存后的文件路径。\n\nRaises:\n    ActionError: 元素已失效、截图失败或文件无法保存。"
+    },
+    "uiautoma.web.WebElement.screenshot_to_clipboard": {
+      "signature": "screenshot_to_clipboard(self) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 845,
+      "property": false,
+      "docstring": "截取元素图片到剪贴板。\n\nRaises:\n    ActionError: 元素已失效或截图写入剪贴板失败。"
+    },
+    "uiautoma.web.WebElement.is_checked": {
+      "signature": "is_checked(self) -> bool",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 857,
+      "property": false,
+      "docstring": "判断网页复选框或单选框是否被选中。\n\nReturns:\n    ``bool``：选中返回 ``True``，否则返回 ``False``。"
+    },
+    "uiautoma.web.WebElement.is_enabled": {
+      "signature": "is_enabled(self) -> bool",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 866,
+      "property": false,
+      "docstring": "判断网页元素是否可用。\n\nReturns:\n    ``bool``：可用返回 ``True``，否则返回 ``False``。"
+    },
+    "uiautoma.web.WebElement.is_displayed": {
+      "signature": "is_displayed(self) -> bool",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 875,
+      "property": false,
+      "docstring": "判断网页元素是否可见。\n\nReturns:\n    ``bool``：可见返回 ``True``，否则返回 ``False``。"
+    },
+    "uiautoma.web.WebElement.execute_javascript": {
+      "signature": "execute_javascript(self, code: str, argument: object | None=None, execution_world: str='ISOLATED') -> Any",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 884,
+      "property": false,
+      "docstring": "在当前元素上执行 JavaScript 脚本。\n\nArgs:\n    code: 要执行的 JS 脚本，必须为 JavaScript 函数字符串，如：\n\n        ```python\n        \"\"\"\n        function (element, args) {\n            // element 表示当前 HTML 元素\n            // args 表示输入的参数\n            return args;\n        }\n        \"\"\"\n        ```\n\n    argument: 要传入 JS 函数的参数，支持字符串、数字、布尔值、列表和字典。\n        默认 None，函数收到 undefined；列表和字典无需先转为 JSON 字符串。\n    execution_world: 运行环境，支持 \"ISOLATED\"（隔离环境）和 \"MAIN\"（网页环境），\n        默认为 \"ISOLATED\"。\n\nReturns:\n    Any：返回 JS 脚本执行结果；无返回值、undefined 和 null 返回 None。"
+    },
+    "uiautoma.web.WebElement.scroll_to": {
+      "signature": "scroll_to(self, *, location: str='bottom', behavior: str='instant', top: int=0, left: int=0, search_up: bool=False) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 918,
+      "property": false,
+      "docstring": "在当前网页指定的元素上滚动鼠标滚轮。\n\nArgs:\n    location: 滚动位置，默认 bottom（底部），可选 top（顶部）、point（指定位置）、one_screen（向下一屏）。\n    behavior: 滚动效果，默认 instant（瞬间），可选 smooth（平滑）。\n    top: 指定位置的纵坐标，单位为 CSS 像素，仅 point 生效。\n    left: 指定位置的横坐标，单位为 CSS 像素，仅 point 生效。\n    search_up: 若当前元素无滚动条，是否向上搜索具有滚动条的元素，默认 False。"
+    },
+    "uiautoma.web.WebElement.get_scroll": {
+      "signature": "get_scroll(self, *, direction: str='vertical', location: str='current', search_up: bool=False) -> float",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 934,
+      "property": false,
+      "docstring": "获取滚动条位置。\n\nArgs:\n    direction: 滚动条方向，默认 vertical（上下），可选 horizontal（左右）。\n    location: 滚动条位置，默认 current（当前位置），可选 bottom（底部位置）。\n    search_up: 若当前元素无滚动条，是否向上搜索具有滚动条的元素，默认 False。\n\nReturns:\n    滚动条位置；bottom 返回滚动内容的总高度或总宽度。"
+    },
+    "uiautoma.web.WebElement.drag_to": {
+      "signature": "drag_to(self, *, simulative: bool=True, behavior: str='smooth', top: int=0, left: int=0, delay_after: float=1, anchor: object | None=None, move_speed: str='middle') -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 949,
+      "property": false,
+      "docstring": "拖拽网页元素到指定位置。\n\nArgs:\n    simulative: 是否模拟人工拖拽，默认 True；False 或静默运行时使用网页事件。\n    behavior: 拖拽效果，smooth 表示平滑拖拽（默认），instant 表示瞬间拖拽。\n    top: 从实际按下位置开始的纵向位移，正值向下，负值向上。\n    left: 从实际按下位置开始的横向位移，正值向右，负值向左。\n        top、left 的单位均为网页 CSS 像素，不因模拟方式或浏览器缩放而改变。\n    delay_after: 指令执行成功后延迟执行的时间，单位秒，默认 1。\n    anchor: 鼠标在拖拽元素中按下的位置及偏移量，默认 None，在元素中心按下且无偏移。\n        可直接传位置字符串，\n        或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n        位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n        middle_left（左中）、middle_center（中心）、middle_right（右中）、\n        bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n        偏移单位为像素，水平正值向右，垂直正值向下。\n        起点按锚点确定；随机抓取位置不改变 top、left 指定的拖动距离。\n    move_speed: 移动速度，默认 middle（中速），可选 instant（瞬间）、fast（快速）、slow（慢速）；\n        仅实际鼠标拖拽生效。"
+    },
+    "uiautoma.web.WebElement.drag_to_by_cdp": {
+      "signature": "drag_to_by_cdp(self, *, target_x: int=0, target_y: int=0, target_type: str='viewport', delay_after: float=1, anchor: object | None=None, move_speed: str='middle') -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 979,
+      "property": false,
+      "docstring": "拖拽网页元素到指定位置。\n\nArgs:\n    target_x: 目标点的横坐标。\n    target_y: 目标点的纵坐标。\n    target_type: 目标坐标参照，默认 viewport（整个网页可视区域左上角，CSS 像素），\n        可选 screen（屏幕左上角，物理像素）。\n    delay_after: 指令执行成功后延迟执行的时间，单位秒，默认 1。\n    anchor: 鼠标在拖拽元素中按下的位置及偏移量，默认 None，在元素中心按下且无偏移。\n        可直接传位置字符串，\n        或传 (位置, 水平偏移, 垂直偏移)，也可传包含 anchor、offset_x、offset_y 的字典。\n        位置可选 top_left（左上）、top_center（上中）、top_right（右上）、\n        middle_left（左中）、middle_center（中心）、middle_right（右中）、\n        bottom_left（左下）、bottom_center（下中）、bottom_right（右下）、random（随机）。\n        偏移单位为 CSS 像素，水平正值向右，垂直正值向下。\n    move_speed: 移动速度，默认 middle（中速），可选 instant（瞬间）、fast（快速）、slow（慢速）。"
+    },
+    "uiautoma.web.WebElement.upload": {
+      "signature": "upload(self, file_names: str | list[str], *, simulative: bool=False, clipboard_input: bool=True, dialog_timeout: float=20, force_ime_eng: bool=False, send_key_delay: int=50, focus_timeout: int=1000) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 1004,
+      "property": false,
+      "docstring": "上传文件。\n\nArgs:\n    file_names: 待上传文件的完整路径，可传入单个路径或路径列表。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    dialog_timeout: 点击上传按钮后等待文件选择框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 文件路径或输入参数无效。\n    ActionError: 元素已失效、文件不可用或上传失败。"
+    },
+    "uiautoma.web.WebElement.download": {
+      "signature": "download(self, file_folder: str, *, file_name: str | None=None, overwrite: bool=True, wait_complete: bool=True, wait_complete_timeout: float=300, simulative: bool=False, clipboard_input: bool=True, dialog_timeout: float=20, force_ime_eng: bool=False, send_key_delay: int=50, focus_timeout: int=1000) -> str",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 1048,
+      "property": false,
+      "docstring": "下载文件。\n\nArgs:\n    file_folder: 保存下载文件的文件夹完整路径。\n    file_name: 保存文件名，默认 None，使用下载资源默认名称；没有默认名称时自动生成。\n    overwrite: 同名文件是否覆盖，默认 True；False 自动添加后缀。\n    wait_complete: 是否等待下载完成，默认 True；无保存对话框的下载需要开启。\n    wait_complete_timeout: 等待下载完成的时间，单位为秒，默认 300；0 仅检查当前状态，-1 一直等待。\n    simulative: 是否模拟输入文件路径，默认 False，通过元素自动化接口输入。\n    clipboard_input: 是否使用剪贴板输入文件路径，默认 True；开启时优先使用剪贴板。\n    dialog_timeout: 点击后等待下载或保存对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n    force_ime_eng: 模拟输入时是否切换为英文输入法，默认 False。\n    send_key_delay: 模拟输入时的按键间隔，单位为毫秒，默认 50。\n    focus_timeout: 等待文件名输入框获得焦点的最长时间，单位毫秒，默认 1000；0 或 -1 只检查一次。\n\nReturns:\n    文件完整路径；不等待完成时，文件可能仍在下载。\n\nRaises:\n    InvalidParamsError: 保存路径或输入参数无效。\n    ActionError: 元素已失效、下载失败或等待超时。"
+    },
+    "uiautoma.web.WebElement.highlight": {
+      "signature": "highlight(self, duration: float=1.0, delay_after: float=0) -> None",
+      "file": "sdk/src/uiautoma/web/element.py",
+      "line": 1105,
+      "property": false,
+      "docstring": "高亮显示当前网页元素。\n\n激活元素所在网页和浏览器窗口，将元素滚动到可见区域后显示高亮框。\n即使网页以静默方式获取，调用本方法也会激活窗口。\n\nArgs:\n    duration: 高亮持续时间，单位秒，默认 1；0 表示立即清除。\n    delay_after: 高亮结束后等待时间，单位秒，默认 0。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 持续时间无效。\n    ActionError: 元素失效、不可见或高亮失败。"
+    },
+    "uiautoma.win32.get": {
+      "signature": "get(title: str | None=None, class_name: str | None=None, use_wildcard: bool=False, *, process_name: str | None=None, timeout: float=5) -> Win32Window",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 59,
+      "property": false,
+      "docstring": "根据标题、类名或进程名获取窗口对象。\n\nArgs:\n    title: 窗口标题或标题片段，类型为 ``str | None``。为 ``None`` 时不按标题过滤。\n    class_name: Win32 窗口类名，类型为 ``str | None``。为 ``None`` 时不按类名过滤。\n    use_wildcard: 是否把 ``title``、``class_name``、``process_name`` 作为通配符表达式。\n        支持 ``*`` 和 ``?``，类型为 ``bool``。\n    process_name: 进程名或进程名片段，例如 ``\"notepad.exe\"``，类型为 ``str | None``。\n    timeout: 等待窗口出现的最长时间，单位秒；``0`` 表示只查一次，``-1`` 表示一直等待。\n\nReturns:\n    ``Win32Window``：匹配到的第一个窗口对象。\n\nRaises:\n    ElementNotFoundError: 超时后仍未找到匹配窗口。\n    UnsupportedActionError: 当前平台不支持 Win32 窗口枚举。"
+    },
+    "uiautoma.win32.get_list": {
+      "signature": "get_list(title: str | None=None, *, class_name: str | None=None, process_name: str | None=None, use_wildcard: bool=False, timeout: float=5) -> list[Win32Window]",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 100,
+      "property": false,
+      "docstring": "列出符合条件的 Win32 顶层窗口。\n\nArgs:\n    title: 窗口标题或标题片段，类型为 ``str | None``。\n    class_name: Win32 窗口类名，类型为 ``str | None``。\n    process_name: 进程名或进程名片段，类型为 ``str | None``。\n    use_wildcard: 是否启用通配符匹配，支持 ``*`` 和 ``?``。\n    timeout: 等待窗口列表出现的最长时间，单位秒；``0`` 表示只查一次，\n        ``-1`` 表示一直等待。\n\nReturns:\n    ``list[Win32Window]``：按窗口顺序返回全部匹配结果；没有匹配时返回空列表。\n\nRaises:\n    UnsupportedActionError: 当前平台不支持 Win32 窗口枚举。"
+    },
+    "uiautoma.win32.get_by_handle": {
+      "signature": "get_by_handle(handle: int | str | None=None, *, timeout: float=5) -> Win32Window",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 140,
+      "property": false,
+      "docstring": "按窗口句柄获取真实 Win32 顶层窗口。\n\nArgs:\n    handle: 窗口句柄，支持十进制整数、十进制字符串或 ``0x`` 开头的十六进制字符串。\n    timeout: 等待指定窗口可用的最长时间，单位秒；``0`` 表示只查一次。\n\nReturns:\n    ``Win32Window``：指定句柄对应的窗口对象。\n\nRaises:\n    InvalidParamsError: ``handle`` 为空、不是整数或小于等于 0。\n    ElementNotFoundError: 句柄不是当前有效窗口。"
+    },
+    "uiautoma.win32.get_by_selector": {
+      "signature": "get_by_selector(selector: str | Selector | None=None, *, timeout: float=5) -> Win32Window",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 167,
+      "property": false,
+      "docstring": "查找并返回与选择器匹配的窗口对象。\n\nArgs:\n    selector: 元素名称字符串或 ``Selector`` 对象。\n    timeout: 查找超时时间，单位秒；``0`` 表示只查一次，``-1`` 表示一直等待。\n\nReturns:\n    ``Win32Window``：与选择器匹配的窗口对象。\n\nRaises:\n    ElementNotFoundError: 未找到匹配元素，或无法找到元素所属窗口。\n    AmbiguousElementError: 选择器匹配到多个元素。\n    InvalidParamsError: ``selector`` 类型不受支持，或引用的不是 Win32 元素。"
+    },
+    "uiautoma.win32.get_by_element": {
+      "signature": "get_by_element(element: object) -> Win32Window",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 191,
+      "property": false,
+      "docstring": "获取 Win32 元素所属的窗口对象。\n\nArgs:\n    element: ``Win32Element`` 对象。\n\nReturns:\n    ``Win32Window``：元素所属的窗口对象。\n\nRaises:\n    InvalidParamsError: 入参不是 Win32 元素对象。"
+    },
+    "uiautoma.win32.find": {
+      "signature": "find(selector: str | Selector, *, timeout: float=20, session: object | None=None) -> Win32Element",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 210,
+      "property": false,
+      "docstring": "查找与选择器匹配的唯一 Win32 元素。\n\nArgs:\n    selector: 元素名称字符串或 ``Selector`` 对象。\n    timeout: 查找和真实定位超时时间，单位秒；``0`` 表示只查一次。\n    session: 可选的操作上下文；为 ``None`` 时使用当前已打开的自动化项目。\n\nReturns:\n    ``Win32Element``：匹配到的元素对象，可直接调用 ``click``、``input`` 等动作。\n\nRaises:\n    ElementNotFoundError: 元素库中没有匹配的元素，或超时后仍未定位到元素。\n    AmbiguousElementError: 选择器匹配到多个元素。\n    InvalidParamsError: ``selector`` 类型不受支持，或引用的不是 Win32 元素。"
+    },
+    "uiautoma.win32.find_all": {
+      "signature": "find_all(selector: str | Selector, *, timeout: float=20, session: object | None=None) -> list[Win32Element]",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 243,
+      "property": false,
+      "docstring": "查找与选择器匹配的全部 Win32 元素。\n\nArgs:\n    selector: 元素名称字符串或 ``Selector`` 对象。\n    timeout: 查找和真实定位超时时间，单位秒；``0`` 表示只查一次。\n    session: 可选的操作上下文；为 ``None`` 时使用当前已打开的自动化项目。\n\nReturns:\n    ``list[Win32Element]``：真实定位成功的元素列表；库中已有元素但超时未定位到时返回空列表。\n\nRaises:\n    ElementNotFoundError: 元素库中没有匹配的元素。\n    InvalidParamsError: ``selector`` 类型不受支持，或引用的不是 Win32 元素。"
+    },
+    "uiautoma.win32.get_desktop": {
+      "signature": "get_desktop(timeout: float=5) -> Win32Window",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 275,
+      "property": false,
+      "docstring": "获取用于全桌面元素查找的窗口对象。\n\n该对象可用于 ``find``、``find_all`` 和元素等待，不支持激活、移动、缩放、\n关闭或窗口截图等窗口级操作。\n\nArgs:\n    timeout: 保留的等待秒数参数；桌面查找对象立即返回，元素等待由 find 等方法指定。\n\nReturns:\n    ``Win32Window``：桌面对象。"
+    },
+    "uiautoma.win32.get_active": {
+      "signature": "get_active(timeout: float=5) -> Win32Window",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 295,
+      "property": false,
+      "docstring": "获取当前前台活动窗口。\n\nArgs:\n    timeout: 等待活动窗口可用的最长时间，单位秒；``0`` 表示只查一次。\n\nReturns:\n    ``Win32Window``：当前活动窗口对象。\n\nRaises:\n    ElementNotFoundError: 当前没有可识别的前台窗口。\n    UnsupportedActionError: 当前平台不支持 Win32 前台窗口读取。"
+    },
+    "uiautoma.win32.manual_motion_on": {
+      "signature": "manual_motion_on(motion_move: bool=True, motion_click: bool=True, motion_delay: bool=False, min_time: float=1, max_time: float=3) -> None",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 318,
+      "property": false,
+      "docstring": "开启模拟真人操作，在开启到关闭期间按模拟真人的操作习惯执行鼠标动作。\n\n为模拟人工鼠标动作附加随机轨迹、落点和停顿，不改变动作的 simulative 设置。\nWeb 静默运行和显式 CDP 操作不受影响；直接鼠标指令可以使用此设置。\n\nArgs:\n    motion_move: 是否模拟真人按随机路线和速度移动鼠标，默认 True。\n    motion_click: 是否模拟真人在元素内部随机位置点击，默认 True。\n    motion_delay: 是否模拟真人在操作之间随机停顿，默认 False。\n    min_time: 指令执行完成后的最短等待时间，单位秒，默认 1；motion_delay 为 True 时生效。\n    max_time: 指令执行完成后的最长等待时间，单位秒，默认 3；motion_delay 为 True 时生效。\n        不得小于 min_time。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 开关不是布尔值，或等待时间范围无效。"
+    },
+    "uiautoma.win32.manual_motion_off": {
+      "signature": "manual_motion_off() -> None",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 354,
+      "property": false,
+      "docstring": "关闭全局人工轨迹偏好。\n\nReturns:\n    ``None``。"
+    },
+    "uiautoma.win32.minimize_all": {
+      "signature": "minimize_all() -> None",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 364,
+      "property": false,
+      "docstring": "显示桌面或最小化所有窗口。\n\nReturns:\n    ``None``。\n\nRaises:\n    UnsupportedActionError: 当前平台不支持显示桌面或最小化窗口能力。"
+    },
+    "uiautoma.win32.mouse_move": {
+      "signature": "mouse_move(point_x: int, point_y: int, relative_to: str='screen', move_speed: str='instant', delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 377,
+      "property": false,
+      "docstring": "移动鼠标到指定坐标。\n\nArgs:\n    point_x: 目标 X 坐标，类型为 ``int``。\n    point_y: 目标 Y 坐标，类型为 ``int``。\n    relative_to: 坐标系枚举。``\"screen\"`` 表示相对桌面屏幕；\n        ``\"window\"`` 表示相对当前激活窗口左上角；\n        ``\"position\"`` 表示相对当前鼠标位置。\n    move_speed: 移动速度枚举。``\"instant\"`` 表示瞬间移动（默认）；\n        ``\"fast\"`` 表示快速移动；``\"middle\"`` 表示中速移动；\n        ``\"slow\"`` 表示慢速移动。\n    delay_after: 动作后等待秒数，类型为 ``float``。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: ``relative_to`` 或 ``move_speed`` 不是支持的枚举值。\n    ActionError: 鼠标移动失败。"
+    },
+    "uiautoma.win32.mouse_move_by_anchor": {
+      "signature": "mouse_move_by_anchor(rectangle: object, anchor: object | None=None, relative_to: str='screen', move_speed: str='instant', delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 410,
+      "property": false,
+      "docstring": "按矩形锚点移动鼠标。\n\nArgs:\n    rectangle: 目标矩形，通常为 ``(x, y, w, h)`` 或包含坐标字段的对象。\n    anchor: 锚点枚举或 ``(anchor, offset_x, offset_y)``。锚点枚举包括\n        ``\"top_left\"``、``\"top_center\"``、``\"top_right\"``、``\"middle_left\"``、\n        ``\"middle_center\"``、``\"middle_right\"``、``\"bottom_left\"``、\n        ``\"bottom_center\"``、``\"bottom_right\"``。\n    relative_to: 坐标系枚举。``\"screen\"`` 表示矩形坐标已是桌面屏幕坐标；\n        ``\"window\"`` 表示矩形坐标相对当前激活窗口；\n        ``\"position\"`` 表示矩形坐标相对当前鼠标位置。\n    move_speed: 移动速度枚举。``\"instant\"`` 表示瞬间移动（默认）；\n        ``\"fast\"`` 表示快速移动；``\"middle\"`` 表示中速移动；\n        ``\"slow\"`` 表示慢速移动。\n    delay_after: 动作后等待秒数。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: ``relative_to``、``move_speed`` 或锚点参数不合法。\n    ActionError: 鼠标移动失败。"
+    },
+    "uiautoma.win32.send_keys": {
+      "signature": "send_keys(keys: str='', send_key_delay: int=50, delay_after: float=1, contains_hotkey: bool=True, force_ime_eng: bool=False) -> None",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 448,
+      "property": false,
+      "docstring": "向当前焦点发送键盘文本或快捷键。\n\nArgs:\n    keys: 要发送的文本或按键表达式，类型为 ``str``。快捷键支持\n        Windows SendKeys 风格 ``\"^a\"``、``\"^{h}\"``、``\"%{F4}\"``、\n        ``\"+{TAB}\"``，也支持 UIAutoma 现有 ``\"{Ctrl}a\"``、``\"{Ctrl}h\"``。\n        如果要输入字面量大括号，请使用原始字符串，例如\n        ``r\"hello \\{win\\}r\"``；或在普通 Python 字符串中写成\n        ``\"hello \\{win\\}r\"``。\n    send_key_delay: 每个按键之间的延迟，单位毫秒，类型为 ``int``。\n    delay_after: 动作后等待秒数，类型为 ``float``。\n    contains_hotkey: ``keys`` 是否包含快捷键表达式。``True`` 表示按\n        ``SendKeys`` 表达式发送，``False`` 表示按普通文本逐字符输入。\n    force_ime_eng: 是否强制使用英文输入法，默认 ``False``。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 键盘输入失败。"
+    },
+    "uiautoma.win32.mouse_click": {
+      "signature": "mouse_click(button: str='left', click_type: str='click', keys: str='none', delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 489,
+      "property": false,
+      "docstring": "在当前鼠标位置点击。\n\nArgs:\n    button: 鼠标按键枚举。``\"left\"`` 表示左键；``\"right\"`` 表示右键；\n        ``\"middle\"`` 表示中键。\n    click_type: 点击类型枚举。``\"click\"`` 表示单击；``\"doubleClick\"``、\n        ``\"dbclick\"``、``\"dblclick\"`` 表示双击；``\"down\"`` 仅按下，``\"up\"`` 仅释放。\n    keys: 点击时按住的组合键。``\"none\"`` 表示不按组合键；\n        ``\"ctrl\"``、``\"shift\"``、``\"alt\"``、``\"win\"`` 表示单个修饰键；\n        ``\"ctrl+shift\"`` 等写法表示多个修饰键组合。\n    delay_after: 动作后等待秒数。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 鼠标按键、点击类型或组合键参数不合法。\n    ActionError: 鼠标点击失败。"
+    },
+    "uiautoma.win32.mouse_click_by_anchor": {
+      "signature": "mouse_click_by_anchor(rectangle: object, anchor: object | None=None, relative_to: str='screen', button: str='left', click_type: str='click', keys: str='none', delay_after: float=1, move_mouse: bool=True) -> None",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 523,
+      "property": false,
+      "docstring": "按矩形锚点点击。\n\nArgs:\n    rectangle: 目标矩形，通常为 ``(x, y, w, h)`` 或包含坐标字段的对象。\n    anchor: 锚点枚举或 ``(anchor, offset_x, offset_y)``。``None`` 表示矩形中心；\n        ``\"top_left\"`` 表示左上角；``\"top_center\"`` 表示上边中点；\n        ``\"top_right\"`` 表示右上角；``\"middle_left\"`` 表示左边中点；\n        ``\"middle_center\"`` 表示中心；``\"middle_right\"`` 表示右边中点；\n        ``\"bottom_left\"`` 表示左下角；``\"bottom_center\"`` 表示下边中点；\n        ``\"bottom_right\"`` 表示右下角；``\"random\"`` 表示矩形内部随机点。\n        也可以传入 ``(anchor, offset_x, offset_y)`` 给锚点增加偏移。\n    relative_to: 坐标系枚举。``\"screen\"`` 表示矩形坐标已是桌面屏幕坐标；\n        ``\"window\"`` 表示矩形坐标相对当前激活窗口；``\"position\"`` 表示矩形坐标\n        相对当前鼠标位置。\n    button: 鼠标按键枚举。``\"left\"`` 表示左键；``\"right\"`` 表示右键；\n        ``\"middle\"`` 表示中键。\n    click_type: 点击类型枚举。``\"click\"`` 表示单击；``\"doubleClick\"``、\n        ``\"dbclick\"``、``\"dblclick\"`` 表示双击；``\"down\"`` 仅按下，``\"up\"`` 仅释放。\n    keys: 点击时按住的组合键。``\"none\"`` 表示不按组合键；\n        ``\"ctrl\"``、``\"shift\"``、``\"alt\"``、``\"win\"`` 表示单个修饰键；\n        ``\"ctrl+shift\"`` 等写法表示多个修饰键组合。\n    delay_after: 动作后等待秒数。\n    move_mouse: 是否显示鼠标移动轨迹，类型为 ``bool``。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 锚点、鼠标按键、点击类型或组合键参数不合法。\n    ActionError: 鼠标点击失败。"
+    },
+    "uiautoma.win32.mouse_wheel": {
+      "signature": "mouse_wheel(wheel_direction: str='down', wheel_times: int=1, keys: str='none', delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 572,
+      "property": false,
+      "docstring": "滚动鼠标滚轮。\n\nArgs:\n    wheel_direction: 滚动方向枚举。``\"up\"`` 表示向上滚动；\n        ``\"down\"`` 表示向下滚动。\n    wheel_times: 滚动次数，类型为 ``int``。\n    keys: 滚轮动作时按住的组合键。``\"none\"`` 表示不按组合键；\n        ``\"ctrl\"``、``\"shift\"``、``\"alt\"``、``\"win\"`` 表示单个修饰键；\n        ``\"ctrl+shift\"`` 等写法表示多个修饰键组合。\n    delay_after: 动作后等待秒数。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 滚动方向、次数或组合键参数不合法。\n    ActionError: 鼠标滚轮操作失败。"
+    },
+    "uiautoma.win32.get_mouse_position": {
+      "signature": "get_mouse_position(relative_to: str='screen') -> tuple[int, int]",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 604,
+      "property": false,
+      "docstring": "读取当前鼠标位置。\n\nArgs:\n    relative_to: 坐标系枚举。``\"screen\"`` 表示相对屏幕左上角；``\"window\"``\n        表示相对当前激活窗口左上角。\n\nReturns:\n    ``tuple[int, int]``：指定坐标系中的鼠标位置 ``(x, y)``。\n\nRaises:\n    InvalidParamsError: ``relative_to`` 不是 ``\"screen\"`` 或 ``\"window\"``。\n    UnsupportedActionError: 当前平台不支持读取鼠标位置或窗口矩形。"
+    },
+    "uiautoma.win32.exists": {
+      "signature": "exists(window: object) -> bool",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 625,
+      "property": false,
+      "docstring": "判断窗口或元素是否仍存在。\n\nArgs:\n    window: ``Win32Window`` 或 ``Win32Element`` 对象。\n\nReturns:\n    ``bool``：存在返回 ``True``，不存在返回 ``False``。\n\nRaises:\n    InvalidParamsError: 入参不是支持的窗口或元素对象。"
+    },
+    "uiautoma.win32.get_selected_text": {
+      "signature": "get_selected_text(wait_time: float=0, **kwargs: Any) -> str",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 647,
+      "property": false,
+      "docstring": "读取当前系统选中文本。\n\nArgs:\n    wait_time: 读取前等待秒数，类型为 ``float``。\n    **kwargs: 兼容额外参数；当前会忽略未知键。\n\nReturns:\n    ``str``：选中文本。\n\nRaises:\n    UnsupportedActionError: 当前平台不支持读取当前系统选中文本。"
+    },
+    "uiautoma.win32.get_real_resolution": {
+      "signature": "get_real_resolution()",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 664,
+      "property": false,
+      "docstring": "读取真实屏幕分辨率。\n\nReturns:\n    ``tuple[int, int]``：屏幕宽高。\n\nRaises:\n    UnsupportedActionError: 当前平台不支持真实分辨率读取。"
+    },
+    "uiautoma.win32.get_screen_size": {
+      "signature": "get_screen_size()",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 677,
+      "property": false,
+      "docstring": "读取当前主屏幕尺寸。\n\nReturns:\n    ``tuple[int, int]``：屏幕宽高 ``(width, height)``，单位为像素。\n\nRaises:\n    UnsupportedActionError: 当前平台不支持 Win32 屏幕尺寸读取。"
+    },
+    "uiautoma.win32.GetDeviceScaleFactor": {
+      "signature": "GetDeviceScaleFactor(scale_percent)",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 690,
+      "property": false,
+      "docstring": "按缩放百分比计算设备缩放因子。\n\nArgs:\n    scale_percent: 缩放百分比，例如 ``100``、``125``、``150``。\n\nReturns:\n    ``float``：设备缩放因子，例如 ``125`` 返回 ``1.25``。\n\nRaises:\n    InvalidParamsError: ``scale_percent`` 不是正数。"
+    },
+    "uiautoma.win32.is_os_64bit": {
+      "signature": "is_os_64bit() -> bool",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 712,
+      "property": false,
+      "docstring": "判断当前操作系统是否为 64 位。\n\nReturns:\n    ``bool``：64 位系统返回 ``True``。"
+    },
+    "uiautoma.win32.set_ime": {
+      "signature": "set_ime(lang: str) -> None",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 724,
+      "property": false,
+      "docstring": "切换当前前台窗口的输入法语言。\n\nArgs:\n    lang: 目标语言枚举。``\"en\"``、``\"eng\"`` 或 ``\"english\"`` 表示英文输入布局；\n        ``\"zh\"``、``\"cn\"`` 或 ``\"chinese\"`` 表示中文输入布局。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: ``lang`` 不是支持的枚举值。\n    UnsupportedActionError: 当前平台无法切换输入布局。"
+    },
+    "uiautoma.win32.get_ime": {
+      "signature": "get_ime() -> str",
+      "file": "sdk/src/uiautoma/win32/__init__.py",
+      "line": 742,
+      "property": false,
+      "docstring": "读取当前前台窗口的输入法语言。\n\nReturns:\n    ``str``：英文布局返回 ``\"en\"``，中文布局返回 ``\"zh\"``；其他布局返回\n        ``\"0x\"`` 开头的语言标识。\n\nRaises:\n    UnsupportedActionError: 当前平台无法读取输入布局。"
+    },
+    "uiautoma.win32.Win32Window.get_detail": {
+      "signature": "get_detail(self, operation: str='') -> Any",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 56,
+      "property": false,
+      "docstring": "返回窗口详情。\n\nArgs:\n    operation: 详情键。空字符串表示返回完整详情字典；``\"title\"`` 表示窗口标题；\n        ``\"text\"`` 表示窗口文本；``\"process_name\"`` 表示进程名；\n        ``\"class_name\"`` 表示窗口类名；\n        ``\"handle\"`` 或 ``\"hwnd\"`` 表示窗口句柄；``\"rect\"`` 表示窗口矩形。\n\nReturns:\n    ``Any``：指定详情值；未找到对应键时返回空字符串。"
+    },
+    "uiautoma.win32.Win32Window.activate": {
+      "signature": "activate(self) -> None",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 118,
+      "property": false,
+      "docstring": "激活并置前当前窗口。\n\nReturns:\n    ``None``。\n\nRaises:\n    UnsupportedActionError: 当前对象没有真实窗口句柄，或当前平台不支持该操作。"
+    },
+    "uiautoma.win32.Win32Window.set_state": {
+      "signature": "set_state(self, flag: str) -> None",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 131,
+      "property": false,
+      "docstring": "设置窗口显示状态。\n\nArgs:\n    flag: 状态枚举，支持 ``\"normal\"``、``\"show\"``、``\"restore\"``、\n        ``\"max\"``、``\"maximize\"``、``\"maximized\"``、``\"min\"``、\n        ``\"minimize\"``、``\"minimized\"`` 和 ``\"hide\"``。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: ``flag`` 不是支持的枚举值。\n    UnsupportedActionError: 当前对象没有真实窗口句柄，或当前平台不支持该操作。"
+    },
+    "uiautoma.win32.Win32Window.move": {
+      "signature": "move(self, *, x: int=0, y: int=0) -> None",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 150,
+      "property": false,
+      "docstring": "移动窗口左上角到指定屏幕坐标。\n\nArgs:\n    x: 目标左上角 X 坐标，类型为 ``int``。\n    y: 目标左上角 Y 坐标，类型为 ``int``。\n\nReturns:\n    ``None``。\n\nRaises:\n    UnsupportedActionError: 当前对象没有真实窗口句柄或不支持该操作。\n    UIAError: 窗口移动失败。"
+    },
+    "uiautoma.win32.Win32Window.resize": {
+      "signature": "resize(self, *, width: int=1, height: int=1) -> None",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 168,
+      "property": false,
+      "docstring": "调整窗口大小，保持左上角位置不变。\n\nArgs:\n    width: 目标宽度，单位像素，必须大于 0。\n    height: 目标高度，单位像素，必须大于 0。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 宽度或高度小于等于 0。\n    UnsupportedActionError: 当前对象没有真实窗口句柄或不支持该操作。\n    UIAError: 窗口大小调整失败。"
+    },
+    "uiautoma.win32.Win32Window.close": {
+      "signature": "close(self) -> None",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 187,
+      "property": false,
+      "docstring": "关闭窗口。\n\n如果目标应用需要保存确认，关闭请求后可能继续显示确认对话框。\n\nReturns:\n    ``None``。\n\nRaises:\n    UnsupportedActionError: 当前对象没有真实窗口句柄，或当前平台不支持该操作。"
+    },
+    "uiautoma.win32.Win32Window.exists": {
+      "signature": "exists(self) -> bool",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 202,
+      "property": false,
+      "docstring": "判断当前窗口是否仍存在。\n\nReturns:\n    ``bool``：窗口仍存在返回 ``True``。"
+    },
+    "uiautoma.win32.Win32Window.is_active": {
+      "signature": "is_active(self) -> bool",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 213,
+      "property": false,
+      "docstring": "判断当前窗口是否为系统前台窗口。\n\nReturns:\n    ``bool``：窗口处于前台返回 ``True``。\n\nRaises:\n    UnsupportedActionError: 当前对象没有真实窗口句柄，或当前平台不支持该操作。"
+    },
+    "uiautoma.win32.Win32Window.wait_active": {
+      "signature": "wait_active(self, timeout: float=20) -> None",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 226,
+      "property": false,
+      "docstring": "等待窗口变为前台活动窗口。\n\nArgs:\n    timeout: 等待秒数；``0`` 表示只检查一次，``-1`` 表示一直等待。\n\nReturns:\n    ``None``：窗口在超时前变为活动状态。\n\nRaises:\n    UnsupportedActionError: 当前对象没有真实窗口句柄，或当前平台不支持该操作。\n    UIAError: 等待超时。"
+    },
+    "uiautoma.win32.Win32Window.wait_close": {
+      "signature": "wait_close(self, timeout: float=20) -> bool",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 244,
+      "property": false,
+      "docstring": "等待窗口关闭。\n\nArgs:\n    timeout: 等待秒数；``0`` 表示只检查一次，``-1`` 表示一直等待。\n\nReturns:\n    ``bool``：在超时前关闭返回 ``True``，否则返回 ``False``。\n\nRaises:\n    UnsupportedActionError: 当前对象没有真实窗口句柄，或当前平台不支持该操作。"
+    },
+    "uiautoma.win32.Win32Window.find_all": {
+      "signature": "find_all(self, selector: str | Selector, *, timeout: float=20) -> list[Win32Element]",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 260,
+      "property": false,
+      "docstring": "获取当前窗口中与选择器匹配的全部元素。\n\nArgs:\n    selector: 元素名称字符串或 ``Selector`` 对象。\n    timeout: 查找超时时间，单位秒；``0`` 表示只查一次，``-1`` 表示一直等待。\n\nReturns:\n    ``list[Win32Element]``：匹配元素列表；超时未找到返回空列表。\n\nRaises:\n    ElementNotFoundError: 元素库中没有匹配的元素。\n    InvalidParamsError: ``selector`` 类型不受支持，或引用的不是 Win32 元素。"
+    },
+    "uiautoma.win32.Win32Window.find": {
+      "signature": "find(self, selector: str | Selector, *, timeout: float=20) -> Win32Element",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 289,
+      "property": false,
+      "docstring": "获取当前窗口中与选择器匹配的唯一元素。\n\nArgs:\n    selector: 元素名称字符串或 ``Selector`` 对象。\n    timeout: 查找超时时间，单位秒；``0`` 表示只查一次，``-1`` 表示一直等待。\n\nReturns:\n    ``Win32Element``：匹配到的唯一元素。\n\nRaises:\n    ElementNotFoundError: 元素库中没有匹配的元素，或超时后仍未在窗口中定位到元素。\n    AmbiguousElementError: selector 命中多个元素。\n    InvalidParamsError: ``selector`` 类型不受支持，或引用的不是 Win32 元素。"
+    },
+    "uiautoma.win32.Win32Window.wait_appear": {
+      "signature": "wait_appear(self, selector_or_element: str | Selector | Win32Element, timeout: float=20) -> bool",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 358,
+      "property": false,
+      "docstring": "等待元素出现。\n\nArgs:\n    selector_or_element: 元素名称字符串、``Selector`` 或已获得的 ``Win32Element`` 对象。\n    timeout: 等待秒数；``0`` 表示只检查一次，``-1`` 表示一直等待。\n\nReturns:\n    ``bool``：超时前出现返回 ``True``，否则返回 ``False``。\n\nRaises:\n    ElementNotFoundError: 元素库中没有匹配的元素。"
+    },
+    "uiautoma.win32.Win32Window.wait_disappear": {
+      "signature": "wait_disappear(self, selector_or_element: str | Selector | Win32Element, timeout: float=20) -> bool",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 380,
+      "property": false,
+      "docstring": "等待元素消失。\n\nArgs:\n    selector_or_element: 元素名称字符串、``Selector`` 或已获得的 ``Win32Element`` 对象。\n    timeout: 等待秒数；``0`` 表示只检查一次，``-1`` 表示一直等待。\n\nReturns:\n    ``bool``：超时前消失返回 ``True``，否则返回 ``False``。窗口关闭也视为元素已消失。\n\nRaises:\n    ElementNotFoundError: 元素库中没有匹配的元素。"
+    },
+    "uiautoma.win32.Win32Window.contains_element": {
+      "signature": "contains_element(self, selector: str | Selector) -> bool",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 406,
+      "property": false,
+      "docstring": "判断当前窗口中是否能定位到匹配元素。\n\nArgs:\n    selector: 元素名称字符串或 ``Selector`` 对象。\n\nReturns:\n    ``bool``：存在匹配元素返回 ``True``。\n\nRaises:\n    ElementNotFoundError: 元素库中没有匹配的元素。"
+    },
+    "uiautoma.win32.Win32Window.wait_focus": {
+      "signature": "wait_focus(self, timeout: float=20) -> bool",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 469,
+      "property": false,
+      "docstring": "等待窗口获得输入焦点。\n\nArgs:\n    timeout: 等待秒数；``0`` 表示只检查一次，``-1`` 表示一直等待。\n\nReturns:\n    ``bool``：超时前获得输入焦点返回 ``True``，否则返回 ``False``。\n\nRaises:\n    ElementNotFoundError: 窗口已经不存在。\n    UnsupportedActionError: 当前对象没有真实窗口句柄，或当前平台不支持该操作。"
+    },
+    "uiautoma.win32.Win32Window.wait_focusout": {
+      "signature": "wait_focusout(self, timeout: float=20) -> bool",
+      "file": "sdk/src/uiautoma/win32/window.py",
+      "line": 486,
+      "property": false,
+      "docstring": "等待窗口失去输入焦点。\n\nArgs:\n    timeout: 等待秒数；``0`` 表示只检查一次，``-1`` 表示一直等待。\n\nReturns:\n    ``bool``：超时前失去输入焦点返回 ``True``，否则返回 ``False``。\n\nRaises:\n    ElementNotFoundError: 窗口已经不存在。\n    UnsupportedActionError: 当前对象没有真实窗口句柄，或当前平台不支持该操作。"
+    },
+    "uiautoma.win32.Win32Element.id": {
+      "signature": "@property id(self) -> str",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 43,
+      "property": true,
+      "docstring": "元素标识。\n\nReturns:\n    ``str``：当前元素对象的标识。重新查找同一界面元素后，标识可能发生变化。"
+    },
+    "uiautoma.win32.Win32Element.name": {
+      "signature": "@property name(self) -> str",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 53,
+      "property": true,
+      "docstring": "元素名称。\n\nReturns:\n    ``str``：元素对象的显示名称。"
+    },
+    "uiautoma.win32.Win32Element.click": {
+      "signature": "click(self, button: str='left', simulative: bool=True, keys: str='none', delay_after: float=1, move_mouse: bool=True, anchor: object | None=None) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 62,
+      "property": false,
+      "docstring": "点击元素。\n\nArgs:\n    button: 鼠标按键枚举。``\"left\"`` 表示左键；``\"right\"`` 表示右键；\n        ``\"middle\"`` 表示中键。\n    simulative: 是否优先使用模拟鼠标动作。``False`` 表示优先尝试控件动作，\n        控件动作不可用时会走可诊断的坐标动作。\n    keys: 点击时按住的组合键。``\"none\"``、空字符串或 ``None`` 表示不按组合键；\n        ``\"ctrl\"`` 表示 Ctrl；``\"shift\"`` 表示 Shift；``\"alt\"`` 表示 Alt；\n        ``\"win\"`` 表示 Windows 键；多个键可写成 ``\"ctrl+shift\"``。\n    delay_after: 点击后等待秒数，类型为 ``float``。\n    move_mouse: 是否显示鼠标移动轨迹, 默认 ``True`` ，显示鼠标移动轨迹。\n    anchor: 点击锚点。``None`` 和 ``\"middle_center\"`` 表示中心；``\"top_left\"`` 表示左上角；\n        ``\"top_center\"`` 表示上边中点；``\"top_right\"`` 表示右上角；\n        ``\"middle_left\"`` 表示左边中点；``\"middle_right\"`` 表示右边中点；\n        ``\"bottom_left\"`` 表示左下角；``\"bottom_center\"`` 表示下边中点；\n        ``\"bottom_right\"`` 表示右下角；``\"random\"`` 表示元素内部随机点。\n        也可以传 ``(anchor, offset_x, offset_y)`` 或包含 ``anchor``、``offset_x``、\n        ``offset_y`` 的字典来指定像素偏移。\n\nReturns:\n    ``None``。动作详情可从 ``last_result`` 读取。\n\nRaises:\n    InvalidParamsError: 鼠标按键、组合键或锚点参数无效。\n    ActionError: 点击失败。"
+    },
+    "uiautoma.win32.Win32Element.dblclick": {
+      "signature": "dblclick(self, simulative: bool=True, delay_after: float=1, move_mouse: bool=True, anchor: object | None=None) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 111,
+      "property": false,
+      "docstring": "双击元素。\n\nArgs:\n    simulative: 是否优先使用模拟鼠标动作。``False`` 表示优先尝试控件动作，\n        控件动作不可用时会走可诊断的坐标动作。\n    delay_after: 双击后等待秒数，类型为 ``float``。\n    move_mouse: 是否显示鼠标移动轨迹。``True`` 会按可见轨迹移动到目标点；\n        ``False`` 会瞬间移动到目标点。\n    anchor: 双击锚点。``None`` 和 ``\"middle_center\"`` 表示中心；``\"top_left\"`` 表示左上角；\n        ``\"top_center\"`` 表示上边中点；``\"top_right\"`` 表示右上角；\n        ``\"middle_left\"`` 表示左边中点；``\"middle_right\"`` 表示右边中点；\n        ``\"bottom_left\"`` 表示左下角；``\"bottom_center\"`` 表示下边中点；\n        ``\"bottom_right\"`` 表示右下角；``\"random\"`` 表示元素内部随机点。\n        也可以传 ``(anchor, offset_x, offset_y)`` 或包含 ``anchor``、``offset_x``、\n        ``offset_y`` 的字典来指定像素偏移。\n\nReturns:\n    ``None``。动作详情可从 ``last_result`` 读取。\n\nRaises:\n    InvalidParamsError: 锚点参数无效。\n    ActionError: 双击失败。"
+    },
+    "uiautoma.win32.Win32Element.long_press": {
+      "signature": "long_press(self, seconds: float=1.0, simulative: bool=True, delay_after: float=1, move_mouse: bool=True, anchor: object | None=None, timeout: float=10.0) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 152,
+      "property": false,
+      "docstring": "长按元素。\n\nArgs:\n    seconds: 长按秒数，必须非负。\n    simulative: 是否优先使用模拟鼠标动作。``False`` 表示优先尝试控件动作，\n        控件动作不可用时会走可诊断的坐标动作。\n    delay_after: 长按后等待秒数，类型为 ``float``。\n    move_mouse: 是否显示鼠标移动轨迹。``True`` 会按可见轨迹移动到目标点；\n        ``False`` 会瞬间移动到目标点。\n    anchor: 长按锚点。``None`` 和 ``\"middle_center\"`` 表示中心；``\"top_left\"`` 表示左上角；\n        ``\"top_center\"`` 表示上边中点；``\"top_right\"`` 表示右上角；\n        ``\"middle_left\"`` 表示左边中点；``\"middle_right\"`` 表示右边中点；\n        ``\"bottom_left\"`` 表示左下角；``\"bottom_center\"`` 表示下边中点；\n        ``\"bottom_right\"`` 表示右下角；``\"random\"`` 表示元素内部随机点。\n        也可以传 ``(anchor, offset_x, offset_y)`` 或包含 ``anchor``、``offset_x``、\n        ``offset_y`` 的字典来指定像素偏移。\n    timeout: 动作超时时间，单位秒。\n\nReturns:\n    ``None``。动作详情可从 ``last_result`` 读取。\n\nRaises:\n    InvalidParamsError: ``seconds`` 不是数字、小于 0，或锚点参数无效。\n    ActionError: 长按失败。"
+    },
+    "uiautoma.win32.Win32Element.highlight": {
+      "signature": "highlight(self, duration: float=1.0, delay_after: float=0) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 199,
+      "property": false,
+      "docstring": "高亮元素。\n\nArgs:\n    duration: 高亮持续时间，单位秒。\n    delay_after: 高亮后等待秒数，类型为 ``float``。\n\nReturns:\n    ``None``。动作详情可从 ``last_result`` 读取。\n\nRaises:\n    ActionError: 高亮失败。"
+    },
+    "uiautoma.win32.Win32Element.input": {
+      "signature": "input(self, text: str, simulative: bool=True, append: bool=False, contains_hotkey: bool=False, send_key_delay: int=50, focus_timeout: int=1000, delay_after: float=1, click_before_input: bool=True, anchor: object | None=None, force_ime_ENG: bool=False) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 216,
+      "property": false,
+      "docstring": "向元素输入文本。\n\nArgs:\n    text: 要输入的文本，类型为 ``str``，会转换为字符串后发送。\n    simulative: 是否使用键盘模拟输入；``False`` 表示使用自动化接口输入。\n    append: 是否追加输入；``False`` 表示输入前清空。\n    contains_hotkey: 键盘模拟输入时，文本是否包含 ``SendKeys`` 快捷键表达式。\n    send_key_delay: 键盘模拟输入时，每个按键之间的延迟，单位毫秒。\n    focus_timeout: 点击或聚焦元素后到开始输入前的等待时间，单位毫秒。\n    delay_after: 输入后等待秒数。\n    click_before_input: 输入前是否点击元素。为 ``False`` 时仅尝试通过自动化接口聚焦。\n    anchor: 输入前点击位置。\n        ``None`` 和 ``\"middle_center\"`` 表示中心；``\"top_left\"`` 表示左上角；\n        ``\"top_center\"`` 表示上边中点；``\"top_right\"`` 表示右上角；\n        ``\"middle_left\"`` 表示左边中点；``\"middle_right\"`` 表示右边中点；\n        ``\"bottom_left\"`` 表示左下角；``\"bottom_center\"`` 表示下边中点；\n        ``\"bottom_right\"`` 表示右下角；``\"random\"`` 表示元素内部随机点。\n        也可以传 ``(anchor, offset_x, offset_y)`` 或包含 ``anchor``、``offset_x``、\n        ``offset_y`` 的字典来指定像素偏移。\n    force_ime_ENG: 是否强制使用英文输入法，默认 ``False``，仅模拟输入时生效。\n\nReturns:\n    ``None``。动作详情可从 ``last_result`` 读取。\n\nRaises:\n    InvalidParamsError: 锚点参数无效。\n    ActionError: 输入失败。"
+    },
+    "uiautoma.win32.Win32Element.clipboard_input": {
+      "signature": "clipboard_input(self, text: str, append: bool=False, focus_timeout: int=1000, delay_after: float=1, send_key_delay: int=50, click_before_input: bool=True, anchor: object | None=None) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 275,
+      "property": false,
+      "docstring": "通过剪贴板模式向元素输入文本。\n\nArgs:\n    text: 要输入的文本，类型为 ``str``。\n    append: 是否追加输入；``False`` 表示输入前清空。\n    focus_timeout: 点击或聚焦元素后到开始输入前的等待时间，单位毫秒。\n    delay_after: 输入后等待秒数。\n    send_key_delay: 按下 Ctrl 后、松开 Ctrl 前的按键间隔，单位毫秒，默认 ``50``。\n    click_before_input: 输入前是否点击元素。为 ``False`` 时仅尝试通过自动化接口聚焦。\n    anchor: 输入前点击位置。\n        ``None`` 和 ``\"middle_center\"`` 表示中心；``\"top_left\"`` 表示左上角；\n        ``\"top_center\"`` 表示上边中点；``\"top_right\"`` 表示右上角；\n        ``\"middle_left\"`` 表示左边中点；``\"middle_right\"`` 表示右边中点；\n        ``\"bottom_left\"`` 表示左下角；``\"bottom_center\"`` 表示下边中点；\n        ``\"bottom_right\"`` 表示右下角；``\"random\"`` 表示元素内部随机点。\n        也可以传 ``(anchor, offset_x, offset_y)`` 或包含 ``anchor``、``offset_x``、\n        ``offset_y`` 的字典来指定像素偏移。\n\nReturns:\n    ``None``。动作详情可从 ``last_result`` 读取。\n\nRaises:\n    InvalidParamsError: 锚点参数无效。\n    ActionError: 输入失败。"
+    },
+    "uiautoma.win32.Win32Element.hover": {
+      "signature": "hover(self, simulative: bool=True, delay_after: float=1, anchor: object | None=None) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 325,
+      "property": false,
+      "docstring": "悬停到元素上方。\n\nArgs:\n    simulative: 是否模拟人工鼠标移动。``True`` 会显示移动轨迹；\n        ``False`` 会瞬间移动到目标点。\n    delay_after: 动作后等待秒数。\n    anchor: 悬停锚点。``None`` 和 ``\"middle_center\"`` 表示中心；``\"top_left\"`` 表示左上角；\n        ``\"top_center\"`` 表示上边中点；``\"top_right\"`` 表示右上角；\n        ``\"middle_left\"`` 表示左边中点；``\"middle_right\"`` 表示右边中点；\n        ``\"bottom_left\"`` 表示左下角；``\"bottom_center\"`` 表示下边中点；\n        ``\"bottom_right\"`` 表示右下角；``\"random\"`` 表示元素内部随机点。\n        也可以传 ``(anchor, offset_x, offset_y)`` 或包含 ``anchor``、``offset_x``、\n        ``offset_y`` 的字典来指定像素偏移。\n\nRaises:\n    InvalidParamsError: 锚点参数无效。\n    ActionError: 悬停失败。"
+    },
+    "uiautoma.win32.Win32Element.check": {
+      "signature": "check(self, mode: str='check', delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 354,
+      "property": false,
+      "docstring": "设置复选框或单选框状态。\n\nArgs:\n    mode: 状态枚举。``\"check\"`` 表示勾选；``\"uncheck\"`` 表示取消勾选；\n        ``\"toggle\"`` 表示切换当前状态。\n    delay_after: 动作后等待秒数。\n\nRaises:\n    InvalidParamsError: ``mode`` 不是支持的枚举值。\n    ActionError: 勾选或切换状态失败。"
+    },
+    "uiautoma.win32.Win32Element.select": {
+      "signature": "select(self, item: str, mode: str='fuzzy', delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 370,
+      "property": false,
+      "docstring": "在下拉框或列表控件中选择项目。\n\nArgs:\n    item: 目标项目文本，类型为 ``str``。\n    mode: 匹配模式枚举。``\"fuzzy\"`` 表示模糊匹配；``\"exact\"`` 表示精确匹配；\n        ``\"contains\"`` 表示包含匹配；``\"regex\"`` 表示正则表达式匹配。\n    delay_after: 动作后等待秒数。\n\nRaises:\n    InvalidParamsError: 目标项目为空或匹配模式无效。\n    ActionError: 选择项目失败。"
+    },
+    "uiautoma.win32.Win32Element.find_related_element": {
+      "signature": "find_related_element(self, selector: str | Selector, *, timeout: float=20) -> 'Win32Element'",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 387,
+      "property": false,
+      "docstring": "在当前元素子树中查找另一个已保存的 Win32 元素。\n\nArgs:\n    selector: 元素名称字符串或 ``Selector`` 对象。\n    timeout: 查找超时时间，单位秒。\n\nReturns:\n    ``Win32Element``：匹配到的唯一相关元素。\n\nRaises:\n    ElementNotFoundError: 当前元素子树中找不到相关元素。\n    AmbiguousElementError: selector 命中多个元素。\n    InvalidParamsError: ``selector`` 类型不受支持，或引用的不是 Win32 元素。"
+    },
+    "uiautoma.win32.Win32Element.select_by_index": {
+      "signature": "select_by_index(self, index: int, delay_after: float=1) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 413,
+      "property": false,
+      "docstring": "按索引选择控件项目。\n\nArgs:\n    index: 项目索引，类型为 ``int``，通常从 0 开始。\n    delay_after: 动作后等待秒数。\n\nRaises:\n    ActionError: 选择项目失败。"
+    },
+    "uiautoma.win32.Win32Element.get_all_select_items": {
+      "signature": "get_all_select_items(self) -> list[str]",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 427,
+      "property": false,
+      "docstring": "读取选择控件的所有项目文本。\n\nReturns:\n    ``list[str]``：项目文本列表。"
+    },
+    "uiautoma.win32.Win32Element.get_selected_item": {
+      "signature": "get_selected_item(self) -> list[str]",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 436,
+      "property": false,
+      "docstring": "读取选择控件当前选中项目。\n\nReturns:\n    ``list[str]``：选中项目文本列表。"
+    },
+    "uiautoma.win32.Win32Element.set_value": {
+      "signature": "set_value(self, value: str) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 445,
+      "property": false,
+      "docstring": "设置元素值。\n\nArgs:\n    value: 目标值，类型为 ``str``，会转换为字符串后输入。\n\nReturns:\n    ``None``。动作详情可从 ``last_result`` 读取。\n\nRaises:\n    ActionError: 设置元素值失败。"
+    },
+    "uiautoma.win32.Win32Element.get_attribute": {
+      "signature": "get_attribute(self, name: str) -> str | None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 461,
+      "property": false,
+      "docstring": "获取 Win32 元素的属性值。\n\nArgs:\n    name: 要获取的属性名称。\n\nReturns:\n    ``str | None``：属性值；属性不存在时返回 ``None``。\n\nRaises:\n    InvalidParamsError: 属性名为空。"
+    },
+    "uiautoma.win32.Win32Element.get_all_attributes": {
+      "signature": "get_all_attributes(self) -> dict[str, Any]",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 479,
+      "property": false,
+      "docstring": "获取 Win32 元素的全部属性值。\n\nReturns:\n    ``dict[str, Any]``：元素属性名与属性值组成的字典。"
+    },
+    "uiautoma.win32.Win32Element.get_text": {
+      "signature": "get_text(self) -> str",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 488,
+      "property": false,
+      "docstring": "读取元素实时文本。\n\nReturns:\n    ``str``：当前界面元素的文本内容。"
+    },
+    "uiautoma.win32.Win32Element.get_value": {
+      "signature": "get_value(self) -> str | None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 497,
+      "property": false,
+      "docstring": "读取元素实时值。\n\nReturns:\n    ``str | None``：元素的值；没有值时返回 ``None``。"
+    },
+    "uiautoma.win32.Win32Element.drag_to": {
+      "signature": "drag_to(self, simulative: bool=True, behavior: str='smooth', top: int=0, left: int=0, delay_after: float=1, anchor: object | None=None, move_speed: str='middle') -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 506,
+      "property": false,
+      "docstring": "拖拽元素到相对位置。\n\nArgs:\n    simulative: 是否模拟人工鼠标拖拽。``True`` 会按 ``behavior`` 和 ``move_speed``\n        显示拖拽轨迹；``False`` 会瞬间拖拽到目标点。\n    behavior: 拖拽轨迹枚举。``\"smooth\"`` 表示平滑拖拽；``\"instant\"`` 表示瞬时拖拽。\n    top: 从实际按下位置开始的纵向位移，正值向下，负值向上，单位像素。\n    left: 从实际按下位置开始的横向位移，正值向右，负值向左，单位像素。\n    delay_after: 动作后等待秒数。\n    anchor: 起始锚点。``None`` 和 ``\"middle_center\"`` 表示中心；``\"top_left\"`` 表示左上角；\n        ``\"top_center\"`` 表示上边中点；``\"top_right\"`` 表示右上角；\n        ``\"middle_left\"`` 表示左边中点；``\"middle_right\"`` 表示右边中点；\n        ``\"bottom_left\"`` 表示左下角；``\"bottom_center\"`` 表示下边中点；\n        ``\"bottom_right\"`` 表示右下角；``\"random\"`` 表示元素内部随机点。\n        也可以传 ``(anchor, offset_x, offset_y)`` 或包含 ``anchor``、``offset_x``、\n        ``offset_y`` 的字典来指定像素偏移。\n    move_speed: 移动速度枚举。``\"instant\"`` 表示瞬间移动；\n        ``\"fast\"`` 表示快速；``\"middle\"`` 表示中速；``\"slow\"`` 表示慢速。\n\nRaises:\n    InvalidParamsError: 拖拽轨迹、移动速度或锚点参数无效。\n    ActionError: 拖拽失败。"
+    },
+    "uiautoma.win32.Win32Element.screenshot": {
+      "signature": "screenshot(self, folder_path: str, *, file_name: str | None=None) -> str",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 556,
+      "property": false,
+      "docstring": "截取元素图片到文件。\n\nArgs:\n    folder_path: 保存目录，类型为 ``str``。\n    file_name: 文件名，类型为 ``str | None``。为 ``None`` 时自动生成。\n\nReturns:\n    ``str``：保存后的 PNG 文件路径。\n\nRaises:\n    ActionError: 截图失败。"
+    },
+    "uiautoma.win32.Win32Element.screenshot_to_clipboard": {
+      "signature": "screenshot_to_clipboard(self) -> None",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 586,
+      "property": false,
+      "docstring": "截取元素图片到剪贴板。\n\nRaises:\n    ActionError: 截图或写入剪贴板失败。"
+    },
+    "uiautoma.win32.Win32Element.get_bounding": {
+      "signature": "get_bounding(self, to96dpi: bool=True, relative_to: str='screen') -> tuple[int, int, int, int]",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 596,
+      "property": false,
+      "docstring": "读取元素边界。\n\nArgs:\n    to96dpi: 是否返回 96 DPI 逻辑坐标。``True`` 表示按当前屏幕缩放折算；\n        ``False`` 表示返回物理屏幕像素。\n    relative_to: 坐标系枚举。``\"screen\"`` 表示屏幕坐标；``\"window\"`` 表示相对顶层窗口；\n        ``\"client\"`` 表示相对客户区。\n\nReturns:\n    ``tuple[int, int, int, int]``：元素边界 ``(x, y, w, h)``。\n\nRaises:\n    InvalidParamsError: 坐标系枚举无效。\n    UnsupportedActionError: 元素不可见或窗口坐标不可用。"
+    },
+    "uiautoma.win32.Win32Element.get_anchor_position": {
+      "signature": "get_anchor_position(self, *, anchor: object | None=None, to96dpi: bool=True) -> tuple[int, int]",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 619,
+      "property": false,
+      "docstring": "读取元素指定锚点的屏幕坐标。\n\nArgs:\n    anchor: 锚点枚举或 ``(anchor, offset_x, offset_y)``。``None`` 和\n        ``\"middle_center\"`` 表示中心；``\"top_left\"`` 表示左上角；\n        ``\"top_center\"`` 表示上边中点；``\"top_right\"`` 表示右上角；\n        ``\"middle_left\"`` 表示左边中点；``\"middle_right\"`` 表示右边中点；\n        ``\"bottom_left\"`` 表示左下角；``\"bottom_center\"`` 表示下边中点；\n        ``\"bottom_right\"`` 表示右下角；``\"random\"`` 表示元素内部随机点。\n        也可以传包含 ``anchor``、``offset_x``、``offset_y`` 的字典来指定像素偏移。\n    to96dpi: 是否返回 96 DPI 逻辑坐标。``True`` 表示按当前屏幕缩放折算；\n        ``False`` 表示返回物理屏幕像素。\n\nReturns:\n    ``tuple[int, int]``：锚点坐标 ``(x, y)``。\n\nRaises:\n    UnsupportedActionError: 元素不可见或边界矩形不可用。\n    InvalidParamsError: 锚点名称不在支持枚举内。"
+    },
+    "uiautoma.win32.Win32Element.parent": {
+      "signature": "parent(self) -> 'Win32Element'",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 644,
+      "property": false,
+      "docstring": "获取父元素。\n\nReturns:\n    ``Win32Element``：可继续执行动作的父元素。"
+    },
+    "uiautoma.win32.Win32Element.children": {
+      "signature": "children(self) -> list['Win32Element']",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 653,
+      "property": false,
+      "docstring": "获取子元素列表。\n\nReturns:\n    ``list[Win32Element]``：可继续执行动作的子元素列表。"
+    },
+    "uiautoma.win32.Win32Element.child_at": {
+      "signature": "child_at(self, index: int) -> 'Win32Element'",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 662,
+      "property": false,
+      "docstring": "按索引获取子元素。\n\nArgs:\n    index: 子元素索引，类型为 ``int``。\n\nReturns:\n    ``Win32Element``：可继续执行动作的子元素。"
+    },
+    "uiautoma.win32.Win32Element.previous_sibling": {
+      "signature": "previous_sibling(self) -> 'Win32Element'",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 674,
+      "property": false,
+      "docstring": "获取上一个兄弟元素。\n\nReturns:\n    ``Win32Element``：可继续执行动作的兄弟元素。"
+    },
+    "uiautoma.win32.Win32Element.next_sibling": {
+      "signature": "next_sibling(self) -> 'Win32Element'",
+      "file": "sdk/src/uiautoma/win32/element.py",
+      "line": 683,
+      "property": false,
+      "docstring": "获取下一个兄弟元素。\n\nReturns:\n    ``Win32Element``：可继续执行动作的兄弟元素。"
+    },
+    "uiautoma.win32.clipboard.set_text": {
+      "signature": "set_text(value: str) -> None",
+      "file": "sdk/src/uiautoma/win32/clipboard.py",
+      "line": 8,
+      "property": false,
+      "docstring": "写入剪贴板文本。\n\nArgs:\n    value: 要写入的文本，类型为 ``str``。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 写入剪贴板失败。"
+    },
+    "uiautoma.win32.clipboard.get_text": {
+      "signature": "get_text() -> str",
+      "file": "sdk/src/uiautoma/win32/clipboard.py",
+      "line": 24,
+      "property": false,
+      "docstring": "读取剪贴板文本。\n\nReturns:\n    ``str``：剪贴板中的文本；没有文本时返回空字符串。\n\nRaises:\n    ActionError: 读取剪贴板失败。"
+    },
+    "uiautoma.win32.clipboard.clear": {
+      "signature": "clear() -> None",
+      "file": "sdk/src/uiautoma/win32/clipboard.py",
+      "line": 37,
+      "property": false,
+      "docstring": "清空剪贴板。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 清空剪贴板失败。"
+    },
+    "uiautoma.win32.clipboard.set_files": {
+      "signature": "set_files(paths: list[str] | tuple[str, ...] | str) -> None",
+      "file": "sdk/src/uiautoma/win32/clipboard.py",
+      "line": 50,
+      "property": false,
+      "docstring": "把文件或文件夹路径写入剪贴板。\n\nArgs:\n    paths: 单个路径字符串，或路径列表。路径必须已经存在。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 路径为空或路径不存在。\n    ActionError: 写入剪贴板失败。"
+    },
+    "uiautoma.win32.clipboard.get_file_paths": {
+      "signature": "get_file_paths() -> list[str]",
+      "file": "sdk/src/uiautoma/win32/clipboard.py",
+      "line": 67,
+      "property": false,
+      "docstring": "读取剪贴板中的文件或文件夹路径。\n\nReturns:\n    ``list[str]``：剪贴板中的路径列表；没有文件路径时返回空列表。\n\nRaises:\n    ActionError: 读取剪贴板失败。"
+    },
+    "uiautoma.win32.screenshot.save_screen_to_clipboard": {
+      "signature": "save_screen_to_clipboard(left: int=0, top: int=0, right: int=0, bottom: int=0) -> None",
+      "file": "sdk/src/uiautoma/win32/screenshot.py",
+      "line": 10,
+      "property": false,
+      "docstring": "截取屏幕区域并写入剪贴板。\n\nArgs:\n    left: 区域左边界，单位为屏幕像素；四个边界全为 ``0`` 时截取完整虚拟桌面。\n    top: 区域上边界，单位为屏幕像素。\n    right: 区域右边界，必须大于 ``left``。\n    bottom: 区域下边界，必须大于 ``top``。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 截图区域参数不合法。\n    ActionError: 截图写入剪贴板失败。"
+    },
+    "uiautoma.win32.screenshot.save_screen_to_file": {
+      "signature": "save_screen_to_file(image_path: str, image_format: str='', left: int=0, top: int=0, right: int=0, bottom: int=0) -> str",
+      "file": "sdk/src/uiautoma/win32/screenshot.py",
+      "line": 31,
+      "property": false,
+      "docstring": "截取屏幕区域并保存为图片文件。\n\nArgs:\n    image_path: 图片保存路径，类型为 ``str``。\n    image_format: 图片格式枚举。``\"png\"`` 表示 PNG 图片；``\"jpg\"`` 和\n        ``\"jpeg\"`` 表示 JPEG 图片；``\"bmp\"`` 表示 BMP 图片。为空时从\n        ``image_path`` 扩展名推断，无法推断时使用 PNG。\n    left: 区域左边界，单位为屏幕像素；四个边界全为 ``0`` 时截取完整虚拟桌面。\n    top: 区域上边界，单位为屏幕像素。\n    right: 区域右边界，必须大于 ``left``。\n    bottom: 区域下边界，必须大于 ``top``。\n\nReturns:\n    ``str``：实际保存路径。\n\nRaises:\n    InvalidParamsError: 路径、格式或截图区域参数不合法。\n    ActionError: 截图保存失败。"
+    },
+    "uiautoma.win32.screenshot.save_window_to_clipboard": {
+      "signature": "save_window_to_clipboard(hwnd: int | str | None=0, left: int=0, top: int=0, right: int=0, bottom: int=0) -> None",
+      "file": "sdk/src/uiautoma/win32/screenshot.py",
+      "line": 70,
+      "property": false,
+      "docstring": "截取窗口区域并写入剪贴板。\n\nArgs:\n    hwnd: 窗口句柄。传 ``0``、``None`` 或空字符串时使用当前活动窗口。\n    left: 相对窗口左上角的左边界；四个边界全为 ``0`` 时截取整个窗口。\n    top: 相对窗口左上角的上边界。\n    right: 相对窗口左上角的右边界。\n    bottom: 相对窗口左上角的下边界。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 窗口句柄或截图区域参数不合法。\n    ActionError: 截图写入剪贴板失败。"
+    },
+    "uiautoma.win32.screenshot.save_window_to_file": {
+      "signature": "save_window_to_file(hwnd: int | str | None, image_path: str, image_format: str='', left: int=0, top: int=0, right: int=0, bottom: int=0) -> str",
+      "file": "sdk/src/uiautoma/win32/screenshot.py",
+      "line": 98,
+      "property": false,
+      "docstring": "截取窗口区域并保存为图片文件。\n\nArgs:\n    hwnd: 窗口句柄。传 ``0``、``None`` 或空字符串时使用当前活动窗口。\n    image_path: 图片保存路径，类型为 ``str``。\n    image_format: 图片格式枚举。``\"png\"`` 表示 PNG 图片；``\"jpg\"`` 和\n        ``\"jpeg\"`` 表示 JPEG 图片；``\"bmp\"`` 表示 BMP 图片。为空时从\n        ``image_path`` 扩展名推断，无法推断时使用 PNG。\n    left: 相对窗口左上角的左边界；四个边界全为 ``0`` 时截取整个窗口。\n    top: 相对窗口左上角的上边界。\n    right: 相对窗口左上角的右边界。\n    bottom: 相对窗口左上角的下边界。\n\nReturns:\n    ``str``：实际保存路径。\n\nRaises:\n    InvalidParamsError: 窗口句柄、路径、格式或截图区域参数不合法。\n    ActionError: 截图保存失败。"
+    },
+    "uiautoma.win32.screenshot.manual_to_file": {
+      "signature": "manual_to_file(image_path: str, image_format: str='', *, timeout: float=30.0) -> str",
+      "file": "sdk/src/uiautoma/win32/screenshot.py",
+      "line": 140,
+      "property": false,
+      "docstring": "手动框选屏幕区域并保存为图片文件。\n\nArgs:\n    image_path: 图片保存路径，类型为 ``str``。\n    image_format: 图片格式枚举。``\"png\"`` 表示 PNG 图片；``\"jpg\"`` 和\n        ``\"jpeg\"`` 表示 JPEG 图片；``\"bmp\"`` 表示 BMP 图片。\n    timeout: 等待用户完成框选的最长时间，单位秒。\n\nReturns:\n    ``str``：实际保存路径。\n\nRaises:\n    InvalidParamsError: 路径或格式参数不合法。\n    ActionError: 手动截图失败。"
+    },
+    "uiautoma.win32.screenshot.manual_to_clipboard": {
+      "signature": "manual_to_clipboard(*, timeout: float=30.0) -> bool",
+      "file": "sdk/src/uiautoma/win32/screenshot.py",
+      "line": 161,
+      "property": false,
+      "docstring": "手动框选屏幕区域并写入剪贴板。\n\nArgs:\n    timeout: 等待用户完成框选的最长时间，单位秒。\n\nReturns:\n    ``bool``：写入成功返回 ``True``。\n\nRaises:\n    ActionError: 手动截图失败或写入剪贴板失败。"
+    }
+  }
+}
