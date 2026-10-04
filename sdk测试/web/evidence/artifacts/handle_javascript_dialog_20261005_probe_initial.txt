@@ -1,0 +1,10 @@
+mapping: web靶场_触发alert对话框_按钮 btn-alert
+mapping: web靶场_触发confirm对话框_按钮 btn-confirm
+mapping: web靶场_触发Prompt对话框_按钮 btn-prompt
+alert ok None click begin
+dialog: 这是一条 Alert 消息，请点击确定关闭。
+result: None Alert 已关闭（用户点击了确定）
+时间：2026/10/5 01:57:17
+confirm ok None click begin
+final sweep: ActionError web_dialog_timeout
+cleanup: {"errors": [], "own_tab_closed": true, "temporary_copy_removed": true, "tab_count": "4->4", "external_added": [], "external_removed": [], "new_dialogs": []}

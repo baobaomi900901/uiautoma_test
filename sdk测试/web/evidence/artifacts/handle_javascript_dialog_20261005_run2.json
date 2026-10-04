@@ -1,0 +1,196 @@
+{
+  "api": "uiautoma.web.WebBrowser.handle_javascript_dialog",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/web-dialog-test",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, dialog_result: 'str' = 'ok', *, text: 'str | None' = None, wait_appear_timeout: 'float' = 20) -> 'None'",
+    "source_file": "D:\\code\\desktop\\sdk\\src\\uiautoma\\web\\browser.py",
+    "source_line": 349,
+    "docstring": "处理网页弹出的提示框、确认框或输入框。\n\nArgs:\n    dialog_result: 处理方式，默认 ok（确定），可选 cancel（取消）。\n    text: 输入框中要填写的文本，默认 None，保留原内容；取消时忽略。\n    wait_appear_timeout: 等待对话框出现的时间，单位为秒，默认 20；0 不等待，-1 一直等待。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 对话框处理方式无效。\n    ActionError: 对话框未出现或处理失败。"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开参数、默认值、关键字约束和返回注解与源码合同一致",
+      "actual": {
+        "signature": "(self, dialog_result: 'str' = 'ok', *, text: 'str | None' = None, wait_appear_timeout: 'float' = 20) -> 'None'",
+        "contract": "dialog_result 位置或关键字且默认 ok；text / wait_appear_timeout 仅限关键字（默认 None / 20）；返回 None"
+      },
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime、Chrome、靶场和临时元素库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/web-dialog-test",
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\f7145596c4c24e379aaaab41548e0c49\\library",
+        "baseline_tabs": 4
+      },
+      "elapsed_ms": 988.5
+    },
+    {
+      "case_id": "alert_element",
+      "status": "PASS",
+      "expected": "用户指定库元素定位到对应触发按钮",
+      "actual": {
+        "element_name": "web靶场_触发alert对话框_按钮",
+        "id": "btn-alert"
+      },
+      "elapsed_ms": 46.6
+    },
+    {
+      "case_id": "confirm_element",
+      "status": "PASS",
+      "expected": "用户指定库元素定位到对应触发按钮",
+      "actual": {
+        "element_name": "web靶场_触发confirm对话框_按钮",
+        "id": "btn-confirm"
+      },
+      "elapsed_ms": 32.2
+    },
+    {
+      "case_id": "prompt_element",
+      "status": "PASS",
+      "expected": "用户指定库元素定位到对应触发按钮",
+      "actual": {
+        "element_name": "web靶场_触发Prompt对话框_按钮",
+        "id": "btn-prompt"
+      },
+      "elapsed_ms": 29.8
+    },
+    {
+      "case_id": "alert_accept",
+      "status": "PASS",
+      "expected": "返回 None，页面自身 #status 显示 Alert 已关闭（用户点击了确定）",
+      "actual": {
+        "return": null,
+        "dialog_text": "这是一条 Alert 消息，请点击确定关闭。",
+        "page_status": "Alert 已关闭（用户点击了确定）\n时间：2026/10/5 02:05:39"
+      },
+      "elapsed_ms": 3403.2
+    },
+    {
+      "case_id": "confirm_accept_true",
+      "status": "PASS",
+      "expected": "返回 None，页面自身 #status 显示 Confirm 结果：确定（true）",
+      "actual": {
+        "return": null,
+        "dialog_text": "是否确认执行此操作？",
+        "page_status": "Confirm 结果：确定（true）\n时间：2026/10/5 02:05:42"
+      },
+      "elapsed_ms": 3398.2
+    },
+    {
+      "case_id": "confirm_cancel_false",
+      "status": "PASS",
+      "expected": "返回 None，页面自身 #status 显示 Confirm 结果：取消（false）",
+      "actual": {
+        "return": null,
+        "dialog_text": "是否确认执行此操作？",
+        "page_status": "Confirm 结果：取消（false）\n时间：2026/10/5 02:05:45"
+      },
+      "elapsed_ms": 3402.8
+    },
+    {
+      "case_id": "prompt_accept_text",
+      "status": "PASS",
+      "expected": "返回 None，页面自身 #status 显示 Prompt 结果：确定，输入值为「uiautoma 音乐」",
+      "actual": {
+        "return": null,
+        "dialog_text": "请输入您的名称：",
+        "page_status": "Prompt 结果：确定，输入值为「uiautoma 音乐」\n时间：2026/10/5 02:05:49"
+      },
+      "elapsed_ms": 3871.0
+    },
+    {
+      "case_id": "prompt_default_text",
+      "status": "PASS",
+      "expected": "返回 None，页面自身 #status 显示 Prompt 结果：确定，输入值为「UiPilot」",
+      "actual": {
+        "return": null,
+        "dialog_text": "请输入您的名称：",
+        "page_status": "Prompt 结果：确定，输入值为「UiPilot」\n时间：2026/10/5 02:05:53"
+      },
+      "elapsed_ms": 3347.3
+    },
+    {
+      "case_id": "prompt_cancel_null",
+      "status": "PASS",
+      "expected": "返回 None，页面自身 #status 显示 Prompt 结果：取消（null）",
+      "actual": {
+        "return": null,
+        "dialog_text": "请输入您的名称：",
+        "page_status": "Prompt 结果：取消（null）\n时间：2026/10/5 02:05:56"
+      },
+      "elapsed_ms": 3370.4
+    },
+    {
+      "case_id": "cancel_ignores_text",
+      "status": "PASS",
+      "expected": "返回 None，页面自身 #status 显示 Prompt 结果：取消（null）",
+      "actual": {
+        "return": null,
+        "dialog_text": "请输入您的名称：",
+        "page_status": "Prompt 结果：取消（null）\n时间：2026/10/5 02:05:59"
+      },
+      "elapsed_ms": 3348.0
+    },
+    {
+      "case_id": "no_dialog_timeout",
+      "status": "PASS",
+      "expected": "无对话框且等待 0 秒时抛 ActionError，trace=web_dialog_timeout",
+      "actual": {
+        "exception": "ActionError",
+        "message": "等待网页对话框超时",
+        "trace": "web_dialog_timeout"
+      },
+      "elapsed_ms": 63.2
+    },
+    {
+      "case_id": "invalid_result",
+      "status": "PASS",
+      "expected": "非法 dialog_result 抛 InvalidParamsError，trace=invalid_params",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "对话框处理方式必须为 ok 或 cancel",
+        "trace": "invalid_params"
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_timeout",
+      "status": "PASS",
+      "expected": "wait_appear_timeout=-2 抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "wait_appear_timeout 必须为 -1 或非负数",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "清扫本次对话框、关闭本次标签和库、删除临时文件，复核标签数",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "4->4",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": [],
+        "javascript_swept": false,
+        "sweep_error": null
+      },
+      "elapsed_ms": 288.1
+    }
+  ],
+  "exit_code": 0
+}

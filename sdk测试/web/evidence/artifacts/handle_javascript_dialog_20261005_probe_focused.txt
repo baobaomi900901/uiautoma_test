@@ -1,0 +1,46 @@
+mapping: web靶场_触发alert对话框_按钮 btn-alert
+mapping: web靶场_触发confirm对话框_按钮 btn-confirm
+mapping: web靶场_触发Prompt对话框_按钮 btn-prompt
+status before: 等待触发对话框…
+alert ok None click begin
+dialog: 这是一条 Alert 消息，请点击确定关闭。
+result: None Alert 已关闭（用户点击了确定）
+时间：2026/10/5 01:59:17
+status before: Alert 已关闭（用户点击了确定）
+时间：2026/10/5 01:59:17
+confirm ok None click begin
+dialog: 是否确认执行此操作？
+result: None Confirm 结果：确定（true）
+时间：2026/10/5 01:59:21
+status before: Confirm 结果：确定（true）
+时间：2026/10/5 01:59:21
+confirm cancel None click begin
+dialog: 是否确认执行此操作？
+result: None Confirm 结果：取消（false）
+时间：2026/10/5 01:59:24
+status before: Confirm 结果：取消（false）
+时间：2026/10/5 01:59:24
+prompt ok uiautoma 音乐 click begin
+dialog: 请输入您的名称：
+result: None Prompt 结果：确定，输入值为「uiautoma 音乐」
+时间：2026/10/5 01:59:28
+status before: Prompt 结果：确定，输入值为「uiautoma 音乐」
+时间：2026/10/5 01:59:28
+prompt ok None click begin
+dialog: 请输入您的名称：
+result: None Prompt 结果：确定，输入值为「UiPilot」
+时间：2026/10/5 01:59:31
+status before: Prompt 结果：确定，输入值为「UiPilot」
+时间：2026/10/5 01:59:31
+prompt cancel None click begin
+dialog: 请输入您的名称：
+result: None Prompt 结果：取消（null）
+时间：2026/10/5 01:59:35
+status before: Prompt 结果：取消（null）
+时间：2026/10/5 01:59:35
+prompt cancel ignored click begin
+dialog: 请输入您的名称：
+result: None Prompt 结果：取消（null）
+时间：2026/10/5 01:59:38
+final sweep: ActionError web_dialog_timeout
+cleanup: {"errors": [], "own_tab_closed": true, "temporary_copy_removed": true, "tab_count": "4->4", "external_added": [], "external_removed": [], "new_dialogs": []}

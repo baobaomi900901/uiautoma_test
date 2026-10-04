@@ -2,7 +2,7 @@
 
 生命周期状态：`DRAFT`、`READY_FOR_LIVE`、`VERIFIED`；按用户要求无法满足条件的本轮项目记 `SKIPPED`，不表示功能通过。
 
-最新增量复测（2026-10-05）：`handle_upload_dialog()` 按用户指定单/多文件元素连续 3 轮 10/10 PASS，状态更新为 VERIFIED；[最新证据](web/evidence/web_handle_upload_dialog_20261005.md)。合并本次结果后的 29 项状态为 18 VERIFIED、1 失败、10 SKIPPED。
+最新增量复测（2026-10-05）：`handle_javascript_dialog()` 按指定三个库按钮连续 3 轮 16/16 PASS；[证据](web/evidence/handle_javascript_dialog_20261005.md)。`handle_upload_dialog()` 按指定单/多文件元素连续 3 轮 10/10 PASS；[证据](web/evidence/web_handle_upload_dialog_20261005.md)。合并上传复验后的原 29 项状态为 18 VERIFIED、1 失败、10 SKIPPED。
 
 历史批次（2026-10-04）：29 项中 17 VERIFIED、1 失败、11 SKIPPED；详见 [剩余 Web API 实测汇总](web/evidence/remaining_web_20261004.md)。
 
@@ -313,7 +313,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.execute_javascript()` | `VERIFIED`（16/16；2026-09-15；含双 world 隔离与 DOM 共享） | `web/test_web_browser_execute_javascript.py` | `web/evidence/execute_javascript.md` |
 | `uiautoma.web.WebBrowser.scroll_to()` | `VERIFIED`（16/16；2026-09-15；smooth 仅验证与原生行为一致） | `web/test_web_browser_scroll_to.py` | `web/evidence/scroll_to.md` |
 | `uiautoma.web.WebBrowser.get_scroll()` | `VERIFIED`（15/15；2026-09-15） | `web/test_web_browser_get_scroll.py` | `web/evidence/get_scroll.md` |
-| `uiautoma.web.WebBrowser.handle_javascript_dialog()` | `VERIFIED`（15/15；2026-09-15；confirm/prompt 语义页面内回读核对） | `web/test_web_browser_handle_javascript_dialog.py` | `web/evidence/handle_javascript_dialog.md` |
+| `uiautoma.web.WebBrowser.handle_javascript_dialog()` | `VERIFIED`（16/16；2026-10-05；连续 3 轮；指定 Alert/Confirm/Prompt 库按钮，页面状态核对） | [web/test_web_browser_handle_javascript_dialog_20261005.py](web/test_web_browser_handle_javascript_dialog_20261005.py) | [web/evidence/handle_javascript_dialog_20261005.md](web/evidence/handle_javascript_dialog_20261005.md) |
 | `uiautoma.web.WebBrowser.get_javascript_dialog_text()` | `VERIFIED`（13/13；2026-09-15；含等待出现路径证据） | `web/test_web_browser_get_javascript_dialog_text.py` | `web/evidence/get_javascript_dialog_text.md` |
 | `uiautoma.web.WebBrowser.start_monitor_network()` | `VERIFIED`（12/12；2026-09-15；含存储级过滤实证） | `web/test_web_browser_start_monitor_network.py` | `web/evidence/start_monitor_network.md` |
 | `uiautoma.web.WebBrowser.get_responses()` | `VERIFIED`（19/19；2026-09-15；含记录结构与过滤语义） | `web/test_web_browser_get_responses.py` | `web/evidence/get_responses.md` |
