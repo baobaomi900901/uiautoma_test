@@ -83,6 +83,7 @@
 | `uiautoma.web.remove_all_auto_handle_popup()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_remove_all_auto_handle_popup_20261004.py](web/test_web_remove_all_auto_handle_popup_20261004.py) | [web/evidence/web_remove_all_auto_handle_popup_20261004.md](web/evidence/web_remove_all_auto_handle_popup_20261004.md) | — |
 | `uiautoma.web.set_user_environment_fingerprint()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_set_user_environment_fingerprint_20261004.py](web/test_web_set_user_environment_fingerprint_20261004.py) | [web/evidence/web_set_user_environment_fingerprint_20261004.md](web/evidence/web_set_user_environment_fingerprint_20261004.md) | — |
 | `uiautoma.web.WebElement.extract_table()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_element_extract_table_20261004.py](web/test_web_element_extract_table_20261004.py) | [web/evidence/element_extract_table_20261004.md](web/evidence/element_extract_table_20261004.md) | — |
+| `uiautoma.web.WebElement.get_basetable_value()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_element_get_basetable_value_20261004.py](web/test_web_element_get_basetable_value_20261004.py) | [web/evidence/element_get_basetable_value_20261004.md](web/evidence/element_get_basetable_value_20261004.md) | — |
 
 `uiautoma.web.WebElement.click()`、`dblclick()`、`hover()`、`focus()` 已于 2026-08-07，
 `parent()`、`children()`、`child_at()`、`previous_sibling()`、`next_sibling()`、
