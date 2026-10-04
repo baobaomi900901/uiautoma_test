@@ -1,0 +1,87 @@
+{
+  "api": "element.name",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self) -> 'str'",
+    "docstring": "元素名称。\n\nReturns:\n    ``str``：获取元素时的名称。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 63,
+    "source": "    @property\n    def name(self) -> str:\n        \"\"\"元素名称。\n\n        Returns:\n            ``str``：获取元素时的名称。\n        \"\"\"\n\n        return self._raw.name\n",
+    "implementation_chain": "页面引擎 runtimeElementReference.name → RawWebElement.name → WebElement.name",
+    "script": "web/test_web_element_name_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self) -> 'str'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\eeafde28ac91483ab4f5d121fb85e611\\library"
+      },
+      "elapsed_ms": 2510.0
+    },
+    {
+      "case_id": "web靶场_表单测试_原生_输入框",
+      "status": "PASS",
+      "expected": "对象 name 为获取时的 DOM 文本/值/标签名，与现场 DOM 对照",
+      "actual": {
+        "library_name": "web靶场_表单测试_原生_输入框",
+        "runtime_name": "INPUT",
+        "independent_dom_name": "INPUT"
+      },
+      "elapsed_ms": 61.6
+    },
+    {
+      "case_id": "web靶场_表单测试_ant_输入框",
+      "status": "PASS",
+      "expected": "对象 name 为获取时的 DOM 文本/值/标签名，与现场 DOM 对照",
+      "actual": {
+        "library_name": "web靶场_表单测试_ant_输入框",
+        "runtime_name": "INPUT",
+        "independent_dom_name": "INPUT"
+      },
+      "elapsed_ms": 77.7
+    },
+    {
+      "case_id": "web靶场_表单测试_原生_select单选",
+      "status": "PASS",
+      "expected": "对象 name 为获取时的 DOM 文本/值/标签名，与现场 DOM 对照",
+      "actual": {
+        "library_name": "web靶场_表单测试_原生_select单选",
+        "runtime_name": "请选择城市\n北京\n上海\n广州\n深圳",
+        "independent_dom_name": "请选择城市\n北京\n上海\n广州\n深圳"
+      },
+      "elapsed_ms": 60.3
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 210.7
+    }
+  ],
+  "exit_code": 0
+}

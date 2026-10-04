@@ -70,6 +70,7 @@
 | `uiautoma.web.set_cookie()` | `READY_FOR_LIVE` | [`web/test_web_set_cookie_get_cookie.py`](web/test_web_set_cookie_get_cookie.py) | [`web/evidence/set_cookie.md`](web/evidence/set_cookie.md) | [`sdk/docs/web/set_cookie.md`](../../sdk/docs/web/set_cookie.md) |
 | `uiautoma.web.get_cookie()` | `READY_FOR_LIVE` | [`web/test_web_set_cookie_get_cookie.py`](web/test_web_set_cookie_get_cookie.py) | [`web/evidence/get_cookie.md`](web/evidence/get_cookie.md) | [`sdk/docs/web/get_cookie.md`](../../sdk/docs/web/get_cookie.md) |
 | `uiautoma.web.remove_cookie()` | `READY_FOR_LIVE` | [`web/test_web_remove_cookie.py`](web/test_web_remove_cookie.py) | [`web/evidence/remove_cookie.md`](web/evidence/remove_cookie.md) | [`sdk/docs/web/remove_cookie.md`](../../sdk/docs/web/remove_cookie.md) |
+| `uiautoma.web.WebElement.name` | `VERIFIED`（2026-10-04；6/6 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_name_20261004.py](web/test_web_element_name_20261004.py) | [web/evidence/element_name_20261004.md](web/evidence/element_name_20261004.md) | — |
 
 `uiautoma.web.WebElement.click()`、`dblclick()`、`hover()`、`focus()` 已于 2026-08-07，
 `parent()`、`children()`、`child_at()`、`previous_sibling()`、`next_sibling()`、
