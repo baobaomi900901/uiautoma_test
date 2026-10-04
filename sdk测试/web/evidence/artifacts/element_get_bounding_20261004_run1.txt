@@ -1,0 +1,124 @@
+{
+  "api": "element.get_bounding",
+  "lifecycle": "SKIPPED",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, to96dpi: 'bool' = True, relative_to: 'str' = 'screen') -> 'dict[str, int]'",
+    "docstring": "获取网页元素的位置和尺寸。\n\nArgs:\n    to96dpi: 是否将位置和尺寸转换为 96 DPI 对应的像素值，默认 True。\n    relative_to: 坐标参照，默认 \"screen\"（屏幕），可选 \"window\"（浏览器客户区）。\n\nReturns:\n    包含 x、y、width、height 的字典；x、y 相对于屏幕或浏览器客户区左上角。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 749,
+    "source": "    def get_bounding(self, to96dpi: bool = True, relative_to: str = \"screen\") -> dict[str, int]:\n        \"\"\"获取网页元素的位置和尺寸。\n\n        Args:\n            to96dpi: 是否将位置和尺寸转换为 96 DPI 对应的像素值，默认 True。\n            relative_to: 坐标参照，默认 \"screen\"（屏幕），可选 \"window\"（浏览器客户区）。\n\n        Returns:\n            包含 x、y、width、height 的字典；x、y 相对于屏幕或浏览器客户区左上角。\n        \"\"\"\n        if relative_to not in {\"screen\", \"window\"}:\n            raise InvalidParamsError(\"relative_to 必须是 screen 或 window\")\n        return self._raw.geometry(kind=\"bounding\", relative_to=relative_to, to96dpi=to96dpi)[\"rect\"]\n",
+    "implementation_chain": "web.get_geometry(kind=bounding) → ActionService.web_get_geometry → Provider 物理坐标转换",
+    "script": "web/test_web_element_get_bounding_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, to96dpi: 'bool' = True, relative_to: 'str' = 'screen') -> 'dict[str, int]'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\09aa754a6a2e4ef5930da1be330dc0ce\\library"
+      },
+      "elapsed_ms": 1519.6
+    },
+    {
+      "case_id": "screenFalse",
+      "status": "KNOWN",
+      "expected": "尺寸与 DOM × devicePixelRatio 一致，返回整数矩形",
+      "actual": {
+        "exception": "ActionError",
+        "message": "元素自动化服务暂不可用，请稍后重试",
+        "trace": "uiautomation_provider_unavailable",
+        "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+      },
+      "elapsed_ms": 223.3
+    },
+    {
+      "case_id": "screenTrue",
+      "status": "KNOWN",
+      "expected": "尺寸与 DOM × devicePixelRatio 一致，返回整数矩形",
+      "actual": {
+        "exception": "ActionError",
+        "message": "元素自动化服务暂不可用，请稍后重试",
+        "trace": "uiautomation_provider_unavailable",
+        "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+      },
+      "elapsed_ms": 185.8
+    },
+    {
+      "case_id": "windowFalse",
+      "status": "KNOWN",
+      "expected": "尺寸与 DOM × devicePixelRatio 一致，返回整数矩形",
+      "actual": {
+        "exception": "ActionError",
+        "message": "元素自动化服务暂不可用，请稍后重试",
+        "trace": "uiautomation_provider_unavailable",
+        "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+      },
+      "elapsed_ms": 215.2
+    },
+    {
+      "case_id": "windowTrue",
+      "status": "KNOWN",
+      "expected": "尺寸与 DOM × devicePixelRatio 一致，返回整数矩形",
+      "actual": {
+        "exception": "ActionError",
+        "message": "元素自动化服务暂不可用，请稍后重试",
+        "trace": "uiautomation_provider_unavailable",
+        "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+      },
+      "elapsed_ms": 218.8
+    },
+    {
+      "case_id": "invalid_reference",
+      "status": "PASS",
+      "expected": "非法坐标参照抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "relative_to 必须是 screen 或 window",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 225.5
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "关闭连接后抛当前版本的 HostUnavailableError",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    }
+  ],
+  "exit_code": 0
+}
