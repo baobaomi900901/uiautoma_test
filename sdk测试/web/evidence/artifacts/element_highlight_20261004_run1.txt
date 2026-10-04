@@ -1,0 +1,111 @@
+{
+  "api": "element.highlight",
+  "lifecycle": "SKIPPED",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'",
+    "docstring": "高亮显示当前网页元素。\n\n激活元素所在网页和浏览器窗口，将元素滚动到可见区域后显示高亮框。\n即使网页以静默方式获取，调用本方法也会激活窗口。\n\nArgs:\n    duration: 高亮持续时间，单位秒，默认 1；0 表示立即清除。\n    delay_after: 高亮结束后等待时间，单位秒，默认 0。\n\nReturns:\n    None。\n\nRaises:\n    InvalidParamsError: 持续时间无效。\n    ActionError: 元素失效、不可见或高亮失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 1105,
+    "source": "    def highlight(self, duration: float = 1.0, delay_after: float = 0) -> None:\n        \"\"\"高亮显示当前网页元素。\n\n        激活元素所在网页和浏览器窗口，将元素滚动到可见区域后显示高亮框。\n        即使网页以静默方式获取，调用本方法也会激活窗口。\n\n        Args:\n            duration: 高亮持续时间，单位秒，默认 1；0 表示立即清除。\n            delay_after: 高亮结束后等待时间，单位秒，默认 0。\n\n        Returns:\n            None。\n\n        Raises:\n            InvalidParamsError: 持续时间无效。\n            ActionError: 元素失效、不可见或高亮失败。\n        \"\"\"\n        self._finish(self._raw.highlight(duration=duration), delay_after)\n",
+    "implementation_chain": "web.action.highlight → ActionService.web_highlight_element → Provider 几何 → Win32 高亮覆盖窗口",
+    "script": "web/test_web_element_highlight_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\b8693711c2174316b9b84a3520220d3c\\library"
+      },
+      "elapsed_ms": 1501.2
+    },
+    {
+      "case_id": "visible_overlay",
+      "status": "KNOWN",
+      "expected": "独立 Win32 观察高亮窗出现并移除，持续时间与后置等待生效",
+      "actual": {
+        "exception": "ActionError",
+        "message": "元素自动化服务暂不可用，请稍后重试",
+        "trace": "uiautomation_provider_unavailable",
+        "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+      },
+      "elapsed_ms": 242.0
+    },
+    {
+      "case_id": "zero",
+      "status": "KNOWN",
+      "expected": "duration=0 返回 None",
+      "actual": {
+        "exception": "ActionError",
+        "message": "元素自动化服务暂不可用，请稍后重试",
+        "trace": "uiautomation_provider_unavailable",
+        "skip": "当前原生 Provider/浏览器窗口环境不可用，跳过此分支"
+      },
+      "elapsed_ms": 242.1
+    },
+    {
+      "case_id": "invalid_-1",
+      "status": "PASS",
+      "expected": "非法 duration 抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "duration 必须是非负的有限秒数",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_True",
+      "status": "PASS",
+      "expected": "非法 duration 抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "duration 必须是非负的有限秒数",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_nan",
+      "status": "PASS",
+      "expected": "非法 duration 抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "duration 必须是非负的有限秒数",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 204.6
+    }
+  ],
+  "exit_code": 0
+}

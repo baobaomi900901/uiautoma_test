@@ -128,7 +128,7 @@
 | `drag_to_by_cdp`               | `drag_to_by_cdp(self, *, target_x: int = 0, target_y: int = 0, target_type: str = "viewport",` | 拖拽网页元素到指定位置。                                               | ✅ VERIFIED（2026-10-04；5/5 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_drag_to_by_cdp_20261004.md) |
 | `upload`                       | `upload(` | 上传文件。                                                             | ✅ VERIFIED（2026-10-04；6/6 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_upload_20261004.md) |
 | `download`                     | `download(` | 下载文件。                                                             | ✅ VERIFIED（2026-10-04；5/5 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_download_20261004.md) |
-| `highlight`                    | `highlight(self, duration: float=1.0, delay_after: float=0) -> None`                                                                                                                                                                                                                                                                                               | 高亮显示当前网页元素。                                                 | -                                                                       |
+| `highlight`                    | `highlight(self, duration: float = 1.0, delay_after: float = 0) -> None` | 高亮显示当前网页元素。                                                 | ⏭️ SKIPPED（2026-10-04；6/8 PASS + 0 FAIL + 2 KNOWN；1 轮；退出码 0）；[证据](evidence/element_highlight_20261004.md) |
 
 ## 说明
 
