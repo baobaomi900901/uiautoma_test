@@ -1,0 +1,88 @@
+{
+  "api": "element.screenshot",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, folder_path: 'str', *, file_name: 'str | None' = None) -> 'str'",
+    "docstring": "截取元素图片到文件。\n\nArgs:\n    folder_path: 保存目录，类型为 ``str``。\n    file_name: 文件名，默认 ``None``，自动生成名称。\n\nReturns:\n    ``str``：保存后的文件路径。\n\nRaises:\n    ActionError: 元素已失效、截图失败或文件无法保存。",
+    "source_file": "sdk\\src\\uiautoma\\web\\element.py",
+    "source_line": 825,
+    "source": "    def screenshot(self, folder_path: str, *, file_name: str | None = None) -> str:\n        \"\"\"截取元素图片到文件。\n\n        Args:\n            folder_path: 保存目录，类型为 ``str``。\n            file_name: 文件名，默认 ``None``，自动生成名称。\n\n        Returns:\n            ``str``：保存后的文件路径。\n\n        Raises:\n            ActionError: 元素已失效、截图失败或文件无法保存。\n        \"\"\"\n\n        result = self._raw.screenshot(**file_options(folder_path, file_name))\n        action = ActionResult.from_payload(result)\n        self.last_result = action\n        action.raise_for_error()\n        return saved_path(result)\n",
+    "implementation_chain": "web.screenshot.element → ActionService.web_element_screenshot → CDP screenshot/crop → SDK 保存路径",
+    "script": "web/test_web_element_screenshot_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "公开签名与只读源码快照一致",
+      "actual": "(self, folder_path: 'str', *, file_name: 'str | None' = None) -> 'str'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime/Chrome/现有靶场与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "baseline_tabs": 1,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\acdf88125cc344cb8547edbdfe21e163\\library"
+      },
+      "elapsed_ms": 1509.1
+    },
+    {
+      "case_id": "file_and_framing",
+      "status": "PASS",
+      "expected": "PNG 尺寸与 DOM 一致，取景与页面 PNG 对照（±1px 扫描、差异<2.5%）",
+      "actual": {
+        "saved_path": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\acdf88125cc344cb8547edbdfe21e163\\element.png",
+        "png_size": [
+          1119,
+          40
+        ],
+        "dom_size": [
+          1118,
+          40
+        ],
+        "best_pixel_compare": [
+          3200,
+          134280,
+          0,
+          0
+        ]
+      },
+      "elapsed_ms": 6990.6
+    },
+    {
+      "case_id": "invalid_filename",
+      "status": "PASS",
+      "expected": "非法文件名抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "截图文件名不能包含目录或非法字符",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面和库、删除临时目录、复核标签和文件弹窗",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "1->1",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": []
+      },
+      "elapsed_ms": 228.2
+    }
+  ],
+  "exit_code": 0
+}
