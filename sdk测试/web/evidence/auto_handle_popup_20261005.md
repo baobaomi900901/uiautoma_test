@@ -98,14 +98,14 @@ auto_handle_popup(handle_method: str, close_button=None,
 保持 dev Runtime 与 Chrome 可用，在 `D:\code\元素库\sdk测试` 运行：
 
 ```powershell
-uv run .\web\test_web_auto_handle_popup_20261004.py
+uv run .\web\test_web_auto_handle_popup.py
 ```
 
-旧命令已经转入 [2026-10-05 正式脚本](../test_web_auto_handle_popup_20261005.py)，也可直接运行新文件。首次弹窗保持打开 3 秒用于对照，后续弹窗会自动快速关闭。
+本 API 统一使用唯一的[无日期测试脚本](../test_web_auto_handle_popup.py)。首次弹窗保持打开 3 秒用于对照，后续弹窗会自动快速关闭。历史原始报告中的 script 字段保留运行时记录；当前入口以本节为准。
 
 ```powershell
-uv run .\web\test_web_auto_handle_popup_20261005.py --control-observe-seconds 10
-uv run .\web\test_web_auto_handle_popup_20261005.py --contract-only
+uv run .\web\test_web_auto_handle_popup.py --control-observe-seconds 10
+uv run .\web\test_web_auto_handle_popup.py --contract-only
 ```
 
 CLI 另支持 `--target-url`、`--element-library`、`--open-button`、`--close-button`、`--modal`、`--wait-timeout`、`--json`、`--report-file`。缺少库元素时在创建标签前报告 BLOCKED，退出码 2；合同检查通过不等于完成真实验收。

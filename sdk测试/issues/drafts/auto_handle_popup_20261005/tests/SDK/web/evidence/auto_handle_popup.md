@@ -29,8 +29,7 @@
 
 测试仓库为 `baobaomi900901/uiautomata_test`；材料路径：
 
-- `sdk测试/web/test_web_auto_handle_popup_20261005.py`（正式脚本）。
-- `sdk测试/web/test_web_auto_handle_popup_20261004.py`（保留原命令的入口）。
+- `sdk测试/web/test_web_auto_handle_popup.py`（该 API 唯一测试脚本，文件名不含日期）。
 - `sdk测试/web/evidence/auto_handle_popup_20261005.md`（完整合同、用例和边界）。
 - `sdk测试/web/evidence/artifacts/auto_handle_popup_20261005_run{1,2,3}.{json,txt}`。
 - `sdk测试/web/evidence/artifacts/auto_handle_popup_20261005_probe.txt`。
@@ -40,7 +39,7 @@
 在测试工作区 `D:\code\元素库\sdk测试` 运行：
 
 ```powershell
-uv run .\web\test_web_auto_handle_popup_20261004.py
+uv run .\web\test_web_auto_handle_popup.py
 ```
 
 合同检查可加 `--contract-only`，但该模式不能代替真实验收。

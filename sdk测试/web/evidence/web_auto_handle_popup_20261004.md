@@ -1,6 +1,6 @@
 # `uiautoma.web.auto_handle_popup()` 验证证据（2026-10-04）
 
-> 最新复验：用户已于 2026-10-05 新增 `web靶场_模态弹窗` 与 `web靶场_模态弹窗_关闭按钮`。真实 DOM 弹窗验收连续 3 轮 **19/19 PASS**，状态 VERIFIED；见[最新证据](auto_handle_popup_20261005.md)。下文与旧原始产物保留为历史记录；原脚本命令现已转入真实验收脚本。
+> 最新复验：用户已于 2026-10-05 新增 `web靶场_模态弹窗` 与 `web靶场_模态弹窗_关闭按钮`。真实 DOM 弹窗验收连续 3 轮 **19/19 PASS**，状态 VERIFIED；见[最新证据](auto_handle_popup_20261005.md)。下文与旧原始产物保留为历史记录；当前统一使用唯一的无日期测试脚本。
 
 > 2026-10-05 早期修正：此前“现有靶场只有 JavaScript 原生弹窗”的判断撤回。只读源码 worktree `D:\code\xpath`、commit `c886261211541cd48224dda51dc566af4710df16` 的 `WEB\src\pages\KeysClickTestPage.tsx:420` 已有 Ant Design DOM Modal。当时尚未保存关闭按钮、状态为 SKIPPED；随后用户补齐元素，最新结果见上。
 
@@ -49,12 +49,12 @@ auto_handle_popup(handle_method: str, close_button=None, element_selector=None, 
 
 直接跳过，没有创建页面、库副本或弹窗。
 
-脚本：[test_web_auto_handle_popup_20261004.py](../test_web_auto_handle_popup_20261004.py)。
+当前脚本：[test_web_auto_handle_popup.py](../test_web_auto_handle_popup.py)。
 
 在 `D:\code\元素库\sdk测试` 运行：
 
 ```powershell
-uv run .\web\test_web_auto_handle_popup_20261004.py
+uv run .\web\test_web_auto_handle_popup.py
 ```
 
 退出码 0 表示无 FAIL（允许 KNOWN/跳过），1 表示存在 FAIL。通过范围与生命周期必须结合报告读取。

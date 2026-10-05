@@ -621,7 +621,7 @@ CASES={'name':name,'get_selected_item':selected,'set_attribute':attributes,'get_
 
 def run_api(api,contract_only=False,progress=False):
     if api == 'web.auto_handle_popup':
-        from test_web_auto_handle_popup_20261005 import run, URL, OPEN_BUTTON, CLOSE_BUTTON, MODAL
+        from test_web_auto_handle_popup import run, URL, OPEN_BUTTON, CLOSE_BUTTON, MODAL
         return run(argparse.Namespace(contract_only=contract_only, json=not progress,
             element_library=LIBRARY, target_url=TARGET_OVERRIDE or URL,
             open_button=OPEN_BUTTON, close_button=CLOSE_BUTTON, modal=MODAL,

@@ -23,8 +23,7 @@
 
 ## 测试侧材料
 
-- [正式脚本](../../../web/test_web_auto_handle_popup_20261005.py)。
-- [保留原命令的入口](../../../web/test_web_auto_handle_popup_20261004.py)。
+- [唯一测试脚本](../../../web/test_web_auto_handle_popup.py)。
 - [完整验证证据](../../../web/evidence/auto_handle_popup_20261005.md)。
 - [第一轮原始报告](../../../web/evidence/artifacts/auto_handle_popup_20261005_run1.json)、[第二轮](../../../web/evidence/artifacts/auto_handle_popup_20261005_run2.json)、[第三轮](../../../web/evidence/artifacts/auto_handle_popup_20261005_run3.json)。
 
