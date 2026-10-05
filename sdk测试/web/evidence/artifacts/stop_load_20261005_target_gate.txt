@@ -1,0 +1,9 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.stop_load
+页面    : https://baobaomi900901.github.io/xpath/slow-load-30s.html
+01/05 [92m[通过][0m api_contract 期望 仅 self 参数、返回 None，与只读源码快照一致；实测 (self) -> 'None'；0.1ms
+02/05 [92m[通过][0m invalid_positional 期望 多余位置参数由 Python 抛 TypeError，不连接 Runtime；实测 {'exception': 'TypeError', 'message': 'WebBrowser.stop_load() takes 1 positional argument but 2 were given', 'runtime_called': False}；0.0ms
+03/05 [92m[通过][0m invalid_keyword 期望 不存在的 timeout 参数由 Python 抛 TypeError，不连接 Runtime；实测 {'exception': 'TypeError', 'message': "WebBrowser.stop_load() got an unexpected keyword argument 'timeout'", 'runtime_called': False}；0.0ms
+04/05 [91m[失败][0m target_source 期望 只读获取 HTML 与 hang.js，确认线上同步死循环；实测 {'exception': 'URLError', 'message': '<urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>'}；2131.1ms
+05/05 [92m[通过][0m cleanup 期望 未创建浏览器标签、元素库或 Runtime 连接，无本次 SDK 资源需清理；实测 {'runtime_connected': False, 'browser_tabs_created': 0, 'library_opened': False, 'resources_created': False}；0.0ms
+READY_FOR_LIVE · 4/5 通过 · 0 已知/跳过 · 0 阻塞 · 退出码 1

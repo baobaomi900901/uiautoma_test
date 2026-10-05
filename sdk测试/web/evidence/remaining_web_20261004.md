@@ -2,7 +2,7 @@
 
 共处理 29 项：**17 项通过、1 项失败、11 项跳过**。可测项目各运行三轮，跳过项目只做一轮条件确认。
 
-> 后续增量：2026-10-05 已完成[上传对话框](web_handle_upload_dialog_20261005.md)、[自动关闭 DOM 弹窗](auto_handle_popup_20261005.md)与[移除自动处理规则](remove_all_auto_handle_popup_20261005.md)真实复验，分别为 3×10/10 PASS、3×19/19 PASS、最后连续 3×19/19 PASS。规则移除保留一轮外部标签变化导致的清理 FAIL。当前原 29 项合并状态为 20 VERIFIED、1 失败、8 SKIPPED。下文保留 2026-10-04 历史批次计数与原始报告。
+> 后续增量：2026-10-05 已完成[上传对话框](web_handle_upload_dialog_20261005.md)、[自动关闭 DOM 弹窗](auto_handle_popup_20261005.md)、[移除自动处理规则](remove_all_auto_handle_popup_20261005.md)与[停止加载](browser_stop_load_20261005.md)真实复验，分别为 3×10/10 PASS、3×19/19 PASS、最后连续 3×19/19 PASS、最后连续 3×18/18 PASS。规则移除保留一轮外部标签变化导致的清理 FAIL；停载保留首轮准备 BLOCKED 与随后明确记录的一次准备导航恢复。当前原 29 项合并状态为 21 VERIFIED、1 READY_FOR_LIVE（存在 FAIL）、7 SKIPPED。下文保留 2026-10-04 历史批次计数与原始报告。
 
 产品 worktree：`D:\code\desktop`；commit：`cb9332d1a04c09e04df54af958e028b2bc45af9b`；Chrome / 当前 dev Runtime。
 

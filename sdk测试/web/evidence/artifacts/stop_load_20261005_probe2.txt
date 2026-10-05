@@ -1,0 +1,16 @@
+baseline 4
+prepare "ready"
+mapping {"name": "web靶场_停止加载测试_开始测试_按钮", "id": "start-test"}
+mapping {"name": "web靶场_停止加载测试_清理测试环境_按钮", "id": "cleanup-worker"}
+worker {"controller": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js", "scopes": ["https://baobaomi900901.github.io/xpath/stop-load-test/"]}
+world {"log": "{\n  \"version\": 1,\n  \"runId\": \"46a640b1-c4a2-4e52-bdfe-c5405e4e2a9c\",\n  \"delayMs\": 30000,\n  \"controlled\": true,\n  \"heartbeat\": 0,\n  \"loadEvents\": 0,\n  \"resourceStatus\": \"pending\",\n  \"resourceLoaded\": false,\n  \"events\": [\n    {\n      \"type\": \"resource_requested\",\n      \"atMs\": 0\n    },\n    {\n      \"type\": \"dom_content_loaded\",\n      \"atMs\": 1\n    },\n    {\n      \"type\": \"worker_request_started\",\n      \"atMs\": 37\n    }\n  ],\n  \"readyState\": \"interactive\",\n  \"elapsedMs\": 37\n}", "stateType": "undefined", "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=30000&run=46a640b1-c4a2-4e52-bdfe-c5405e4e2a9c"}
+before {"controlled": true, "delayMs": 30000, "elapsedMs": 504, "events": [{"atMs": 0, "type": "resource_requested"}, {"atMs": 1, "type": "dom_content_loaded"}, {"atMs": 37, "type": "worker_request_started"}], "heartbeat": 2, "loadEvents": 0, "readyState": "interactive", "resourceLoaded": false, "resourceStatus": "pending", "runId": "46a640b1-c4a2-4e52-bdfe-c5405e4e2a9c", "version": 1}
+stop_return null
+after {"controlled": true, "delayMs": 30000, "elapsedMs": 556, "events": [{"atMs": 0, "type": "resource_requested"}, {"atMs": 1, "type": "dom_content_loaded"}, {"atMs": 37, "type": "worker_request_started"}, {"atMs": 556, "type": "resource_error"}], "heartbeat": 2, "loadEvents": 0, "readyState": "complete", "resourceLoaded": false, "resourceStatus": "error", "runId": "46a640b1-c4a2-4e52-bdfe-c5405e4e2a9c", "version": 1}
+repeat_return null
+set_delay true
+natural {"controlled": true, "delayMs": 2000, "elapsedMs": 2305, "events": [{"atMs": 0, "type": "resource_requested"}, {"atMs": 1, "type": "dom_content_loaded"}, {"atMs": 38, "type": "worker_request_started"}, {"atMs": 2301, "type": "worker_response_released"}, {"atMs": 2305, "type": "resource_load"}, {"atMs": 2305, "type": "window_load"}], "heartbeat": 9, "loadEvents": 1, "readyState": "complete", "resourceLoaded": true, "resourceStatus": "loaded", "runId": "f777bfd1-6a89-4e7b-bbc3-042d24f6409e", "version": 1}
+completed_return null
+cleanup_worker "removed"
+closed_error {"type": "ActionError", "message": "网页对象已失效", "trace": "stale_page_reference"}
+final_tabs 4

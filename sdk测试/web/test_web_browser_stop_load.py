@@ -1,420 +1,435 @@
-"""WebBrowser.stop_load() 页面对象 API 专项验收。
+"""使用已发布靶场与用户库元素验收 WebBrowser.stop_load()。
 
-靶场：维护者的官方靶场（测试侧不自建页面）。
-- 常规页：`https://baobaomi900901.github.io/xpath/#/form-controls`
-- 阻塞页：`https://baobaomi900901.github.io/xpath/slow-load-30s.html`
-  （首次加载即进入同步 JS 死循环 `while(true)`，永远不会加载完成；默认不跑，见 `--include-hung-page`）
-
-「停止加载成功」不能靠返回值判定（本 API 返回 `None`），因此脚本用**可观测状态**确证。
-关键前提（本轮实测确立的判据区分）：
-
-| 页面状态 | `is_load_completed()` | `execute_javascript()` | `close()` |
-|---|---|---|---|
-| 正常加载完成 | `True` | 正常返回 | 成功 |
-| **待处理导航（加载中）** | `False` | **失败** | **失败** |
-| Chrome 错误页 | `False`（见「已知发现」） | 正常返回（`readyState=complete`） | 成功 |
-
-所以「`is_load_completed()=False`」不足以说明页面在加载中，必须同时要求
-`execute_javascript()` 失败；反过来，「挂起已中止」也不能只看 `is_load_completed()`，
-而应要求**页面重新可用**（`execute_javascript()` 恢复、`readyState` 回到 `complete`）。
-
-边界约定（2026-09-18，产品负责人裁定）：**测试侧一律不使用地址形态探测**——不可路由保留地址、
-本机 discard 端口、保留域名等全部删除，页面材料一律来自标准靶场
-（`https://baobaomi900901.github.io/xpath/`）。因此原先用「黑洞地址」制造的两类形态
-（服务端永不响应的**待处理导航**、Chrome **网络错误页**）不再由本脚本构造：
-前者记为 `BLOCKED` 并请求靶场提供对应页面；后者只保留历史发现（见「已知发现」），不再现场复现。
-
-状态模型：`PASS` / `FAIL` / `BLOCKED` 计入退出码；`KNOWN` 表示已如实刻画、但**不由本 API 负责**
-的边界或发现（不计入退出码）。
-
-退出码：0 = 全部 PASS（允许 KNOWN）；1 = 存在 FAIL；2 = 无非 FAIL 但存在 BLOCKED。
+自然完成作为对照，随后中止 30 秒慢资源；读取共享 DOM、浏览器原生
+图片状态及 Resource Timing 作为确证。只操作本次标签与临时元素库。
 """
 from __future__ import annotations
 
 import argparse
 import inspect
 import json
+import math
+from pathlib import Path
+import shutil
+import subprocess
+import sys
 import time
+from urllib.parse import parse_qsl, urljoin, urlsplit
+import uuid
 
-from uiautoma import ActionError, UIAError, web
-from uiautoma.web import WebBrowser
-from _web_page_identity import count_key, leaked, page_key, tab_keys
-
-__test__ = False
-
-DEFAULT_URL = "https://baobaomi900901.github.io/xpath/#/form-controls"
-HUNG_PAGE_URL = "https://baobaomi900901.github.io/xpath/slow-load-30s.html"
-# 地址形态探测已按边界约定全部删除（2026-09-18）；原本用黑地址制造的两类形态改为
-# 「请求靶场提供页面 / 保留历史发现」，见文件头与下方 BLOCKED、KNOWN 用例。
-GREEN, RED, YELLOW, BLUE, RESET = "\x1b[92m", "\x1b[91m", "\x1b[93m", "\x1b[94m", "\x1b[0m"
-
-READY_STATE_JS = (
-    "function () { const list = performance.getEntriesByType('navigation') || [];"
-    " const nav = list[0] || {};"
-    " return {readyState: document.readyState, href: location.href,"
-    "   loadEventEnd: Math.round(nav.loadEventEnd || 0), navCount: list.length}; }"
+sys.dont_write_bytecode = True
+from _web_remaining_common import (
+    ActionError, CONTRACT_FILE, HostUnavailableError, LIBRARY, PRODUCT, ROOT,
+    WebBrowser, copy_library, open_package, web,
 )
 
+__test__ = False
+API = 'uiautoma.web.WebBrowser.stop_load'
+URL = 'https://baobaomi900901.github.io/xpath/stop-load-test/index.html'
+START_BUTTON = 'web靶场_停止加载测试_开始测试_按钮'
+CLEANUP_BUTTON = 'web靶场_停止加载测试_清理测试环境_按钮'
+TOTAL_CASES = 18
 
-def result(case_id: str, status: str, detail: str, **extra):
-    return {"case_id": case_id, "status": status, "detail": detail, **extra}
-
-
-def exception_name(exc: BaseException) -> str:
-    return type(exc).__name__
-
-
-def error_detail(prefix: str, exc: BaseException) -> str:
-    trace_info = str(getattr(exc, "trace_info", "") or "")
-    return f"{prefix}: {exception_name(exc)}: {exc}" + (f" [trace={trace_info}]" if trace_info else "")
-
-
-def check_contract():
-    method = getattr(WebBrowser, "stop_load", None)
-    sig = inspect.signature(method) if callable(method) else None
-    if sig is None:
-        return result("api_contract", "FAIL", "WebBrowser.stop_load 不存在")
-    names = tuple(sig.parameters)
-    ok = names == ("self",) and str(sig.return_annotation) == "None"
-    return result(
-        "api_contract", "PASS" if ok else "FAIL",
-        "无任何参数；返回注解 None" if ok else f"公开签名不符合合同: {sig}")
-
-
-def expect_raises(call, expected_type, label: str, message_contains: str = "",
-                  max_elapsed: float | None = None, **extra):
-    started = time.perf_counter()
-    try:
-        call()
-    except expected_type as exc:
-        elapsed = round(time.perf_counter() - started, 3)
-        text = str(exc)
-        if message_contains and message_contains not in text:
-            return result(label, "FAIL", f"{exception_name(exc)} 消息不含 {message_contains!r}：{text}",
-                          elapsed_s=elapsed, **extra)
-        if max_elapsed is not None and elapsed > max_elapsed:
-            return result(label, "FAIL", f"耗时过长：{elapsed}s > {max_elapsed}s", elapsed_s=elapsed, **extra)
-        return result(label, "PASS", f"{exception_name(exc)} 正确拒绝（{elapsed}s）：{text}",
-                      elapsed_s=elapsed, **extra)
-    except Exception as exc:  # noqa: BLE001
-        return result(label, "FAIL",
-                      f"拒绝类型错误，应为 {expected_type.__name__}: {exception_name(exc)}: {exc}", **extra)
-    return result(label, "FAIL", "调用未被拒绝", **extra)
+# SDK 脚本执行于隔离世界；页面发布在 DOM 的快照可跨世界读取。
+SNAPSHOT = '''function () {
+  const log = document.getElementById('event-log');
+  if (!log?.textContent.trim()) return null;
+  const state = JSON.parse(log.textContent);
+  const image = document.getElementById('slow-resource');
+  return {...state, actualReadyState: document.readyState, url: location.href,
+    image: image ? {complete:image.complete, naturalWidth:image.naturalWidth, src:image.src} : null,
+    resourceTiming: performance.getEntriesByType('resource')
+      .filter(e => e.name === image?.src).map(e => ({url:e.name, startTime:e.startTime,
+        responseEnd:e.responseEnd, decodedBodySize:e.decodedBodySize, transferSize:e.transferSize}))};
+}'''
+SETUP = '''function () { return {url:location.href, readyState:document.readyState,
+  state:document.getElementById('setup-state')?.dataset.state,
+  error:document.getElementById('setup-error')?.textContent,
+  controller:navigator.serviceWorker.controller?.scriptURL,
+  delay:document.getElementById('delay-seconds')?.value}; }'''
+REGISTRATIONS = '''function () { return navigator.serviceWorker.getRegistrations()
+  .then(items=>items.map(r=>({scope:r.scope, activeState:r.active?.state,
+    scriptURL:r.active?.scriptURL || r.waiting?.scriptURL || r.installing?.scriptURL}))); }'''
 
 
-def probe(page):
-    """采集 (is_load_completed, JS 是否可用, readyState, url)。"""
-    try:
-        loaded = page.is_load_completed()
-    except Exception as exc:  # noqa: BLE001
-        loaded = f"{exception_name(exc)}"
-    js_ok, ready_state = False, ""
-    try:
-        value = page.execute_javascript(READY_STATE_JS)
-        js_ok = isinstance(value, dict)
-        ready_state = str(value.get("readyState") or "") if js_ok else ""
-    except Exception:  # noqa: BLE001
-        js_ok = False
-    try:
-        url = str(page.get_url())
-    except Exception as exc:  # noqa: BLE001
-        url = f"<{exception_name(exc)}>"
-    return loaded, js_ok, ready_state, url
+class MissingScene(Exception):
+    pass
 
 
-def wait_usable(page, timeout: float):
-    """等待页面重新可用（JS 可调用且 readyState=complete）。"""
-    started = time.monotonic()
-    deadline = started + timeout
-    state = probe(page)
-    while time.monotonic() < deadline:
-        state = probe(page)
-        if state[1] and state[2] == "complete":
-            return True, round(time.monotonic() - started, 2), state
-        time.sleep(0.25)
-    return False, round(time.monotonic() - started, 2), state
+class StopLoadContext:
+    def __init__(self, args):
+        self.args = args
+        self.rows = []
+        self.page = self.package = None
+        self.baseline = None
+        self.owned_ids = set()
+        self.tmp = ROOT / '.pytest_tmp' / 'stop_load' / uuid.uuid4().hex
+        self.scope = urljoin(args.target_url, './')
+        self.worker = urljoin(args.target_url, './sw.js')
+        self.baseline_registration = None
+        self.worker_cleaned = False
+        self.preparation_recovery = []
 
+    def expect(self, condition, actual):
+        if not condition:
+            raise AssertionError(repr(actual))
+        return actual
 
-def wait_loaded(page, timeout: float):
-    """等待 is_load_completed() 变为 True。"""
-    started = time.monotonic()
-    deadline = started + timeout
-    state = probe(page)
-    while time.monotonic() < deadline:
-        state = probe(page)
-        if state[0] is True:
-            return True, round(time.monotonic() - started, 2), state
-        time.sleep(0.25)
-    return False, round(time.monotonic() - started, 2), state
+    def case(self, name, expected, fn):
+        started = time.perf_counter()
+        try:
+            actual, status = fn(), 'PASS'
+        except (MissingScene, HostUnavailableError) as exc:
+            status, actual = 'BLOCKED', {'reason':str(exc), 'exception':type(exc).__name__}
+        except Exception as exc:
+            status = 'BLOCKED' if getattr(exc, 'trace_info', '') in {
+                'plugin_not_connected', 'native_host_unavailable', 'uiautomation_provider_unavailable',
+                'web_bridge_unavailable', 'web_environment_ambiguous',
+            } else 'FAIL'
+            actual = {'exception':type(exc).__name__, 'message':str(exc), 'trace':getattr(exc, 'trace_info', '')}
+        self.rows.append({'case_id':name, 'status':status, 'expected':expected,
+                          'actual':actual, 'elapsed_ms':round((time.perf_counter()-started)*1000, 1)})
+        return status
 
+    def wait(self, read, predicate, timeout=None):
+        deadline = time.monotonic() + (timeout or self.args.wait_timeout)
+        last = None
+        while time.monotonic() < deadline:
+            last = read()
+            if predicate(last):
+                return last
+            time.sleep(.1)
+        raise AssertionError(f'等待状态未收敛：{last!r}')
 
-def wait_stopped(page, timeout: float):
-    """等待「加载不再进行」。
+    def setup_ready(self, recover=True):
+        deadline = time.monotonic() + self.args.wait_timeout
+        last = None
+        while time.monotonic() < deadline:
+            last = self.page.execute_javascript(SETUP)
+            if last.get('state') == 'error':
+                registrations = self.registrations()
+                active = any(r['scope'] == self.scope and r.get('activeState') == 'activated'
+                             and r.get('scriptURL') == self.worker for r in registrations)
+                # 注册已激活但本次文档尚未被控制：再导航一次，让新文档被 active worker 接管。
+                # 这是靶场准备；不重试被测 stop_load，也不允许其他初始化错误被吞掉。
+                if recover and active and not last.get('controller') and last.get('error') == '测试环境准备超时，请重新打开准备页。':
+                    returned = self.page.navigate(self.args.target_url, load_timeout=20)
+                    after = self.setup_ready(recover=False)
+                    self.preparation_recovery.append({'before':last, 'registrations':registrations,
+                                                      'navigate_return':returned, 'after':after})
+                    return after
+                raise MissingScene('靶场准备失败：' + repr(last))
+            if last.get('state') == 'ready' and last.get('controller') == self.worker:
+                return last
+            time.sleep(.1)
+        raise MissingScene('靶场未准备完成：' + repr(last))
 
-    首选 is_load_completed() 转为 True；若导航已落到 Chrome 错误页，该值恒为 False（见已知发现），
-    此时退化为「页面已就绪（JS 可调用且 readyState=complete）」，同样说明挂起已结束。
-    """
-    stopped, waited, state = wait_loaded(page, timeout)
-    if stopped:
-        return True, waited, state, "is_load_completed() 转为 True"
-    ready_ok, ready_waited, state = wait_usable(page, min(timeout, 4))
-    if ready_ok:
-        return True, round(waited + ready_waited, 2), state, \
-            "页面已就绪（导航落到 Chrome 错误页，is_load_completed() 恒为 False，见已知发现）"
-    return False, round(waited + ready_waited, 2), state, "既未转为 True，页面也不可用"
+    def snapshot(self):
+        return self.page.execute_javascript(SNAPSHOT)
+
+    def registrations(self):
+        return self.page.execute_javascript(REGISTRATIONS)
+
+    def library_targets(self):
+        catalog = self.args.element_library / 'elements.json'
+        if not catalog.is_file():
+            raise MissingScene(f'元素库不存在：{catalog}')
+        pending, matches = [json.loads(catalog.read_text(encoding='utf-8-sig'))], {}
+        while pending:
+            value = pending.pop()
+            if isinstance(value, dict):
+                if value.get('type') == 'web' and value.get('name') in (self.args.start_button, self.args.cleanup_button):
+                    matches.setdefault(value['name'], []).append(value.get('id'))
+                pending.extend(value.values())
+            elif isinstance(value, list):
+                pending.extend(value)
+        for name in (self.args.start_button, self.args.cleanup_button):
+            if len(matches.get(name, [])) != 1:
+                raise MissingScene(f'库中 Web 元素必须唯一：{name}，实测 {matches.get(name, [])}')
+        return matches
+
+    def setup(self):
+        pages = web.get_all(mode='chrome')
+        self.baseline = {p._page_ref['id'] for p in pages}
+        for existing in pages:
+            if (existing.url or '').startswith(self.scope):
+                registrations = existing.execute_javascript(REGISTRATIONS)
+                self.baseline_registration = next((r for r in registrations if r['scope'] == self.scope), None)
+                break
+        copy_library(self.args.element_library, self.tmp / 'library')
+        self.package = open_package(str(self.tmp / 'library'), timeout=8, connect_timeout=8)
+        self.page = web.create(self.args.target_url, mode='chrome', load_timeout=25, silent_running=False)
+        self.owned_ids.add(self.page._page_ref['id'])
+        return {'url':self.page.get_url(), 'baseline_tabs':len(self.baseline),
+                'library':str(self.args.element_library), 'temporary_library':str(self.tmp/'library'),
+                'baseline_registration':self.baseline_registration}
+
+    def fixture_setup(self):
+        ready = self.setup_ready()
+        registrations = self.registrations()
+        mappings = {}
+        for name, expected_id in ((self.args.start_button, 'start-test'), (self.args.cleanup_button, 'cleanup-worker')):
+            element = self.page.find(name, timeout=4)
+            mapping = element.execute_javascript('function(e){return {id:e.id,tag:e.tagName,disabled:e.disabled}}')
+            self.expect(mapping == {'id':expected_id, 'tag':'BUTTON', 'disabled':False}, mapping)
+            mappings[name] = mapping
+        self.expect(ready['delay'] == '30' and ready['readyState'] == 'complete', ready)
+        return {'setup':ready, 'mappings':mappings, 'registrations':registrations,
+                'preparation_recovery':list(self.preparation_recovery)}
+
+    def stop_prepared(self):
+        before = self.page.execute_javascript(SETUP)
+        returned = self.page.stop_load()
+        after = self.page.execute_javascript(SETUP)
+        return self.expect(returned is None and before == after,
+                           {'return':returned, 'before':before, 'after':after})
+
+    def begin(self, seconds):
+        if not self.page.get_url().startswith(urljoin(self.args.target_url, './index.html')):
+            self.page.navigate(self.args.target_url, load_timeout=20)
+        self.setup_ready()
+        self.page.execute_javascript('function(_e,seconds){document.getElementById("delay-seconds").value=String(seconds)}', seconds)
+        self.page.find(self.args.start_button, timeout=4).click(simulative=False, delay_after=.1)
+        state = self.wait(self.snapshot, lambda x:x and x['heartbeat'] >= 2)
+        self.expect(state['controlled'] and state['delayMs'] == seconds*1000 and state['version'] == 1, state)
+        self.expect(state['actualReadyState'] == 'interactive' and state['resourceStatus'] == 'pending'
+                    and not state['resourceLoaded'] and state['loadEvents'] == 0
+                    and any(e['type'] == 'worker_request_started' for e in state['events']), state)
+        self.expect(state['runId'] == dict(parse_qsl(urlsplit(state['url']).query)).get('run'), state)
+        return state
+
+    def natural_control(self):
+        before = self.begin(self.args.natural_seconds)
+        after = self.wait(self.snapshot, lambda x:x and x['resourceLoaded'] and x['loadEvents'] == 1
+                          and x['actualReadyState'] == 'complete', timeout=15)
+        self.expect(after['runId'] == before['runId'] and after['resourceStatus'] == 'loaded'
+                    and after['elapsedMs'] >= after['delayMs'] and after['image']['naturalWidth'] > 0
+                    and any(e['type'] == 'worker_response_released' for e in after['events'])
+                    and not any(e['type'] == 'resource_error' for e in after['events']), after)
+        return {'before':before, 'after':after}
+
+    def stop_completed(self):
+        before = self.snapshot()
+        returned = self.page.stop_load()
+        after = self.snapshot()
+        return self.expect(returned is None and after['resourceLoaded'] and after['loadEvents'] == 1
+                           and after['runId'] == before['runId'] and after['events'] == before['events'],
+                           {'return':returned, 'after':after})
+
+    def start_long(self):
+        return self.begin(30)
+
+    def control_without_stop(self):
+        first = self.snapshot()
+        deadline, samples = time.monotonic() + self.args.observe_seconds, 0
+        while True:
+            state = self.snapshot()
+            self.expect(state['runId'] == first['runId'] and state['actualReadyState'] == 'interactive'
+                        and state['resourceStatus'] == 'pending' and not state['resourceTiming']
+                        and not state['resourceLoaded'] and state['loadEvents'] == 0, state)
+            samples += 1
+            if time.monotonic() >= deadline:
+                break
+            time.sleep(.1)
+        self.expect(state['heartbeat'] > first['heartbeat'], {'first':first, 'last':state})
+        return {'before':first, 'after':state, 'samples':samples}
+
+    def stop_pending(self):
+        before = self.snapshot()
+        if before['resourceStatus'] != 'pending' or before['delayMs'] - before['elapsedMs'] < 4000:
+            raise MissingScene('停载前未保留足够等待窗口：' + repr(before))
+        started = time.monotonic()
+        returned = self.page.stop_load()
+        call_ms = round((time.monotonic()-started)*1000, 1)
+        after = self.wait(self.snapshot, lambda x:x and x['actualReadyState'] == 'complete'
+                          and x['resourceStatus'] == 'error' and x['resourceTiming'], timeout=5)
+        elapsed_ms = round((time.monotonic()-started)*1000, 1)
+        errors = [e for e in after['events'] if e['type'] == 'resource_error']
+        self.expect(returned is None and after['runId'] == before['runId']
+                    and not after['resourceLoaded'] and after['image']['complete']
+                    and after['image']['naturalWidth'] == 0 and len(errors) == 1
+                    and errors[0]['atMs'] < after['delayMs'] and after['elapsedMs'] < after['delayMs']
+                    and not any(e['type'] == 'worker_response_released' for e in after['events'])
+                    and all(e['decodedBodySize'] == 0 and e['responseEnd'] > 0 for e in after['resourceTiming']), after)
+        return {'return':returned, 'call_ms':call_ms, 'completion_ms':elapsed_ms, 'before':before, 'after':after}
+
+    def js_after_stop(self):
+        first = self.snapshot()
+        last = self.wait(self.snapshot, lambda x:x['heartbeat'] > first['heartbeat'])
+        return self.expect(last['actualReadyState'] == 'complete' and last['runId'] == first['runId']
+                           and not last['resourceLoaded'], {'before':first, 'after':last})
+
+    def repeated_stop(self):
+        before = self.snapshot()
+        returned = [self.page.stop_load(), self.page.stop_load()]
+        after = self.snapshot()
+        return self.expect(returned == [None, None] and before['events'] == after['events']
+                           and before['runId'] == after['runId'] and after['actualReadyState'] == 'complete',
+                           {'returns':returned, 'after':after})
+
+    def restart_stop(self):
+        previous_run = self.snapshot()['runId']
+        restarted = self.begin(6)
+        self.expect(restarted['runId'] != previous_run, restarted)
+        return {'previous_run':previous_run, 'new_loading':restarted, 'stop':self.stop_pending()}
+
+    def cleanup_worker(self):
+        self.page.navigate(self.args.target_url, load_timeout=20)
+        self.setup_ready()
+        before = self.registrations()
+        returned = self.page.find(self.args.cleanup_button, timeout=4).click(simulative=False, delay_after=.1)
+        state = self.wait(lambda:self.page.execute_javascript(SETUP), lambda x:x['state'] == 'removed')
+        after = self.registrations()
+        self.expect(returned is None and not any(r['scope'] == self.scope for r in after)
+                    and {r['scope'] for r in after} == {r['scope'] for r in before if r['scope'] != self.scope}, after)
+        restored = False
+        if self.baseline_registration:
+            self.page.execute_javascript('''function(_e,r){return navigator.serviceWorker.register(r.scriptURL,
+              {scope:r.scope,updateViaCache:'none'}).then(()=>true)}''', self.baseline_registration)
+            restored = any(r['scope'] == self.scope for r in self.registrations())
+            self.expect(restored, self.registrations())
+        self.worker_cleaned = True
+        return {'click_return':returned, 'state':state, 'before':before, 'after':after,
+                'baseline_registration_restored':restored}
+
+    def closed_page_error(self):
+        page = self.page
+        page.close(ignore_beforeunload=True)
+        self.page = None
+        try:
+            page.stop_load()
+        except ActionError as exc:
+            actual = {'exception':type(exc).__name__, 'message':str(exc), 'trace':exc.trace_info}
+            return self.expect(str(exc) == '网页对象已失效' and exc.trace_info == 'stale_page_reference', actual)
+        raise AssertionError('关闭页面后 stop_load 未抛 ActionError')
+
+    def cleanup(self):
+        errors = []
+        if self.page is not None:
+            if not self.worker_cleaned:
+                try:
+                    self.cleanup_worker()
+                except Exception as exc:
+                    errors.append('worker: ' + str(exc))
+            try:
+                self.page.close(ignore_beforeunload=True)
+            except Exception as exc:
+                errors.append('page: ' + str(exc))
+            self.page = None
+        if self.package is not None:
+            try:
+                self.package.close()
+            except Exception as exc:
+                errors.append('library: ' + str(exc))
+        if self.tmp.exists():
+            if self.tmp.resolve().parent != (ROOT/'.pytest_tmp'/'stop_load').resolve():
+                errors.append('临时目录超出预期边界')
+            else:
+                shutil.rmtree(self.tmp)
+        if self.baseline is None:
+            return self.expect(not errors, {'errors':errors, 'resources_created':False})
+        after = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+        detail = {'errors':errors, 'own_tabs_closed':not (self.owned_ids & after),
+                  'temporary_copy_removed':not self.tmp.exists(), 'worker_cleaned':self.worker_cleaned,
+                  'tab_count':f'{len(self.baseline)}->{len(after)}',
+                  'external_added':sorted(after-self.baseline), 'external_removed':sorted(self.baseline-after)}
+        self.expect(not errors and detail['own_tabs_closed'] and detail['temporary_copy_removed'], detail)
+        if after != self.baseline:
+            raise MissingScene('测试期间外部标签发生变化：' + repr(detail))
+        return detail
 
 
 def run(args):
-    results = [check_contract()]
-    if results[-1]["status"] != "PASS" or args.contract_only:
-        return results, 0 if results[-1]["status"] == "PASS" else 1
-
-    baseline_ids: set[str] = set()
-    page = None
-    page_id = ""
-    try:
+    options = argparse.Namespace(**{key:getattr(args,key,default) for key,default in {
+        'target_url':URL, 'element_library':LIBRARY, 'start_button':START_BUTTON,
+        'cleanup_button':CLEANUP_BUTTON, 'contract_only':False, 'wait_timeout':12,
+        'observe_seconds':1, 'natural_seconds':2, 'json':True,
+    }.items()})
+    options.element_library = Path(options.element_library)
+    c = StopLoadContext(options)
+    contract = json.loads(CONTRACT_FILE.read_text(encoding='utf-8'))['apis']['browser.stop_load']
+    c.case('api_contract', '签名、docstring 与入口源码均匹配只读快照；返回 None',
+           lambda:c.expect(str(inspect.signature(WebBrowser.stop_load)) == contract['signature']
+                           and inspect.getdoc(WebBrowser.stop_load) == contract['docstring']
+                           and inspect.getsource(WebBrowser.stop_load) == contract['source'], contract['signature']))
+    def rejected(fn):
         try:
-            baseline = web.get_all(mode=args.mode)
-            baseline_ids = set(tab_keys(args.mode))
-            results.append(result(
-                "environment_baseline", "PASS",
-                f"进入时浏览器共 {len(baseline)} 个标签（用于收尾核对是否有孤儿标签）",
-                tabs=len(baseline)))
-        except Exception as exc:  # noqa: BLE001
-            results.append(result("environment_baseline", "BLOCKED", error_detail("无法读取标签列表", exc)))
-            return results, 2
-
+            fn()
+        except TypeError as exc:
+            return {'exception':type(exc).__name__, 'message':str(exc), 'runtime_called':False}
+        raise AssertionError('预期 Python TypeError')
+    c.case('invalid_positional', '多余位置参数由 Python 抛 TypeError，未连接 Runtime',
+           lambda:rejected(lambda:WebBrowser.stop_load(object(), 1)))
+    c.case('invalid_keyword', '不存在的 timeout 参数由 Python 抛 TypeError，未连接 Runtime',
+           lambda:rejected(lambda:WebBrowser.stop_load(object(), timeout=1)))
+    if not options.contract_only and c.case('library_targets', '元素库包含两个唯一 Web 按钮', c.library_targets) == 'PASS':
         try:
-            page = web.create(args.target_url, mode=args.mode, load_timeout=args.load_timeout)
-            page_id = page_key(page)
-            baseline_matches = count_key(page_id, args.mode)
-            ok = isinstance(page, WebBrowser)
-            results.append(result(
-                "page_prepare", "PASS" if ok else "FAIL",
-                "已打开官方靶场页" if ok else f"返回对象异常: {page!r}", url=page.get_url()))
-            if not ok:
-                return results, 1
-        except Exception as exc:  # noqa: BLE001
-            results.append(result("page_prepare", "BLOCKED", error_detail("无法打开靶场页", exc)))
-            return results, 2
-
-        loaded, js_ok, ready_state, url = probe(page)
-        ok = loaded is True and js_ok and ready_state == "complete"
-        results.append(result(
-            "baseline_load_completed", "PASS" if ok else "FAIL",
-            f"基线：is_load_completed()=True、readyState=complete、JS 可用（{url}）" if ok else
-            f"基线异常: loaded={loaded!r}, js_ok={js_ok}, readyState={ready_state!r}, url={url}"))
-        if not ok:
-            return results, 1
-
-        # 目标用例 1：已加载完成的页面上调用 stop_load（应为无害幂等）
-        started = time.perf_counter()
-        try:
-            returned = page.stop_load()
-            elapsed = round(time.perf_counter() - started, 3)
-            loaded, js_ok, ready_state, _url = probe(page)
-            ok = returned is None and loaded is True and js_ok and ready_state == "complete"
-            results.append(result(
-                "noop_on_completed_page", "PASS" if ok else "FAIL",
-                f"已加载完成的页面上 stop_load() 返回 None（{elapsed}s），页面状态不变"
-                f"（is_load_completed()=True、readyState=complete、JS 可用）" if ok else
-                f"结果不符: return={returned!r}, loaded={loaded!r}, readyState={ready_state!r}",
-                elapsed_s=elapsed))
-        except Exception as exc:  # noqa: BLE001
-            results.append(result("noop_on_completed_page", "FAIL", error_detail("stop_load 调用失败", exc)))
-
-        # 目标用例 2：连续多次调用
-        try:
-            values = [page.stop_load() for _ in range(3)]
-            ok = all(value is None for value in values)
-            results.append(result(
-                "repeated_calls", "PASS" if ok else "FAIL",
-                "连续 3 次 stop_load() 均返回 None" if ok else f"返回值异常: {values!r}"))
-        except Exception as exc:  # noqa: BLE001
-            results.append(result("repeated_calls", "FAIL", error_detail("连续调用失败", exc)))
-
-        # 目标用例 3（核心正向）：中止待处理导航 —— 需要靶场提供「加载永不完成」的页面
-        results.append(result(
-            "pending_navigation_fixture_missing", "BLOCKED",
-            "按测试侧边界约定不使用地址形态探测（不可路由地址/discard 端口已全部删除），"
-            "而静态托管的标准靶场无法产生网络级「待处理导航」（服务端总是应答）。"
-            "因此 stop_load() 中止挂起导航这条正向路径在获得靶场页面之前无法验证。"
-            "请求：在靶场增加一个「加载永不完成」的页面/路由（例如服务端永不响应的子资源请求）。"))
-
-        # 目标用例 4：中止后页面仍可正常使用
-        try:
-            page.navigate(args.target_url, load_timeout=args.load_timeout)
-            loaded, js_ok, ready_state, _url = probe(page)
-            title = page.execute_javascript("function () { return document.title; }")
-            ok = loaded is True and isinstance(title, str) and bool(title)
-            results.append(result(
-                "usable_after_stop", "PASS" if ok else "FAIL",
-                f"中止后可正常导航回靶场页并读取标题（{title!r}），is_load_completed()=True" if ok else
-                f"恢复异常: loaded={loaded!r}, js_ok={js_ok}, readyState={ready_state!r}, title={title!r}"))
-        except Exception as exc:  # noqa: BLE001
-            results.append(result("usable_after_stop", "FAIL", error_detail("中止后恢复失败", exc)))
-
-        # 目标用例 5：create 超时后的标签状态 —— 依赖「待处理导航」形态，同 3 号用例被阻塞
-        results.append(result(
-            "create_timeout_fixture_missing", "BLOCKED",
-            "create(load_timeout=3) 超时后的标签状态与 stop_if_timeout 的作用，同样需要靶场提供"
-            "「加载永不完成」的页面；当前无该页面且不使用地址形态探测，故本项不验证。"))
-
-        # 目标用例 6：页面关闭后立即拒绝
-        try:
-            page.close(ignore_beforeunload=True)
-        except Exception as exc:  # noqa: BLE001
-            results.append(result("page_close_verified", "FAIL", error_detail("page.close 调用失败", exc)))
-        else:
-            time.sleep(0.5)
-            leftover = leaked(page_id, baseline_matches, args.mode)
-            results.append(result(
-                "page_close_verified", "PASS" if not leftover else "FAIL",
-                "页面已关闭，且 web.get_all() 复核无残留" if not leftover else
-                f"关闭后仍有残留: {len(leftover)}", leftover_pages=len(leftover)))
-        results.append(expect_raises(
-            lambda: page.stop_load(), ActionError, "stale_after_close",
-            message_contains="失效", max_elapsed=3.0))
-        page = None
-
-        # 已知发现（不计入退出码）：Chrome 错误页上 is_load_completed() 恒为 False（Issue #59）
-        results.append(result(
-            "error_page_is_load_completed_false", "KNOWN",
-            "该发现在旧基线上以「连接被拒地址」构造的 Chrome 网络错误页为证据；按 2026-09-18 的"
-            "边界约定不再使用地址形态探测，而标准靶场（GitHub Pages）上的 404 是正常文档、"
-            "不产生 chrome-error 页，故本轮不再现场复现，仅保留历史证据（见证据文档「已知发现 1」）。"))
-
-        # 可选：同步 JS 死循环阻塞页（默认不跑；跑完需人工在 Chrome 点「退出网页」）
-        if args.include_hung_page:
-            try:
-                web.create(args.hung_page_url, mode=args.mode, load_timeout=5)
-                results.append(result("hung_page_create_timeout", "FAIL", "阻塞页竟然创建成功（预期超时）"))
-            except UIAError as exc:
-                results.append(result("hung_page_create_timeout", "PASS",
-                                      f"阻塞页创建按预期超时抛错：{exception_name(exc)}: {exc}"))
-            except Exception as exc:  # noqa: BLE001
-                results.append(result("hung_page_create_timeout", "FAIL",
-                                      error_detail("阻塞页创建异常类型不符", exc)))
-            time.sleep(1.5)
-            tabs = [p for p in web.get_all(mode=args.mode) if "slow-load-30s" in str(p.get_url())]
-            if tabs:
-                hung = tabs[0]
-                loaded, js_ok, ready_state, _url = probe(hung)
-                started = time.perf_counter()
-                try:
-                    returned = hung.stop_load()
-                    stop_note = f"stop_load() 返回 {returned!r}（{time.perf_counter() - started:.2f}s）"
-                except Exception as exc:  # noqa: BLE001
-                    stop_note = f"stop_load() 抛错 {exception_name(exc)}: {exc}"
-                loaded2, js_ok2, _state, _url = probe(hung)
-                results.append(result(
-                    "hung_page_stop_load_ineffective", "KNOWN",
-                    f"同步 JS 死循环页面：{stop_note}（不报错），但页面状态未变——"
-                    f"is_load_completed() {loaded!r}→{loaded2!r}、execute_javascript() 仍不可用"
-                    f"（js_ok={js_ok2}）。CDP Page.stopLoading 无法中断正在执行的同步 JS；"
-                    f"该状态下 navigate/close 也会失败，唯一出口是 Chrome 的"
-                    f"「页面无响应 → 退出网页」对话框。此行不计入退出码。",
-                    loaded_before=loaded, loaded_after=loaded2))
-                try:
-                    hung.close(ignore_beforeunload=True)
-                    results.append(result("hung_page_cleanup", "PASS", "阻塞页标签已关闭"))
-                except Exception as exc:  # noqa: BLE001
-                    results.append(result(
-                        "hung_page_cleanup", "KNOWN",
-                        f"无响应标签无法通过 SDK 关闭（{exception_name(exc)}: {exc}）；"
-                        f"请手动点击 Chrome 的「页面无响应 → 退出网页」。此行不计入退出码。"))
-    except Exception as exc:  # noqa: BLE001
-        results.append(result("scenario", "FAIL", error_detail("stop_load 场景执行失败", exc)))
-    finally:
-        close_error = ""
-        if page is not None:
-            # 待处理导航未释放时 close() 会失败，重试一次前先 stop_load 兜底。
-            for _attempt in (1, 2):
-                try:
-                    page.close(ignore_beforeunload=True)
-                    close_error = ""
-                    break
-                except Exception as exc:  # noqa: BLE001
-                    close_error = f"{exception_name(exc)}: {exc}"
-                    try:
-                        page.stop_load()
-                    except Exception:  # noqa: BLE001
-                        pass
-                    time.sleep(0.5)
-        time.sleep(0.5)
-        leftover = []
-        baseline_count = len(baseline_ids)
-        try:
-            remaining = web.get_all(mode=args.mode)
-            # 主判据用标签数量增量（不受其它标签标题抖动影响）；差集键仅作为线索列出。
-            leftover = [p for p in remaining if page_key(p) not in baseline_ids]
-            count_delta = len(remaining) - baseline_count
-        except Exception as exc:  # noqa: BLE001
-            count_delta = None
-            close_error = close_error or f"get_all 复核失败: {exception_name(exc)}: {exc}"
-        hung_left = [p for p in leftover if "slow-load-30s" in str(p.get_url())]
-        known_left = bool(hung_left) and args.include_hung_page and (count_delta or 0) == len(hung_left)
-        cleaned = not close_error and ((count_delta or 0) <= 0 or known_left)
-        results.append(result(
-            "cleanup", "PASS" if cleaned else "FAIL",
-            f"已关闭本次页面；与进入时相比标签总数增量 {count_delta}（组合键新增 {len(leftover)} 个）"
-            + ("（其中无响应标签由 --include-hung-page 场景产生，属已知边界，需人工退出网页）"
-               if known_left else "") if cleaned else
-            f"清理不完整: 标签总数增量={count_delta}, 组合键新增={len(leftover)}, 错误={close_error or '无'}",
-            new_tabs=len(leftover), tab_count_delta=count_delta, hung_tabs=len(hung_left), error=close_error))
-
-    statuses = {item["status"] for item in results}
-    code = 1 if "FAIL" in statuses else (2 if "BLOCKED" in statuses else 0)
-    return results, code
+            if c.case('environment', '连接 dev Runtime，创建本次页面与临时库，记录标签基线', c.setup) == 'PASS':
+                for name, expected, fn in [
+                    ('fixture_setup', '靶场准备成功；两个库元素映射到正确按钮；默认 30 秒', c.fixture_setup),
+                    ('stop_prepared_page', '准备页已完成时停载返回 None，不改变页面', c.stop_prepared),
+                    ('natural_control', '不调用停载，2 秒资源自然完成、图片有宽度且一次 load', c.natural_control),
+                    ('stop_completed_resource', '资源自然完成后停载返回 None，已加载图片与事件保留', c.stop_completed),
+                    ('start_long_loading', '点击库开始按钮，30 秒资源 pending，文档 interactive，JS 正常', c.start_long),
+                    ('control_without_stop', '未调用停载的观察期内资源保持 pending，心跳增长', c.control_without_stop),
+                    ('stop_pending_resource', '停载返回 None；延迟到期前文档结束、图片未完成，资源错误与空响应计时相符', c.stop_pending),
+                    ('javascript_after_stop', '停载后 JS 心跳仍增长，文档保持 complete', c.js_after_stop),
+                    ('repeated_stop', '中止后再次调用两次均返回 None，不产生新资源事件', c.repeated_stop),
+                    ('restart_and_stop', '原页面可再次开始；新 run 的 6 秒资源也被成功中止', c.restart_stop),
+                    ('cleanup_worker_button', '点击库清理按钮，仅注销本目录注册；原有注册按基线恢复', c.cleanup_worker),
+                    ('closed_page_error', '页面关闭后抛 ActionError：网页对象已失效 / stale_page_reference', c.closed_page_error),
+                ]:
+                    if not options.json and name in {'natural_control','start_long_loading','stop_pending_resource','restart_and_stop'}:
+                        print('正在测试：' + name + '…', flush=True)
+                    if c.case(name, expected, fn) != 'PASS':
+                        break
+        finally:
+            c.case('cleanup', '关闭本次页面/库、清除临时目录，复核标签基线', c.cleanup)
+    failed = any(row['status'] == 'FAIL' for row in c.rows)
+    blocked = any(row['status'] == 'BLOCKED' for row in c.rows)
+    code = 1 if failed else 2 if blocked else 0
+    verified = not options.contract_only and len(c.rows) == TOTAL_CASES and all(row['status'] == 'PASS' for row in c.rows)
+    report = {'api':API, 'lifecycle':'VERIFIED' if verified else 'READY_FOR_LIVE',
+              'url':options.target_url, 'element_library':str(options.element_library),
+              'start_button':options.start_button, 'cleanup_button':options.cleanup_button,
+              'product_worktree':str(PRODUCT),
+              'product_commit':subprocess.check_output(['git','-C',str(PRODUCT),'rev-parse','HEAD'], text=True).strip(),
+              'contract':contract, 'preparation_recovery':c.preparation_recovery, 'results':c.rows, 'exit_code':code}
+    return report, code
 
 
-def main(argv=None):
-    parser = argparse.ArgumentParser(description="WebBrowser.stop_load() 页面对象 API 验收")
-    parser.add_argument("--target-url", default=DEFAULT_URL, help="常规靶场页")
-    parser.add_argument("--hung-page-url", default=HUNG_PAGE_URL, help="同步 JS 死循环阻塞页")
-    parser.add_argument("--mode", choices=("chrome", "edge"), default="chrome")
-    parser.add_argument("--load-timeout", type=float, default=20)
-    parser.add_argument("--hang-timeout", type=float, default=3,
-                        help="预留：导航到「加载永不完成」靶场页面时的等待秒数（当前无该页面，未使用）")
-    parser.add_argument("--settle-timeout", type=float, default=8, help="stop_load 后等待页面恢复可用的秒数")
-    parser.add_argument("--contract-only", action="store_true")
-    parser.add_argument("--include-hung-page", action="store_true",
-                        help="额外刻画「同步 JS 死循环页面」边界：跑完需人工在 Chrome 点「退出网页」")
-    parser.add_argument("--json", action="store_true", help="在表格后额外输出 JSON 报告（用于归档验收产物）")
-    args = parser.parse_args(argv)
-    for name in ("load_timeout", "hang_timeout", "settle_timeout"):
-        if getattr(args, name) <= 0:
-            parser.error(f"--{name.replace('_', '-')} 必须大于 0")
-
-    results, code = run(args)
-    print("UIAutoma Web API 测试")
-    print("API     : uiautoma.web.WebBrowser.stop_load")
-    print(f"页面    : {args.target_url}")
-    print("边界    : 不使用地址形态探测；加载永不完成页面待靶场提供")
-    print("进度     状态    测试项                  测试结果")
-    print("────────────────────────────────────────────────────────────────────────")
-    for index, current in enumerate(results, 1):
-        status = current["status"]
-        color = {"PASS": GREEN, "BLOCKED": YELLOW, "KNOWN": BLUE}.get(status, RED)
-        label = {"PASS": "通过", "BLOCKED": "阻塞", "KNOWN": "记录"}.get(status, "失败")
-        print(f"{index:02d}/{len(results):02d}    {color}[{label}]{RESET}  "
-              f"{current['case_id']:<38}  {current['detail']}")
-    print("────────────────────────────────────────────────────────────────────────")
-    counted = [item for item in results if item["status"] != "KNOWN"]
-    summary = "测试通过" if code == 0 else ("测试阻塞" if code == 2 else "测试失败")
-    print(f"{summary} · {sum(item['status'] == 'PASS' for item in results)}/{len(counted)} 通过"
-          f"（另 {sum(item['status'] == 'KNOWN' for item in results)} 项记录，不计入退出码）"
-          f" · 退出码 {code}")
+def main():
+    parser = argparse.ArgumentParser(description=API+'：真实资源停载验收')
+    parser.add_argument('--target-url', default=URL)
+    parser.add_argument('--element-library', type=Path, default=LIBRARY)
+    parser.add_argument('--start-button', default=START_BUTTON)
+    parser.add_argument('--cleanup-button', default=CLEANUP_BUTTON)
+    parser.add_argument('--wait-timeout', type=float, default=12)
+    parser.add_argument('--observe-seconds', type=float, default=1)
+    parser.add_argument('--natural-seconds', type=int, default=2)
+    parser.add_argument('--contract-only', action='store_true')
+    parser.add_argument('--json', action='store_true')
+    parser.add_argument('--report-file', type=Path)
+    args = parser.parse_args()
+    if not math.isfinite(args.wait_timeout) or args.wait_timeout <= 0 or not math.isfinite(args.observe_seconds) or not 1 <= args.observe_seconds <= 10 or not 2 <= args.natural_seconds <= 10:
+        parser.error('等待时间须为有限正数；观察时间为 1–10 秒，自然对照为 2–10 秒整数')
+    if not args.json:
+        print('UIAutoma Web API 测试\nAPI     : '+API+'\n页面    : '+args.target_url, flush=True)
+    report, code = run(args)
+    if args.report_file:
+        args.report_file.parent.mkdir(parents=True, exist_ok=True)
+        args.report_file.write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     if args.json:
-        print(json.dumps({
-            "api": "uiautoma.web.WebBrowser.stop_load",
-            "target_url": args.target_url, "hung_page_url": args.hung_page_url,
-            "mode": args.mode,
-            "status": "PASS" if code == 0 else ("BLOCKED" if code == 2 else "FAIL"),
-            "exit_code": code, "results": results,
-        }, ensure_ascii=False, indent=2))
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+    else:
+        labels = {'PASS':('\x1b[92m','通过'), 'FAIL':('\x1b[91m','失败'), 'BLOCKED':('\x1b[93m','阻塞')}
+        for index, row in enumerate(report['results'], 1):
+            color, label = labels[row['status']]
+            print(f"{index:02}/{len(report['results']):02} {color}[{label}]\x1b[0m {row['case_id']} 期望 {row['expected']}；实测 {row['actual']}；{row['elapsed_ms']}ms")
+        passed = sum(row['status'] == 'PASS' for row in report['results'])
+        print(f"{report['lifecycle']} · {passed}/{len(report['results'])} 通过 · 退出码 {code}")
     return code
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())

@@ -1,0 +1,32 @@
+{
+  "result": "PASS",
+  "dispatcher_contract": "3/3 PASS / READY_FOR_LIVE",
+  "consecutive_runs": [
+    {
+      "run": 2,
+      "passed": 18,
+      "total": 18,
+      "tab_count": "4->4"
+    },
+    {
+      "run": 3,
+      "passed": 18,
+      "total": 18,
+      "tab_count": "4->4"
+    },
+    {
+      "run": 4,
+      "passed": 18,
+      "total": 18,
+      "tab_count": "4->4"
+    }
+  ],
+  "catalog_status_counts": {
+    "VERIFIED": 94,
+    "SKIPPED": 10,
+    "DRAFT": 6,
+    "READY_FOR_LIVE": 2
+  },
+  "evidence_links": "all exist",
+  "script_entry": "unique undated"
+}

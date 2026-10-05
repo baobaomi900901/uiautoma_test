@@ -1,0 +1,897 @@
+{
+  "api": "uiautoma.web.WebBrowser.stop_load",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "start_button": "web靶场_停止加载测试_开始测试_按钮",
+  "cleanup_button": "web靶场_停止加载测试_清理测试环境_按钮",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self) -> 'None'",
+    "docstring": "停止页面加载。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效或停止加载失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\browser.py",
+    "source_line": 220,
+    "source": "    def stop_load(self) -> None:\n        \"\"\"停止页面加载。\n\n        Returns:\n            ``None``。\n\n        Raises:\n            ActionError: 网页对象已失效或停止加载失败。\n        \"\"\"\n\n        self._runtime_client().web_browser_stop_load(\n            **self._browser_params(timeout_ms=2000),\n        ).raise_for_error()\n",
+    "implementation_chain": "WebBrowser.stop_load → web.browser.stop_load → ActionService.web_browser_stop_load → stopTabLoading → CDP Page.stopLoading",
+    "script": "web/test_web_browser_stop_load.py"
+  },
+  "preparation_recovery": [
+    {
+      "before": {
+        "delay": "30",
+        "error": "测试环境准备超时，请重新打开准备页。",
+        "readyState": "complete",
+        "state": "error",
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html"
+      },
+      "registrations": [
+        {
+          "activeState": "activated",
+          "scope": "https://baobaomi900901.github.io/xpath/stop-load-test/",
+          "scriptURL": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js"
+        }
+      ],
+      "navigate_return": null,
+      "after": {
+        "controller": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js",
+        "delay": "30",
+        "error": "",
+        "readyState": "complete",
+        "state": "ready",
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html"
+      }
+    }
+  ],
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名、docstring 与入口源码均匹配只读快照；返回 None",
+      "actual": "(self) -> 'None'",
+      "elapsed_ms": 0.8
+    },
+    {
+      "case_id": "invalid_positional",
+      "status": "PASS",
+      "expected": "多余位置参数由 Python 抛 TypeError，未连接 Runtime",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebBrowser.stop_load() takes 1 positional argument but 2 were given",
+        "runtime_called": false
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_keyword",
+      "status": "PASS",
+      "expected": "不存在的 timeout 参数由 Python 抛 TypeError，未连接 Runtime",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebBrowser.stop_load() got an unexpected keyword argument 'timeout'",
+        "runtime_called": false
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "library_targets",
+      "status": "PASS",
+      "expected": "元素库包含两个唯一 Web 按钮",
+      "actual": {
+        "web靶场_停止加载测试_清理测试环境_按钮": [
+          "88b12426-579f-415f-9a78-998bac75986a"
+        ],
+        "web靶场_停止加载测试_开始测试_按钮": [
+          "3130700c-d1ff-43be-86b5-bc586c58b3ee"
+        ]
+      },
+      "elapsed_ms": 0.5
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "连接 dev Runtime，创建本次页面与临时库，记录标签基线",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html",
+        "baseline_tabs": 4,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\stop_load\\17f6b4cb6d934e52ad6440f99c83e9db\\library",
+        "baseline_registration": null
+      },
+      "elapsed_ms": 1118.1
+    },
+    {
+      "case_id": "fixture_setup",
+      "status": "PASS",
+      "expected": "靶场准备成功；两个库元素映射到正确按钮；默认 30 秒",
+      "actual": {
+        "setup": {
+          "controller": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js",
+          "delay": "30",
+          "error": "",
+          "readyState": "complete",
+          "state": "ready",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html"
+        },
+        "mappings": {
+          "web靶场_停止加载测试_开始测试_按钮": {
+            "disabled": false,
+            "id": "start-test",
+            "tag": "BUTTON"
+          },
+          "web靶场_停止加载测试_清理测试环境_按钮": {
+            "disabled": false,
+            "id": "cleanup-worker",
+            "tag": "BUTTON"
+          }
+        },
+        "registrations": [
+          {
+            "activeState": "activated",
+            "scope": "https://baobaomi900901.github.io/xpath/stop-load-test/",
+            "scriptURL": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js"
+          }
+        ],
+        "preparation_recovery": [
+          {
+            "before": {
+              "delay": "30",
+              "error": "测试环境准备超时，请重新打开准备页。",
+              "readyState": "complete",
+              "state": "error",
+              "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html"
+            },
+            "registrations": [
+              {
+                "activeState": "activated",
+                "scope": "https://baobaomi900901.github.io/xpath/stop-load-test/",
+                "scriptURL": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js"
+              }
+            ],
+            "navigate_return": null,
+            "after": {
+              "controller": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js",
+              "delay": "30",
+              "error": "",
+              "readyState": "complete",
+              "state": "ready",
+              "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html"
+            }
+          }
+        ]
+      },
+      "elapsed_ms": 10313.7
+    },
+    {
+      "case_id": "stop_prepared_page",
+      "status": "PASS",
+      "expected": "准备页已完成时停载返回 None，不改变页面",
+      "actual": {
+        "return": null,
+        "before": {
+          "controller": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js",
+          "delay": "30",
+          "error": "",
+          "readyState": "complete",
+          "state": "ready",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html"
+        },
+        "after": {
+          "controller": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js",
+          "delay": "30",
+          "error": "",
+          "readyState": "complete",
+          "state": "ready",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html"
+        }
+      },
+      "elapsed_ms": 56.3
+    },
+    {
+      "case_id": "natural_control",
+      "status": "PASS",
+      "expected": "不调用停载，2 秒资源自然完成、图片有宽度且一次 load",
+      "actual": {
+        "before": {
+          "actualReadyState": "interactive",
+          "controlled": true,
+          "delayMs": 2000,
+          "elapsedMs": 513,
+          "events": [
+            {
+              "atMs": 0,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 2,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 22,
+              "type": "worker_request_started"
+            }
+          ],
+          "heartbeat": 2,
+          "image": {
+            "complete": false,
+            "naturalWidth": 0,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=2000&run=ca7efbee-43c2-4497-8212-8cc20f131876"
+          },
+          "loadEvents": 0,
+          "readyState": "interactive",
+          "resourceLoaded": false,
+          "resourceStatus": "pending",
+          "resourceTiming": [],
+          "runId": "ca7efbee-43c2-4497-8212-8cc20f131876",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=2000&run=ca7efbee-43c2-4497-8212-8cc20f131876",
+          "version": 1
+        },
+        "after": {
+          "actualReadyState": "complete",
+          "controlled": true,
+          "delayMs": 2000,
+          "elapsedMs": 2351,
+          "events": [
+            {
+              "atMs": 0,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 2,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 22,
+              "type": "worker_request_started"
+            },
+            {
+              "atMs": 2344,
+              "type": "worker_response_released"
+            },
+            {
+              "atMs": 2350,
+              "type": "resource_load"
+            },
+            {
+              "atMs": 2350,
+              "type": "window_load"
+            }
+          ],
+          "heartbeat": 9,
+          "image": {
+            "complete": true,
+            "naturalWidth": 280,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=2000&run=ca7efbee-43c2-4497-8212-8cc20f131876"
+          },
+          "loadEvents": 1,
+          "readyState": "complete",
+          "resourceLoaded": true,
+          "resourceStatus": "loaded",
+          "resourceTiming": [
+            {
+              "decodedBodySize": 271,
+              "responseEnd": 2875.6000000089407,
+              "startTime": 531.2999999970198,
+              "transferSize": 0,
+              "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=2000&run=ca7efbee-43c2-4497-8212-8cc20f131876"
+            }
+          ],
+          "runId": "ca7efbee-43c2-4497-8212-8cc20f131876",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=2000&run=ca7efbee-43c2-4497-8212-8cc20f131876",
+          "version": 1
+        }
+      },
+      "elapsed_ms": 3208.0
+    },
+    {
+      "case_id": "stop_completed_resource",
+      "status": "PASS",
+      "expected": "资源自然完成后停载返回 None，已加载图片与事件保留",
+      "actual": {
+        "return": null,
+        "after": {
+          "actualReadyState": "complete",
+          "controlled": true,
+          "delayMs": 2000,
+          "elapsedMs": 2351,
+          "events": [
+            {
+              "atMs": 0,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 2,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 22,
+              "type": "worker_request_started"
+            },
+            {
+              "atMs": 2344,
+              "type": "worker_response_released"
+            },
+            {
+              "atMs": 2350,
+              "type": "resource_load"
+            },
+            {
+              "atMs": 2350,
+              "type": "window_load"
+            }
+          ],
+          "heartbeat": 9,
+          "image": {
+            "complete": true,
+            "naturalWidth": 280,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=2000&run=ca7efbee-43c2-4497-8212-8cc20f131876"
+          },
+          "loadEvents": 1,
+          "readyState": "complete",
+          "resourceLoaded": true,
+          "resourceStatus": "loaded",
+          "resourceTiming": [
+            {
+              "decodedBodySize": 271,
+              "responseEnd": 2875.6000000089407,
+              "startTime": 531.2999999970198,
+              "transferSize": 0,
+              "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=2000&run=ca7efbee-43c2-4497-8212-8cc20f131876"
+            }
+          ],
+          "runId": "ca7efbee-43c2-4497-8212-8cc20f131876",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=2000&run=ca7efbee-43c2-4497-8212-8cc20f131876",
+          "version": 1
+        }
+      },
+      "elapsed_ms": 43.1
+    },
+    {
+      "case_id": "start_long_loading",
+      "status": "PASS",
+      "expected": "点击库开始按钮，30 秒资源 pending，文档 interactive，JS 正常",
+      "actual": {
+        "actualReadyState": "interactive",
+        "controlled": true,
+        "delayMs": 30000,
+        "elapsedMs": 504,
+        "events": [
+          {
+            "atMs": 0,
+            "type": "resource_requested"
+          },
+          {
+            "atMs": 1,
+            "type": "dom_content_loaded"
+          },
+          {
+            "atMs": 28,
+            "type": "worker_request_started"
+          }
+        ],
+        "heartbeat": 2,
+        "image": {
+          "complete": false,
+          "naturalWidth": 0,
+          "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+        },
+        "loadEvents": 0,
+        "readyState": "interactive",
+        "resourceLoaded": false,
+        "resourceStatus": "pending",
+        "resourceTiming": [],
+        "runId": "bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+        "version": 1
+      },
+      "elapsed_ms": 1206.3
+    },
+    {
+      "case_id": "control_without_stop",
+      "status": "PASS",
+      "expected": "未调用停载的观察期内资源保持 pending，心跳增长",
+      "actual": {
+        "before": {
+          "actualReadyState": "interactive",
+          "controlled": true,
+          "delayMs": 30000,
+          "elapsedMs": 504,
+          "events": [
+            {
+              "atMs": 0,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 1,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 28,
+              "type": "worker_request_started"
+            }
+          ],
+          "heartbeat": 2,
+          "image": {
+            "complete": false,
+            "naturalWidth": 0,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+          },
+          "loadEvents": 0,
+          "readyState": "interactive",
+          "resourceLoaded": false,
+          "resourceStatus": "pending",
+          "resourceTiming": [],
+          "runId": "bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "version": 1
+        },
+        "after": {
+          "actualReadyState": "interactive",
+          "controlled": true,
+          "delayMs": 30000,
+          "elapsedMs": 1516,
+          "events": [
+            {
+              "atMs": 0,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 1,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 28,
+              "type": "worker_request_started"
+            }
+          ],
+          "heartbeat": 6,
+          "image": {
+            "complete": false,
+            "naturalWidth": 0,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+          },
+          "loadEvents": 0,
+          "readyState": "interactive",
+          "resourceLoaded": false,
+          "resourceStatus": "pending",
+          "resourceTiming": [],
+          "runId": "bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "version": 1
+        },
+        "samples": 10
+      },
+      "elapsed_ms": 1065.4
+    },
+    {
+      "case_id": "stop_pending_resource",
+      "status": "PASS",
+      "expected": "停载返回 None；延迟到期前文档结束、图片未完成，资源错误与空响应计时相符",
+      "actual": {
+        "return": null,
+        "call_ms": 14.5,
+        "completion_ms": 30.8,
+        "before": {
+          "actualReadyState": "interactive",
+          "controlled": true,
+          "delayMs": 30000,
+          "elapsedMs": 1516,
+          "events": [
+            {
+              "atMs": 0,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 1,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 28,
+              "type": "worker_request_started"
+            }
+          ],
+          "heartbeat": 6,
+          "image": {
+            "complete": false,
+            "naturalWidth": 0,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+          },
+          "loadEvents": 0,
+          "readyState": "interactive",
+          "resourceLoaded": false,
+          "resourceStatus": "pending",
+          "resourceTiming": [],
+          "runId": "bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "version": 1
+        },
+        "after": {
+          "actualReadyState": "complete",
+          "controlled": true,
+          "delayMs": 30000,
+          "elapsedMs": 1598,
+          "events": [
+            {
+              "atMs": 0,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 1,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 28,
+              "type": "worker_request_started"
+            },
+            {
+              "atMs": 1598,
+              "type": "resource_error"
+            }
+          ],
+          "heartbeat": 6,
+          "image": {
+            "complete": true,
+            "naturalWidth": 0,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+          },
+          "loadEvents": 0,
+          "readyState": "complete",
+          "resourceLoaded": false,
+          "resourceStatus": "error",
+          "resourceTiming": [
+            {
+              "decodedBodySize": 0,
+              "responseEnd": 1820.20000000298,
+              "startTime": 223.4000000059605,
+              "transferSize": 0,
+              "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+            }
+          ],
+          "runId": "bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "version": 1
+        }
+      },
+      "elapsed_ms": 43.1
+    },
+    {
+      "case_id": "javascript_after_stop",
+      "status": "PASS",
+      "expected": "停载后 JS 心跳仍增长，文档保持 complete",
+      "actual": {
+        "before": {
+          "actualReadyState": "complete",
+          "controlled": true,
+          "delayMs": 30000,
+          "elapsedMs": 1598,
+          "events": [
+            {
+              "atMs": 0,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 1,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 28,
+              "type": "worker_request_started"
+            },
+            {
+              "atMs": 1598,
+              "type": "resource_error"
+            }
+          ],
+          "heartbeat": 6,
+          "image": {
+            "complete": true,
+            "naturalWidth": 0,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+          },
+          "loadEvents": 0,
+          "readyState": "complete",
+          "resourceLoaded": false,
+          "resourceStatus": "error",
+          "resourceTiming": [
+            {
+              "decodedBodySize": 0,
+              "responseEnd": 1820.20000000298,
+              "startTime": 223.4000000059605,
+              "transferSize": 0,
+              "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+            }
+          ],
+          "runId": "bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "version": 1
+        },
+        "after": {
+          "actualReadyState": "complete",
+          "controlled": true,
+          "delayMs": 30000,
+          "elapsedMs": 1751,
+          "events": [
+            {
+              "atMs": 0,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 1,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 28,
+              "type": "worker_request_started"
+            },
+            {
+              "atMs": 1598,
+              "type": "resource_error"
+            }
+          ],
+          "heartbeat": 7,
+          "image": {
+            "complete": true,
+            "naturalWidth": 0,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+          },
+          "loadEvents": 0,
+          "readyState": "complete",
+          "resourceLoaded": false,
+          "resourceStatus": "error",
+          "resourceTiming": [
+            {
+              "decodedBodySize": 0,
+              "responseEnd": 1820.20000000298,
+              "startTime": 223.4000000059605,
+              "transferSize": 0,
+              "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+            }
+          ],
+          "runId": "bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "version": 1
+        }
+      },
+      "elapsed_ms": 138.9
+    },
+    {
+      "case_id": "repeated_stop",
+      "status": "PASS",
+      "expected": "中止后再次调用两次均返回 None，不产生新资源事件",
+      "actual": {
+        "returns": [
+          null,
+          null
+        ],
+        "after": {
+          "actualReadyState": "complete",
+          "controlled": true,
+          "delayMs": 30000,
+          "elapsedMs": 1751,
+          "events": [
+            {
+              "atMs": 0,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 1,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 28,
+              "type": "worker_request_started"
+            },
+            {
+              "atMs": 1598,
+              "type": "resource_error"
+            }
+          ],
+          "heartbeat": 7,
+          "image": {
+            "complete": true,
+            "naturalWidth": 0,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+          },
+          "loadEvents": 0,
+          "readyState": "complete",
+          "resourceLoaded": false,
+          "resourceStatus": "error",
+          "resourceTiming": [
+            {
+              "decodedBodySize": 0,
+              "responseEnd": 1820.20000000298,
+              "startTime": 223.4000000059605,
+              "transferSize": 0,
+              "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884"
+            }
+          ],
+          "runId": "bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=30000&run=bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+          "version": 1
+        }
+      },
+      "elapsed_ms": 65.9
+    },
+    {
+      "case_id": "restart_and_stop",
+      "status": "PASS",
+      "expected": "原页面可再次开始；新 run 的 6 秒资源也被成功中止",
+      "actual": {
+        "previous_run": "bdf3497e-f25f-44c6-8b6d-ca37b70f4884",
+        "new_loading": {
+          "actualReadyState": "interactive",
+          "controlled": true,
+          "delayMs": 6000,
+          "elapsedMs": 505,
+          "events": [
+            {
+              "atMs": 2,
+              "type": "resource_requested"
+            },
+            {
+              "atMs": 3,
+              "type": "dom_content_loaded"
+            },
+            {
+              "atMs": 29,
+              "type": "worker_request_started"
+            }
+          ],
+          "heartbeat": 2,
+          "image": {
+            "complete": false,
+            "naturalWidth": 0,
+            "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=6000&run=7ef4a519-3637-4814-9ae3-88406d0704d1"
+          },
+          "loadEvents": 0,
+          "readyState": "interactive",
+          "resourceLoaded": false,
+          "resourceStatus": "pending",
+          "resourceTiming": [],
+          "runId": "7ef4a519-3637-4814-9ae3-88406d0704d1",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=6000&run=7ef4a519-3637-4814-9ae3-88406d0704d1",
+          "version": 1
+        },
+        "stop": {
+          "return": null,
+          "call_ms": 19.3,
+          "completion_ms": 34.1,
+          "before": {
+            "actualReadyState": "interactive",
+            "controlled": true,
+            "delayMs": 6000,
+            "elapsedMs": 505,
+            "events": [
+              {
+                "atMs": 2,
+                "type": "resource_requested"
+              },
+              {
+                "atMs": 3,
+                "type": "dom_content_loaded"
+              },
+              {
+                "atMs": 29,
+                "type": "worker_request_started"
+              }
+            ],
+            "heartbeat": 2,
+            "image": {
+              "complete": false,
+              "naturalWidth": 0,
+              "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=6000&run=7ef4a519-3637-4814-9ae3-88406d0704d1"
+            },
+            "loadEvents": 0,
+            "readyState": "interactive",
+            "resourceLoaded": false,
+            "resourceStatus": "pending",
+            "resourceTiming": [],
+            "runId": "7ef4a519-3637-4814-9ae3-88406d0704d1",
+            "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=6000&run=7ef4a519-3637-4814-9ae3-88406d0704d1",
+            "version": 1
+          },
+          "after": {
+            "actualReadyState": "complete",
+            "controlled": true,
+            "delayMs": 6000,
+            "elapsedMs": 650,
+            "events": [
+              {
+                "atMs": 2,
+                "type": "resource_requested"
+              },
+              {
+                "atMs": 3,
+                "type": "dom_content_loaded"
+              },
+              {
+                "atMs": 29,
+                "type": "worker_request_started"
+              },
+              {
+                "atMs": 650,
+                "type": "resource_error"
+              }
+            ],
+            "heartbeat": 2,
+            "image": {
+              "complete": true,
+              "naturalWidth": 0,
+              "src": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=6000&run=7ef4a519-3637-4814-9ae3-88406d0704d1"
+            },
+            "loadEvents": 0,
+            "readyState": "complete",
+            "resourceLoaded": false,
+            "resourceStatus": "error",
+            "resourceTiming": [
+              {
+                "decodedBodySize": 0,
+                "responseEnd": 861.5,
+                "startTime": 214.1000000089407,
+                "transferSize": 0,
+                "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg?delay=6000&run=7ef4a519-3637-4814-9ae3-88406d0704d1"
+              }
+            ],
+            "runId": "7ef4a519-3637-4814-9ae3-88406d0704d1",
+            "url": "https://baobaomi900901.github.io/xpath/stop-load-test/loading.html?delay=6000&run=7ef4a519-3637-4814-9ae3-88406d0704d1",
+            "version": 1
+          }
+        }
+      },
+      "elapsed_ms": 1373.4
+    },
+    {
+      "case_id": "cleanup_worker_button",
+      "status": "PASS",
+      "expected": "点击库清理按钮，仅注销本目录注册；原有注册按基线恢复",
+      "actual": {
+        "click_return": null,
+        "state": {
+          "controller": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js",
+          "delay": "30",
+          "error": "",
+          "readyState": "complete",
+          "state": "removed",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html"
+        },
+        "before": [
+          {
+            "activeState": "activated",
+            "scope": "https://baobaomi900901.github.io/xpath/stop-load-test/",
+            "scriptURL": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js"
+          }
+        ],
+        "after": [],
+        "baseline_registration_restored": false
+      },
+      "elapsed_ms": 516.6
+    },
+    {
+      "case_id": "closed_page_error",
+      "status": "PASS",
+      "expected": "页面关闭后抛 ActionError：网页对象已失效 / stale_page_reference",
+      "actual": {
+        "exception": "ActionError",
+        "message": "网页对象已失效",
+        "trace": "stale_page_reference"
+      },
+      "elapsed_ms": 109.9
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面/库、清除临时目录，复核标签基线",
+      "actual": {
+        "errors": [],
+        "own_tabs_closed": true,
+        "temporary_copy_removed": true,
+        "worker_cleaned": true,
+        "tab_count": "4->4",
+        "external_added": [],
+        "external_removed": []
+      },
+      "elapsed_ms": 170.6
+    }
+  ],
+  "exit_code": 0
+}

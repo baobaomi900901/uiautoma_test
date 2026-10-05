@@ -1,0 +1,103 @@
+{
+  "api": "uiautoma.web.WebBrowser.stop_load",
+  "lifecycle": "READY_FOR_LIVE",
+  "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "start_button": "web靶场_停止加载测试_开始测试_按钮",
+  "cleanup_button": "web靶场_停止加载测试_清理测试环境_按钮",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self) -> 'None'",
+    "docstring": "停止页面加载。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效或停止加载失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\browser.py",
+    "source_line": 220,
+    "source": "    def stop_load(self) -> None:\n        \"\"\"停止页面加载。\n\n        Returns:\n            ``None``。\n\n        Raises:\n            ActionError: 网页对象已失效或停止加载失败。\n        \"\"\"\n\n        self._runtime_client().web_browser_stop_load(\n            **self._browser_params(timeout_ms=2000),\n        ).raise_for_error()\n",
+    "implementation_chain": "WebBrowser.stop_load → web.browser.stop_load → ActionService.web_browser_stop_load → stopTabLoading → CDP Page.stopLoading",
+    "script": "web/test_web_browser_stop_load.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名、docstring 与入口源码均匹配只读快照；返回 None",
+      "actual": "(self) -> 'None'",
+      "elapsed_ms": 0.9
+    },
+    {
+      "case_id": "invalid_positional",
+      "status": "PASS",
+      "expected": "多余位置参数由 Python 抛 TypeError，未连接 Runtime",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebBrowser.stop_load() takes 1 positional argument but 2 were given",
+        "runtime_called": false
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_keyword",
+      "status": "PASS",
+      "expected": "不存在的 timeout 参数由 Python 抛 TypeError，未连接 Runtime",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebBrowser.stop_load() got an unexpected keyword argument 'timeout'",
+        "runtime_called": false
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "library_targets",
+      "status": "PASS",
+      "expected": "元素库包含两个唯一 Web 按钮",
+      "actual": {
+        "web靶场_停止加载测试_清理测试环境_按钮": [
+          "88b12426-579f-415f-9a78-998bac75986a"
+        ],
+        "web靶场_停止加载测试_开始测试_按钮": [
+          "3130700c-d1ff-43be-86b5-bc586c58b3ee"
+        ]
+      },
+      "elapsed_ms": 0.4
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "连接 dev Runtime，创建本次页面与临时库，记录标签基线",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/index.html",
+        "baseline_tabs": 4,
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\stop_load\\bab145631d0d4b48bf31f5ae943c3854\\library",
+        "baseline_registration": null
+      },
+      "elapsed_ms": 1163.6
+    },
+    {
+      "case_id": "fixture_setup",
+      "status": "BLOCKED",
+      "expected": "靶场准备成功；两个库元素映射到正确按钮；默认 30 秒",
+      "actual": {
+        "reason": "靶场准备失败：{'delay': '30', 'error': '测试环境准备超时，请重新打开准备页。', 'readyState': 'complete', 'state': 'error', 'url': 'https://baobaomi900901.github.io/xpath/stop-load-test/index.html'}",
+        "exception": "MissingScene"
+      },
+      "elapsed_ms": 9749.7
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭本次页面/库、清除临时目录，复核标签基线",
+      "actual": {
+        "errors": [],
+        "own_tabs_closed": true,
+        "temporary_copy_removed": true,
+        "worker_cleaned": true,
+        "tab_count": "4->4",
+        "external_added": [],
+        "external_removed": []
+      },
+      "elapsed_ms": 1090.7
+    }
+  ],
+  "exit_code": 2
+}

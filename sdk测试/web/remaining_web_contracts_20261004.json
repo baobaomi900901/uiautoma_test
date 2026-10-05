@@ -233,8 +233,8 @@
       "source_file": "sdk\\src\\uiautoma\\web\\browser.py",
       "source_line": 220,
       "source": "    def stop_load(self) -> None:\n        \"\"\"停止页面加载。\n\n        Returns:\n            ``None``。\n\n        Raises:\n            ActionError: 网页对象已失效或停止加载失败。\n        \"\"\"\n\n        self._runtime_client().web_browser_stop_load(\n            **self._browser_params(timeout_ms=2000),\n        ).raise_for_error()\n",
-      "implementation_chain": "SDK 直接抛 UnsupportedActionError；无正向实现链",
-      "script": "web/test_web_browser_stop_load_20261004.py"
+      "implementation_chain": "WebBrowser.stop_load → web.browser.stop_load → ActionService.web_browser_stop_load → stopTabLoading → CDP Page.stopLoading",
+      "script": "web/test_web_browser_stop_load.py"
     },
     "browser.extract_table": {
       "signature": "(self, table_selector: 'object', *, exclude_thead: 'bool' = False, timeout: 'float' = 20) -> 'list[list[str]]'",

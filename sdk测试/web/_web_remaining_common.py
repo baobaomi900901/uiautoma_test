@@ -40,7 +40,6 @@ RESET = 'web靶场_表单测试_原生_重置'
 ROOT_JS = "document.querySelector('#iframe-shadow-form').contentDocument.querySelector('#form-shadow-host').shadowRoot"
 SKIPS = {
     'web.set_user_environment_fingerprint': '当前源码直接抛 UnsupportedActionError，未实现指纹浏览器环境',
-    'browser.stop_load': '缺少加载持续不完成的现有靶场；完整加载页不能验证中止待处理导航',
     'browser.extract_table': '当前源码直接抛 UnsupportedActionError，未实现表格提取',
     'element.extract_table': '当前源码直接抛 UnsupportedActionError，未实现表格提取',
     'element.get_basetable_value': '当前源码直接抛 UnsupportedActionError，未实现基础表格提取',
@@ -50,7 +49,7 @@ IMPLEMENTED = ['element.name','element.get_selected_item','element.set_attribute
     'element.get_anchor_viewport_position','element.screenshot','element.is_checked','element.is_enabled',
     'element.is_displayed','element.execute_javascript','element.scroll_to','element.get_scroll',
     'element.drag_to','element.drag_to_by_cdp','element.upload','element.download','element.highlight',
-    'browser.go_back','web.handle_upload_dialog','web.auto_handle_popup','web.remove_all_auto_handle_popup']
+    'browser.go_back','browser.stop_load','web.handle_upload_dialog','web.auto_handle_popup','web.remove_all_auto_handle_popup']
 APIS = IMPLEMENTED + list(SKIPS)
 CONTRACT_FILE = ROOT / 'web' / 'remaining_web_contracts_20261004.json'
 
@@ -619,6 +618,10 @@ CASES={'name':name,'get_selected_item':selected,'set_attribute':attributes,'get_
 
 
 def run_api(api,contract_only=False,progress=False):
+    if api == 'browser.stop_load':
+        from test_web_browser_stop_load import run, URL
+        return run(argparse.Namespace(contract_only=contract_only, json=not progress,
+            target_url=TARGET_OVERRIDE or URL, element_library=LIBRARY))
     if api == 'web.remove_all_auto_handle_popup':
         from test_web_remove_all_auto_handle_popup import run, URL, OPEN_BUTTON, CLOSE_BUTTON, MODAL
         return run(argparse.Namespace(contract_only=contract_only, json=not progress,

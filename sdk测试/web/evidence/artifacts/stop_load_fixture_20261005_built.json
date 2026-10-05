@@ -1,0 +1,133 @@
+{
+  "result": "PASS",
+  "checks": [
+    {
+      "case": "worker_ready",
+      "result": "PASS"
+    },
+    {
+      "case": "pending_resource_and_live_js",
+      "result": "PASS",
+      "before": {
+        "version": 1,
+        "runId": "758639ed-604d-4c94-8bf8-0f4fa3a97e9b",
+        "delayMs": 30000,
+        "controlled": true,
+        "heartbeat": 2,
+        "loadEvents": 0,
+        "resourceStatus": "pending",
+        "resourceLoaded": false,
+        "events": [
+          {
+            "type": "resource_requested",
+            "atMs": 1
+          },
+          {
+            "type": "dom_content_loaded",
+            "atMs": 1
+          },
+          {
+            "type": "worker_request_started",
+            "atMs": 37
+          }
+        ],
+        "readyState": "interactive",
+        "elapsedMs": 608
+      }
+    },
+    {
+      "case": "stop_loading_cancels_request",
+      "result": "PASS",
+      "after": {
+        "version": 1,
+        "runId": "758639ed-604d-4c94-8bf8-0f4fa3a97e9b",
+        "delayMs": 30000,
+        "controlled": true,
+        "heartbeat": 3,
+        "loadEvents": 0,
+        "resourceStatus": "error",
+        "resourceLoaded": false,
+        "events": [
+          {
+            "type": "resource_requested",
+            "atMs": 1
+          },
+          {
+            "type": "dom_content_loaded",
+            "atMs": 1
+          },
+          {
+            "type": "worker_request_started",
+            "atMs": 37
+          },
+          {
+            "type": "resource_error",
+            "atMs": 819
+          }
+        ],
+        "readyState": "complete",
+        "elapsedMs": 944
+      },
+      "failures": [
+        {
+          "requestId": "104652.13",
+          "timestamp": 75468.553991,
+          "type": "Image",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "url": "http://127.0.0.1:12803/xpath/stop-load-test/slow.svg?delay=30000&run=758639ed-604d-4c94-8bf8-0f4fa3a97e9b"
+        }
+      ]
+    },
+    {
+      "case": "without_stop_resource_completes",
+      "result": "PASS",
+      "natural": {
+        "version": 1,
+        "runId": "natural-case",
+        "delayMs": 1200,
+        "controlled": true,
+        "heartbeat": 4,
+        "loadEvents": 1,
+        "resourceStatus": "loaded",
+        "resourceLoaded": true,
+        "events": [
+          {
+            "type": "resource_requested",
+            "atMs": 0
+          },
+          {
+            "type": "dom_content_loaded",
+            "atMs": 1
+          },
+          {
+            "type": "worker_request_started",
+            "atMs": 5
+          },
+          {
+            "type": "worker_response_released",
+            "atMs": 1224
+          },
+          {
+            "type": "resource_load",
+            "atMs": 1229
+          },
+          {
+            "type": "window_load",
+            "atMs": 1229
+          }
+        ],
+        "readyState": "complete",
+        "elapsedMs": 1233
+      }
+    },
+    {
+      "case": "scope_isolation",
+      "result": "PASS"
+    },
+    {
+      "case": "unregister_own_worker",
+      "result": "PASS"
+    }
+  ]
+}

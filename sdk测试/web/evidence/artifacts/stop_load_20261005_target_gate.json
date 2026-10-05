@@ -1,0 +1,71 @@
+{
+  "api": "uiautoma.web.WebBrowser.stop_load",
+  "lifecycle": "READY_FOR_LIVE",
+  "url": "https://baobaomi900901.github.io/xpath/slow-load-30s.html",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self) -> 'None'",
+    "docstring": "停止页面加载。\n\nReturns:\n    ``None``。\n\nRaises:\n    ActionError: 网页对象已失效或停止加载失败。",
+    "source_file": "sdk\\src\\uiautoma\\web\\browser.py",
+    "source_line": 220,
+    "source": "    def stop_load(self) -> None:\n        \"\"\"停止页面加载。\n\n        Returns:\n            ``None``。\n\n        Raises:\n            ActionError: 网页对象已失效或停止加载失败。\n        \"\"\"\n\n        self._runtime_client().web_browser_stop_load(\n            **self._browser_params(timeout_ms=2000),\n        ).raise_for_error()\n",
+    "implementation_chain": "WebBrowser.stop_load → web.browser.stop_load → ActionService.web_browser_stop_load → stopTabLoading → CDP Page.stopLoading",
+    "script": "web/test_web_browser_stop_load.py"
+  },
+  "target_sources": [],
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "仅 self 参数、返回 None，与只读源码快照一致",
+      "actual": "(self) -> 'None'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "invalid_positional",
+      "status": "PASS",
+      "expected": "多余位置参数由 Python 抛 TypeError，不连接 Runtime",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebBrowser.stop_load() takes 1 positional argument but 2 were given",
+        "runtime_called": false
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_keyword",
+      "status": "PASS",
+      "expected": "不存在的 timeout 参数由 Python 抛 TypeError，不连接 Runtime",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebBrowser.stop_load() got an unexpected keyword argument 'timeout'",
+        "runtime_called": false
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "target_source",
+      "status": "FAIL",
+      "expected": "只读获取 HTML 与 hang.js，确认线上同步死循环",
+      "actual": {
+        "exception": "URLError",
+        "message": "<urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>"
+      },
+      "elapsed_ms": 2131.1
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "未创建浏览器标签、元素库或 Runtime 连接，无本次 SDK 资源需清理",
+      "actual": {
+        "runtime_connected": false,
+        "browser_tabs_created": 0,
+        "library_opened": false,
+        "resources_created": false
+      },
+      "elapsed_ms": 0.0
+    }
+  ],
+  "exit_code": 1
+}

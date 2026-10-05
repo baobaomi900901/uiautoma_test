@@ -1,0 +1,12 @@
+baseline 4
+prepare "ready"
+mapping {"name": "web靶场_停止加载测试_开始测试_按钮", "id": "start-test"}
+mapping {"name": "web靶场_停止加载测试_清理测试环境_按钮", "id": "cleanup-worker"}
+worker {"controller": "https://baobaomi900901.github.io/xpath/stop-load-test/sw.js", "scopes": ["https://baobaomi900901.github.io/xpath/stop-load-test/"]}
+final_tabs 4
+Traceback (most recent call last):
+  File "D:\code\元素库\sdk测试\.pytest_tmp\stop_load_probe\probe.py", line 44, in <module>
+    before = wait('window.stopLoadTest?.getState()', lambda x:x and x['heartbeat']>=2)
+  File "D:\code\元素库\sdk测试\.pytest_tmp\stop_load_probe\probe.py", line 30, in wait
+    raise RuntimeError(repr(value))
+RuntimeError: None

@@ -1,0 +1,133 @@
+{
+  "result": "PASS",
+  "checks": [
+    {
+      "case": "worker_ready",
+      "result": "PASS"
+    },
+    {
+      "case": "pending_resource_and_live_js",
+      "result": "PASS",
+      "before": {
+        "version": 1,
+        "runId": "abort-case",
+        "delayMs": 30000,
+        "controlled": true,
+        "heartbeat": 2,
+        "loadEvents": 0,
+        "resourceStatus": "pending",
+        "resourceLoaded": false,
+        "events": [
+          {
+            "type": "resource_requested",
+            "atMs": 1
+          },
+          {
+            "type": "dom_content_loaded",
+            "atMs": 1
+          },
+          {
+            "type": "worker_request_started",
+            "atMs": 3
+          }
+        ],
+        "readyState": "interactive",
+        "elapsedMs": 515
+      }
+    },
+    {
+      "case": "stop_loading_cancels_request",
+      "result": "PASS",
+      "after": {
+        "version": 1,
+        "runId": "abort-case",
+        "delayMs": 30000,
+        "controlled": true,
+        "heartbeat": 3,
+        "loadEvents": 0,
+        "resourceStatus": "error",
+        "resourceLoaded": false,
+        "events": [
+          {
+            "type": "resource_requested",
+            "atMs": 1
+          },
+          {
+            "type": "dom_content_loaded",
+            "atMs": 1
+          },
+          {
+            "type": "worker_request_started",
+            "atMs": 3
+          },
+          {
+            "type": "resource_error",
+            "atMs": 763
+          }
+        ],
+        "readyState": "complete",
+        "elapsedMs": 771
+      },
+      "failures": [
+        {
+          "requestId": "100368.13",
+          "timestamp": 75308.890226,
+          "type": "Image",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "url": "http://127.0.0.1:4124/xpath/stop-load-test/slow.svg?delay=30000&run=abort-case"
+        }
+      ]
+    },
+    {
+      "case": "without_stop_resource_completes",
+      "result": "PASS",
+      "natural": {
+        "version": 1,
+        "runId": "natural-case",
+        "delayMs": 1200,
+        "controlled": true,
+        "heartbeat": 4,
+        "loadEvents": 1,
+        "resourceStatus": "loaded",
+        "resourceLoaded": true,
+        "events": [
+          {
+            "type": "resource_requested",
+            "atMs": 1
+          },
+          {
+            "type": "dom_content_loaded",
+            "atMs": 1
+          },
+          {
+            "type": "worker_request_started",
+            "atMs": 6
+          },
+          {
+            "type": "worker_response_released",
+            "atMs": 1218
+          },
+          {
+            "type": "resource_load",
+            "atMs": 1223
+          },
+          {
+            "type": "window_load",
+            "atMs": 1223
+          }
+        ],
+        "readyState": "complete",
+        "elapsedMs": 1227
+      }
+    },
+    {
+      "case": "scope_isolation",
+      "result": "PASS"
+    },
+    {
+      "case": "unregister_own_worker",
+      "result": "PASS"
+    }
+  ]
+}

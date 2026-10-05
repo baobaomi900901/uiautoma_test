@@ -1,0 +1,16 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.goto: net::ERR_HTTP_RESPONSE_CODE_FAILURE at http://127.0.0.1:3893/xpath/stop-load-test/index.html
+Call log:
+  - navigating to "http://127.0.0.1:3893/xpath/stop-load-test/index.html", waiting until "load"
+
+    at D:\code\xpath\WEB\tests\stop-load-test.mjs:35:31 {
+  log: [
+    '  - navigating to "http://127.0.0.1:3893/xpath/stop-load-test/index.html", waiting until "load"'
+  ],
+  name: 'Error'
+}
+
+Node.js v22.21.1

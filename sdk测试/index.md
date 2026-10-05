@@ -2,7 +2,7 @@
 
 API 测试记录统一使用 `DRAFT`、`READY_FOR_LIVE`、`VERIFIED`、`SKIPPED`；含义与门槛见[实测手册第 1 节](web/web%20api%20实测手册.md#1-结论口径状态模型与生命周期)。`SKIPPED` 不表示功能通过。
 
-最新增量复测（2026-10-05）：`remove_all_auto_handle_popup()` 最后连续 3 轮 19/19 PASS，清理标签 4→4；保留此前外部新增标签造成的一轮清理 FAIL；[证据](web/evidence/remove_all_auto_handle_popup_20261005.md)。`auto_handle_popup()` 按指定打开/弹窗/关闭元素连续 3 轮 19/19 PASS，用户另行复测 19/19 PASS、清理标签 4→4；[证据](web/evidence/auto_handle_popup_20261005.md)。`handle_javascript_dialog()` 按指定三个库按钮连续 3 轮 16/16 PASS；[证据](web/evidence/handle_javascript_dialog_20261005.md)。`handle_upload_dialog()` 按指定单/多文件元素连续 3 轮 10/10 PASS；[证据](web/evidence/web_handle_upload_dialog_20261005.md)。合并上传、自动弹窗及规则移除复验后的原 29 项状态为 20 VERIFIED、1 失败、8 SKIPPED。
+最新增量复测（2026-10-05）：`stop_load()` 最后连续 3 轮 18/18 PASS，清理标签 4→4；首轮准备 BLOCKED 与三轮准备恢复记录保留；[证据](web/evidence/browser_stop_load_20261005.md)。`remove_all_auto_handle_popup()` 最后连续 3 轮 19/19 PASS，清理标签 4→4；保留此前外部新增标签造成的一轮清理 FAIL；[证据](web/evidence/remove_all_auto_handle_popup_20261005.md)。`auto_handle_popup()` 按指定打开/弹窗/关闭元素连续 3 轮 19/19 PASS，用户另行复测 19/19 PASS、清理标签 4→4；[证据](web/evidence/auto_handle_popup_20261005.md)。`handle_javascript_dialog()` 按指定三个库按钮连续 3 轮 16/16 PASS；[证据](web/evidence/handle_javascript_dialog_20261005.md)。`handle_upload_dialog()` 按指定单/多文件元素连续 3 轮 10/10 PASS；[证据](web/evidence/web_handle_upload_dialog_20261005.md)。合并上传、自动弹窗、规则移除及停载复验后的原 29 项状态为 21 VERIFIED、1 READY_FOR_LIVE（存在 FAIL）、7 SKIPPED。
 
 历史批次（2026-10-04）：29 项中 17 VERIFIED、1 失败、11 SKIPPED；详见 [剩余 Web API 实测汇总](web/evidence/remaining_web_20261004.md)。
 
@@ -351,7 +351,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.screenshot()` | `VERIFIED`（21/21；2026-09-15；产物字节独立解析确证尺寸） | `web/test_web_browser_screenshot.py` | `web/evidence/browser_screenshot.md` |
 | `uiautoma.web.WebBrowser.screenshot_to_clipboard()` | `VERIFIED`（23/23；2026-09-15；ctypes 独立读 CF_DIB + 与文件截图三角像素比对） | `web/test_web_browser_screenshot_to_clipboard.py` | `web/evidence/screenshot_to_clipboard.md` |
 | `uiautoma.web.WebElement.screenshot_to_clipboard()` | `VERIFIED`（18/18；2026-09-15；ctypes 独立读 CF_DIB + 活矩形裁切偏移扫描验取景，Issue #20 在 dpr=1 未复现） | `web/test_web_element_screenshot_to_clipboard.py` | `web/evidence/element_screenshot_to_clipboard.md` |
-| `uiautoma.web.WebBrowser.stop_load()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_browser_stop_load_20261004.py](web/test_web_browser_stop_load_20261004.py) | [web/evidence/browser_stop_load_20261004.md](web/evidence/browser_stop_load_20261004.md) |
+| `uiautoma.web.WebBrowser.stop_load()` | `VERIFIED`（2026-10-05；最后连续 3 轮 18/18 PASS；准备恢复与首轮 BLOCKED 已记录） | [web/test_web_browser_stop_load.py](web/test_web_browser_stop_load.py) | [web/evidence/browser_stop_load_20261005.md](web/evidence/browser_stop_load_20261005.md) |
 | `uiautoma.web.WebBrowser.wait_appear()` | `VERIFIED`（31/31 + 1 边界；2026-09-15；连续 3 次全绿；canonical 为靶场自计时页 delayed-element.html，测试侧零调度） | `web/test_web_browser_wait_appear.py` | `web/evidence/wait_appear.md` |
 | `uiautoma.web.WebBrowser.wait_disappear()` | `VERIFIED`（32/32 无边界；2026-09-15；连续 3 次全绿；含「隐藏≠消失」与 React 销毁节点即判消失） | `web/test_web_browser_wait_disappear.py` | `web/evidence/wait_disappear.md` |
 | `uiautoma.web.WebBrowser.http_request()` | `VERIFIED`（41/41；2026-09-18 新基线复跑；地址形态探测已删除，`connect_timeout` 语义改由回显服务 `/delay` 覆盖） | `web/test_web_browser_http_request.py` | `web/evidence/http_request.md` |
