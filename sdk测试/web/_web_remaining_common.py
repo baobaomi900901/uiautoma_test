@@ -39,7 +39,6 @@ ANT_MULTI = 'web靶场_表单测试_ant_select多选'
 RESET = 'web靶场_表单测试_原生_重置'
 ROOT_JS = "document.querySelector('#iframe-shadow-form').contentDocument.querySelector('#form-shadow-host').shadowRoot"
 SKIPS = {
-    'web.remove_all_auto_handle_popup': 'keys-click-test 的 DOM 弹窗与关闭按钮已具备；尚未独立验收规则移除后弹窗保持打开的真实行为',
     'web.set_user_environment_fingerprint': '当前源码直接抛 UnsupportedActionError，未实现指纹浏览器环境',
     'browser.stop_load': '缺少加载持续不完成的现有靶场；完整加载页不能验证中止待处理导航',
     'browser.extract_table': '当前源码直接抛 UnsupportedActionError，未实现表格提取',
@@ -51,7 +50,7 @@ IMPLEMENTED = ['element.name','element.get_selected_item','element.set_attribute
     'element.get_anchor_viewport_position','element.screenshot','element.is_checked','element.is_enabled',
     'element.is_displayed','element.execute_javascript','element.scroll_to','element.get_scroll',
     'element.drag_to','element.drag_to_by_cdp','element.upload','element.download','element.highlight',
-    'browser.go_back','web.handle_upload_dialog','web.auto_handle_popup']
+    'browser.go_back','web.handle_upload_dialog','web.auto_handle_popup','web.remove_all_auto_handle_popup']
 APIS = IMPLEMENTED + list(SKIPS)
 CONTRACT_FILE = ROOT / 'web' / 'remaining_web_contracts_20261004.json'
 
@@ -620,6 +619,12 @@ CASES={'name':name,'get_selected_item':selected,'set_attribute':attributes,'get_
 
 
 def run_api(api,contract_only=False,progress=False):
+    if api == 'web.remove_all_auto_handle_popup':
+        from test_web_remove_all_auto_handle_popup import run, URL, OPEN_BUTTON, CLOSE_BUTTON, MODAL
+        return run(argparse.Namespace(contract_only=contract_only, json=not progress,
+            element_library=LIBRARY, target_url=TARGET_OVERRIDE or URL,
+            open_button=OPEN_BUTTON, close_button=CLOSE_BUTTON, modal=MODAL,
+            control_observe_seconds=1, observe_seconds=3, wait_timeout=8))
     if api == 'web.auto_handle_popup':
         from test_web_auto_handle_popup import run, URL, OPEN_BUTTON, CLOSE_BUTTON, MODAL
         return run(argparse.Namespace(contract_only=contract_only, json=not progress,
@@ -692,10 +697,11 @@ def main(default_api=None):
         print('UIAutoma Web API 测试\nAPI     : '+owner[kind]+'.'+method+'\n页面    : '+str(report['url'] or '场景条件不满足，已跳过'))
         for i,r in enumerate(report['results'],1):
             color='\x1b[92m' if r['status']=='PASS' else '\x1b[91m' if r['status']=='FAIL' else '\x1b[93m'
-            label={'PASS':'通过','FAIL':'失败','KNOWN':'已知/跳过'}[r['status']]
+            label={'PASS':'通过','FAIL':'失败','KNOWN':'已知/跳过','BLOCKED':'阻塞'}[r['status']]
             print(f"{i:02}/{len(report['results']):02} {color}[{label}]\x1b[0m {r['case_id']} 期望 {r['expected']}；实测 {r['actual']}；{r['elapsed_ms']}ms")
         passed=sum(r['status']=='PASS' for r in report['results']);known=sum(r['status']=='KNOWN' for r in report['results'])
-        print(f"{report['lifecycle']} · {passed}/{len(report['results'])} 通过 · {known} 已知/跳过 · 退出码 {code}")
+        blocked=sum(r['status']=='BLOCKED' for r in report['results'])
+        print(f"{report['lifecycle']} · {passed}/{len(report['results'])} 通过 · {known} 已知/跳过 · {blocked} 阻塞 · 退出码 {code}")
     return code
 
 

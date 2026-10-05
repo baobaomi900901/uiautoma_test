@@ -1,0 +1,359 @@
+{
+  "api": "uiautoma.web.remove_all_auto_handle_popup",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "open_button": "web靶场_打开遮罩弹窗_按钮",
+  "close_button": "web靶场_模态弹窗_关闭按钮",
+  "modal": "web靶场_模态弹窗",
+  "observation_seconds": 3,
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "() -> 'None'",
+    "docstring": "移除当前连接注册的所有网页弹窗自动处理规则。\n\nReturns:\n    ``None``。",
+    "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+    "source_line": 488,
+    "source": "def remove_all_auto_handle_popup() -> None:\n    \"\"\"移除当前连接注册的所有网页弹窗自动处理规则。\n\n    Returns:\n        ``None``。\n\n    \"\"\"\n    client = get_client()\n    if client._web_popup_owner:\n        client._run_web_browser_value(\"web.popup.remove_all\", owner=client._web_popup_owner)\n        client._web_popup_owner = \"\"\n",
+    "implementation_chain": "web.popup.remove_all → ActionService.web_popup_remove_all → PopupRules.remove",
+    "script": "web/test_web_remove_all_auto_handle_popup.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "expected": "无参数签名与只读源码快照一致，返回注解为 None",
+      "status": "PASS",
+      "actual": "() -> 'None'",
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "library_targets",
+      "expected": "库中存在打开按钮、模态弹窗与关闭按钮",
+      "status": "PASS",
+      "actual": {
+        "open_button": "web靶场_打开遮罩弹窗_按钮",
+        "close_button": "web靶场_模态弹窗_关闭按钮",
+        "modal": "web靶场_模态弹窗"
+      },
+      "elapsed_ms": 0.5
+    },
+    {
+      "case_id": "environment",
+      "expected": "Runtime、Chrome、靶场、临时库与标签基线可用",
+      "status": "PASS",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\49b85f38d9a6445c89347f0a302e52c9\\library",
+        "baseline_tabs": 4
+      },
+      "elapsed_ms": 1207.1
+    },
+    {
+      "case_id": "empty_rules_remove",
+      "expected": "没有规则时返回 None",
+      "status": "PASS",
+      "actual": {
+        "return": null
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "control_without_rule",
+      "expected": "核对三元素映射，无规则时弹窗保持打开，库关闭按钮可关闭",
+      "status": "PASS",
+      "actual": {
+        "open_id": "btn-open-occlusion-modal",
+        "modal_mapping": {
+          "tag": "DIV",
+          "title": "遮挡测试弹窗"
+        },
+        "close_mapping": {
+          "is_modal_close": true,
+          "tag": "BUTTON",
+          "title": "遮挡测试弹窗"
+        },
+        "without_rule": {
+          "close_clicks": [],
+          "close_count": 1,
+          "visible": true
+        },
+        "manual_close": {
+          "close_clicks": [
+            {
+              "at_ms": 2248.5,
+              "close_count": 1,
+              "visible": true
+            }
+          ],
+          "close_count": 1,
+          "visible": false
+        }
+      },
+      "elapsed_ms": 1945.8
+    },
+    {
+      "case_id": "before_remove_auto",
+      "expected": "先注册并绑定规则，确认自动关闭事件一次且弹窗隐藏",
+      "status": "PASS",
+      "actual": {
+        "registration": {
+          "return": null,
+          "close_button": "web靶场_模态弹窗_关闭按钮",
+          "argument_type": "str"
+        },
+        "page": {
+          "same_owned_page": true,
+          "page_id": "770b71d7114b4854"
+        },
+        "automatic_close": {
+          "close_clicks": [
+            {
+              "at_ms": 3776.29999999702,
+              "close_count": 1,
+              "visible": true
+            }
+          ],
+          "close_count": 1,
+          "visible": false
+        }
+      },
+      "elapsed_ms": 1464.6
+    },
+    {
+      "case_id": "remove_registered",
+      "expected": "移除已生效的规则，返回 None",
+      "status": "PASS",
+      "actual": {
+        "return": null
+      },
+      "elapsed_ms": 0.5
+    },
+    {
+      "case_id": "same_page_after_remove",
+      "expected": "原页面弹窗持续可见，自动关闭点击为零",
+      "status": "PASS",
+      "actual": {
+        "close_clicks": [],
+        "close_count": 1,
+        "visible": true,
+        "observed_seconds": 3.064,
+        "samples": 29
+      },
+      "elapsed_ms": 3464.5
+    },
+    {
+      "case_id": "idempotent_remove_open",
+      "expected": "重复移除两次均返回 None，已打开弹窗仍保持打开",
+      "status": "PASS",
+      "actual": {
+        "removals": [
+          {
+            "return": null
+          },
+          {
+            "return": null
+          }
+        ],
+        "still_open": {
+          "close_clicks": [],
+          "close_count": 1,
+          "visible": true,
+          "observed_seconds": 3.083,
+          "samples": 29
+        }
+      },
+      "elapsed_ms": 3126.1
+    },
+    {
+      "case_id": "manual_close_same_page",
+      "expected": "显式点击库关闭按钮后弹窗才隐藏",
+      "status": "PASS",
+      "actual": {
+        "click_return": null,
+        "close_clicks": [
+          {
+            "at_ms": 10807.70000000298,
+            "close_count": 1,
+            "visible": true
+          }
+        ],
+        "close_count": 1,
+        "visible": false
+      },
+      "elapsed_ms": 724.6
+    },
+    {
+      "case_id": "reopen_after_remove",
+      "expected": "同页再次打开仍不自动关闭，随后显式关闭",
+      "status": "PASS",
+      "actual": {
+        "after_remove": {
+          "close_clicks": [],
+          "close_count": 1,
+          "visible": true,
+          "observed_seconds": 3.074,
+          "samples": 29
+        },
+        "manual_close": {
+          "click_return": null,
+          "close_clicks": [
+            {
+              "at_ms": 15661.5,
+              "close_count": 1,
+              "visible": true
+            }
+          ],
+          "close_count": 1,
+          "visible": false
+        }
+      },
+      "elapsed_ms": 4589.2
+    },
+    {
+      "case_id": "create_after_remove",
+      "expected": "关闭本次旧标签，在无规则状态创建本次新标签",
+      "status": "PASS",
+      "actual": {
+        "closed_page_id": "770b71d7114b4854",
+        "new_page_id": "d2290d73794b4ae6"
+      },
+      "elapsed_ms": 643.8
+    },
+    {
+      "case_id": "new_page_after_remove",
+      "expected": "新页面弹窗持续可见，自动关闭点击为零",
+      "status": "PASS",
+      "actual": {
+        "close_clicks": [],
+        "close_count": 1,
+        "visible": true,
+        "observed_seconds": 3.08,
+        "samples": 29
+      },
+      "elapsed_ms": 3512.6
+    },
+    {
+      "case_id": "remove_registered_before_attach",
+      "expected": "注册未绑定的新规则后移除，已有弹窗不被该 API 关闭",
+      "status": "PASS",
+      "actual": {
+        "registration": {
+          "return": null,
+          "close_button": "web靶场_模态弹窗_关闭按钮",
+          "argument_type": "str"
+        },
+        "remove": {
+          "return": null
+        },
+        "still_open": {
+          "close_clicks": [],
+          "close_count": 1,
+          "visible": true,
+          "observed_seconds": 3.075,
+          "samples": 29
+        }
+      },
+      "elapsed_ms": 3104.0
+    },
+    {
+      "case_id": "manual_close_new_page",
+      "expected": "显式点击新页库关闭按钮后弹窗隐藏",
+      "status": "PASS",
+      "actual": {
+        "click_return": null,
+        "close_clicks": [
+          {
+            "at_ms": 7356.29999999702,
+            "close_count": 1,
+            "visible": true
+          }
+        ],
+        "close_count": 1,
+        "visible": false
+      },
+      "elapsed_ms": 481.4
+    },
+    {
+      "case_id": "reregister_restore_auto",
+      "expected": "规则可重新注册为 Web Selector，绑定后自动关闭恢复",
+      "status": "PASS",
+      "actual": {
+        "registration": {
+          "return": null,
+          "close_button": "web靶场_模态弹窗_关闭按钮",
+          "argument_type": "Selector"
+        },
+        "page": {
+          "same_owned_page": true,
+          "page_id": "d2290d73794b4ae6"
+        },
+        "automatic_close": {
+          "close_clicks": [
+            {
+              "at_ms": 8863,
+              "close_count": 1,
+              "visible": true
+            }
+          ],
+          "close_count": 1,
+          "visible": false
+        }
+      },
+      "elapsed_ms": 1471.5
+    },
+    {
+      "case_id": "second_remove",
+      "expected": "再次移除重建的规则，返回 None",
+      "status": "PASS",
+      "actual": {
+        "return": null
+      },
+      "elapsed_ms": 0.4
+    },
+    {
+      "case_id": "after_second_remove",
+      "expected": "第二次移除后弹窗仍保持打开，随后显式关闭",
+      "status": "PASS",
+      "actual": {
+        "after_remove": {
+          "close_clicks": [],
+          "close_count": 1,
+          "visible": true,
+          "observed_seconds": 3.064,
+          "samples": 24
+        },
+        "manual_close": {
+          "click_return": null,
+          "close_clicks": [
+            {
+              "at_ms": 13020.79999999702,
+              "close_count": 1,
+              "visible": true
+            }
+          ],
+          "close_count": 1,
+          "visible": false
+        }
+      },
+      "elapsed_ms": 4193.8
+    },
+    {
+      "case_id": "cleanup",
+      "expected": "移除本连接规则/观察器，关闭本次页面和库，复核临时目录与标签",
+      "status": "PASS",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "4->4",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": [],
+        "rule_observer_cleanup_errors": []
+      },
+      "elapsed_ms": 257.7
+    }
+  ],
+  "exit_code": 0
+}

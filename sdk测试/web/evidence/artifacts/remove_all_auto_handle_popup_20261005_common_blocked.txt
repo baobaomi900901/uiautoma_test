@@ -1,0 +1,6 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.remove_all_auto_handle_popup
+页面    : https://baobaomi900901.github.io/xpath/#/keys-click-test
+01/02 [92m[通过][0m api_contract 期望 无参数签名与只读源码快照一致，返回注解为 None；实测 () -> 'None'；0.1ms
+02/02 [93m[阻塞][0m library_targets 期望 库中存在打开按钮、模态弹窗与关闭按钮；实测 {'reason': '元素库不存在：D:\\code\\元素库\\sdk测试\\.pytest_tmp\\remove_popup_missing_library_sentinel\\elements.json'}；0.1ms
+READY_FOR_LIVE · 1/2 通过 · 0 已知/跳过 · 1 阻塞 · 退出码 2

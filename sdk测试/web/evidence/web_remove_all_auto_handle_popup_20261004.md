@@ -1,5 +1,7 @@
 # `uiautoma.web.remove_all_auto_handle_popup()` 验证证据（2026-10-04）
 
+> 最新验收：2026-10-05 已按指定真实 DOM Modal 与库关闭按钮完成规则移除，最后连续三轮 19/19 PASS、清理 4→4；见[新证据](remove_all_auto_handle_popup_20261005.md)。下文保留当时条件不足的历史结论及原始输出。
+
 ## 用途与合同
 
 移除当前连接注册的所有网页弹窗自动处理规则。
@@ -45,12 +47,12 @@ remove_all_auto_handle_popup() -> None
 
 直接跳过，没有创建页面、库副本或弹窗。
 
-脚本：[test_web_remove_all_auto_handle_popup_20261004.py](../test_web_remove_all_auto_handle_popup_20261004.py)。
+当前唯一脚本：[test_web_remove_all_auto_handle_popup.py](../test_web_remove_all_auto_handle_popup.py)。旧日期入口已移除，复测运行新脚本；历史原始报告保留运行时记录。
 
 在 `D:\code\元素库\sdk测试` 运行：
 
 ```powershell
-uv run .\web\test_web_remove_all_auto_handle_popup_20261004.py
+uv run .\web\test_web_remove_all_auto_handle_popup.py
 ```
 
-退出码 0 表示无 FAIL（允许 KNOWN/跳过），1 表示存在 FAIL。通过范围与生命周期必须结合报告读取。
+历史脚本退出码 0 表示无 FAIL（允许 KNOWN/跳过），1 表示存在 FAIL。当前脚本退出码 0/1/2 分别为通过/失败/阻塞；通过范围见顶部的新证据。

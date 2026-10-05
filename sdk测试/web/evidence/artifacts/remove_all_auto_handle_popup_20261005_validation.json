@@ -1,0 +1,116 @@
+{
+  "api": "uiautoma.web.remove_all_auto_handle_popup",
+  "lifecycle": "VERIFIED",
+  "consecutive_verified_runs": [
+    4,
+    5,
+    6
+  ],
+  "runs": [
+    {
+      "run": 1,
+      "pass": 19,
+      "fail": 0,
+      "exit_code": 0,
+      "tab_count": "2->2",
+      "retained_seconds": [
+        3.103,
+        3.076,
+        3.08,
+        3.075,
+        3.085,
+        3.076
+      ],
+      "temporary_copy_removed": true
+    },
+    {
+      "run": 2,
+      "pass": 19,
+      "fail": 0,
+      "exit_code": 0,
+      "tab_count": "2->2",
+      "retained_seconds": [
+        3.077,
+        3.078,
+        3.075,
+        3.076,
+        3.094,
+        3.07
+      ],
+      "temporary_copy_removed": true
+    },
+    {
+      "run": 3,
+      "pass": 18,
+      "fail": 1,
+      "exit_code": 1,
+      "tab_count": "3->4",
+      "retained_seconds": [
+        3.094,
+        3.077,
+        3.089,
+        3.003,
+        3.08,
+        3.069
+      ],
+      "temporary_copy_removed": true
+    },
+    {
+      "run": 4,
+      "pass": 19,
+      "fail": 0,
+      "exit_code": 0,
+      "tab_count": "4->4",
+      "retained_seconds": [
+        3.064,
+        3.083,
+        3.074,
+        3.08,
+        3.075,
+        3.064
+      ],
+      "temporary_copy_removed": true
+    },
+    {
+      "run": 5,
+      "pass": 19,
+      "fail": 0,
+      "exit_code": 0,
+      "tab_count": "4->4",
+      "retained_seconds": [
+        3.079,
+        3.082,
+        3.074,
+        3.08,
+        3.071,
+        3.068
+      ],
+      "temporary_copy_removed": true
+    },
+    {
+      "run": 6,
+      "pass": 19,
+      "fail": 0,
+      "exit_code": 0,
+      "tab_count": "4->4",
+      "retained_seconds": [
+        3.078,
+        3.078,
+        3.082,
+        3.078,
+        3.07,
+        3.075
+      ],
+      "temporary_copy_removed": true
+    }
+  ],
+  "unique_undated_script": true,
+  "syntax": "PASS",
+  "frozen_contract_only_script_changed": true,
+  "contract_routes": "PASS",
+  "missing_library_exit_code": 2,
+  "current_api_links_checked": 29,
+  "index_counts_consistent": true,
+  "owned_probe_removed": true,
+  "preexisting_temporary_materials_preserved": true
+}

@@ -2,7 +2,7 @@
 
 共处理 29 项：**17 项通过、1 项失败、11 项跳过**。可测项目各运行三轮，跳过项目只做一轮条件确认。
 
-> 后续增量：2026-10-05 已完成[上传对话框](web_handle_upload_dialog_20261005.md)与[自动关闭 DOM 弹窗](auto_handle_popup_20261005.md)真实复验，分别为 3×10/10 PASS 与 3×19/19 PASS。当前原 29 项合并状态为 19 VERIFIED、1 失败、9 SKIPPED。下文保留 2026-10-04 历史批次计数与原始报告。
+> 后续增量：2026-10-05 已完成[上传对话框](web_handle_upload_dialog_20261005.md)、[自动关闭 DOM 弹窗](auto_handle_popup_20261005.md)与[移除自动处理规则](remove_all_auto_handle_popup_20261005.md)真实复验，分别为 3×10/10 PASS、3×19/19 PASS、最后连续 3×19/19 PASS。规则移除保留一轮外部标签变化导致的清理 FAIL。当前原 29 项合并状态为 20 VERIFIED、1 失败、8 SKIPPED。下文保留 2026-10-04 历史批次计数与原始报告。
 
 产品 worktree：`D:\code\desktop`；commit：`cb9332d1a04c09e04df54af958e028b2bc45af9b`；Chrome / 当前 dev Runtime。
 
@@ -48,7 +48,7 @@
 
 ## 跳过与通过范围
 
-- 尚缺库中关闭按钮：auto_handle_popup / remove_all_auto_handle_popup。2026-10-05 核对已发现 keys-click-test 的 DOM Modal；本批次旧原始报告保留，真实自动关闭验收仍未执行。
+- 历史批次当时缺少库关闭按钮：auto_handle_popup / remove_all_auto_handle_popup。用户后续新增 Modal 与关闭按钮，两项真实验收均已完成，见顶部增量证据；本批次原始报告保留。
 - 缺少持续加载页面：stop_load。
 - 当前源码未实现：fingerprint / 两个 extract_table / get_basetable_value。
 - 原生 Provider 不可用：get_bounding / get_anchor_position / highlight / handle_upload_dialog；drag_to 的 simulative=True 分支也跳过。

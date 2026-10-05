@@ -216,7 +216,7 @@
       "source_line": 488,
       "source": "def remove_all_auto_handle_popup() -> None:\n    \"\"\"移除当前连接注册的所有网页弹窗自动处理规则。\n\n    Returns:\n        ``None``。\n\n    \"\"\"\n    client = get_client()\n    if client._web_popup_owner:\n        client._run_web_browser_value(\"web.popup.remove_all\", owner=client._web_popup_owner)\n        client._web_popup_owner = \"\"\n",
       "implementation_chain": "web.popup.remove_all → ActionService.web_popup_remove_all → PopupRules.remove",
-      "script": "web/test_web_remove_all_auto_handle_popup_20261004.py"
+      "script": "web/test_web_remove_all_auto_handle_popup.py"
     },
     "web.set_user_environment_fingerprint": {
       "signature": "(mode: 'str', env_name=None) -> 'None'",

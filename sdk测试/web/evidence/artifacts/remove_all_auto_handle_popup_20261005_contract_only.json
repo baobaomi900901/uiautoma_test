@@ -1,0 +1,31 @@
+{
+  "api": "uiautoma.web.remove_all_auto_handle_popup",
+  "lifecycle": "READY_FOR_LIVE",
+  "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "open_button": "web靶场_打开遮罩弹窗_按钮",
+  "close_button": "web靶场_模态弹窗_关闭按钮",
+  "modal": "web靶场_模态弹窗",
+  "observation_seconds": 3,
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "() -> 'None'",
+    "docstring": "移除当前连接注册的所有网页弹窗自动处理规则。\n\nReturns:\n    ``None``。",
+    "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+    "source_line": 488,
+    "source": "def remove_all_auto_handle_popup() -> None:\n    \"\"\"移除当前连接注册的所有网页弹窗自动处理规则。\n\n    Returns:\n        ``None``。\n\n    \"\"\"\n    client = get_client()\n    if client._web_popup_owner:\n        client._run_web_browser_value(\"web.popup.remove_all\", owner=client._web_popup_owner)\n        client._web_popup_owner = \"\"\n",
+    "implementation_chain": "web.popup.remove_all → ActionService.web_popup_remove_all → PopupRules.remove",
+    "script": "web/test_web_remove_all_auto_handle_popup.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "expected": "无参数签名与只读源码快照一致，返回注解为 None",
+      "status": "PASS",
+      "actual": "() -> 'None'",
+      "elapsed_ms": 0.1
+    }
+  ],
+  "exit_code": 0
+}

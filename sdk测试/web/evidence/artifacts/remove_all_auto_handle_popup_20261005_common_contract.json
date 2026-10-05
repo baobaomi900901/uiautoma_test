@@ -1,0 +1,31 @@
+{
+  "api": "uiautoma.web.remove_all_auto_handle_popup",
+  "lifecycle": "READY_FOR_LIVE",
+  "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+  "element_library": "D:\\code\\\u5143\u7d20\u5e93\\260902_web\u5143\u7d20",
+  "open_button": "web\u9776\u573a_\u6253\u5f00\u906e\u7f69\u5f39\u7a97_\u6309\u94ae",
+  "close_button": "web\u9776\u573a_\u6a21\u6001\u5f39\u7a97_\u5173\u95ed\u6309\u94ae",
+  "modal": "web\u9776\u573a_\u6a21\u6001\u5f39\u7a97",
+  "observation_seconds": 3,
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "() -> 'None'",
+    "docstring": "\u79fb\u9664\u5f53\u524d\u8fde\u63a5\u6ce8\u518c\u7684\u6240\u6709\u7f51\u9875\u5f39\u7a97\u81ea\u52a8\u5904\u7406\u89c4\u5219\u3002\n\nReturns:\n    ``None``\u3002",
+    "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+    "source_line": 488,
+    "source": "def remove_all_auto_handle_popup() -> None:\n    \"\"\"\u79fb\u9664\u5f53\u524d\u8fde\u63a5\u6ce8\u518c\u7684\u6240\u6709\u7f51\u9875\u5f39\u7a97\u81ea\u52a8\u5904\u7406\u89c4\u5219\u3002\n\n    Returns:\n        ``None``\u3002\n\n    \"\"\"\n    client = get_client()\n    if client._web_popup_owner:\n        client._run_web_browser_value(\"web.popup.remove_all\", owner=client._web_popup_owner)\n        client._web_popup_owner = \"\"\n",
+    "implementation_chain": "web.popup.remove_all \u2192 ActionService.web_popup_remove_all \u2192 PopupRules.remove",
+    "script": "web/test_web_remove_all_auto_handle_popup.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "expected": "\u65e0\u53c2\u6570\u7b7e\u540d\u4e0e\u53ea\u8bfb\u6e90\u7801\u5feb\u7167\u4e00\u81f4\uff0c\u8fd4\u56de\u6ce8\u89e3\u4e3a None",
+      "status": "PASS",
+      "actual": "() -> 'None'",
+      "elapsed_ms": 0.1
+    }
+  ],
+  "exit_code": 0
+}
