@@ -2,6 +2,8 @@
 
 共处理 29 项：**17 项通过、1 项失败、11 项跳过**。可测项目各运行三轮，跳过项目只做一轮条件确认。
 
+> 后续增量：2026-10-05 已完成[上传对话框](web_handle_upload_dialog_20261005.md)与[自动关闭 DOM 弹窗](auto_handle_popup_20261005.md)真实复验，分别为 3×10/10 PASS 与 3×19/19 PASS。当前原 29 项合并状态为 19 VERIFIED、1 失败、9 SKIPPED。下文保留 2026-10-04 历史批次计数与原始报告。
+
 产品 worktree：`D:\code\desktop`；commit：`cb9332d1a04c09e04df54af958e028b2bc45af9b`；Chrome / 当前 dev Runtime。
 
 范围取自 API 清单中的空白项，并复核索引中未完成真实验收的项目；额外重测了清单空白但索引已有历史验收的属性、坐标、上传等项。既有 `input` 等部分失败记录仍有效，本次没有把它们标成修复；源码不存在的 element_id/raw 不计入剩余 API。

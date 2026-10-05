@@ -1,0 +1,15 @@
+library {'open_button': 'web靶场_打开遮罩弹窗_按钮', 'close_button': 'web靶场_模态弹窗_关闭按钮', 'modal': 'web靶场_模态弹窗'}
+setup {'url': 'https://baobaomi900901.github.io/xpath/#/keys-click-test', 'library': 'D:\\code\\元素库\\260902_web元素', 'temporary_library': 'D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\dbee27d02a0146bf9ce509d6fef90899\\library', 'baseline_tabs': 5}
+未注册规则：弹窗保持打开 1 秒，请观察…
+control {'open_id': 'btn-open-occlusion-modal', 'modal_mapping': {'tag': 'DIV', 'title': '遮挡测试弹窗'}, 'close_mapping': {'is_modal_close': True, 'tag': 'BUTTON', 'title': '遮挡测试弹窗'}, 'without_rule': {'close_clicks': [], 'close_count': 1, 'visible': True}, 'manual_close': {'close_clicks': [{'at_ms': 3094.89999999851, 'close_count': 1, 'visible': True}], 'close_count': 1, 'visible': False}}
+register {'return': None, 'close_button': 'web靶场_模态弹窗_关闭按钮', 'argument_type': 'str'}
+attach {'same_owned_page': True, 'page_id': '5e37eab72a924e77'}
+规则已注册：点击打开按钮，等待 API 自动点击关闭按钮…
+auto1 {'close_clicks': [{'at_ms': 4640.30000000447, 'close_count': 1, 'visible': True}], 'close_count': 1, 'visible': False}
+规则已注册：点击打开按钮，等待 API 自动点击关闭按钮…
+auto2 {'close_clicks': [{'at_ms': 6251.20000000298, 'close_count': 1, 'visible': True}], 'close_count': 1, 'visible': False}
+selector {'return': None, 'close_button': 'web靶场_模态弹窗_关闭按钮', 'argument_type': 'Selector'}
+attach2 {'same_owned_page': True, 'page_id': '5e37eab72a924e77'}
+规则已注册：点击打开按钮，等待 API 自动点击关闭按钮…
+auto3 {'close_clicks': [{'at_ms': 7721.5, 'close_count': 1, 'visible': True}], 'close_count': 1, 'visible': False}
+cleanup {'errors': [], 'own_tab_closed': True, 'temporary_copy_removed': True, 'tab_count': '5->5', 'external_added': [], 'external_removed': [], 'new_dialogs': [], 'rule_observer_cleanup_errors': []}

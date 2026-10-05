@@ -36,7 +36,7 @@ def main():
             if report['exit_code'] != process.returncode:
                 raise RuntimeError(f'{api}: report exit code differs from child process')
             reports.append(report)
-            counts={s:sum(r['status']==s for r in report['results']) for s in ['PASS','FAIL','KNOWN']}
+            counts={s:sum(r['status']==s for r in report['results']) for s in ['PASS','FAIL','BLOCKED','KNOWN']}
             print(json.dumps({'api':api,'round':round_no,'status':report['lifecycle'],'counts':counts,'exit_code':report['exit_code']},ensure_ascii=True),flush=True)
             if report['lifecycle']=='SKIPPED':break
         last=reports[-1]

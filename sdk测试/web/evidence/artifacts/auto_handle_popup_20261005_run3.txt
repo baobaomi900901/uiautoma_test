@@ -1,0 +1,273 @@
+{
+  "api": "uiautoma.web.auto_handle_popup",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+  "element_library": "D:\\code\\元素库\\260902_web元素",
+  "open_button": "web靶场_打开遮罩弹窗_按钮",
+  "close_button": "web靶场_模态弹窗_关闭按钮",
+  "modal": "web靶场_模态弹窗",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(handle_method: 'str', close_button=None, element_selector=None, process: 'str | None' = None, package=None) -> 'None'",
+    "docstring": "注册自动关闭网页弹窗的规则，对随后获取或打开的网页生效。\n\nArgs:\n    handle_method: 处理方式，支持 \"close_dialog\"（点击关闭按钮）；\n        \"execute_process\"（执行子流程）暂不支持。\n    close_button: 关闭按钮的元素名称或 Web Selector；close_dialog 时必填，不支持跨 iframe。\n    element_selector: 触发子流程的元素选择器；当前暂不使用。\n    process: 要执行的子流程名称，不带 .py；当前暂不使用。\n    package: 子流程所在的 Python 包名；当前暂不使用。\n\nReturns:\n    ``None``。\n\nRaises:\n    InvalidParamsError: 处理方式、关闭按钮无效或规则重复。\n    UnsupportedActionError: 使用了暂不支持的执行子流程方式。",
+    "source_file": "sdk\\src\\uiautoma\\web\\__init__.py",
+    "source_line": 454,
+    "source": "def auto_handle_popup(handle_method: str, close_button=None, element_selector=None, process: str | None = None, package=None) -> None:\n    \"\"\"注册自动关闭网页弹窗的规则，对随后获取或打开的网页生效。\n\n    Args:\n        handle_method: 处理方式，支持 \"close_dialog\"（点击关闭按钮）；\n            \"execute_process\"（执行子流程）暂不支持。\n        close_button: 关闭按钮的元素名称或 Web Selector；close_dialog 时必填，不支持跨 iframe。\n        element_selector: 触发子流程的元素选择器；当前暂不使用。\n        process: 要执行的子流程名称，不带 .py；当前暂不使用。\n        package: 子流程所在的 Python 包名；当前暂不使用。\n\n    Returns:\n        ``None``。\n\n    Raises:\n        InvalidParamsError: 处理方式、关闭按钮无效或规则重复。\n        UnsupportedActionError: 使用了暂不支持的执行子流程方式。\n    \"\"\"\n    if handle_method == \"execute_process\":\n        raise UnsupportedActionError(\"当前版本暂不支持弹窗执行子流程\")\n    if handle_method != \"close_dialog\":\n        raise InvalidParamsError(\"弹窗处理方式必须为 close_dialog\")\n    from .._context import get_package\n    from .element import _saved_query\n    import uuid\n    query = _saved_query(close_button)\n    session = get_package()\n    client = get_client()\n    owner = client._web_popup_owner or uuid.uuid4().hex\n    client._run_web_browser_value(\"web.popup.add\", owner=owner, handle_method=handle_method,\n        query=query, package_token=session.package_token, state_revision=session.state_revision)\n    client._web_popup_owner = owner\n",
+    "implementation_chain": "web.popup.add → ActionService.web_popup_add → PopupRules",
+    "script": "web/test_web_auto_handle_popup_20261004.py"
+  },
+  "results": [
+    {
+      "case_id": "api_contract",
+      "expected": "公开签名与只读源码快照一致",
+      "status": "PASS",
+      "actual": "(handle_method: 'str', close_button=None, element_selector=None, process: 'str | None' = None, package=None) -> 'None'",
+      "elapsed_ms": 0.2
+    },
+    {
+      "case_id": "invalid_method",
+      "expected": "非法处理方式抛 InvalidParamsError",
+      "status": "PASS",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "弹窗处理方式必须为 close_dialog",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "unsupported_process",
+      "expected": "execute_process 抛 UnsupportedActionError",
+      "status": "PASS",
+      "actual": {
+        "exception": "UnsupportedActionError",
+        "message": "当前版本暂不支持弹窗执行子流程",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "missing_close_button",
+      "expected": "未提供关闭按钮抛 InvalidParamsError",
+      "status": "PASS",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "selector 必须是元素名称字符串或 Selector 对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "blank_close_button",
+      "expected": "空名称抛 InvalidParamsError",
+      "status": "PASS",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "元素名称不能为空",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_close_type",
+      "expected": "非字符串/Selector 抛 InvalidParamsError",
+      "status": "PASS",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "selector 必须是元素名称字符串或 Selector 对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "non_web_selector",
+      "expected": "Win Selector 抛 InvalidParamsError",
+      "status": "PASS",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "需要 Web 选择器",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "library_targets",
+      "expected": "元素库已保存打开按钮和关闭按钮",
+      "status": "PASS",
+      "actual": {
+        "open_button": "web靶场_打开遮罩弹窗_按钮",
+        "close_button": "web靶场_模态弹窗_关闭按钮",
+        "modal": "web靶场_模态弹窗"
+      },
+      "elapsed_ms": 0.5
+    },
+    {
+      "case_id": "environment",
+      "expected": "Runtime、Chrome、靶场与临时库可用",
+      "status": "PASS",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\3fcc031ba04745ffa9d2196487edc818\\library",
+        "baseline_tabs": 5
+      },
+      "elapsed_ms": 1155.6
+    },
+    {
+      "case_id": "control_without_rule",
+      "expected": "打开按钮映射正确；无规则时弹窗保持打开，库关闭按钮可关闭",
+      "status": "PASS",
+      "actual": {
+        "open_id": "btn-open-occlusion-modal",
+        "modal_mapping": {
+          "tag": "DIV",
+          "title": "遮挡测试弹窗"
+        },
+        "close_mapping": {
+          "is_modal_close": true,
+          "tag": "BUTTON",
+          "title": "遮挡测试弹窗"
+        },
+        "without_rule": {
+          "close_clicks": [],
+          "close_count": 1,
+          "visible": true
+        },
+        "manual_close": {
+          "close_clicks": [
+            {
+              "at_ms": 4219.30000000447,
+              "close_count": 1,
+              "visible": true
+            }
+          ],
+          "close_count": 1,
+          "visible": false
+        }
+      },
+      "elapsed_ms": 3923.2
+    },
+    {
+      "case_id": "register_name",
+      "expected": "用关闭按钮名称注册返回 None",
+      "status": "PASS",
+      "actual": {
+        "return": null,
+        "close_button": "web靶场_模态弹窗_关闭按钮",
+        "argument_type": "str"
+      },
+      "elapsed_ms": 4.5
+    },
+    {
+      "case_id": "duplicate_rule",
+      "expected": "同一个关闭按钮重复注册抛 InvalidParamsError",
+      "status": "PASS",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "该弹窗关闭按钮已注册，请勿重复注册",
+        "trace": "invalid_params"
+      },
+      "elapsed_ms": 4.6
+    },
+    {
+      "case_id": "acquire_after_name_rule",
+      "expected": "注册后重新获取本次页面",
+      "status": "PASS",
+      "actual": {
+        "same_owned_page": true,
+        "page_id": "dbcb68f7096f4249"
+      },
+      "elapsed_ms": 81.6
+    },
+    {
+      "case_id": "auto_close_name_1",
+      "expected": "仅点击打开按钮；自动关闭事件恰好一次且弹窗消失",
+      "status": "PASS",
+      "actual": {
+        "close_clicks": [
+          {
+            "at_ms": 5738.20000000298,
+            "close_count": 1,
+            "visible": true
+          }
+        ],
+        "close_count": 1,
+        "visible": false
+      },
+      "elapsed_ms": 1378.3
+    },
+    {
+      "case_id": "auto_close_name_2",
+      "expected": "仅点击打开按钮；自动关闭事件恰好一次且弹窗消失",
+      "status": "PASS",
+      "actual": {
+        "close_clicks": [
+          {
+            "at_ms": 7374.20000000298,
+            "close_count": 1,
+            "visible": true
+          }
+        ],
+        "close_count": 1,
+        "visible": false
+      },
+      "elapsed_ms": 1668.0
+    },
+    {
+      "case_id": "register_selector",
+      "expected": "用库中 Web Selector 注册返回 None",
+      "status": "PASS",
+      "actual": {
+        "return": null,
+        "close_button": "web靶场_模态弹窗_关闭按钮",
+        "argument_type": "Selector"
+      },
+      "elapsed_ms": 9.0
+    },
+    {
+      "case_id": "create_after_selector_rule",
+      "expected": "关闭本次旧标签，注册后创建新页面",
+      "status": "PASS",
+      "actual": {
+        "closed_page_id": "dbcb68f7096f4249",
+        "new_page_id": "92504b01dc174fdc"
+      },
+      "elapsed_ms": 698.8
+    },
+    {
+      "case_id": "auto_close_selector",
+      "expected": "Web Selector 规则自动点击关闭按钮，弹窗消失",
+      "status": "PASS",
+      "actual": {
+        "close_clicks": [
+          {
+            "at_ms": 1665.89999999851,
+            "close_count": 1,
+            "visible": true
+          }
+        ],
+        "close_count": 1,
+        "visible": false
+      },
+      "elapsed_ms": 1379.8
+    },
+    {
+      "case_id": "cleanup",
+      "expected": "移除本连接规则和观察器；关闭本次页面/库并复核标签与临时目录",
+      "status": "PASS",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "tab_count": "5->5",
+        "external_added": [],
+        "external_removed": [],
+        "new_dialogs": [],
+        "rule_observer_cleanup_errors": []
+      },
+      "elapsed_ms": 265.4
+    }
+  ],
+  "exit_code": 0
+}

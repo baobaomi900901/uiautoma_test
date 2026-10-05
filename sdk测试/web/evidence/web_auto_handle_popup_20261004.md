@@ -1,6 +1,8 @@
 # `uiautoma.web.auto_handle_popup()` 验证证据（2026-10-04）
 
-> 2026-10-05 修正：此前“现有靶场只有 JavaScript 原生弹窗”的判断撤回。只读源码 worktree `D:\code\xpath`、commit `c886261211541cd48224dda51dc566af4710df16` 的 `WEB\src\pages\KeysClickTestPage.tsx:420` 已有 Ant Design DOM Modal。可使用 `#/keys-click-test` → “遮挡点击测试” → “打开遮挡弹窗”；本机库尚未保存该弹窗的关闭按钮，真实验收仍未执行，状态与历史计数保持 SKIPPED。
+> 最新复验：用户已于 2026-10-05 新增 `web靶场_模态弹窗` 与 `web靶场_模态弹窗_关闭按钮`。真实 DOM 弹窗验收连续 3 轮 **19/19 PASS**，状态 VERIFIED；见[最新证据](auto_handle_popup_20261005.md)。下文与旧原始产物保留为历史记录；原脚本命令现已转入真实验收脚本。
+
+> 2026-10-05 早期修正：此前“现有靶场只有 JavaScript 原生弹窗”的判断撤回。只读源码 worktree `D:\code\xpath`、commit `c886261211541cd48224dda51dc566af4710df16` 的 `WEB\src\pages\KeysClickTestPage.tsx:420` 已有 Ant Design DOM Modal。当时尚未保存关闭按钮、状态为 SKIPPED；随后用户补齐元素，最新结果见上。
 
 ## 用途与合同
 

@@ -39,8 +39,7 @@ ANT_MULTI = 'web靶场_表单测试_ant_select多选'
 RESET = 'web靶场_表单测试_原生_重置'
 ROOT_JS = "document.querySelector('#iframe-shadow-form').contentDocument.querySelector('#form-shadow-host').shadowRoot"
 SKIPS = {
-    'web.auto_handle_popup': 'keys-click-test 已有 DOM 遮挡弹窗；当前元素库缺少已保存的弹窗关闭按钮，尚未执行真实自动关闭验收',
-    'web.remove_all_auto_handle_popup': '缺少可观察自动关闭效果的 DOM 弹窗/关闭按钮，无法证明规则移除后的真实行为',
+    'web.remove_all_auto_handle_popup': 'keys-click-test 的 DOM 弹窗与关闭按钮已具备；尚未独立验收规则移除后弹窗保持打开的真实行为',
     'web.set_user_environment_fingerprint': '当前源码直接抛 UnsupportedActionError，未实现指纹浏览器环境',
     'browser.stop_load': '缺少加载持续不完成的现有靶场；完整加载页不能验证中止待处理导航',
     'browser.extract_table': '当前源码直接抛 UnsupportedActionError，未实现表格提取',
@@ -52,7 +51,7 @@ IMPLEMENTED = ['element.name','element.get_selected_item','element.set_attribute
     'element.get_anchor_viewport_position','element.screenshot','element.is_checked','element.is_enabled',
     'element.is_displayed','element.execute_javascript','element.scroll_to','element.get_scroll',
     'element.drag_to','element.drag_to_by_cdp','element.upload','element.download','element.highlight',
-    'browser.go_back','web.handle_upload_dialog']
+    'browser.go_back','web.handle_upload_dialog','web.auto_handle_popup']
 APIS = IMPLEMENTED + list(SKIPS)
 CONTRACT_FILE = ROOT / 'web' / 'remaining_web_contracts_20261004.json'
 
@@ -617,10 +616,16 @@ CASES={'name':name,'get_selected_item':selected,'set_attribute':attributes,'get_
        'execute_javascript':javascript,'scroll_to':scroll,'get_scroll':scroll,'get_bounding':geometry,
        'get_anchor_position':geometry,'get_anchor_viewport_position':geometry,'screenshot':screenshot,
        'drag_to':drag,'drag_to_by_cdp':drag,'upload':upload,'download':download,'highlight':highlight,
-       'go_back':back,'handle_upload_dialog':upload_dialog}
+    'go_back':back,'handle_upload_dialog':upload_dialog}
 
 
 def run_api(api,contract_only=False,progress=False):
+    if api == 'web.auto_handle_popup':
+        from test_web_auto_handle_popup_20261005 import run, URL, OPEN_BUTTON, CLOSE_BUTTON, MODAL
+        return run(argparse.Namespace(contract_only=contract_only, json=not progress,
+            element_library=LIBRARY, target_url=TARGET_OVERRIDE or URL,
+            open_button=OPEN_BUTTON, close_button=CLOSE_BUTTON, modal=MODAL,
+            control_observe_seconds=3, wait_timeout=8))
     c=Context(api,progress=progress)
     contracts=json.loads(CONTRACT_FILE.read_text(encoding='utf-8'))
     contract=contracts['apis'][api]

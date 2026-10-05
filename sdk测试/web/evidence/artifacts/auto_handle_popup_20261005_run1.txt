@@ -1,0 +1,27 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.auto_handle_popup
+页面    : https://baobaomi900901.github.io/xpath/#/keys-click-test
+未注册规则：弹窗保持打开 3 秒，请观察…
+规则已注册：点击打开按钮，等待 API 自动点击关闭按钮…
+规则已注册：点击打开按钮，等待 API 自动点击关闭按钮…
+规则已注册：点击打开按钮，等待 API 自动点击关闭按钮…
+01/19 [92m[通过][0m api_contract 期望 公开签名与只读源码快照一致；实测 (handle_method: 'str', close_button=None, element_selector=None, process: 'str | None' = None, package=None) -> 'None'；0.2ms
+02/19 [92m[通过][0m invalid_method 期望 非法处理方式抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': '弹窗处理方式必须为 close_dialog', 'trace': ''}；0.0ms
+03/19 [92m[通过][0m unsupported_process 期望 execute_process 抛 UnsupportedActionError；实测 {'exception': 'UnsupportedActionError', 'message': '当前版本暂不支持弹窗执行子流程', 'trace': ''}；0.0ms
+04/19 [92m[通过][0m missing_close_button 期望 未提供关闭按钮抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': 'selector 必须是元素名称字符串或 Selector 对象', 'trace': ''}；0.0ms
+05/19 [92m[通过][0m blank_close_button 期望 空名称抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': '元素名称不能为空', 'trace': ''}；0.0ms
+06/19 [92m[通过][0m invalid_close_type 期望 非字符串/Selector 抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': 'selector 必须是元素名称字符串或 Selector 对象', 'trace': ''}；0.0ms
+07/19 [92m[通过][0m non_web_selector 期望 Win Selector 抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': '需要 Web 选择器', 'trace': ''}；0.0ms
+08/19 [92m[通过][0m library_targets 期望 元素库已保存打开按钮和关闭按钮；实测 {'open_button': 'web靶场_打开遮罩弹窗_按钮', 'close_button': 'web靶场_模态弹窗_关闭按钮', 'modal': 'web靶场_模态弹窗'}；0.6ms
+09/19 [92m[通过][0m environment 期望 Runtime、Chrome、靶场与临时库可用；实测 {'url': 'https://baobaomi900901.github.io/xpath/#/keys-click-test', 'library': 'D:\\code\\元素库\\260902_web元素', 'temporary_library': 'D:\\code\\元素库\\sdk测试\\.pytest_tmp\\web_remaining\\c58cb09fc5ca46579658e1f074d8e98e\\library', 'baseline_tabs': 5}；1370.6ms
+10/19 [92m[通过][0m control_without_rule 期望 打开按钮映射正确；无规则时弹窗保持打开，库关闭按钮可关闭；实测 {'open_id': 'btn-open-occlusion-modal', 'modal_mapping': {'tag': 'DIV', 'title': '遮挡测试弹窗'}, 'close_mapping': {'is_modal_close': True, 'tag': 'BUTTON', 'title': '遮挡测试弹窗'}, 'without_rule': {'close_clicks': [], 'close_count': 1, 'visible': True}, 'manual_close': {'close_clicks': [{'at_ms': 4400.10000000149, 'close_count': 1, 'visible': True}], 'close_count': 1, 'visible': False}}；3914.5ms
+11/19 [92m[通过][0m register_name 期望 用关闭按钮名称注册返回 None；实测 {'return': None, 'close_button': 'web靶场_模态弹窗_关闭按钮', 'argument_type': 'str'}；5.7ms
+12/19 [92m[通过][0m duplicate_rule 期望 同一个关闭按钮重复注册抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': '该弹窗关闭按钮已注册，请勿重复注册', 'trace': 'invalid_params'}；6.1ms
+13/19 [92m[通过][0m acquire_after_name_rule 期望 注册后重新获取本次页面；实测 {'same_owned_page': True, 'page_id': '702e8b209c424089'}；78.9ms
+14/19 [92m[通过][0m auto_close_name_1 期望 仅点击打开按钮；自动关闭事件恰好一次且弹窗消失；实测 {'close_clicks': [{'at_ms': 5935.20000000298, 'close_count': 1, 'visible': True}], 'close_count': 1, 'visible': False}；1377.7ms
+15/19 [92m[通过][0m auto_close_name_2 期望 仅点击打开按钮；自动关闭事件恰好一次且弹窗消失；实测 {'close_clicks': [{'at_ms': 7575.70000000298, 'close_count': 1, 'visible': True}], 'close_count': 1, 'visible': False}；1692.1ms
+16/19 [92m[通过][0m register_selector 期望 用库中 Web Selector 注册返回 None；实测 {'return': None, 'close_button': 'web靶场_模态弹窗_关闭按钮', 'argument_type': 'Selector'}；6.2ms
+17/19 [92m[通过][0m create_after_selector_rule 期望 关闭本次旧标签，注册后创建新页面；实测 {'closed_page_id': '702e8b209c424089', 'new_page_id': '13908441b8774923'}；741.2ms
+18/19 [92m[通过][0m auto_close_selector 期望 Web Selector 规则自动点击关闭按钮，弹窗消失；实测 {'close_clicks': [{'at_ms': 1701.7000000029802, 'close_count': 1, 'visible': True}], 'close_count': 1, 'visible': False}；1374.8ms
+19/19 [92m[通过][0m cleanup 期望 移除本连接规则和观察器；关闭本次页面/库并复核标签与临时目录；实测 {'errors': [], 'own_tab_closed': True, 'temporary_copy_removed': True, 'tab_count': '5->5', 'external_added': [], 'external_removed': [], 'new_dialogs': [], 'rule_observer_cleanup_errors': []}；275.6ms
+VERIFIED · 19/19 通过 · 退出码 0
