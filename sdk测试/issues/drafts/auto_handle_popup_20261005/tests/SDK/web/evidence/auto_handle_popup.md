@@ -10,6 +10,9 @@
 - 元素库：`D:\code\元素库\260902_web元素`；只连接本次临时副本。
 - 生命周期：**VERIFIED；连续 3 轮，每轮 19/19 PASS，0 FAIL / 0 BLOCKED，退出码 0。**
 - 每轮清理 PASS，标签集合恢复到进入时基线 5→5，无新增/移除外部标签，无本次对话框或临时库残留。
+- 同日用户另行复测 1 次：19/19 PASS、退出码 0，cleanup PASS，标签 4→4；记录来源为用户提供的终端文本，不计入上述 agent 连续三轮。
+
+用户使用 `uv run .\web\test_web_auto_handle_popup.py`，日志中的名称规则两次自动关闭、Selector 自动关闭和全部边界用例均通过。清理行显示 errors / external_added / external_removed / new_dialogs / rule_observer_cleanup_errors 为空，own_tab_closed 与 temporary_copy_removed 为 True。用户日志未附新的源码 commit 或独立 JSON，不据此推定另一版本已验收。
 
 ## 用例与独立确证
 
@@ -33,6 +36,7 @@
 - `sdk测试/web/evidence/auto_handle_popup_20261005.md`（完整合同、用例和边界）。
 - `sdk测试/web/evidence/artifacts/auto_handle_popup_20261005_run{1,2,3}.{json,txt}`。
 - `sdk测试/web/evidence/artifacts/auto_handle_popup_20261005_probe.txt`。
+- `sdk测试/web/evidence/artifacts/auto_handle_popup_20261005_user_retest.txt`（用户复测终端文本）。
 
 上述为本地归档材料，本交接稿不宣称它们已推送或发布。正式脚本复用测试侧公共辅助模块；应在完整测试工作区复测，不单独复制入口文件到产品仓库后直接运行。
 

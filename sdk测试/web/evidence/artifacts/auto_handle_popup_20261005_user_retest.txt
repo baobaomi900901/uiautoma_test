@@ -1,0 +1,32 @@
+来源：用户于 2026-10-05 在本对话提供的终端日志。
+该记录属于用户复测；未生成或补造 JSON 报告。以下保留用户粘贴的终端内容，包括显示换行造成的重复字符，仅去除行末空白。
+
+PS D:\code\元素库\sdk测试> cd "D:\code\元素库\sdk测试"
+>> uv run .\web\test_web_auto_handle_popup.py
+UIAutoma Web API 测试
+API     : uiautoma.web.auto_handle_popup
+页面    : https://baobaomi900901.github.io/xpath/#/keys-click-test
+未注册规则：弹窗保持打开 3 秒，请观察…
+规则已注册：点击打开按钮，等待 API 自动点击关闭按钮…
+规则已注册：点击打开按钮，等待 API 自动点击关闭按钮…
+规则已注册：点击打开按钮，等待 API 自动点击关闭按钮…
+01/19 [通过] api_contract 期望 公开签名与只读源码快照一致；实测 (handle_method: 'str', close_button=None, element_selector=None, process: 'str | None' = None, package=None) -> 'None'；0.1ms
+02/19 [通过] invalid_method 期望 非法处理方式抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': '弹窗处理方式必须为 close_dialog', 'trace': ''}；0.0ms
+03/19 [通过] unsupported_process 期望 execute_process 抛 UnsupportedActionError； 实测 {'exception': 'UnsupportedActionError', 'message': '当前版本暂不支持弹窗执行 子流程', 'trace': ''}；0.0ms
+04/19 [通过] missing_close_button 期望 未提供关闭按钮抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': 'selector 必须是元素名称字符串或 Selector 对象', 'trace': ''}；0.0ms
+05/19 [通过] blank_close_button 期望 空名称抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': '元素名称不能为空', 'trace': ''}；0.0ms
+06/19 [通过] invalid_close_type 期望 非字符串/Selector 抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': 'selector 必须是元素名称字符串或 S     Selector 对象', 'trace': ''}；0.0ms
+07/19 [通过] non_web_selector 期望 Win Selector 抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': '需要 Web 选择器', 'trace': ''}；0.0ms
+08/19 [通过] library_targets 期望 元素库已保存打开按钮和关闭按钮；实测 {'open_button': 'web靶场_打开遮罩弹窗_按钮', 'close_button': 'web靶场_模态弹窗_关闭按钮', 'mo     odal': 'web靶场_模态弹窗'}；0.3ms
+09/19 [通过] environment 期望 Runtime、Chrome、靶场与临时库可用；实测 {'url': 'https://baobaomi900901.github.io/xpath/#/keys-click-test', 'library': 'D:\\code\\元素    素库\\260902_web元素', 'temporary_library': 'D:\\code\\元素库\\sdk测试\\.pytest_tmp\     \\web_remaining\\992be33a461a4af5b2c80c4c05860717\\library', 'baseline_tabs': 4}；1     1403.1ms
+10/19 [通过] control_without_rule 期望 打开按钮映射正确；无规则时弹窗保持打开，库 关闭按钮可关闭；实测 {'open_id': 'btn-open-occlusion-modal', 'modal_mapping': {'ta     ag': 'DIV', 'title': '遮挡测试弹窗'}, 'close_mapping': {'is_modal_close': True, 'ta     ag': 'BUTTON', 'title': '遮挡测试弹窗'}, 'without_rule': {'close_clicks': [], 'clos     se_count': 1, 'visible': True}, 'manual_close': {'close_clicks': [{'at_ms': 4649.59     999999940395, 'close_count': 1, 'visible': True}], 'close_count': 1, 'visible': Fal     lse}}；3760.2ms
+11/19 [通过] register_name 期望 用关闭按钮名称注册返回 None；实测 {'return': None, 'close_button': 'web靶场_模态弹窗_关闭按钮', 'argument_type': 'str'}；1.9ms
+12/19 [通过] duplicate_rule 期望 同一个关闭按钮重复注册抛 InvalidParamsError；实测 {'exception': 'InvalidParamsError', 'message': '该弹窗关闭按钮已注册，请勿重复注       册', 'trace': 'invalid_params'}；1.6ms
+13/19 [通过] acquire_after_name_rule 期望 注册后重新获取本次页面；实测 {'same_owned_page': True, 'page_id': '535c2e7fc1234e93'}；70.7ms
+14/19 [通过] auto_close_name_1 期望 仅点击打开按钮；自动关闭事件恰好一次且弹窗消失；实测 {'close_clicks': [{'at_ms': 6117.199999988079, 'close_count': 1, 'visible':     : True}], 'close_count': 1, 'visible': False}；1407.1ms
+15/19 [通过] auto_close_name_2 期望 仅点击打开按钮；自动关闭事件恰好一次且弹窗消失；实测 {'close_clicks': [{'at_ms': 7653.59999999404, 'close_count': 1, 'visible':       True}], 'close_count': 1, 'visible': False}；1513.4ms
+16/19 [通过] register_selector 期望 用库中 Web Selector 注册返回 None；实测 {'return': None, 'close_button': 'web靶场_模态弹窗_关闭按钮', 'argument_type': 'Selector     r'}；2.7ms
+17/19 [通过] create_after_selector_rule 期望 关闭本次旧标签，注册后创建新页面；实 测 {'closed_page_id': '535c2e7fc1234e93', 'new_page_id': 'c4e16ca4ba514b4a'}；309.     .8ms
+18/19 [通过] auto_close_selector 期望 Web Selector 规则自动点击关闭按钮，弹窗消失 ；实测 {'close_clicks': [{'at_ms': 1813, 'close_count': 1, 'visible': True}], 'clo     ose_count': 1, 'visible': False}；1856.5ms
+19/19 [通过] cleanup 期望 移除本连接规则和观察器；关闭本次页面/库并复核标签与临时 目录；实测 {'errors': [], 'own_tab_closed': True, 'temporary_copy_removed': True,       'tab_count': '4->4', 'external_added': [], 'external_removed': [], 'new_dialogs':       [], 'rule_observer_cleanup_errors': []}；130.2ms
+VERIFIED · 19/19 通过 · 退出码 0

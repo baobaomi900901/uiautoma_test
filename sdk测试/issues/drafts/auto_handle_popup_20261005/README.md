@@ -1,10 +1,12 @@
 # auto_handle_popup 公开文档与测试索引同步交接稿
 
-建议 Issue 标题：`docs: 同步 auto_handle_popup 的真实 DOM 弹窗验收（3×19/19）`
+建议 Issue 标题：`docs: 同步 auto_handle_popup 验收与用户复测（均为19/19）`
 
 ## 背景与结论
 
 用户已于 2026-10-05 明确批准生成公开文档交接稿。测试侧对 `uiautoma.web.auto_handle_popup()` 在 dev Runtime / Chrome 下完成连续三轮真实验收，每轮 **19/19 PASS**、退出码 0，标签集合恢复到 5→5，临时库与本次页面清理 PASS。
+
+同日用户运行唯一无日期脚本，提供另一次 **19/19 PASS、退出码 0、cleanup PASS、标签 4→4** 的终端日志。该记录作为用户复测单独归档，不写成 agent 的第四轮连续验收，也不补造 JSON 或新的源码 commit。
 
 产品只读 worktree `D:\code\desktop`，commit `cb9332d1a04c09e04df54af958e028b2bc45af9b`；靶场只读 worktree `D:\code\xpath`，commit `c886261211541cd48224dda51dc566af4710df16`。本交接不要求改动产品实现。
 
@@ -26,6 +28,7 @@
 - [唯一测试脚本](../../../web/test_web_auto_handle_popup.py)。
 - [完整验证证据](../../../web/evidence/auto_handle_popup_20261005.md)。
 - [第一轮原始报告](../../../web/evidence/artifacts/auto_handle_popup_20261005_run1.json)、[第二轮](../../../web/evidence/artifacts/auto_handle_popup_20261005_run2.json)、[第三轮](../../../web/evidence/artifacts/auto_handle_popup_20261005_run3.json)。
+- [用户复测终端日志](../../../web/evidence/artifacts/auto_handle_popup_20261005_user_retest.txt)。
 
 测试侧 `index.md` 与 `web/web api 清单.md` 已同步；旧 2026-10-04 产物保持为历史记录。`remove_all_auto_handle_popup()` 不因本轮辅助调用而提升独立验收状态。
 
@@ -33,4 +36,4 @@
 
 这是本地可审阅的 Issue 正文与文件交接稿，尚未发送 Issue、发布文档或推送材料；本工作区没有修改产品源码仓库文件。
 
-完成同步后，应确认四个目标文件中的日期、快照、19/19×3、清理结果与边界一致，内部相对链接可用，示例与公开 SDK 签名一致。保留旧快照结论，不将条件检查或未测场景表述为通过。
+完成同步后，应确认四个目标文件中的日期、快照、正式三轮 19/19 与用户一次 19/19、清理结果与边界一致，内部相对链接可用，示例与公开 SDK 签名一致。正式三轮的标签基线为 5→5，用户复测为 4→4；保留旧快照结论，不将条件检查或未测场景表述为通过。

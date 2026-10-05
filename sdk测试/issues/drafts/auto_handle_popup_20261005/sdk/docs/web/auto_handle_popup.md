@@ -88,6 +88,8 @@ web.auto_handle_popup("close_dialog", close_button=close_selector)
 
 2026-10-05，在产品源码快照 `cb9332d1a04c09e04df54af958e028b2bc45af9b` 的 dev Runtime / Chrome 下，使用靶场的真实 Ant Design Modal 连续 3 轮验收，每轮 **19/19 PASS**，退出码 0，资源清理 PASS。
 
+同日用户运行唯一的 `test_web_auto_handle_popup.py`，反馈另一次 **19/19 PASS、退出码 0、清理 PASS、标签 4→4**。这是用户提供的终端复测记录，独立于上述正式三轮；未附新的源码快照或 JSON 报告。
+
 已验证关闭按钮名称和 Web Selector、注册后 get/create 页面、重复打开、重复注册与参数错误。自动分支仅点击打开按钮，通过被动 DOM 点击监听和弹窗可见性确认自动关闭。未覆盖 Edge、跨 iframe 异常、多规则并行、选择器歧义等场景。`remove_all_auto_handle_popup()` 仅作辅助清理，未在本轮独立验收其移除后行为。
 
 详细证据见 [auto_handle_popup 验证记录](../../../tests/SDK/web/evidence/auto_handle_popup.md)。

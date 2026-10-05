@@ -4,6 +4,8 @@
 
 **VERIFIED：连续 3 轮，每轮 19/19 PASS、0 FAIL、0 BLOCKED，退出码 0。**
 
+同日用户运行无日期唯一脚本完成一次复测：**19/19 PASS、退出码 0，清理 PASS，标签 4→4**。该记录单独归为用户复测，不计作 agent 的第四轮连续验收。
+
 此前 2026-10-04 的 1/2 PASS + 1 KNOWN 是条件不足时的历史记录。用户已新增模态弹窗与关闭按钮，真实自动关闭验收现已完成；[旧证据](web_auto_handle_popup_20261004.md)与旧原始输出保留。
 
 | 轮次 | 结果 | 清理 | 报告 |
@@ -11,6 +13,13 @@
 | 1 | 19/19 PASS | 标签 5→5，临时库已删除 | [终端](artifacts/auto_handle_popup_20261005_run1.txt) / [JSON](artifacts/auto_handle_popup_20261005_run1.json) |
 | 2 | 19/19 PASS | 标签 5→5，临时库已删除 | [终端](artifacts/auto_handle_popup_20261005_run2.txt) / [JSON](artifacts/auto_handle_popup_20261005_run2.json) |
 | 3 | 19/19 PASS | 标签 5→5，临时库已删除 | [纯 JSON 输出](artifacts/auto_handle_popup_20261005_run3.txt) / [JSON](artifacts/auto_handle_popup_20261005_run3.json) |
+| 用户复测 | 19/19 PASS，退出码 0 | 标签 4→4；cleanup PASS | [用户提供的终端日志](artifacts/auto_handle_popup_20261005_user_retest.txt) |
+
+### 用户复测记录
+
+用户通过 `uv run .\web\test_web_auto_handle_popup.py` 运行同一测试。其日志显示无规则对照、名称规则两次自动关闭、Selector 规则自动关闭、异常参数与重复注册全部通过；cleanup 中 errors、external_added、external_removed、new_dialogs 和 rule_observer_cleanup_errors 均为空，own_tab_closed 与 temporary_copy_removed 为 True。
+
+用户提供的是终端文本，未附独立 JSON 报告或新的源码 commit；本记录保留上述正式验收的源码快照，不推定另一版本已经验收。4→4 与先前三轮的 5→5 是不同的进入时标签基线，各轮均恢复了自己的基线。
 
 ## 用途、合同与源码快照
 
