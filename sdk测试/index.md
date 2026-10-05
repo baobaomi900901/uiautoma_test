@@ -1,6 +1,6 @@
 # SDK 持久化测试状态
 
-生命周期状态：`DRAFT`、`READY_FOR_LIVE`、`VERIFIED`；按用户要求无法满足条件的本轮项目记 `SKIPPED`，不表示功能通过。
+API 测试记录统一使用 `DRAFT`、`READY_FOR_LIVE`、`VERIFIED`、`SKIPPED`；含义与门槛见[实测手册第 1 节](web/web%20api%20实测手册.md#1-结论口径状态模型与生命周期)。`SKIPPED` 不表示功能通过。
 
 最新增量复测（2026-10-05）：`remove_all_auto_handle_popup()` 最后连续 3 轮 19/19 PASS，清理标签 4→4；保留此前外部新增标签造成的一轮清理 FAIL；[证据](web/evidence/remove_all_auto_handle_popup_20261005.md)。`auto_handle_popup()` 按指定打开/弹窗/关闭元素连续 3 轮 19/19 PASS，用户另行复测 19/19 PASS、清理标签 4→4；[证据](web/evidence/auto_handle_popup_20261005.md)。`handle_javascript_dialog()` 按指定三个库按钮连续 3 轮 16/16 PASS；[证据](web/evidence/handle_javascript_dialog_20261005.md)。`handle_upload_dialog()` 按指定单/多文件元素连续 3 轮 10/10 PASS；[证据](web/evidence/web_handle_upload_dialog_20261005.md)。合并上传、自动弹窗及规则移除复验后的原 29 项状态为 20 VERIFIED、1 失败、8 SKIPPED。
 
@@ -35,6 +35,12 @@
 
 | API | 状态 | 持久化脚本 | 验证证据 | 公开文档 |
 | --- | --- | --- | --- | --- |
+| `uiautoma.web.WebBrowser.get_cookies()` | `DRAFT`（尚缺本方法独立验收；原计数对应顶层 API） | — | — | — |
+| `uiautoma.web.WebBrowser.get_cookie()` | `DRAFT`（尚缺本方法独立验收；原计数对应顶层 API） | — | — | — |
+| `uiautoma.web.WebBrowser.set_cookie()` | `DRAFT`（尚缺本方法独立验收；原计数对应顶层 API） | — | — | — |
+| `uiautoma.web.WebBrowser.remove_cookie()` | `DRAFT`（尚缺本方法独立验收；原计数对应顶层 API） | — | — | — |
+| `uiautoma.web.WebBrowser.clear_cookies()` | `DRAFT`（尚缺本方法独立验收；原计数对应顶层 API） | — | — | — |
+| `uiautoma.web.WebElement.id` | `DRAFT`（原 8/8 尚缺属性独立验收证据） | — | — | — |
 | `uiautoma.web.WebElement.click()` | `VERIFIED` | [`web/test_web_element_click.py`](web/test_web_element_click.py) | [`web/evidence/click.md`](web/evidence/click.md) | [`sdk/docs/web/click.md`](../../sdk/docs/web/click.md) |
 | `uiautoma.web.WebElement.dblclick()` | `VERIFIED` | [`web/test_web_element_dblclick.py`](web/test_web_element_dblclick.py) | [`web/evidence/dblclick.md`](web/evidence/dblclick.md) | [`sdk/docs/web/dblclick.md`](../../sdk/docs/web/dblclick.md) |
 | `uiautoma.web.WebElement.hover()` | `VERIFIED` | [`web/test_web_element_hover.py`](web/test_web_element_hover.py) | [`web/evidence/hover.md`](web/evidence/hover.md) | [`sdk/docs/web/hover.md`](../../sdk/docs/web/hover.md) |
@@ -294,7 +300,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.handle_upload_dialog()` | `VERIFIED`（2026-10-05；10/10 PASS + 0 FAIL + 0 KNOWN；连续 3 轮；指定单/多文件库元素） | [web/test_web_handle_upload_dialog_20261004.py](web/test_web_handle_upload_dialog_20261004.py) | [web/evidence/web_handle_upload_dialog_20261005.md](web/evidence/web_handle_upload_dialog_20261005.md) |
 | `uiautoma.web.set_user_environment()` | `VERIFIED`（6/6；含预期环境状态） | `web/test_web_set_user_environment_profiles.py` | `web/evidence/set_user_environment.md` |
 | `uiautoma.web.reset_user_environment()` | `VERIFIED`（7/7） | `web/test_web_reset_user_environment.py` | `web/evidence/reset_user_environment.md` |
-| `uiautoma.web.WebBrowser.id` | `已移除`（`44c8e91f` 收敛公开接口）；脚本改为「成员收敛 + 替代方式」契约（8/8，2026-09-18 新基线） | `web/test_web_browser_id.py` | `web/evidence/baseline_adaptation.md` |
+| `uiautoma.web.WebBrowser.id` | `SKIPPED`（公开 API 已移除，`44c8e91f` 收敛公开接口）；脚本改为「成员收敛 + 替代方式」契约（8/8，2026-09-18 新基线） | `web/test_web_browser_id.py` | `web/evidence/baseline_adaptation.md` |
 | `uiautoma.web.WebElement.find_all()` | `VERIFIED`（30 用例 29/29 + 1 `KNOWN`；2026-09-18 新基线；标准靶场同文档路由语义正确，跨 iframe/open shadow 作用域为不对称边界） | `web/test_web_element_find_all.py` | `web/evidence/element_find_all.md` |
 | `uiautoma.web.WebBrowser.get_title()` | `VERIFIED`（7/7） | `web/test_web_browser_get_title.py` | `web/evidence/browser_get_title.md` |
 | `uiautoma.web.WebBrowser.get_html()` | `VERIFIED`（8/8） | `web/test_web_browser_get_html_baidu.py` | `web/evidence/browser_get_html_baidu.md` |

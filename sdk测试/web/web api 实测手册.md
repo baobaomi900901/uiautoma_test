@@ -22,6 +22,17 @@ API 生命周期（与 `AGENTS.md`「PUBLIC DOCUMENTATION GATE」一致）：
 `DRAFT` → `READY_FOR_LIVE` → `VERIFIED`。只有**真实场景**与**资源清理**都 `PASS` 才写 `VERIFIED`；
 存在未解决缺陷时写 `READY_FOR_LIVE` 并把缺陷如实写进证据文档。
 
+清单与索引的 API 测试记录统一使用以下状态词：
+
+| 状态 | 含义 |
+|---|---|
+| `DRAFT` | 测试草稿，或尚缺该 API 的独立验收脚本/证据 |
+| `READY_FOR_LIVE` | 脚本可用于实测，尚未满足 VERIFIED 门槛；未解决失败或阻塞须附说明 |
+| `VERIFIED` | 已记录覆盖范围内，真实场景和资源清理通过；已知边界仍须列出 |
+| `SKIPPED` | 本轮条件不满足而跳过，或公开 API 已移除/源码不存在；须说明原因 |
+
+“已完成”只有证据满足门槛时才归为 `VERIFIED`；“部分完成”按脚本准备情况归为 `DRAFT` 或 `READY_FOR_LIVE`。API 测试记录不再使用这些中文别名或 `-`；每条用例仍使用 `PASS`、`FAIL`、`BLOCKED`、`KNOWN`。本轮 `SKIPPED` 是执行结论，不是新增的生命周期阶段。历史原始报告保留运行时用词。
+
 ---
 
 ## 2. 期望值从哪来（决定验收可信度）
