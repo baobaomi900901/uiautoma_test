@@ -1,0 +1,416 @@
+r"""可见地打开靶场，定位库中按钮并高亮；默认高亮 3 秒，保留页面。
+
+uv run .\web\test_web_element_highlight.py
+--close-page 用于完整验收，结束时关闭本次页面；仍以非静默方式打开。
+--contract-only 只核对源码合同和非法 duration，不连接 Runtime。
+独立视觉参考目前限 Windows / Chrome / 96 DPI，不发送系统键鼠输入。
+"""
+from __future__ import annotations
+
+import argparse
+import concurrent.futures
+import ctypes
+from ctypes import wintypes
+import datetime
+import hashlib
+import inspect
+import json
+import math
+import shutil
+import subprocess
+import sys
+import time
+import uuid
+from pathlib import Path
+
+__test__ = False
+sys.dont_write_bytecode = True
+ROOT = Path(__file__).resolve().parents[1]
+PRODUCT = Path(r'D:\code\desktop')
+sys.path[:0] = [str(PRODUCT/'sdk/src'), str(ROOT/'web')]
+from uiautoma import web, open as open_package, ping, InvalidParamsError, HostUnavailableError
+from uiautoma.web import WebElement
+from uiautoma._core import WebElement as RawWebElement
+from test_web_element_get_select_options import copy_library
+from test_web_element_get_anchor_position import NativeOracle as GeometryOracle
+
+URL = 'https://baobaomi900901.github.io/xpath/#/keys-click-test'
+LIBRARY = Path(r'D:\code\元素库\260902_web元素')
+NAME = 'web靶场_测试点击_单击触发'
+CONTRACT = ROOT/'web/element_highlight_contract_20261009.json'
+TMP_ROOT = ROOT/'.pytest_tmp/highlight_live'
+
+
+class Blocked(Exception):
+    pass
+
+
+class Failure(AssertionError):
+    def __init__(self, detail):
+        self.detail = detail
+        super().__init__(json.dumps(detail, ensure_ascii=False, default=str))
+
+
+def require(ok, detail):
+    if not ok:
+        raise Failure(detail)
+    return detail
+
+
+def error(exc):
+    return {'exception': type(exc).__name__, 'message': str(exc), 'trace': getattr(exc, 'trace_info', '')}
+
+
+def contract():
+    frozen = json.loads(CONTRACT.read_text(encoding='utf-8'))
+    actual = str(inspect.signature(WebElement.highlight))
+    require(actual == frozen['signature'] and inspect.getsource(WebElement.highlight) == frozen['source'], 'SDK 方法已变化，请重新核对合同')
+    commits = {key: subprocess.check_output(['git', '-C', path, 'rev-parse', 'HEAD'], text=True).strip() for key, path in frozen['worktrees'].items()}
+    require(commits == frozen['commits'], {'expected': frozen['commits'], 'actual': commits})
+    for snapshot in frozen['source_snapshots']:
+        path = Path(snapshot['worktree'])/snapshot['path']
+        require(hashlib.sha256(path.read_bytes()).hexdigest() == snapshot['sha256'], {'changed_source': str(path)})
+    return {'signature': actual, 'commits': commits, 'rpc': frozen['rpc'], 'source_sections': len(frozen['source_snapshots'])}
+
+
+def invalid_duration():
+    class ValidationSession:
+        calls = 0
+
+        def _run_web_action(self, *args, **kwargs):
+            self.calls += 1
+            raise AssertionError('非法 duration 到达了 RPC 边界')
+
+    session = ValidationSession()
+    element = WebElement(RawWebElement(session, 'validation-only', NAME))
+    values = [('negative', -1), ('true', True), ('false', False), ('nan', float('nan')),
+              ('inf', float('inf')), ('negative_inf', float('-inf')), ('string', '1'),
+              ('none', None), ('list', [])]
+    rows = []
+    for name, value in values:
+        try:
+            element.highlight(duration=value)
+        except InvalidParamsError as exc:
+            detail = error(exc)
+            require('duration 必须是非负的有限秒数' in str(exc), detail)
+            rows.append({'name': name, **detail})
+        else:
+            raise Failure({'name': name, 'actual': '未抛 InvalidParamsError'})
+    require(session.calls == 0, {'rpc_calls': session.calls})
+    return {'variants': len(rows), 'rpc_calls': session.calls, 'results': rows}
+
+
+class NativeOracle(GeometryOracle):
+    """枚举真实原生高亮窗，读取其四条边的像素；没有窗口操作。"""
+
+    def __init__(self):
+        super().__init__()
+        self.u.GetDC.argtypes = [wintypes.HWND]
+        self.u.GetDC.restype = wintypes.HDC
+        self.u.ReleaseDC.argtypes = [wintypes.HWND, wintypes.HDC]
+        self.u.ReleaseDC.restype = ctypes.c_int
+        self.g = ctypes.WinDLL('gdi32')
+        self.g.GetPixel.argtypes = [wintypes.HDC, ctypes.c_int, ctypes.c_int]
+        self.g.GetPixel.restype = wintypes.DWORD
+
+    def overlays(self):
+        rows, errors = [], []
+
+        def each(hwnd, _):
+            try:
+                name = ctypes.create_unicode_buffer(256)
+                self.u.GetClassNameW(hwnd, name, len(name))
+                if name.value in {'RustFullscreenHighlightClass', 'RustPerPixelAlphaHighlightClass'} and self.u.IsWindowVisible(hwnd):
+                    rows.append(self.info(hwnd))
+            except Exception as exc:
+                errors.append(error(exc))
+            return True
+
+        self.u.EnumWindows(self.cb(each), 0)
+        if errors:
+            raise Blocked(json.dumps(errors, ensure_ascii=False))
+        return rows
+
+    def pixels(self, overlay):
+        r = overlay['rect']; x, y, w, h = (r[k] for k in ('x', 'y', 'width', 'height'))
+        points = {'left': [(x+i, y+h//2) for i in range(7)],
+                  'right': [(x+w-1-i, y+h//2) for i in range(7)],
+                  'top': [(x+w//2, y+i) for i in range(7)],
+                  'bottom': [(x+w//2, y+h-1-i) for i in range(7)]}
+        dc = self.u.GetDC(None)
+        if not dc:
+            raise Blocked('无法获取屏幕像素参考')
+        try:
+            colors = {side: [{'xy': p, 'rgb': ((v := int(self.g.GetPixel(dc, *p))) & 255, (v >> 8) & 255, (v >> 16) & 255)} for p in locations] for side, locations in points.items()}
+            return {'colors': colors, 'red_sides': {side: any(p['rgb'][0] > 180 and p['rgb'][1] < 90 and p['rgb'][2] < 90 for p in pixels) for side, pixels in colors.items()}}
+        finally:
+            self.u.ReleaseDC(None, dc)
+
+
+class Run:
+    def __init__(self, args):
+        self.args = args; self.rows = []
+        self.page = self.package = self.element = self.oracle = self.original = None
+        self.baseline = self.page_id = self.library_hash = None
+        self.tmp = TMP_ROOT/uuid.uuid4().hex
+        self.total = 3 if args.contract_only else 8
+        self.ready = False
+        self.observer_removed = self.page_closed = self.package_closed = False
+
+    def case(self, name, expected, fn, live=False):
+        start = time.perf_counter()
+        try:
+            if live and not self.ready:
+                raise Blocked('环境或元素定位未通过，未执行本用例')
+            actual, status = fn(), 'PASS'
+        except Failure as exc:
+            actual, status = exc.detail, 'FAIL'
+        except Exception as exc:
+            actual = error(exc)
+            blocked = isinstance(exc, (Blocked, HostUnavailableError, ConnectionError)) or type(exc).__name__ == 'Blocked' or actual['trace'] in {'uiautomation_provider_unavailable', 'browser_window_activation_failed'}
+            status = 'BLOCKED' if blocked else 'FAIL'
+        row = {'case_id': name, 'status': status, 'expected': expected, 'actual': actual, 'elapsed_ms': round((time.perf_counter()-start)*1000, 1)}
+        self.rows.append(row)
+        display = actual
+        if isinstance(actual, dict) and 'samples' in actual:
+            display = {k: actual[k] for k in ('return', 'duration', 'delay_after', 'red_sides', 'expected_rect', 'overlay_rect', 'visible_time_bounds_s', 'wait_after_disappear_s', 'overlays_after')}
+        elif name == 'invalid_duration' and status == 'PASS':
+            display = {'variants': actual['variants'], 'rpc_calls': actual['rpc_calls']}
+        color, label = {'PASS': ('\x1b[32m', '通过'), 'FAIL': ('\x1b[31m', '失败'), 'BLOCKED': ('\x1b[33m', '阻塞')}[status]
+        print(f"{len(self.rows):02d}/{self.total:02d} {color}[{label}]\x1b[0m {name} 期望 {expected}；实测 {json.dumps(display, ensure_ascii=False, default=str)}；{row['elapsed_ms']}ms", flush=True)
+        return status
+
+    def js(self, body):
+        return self.page.execute_javascript('function(){const e=document.getElementById("btn-click-target");'+body+'}')
+
+    def observe(self):
+        return self.js("""
+          const r=e.getBoundingClientRect();return {id:e.id,tag:e.tagName,
+            rect:{x:r.x,y:r.y,width:r.width,height:r.height},inner:{width:innerWidth,height:innerHeight},
+            window:{x:screenX,y:screenY,width:outerWidth,height:outerHeight},dpr:devicePixelRatio,
+            attributes:[...e.attributes].map(x=>[x.name,x.value]).sort((a,b)=>a[0].localeCompare(b[0])),
+            text:e.textContent,focus:document.activeElement?.id||'',events:{...window.__uiaHighlightObservation.counts}};
+        """)
+
+    def setup(self):
+        ping(timeout=5)
+        if not self.args.library.is_dir():
+            raise Blocked('元素库目录不存在：'+str(self.args.library))
+        self.library_hash = hashlib.sha256((self.args.library/'elements.json').read_bytes()).hexdigest()
+        self.oracle = NativeOracle()
+        if self.oracle.overlays():
+            raise Blocked('已有其他可见高亮框，请在结束后再运行本脚本')
+        self.baseline = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+        copy_library(self.args.library, self.tmp/'library')
+        self.package = open_package(str(self.tmp/'library'), timeout=8, connect_timeout=8)
+        print('正在以非静默方式打开靶场…', flush=True)
+        self.page = web.create(self.args.url, mode='chrome', silent_running=False, load_timeout=25)
+        self.page_id = self.page._page_ref['id']
+        self.js("""
+          const counts={click:0,input:0,change:0,keydown:0};const listener=ev=>{counts[ev.type]++;};
+          for(const k of Object.keys(counts))document.addEventListener(k,listener,true);
+          window.__uiaHighlightObservation={counts,listener};return !!e;
+        """)
+        require(self.page.get_url() == self.args.url, {'url': self.page.get_url()})
+        return {'url': self.page.get_url(), 'library': str(self.args.library), 'silent_running': False, 'baseline_tabs': len(self.baseline)}
+
+    def mapping(self):
+        if not self.page:
+            raise Blocked('页面未创建')
+        print('正在按元素库名称定位：'+self.args.element, flush=True)
+        matches = self.page.find_all(self.args.element, timeout=8)
+        require(len(matches) == 1, {'name': self.args.element, 'match_count': len(matches)})
+        self.element = matches[0]
+        require(self.element.get_attribute('id') == 'btn-click-target', {'actual_id': self.element.get_attribute('id')})
+        # Wait for the real target's layout to settle before measuring the frame.
+        previous = self.observe()
+        for _ in range(20):
+            time.sleep(.1); current = self.observe()
+            if current == previous:
+                self.original = current; break
+            previous = current
+        if self.original is None:
+            raise Blocked('页面布局持续变化，无法建立独立几何参考')
+        require(self.original['tag'] == 'BUTTON', self.original)
+        native = self.oracle.measure(self.original)
+        self.ready = True
+        return {'name': self.args.element, 'match_count': 1, 'id': self.original['id'], 'tag': self.original['tag'], 'dpi': native['dpi']}
+
+    def highlight(self):
+        before = self.observe(); native = self.oracle.measure(before)
+        duration, delay = self.args.duration, self.args.delay_after
+        print(f'已找到目标按钮，开始高亮 {duration:g} 秒，请观察页面…', flush=True)
+        start = time.perf_counter(); samples = []; pixels = None
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+            future = pool.submit(self.element.highlight, duration=duration, delay_after=delay)
+            while True:
+                at = time.perf_counter()-start
+                visible = self.oracle.overlays()
+                samples.append({'at_s': at, 'until_s': time.perf_counter()-start, 'visible': visible, 'foreground': self.oracle.foreground()})
+                if pixels is None and duration >= .2:
+                    alpha = [w for w in visible if w['class'] == 'RustPerPixelAlphaHighlightClass']
+                    if alpha:
+                        pixels = self.oracle.pixels(alpha[0])
+                if future.done():
+                    break
+                time.sleep(.01)
+            returned = future.result()
+        elapsed = time.perf_counter()-start
+        after = self.observe(); native_after = self.oracle.measure(after)
+        active = [s for s in samples if s['visible']]
+        # Moving or obscured references invalidate visual measurement.
+        if before['window'] != after['window'] or before['rect'] != after['rect'] or native != native_after:
+            raise Blocked(json.dumps({'reason': '测量期间页面或窗口位置变化', 'before': before, 'after': after}, ensure_ascii=False))
+        if any(s['foreground'] != native['hwnd'] for s in active):
+            raise Blocked('高亮期间浏览器失去前台，像素确证受外部操作影响')
+        expected = {k: math.floor(after['rect'][k]*after['dpr']+.5) for k in ('x', 'y', 'width', 'height')}
+        for k in ('x', 'y'):
+            expected[k] += native_after['viewport']['client_origin'][k]
+        bounds = None; wait = None; overlay = None; geometry_ok = False
+        if active:
+            first, last = active[0], active[-1]
+            first_i, last_i = samples.index(first), samples.index(last)
+            preceding = samples[max(0, first_i-1)]
+            following = samples[min(len(samples)-1, last_i+1)]
+            bounds = [max(0, last['at_s']-first['until_s']), following['until_s']-preceding['at_s']]
+            wait = elapsed-following['until_s']
+            alpha = [w for w in first['visible'] if w['class'] == 'RustPerPixelAlphaHighlightClass']
+            require(len(alpha) == 1, {'overlays': first['visible']})
+            overlay = alpha[0]['rect']
+            outsets = [expected['x']-overlay['x'], expected['y']-overlay['y'],
+                       overlay['x']+overlay['width']-expected['x']-expected['width'],
+                       overlay['y']+overlay['height']-expected['y']-expected['height']]
+            geometry_ok = all(0 <= v <= 8 for v in outsets) and abs(outsets[0]-outsets[2]) <= 1 and abs(outsets[1]-outsets[3]) <= 1
+        red_sides = (pixels or {}).get('red_sides', {})
+        overlays_after = self.oracle.overlays()
+        strategy = getattr(self.element.last_result, 'strategy', None)
+        detail = {'return': returned, 'duration': duration, 'delay_after': delay, 'elapsed_s': elapsed,
+                  'strategy': strategy, 'red_sides': red_sides, 'pixels': pixels,
+                  'expected_rect': expected, 'overlay_rect': overlay, 'geometry_ok': geometry_ok,
+                  'visible_time_bounds_s': bounds, 'wait_after_disappear_s': wait,
+                  'overlays_after': overlays_after, 'dom_before': before, 'dom_after': after,
+                  'native': native_after, 'samples': samples}
+        require(returned is None and strategy == 'web_highlight' and not overlays_after, detail)
+        if duration >= .2:
+            require(geometry_ok and len(red_sides) == 4 and all(red_sides.values()) and bounds[0] <= duration+.18 and bounds[1] >= duration-.05 and bounds[0] >= max(0, duration-.3), detail)
+            require(wait is not None and delay-.03 <= wait <= delay+.35, detail)
+        else:
+            # A zero/sub-frame duration can finish between samples; only verify cleared state.
+            require(elapsed >= duration+delay-.03, detail)
+        return detail
+
+    def unchanged(self):
+        current = self.observe()
+        keys = ('attributes', 'text', 'focus', 'events')
+        return require(all(current[k] == self.original[k] for k in keys) and all(v == 0 for v in current['events'].values()),
+                       {'attributes_text_focus_unchanged': all(current[k] == self.original[k] for k in keys), 'events': current['events']})
+
+    def closed_connection(self):
+        # The page owns this package connection: finish page operations before closing it.
+        self.remove_observer()
+        if self.args.close_page:
+            self.page.close(ignore_beforeunload=True)
+            self.page_closed = True
+        self.package.close()
+        self.package_closed = True
+        try:
+            self.element.highlight(duration=.1)
+        except HostUnavailableError as exc:
+            return require('连接已关闭' in str(exc) and not self.oracle.overlays(), error(exc))
+        raise Failure('连接关闭后，旧元素仍能执行 highlight')
+
+    def remove_observer(self):
+        self.js("""
+          const o=window.__uiaHighlightObservation;if(o){for(const k of Object.keys(o.counts))document.removeEventListener(k,o.listener,true);delete window.__uiaHighlightObservation;}return true;
+        """)
+        self.observer_removed = True
+
+    def cleanup(self):
+        errors = []
+        if self.page:
+            if not self.observer_removed:
+                try:
+                    self.remove_observer()
+                except Exception as exc:
+                    errors.append(error(exc))
+            if self.args.close_page and not self.page_closed:
+                try:
+                    self.page.close(ignore_beforeunload=True)
+                    self.page_closed = True
+                except Exception as exc:
+                    errors.append(error(exc))
+        if self.package and not self.package_closed:
+            try:
+                self.package.close()
+                self.package_closed = True
+            except Exception as exc:
+                errors.append(error(exc))
+        if self.tmp.exists():
+            require(self.tmp.resolve().parent == TMP_ROOT.resolve(), '临时目录超出本次工作范围')
+            shutil.rmtree(self.tmp)
+        after = {p._page_ref['id'] for p in web.get_all(mode='chrome')} if self.baseline is not None else set()
+        retained = bool(self.page and not self.args.close_page)
+        expected = (self.baseline or set()) | ({self.page_id} if retained else set())
+        unchanged = self.library_hash is None or hashlib.sha256((self.args.library/'elements.json').read_bytes()).hexdigest() == self.library_hash
+        overlays = self.oracle.overlays() if self.oracle else []
+        if self.oracle:
+            self.oracle.close()
+        detail = {'errors': errors, 'page_retained_for_observation': retained,
+                  'own_tab_closed': bool(self.page and self.page_id not in after),
+                  'temporary_copy_removed': not self.tmp.exists(), 'source_library_unchanged': unchanged,
+                  'tab_count': f'{len(self.baseline or set())}->{len(after)}',
+                  'unexpected_added': sorted(after-expected), 'external_removed': sorted(expected-after), 'overlays_after': overlays}
+        return require(not errors and unchanged and not overlays and not after.symmetric_difference(expected) and not self.tmp.exists(), detail)
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--url', default=URL)
+    parser.add_argument('--library', type=Path, default=LIBRARY)
+    parser.add_argument('--element', default=NAME)
+    parser.add_argument('--duration', type=float, default=3.0, help='高亮秒数，默认 3')
+    parser.add_argument('--delay-after', type=float, default=0.0)
+    parser.add_argument('--close-page', action='store_true', help='验收结束后关闭本次页面')
+    parser.add_argument('--contract-only', action='store_true')
+    parser.add_argument('--json', action='store_true')
+    parser.add_argument('--report-file', type=Path)
+    args = parser.parse_args(argv)
+    if any(not math.isfinite(v) or v < 0 for v in (args.duration, args.delay_after)):
+        parser.error('--duration / --delay-after 必须是非负的有限秒数')
+    run = Run(args)
+    print('UIAutoma Web API 测试\nAPI     : uiautoma.web.WebElement.highlight\n页面    : '+args.url, flush=True)
+    good = run.case('api_contract', '签名、默认值及 SDK→RPC→Runtime→Provider 快照一致', contract) == 'PASS'
+    run.case('invalid_duration', '9 种非法 duration 抛 InvalidParamsError；RPC 调用 0 次', invalid_duration)
+    try:
+        if not args.contract_only:
+            if good:
+                run.case('environment', '非静默打开靶场，连接元素库副本', run.setup)
+            else:
+                run.case('environment', '源码合同一致后再打开靶场', lambda: (_ for _ in ()).throw(Blocked('合同已变化')))
+            run.case('library_mapping', '名称唯一命中 BUTTON#btn-click-target；原生几何参考可用', run.mapping)
+            run.case('visible_highlight', '高亮目标；四边红框位置/持续时间/后置等待正确；返回 None 后消失', run.highlight, live=True)
+            run.case('unchanged_dom', '按钮属性、文字与焦点不变，click/input/change/keydown 为 0', run.unchanged, live=True)
+            run.case('closed_connection', '连接关闭后的旧对象抛 HostUnavailableError，不产生高亮', run.closed_connection, live=True)
+    finally:
+        run.case('cleanup', '移除观察器/高亮并关闭连接、删除副本；页面按参数保留或关闭', run.cleanup)
+    counts = {s: sum(row['status'] == s for row in run.rows) for s in ('PASS', 'FAIL', 'BLOCKED')}
+    code = 1 if counts['FAIL'] else 2 if counts['BLOCKED'] else 0
+    state = 'SKIPPED' if args.contract_only and not code else 'VERIFIED' if not code and args.close_page else 'READY_FOR_LIVE'
+    result = {'api': 'uiautoma.web.WebElement.highlight', 'date': datetime.date.today().isoformat(),
+              'state': state, 'url': args.url, 'library': str(args.library), 'element': args.element,
+              'silent_running': False, 'duration': args.duration, 'delay_after': args.delay_after,
+              'close_page': args.close_page, 'contract_only': args.contract_only,
+              'counts': counts, 'total': len(run.rows), 'exit_code': code, 'rows': run.rows}
+    if args.report_file:
+        args.report_file.parent.mkdir(parents=True, exist_ok=True)
+        args.report_file.write_text(json.dumps(result, ensure_ascii=False, indent=2, default=str)+'\n', encoding='utf-8')
+    print(f"{state} · {counts['PASS']}/{len(run.rows)} 通过 · {counts['FAIL']} 失败 · {counts['BLOCKED']} 阻塞 · 退出码 {code}", flush=True)
+    if run.page and not args.close_page:
+        print('测试页面已保留，请观察；高亮框已按 duration 自动消失。', flush=True)
+    if args.json:
+        print(json.dumps(result, ensure_ascii=False, default=str))
+    return code
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

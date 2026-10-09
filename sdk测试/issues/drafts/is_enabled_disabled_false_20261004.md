@@ -1,5 +1,7 @@
 # Issue 草稿：WebElement.is_enabled 将 disabled="false" 的原生输入框误判为启用
 
+> 本文为 2026-10-04 的历史草稿；下文“未发布”是当时状态。2026-10-08 已在两个真实按钮上复测，三轮每轮 30/32、2 FAIL；[当前证据](../../web/evidence/is_enabled.md)及[经用户授权发布的 Issue #23 补充评论](https://github.com/uiautoma/desktop/issues/23#issuecomment-6055620980)。
+
 状态：本地草稿，尚未发布。
 
 ## 环境与结果

@@ -1,0 +1,1288 @@
+{
+  "api": "uiautoma.web.WebBrowser.get_cookies",
+  "lifecycle": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+  "guard_url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+  "silent_running": true,
+  "oracle": "native CookieStore and document.cookie",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "contract": {
+    "signature": "(self, *, name=None, domain=None, path=None, secure=None, session=None, partition_key=None) -> 'list'",
+    "docstring": "获取当前网页中符合条件的 Cookie 列表。\n\nArgs:\n    name: 按 Cookie 名称筛选，默认 None，不限制名称。\n    domain: 按域名及其子域名筛选，例如 \".example.com\"；默认 None，不限制域名。\n    path: 按路径筛选，例如 \"/\"；默认 None，不限制路径。\n    secure: 默认 None，不筛选；True 获取安全 Cookie，False 获取非安全 Cookie。\n    session: 默认 None，不筛选；True 获取会话 Cookie，False 获取持久 Cookie。\n    partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n        {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n        has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。\n\nReturns:\n    list[dict]：返回 Cookie 列表，列表项包含 name、value、domain、path、httpOnly 等键，\n    可通过 item['value'] 获取 Cookie 值；未匹配时返回 []。",
+    "source": "    def get_cookies(self, *, name=None, domain=None, path=None, secure=None, session=None, partition_key=None) -> list:\n        \"\"\"获取当前网页中符合条件的 Cookie 列表。\n\n        Args:\n            name: 按 Cookie 名称筛选，默认 None，不限制名称。\n            domain: 按域名及其子域名筛选，例如 \".example.com\"；默认 None，不限制域名。\n            path: 按路径筛选，例如 \"/\"；默认 None，不限制路径。\n            secure: 默认 None，不筛选；True 获取安全 Cookie，False 获取非安全 Cookie。\n            session: 默认 None，不筛选；True 获取会话 Cookie，False 获取持久 Cookie。\n            partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n                {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n                has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。\n\n        Returns:\n            list[dict]：返回 Cookie 列表，列表项包含 name、value、domain、path、httpOnly 等键，\n            可通过 item['value'] 获取 Cookie 值；未匹配时返回 []。\n        \"\"\"\n        from . import _normalize_cookie_partition_key\n        result = self._runtime_client().web_page_cookie(\"get_all\", page_ref=self._page_ref,\n            name=name, domain=domain, path=path, secure=secure, session=session,\n            partition_key=_normalize_cookie_partition_key(partition_key))\n        from .._core.exceptions import RpcProtocolError\n        if not isinstance(result.get(\"cookies\"), list):\n            raise RpcProtocolError(\"Runtime 返回的 Cookie 列表无效\", response=result)\n        return result[\"cookies\"]\n",
+    "file": "sdk\\src\\uiautoma\\web\\browser.py",
+    "line": 477
+  },
+  "contract_file": "D:\\code\\元素库\\sdk测试\\web\\browser_cookie_contracts_20261006.json",
+  "expected_total": 29,
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名、默认值、docstring 和 SDK 源码均匹配只读快照",
+      "actual": "(self, *, name=None, domain=None, path=None, secure=None, session=None, partition_key=None) -> 'list'",
+      "elapsed_ms": 1.1
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "expected": "多余位置参数由 Python TypeError 拒绝，方法体未执行",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebBrowser.get_cookies() takes 1 positional argument but 2 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "expected": "未知 keyword 由 Python TypeError 拒绝，方法体未执行",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebBrowser.get_cookies() got an unexpected keyword argument 'unexpected'",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "创建后台测试页、读取原生 Cookie Store、记录 Chrome 标签基线",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+        "baseline_tabs": 3,
+        "foreign_cookie_count": 0,
+        "silent_running": true,
+        "native_cookie_store": true
+      },
+      "elapsed_ms": 715.2
+    },
+    {
+      "case_id": "native_fixtures",
+      "status": "PASS",
+      "expected": "原生 JS 准备会话/持久、域 Cookie、分区和其他 Path；Cookie Store 确认",
+      "actual": {
+        "main": {
+          "cookies": [
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+              "partitioned": false,
+              "path": "/xpath/",
+              "sameSite": "lax",
+              "secure": false,
+              "value": "session-value"
+            },
+            {
+              "domain": "baobaomi900901.github.io",
+              "expires": null,
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+              "partitioned": false,
+              "path": "/xpath/",
+              "sameSite": "lax",
+              "secure": false,
+              "value": "domain-value"
+            },
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_partition",
+              "partitioned": true,
+              "path": "/xpath/",
+              "sameSite": "lax",
+              "secure": true,
+              "value": "partition-value"
+            },
+            {
+              "domain": null,
+              "expires": 1791242799301.906,
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+              "partitioned": false,
+              "path": "/",
+              "sameSite": "lax",
+              "secure": true,
+              "value": "persistent-value"
+            }
+          ],
+          "hostname": "baobaomi900901.github.io",
+          "now": 1791242199365,
+          "pairs": [
+            {
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+              "value": "session-value"
+            },
+            {
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+              "value": "domain-value"
+            },
+            {
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_partition",
+              "value": "partition-value"
+            },
+            {
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+              "value": "persistent-value"
+            }
+          ],
+          "path": "/xpath/",
+          "readyState": "complete",
+          "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "foreign_fingerprint": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "foreign_count": 0
+        },
+        "guard": {
+          "cookies": [
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_guard",
+              "partitioned": false,
+              "path": "/xpath/stop-load-test/",
+              "sameSite": "strict",
+              "secure": true,
+              "value": "guard-value"
+            },
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+              "partitioned": false,
+              "path": "/xpath/",
+              "sameSite": "lax",
+              "secure": false,
+              "value": "session-value"
+            },
+            {
+              "domain": "baobaomi900901.github.io",
+              "expires": null,
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+              "partitioned": false,
+              "path": "/xpath/",
+              "sameSite": "lax",
+              "secure": false,
+              "value": "domain-value"
+            },
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_partition",
+              "partitioned": true,
+              "path": "/xpath/",
+              "sameSite": "lax",
+              "secure": true,
+              "value": "partition-value"
+            },
+            {
+              "domain": null,
+              "expires": 1791242799301.906,
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+              "partitioned": false,
+              "path": "/",
+              "sameSite": "lax",
+              "secure": true,
+              "value": "persistent-value"
+            }
+          ],
+          "hostname": "baobaomi900901.github.io",
+          "now": 1791242199757,
+          "pairs": [
+            {
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_guard",
+              "value": "guard-value"
+            },
+            {
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+              "value": "session-value"
+            },
+            {
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+              "value": "domain-value"
+            },
+            {
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_partition",
+              "value": "partition-value"
+            },
+            {
+              "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+              "value": "persistent-value"
+            }
+          ],
+          "path": "/xpath/stop-load-test/slow.svg",
+          "readyState": "complete",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+          "foreign_fingerprint": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "foreign_count": 0
+        },
+        "oracle": "native cookieStore + document.cookie; seeds are native JS"
+      },
+      "elapsed_ms": 487.5
+    },
+    {
+      "case_id": "get_all",
+      "status": "PASS",
+      "expected": "返回 list；本次所有匹配未分区项的值和属性与原生数据逐项一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "value": "session-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "value": "domain-value",
+            "domain": ".baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": false,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "value": "persistent-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/",
+            "httpOnly": false,
+            "secure": true,
+            "expirationDate": 1791242799.301906,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": false,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "session-value"
+          },
+          {
+            "domain": "baobaomi900901.github.io",
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "domain-value"
+          },
+          {
+            "domain": null,
+            "expires": 1791242799301.906,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "partitioned": false,
+            "path": "/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "persistent-value"
+          }
+        ],
+        "count": 3
+      },
+      "elapsed_ms": 35.6
+    },
+    {
+      "case_id": "filter_name",
+      "status": "PASS",
+      "expected": "唯一名称筛选命中一个本次 Cookie，完整属性正确",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "value": "session-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "session-value"
+          }
+        ],
+        "count": 1
+      },
+      "elapsed_ms": 50.1
+    },
+    {
+      "case_id": "name_not_found",
+      "status": "PASS",
+      "expected": "随机不存在名称返回 []",
+      "actual": {
+        "cookies": [],
+        "native_expected": [],
+        "count": 0
+      },
+      "elapsed_ms": 23.7
+    },
+    {
+      "case_id": "filter_domain",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "value": "session-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "value": "domain-value",
+            "domain": ".baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": false,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "value": "persistent-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/",
+            "httpOnly": false,
+            "secure": true,
+            "expirationDate": 1791242799.301906,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": false,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "session-value"
+          },
+          {
+            "domain": "baobaomi900901.github.io",
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "domain-value"
+          },
+          {
+            "domain": null,
+            "expires": 1791242799301.906,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "partitioned": false,
+            "path": "/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "persistent-value"
+          }
+        ],
+        "count": 3
+      },
+      "elapsed_ms": 31.4
+    },
+    {
+      "case_id": "filter_domain_parent",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "value": "session-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "value": "domain-value",
+            "domain": ".baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": false,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "value": "persistent-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/",
+            "httpOnly": false,
+            "secure": true,
+            "expirationDate": 1791242799.301906,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": false,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "session-value"
+          },
+          {
+            "domain": "baobaomi900901.github.io",
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "domain-value"
+          },
+          {
+            "domain": null,
+            "expires": 1791242799301.906,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "partitioned": false,
+            "path": "/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "persistent-value"
+          }
+        ],
+        "count": 3
+      },
+      "elapsed_ms": 30.9
+    },
+    {
+      "case_id": "filter_domain_dot",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "value": "session-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "value": "domain-value",
+            "domain": ".baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": false,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "value": "persistent-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/",
+            "httpOnly": false,
+            "secure": true,
+            "expirationDate": 1791242799.301906,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": false,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "session-value"
+          },
+          {
+            "domain": "baobaomi900901.github.io",
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "domain-value"
+          },
+          {
+            "domain": null,
+            "expires": 1791242799301.906,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "partitioned": false,
+            "path": "/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "persistent-value"
+          }
+        ],
+        "count": 3
+      },
+      "elapsed_ms": 30.1
+    },
+    {
+      "case_id": "filter_domain_miss",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [],
+        "native_expected": [],
+        "count": 0
+      },
+      "elapsed_ms": 31.5
+    },
+    {
+      "case_id": "filter_path_root",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "value": "persistent-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/",
+            "httpOnly": false,
+            "secure": true,
+            "expirationDate": 1791242799.301906,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": false,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": 1791242799301.906,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "partitioned": false,
+            "path": "/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "persistent-value"
+          }
+        ],
+        "count": 1
+      },
+      "elapsed_ms": 31.5
+    },
+    {
+      "case_id": "filter_path_exact",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "value": "session-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "value": "domain-value",
+            "domain": ".baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": false,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "session-value"
+          },
+          {
+            "domain": "baobaomi900901.github.io",
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "domain-value"
+          }
+        ],
+        "count": 2
+      },
+      "elapsed_ms": 32.6
+    },
+    {
+      "case_id": "filter_path_miss",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [],
+        "native_expected": [],
+        "count": 0
+      },
+      "elapsed_ms": 29.2
+    },
+    {
+      "case_id": "filter_secure_true",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "value": "persistent-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/",
+            "httpOnly": false,
+            "secure": true,
+            "expirationDate": 1791242799.301906,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": false,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": 1791242799301.906,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "partitioned": false,
+            "path": "/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "persistent-value"
+          }
+        ],
+        "count": 1
+      },
+      "elapsed_ms": 32.8
+    },
+    {
+      "case_id": "filter_secure_false",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "value": "session-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "value": "domain-value",
+            "domain": ".baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": false,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "session-value"
+          },
+          {
+            "domain": "baobaomi900901.github.io",
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "domain-value"
+          }
+        ],
+        "count": 2
+      },
+      "elapsed_ms": 31.8
+    },
+    {
+      "case_id": "filter_session_true",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "value": "session-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "value": "domain-value",
+            "domain": ".baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": false,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "session-value"
+          },
+          {
+            "domain": "baobaomi900901.github.io",
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "domain-value"
+          }
+        ],
+        "count": 2
+      },
+      "elapsed_ms": 30.1
+    },
+    {
+      "case_id": "filter_session_false",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "value": "persistent-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/",
+            "httpOnly": false,
+            "secure": true,
+            "expirationDate": 1791242799.301906,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": false,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": 1791242799301.906,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "partitioned": false,
+            "path": "/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "persistent-value"
+          }
+        ],
+        "count": 1
+      },
+      "elapsed_ms": 30.2
+    },
+    {
+      "case_id": "filter_combined",
+      "status": "PASS",
+      "expected": "筛选结果及属性与原生 Cookie Store 的独立筛选结果一致",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "value": "persistent-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/",
+            "httpOnly": false,
+            "secure": true,
+            "expirationDate": 1791242799.301906,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": false,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": 1791242799301.906,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "partitioned": false,
+            "path": "/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "persistent-value"
+          }
+        ],
+        "count": 1
+      },
+      "elapsed_ms": 31.4
+    },
+    {
+      "case_id": "current_page_scope",
+      "status": "PASS",
+      "expected": "同源其他真实文档的额外 Path 项只在该网页 get_cookies 中出现",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_guard",
+            "value": "guard-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/stop-load-test/",
+            "httpOnly": false,
+            "secure": true,
+            "hostOnly": true,
+            "sameSite": "strict",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "value": "session-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "value": "domain-value",
+            "domain": ".baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": false,
+            "hostOnly": false,
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          },
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "value": "persistent-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/",
+            "httpOnly": false,
+            "secure": true,
+            "expirationDate": 1791242799.301906,
+            "hostOnly": true,
+            "sameSite": "lax",
+            "session": false,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_guard",
+            "partitioned": false,
+            "path": "/xpath/stop-load-test/",
+            "sameSite": "strict",
+            "secure": true,
+            "value": "guard-value"
+          },
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "session-value"
+          },
+          {
+            "domain": "baobaomi900901.github.io",
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_domain",
+            "partitioned": false,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": false,
+            "value": "domain-value"
+          },
+          {
+            "domain": null,
+            "expires": 1791242799301.906,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_persistent",
+            "partitioned": false,
+            "path": "/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "persistent-value"
+          }
+        ],
+        "count": 4
+      },
+      "elapsed_ms": 33.2
+    },
+    {
+      "case_id": "partition_dict",
+      "status": "PASS",
+      "expected": "字典分区命中真正 Partitioned Cookie，完整属性和 topLevelSite/祖先标记正确",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_partition",
+            "value": "partition-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": true,
+            "hostOnly": true,
+            "partitionKey": {
+              "hasCrossSiteAncestor": false,
+              "topLevelSite": "https://baobaomi900901.github.io"
+            },
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_partition",
+            "partitioned": true,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "partition-value"
+          }
+        ],
+        "count": 1
+      },
+      "elapsed_ms": 31.1
+    },
+    {
+      "case_id": "partition_alias",
+      "status": "PASS",
+      "expected": "camelCase 字典别名得到相同正确分区结果",
+      "actual": {
+        "cookies": [
+          {
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_partition",
+            "value": "partition-value",
+            "domain": "baobaomi900901.github.io",
+            "path": "/xpath/",
+            "httpOnly": false,
+            "secure": true,
+            "hostOnly": true,
+            "partitionKey": {
+              "hasCrossSiteAncestor": false,
+              "topLevelSite": "https://baobaomi900901.github.io"
+            },
+            "sameSite": "lax",
+            "session": true,
+            "storeId": "0"
+          }
+        ],
+        "native_expected": [
+          {
+            "domain": null,
+            "expires": null,
+            "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_partition",
+            "partitioned": true,
+            "path": "/xpath/",
+            "sameSite": "lax",
+            "secure": true,
+            "value": "partition-value"
+          }
+        ],
+        "count": 1
+      },
+      "elapsed_ms": 30.3
+    },
+    {
+      "case_id": "partition_wrong_site",
+      "status": "PASS",
+      "expected": "错误顶层站点分区返回 []",
+      "actual": {
+        "cookies": [],
+        "native_expected": [],
+        "count": 0
+      },
+      "elapsed_ms": 30.8
+    },
+    {
+      "case_id": "partition_wrong_ancestor",
+      "status": "PASS",
+      "expected": "first-party 页没有跨站祖先；请求 True 分区返回 []",
+      "actual": {
+        "cookies": [],
+        "native_expected": [],
+        "count": 0
+      },
+      "elapsed_ms": 32.1
+    },
+    {
+      "case_id": "partition_parameters",
+      "status": "PASS",
+      "expected": "非法分区类型、空站点与非法祖先类型按源码合同拒绝",
+      "actual": [
+        {
+          "exception": "TypeError",
+          "message": "partition_key must be a mapping",
+          "trace": ""
+        },
+        {
+          "exception": "ValueError",
+          "message": "partition_key.top_level_site is required",
+          "trace": ""
+        },
+        {
+          "exception": "TypeError",
+          "message": "partition_key.has_cross_site_ancestor must be a bool",
+          "trace": ""
+        }
+      ],
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "repeat_readonly",
+      "status": "PASS",
+      "expected": "三次读取一致；原生 Cookie 数据未改变",
+      "actual": {
+        "samples": [
+          {
+            "cookies": [
+              {
+                "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+                "value": "session-value",
+                "domain": "baobaomi900901.github.io",
+                "path": "/xpath/",
+                "httpOnly": false,
+                "secure": false,
+                "hostOnly": true,
+                "sameSite": "lax",
+                "session": true,
+                "storeId": "0"
+              }
+            ],
+            "native_expected": [
+              {
+                "domain": null,
+                "expires": null,
+                "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+                "partitioned": false,
+                "path": "/xpath/",
+                "sameSite": "lax",
+                "secure": false,
+                "value": "session-value"
+              }
+            ],
+            "count": 1
+          },
+          {
+            "cookies": [
+              {
+                "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+                "value": "session-value",
+                "domain": "baobaomi900901.github.io",
+                "path": "/xpath/",
+                "httpOnly": false,
+                "secure": false,
+                "hostOnly": true,
+                "sameSite": "lax",
+                "session": true,
+                "storeId": "0"
+              }
+            ],
+            "native_expected": [
+              {
+                "domain": null,
+                "expires": null,
+                "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+                "partitioned": false,
+                "path": "/xpath/",
+                "sameSite": "lax",
+                "secure": false,
+                "value": "session-value"
+              }
+            ],
+            "count": 1
+          },
+          {
+            "cookies": [
+              {
+                "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+                "value": "session-value",
+                "domain": "baobaomi900901.github.io",
+                "path": "/xpath/",
+                "httpOnly": false,
+                "secure": false,
+                "hostOnly": true,
+                "sameSite": "lax",
+                "session": true,
+                "storeId": "0"
+              }
+            ],
+            "native_expected": [
+              {
+                "domain": null,
+                "expires": null,
+                "name": "sdk_browser_cookie_55567f7e2eb947eab9d79619a643d34c_session",
+                "partitioned": false,
+                "path": "/xpath/",
+                "sameSite": "lax",
+                "secure": false,
+                "value": "session-value"
+              }
+            ],
+            "count": 1
+          }
+        ],
+        "native_unchanged": true
+      },
+      "elapsed_ms": 127.1
+    },
+    {
+      "case_id": "closed_page",
+      "status": "PASS",
+      "expected": "有效参数操作已关闭页面抛 ActionError / 网页对象已失效 / stale_page_reference",
+      "actual": {
+        "exception": "ActionError",
+        "message": "网页对象已失效",
+        "trace": "stale_page_reference"
+      },
+      "elapsed_ms": 737.7
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "删除本次 Cookie、原生确认；保留外部 Cookie、关闭自有标签并复核基线",
+      "actual": {
+        "errors": [],
+        "owned_cookies_removed": true,
+        "foreign_cookie_baseline_preserved": true,
+        "tab_count": "3->3",
+        "own_tabs_closed": true,
+        "external_added": [],
+        "external_removed": []
+      },
+      "elapsed_ms": 413.6
+    }
+  ],
+  "contract_discrepancies": [
+    "docstring 声称 partition_key 支持网址字符串；当前 SDK 仅接受 Mapping，字符串抛 TypeError。本轮正向分区用例只验证字典。"
+  ],
+  "boundaries": [
+    "Chrome；第一方 Cookie 分区；不验证跨站祖先为 True 的正向环境。",
+    "原生 Cookie Store 不展示 HttpOnly；读取方法的隐藏 Cookie 属性/值未独立验收。",
+    "set_cookie 的 HttpOnly 用脚本覆盖保护核验；没有服务端或 CDP 核验隐藏值。"
+  ],
+  "exit_code": 0
+}

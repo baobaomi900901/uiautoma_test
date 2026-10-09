@@ -1,0 +1,1066 @@
+{
+  "api": "uiautoma.web.WebElement.highlight",
+  "date": "2026-10-09",
+  "state": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "element": "web靶场_测试点击_单击触发",
+  "silent_running": false,
+  "duration": 0.6,
+  "delay_after": 0.25,
+  "close_page": true,
+  "contract_only": false,
+  "counts": {
+    "PASS": 8,
+    "FAIL": 0,
+    "BLOCKED": 0
+  },
+  "total": 8,
+  "exit_code": 0,
+  "rows": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名、默认值及 SDK→RPC→Runtime→Provider 快照一致",
+      "actual": {
+        "signature": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'",
+        "commits": {
+          "desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+          "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"
+        },
+        "rpc": "web.action.highlight",
+        "source_sections": 26
+      },
+      "elapsed_ms": 164.4
+    },
+    {
+      "case_id": "invalid_duration",
+      "status": "PASS",
+      "expected": "9 种非法 duration 抛 InvalidParamsError；RPC 调用 0 次",
+      "actual": {
+        "variants": 9,
+        "rpc_calls": 0,
+        "results": [
+          {
+            "name": "negative",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "true",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "false",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "nan",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "inf",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "negative_inf",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "string",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "none",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "list",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          }
+        ]
+      },
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "非静默打开靶场，连接元素库副本",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "silent_running": false,
+        "baseline_tabs": 1
+      },
+      "elapsed_ms": 1877.9
+    },
+    {
+      "case_id": "library_mapping",
+      "status": "PASS",
+      "expected": "名称唯一命中 BUTTON#btn-click-target；原生几何参考可用",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "match_count": 1,
+        "id": "btn-click-target",
+        "tag": "BUTTON",
+        "dpi": 96
+      },
+      "elapsed_ms": 227.7
+    },
+    {
+      "case_id": "visible_highlight",
+      "status": "PASS",
+      "expected": "高亮目标；四边红框位置/持续时间/后置等待正确；返回 None 后消失",
+      "actual": {
+        "return": null,
+        "duration": 0.6,
+        "delay_after": 0.25,
+        "elapsed_s": 2.6464088000000174,
+        "strategy": "web_highlight",
+        "red_sides": {
+          "left": true,
+          "right": true,
+          "top": true,
+          "bottom": true
+        },
+        "pixels": {
+          "colors": {
+            "left": [
+              {
+                "xy": [
+                  2968,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  2969,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  2970,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  2971,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  2972,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  2973,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              },
+              {
+                "xy": [
+                  2974,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              }
+            ],
+            "right": [
+              {
+                "xy": [
+                  3069,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3068,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3067,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3066,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3065,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3064,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              },
+              {
+                "xy": [
+                  3063,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              }
+            ],
+            "top": [
+              {
+                "xy": [
+                  3019,
+                  381
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  382
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  383
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  384
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  385
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  386
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  387
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              }
+            ],
+            "bottom": [
+              {
+                "xy": [
+                  3019,
+                  426
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  425
+                ],
+                "rgb": [
+                  250,
+                  250,
+                  250
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  424
+                ],
+                "rgb": [
+                  250,
+                  250,
+                  250
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  423
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  422
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  421
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  420
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              }
+            ]
+          },
+          "red_sides": {
+            "left": true,
+            "right": true,
+            "top": true,
+            "bottom": true
+          }
+        },
+        "expected_rect": {
+          "x": 2971,
+          "y": 384,
+          "width": 96,
+          "height": 40
+        },
+        "overlay_rect": {
+          "x": 2968,
+          "y": 381,
+          "width": 102,
+          "height": 46
+        },
+        "geometry_ok": true,
+        "visible_time_bounds_s": [
+          0.4926989999999023,
+          0.7498700999999528
+        ],
+        "wait_after_disappear_s": 0.2593047000000297,
+        "overlays_after": [],
+        "dom_before": {
+          "attributes": [
+            [
+              "class",
+              "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+            ],
+            [
+              "id",
+              "btn-click-target"
+            ],
+            [
+              "type",
+              "button"
+            ]
+          ],
+          "dpr": 1,
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "id": "btn-click-target",
+          "inner": {
+            "height": 1215,
+            "width": 3440
+          },
+          "rect": {
+            "height": 40,
+            "width": 96,
+            "x": 2971,
+            "y": 207
+          },
+          "tag": "BUTTON",
+          "text": "单击触发",
+          "window": {
+            "height": 1392,
+            "width": 3440,
+            "x": 0,
+            "y": 0
+          }
+        },
+        "dom_after": {
+          "attributes": [
+            [
+              "class",
+              "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+            ],
+            [
+              "id",
+              "btn-click-target"
+            ],
+            [
+              "type",
+              "button"
+            ]
+          ],
+          "dpr": 1,
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "id": "btn-click-target",
+          "inner": {
+            "height": 1215,
+            "width": 3440
+          },
+          "rect": {
+            "height": 40,
+            "width": 96,
+            "x": 2971,
+            "y": 207
+          },
+          "tag": "BUTTON",
+          "text": "单击触发",
+          "window": {
+            "height": 1392,
+            "width": 3440,
+            "x": 0,
+            "y": 0
+          }
+        },
+        "native": {
+          "hwnd": 199716,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 3440,
+            "height": 1392
+          },
+          "client_origin": {
+            "x": 0,
+            "y": 0
+          },
+          "client_size": {
+            "width": 3440,
+            "height": 1392
+          },
+          "dpi": 96,
+          "maximized": true,
+          "raw_window_rect": {
+            "x": -8,
+            "y": -8,
+            "width": 3456,
+            "height": 1408
+          },
+          "rect_source": "DWM_EXTENDED_FRAME_BOUNDS",
+          "viewport": {
+            "hwnd": 334226,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 0,
+              "y": 177,
+              "width": 3440,
+              "height": 1215
+            },
+            "client_origin": {
+              "x": 0,
+              "y": 177
+            },
+            "client_size": {
+              "width": 3440,
+              "height": 1215
+            },
+            "dpi": 96
+          }
+        },
+        "capture_foreground": 199716,
+        "samples": [
+          {
+            "at_s": 0.009033499999986816,
+            "until_s": 0.07959449999998469,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.09006379999982528,
+            "until_s": 0.15694779999989805,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.16723899999988134,
+            "until_s": 0.23767629999997553,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.24792349999984253,
+            "until_s": 0.32416479999983494,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.3345815999998649,
+            "until_s": 0.4081368999998176,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.4183181999999306,
+            "until_s": 0.4822288000000299,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.4927525999999034,
+            "until_s": 0.5538176999998541,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.5639847999998437,
+            "until_s": 0.6312266999998428,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.6413847999999689,
+            "until_s": 0.7194706000000224,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.7298670999998649,
+            "until_s": 0.8009950999999091,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.8115991999998187,
+            "until_s": 0.8723062999999911,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.8825481999999738,
+            "until_s": 0.9425022999998873,
+            "visible": [],
+            "foreground": 2035966
+          },
+          {
+            "at_s": 0.9526163999998971,
+            "until_s": 1.028547799999842,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.0390582999998514,
+            "until_s": 1.1059461999998348,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.1163593999999648,
+            "until_s": 1.183774699999958,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.1941446999999243,
+            "until_s": 1.264654599999858,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.2752449999998134,
+            "until_s": 1.3386114999998426,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.3489066999998158,
+            "until_s": 1.4115898000000016,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.4219360999998116,
+            "until_s": 1.4826562999999169,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.4931334000000334,
+            "until_s": 1.5543166999998448,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.5649234999998498,
+            "until_s": 1.6269963999998254,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.637234000000035,
+            "until_s": 1.7063020999999026,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.7168167999998332,
+            "until_s": 1.7782412999999906,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.9065891000000192,
+            "until_s": 1.9591663999999582,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.9693634000000202,
+            "until_s": 2.004329299999881,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.0148113999998714,
+            "until_s": 2.0630055999999968,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.0733020999998644,
+            "until_s": 2.125124799999867,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.1356097999998838,
+            "until_s": 2.1550611000000117,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.165330699999913,
+            "until_s": 2.1970960999999534,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.2075724999999693,
+            "until_s": 2.26031799999987,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.270940299999893,
+            "until_s": 2.3196261999999024,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.329762800000026,
+            "until_s": 2.3871040999999877,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.397544499999867,
+            "until_s": 2.4540150999998787,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.464274400000022,
+            "until_s": 2.518118799999911,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.5282816999999795,
+            "until_s": 2.579960599999822,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 2.5904943999998977,
+            "until_s": 2.646043399999826,
+            "visible": [],
+            "foreground": 199716
+          }
+        ]
+      },
+      "elapsed_ms": 2746.4
+    },
+    {
+      "case_id": "unchanged_dom",
+      "status": "PASS",
+      "expected": "按钮属性、文字与焦点不变，click/input/change/keydown 为 0",
+      "actual": {
+        "attributes_text_focus_unchanged": true,
+        "events": {
+          "change": 0,
+          "click": 0,
+          "input": 0,
+          "keydown": 0
+        }
+      },
+      "elapsed_ms": 15.6
+    },
+    {
+      "case_id": "closed_connection",
+      "status": "PASS",
+      "expected": "连接关闭后的旧对象抛 HostUnavailableError，不产生高亮",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 260.4
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "移除观察器/高亮并关闭连接、删除副本；页面按参数保留或关闭",
+      "actual": {
+        "errors": [],
+        "page_retained_for_observation": false,
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "source_library_unchanged": true,
+        "tab_count": "1->1",
+        "unexpected_added": [],
+        "external_removed": [],
+        "overlays_after": []
+      },
+      "elapsed_ms": 191.3
+    }
+  ]
+}

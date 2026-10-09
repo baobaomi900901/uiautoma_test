@@ -1,0 +1,15 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.highlight
+页面    : https://baobaomi900901.github.io/xpath/#/keys-click-test
+01/08 [32m[通过][0m api_contract 期望 签名、默认值及 SDK→RPC→Runtime→Provider 快照一致；实测 {"signature": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'", "commits": {"desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa", "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"}, "rpc": "web.action.highlight", "source_sections": 26}；142.1ms
+02/08 [32m[通过][0m invalid_duration 期望 9 种非法 duration 抛 InvalidParamsError；RPC 调用 0 次；实测 {"variants": 9, "rpc_calls": 0}；0.1ms
+正在以非静默方式打开靶场…
+03/08 [32m[通过][0m environment 期望 非静默打开靶场，连接元素库副本；实测 {"url": "https://baobaomi900901.github.io/xpath/#/keys-click-test", "library": "D:\\code\\元素库\\260902_web元素", "silent_running": false, "baseline_tabs": 1}；2733.0ms
+正在按元素库名称定位：web靶场_测试点击_单击触发
+04/08 [32m[通过][0m library_mapping 期望 名称唯一命中 BUTTON#btn-click-target；原生几何参考可用；实测 {"name": "web靶场_测试点击_单击触发", "match_count": 1, "id": "btn-click-target", "tag": "BUTTON", "dpi": 96}；196.5ms
+已找到目标按钮，开始高亮 1 秒，请观察页面…
+05/08 [32m[通过][0m visible_highlight 期望 高亮目标；四边红框位置/持续时间/后置等待正确；返回 None 后消失；实测 {"return": null, "duration": 1.0, "delay_after": 0.0, "red_sides": {"left": true, "right": true, "top": true, "bottom": true}, "expected_rect": {"x": 2971, "y": 384, "width": 96, "height": 40}, "overlay_rect": {"x": 2968, "y": 381, "width": 102, "height": 46}, "visible_time_bounds_s": [1.0076166999999714, 1.1124827999999525], "wait_after_disappear_s": 0.03150940000000446, "overlays_after": []}；1761.6ms
+06/08 [32m[通过][0m unchanged_dom 期望 按钮属性、文字与焦点不变，click/input/change/keydown 为 0；实测 {"attributes_text_focus_unchanged": true, "events": {"change": 0, "click": 0, "input": 0, "keydown": 0}}；10.9ms
+07/08 [32m[通过][0m closed_connection 期望 连接关闭后的旧对象抛 HostUnavailableError，不产生高亮；实测 {"exception": "HostUnavailableError", "message": "元素对象所属连接已关闭，请重新获取对象", "trace": ""}；7.8ms
+08/08 [31m[失败][0m cleanup 期望 移除观察器/高亮并关闭连接、删除副本；页面按参数保留或关闭；实测 {"errors": [{"exception": "HostUnavailableError", "message": "自动化服务连接中断或响应超时，请确认 UIAutoma 已启动", "trace": ""}, {"exception": "HostUnavailableError", "message": "自动化服务连接中断或响应超时，请确认 UIAutoma 已启动", "trace": ""}], "page_retained_for_observation": false, "own_tab_closed": false, "temporary_copy_removed": true, "source_library_unchanged": true, "tab_count": "1->2", "unexpected_added": ["588fc5b790934e89"], "external_removed": [], "overlays_after": []}；134.4ms
+READY_FOR_LIVE · 7/8 通过 · 1 失败 · 0 阻塞 · 退出码 1

@@ -1,0 +1,67 @@
+import collections
+import json
+import re
+from pathlib import Path
+
+root = Path(r'D:\code\元素库\sdk测试')
+group = ''
+rows = []
+sections = collections.defaultdict(collections.Counter)
+issues = collections.defaultdict(list)
+lines = (root/'web/web api 清单.md').read_text(encoding='utf-8').splitlines()
+for number, line in enumerate(lines, 1):
+    if line.startswith('## '):
+        group = line[3:]
+    if not line.startswith('|') or not re.search(r'`(VERIFIED|READY_FOR_LIVE|DRAFT|SKIPPED)`', line):
+        continue
+    cols = re.split(r'(?<!\\)\|', line)[1:-1]
+    api = re.search(r'`([^`]+)`', cols[0]).group(1)
+    state = re.search(r'`(VERIFIED|READY_FOR_LIVE|DRAFT|SKIPPED)`', line).group(1)
+    status = cols[-1].strip()
+    links = re.findall(r'\]\((evidence/[^)]+)\)', status)
+    row = {'group': group, 'api': api, 'state': state, 'line': number, 'status': status,
+           'evidence': links, 'issues': []}
+    for link in links:
+        file = root/'web'/link
+        if file.exists():
+            text = file.read_text(encoding='utf-8-sig')
+            row['issues'] += list(map(int, re.findall(r'github.com/uiautoma/desktop/issues/(\d+)', text)))
+    row['issues'] = sorted(set(row['issues']))
+    rows.append(row)
+    sections[group][state] += 1
+    for issue in row['issues']:
+        issues[issue].append({'api': api, 'state': state, 'evidence': links})
+# Index links include older methods whose checklist row only contains a status count.
+index_rows = []
+index_group = ''
+for number, line in enumerate((root/'index.md').read_text(encoding='utf-8').splitlines(), 1):
+    if line.startswith('## '):
+        index_group = line[3:]
+    if not line.startswith('|') or 'uiautoma.web' not in line:
+        continue
+    cols = re.split(r'(?<!\\)\|', line)[1:-1]
+    api = re.search(r'`([^`]+)`', cols[0]).group(1)
+    state = re.search(r'`(VERIFIED|READY_FOR_LIVE|DRAFT|SKIPPED)`', cols[1])
+    links = re.findall(r'\]\((web/evidence/[^)]+)\)', line)
+    local_issues = []
+    for link in links:
+        file = root/link
+        if file.exists():
+            text = file.read_text(encoding='utf-8-sig')
+            local_issues += list(map(int, re.findall(r'github.com/uiautoma/desktop/issues/(\d+)', text)))
+    local_issues = sorted(set(local_issues))
+    index_rows.append({'api': api, 'group': index_group, 'state': state.group(1) if state else cols[1].strip(),
+                       'line': number, 'evidence': links, 'issues': local_issues})
+result = {'counts': dict(collections.Counter(r['state'] for r in rows)),
+          'groups': {g: dict(c) for g, c in sections.items()}, 'total': len(rows),
+          'rows': rows, 'linked_issues': dict(issues), 'index_rows': index_rows}
+(root/'.pytest_tmp/summary_web_20261009/inventory.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+print(json.dumps({k: v for k, v in result.items() if k not in {'rows', 'index_rows'}}, ensure_ascii=False))
+print('NOT VERIFIED:')
+for row in rows:
+    if row['state'] != 'VERIFIED':
+        print(json.dumps(row, ensure_ascii=False))
+print('INDEX ISSUE LINKS:')
+for row in index_rows:
+    if row['issues']:
+        print(json.dumps(row, ensure_ascii=False))

@@ -2,7 +2,15 @@
 
 API 测试记录统一使用 `DRAFT`、`READY_FOR_LIVE`、`VERIFIED`、`SKIPPED`；含义与门槛见[实测手册第 1 节](web/web%20api%20实测手册.md#1-结论口径状态模型与生命周期)。`SKIPPED` 不表示功能通过。
 
-最新增量复测（2026-10-05）：`stop_load()` 最后连续 3 轮 18/18 PASS，清理标签 4→4；首轮准备 BLOCKED 与三轮准备恢复记录保留；[证据](web/evidence/browser_stop_load_20261005.md)。`remove_all_auto_handle_popup()` 最后连续 3 轮 19/19 PASS，清理标签 4→4；保留此前外部新增标签造成的一轮清理 FAIL；[证据](web/evidence/remove_all_auto_handle_popup_20261005.md)。`auto_handle_popup()` 按指定打开/弹窗/关闭元素连续 3 轮 19/19 PASS，用户另行复测 19/19 PASS、清理标签 4→4；[证据](web/evidence/auto_handle_popup_20261005.md)。`handle_javascript_dialog()` 按指定三个库按钮连续 3 轮 16/16 PASS；[证据](web/evidence/handle_javascript_dialog_20261005.md)。`handle_upload_dialog()` 按指定单/多文件元素连续 3 轮 10/10 PASS；[证据](web/evidence/web_handle_upload_dialog_20261005.md)。合并上传、自动弹窗、规则移除及停载复验后的原 29 项状态为 21 VERIFIED、1 READY_FOR_LIVE（存在 FAIL）、7 SKIPPED。
+最新 get_anchor_position 复测（2026-10-08）：指定 Ant 输入框，后台 Chrome/96 DPI 范围连续 3 轮各 76/76 PASS，清理 8→8；九固定锚点、random、传参/偏移与滚动场景经 DOM + Win32 独立核对。最大化窗口参考已修正，高 DPI 换算未验收；[证据](web/evidence/get_anchor_position.md)。唯一入口为 `web/test_web_element_get_anchor_position.py`。
+
+最新 get_bounding 复测（2026-10-08）：指定 Ant 输入框，Chrome 后台、96 DPI 范围连续 3 轮各 38/38 PASS；screen/window 四组合经 DOM + 独立 Win32 原点核对，含 iframe 内外滚动、小数尺寸及负 viewport 坐标，清理 6→6。高 DPI 换算未验收；[证据](web/evidence/get_bounding.md)。唯一入口为 `web/test_web_element_get_bounding.py`。
+
+最新 input 复测（2026-10-08）：指定 iframe/open Shadow 靶场的 Ant 和原生两输入框，后台范围连续 3 轮各 60/60 PASS，清理 2→2；[证据](web/evidence/input.md)。历史 #65 已关闭，本轮 DOM 值与真实表单提交状态均正确；系统模拟键盘、IME 与实际鼠标锚点未复测。唯一入口为 `web/test_web_element_input.py`。
+
+最新 Cookie 独立验收（2026-10-06）：WebBrowser.get_cookies 29/29、get_cookie 18/18、remove_cookie 16/16、clear_cookies 13/13，均最后连续 3 轮 `VERIFIED`；set_cookie 三轮 20/21 PASS + 1 FAIL，`READY_FOR_LIVE`（合法另一 Path 已写入却抛 cookie_set_failed）。全部正式用例后台运行，最后三轮清理均 PASS、标签 3→3。`partition_key` 字符串文档差异另有探针与交接稿；各行证据限定覆盖范围。
+
+最新增量复测（2026-10-05）：`is_load_completed()` 连续 3 轮 19/19 PASS，清理标签 3→3；持续 False、自然/刷新 True 和加载失败/失效引用异常已覆盖；[证据](web/evidence/is_load_completed.md)。`stop_load()` 最后连续 3 轮 18/18 PASS，清理标签 4→4；首轮准备 BLOCKED 与三轮准备恢复记录保留；[证据](web/evidence/browser_stop_load_20261005.md)。`remove_all_auto_handle_popup()` 最后连续 3 轮 19/19 PASS，清理标签 4→4；保留此前外部新增标签造成的一轮清理 FAIL；[证据](web/evidence/remove_all_auto_handle_popup_20261005.md)。`auto_handle_popup()` 按指定打开/弹窗/关闭元素连续 3 轮 19/19 PASS，用户另行复测 19/19 PASS、清理标签 4→4；[证据](web/evidence/auto_handle_popup_20261005.md)。`handle_javascript_dialog()` 按指定三个库按钮连续 3 轮 16/16 PASS；[证据](web/evidence/handle_javascript_dialog_20261005.md)。`handle_upload_dialog()` 按指定单/多文件元素连续 3 轮 10/10 PASS；[证据](web/evidence/web_handle_upload_dialog_20261005.md)。合并上传、自动弹窗、规则移除及停载复验后的原 29 项状态为 21 VERIFIED、1 READY_FOR_LIVE（存在 FAIL）、7 SKIPPED。
 
 历史批次（2026-10-04）：29 项中 17 VERIFIED、1 失败、11 SKIPPED；详见 [剩余 Web API 实测汇总](web/evidence/remaining_web_20261004.md)。
 
@@ -35,11 +43,11 @@ API 测试记录统一使用 `DRAFT`、`READY_FOR_LIVE`、`VERIFIED`、`SKIPPED`
 
 | API | 状态 | 持久化脚本 | 验证证据 | 公开文档 |
 | --- | --- | --- | --- | --- |
-| `uiautoma.web.WebBrowser.get_cookies()` | `DRAFT`（尚缺本方法独立验收；原计数对应顶层 API） | — | — | — |
-| `uiautoma.web.WebBrowser.get_cookie()` | `DRAFT`（尚缺本方法独立验收；原计数对应顶层 API） | — | — | — |
-| `uiautoma.web.WebBrowser.set_cookie()` | `DRAFT`（尚缺本方法独立验收；原计数对应顶层 API） | — | — | — |
-| `uiautoma.web.WebBrowser.remove_cookie()` | `DRAFT`（尚缺本方法独立验收；原计数对应顶层 API） | — | — | — |
-| `uiautoma.web.WebBrowser.clear_cookies()` | `DRAFT`（尚缺本方法独立验收；原计数对应顶层 API） | — | — | — |
+| `uiautoma.web.WebBrowser.get_cookies()` | `VERIFIED`（2026-10-06；连续 3 轮 29/29 PASS；后台；清理 3→3） | [web/test_web_browser_get_cookies.py](web/test_web_browser_get_cookies.py) | [web/evidence/browser_get_cookies.md](web/evidence/browser_get_cookies.md) | — |
+| `uiautoma.web.WebBrowser.get_cookie()` | `VERIFIED`（2026-10-06；连续 3 轮 18/18 PASS；后台；清理 3→3） | [web/test_web_browser_get_cookie.py](web/test_web_browser_get_cookie.py) | [web/evidence/browser_get_cookie.md](web/evidence/browser_get_cookie.md) | — |
+| `uiautoma.web.WebBrowser.set_cookie()` | `READY_FOR_LIVE`（2026-10-06；三轮 20/21 PASS + 1 FAIL；原生 18 项与 SDK 三对确认空返回误判；清理 PASS） | [web/test_web_browser_set_cookie.py](web/test_web_browser_set_cookie.py) | [web/evidence/browser_set_cookie.md](web/evidence/browser_set_cookie.md)；[缺陷 #74](https://github.com/uiautoma/desktop/issues/74) | — |
+| `uiautoma.web.WebBrowser.remove_cookie()` | `VERIFIED`（2026-10-06；连续 3 轮 16/16 PASS；后台；清理 3→3） | [web/test_web_browser_remove_cookie.py](web/test_web_browser_remove_cookie.py) | [web/evidence/browser_remove_cookie.md](web/evidence/browser_remove_cookie.md) | — |
+| `uiautoma.web.WebBrowser.clear_cookies()` | `VERIFIED`（2026-10-06；连续 3 轮 13/13 PASS；后台；清理 3→3） | [web/test_web_browser_clear_cookies.py](web/test_web_browser_clear_cookies.py) | [web/evidence/browser_clear_cookies.md](web/evidence/browser_clear_cookies.md) | — |
 | `uiautoma.web.WebElement.id` | `DRAFT`（原 8/8 尚缺属性独立验收证据） | — | — | — |
 | `uiautoma.web.WebElement.click()` | `VERIFIED` | [`web/test_web_element_click.py`](web/test_web_element_click.py) | [`web/evidence/click.md`](web/evidence/click.md) | [`sdk/docs/web/click.md`](../../sdk/docs/web/click.md) |
 | `uiautoma.web.WebElement.dblclick()` | `VERIFIED` | [`web/test_web_element_dblclick.py`](web/test_web_element_dblclick.py) | [`web/evidence/dblclick.md`](web/evidence/dblclick.md) | [`sdk/docs/web/dblclick.md`](../../sdk/docs/web/dblclick.md) |
@@ -50,7 +58,7 @@ API 测试记录统一使用 `DRAFT`、`READY_FOR_LIVE`、`VERIFIED`、`SKIPPED`
 | `uiautoma.web.WebElement.child_at()` | `VERIFIED` | [`web/test_web_element_child_at.py`](web/test_web_element_child_at.py) | [`web/evidence/child_at.md`](web/evidence/child_at.md) | [`sdk/docs/web/child_at.md`](../../sdk/docs/web/child_at.md) |
 | `uiautoma.web.WebElement.previous_sibling()` | `VERIFIED` | [`web/test_web_element_previous_sibling.py`](web/test_web_element_previous_sibling.py) | [`web/evidence/previous_sibling.md`](web/evidence/previous_sibling.md) | [`sdk/docs/web/previous_sibling.md`](../../sdk/docs/web/previous_sibling.md) |
 | `uiautoma.web.WebElement.next_sibling()` | `VERIFIED` | [`web/test_web_element_next_sibling.py`](web/test_web_element_next_sibling.py) | [`web/evidence/next_sibling.md`](web/evidence/next_sibling.md) | [`sdk/docs/web/next_sibling.md`](../../sdk/docs/web/next_sibling.md) |
-| `uiautoma.web.WebElement.input()` | `VERIFIED` | [`web/test_web_element_input.py`](web/test_web_element_input.py) | [`web/evidence/input.md`](web/evidence/input.md) | [`sdk/docs/web/input.md`](../../sdk/docs/web/input.md) |
+| `uiautoma.web.WebElement.input()` | `VERIFIED`（2026-10-08；后台范围；连续 3 轮 60/60 PASS；Ant/原生；清理 2→2；系统键盘/鼠标锚点未复测） | [web/test_web_element_input.py](web/test_web_element_input.py) | [web/evidence/input.md](web/evidence/input.md) | [`sdk/docs/web/input.md`](../../sdk/docs/web/input.md) |
 | `uiautoma.web.WebElement.clipboard_input()` | `VERIFIED` | [`web/test_web_element_clipboard_input.py`](web/test_web_element_clipboard_input.py) | [`web/evidence/clipboard_input.md`](web/evidence/clipboard_input.md) | [`sdk/docs/web/clipboard_input.md`](../../sdk/docs/web/clipboard_input.md) |
 | `uiautoma.web.WebElement.get_text()` | `VERIFIED`（8/8） | [`web/test_web_element_get_text_html.py`](web/test_web_element_get_text_html.py) | [`web/evidence/get_text.md`](web/evidence/get_text.md) | [`sdk/docs/web/get_text.md`](../../sdk/docs/web/get_text.md) |
 | `uiautoma.web.WebElement.get_html()` | `VERIFIED`（17/17；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_get_html.py`](web/test_web_element_get_html.py) | [`web/evidence/get_html.md`](web/evidence/get_html.md) | [`sdk/docs/web/get_html.md`](../../sdk/docs/web/get_html.md) |
@@ -58,7 +66,7 @@ API 测试记录统一使用 `DRAFT`、`READY_FOR_LIVE`、`VERIFIED`、`SKIPPED`
 | `uiautoma.web.WebElement.set_value()` | `VERIFIED`（21/21；2026-09-20 真实库元素复验，连续 3 次退出码 0） | [`web/test_web_element_set_value.py`](web/test_web_element_set_value.py) | [`web/evidence/set_value.md`](web/evidence/set_value.md) | [`sdk/docs/web/set_value.md`](../../sdk/docs/web/set_value.md) |
 | `uiautoma.web.WebElement.check()` | `VERIFIED`（2026-09-24：61/61 PASS，连续 3 次退出码 0） | [`web/test_web_element_check_iframe_shadow_form.py`](web/test_web_element_check_iframe_shadow_form.py) | [`web/evidence/check.md`](web/evidence/check.md) | [`sdk/docs/web/check.md`](../../sdk/docs/web/check.md) |
 | `uiautoma.web.WebElement.is_checked()` | `VERIFIED`（2026-10-04；11/11 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_is_checked_20261004.py](web/test_web_element_is_checked_20261004.py) | [web/evidence/element_is_checked_20261004.md](web/evidence/element_is_checked_20261004.md) | [`sdk/docs/web/is_checked.md`](../../sdk/docs/web/is_checked.md) |
-| `uiautoma.web.WebElement.is_enabled()` | `READY_FOR_LIVE`（2026-10-04；8/9 PASS + 1 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_is_enabled_20261004.py](web/test_web_element_is_enabled_20261004.py) | [web/evidence/element_is_enabled_20261004.md](web/evidence/element_is_enabled_20261004.md) | [`sdk/docs/web/is_enabled.md`](../../sdk/docs/web/is_enabled.md) |
+| `uiautoma.web.WebElement.is_enabled()` | `READY_FOR_LIVE`（2026-10-08；30/32 PASS + 2 FAIL + 0 BLOCKED；3 轮；原始两按钮通过，disabled="false" 缺陷；Issue #23 已补充） | [web/test_web_element_is_enabled.py](web/test_web_element_is_enabled.py) | [web/evidence/is_enabled.md](web/evidence/is_enabled.md) | [`sdk/docs/web/is_enabled.md`](../../sdk/docs/web/is_enabled.md) |
 | `uiautoma.web.WebElement.get_attribute()` | `VERIFIED`（2026-10-04；8/8 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_get_attribute_20261004.py](web/test_web_element_get_attribute_20261004.py) | [web/evidence/element_get_attribute_20261004.md](web/evidence/element_get_attribute_20261004.md) | [`sdk/docs/web/get_attribute.md`](../../sdk/docs/web/get_attribute.md) |
 | `uiautoma.web.WebElement.get_all_attributes()` | `VERIFIED`（2026-10-04；7/7 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_get_all_attributes_20261004.py](web/test_web_element_get_all_attributes_20261004.py) | [web/evidence/element_get_all_attributes_20261004.md](web/evidence/element_get_all_attributes_20261004.md) | [`sdk/docs/web/get_all_attributes.md`](../../sdk/docs/web/get_all_attributes.md) |
 | `uiautoma.web.WebElement.set_attribute()` | `VERIFIED`（2026-10-04；7/7 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_set_attribute_20261004.py](web/test_web_element_set_attribute_20261004.py) | [web/evidence/element_set_attribute_20261004.md](web/evidence/element_set_attribute_20261004.md) | [`sdk/docs/web/set_attribute.md`](../../sdk/docs/web/set_attribute.md) |
@@ -69,7 +77,7 @@ API 测试记录统一使用 `DRAFT`、`READY_FOR_LIVE`、`VERIFIED`、`SKIPPED`
 | `uiautoma.web.WebElement.get_select_options()` | `VERIFIED`（2026-10-03：14/16 PASS + 2 KNOWN，连续 3 次退出码 0；标准 `<select>`） | [`web/test_web_element_get_select_options.py`](web/test_web_element_get_select_options.py) | [`web/evidence/get_select_options.md`](web/evidence/get_select_options.md) | [`sdk/docs/web/get_select_options.md`](../../sdk/docs/web/get_select_options.md) |
 | `uiautoma.web.WebElement.get_all_select_items()` | `VERIFIED`（2026-10-03：15/17 PASS + 2 KNOWN，连续 3 次退出码 0；标准 `<select>`） | [`web/test_web_element_get_all_select_items.py`](web/test_web_element_get_all_select_items.py) | [`web/evidence/get_all_select_items.md`](web/evidence/get_all_select_items.md) | [`sdk/docs/web/get_all_select_items.md`](../../sdk/docs/web/get_all_select_items.md) |
 | `uiautoma.web.WebElement.get_selected_item()` | `VERIFIED`（2026-10-04；10/12 PASS + 0 FAIL + 2 KNOWN；3 轮） | [web/test_web_element_get_selected_item_20261004.py](web/test_web_element_get_selected_item_20261004.py) | [web/evidence/element_get_selected_item_20261004.md](web/evidence/element_get_selected_item_20261004.md) | [`sdk/docs/web/get_selected_item.md`](../../sdk/docs/web/get_selected_item.md) |
-| `uiautoma.web.WebElement.get_bounding()` | `SKIPPED`（2026-10-04；5/9 PASS + 0 FAIL + 4 KNOWN；1 轮） | [web/test_web_element_get_bounding_20261004.py](web/test_web_element_get_bounding_20261004.py) | [web/evidence/element_get_bounding_20261004.md](web/evidence/element_get_bounding_20261004.md) | [`sdk/docs/web/get_bounding.md`](../../sdk/docs/web/get_bounding.md) |
+| `uiautoma.web.WebElement.get_bounding()` | `VERIFIED`（2026-10-08；后台/96 DPI；连续 3 轮各 38/38 PASS；清理 6→6） | [web/test_web_element_get_bounding.py](web/test_web_element_get_bounding.py) | [web/evidence/get_bounding.md](web/evidence/get_bounding.md) | [`sdk/docs/web/get_bounding.md`](../../sdk/docs/web/get_bounding.md) |
 | `uiautoma.web.WebElement.screenshot()` | `VERIFIED`（2026-10-04；5/5 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_screenshot_20261004.py](web/test_web_element_screenshot_20261004.py) | [web/evidence/element_screenshot_20261004.md](web/evidence/element_screenshot_20261004.md) | [`sdk/docs/web/screenshot.md`](../../sdk/docs/web/screenshot.md) |
 | `uiautoma.web.WebElement.drag_to()` | `VERIFIED`（2026-10-04；6/7 PASS + 0 FAIL + 1 KNOWN；3 轮） | [web/test_web_element_drag_to_20261004.py](web/test_web_element_drag_to_20261004.py) | [web/evidence/element_drag_to_20261004.md](web/evidence/element_drag_to_20261004.md) | [`sdk/docs/web/drag_to.md`](../../sdk/docs/web/drag_to.md) |
 | `uiautoma.web.WebElement.upload()` | `VERIFIED`（2026-10-04；6/6 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_upload_20261004.py](web/test_web_element_upload_20261004.py) | [web/evidence/element_upload_20261004.md](web/evidence/element_upload_20261004.md) | [`sdk/docs/web/upload.md`](../../sdk/docs/web/upload.md) |
@@ -81,14 +89,14 @@ API 测试记录统一使用 `DRAFT`、`READY_FOR_LIVE`、`VERIFIED`、`SKIPPED`
 | `uiautoma.web.get_cookie()` | `READY_FOR_LIVE` | [`web/test_web_set_cookie_get_cookie.py`](web/test_web_set_cookie_get_cookie.py) | [`web/evidence/get_cookie.md`](web/evidence/get_cookie.md) | [`sdk/docs/web/get_cookie.md`](../../sdk/docs/web/get_cookie.md) |
 | `uiautoma.web.remove_cookie()` | `READY_FOR_LIVE` | [`web/test_web_remove_cookie.py`](web/test_web_remove_cookie.py) | [`web/evidence/remove_cookie.md`](web/evidence/remove_cookie.md) | [`sdk/docs/web/remove_cookie.md`](../../sdk/docs/web/remove_cookie.md) |
 | `uiautoma.web.WebElement.name` | `VERIFIED`（2026-10-04；6/6 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_name_20261004.py](web/test_web_element_name_20261004.py) | [web/evidence/element_name_20261004.md](web/evidence/element_name_20261004.md) | — |
-| `uiautoma.web.WebElement.get_anchor_position()` | `SKIPPED`（2026-10-04；5/11 PASS + 0 FAIL + 6 KNOWN；1 轮） | [web/test_web_element_get_anchor_position_20261004.py](web/test_web_element_get_anchor_position_20261004.py) | [web/evidence/element_get_anchor_position_20261004.md](web/evidence/element_get_anchor_position_20261004.md) | — |
+| `uiautoma.web.WebElement.get_anchor_position()` | `VERIFIED`（2026-10-08；后台/96 DPI；连续 3 轮各 76/76 PASS；清理 8→8） | [web/test_web_element_get_anchor_position.py](web/test_web_element_get_anchor_position.py) | [web/evidence/get_anchor_position.md](web/evidence/get_anchor_position.md) | — |
 | `uiautoma.web.WebElement.get_anchor_viewport_position()` | `VERIFIED`（2026-10-04；11/11 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_get_anchor_viewport_position_20261004.py](web/test_web_element_get_anchor_viewport_position_20261004.py) | [web/evidence/element_get_anchor_viewport_position_20261004.md](web/evidence/element_get_anchor_viewport_position_20261004.md) | — |
 | `uiautoma.web.WebElement.is_displayed()` | `VERIFIED`（2026-10-04；7/7 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_is_displayed_20261004.py](web/test_web_element_is_displayed_20261004.py) | [web/evidence/element_is_displayed_20261004.md](web/evidence/element_is_displayed_20261004.md) | — |
 | `uiautoma.web.WebElement.execute_javascript()` | `VERIFIED`（2026-10-04；10/10 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_execute_javascript_20261004.py](web/test_web_element_execute_javascript_20261004.py) | [web/evidence/element_execute_javascript_20261004.md](web/evidence/element_execute_javascript_20261004.md) | — |
 | `uiautoma.web.WebElement.scroll_to()` | `VERIFIED`（2026-10-04；9/9 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_scroll_to_20261004.py](web/test_web_element_scroll_to_20261004.py) | [web/evidence/element_scroll_to_20261004.md](web/evidence/element_scroll_to_20261004.md) | — |
 | `uiautoma.web.WebElement.get_scroll()` | `VERIFIED`（2026-10-04；10/10 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_get_scroll_20261004.py](web/test_web_element_get_scroll_20261004.py) | [web/evidence/element_get_scroll_20261004.md](web/evidence/element_get_scroll_20261004.md) | — |
 | `uiautoma.web.WebElement.drag_to_by_cdp()` | `VERIFIED`（2026-10-04；5/5 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_element_drag_to_by_cdp_20261004.py](web/test_web_element_drag_to_by_cdp_20261004.py) | [web/evidence/element_drag_to_by_cdp_20261004.md](web/evidence/element_drag_to_by_cdp_20261004.md) | — |
-| `uiautoma.web.WebElement.highlight()` | `SKIPPED`（2026-10-04；6/8 PASS + 0 FAIL + 2 KNOWN；1 轮） | [web/test_web_element_highlight_20261004.py](web/test_web_element_highlight_20261004.py) | [web/evidence/element_highlight_20261004.md](web/evidence/element_highlight_20261004.md) | — |
+| `uiautoma.web.WebElement.highlight()` | `VERIFIED`（2026-10-09；8/8 PASS，连续 3 轮；Chrome/96 DPI；非静默；完整清理用 --close-page） | [web/test_web_element_highlight.py](web/test_web_element_highlight.py) | [web/evidence/highlight.md](web/evidence/highlight.md) | 待确认文档交接 |
 | `uiautoma.web.auto_handle_popup()` | `VERIFIED`（2026-10-05；19/19 PASS；3 轮正式验收 + 用户复测 1 次；用户清理 4→4） | [web/test_web_auto_handle_popup.py](web/test_web_auto_handle_popup.py) | [web/evidence/auto_handle_popup_20261005.md](web/evidence/auto_handle_popup_20261005.md) | [公开文档交接稿](issues/drafts/auto_handle_popup_20261005/README.md)（本地） |
 | `uiautoma.web.remove_all_auto_handle_popup()` | `VERIFIED`（2026-10-05；19/19 PASS；最后连续 3 轮；清理 4→4） | [web/test_web_remove_all_auto_handle_popup.py](web/test_web_remove_all_auto_handle_popup.py) | [web/evidence/remove_all_auto_handle_popup_20261005.md](web/evidence/remove_all_auto_handle_popup_20261005.md) | — |
 | `uiautoma.web.set_user_environment_fingerprint()` | `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮） | [web/test_web_set_user_environment_fingerprint_20261004.py](web/test_web_set_user_environment_fingerprint_20261004.py) | [web/evidence/web_set_user_environment_fingerprint_20261004.md](web/evidence/web_set_user_environment_fingerprint_20261004.md) | — |
@@ -190,10 +198,10 @@ App 中确认双匹配并重新抓取，稳定 Ant ID 成为必需条件；在 `
 （只读 HTML attribute，不读 IDL `checked`）；修复并复验通过前不能进入 `VERIFIED`。
 跟踪 Issue：https://github.com/uiautoma/desktop/issues/22
 
-`WebElement.is_enabled()` 于 2026-08-09 在 Chrome/`form-controls`、元素 `input元素` /
-`input_html_disabled` 上完成真实探测：可用项返回 `True`，禁用项期望 `False` 却因
-`disabled` 空串被误判为可用；修复并复验通过前不能进入 `VERIFIED`。
-跟踪 Issue：https://github.com/uiautoma/desktop/issues/23
+`WebElement.is_enabled()` 的 2026-08-09 历史问题是 disabled 空串误判（[归档](issues/is_enabled_history_20261008/README.md)）。
+2026-10-08 在 Chrome/keys-click-test 的两个库按钮上复测：原始禁用/可用分别 False/True，空串用例均通过；
+`disabled="false"` 时浏览器禁用但 API 返回 True，三轮每轮 30/32 PASS、2 FAIL、0 BLOCKED，状态仍为 `READY_FOR_LIVE`。
+[当前证据](web/evidence/is_enabled.md)；[Issue #23 复测评论](https://github.com/uiautoma/desktop/issues/23#issuecomment-6055620980)。
 
 `WebElement.drag_to()` 于 2026-08-09 在 Chrome/`drag-to-test`、元素 `拖拽元素` /
 `获取拖拽日志` 上完成真实探测：公开签名与 `delay_after` 通过，但 `left=100/top=50`
@@ -313,7 +321,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebBrowser.go_back()` | `VERIFIED`（2026-10-04；5/5 PASS + 0 FAIL + 0 KNOWN；3 轮） | [web/test_web_browser_go_back_20261004.py](web/test_web_browser_go_back_20261004.py) | [web/evidence/browser_go_back_20261004.md](web/evidence/browser_go_back_20261004.md) |
 | `uiautoma.web.WebBrowser.go_forward()` | `VERIFIED`（13/13；2026-09-15；仅预热路径，冷状态被 #58 阻塞） | `web/test_web_browser_go_forward.py` | `web/evidence/go_forward.md` |
 | `uiautoma.web.WebBrowser.reload()` | `VERIFIED`（12/12；2026-09-15） | `web/test_web_browser_reload.py` | `web/evidence/reload.md` |
-| `uiautoma.web.WebBrowser.is_load_completed()` | `VERIFIED`（9/9；2026-09-15；True/False 两路径均已实际覆盖） | `web/test_web_browser_is_load_completed.py` | `web/evidence/is_load_completed.md` |
+| `uiautoma.web.WebBrowser.is_load_completed()` | `VERIFIED`（2026-10-05；连续 3 轮 19/19 PASS；True/False、加载失败和失效引用） | [web/test_web_browser_is_load_completed.py](web/test_web_browser_is_load_completed.py) | [web/evidence/is_load_completed.md](web/evidence/is_load_completed.md) |
 | `uiautoma.web.WebBrowser.wait_load_completed()` | `VERIFIED`（12/12；2026-09-15） | `web/test_web_browser_wait_load_completed.py` | `web/evidence/wait_load_completed.md` |
 | `uiautoma.web.WebBrowser.close()` | `VERIFIED`（10/10；2026-09-15；含 get_all 复核与 stale_page_reference 复核） | `web/test_web_browser_close.py` | `web/evidence/close.md` |
 | `uiautoma.web.WebBrowser.execute_javascript()` | `VERIFIED`（16/16；2026-09-15；含双 world 隔离与 DOM 共享） | `web/test_web_browser_execute_javascript.py` | `web/evidence/execute_javascript.md` |
@@ -342,7 +350,6 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 | `uiautoma.web.WebElement.dblclick()` | `VERIFIED`（41/41；真实/DOM 双击；剪贴板日志核验；原前台恢复有警告） | [web/test_web_element_dblclick_keys.py](web/test_web_element_dblclick_keys.py) | [web/evidence/element_dblclick_keys.md](web/evidence/element_dblclick_keys.md) |
 | `uiautoma.web.WebElement.focus()` | `VERIFIED`（15/15；focusin/activeElement/剪贴板日志；实测 isTrusted=True） | [web/test_web_element_focus_keys.py](web/test_web_element_focus_keys.py) | [web/evidence/element_focus_keys.md](web/evidence/element_focus_keys.md) |
 | `uiautoma.web.WebElement.hover()` | `VERIFIED`（23/23；真实/脚本悬停；锚点与 delay_after 核验） | [web/test_web_element_hover_keys.py](web/test_web_element_hover_keys.py) | [web/evidence/element_hover_keys.md](web/evidence/element_hover_keys.md) |
-| `uiautoma.web.WebElement.input()` | `READY_FOR_LIVE`（两模式各18/25；后台 DOM 输入提交状态异常；见 [Issue #65](https://github.com/uiautoma/desktop/issues/65)） | [web/test_web_element_input_native_form.py](web/test_web_element_input_native_form.py) | [web/evidence/element_input_native_form.md](web/evidence/element_input_native_form.md) |
 | `uiautoma.web.WebBrowser.find_all_by_css()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_all_by_css.py` | `web/evidence/find_all_by_css.md` |
 | `uiautoma.web.WebBrowser.find_by_xpath()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_by_xpath.py` | `web/evidence/find_by_xpath.md` |
 | `uiautoma.web.WebBrowser.find_all_by_xpath()` | `VERIFIED`（22/22；2026-09-15；官方靶场+活 DOM 推导） | `web/test_web_browser_find_all_by_xpath.py` | `web/evidence/find_all_by_xpath.md` |
@@ -401,7 +408,7 @@ JPG 扩展名归一、空 format 按扩展名推断、区域截图与非法区�
 > https://github.com/uiautoma/desktop/issues/58 ；复现脚本 `issues/issue_58/test_issue_58_go_back.py`。
 >
 > `WebBrowser.stop_load()` 验收（2026-09-15）顺带发现并已提单的三个缺陷：
-> - [#59](https://github.com/uiautoma/desktop/issues/59) `is_load_completed()` 在 Chrome 错误页上恒为 `False`（`wait_load_completed()` 只能等到超时）
+> - [#59](https://github.com/uiautoma/desktop/issues/59) 旧快照 `is_load_completed()` 在 Chrome 错误页上恒为 `False`（当时 `wait_load_completed()` 只能等到超时）；2026-10-05 当前复测错误页改为抛 `ActionError`，见本 API 证据，不据此认定 Issue 状态
 > - [#60](https://github.com/uiautoma/desktop/issues/60) 连续两次 `wait_load_completed()` 超时后页面对象失效（`stale_page_reference`）并泄漏标签（4/4 复现）
 > - [#61](https://github.com/uiautoma/desktop/issues/61) 无响应标签无法回收：`close()` / `navigate()` 在同步 JS 死循环页面上全部失败
 >

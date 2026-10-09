@@ -1,0 +1,1284 @@
+{
+  "target_url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+  "guard_url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+  "headless": true,
+  "isolated_profile": true,
+  "target_documents_loaded": false,
+  "product_engine_loaded": false,
+  "cases": [
+    {
+      "round": 1,
+      "scene": "matching_path",
+      "mode": "callback",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_callback",
+        "value": "native-written",
+        "path": "/xpath/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_callback",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_callback",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_callback",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_callback",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_callback",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 1,
+      "scene": "matching_path",
+      "mode": "promise",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_promise",
+        "value": "native-written",
+        "path": "/xpath/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_promise",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_promise",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_promise",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_promise",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_path_promise",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 1,
+      "scene": "other_path",
+      "mode": "callback",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_other_path_callback",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "undefined",
+        "value": null,
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_other_path_callback",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_other_path_callback",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_other_path_callback",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 1,
+      "scene": "other_path",
+      "mode": "promise",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_other_path_promise",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "undefined",
+        "value": null,
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_other_path_promise",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_other_path_promise",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_other_path_promise",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 1,
+      "scene": "matching_url_for_other_path",
+      "mode": "callback",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_url_for_other_path_callback",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_url_for_other_path_callback",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_url_for_other_path_callback",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_url_for_other_path_callback",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_url_for_other_path_callback",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 1,
+      "scene": "matching_url_for_other_path",
+      "mode": "promise",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_url_for_other_path_promise",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_url_for_other_path_promise",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_url_for_other_path_promise",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_url_for_other_path_promise",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_1_matching_url_for_other_path_promise",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 2,
+      "scene": "matching_path",
+      "mode": "callback",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_callback",
+        "value": "native-written",
+        "path": "/xpath/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_callback",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_callback",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_callback",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_callback",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_callback",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 2,
+      "scene": "matching_path",
+      "mode": "promise",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_promise",
+        "value": "native-written",
+        "path": "/xpath/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_promise",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_promise",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_promise",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_promise",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_path_promise",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 2,
+      "scene": "other_path",
+      "mode": "callback",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_other_path_callback",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "undefined",
+        "value": null,
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_other_path_callback",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_other_path_callback",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_other_path_callback",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 2,
+      "scene": "other_path",
+      "mode": "promise",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_other_path_promise",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "undefined",
+        "value": null,
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_other_path_promise",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_other_path_promise",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_other_path_promise",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 2,
+      "scene": "matching_url_for_other_path",
+      "mode": "callback",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_url_for_other_path_callback",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_url_for_other_path_callback",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_url_for_other_path_callback",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_url_for_other_path_callback",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_url_for_other_path_callback",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 2,
+      "scene": "matching_url_for_other_path",
+      "mode": "promise",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_url_for_other_path_promise",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_url_for_other_path_promise",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_url_for_other_path_promise",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_url_for_other_path_promise",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_2_matching_url_for_other_path_promise",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 3,
+      "scene": "matching_path",
+      "mode": "callback",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_callback",
+        "value": "native-written",
+        "path": "/xpath/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_callback",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_callback",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_callback",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_callback",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_callback",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 3,
+      "scene": "matching_path",
+      "mode": "promise",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_promise",
+        "value": "native-written",
+        "path": "/xpath/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_promise",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_promise",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_promise",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_promise",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_path_promise",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 3,
+      "scene": "other_path",
+      "mode": "callback",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_other_path_callback",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "undefined",
+        "value": null,
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_other_path_callback",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_other_path_callback",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_other_path_callback",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 3,
+      "scene": "other_path",
+      "mode": "promise",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_other_path_promise",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "undefined",
+        "value": null,
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_other_path_promise",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_other_path_promise",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_other_path_promise",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 3,
+      "scene": "matching_url_for_other_path",
+      "mode": "callback",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_url_for_other_path_callback",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_url_for_other_path_callback",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_url_for_other_path_callback",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_url_for_other_path_callback",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_url_for_other_path_callback",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "round": 3,
+      "scene": "matching_url_for_other_path",
+      "mode": "promise",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_url_for_other_path_promise",
+        "value": "native-written",
+        "path": "/xpath/stop-load-test/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_url_for_other_path_promise",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [
+        {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_url_for_other_path_promise",
+          "path": "/xpath/stop-load-test/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        }
+      ],
+      "main_get": null,
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_url_for_other_path_promise",
+        "path": "/xpath/stop-load-test/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_84b8826f6fec44e5918c69ba2afd9f83_3_matching_url_for_other_path_promise",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/stop-load-test/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "before_count": 18,
+    "after_count": 0,
+    "owned_cookies_removed": true,
+    "isolated_browser_closed": true
+  },
+  "browser_version": "154.0.8037.95",
+  "extension_permissions": [
+    "cookies"
+  ],
+  "extension_host_permissions": [
+    "*://baobaomi900901.github.io/*"
+  ],
+  "lifecycle": "NATIVE_RETURN_CONFIRMED"
+}

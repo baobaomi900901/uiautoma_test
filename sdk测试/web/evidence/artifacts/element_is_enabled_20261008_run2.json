@@ -1,0 +1,4077 @@
+{
+  "api": "uiautoma.web.WebElement.is_enabled",
+  "date": "2026-10-08",
+  "state": "READY_FOR_LIVE",
+  "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "counts": {
+    "PASS": 30,
+    "FAIL": 2,
+    "BLOCKED": 0
+  },
+  "total": 32,
+  "exit_code": 1,
+  "contract_only": false,
+  "rows": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名仅 self，返回 bool；SDK→RPC→Runtime→引擎快照一致",
+      "actual": {
+        "signature": "(self) -> 'bool'",
+        "worktree": "D:\\code\\desktop",
+        "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+        "rpc": "web.is_enabled",
+        "timeout_ms": 5000,
+        "source_sections": 12
+      },
+      "elapsed_ms": 228.8
+    },
+    {
+      "case_id": "unexpected_positional",
+      "status": "PASS",
+      "expected": "多余位置参数抛 TypeError，raw 调用 0 次",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.is_enabled() takes 1 positional argument but 2 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "unexpected_keyword",
+      "status": "PASS",
+      "expected": "多余关键字抛 TypeError，raw 调用 0 次",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.is_enabled() got an unexpected keyword argument 'timeout'",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime、库副本、自有静默靶场可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "silent_running": true,
+        "baseline_tabs": 2,
+        "original_states": [
+          {
+            "aria_disabled": null,
+            "attributes": [
+              [
+                "class",
+                "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+              ],
+              [
+                "disabled",
+                ""
+              ],
+              [
+                "id",
+                "btn-disabled-click-target"
+              ],
+              [
+                "type",
+                "button"
+              ]
+            ],
+            "disabled": true,
+            "disabled_attribute": "",
+            "id": "btn-disabled-click-target",
+            "pseudo_disabled": true,
+            "tag": "BUTTON",
+            "text": "禁用按钮（disabled）"
+          },
+          {
+            "aria_disabled": null,
+            "attributes": [
+              [
+                "class",
+                "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+              ],
+              [
+                "id",
+                "btn-click-target"
+              ],
+              [
+                "type",
+                "button"
+              ]
+            ],
+            "disabled": false,
+            "disabled_attribute": null,
+            "id": "btn-click-target",
+            "pseudo_disabled": false,
+            "tag": "BUTTON",
+            "text": "单击触发"
+          }
+        ]
+      },
+      "elapsed_ms": 1339.2
+    },
+    {
+      "case_id": "mapping_disabled_button",
+      "status": "PASS",
+      "expected": "库选择器唯一命中 btn-disabled-click-target",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "matches": 1,
+        "ids": [
+          "btn-disabled-click-target"
+        ]
+      },
+      "elapsed_ms": 59.2
+    },
+    {
+      "case_id": "mapping_click_button",
+      "status": "PASS",
+      "expected": "库选择器唯一命中 btn-click-target",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "matches": 1,
+        "ids": [
+          "btn-click-target"
+        ]
+      },
+      "elapsed_ms": 32.2
+    },
+    {
+      "case_id": "baseline_disabled_button",
+      "status": "PASS",
+      "expected": "原始按钮状态 is_enabled() is False",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "id": "btn-disabled-click-target",
+        "disabled_attribute": "",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 65.9
+    },
+    {
+      "case_id": "baseline_click_button",
+      "status": "PASS",
+      "expected": "原始按钮状态 is_enabled() is True",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "id": "btn-click-target",
+        "disabled_attribute": null,
+        "dom_disabled": false,
+        "pseudo_disabled": false,
+        "aria_disabled": null,
+        "expected_is_enabled": true,
+        "actual_is_enabled": true,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 62.5
+    },
+    {
+      "case_id": "disabled_empty_disabled_button",
+      "status": "PASS",
+      "expected": "HTML disabled 存在即禁用；IDL / :disabled=True；API=False",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "id": "btn-disabled-click-target",
+        "disabled_attribute": "",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 124.3
+    },
+    {
+      "case_id": "disabled_disabled_disabled_button",
+      "status": "PASS",
+      "expected": "HTML disabled 存在即禁用；IDL / :disabled=True；API=False",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "id": "btn-disabled-click-target",
+        "disabled_attribute": "disabled",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "disabled"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "disabled",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "disabled"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "disabled",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 109.9
+    },
+    {
+      "case_id": "disabled_true_disabled_button",
+      "status": "PASS",
+      "expected": "HTML disabled 存在即禁用；IDL / :disabled=True；API=False",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "id": "btn-disabled-click-target",
+        "disabled_attribute": "true",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "true"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "true",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "true"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "true",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 107.5
+    },
+    {
+      "case_id": "disabled_false_disabled_button",
+      "status": "FAIL",
+      "expected": "HTML disabled 存在即禁用；IDL / :disabled=True；API=False",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "id": "btn-disabled-click-target",
+        "disabled_attribute": "false",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": true,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "false"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "false",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "false"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "false",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 109.4
+    },
+    {
+      "case_id": "disabled_False_disabled_button",
+      "status": "PASS",
+      "expected": "HTML disabled 存在即禁用；IDL / :disabled=True；API=False",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "id": "btn-disabled-click-target",
+        "disabled_attribute": "False",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "False"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "False",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "False"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "False",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 110.4
+    },
+    {
+      "case_id": "disabled_empty_click_button",
+      "status": "PASS",
+      "expected": "HTML disabled 存在即禁用；IDL / :disabled=True；API=False",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "id": "btn-click-target",
+        "disabled_attribute": "",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 108.0
+    },
+    {
+      "case_id": "disabled_disabled_click_button",
+      "status": "PASS",
+      "expected": "HTML disabled 存在即禁用；IDL / :disabled=True；API=False",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "id": "btn-click-target",
+        "disabled_attribute": "disabled",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "disabled"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "disabled",
+              "id": "btn-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "disabled"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "disabled",
+              "id": "btn-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 109.3
+    },
+    {
+      "case_id": "disabled_true_click_button",
+      "status": "PASS",
+      "expected": "HTML disabled 存在即禁用；IDL / :disabled=True；API=False",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "id": "btn-click-target",
+        "disabled_attribute": "true",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "true"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "true",
+              "id": "btn-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "true"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "true",
+              "id": "btn-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 109.4
+    },
+    {
+      "case_id": "disabled_false_click_button",
+      "status": "FAIL",
+      "expected": "HTML disabled 存在即禁用；IDL / :disabled=True；API=False",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "id": "btn-click-target",
+        "disabled_attribute": "false",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": true,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "false"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "false",
+              "id": "btn-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "false"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "false",
+              "id": "btn-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 108.0
+    },
+    {
+      "case_id": "disabled_False_click_button",
+      "status": "PASS",
+      "expected": "HTML disabled 存在即禁用；IDL / :disabled=True；API=False",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "id": "btn-click-target",
+        "disabled_attribute": "False",
+        "dom_disabled": true,
+        "pseudo_disabled": true,
+        "aria_disabled": null,
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "False"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "False",
+              "id": "btn-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  "False"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "False",
+              "id": "btn-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 111.1
+    },
+    {
+      "case_id": "dynamic_disabled_button",
+      "status": "PASS",
+      "expected": "同一对象动态切换，返回 True→False→True",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "sequence": [
+          true,
+          false,
+          true
+        ],
+        "same_element_reference": true,
+        "measurements": [
+          {
+            "name": "web靶场_disabled_按钮",
+            "id": "btn-disabled-click-target",
+            "disabled_attribute": null,
+            "dom_disabled": false,
+            "pseudo_disabled": false,
+            "aria_disabled": null,
+            "expected_is_enabled": true,
+            "actual_is_enabled": true,
+            "return_type": "bool",
+            "readonly": true,
+            "dom_before": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            },
+            "dom_after": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "name": "web靶场_disabled_按钮",
+            "id": "btn-disabled-click-target",
+            "disabled_attribute": "",
+            "dom_disabled": true,
+            "pseudo_disabled": true,
+            "aria_disabled": null,
+            "expected_is_enabled": false,
+            "actual_is_enabled": false,
+            "return_type": "bool",
+            "readonly": true,
+            "dom_before": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "disabled",
+                      ""
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": true,
+                  "disabled_attribute": "",
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": true,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            },
+            "dom_after": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "disabled",
+                      ""
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": true,
+                  "disabled_attribute": "",
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": true,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "name": "web靶场_disabled_按钮",
+            "id": "btn-disabled-click-target",
+            "disabled_attribute": null,
+            "dom_disabled": false,
+            "pseudo_disabled": false,
+            "aria_disabled": null,
+            "expected_is_enabled": true,
+            "actual_is_enabled": true,
+            "return_type": "bool",
+            "readonly": true,
+            "dom_before": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            },
+            "dom_after": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            }
+          }
+        ]
+      },
+      "elapsed_ms": 262.6
+    },
+    {
+      "case_id": "dynamic_click_button",
+      "status": "PASS",
+      "expected": "同一对象动态切换，返回 True→False→True",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "sequence": [
+          true,
+          false,
+          true
+        ],
+        "same_element_reference": true,
+        "measurements": [
+          {
+            "name": "web靶场_测试点击_单击触发",
+            "id": "btn-click-target",
+            "disabled_attribute": null,
+            "dom_disabled": false,
+            "pseudo_disabled": false,
+            "aria_disabled": null,
+            "expected_is_enabled": true,
+            "actual_is_enabled": true,
+            "return_type": "bool",
+            "readonly": true,
+            "dom_before": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "disabled",
+                      ""
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": true,
+                  "disabled_attribute": "",
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": true,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            },
+            "dom_after": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "disabled",
+                      ""
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": true,
+                  "disabled_attribute": "",
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": true,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "name": "web靶场_测试点击_单击触发",
+            "id": "btn-click-target",
+            "disabled_attribute": "",
+            "dom_disabled": true,
+            "pseudo_disabled": true,
+            "aria_disabled": null,
+            "expected_is_enabled": false,
+            "actual_is_enabled": false,
+            "return_type": "bool",
+            "readonly": true,
+            "dom_before": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "disabled",
+                      ""
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": true,
+                  "disabled_attribute": "",
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": true,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "disabled",
+                      ""
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": true,
+                  "disabled_attribute": "",
+                  "id": "btn-click-target",
+                  "pseudo_disabled": true,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            },
+            "dom_after": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "disabled",
+                      ""
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": true,
+                  "disabled_attribute": "",
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": true,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "disabled",
+                      ""
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": true,
+                  "disabled_attribute": "",
+                  "id": "btn-click-target",
+                  "pseudo_disabled": true,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "name": "web靶场_测试点击_单击触发",
+            "id": "btn-click-target",
+            "disabled_attribute": null,
+            "dom_disabled": false,
+            "pseudo_disabled": false,
+            "aria_disabled": null,
+            "expected_is_enabled": true,
+            "actual_is_enabled": true,
+            "return_type": "bool",
+            "readonly": true,
+            "dom_before": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "disabled",
+                      ""
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": true,
+                  "disabled_attribute": "",
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": true,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            },
+            "dom_after": {
+              "buttons": [
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "disabled",
+                      ""
+                    ],
+                    [
+                      "id",
+                      "btn-disabled-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": true,
+                  "disabled_attribute": "",
+                  "id": "btn-disabled-click-target",
+                  "pseudo_disabled": true,
+                  "tag": "BUTTON",
+                  "text": "禁用按钮（disabled）"
+                },
+                {
+                  "aria_disabled": null,
+                  "attributes": [
+                    [
+                      "class",
+                      "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                    ],
+                    [
+                      "id",
+                      "btn-click-target"
+                    ],
+                    [
+                      "type",
+                      "button"
+                    ]
+                  ],
+                  "disabled": false,
+                  "disabled_attribute": null,
+                  "id": "btn-click-target",
+                  "pseudo_disabled": false,
+                  "tag": "BUTTON",
+                  "text": "单击触发"
+                }
+              ],
+              "events": {
+                "change": 0,
+                "click": 0,
+                "input": 0,
+                "keydown": 0
+              },
+              "focus": "",
+              "scroll": [
+                0,
+                0
+              ]
+            }
+          }
+        ]
+      },
+      "elapsed_ms": 263.6
+    },
+    {
+      "case_id": "aria_true_disabled_button",
+      "status": "PASS",
+      "expected": "原生 disabled 不存在；ARIA true=False、false/缺失=True",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "id": "btn-disabled-click-target",
+        "disabled_attribute": null,
+        "dom_disabled": false,
+        "pseudo_disabled": false,
+        "aria_disabled": "true",
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": "true",
+              "attributes": [
+                [
+                  "aria-disabled",
+                  "true"
+                ],
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": "true",
+              "attributes": [
+                [
+                  "aria-disabled",
+                  "true"
+                ],
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 110.3
+    },
+    {
+      "case_id": "aria_false_disabled_button",
+      "status": "PASS",
+      "expected": "原生 disabled 不存在；ARIA true=False、false/缺失=True",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "id": "btn-disabled-click-target",
+        "disabled_attribute": null,
+        "dom_disabled": false,
+        "pseudo_disabled": false,
+        "aria_disabled": "false",
+        "expected_is_enabled": true,
+        "actual_is_enabled": true,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": "false",
+              "attributes": [
+                [
+                  "aria-disabled",
+                  "false"
+                ],
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": "false",
+              "attributes": [
+                [
+                  "aria-disabled",
+                  "false"
+                ],
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 109.4
+    },
+    {
+      "case_id": "aria_None_disabled_button",
+      "status": "PASS",
+      "expected": "原生 disabled 不存在；ARIA true=False、false/缺失=True",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "id": "btn-disabled-click-target",
+        "disabled_attribute": null,
+        "dom_disabled": false,
+        "pseudo_disabled": false,
+        "aria_disabled": null,
+        "expected_is_enabled": true,
+        "actual_is_enabled": true,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 109.6
+    },
+    {
+      "case_id": "aria_true_click_button",
+      "status": "PASS",
+      "expected": "原生 disabled 不存在；ARIA true=False、false/缺失=True",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "id": "btn-click-target",
+        "disabled_attribute": null,
+        "dom_disabled": false,
+        "pseudo_disabled": false,
+        "aria_disabled": "true",
+        "expected_is_enabled": false,
+        "actual_is_enabled": false,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": "true",
+              "attributes": [
+                [
+                  "aria-disabled",
+                  "true"
+                ],
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": "true",
+              "attributes": [
+                [
+                  "aria-disabled",
+                  "true"
+                ],
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 108.4
+    },
+    {
+      "case_id": "aria_false_click_button",
+      "status": "PASS",
+      "expected": "原生 disabled 不存在；ARIA true=False、false/缺失=True",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "id": "btn-click-target",
+        "disabled_attribute": null,
+        "dom_disabled": false,
+        "pseudo_disabled": false,
+        "aria_disabled": "false",
+        "expected_is_enabled": true,
+        "actual_is_enabled": true,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": "false",
+              "attributes": [
+                [
+                  "aria-disabled",
+                  "false"
+                ],
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": "false",
+              "attributes": [
+                [
+                  "aria-disabled",
+                  "false"
+                ],
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 108.0
+    },
+    {
+      "case_id": "aria_None_click_button",
+      "status": "PASS",
+      "expected": "原生 disabled 不存在；ARIA true=False、false/缺失=True",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "id": "btn-click-target",
+        "disabled_attribute": null,
+        "dom_disabled": false,
+        "pseudo_disabled": false,
+        "aria_disabled": null,
+        "expected_is_enabled": true,
+        "actual_is_enabled": true,
+        "return_type": "bool",
+        "readonly": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 138.5
+    },
+    {
+      "case_id": "readonly_disabled_button",
+      "status": "PASS",
+      "expected": "连读三次 bool 正确，不改变属性、焦点、滚动或事件计数",
+      "actual": {
+        "name": "web靶场_disabled_按钮",
+        "values": [
+          false,
+          false,
+          false
+        ],
+        "expected": false,
+        "attributes_focus_scroll_events_unchanged": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 95.1
+    },
+    {
+      "case_id": "readonly_click_button",
+      "status": "PASS",
+      "expected": "连读三次 bool 正确，不改变属性、焦点、滚动或事件计数",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "values": [
+          true,
+          true,
+          true
+        ],
+        "expected": true,
+        "attributes_focus_scroll_events_unchanged": true,
+        "dom_before": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        },
+        "dom_after": {
+          "buttons": [
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "disabled",
+                  ""
+                ],
+                [
+                  "id",
+                  "btn-disabled-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": true,
+              "disabled_attribute": "",
+              "id": "btn-disabled-click-target",
+              "pseudo_disabled": true,
+              "tag": "BUTTON",
+              "text": "禁用按钮（disabled）"
+            },
+            {
+              "aria_disabled": null,
+              "attributes": [
+                [
+                  "class",
+                  "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+                ],
+                [
+                  "id",
+                  "btn-click-target"
+                ],
+                [
+                  "type",
+                  "button"
+                ]
+              ],
+              "disabled": false,
+              "disabled_attribute": null,
+              "id": "btn-click-target",
+              "pseudo_disabled": false,
+              "tag": "BUTTON",
+              "text": "单击触发"
+            }
+          ],
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "scroll": [
+            0,
+            0
+          ]
+        }
+      },
+      "elapsed_ms": 92.3
+    },
+    {
+      "case_id": "restore_original",
+      "status": "PASS",
+      "expected": "自有两个按钮恢复原状态，无 click/input/change/keydown 事件",
+      "actual": {
+        "attributes_focus_scroll_events_restored": true,
+        "events": {
+          "change": 0,
+          "click": 0,
+          "input": 0,
+          "keydown": 0
+        }
+      },
+      "elapsed_ms": 30.6
+    },
+    {
+      "case_id": "closed_page",
+      "status": "PASS",
+      "expected": "页面关闭后 ActionError / stale_page_reference",
+      "actual": {
+        "exception": "ActionError",
+        "message": "网页对象已失效",
+        "trace": "stale_page_reference"
+      },
+      "elapsed_ms": 100.0
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "连接关闭后 HostUnavailableError / 连接已关闭",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.7
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭自有页面/连接、删副本；库不变、标签基线一致",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "source_library_unchanged": true,
+        "tab_count": "2->2",
+        "external_added": [],
+        "external_removed": []
+      },
+      "elapsed_ms": 167.8
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "api": "uiautoma.web.WebElement.highlight",
+  "date": "2026-10-09",
+  "state": "SKIPPED",
+  "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "element": "web靶场_测试点击_单击触发",
+  "silent_running": false,
+  "duration": 3.0,
+  "delay_after": 0.0,
+  "close_page": false,
+  "contract_only": true,
+  "counts": {
+    "PASS": 3,
+    "FAIL": 0,
+    "BLOCKED": 0
+  },
+  "total": 3,
+  "exit_code": 0,
+  "rows": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名、默认值及 SDK→RPC→Runtime→Provider 快照一致",
+      "actual": {
+        "signature": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'",
+        "commits": {
+          "desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+          "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"
+        },
+        "rpc": "web.action.highlight",
+        "source_sections": 26
+      },
+      "elapsed_ms": 156.9
+    },
+    {
+      "case_id": "invalid_duration",
+      "status": "PASS",
+      "expected": "9 种非法 duration 抛 InvalidParamsError；RPC 调用 0 次",
+      "actual": {
+        "variants": 9,
+        "rpc_calls": 0,
+        "results": [
+          {
+            "name": "negative",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "true",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "false",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "nan",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "inf",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "negative_inf",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "string",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "none",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "list",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          }
+        ]
+      },
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "移除观察器/高亮并关闭连接、删除副本；页面按参数保留或关闭",
+      "actual": {
+        "errors": [],
+        "page_retained_for_observation": false,
+        "own_tab_closed": false,
+        "temporary_copy_removed": true,
+        "source_library_unchanged": true,
+        "tab_count": "0->0",
+        "unexpected_added": [],
+        "external_removed": [],
+        "overlays_after": []
+      },
+      "elapsed_ms": 0.2
+    }
+  ]
+}

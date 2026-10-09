@@ -1,0 +1,79 @@
+{
+  "type": "web",
+  "path": [
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 1 },
+        { "name": "index", "value": 1 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-modal-root css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "ant-modal-wrap" },
+        { "name": "index-of-type", "value": 1 },
+        { "name": "tabindex", "value": "-1" },
+        { "name": "index", "value": 1 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "role", "value": "dialog" },
+        { "name": "class", "value": "ant-modal css-mncuj7" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "aria-labelledby", "value": "_r_2_" },
+        { "name": "aria-modal", "value": "true" },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "required": [
+        { "name": "class", "value": "ant-modal-content" }
+      ],
+      "optional": [
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    }
+  ],
+  "xpath": {
+    "enabled": false,
+    "segments": [
+      "//div[@class='ant-modal-content']"
+    ]
+  }
+}

@@ -1,0 +1,1259 @@
+{
+  "rows": [
+    {
+      "duration": 1,
+      "delay_after": 0,
+      "outcome": {
+        "exception": "ActionError",
+        "message": "无法激活浏览器窗口，已取消操作",
+        "trace": "browser_window_activation_failed"
+      },
+      "elapsed_s": 0.33147350000217557,
+      "first_visible_s": null,
+      "last_visible_s": null,
+      "overlay_kinds": [],
+      "first_overlay": null,
+      "overlays_after": [],
+      "dom_before": {
+        "dpr": 1,
+        "focus": "",
+        "id": "btn-click-target",
+        "inner": {
+          "height": 1215,
+          "width": 3440
+        },
+        "rect": {
+          "height": 40,
+          "width": 96,
+          "x": 2971,
+          "y": 207
+        },
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON",
+        "window": {
+          "height": 1392,
+          "width": 3440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "dom_after": {
+        "dpr": 1,
+        "focus": "",
+        "id": "btn-click-target",
+        "inner": {
+          "height": 1215,
+          "width": 3440
+        },
+        "rect": {
+          "height": 40,
+          "width": 96,
+          "x": 2971,
+          "y": 207
+        },
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON",
+        "window": {
+          "height": 1392,
+          "width": 3440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "native": {
+        "hwnd": 26483422,
+        "class": "Chrome_WidgetWin_1",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 3440,
+          "height": 1392
+        },
+        "client_origin": {
+          "x": 0,
+          "y": 0
+        },
+        "client_size": {
+          "width": 3440,
+          "height": 1392
+        },
+        "dpi": 96,
+        "maximized": true,
+        "raw_window_rect": {
+          "x": -8,
+          "y": -8,
+          "width": 3456,
+          "height": 1408
+        },
+        "rect_source": "DWM_EXTENDED_FRAME_BOUNDS",
+        "viewport": {
+          "hwnd": 3937560,
+          "class": "Chrome_RenderWidgetHostHWND",
+          "rect": {
+            "x": 0,
+            "y": 177,
+            "width": 3440,
+            "height": 1215
+          },
+          "client_origin": {
+            "x": 0,
+            "y": 177
+          },
+          "client_size": {
+            "width": 3440,
+            "height": 1215
+          },
+          "dpi": 96
+        }
+      },
+      "samples": [
+        {
+          "at_s": 0.01602969999657944,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.04826429999957327,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.06359869999869261,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.07910090000223136,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.10463519999757409,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.12785469999653287,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.14340310000261525,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.15992159999586875,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.18801949999760836,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.20428289999836124,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.22514930000033928,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.24044219999632332,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.2625599999955739,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.28579509999690345,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.30064349999884143,
+          "visible": [],
+          "foreground": 0
+        }
+      ]
+    },
+    {
+      "duration": 0.4,
+      "delay_after": 0.25,
+      "outcome": {
+        "exception": "ActionError",
+        "message": "无法激活浏览器窗口，已取消操作",
+        "trace": "browser_window_activation_failed"
+      },
+      "elapsed_s": 0.3599915000013425,
+      "first_visible_s": null,
+      "last_visible_s": null,
+      "overlay_kinds": [],
+      "first_overlay": null,
+      "overlays_after": [],
+      "dom_before": {
+        "dpr": 1,
+        "focus": "",
+        "id": "btn-click-target",
+        "inner": {
+          "height": 1215,
+          "width": 3440
+        },
+        "rect": {
+          "height": 40,
+          "width": 96,
+          "x": 2971,
+          "y": 207
+        },
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON",
+        "window": {
+          "height": 1392,
+          "width": 3440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "dom_after": {
+        "dpr": 1,
+        "focus": "",
+        "id": "btn-click-target",
+        "inner": {
+          "height": 1215,
+          "width": 3440
+        },
+        "rect": {
+          "height": 40,
+          "width": 96,
+          "x": 2971,
+          "y": 207
+        },
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON",
+        "window": {
+          "height": 1392,
+          "width": 3440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "native": {
+        "hwnd": 26483422,
+        "class": "Chrome_WidgetWin_1",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 3440,
+          "height": 1392
+        },
+        "client_origin": {
+          "x": 0,
+          "y": 0
+        },
+        "client_size": {
+          "width": 3440,
+          "height": 1392
+        },
+        "dpi": 96,
+        "maximized": true,
+        "raw_window_rect": {
+          "x": -8,
+          "y": -8,
+          "width": 3456,
+          "height": 1408
+        },
+        "rect_source": "DWM_EXTENDED_FRAME_BOUNDS",
+        "viewport": {
+          "hwnd": 3937560,
+          "class": "Chrome_RenderWidgetHostHWND",
+          "rect": {
+            "x": 0,
+            "y": 177,
+            "width": 3440,
+            "height": 1215
+          },
+          "client_origin": {
+            "x": 0,
+            "y": 177
+          },
+          "client_size": {
+            "width": 3440,
+            "height": 1215
+          },
+          "dpi": 96
+        }
+      },
+      "samples": [
+        {
+          "at_s": 0.0006782000054954551,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.022161799999594223,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.03730619999987539,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.052477100005489774,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.06893860000127461,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.08396590000484139,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.10096049999992829,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.11656680000305641,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.13120340000023134,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.14573890000610845,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.16153640000266023,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.18090840000513708,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.195960400000331,
+          "visible": [],
+          "foreground": 0
+        },
+        {
+          "at_s": 0.2354510000004666,
+          "visible": [],
+          "foreground": 923616
+        }
+      ]
+    },
+    {
+      "duration": 0,
+      "delay_after": 0,
+      "outcome": {
+        "return": null
+      },
+      "elapsed_s": 0.37231469999824185,
+      "first_visible_s": 0.28999019999901066,
+      "last_visible_s": 0.28999019999901066,
+      "overlay_kinds": [
+        "RustPerPixelAlphaHighlightClass"
+      ],
+      "first_overlay": {
+        "at_s": 0.28999019999901066,
+        "visible": [
+          {
+            "hwnd": 200352,
+            "class": "RustPerPixelAlphaHighlightClass",
+            "rect": {
+              "x": 2968,
+              "y": 381,
+              "width": 102,
+              "height": 46
+            },
+            "client_origin": {
+              "x": 2968,
+              "y": 381
+            },
+            "client_size": {
+              "width": 102,
+              "height": 46
+            },
+            "dpi": 96,
+            "ex_style": 134742184
+          }
+        ],
+        "foreground": 26483422
+      },
+      "overlays_after": [],
+      "dom_before": {
+        "dpr": 1,
+        "focus": "",
+        "id": "btn-click-target",
+        "inner": {
+          "height": 1215,
+          "width": 3440
+        },
+        "rect": {
+          "height": 40,
+          "width": 96,
+          "x": 2971,
+          "y": 207
+        },
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON",
+        "window": {
+          "height": 1392,
+          "width": 3440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "dom_after": {
+        "dpr": 1,
+        "focus": "",
+        "id": "btn-click-target",
+        "inner": {
+          "height": 1215,
+          "width": 3440
+        },
+        "rect": {
+          "height": 40,
+          "width": 96,
+          "x": 2971,
+          "y": 207
+        },
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON",
+        "window": {
+          "height": 1392,
+          "width": 3440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "native": {
+        "hwnd": 26483422,
+        "class": "Chrome_WidgetWin_1",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 3440,
+          "height": 1392
+        },
+        "client_origin": {
+          "x": 0,
+          "y": 0
+        },
+        "client_size": {
+          "width": 3440,
+          "height": 1392
+        },
+        "dpi": 96,
+        "maximized": true,
+        "raw_window_rect": {
+          "x": -8,
+          "y": -8,
+          "width": 3456,
+          "height": 1408
+        },
+        "rect_source": "DWM_EXTENDED_FRAME_BOUNDS",
+        "viewport": {
+          "hwnd": 3937560,
+          "class": "Chrome_RenderWidgetHostHWND",
+          "rect": {
+            "x": 0,
+            "y": 177,
+            "width": 3440,
+            "height": 1215
+          },
+          "client_origin": {
+            "x": 0,
+            "y": 177
+          },
+          "client_size": {
+            "width": 3440,
+            "height": 1215
+          },
+          "dpi": 96
+        }
+      },
+      "samples": [
+        {
+          "at_s": 0.0005938000031164847,
+          "visible": [],
+          "foreground": 923616
+        },
+        {
+          "at_s": 0.06930109999666456,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.14407219999702647,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.21759110000130022,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.28999019999901066,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.3493183000027784,
+          "visible": [],
+          "foreground": 26483422
+        }
+      ]
+    },
+    {
+      "duration": 0.001,
+      "delay_after": 0,
+      "outcome": {
+        "return": null
+      },
+      "elapsed_s": 0.24714110000059009,
+      "first_visible_s": 0.14381460000004154,
+      "last_visible_s": 0.17961320000176784,
+      "overlay_kinds": [
+        "RustPerPixelAlphaHighlightClass"
+      ],
+      "first_overlay": {
+        "at_s": 0.14381460000004154,
+        "visible": [
+          {
+            "hwnd": 200352,
+            "class": "RustPerPixelAlphaHighlightClass",
+            "rect": {
+              "x": 2968,
+              "y": 381,
+              "width": 102,
+              "height": 46
+            },
+            "client_origin": {
+              "x": 2968,
+              "y": 381
+            },
+            "client_size": {
+              "width": 102,
+              "height": 46
+            },
+            "dpi": 96,
+            "ex_style": 134742184
+          }
+        ],
+        "foreground": 26483422
+      },
+      "overlays_after": [],
+      "dom_before": {
+        "dpr": 1,
+        "focus": "",
+        "id": "btn-click-target",
+        "inner": {
+          "height": 1215,
+          "width": 3440
+        },
+        "rect": {
+          "height": 40,
+          "width": 96,
+          "x": 2971,
+          "y": 207
+        },
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON",
+        "window": {
+          "height": 1392,
+          "width": 3440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "dom_after": {
+        "dpr": 1,
+        "focus": "",
+        "id": "btn-click-target",
+        "inner": {
+          "height": 1215,
+          "width": 3440
+        },
+        "rect": {
+          "height": 40,
+          "width": 96,
+          "x": 2971,
+          "y": 207
+        },
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON",
+        "window": {
+          "height": 1392,
+          "width": 3440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "native": {
+        "hwnd": 26483422,
+        "class": "Chrome_WidgetWin_1",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 3440,
+          "height": 1392
+        },
+        "client_origin": {
+          "x": 0,
+          "y": 0
+        },
+        "client_size": {
+          "width": 3440,
+          "height": 1392
+        },
+        "dpi": 96,
+        "maximized": true,
+        "raw_window_rect": {
+          "x": -8,
+          "y": -8,
+          "width": 3456,
+          "height": 1408
+        },
+        "rect_source": "DWM_EXTENDED_FRAME_BOUNDS",
+        "viewport": {
+          "hwnd": 3937560,
+          "class": "Chrome_RenderWidgetHostHWND",
+          "rect": {
+            "x": 0,
+            "y": 177,
+            "width": 3440,
+            "height": 1215
+          },
+          "client_origin": {
+            "x": 0,
+            "y": 177
+          },
+          "client_size": {
+            "width": 3440,
+            "height": 1215
+          },
+          "dpi": 96
+        }
+      },
+      "samples": [
+        {
+          "at_s": 0.0006828999976278283,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.025460999997449107,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.04361829999834299,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.058850499997788575,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.1030458000022918,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.11861050000152318,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.14381460000004154,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.15931799999816576,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.17961320000176784,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.19516099999600556,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.2113175999984378,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.22786249999626307,
+          "visible": [],
+          "foreground": 26483422
+        }
+      ]
+    },
+    {
+      "duration": 0.1,
+      "delay_after": 0,
+      "outcome": {
+        "return": null
+      },
+      "elapsed_s": 0.35639549999905284,
+      "first_visible_s": 0.1463173000011011,
+      "last_visible_s": 0.28019720000156667,
+      "overlay_kinds": [
+        "RustPerPixelAlphaHighlightClass"
+      ],
+      "first_overlay": {
+        "at_s": 0.1463173000011011,
+        "visible": [
+          {
+            "hwnd": 200352,
+            "class": "RustPerPixelAlphaHighlightClass",
+            "rect": {
+              "x": 2968,
+              "y": 381,
+              "width": 102,
+              "height": 46
+            },
+            "client_origin": {
+              "x": 2968,
+              "y": 381
+            },
+            "client_size": {
+              "width": 102,
+              "height": 46
+            },
+            "dpi": 96,
+            "ex_style": 134742184
+          }
+        ],
+        "foreground": 26483422
+      },
+      "overlays_after": [],
+      "dom_before": {
+        "dpr": 1,
+        "focus": "",
+        "id": "btn-click-target",
+        "inner": {
+          "height": 1215,
+          "width": 3440
+        },
+        "rect": {
+          "height": 40,
+          "width": 96,
+          "x": 2971,
+          "y": 207
+        },
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON",
+        "window": {
+          "height": 1392,
+          "width": 3440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "dom_after": {
+        "dpr": 1,
+        "focus": "",
+        "id": "btn-click-target",
+        "inner": {
+          "height": 1215,
+          "width": 3440
+        },
+        "rect": {
+          "height": 40,
+          "width": 96,
+          "x": 2971,
+          "y": 207
+        },
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON",
+        "window": {
+          "height": 1392,
+          "width": 3440,
+          "x": 0,
+          "y": 0
+        }
+      },
+      "native": {
+        "hwnd": 26483422,
+        "class": "Chrome_WidgetWin_1",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 3440,
+          "height": 1392
+        },
+        "client_origin": {
+          "x": 0,
+          "y": 0
+        },
+        "client_size": {
+          "width": 3440,
+          "height": 1392
+        },
+        "dpi": 96,
+        "maximized": true,
+        "raw_window_rect": {
+          "x": -8,
+          "y": -8,
+          "width": 3456,
+          "height": 1408
+        },
+        "rect_source": "DWM_EXTENDED_FRAME_BOUNDS",
+        "viewport": {
+          "hwnd": 3937560,
+          "class": "Chrome_RenderWidgetHostHWND",
+          "rect": {
+            "x": 0,
+            "y": 177,
+            "width": 3440,
+            "height": 1215
+          },
+          "client_origin": {
+            "x": 0,
+            "y": 177
+          },
+          "client_size": {
+            "width": 3440,
+            "height": 1215
+          },
+          "dpi": 96
+        }
+      },
+      "samples": [
+        {
+          "at_s": 0.0007394999993266538,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.027285399999527726,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.04412320000119507,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.07380649999686284,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.09517179999966174,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.10972369999944931,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.13065909999568248,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.1463173000011011,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.16135019999637734,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.17641290000028675,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.1924150999984704,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.2084404999986873,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.22305559999949764,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.242129099999147,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.2571334999956889,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.28019720000156667,
+          "visible": [
+            {
+              "hwnd": 200352,
+              "class": "RustPerPixelAlphaHighlightClass",
+              "rect": {
+                "x": 2968,
+                "y": 381,
+                "width": 102,
+                "height": 46
+              },
+              "client_origin": {
+                "x": 2968,
+                "y": 381
+              },
+              "client_size": {
+                "width": 102,
+                "height": 46
+              },
+              "dpi": 96,
+              "ex_style": 134742184
+            }
+          ],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.3093540999980178,
+          "visible": [],
+          "foreground": 26483422
+        },
+        {
+          "at_s": 0.32690069999807747,
+          "visible": [],
+          "foreground": 26483422
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "tab_count": "7->7",
+    "external_added": [],
+    "external_removed": [],
+    "overlays_after": [],
+    "temporary_removed": true
+  }
+}

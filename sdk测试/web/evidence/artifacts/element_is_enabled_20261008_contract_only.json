@@ -1,0 +1,53 @@
+{
+  "api": "uiautoma.web.WebElement.is_enabled",
+  "date": "2026-10-08",
+  "state": "SKIPPED",
+  "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "counts": {
+    "PASS": 3,
+    "FAIL": 0,
+    "BLOCKED": 0
+  },
+  "total": 3,
+  "exit_code": 0,
+  "contract_only": true,
+  "rows": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名仅 self，返回 bool；SDK→RPC→Runtime→引擎快照一致",
+      "actual": {
+        "signature": "(self) -> 'bool'",
+        "worktree": "D:\\code\\desktop",
+        "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+        "rpc": "web.is_enabled",
+        "timeout_ms": 5000,
+        "source_sections": 12
+      },
+      "elapsed_ms": 216.8
+    },
+    {
+      "case_id": "unexpected_positional",
+      "status": "PASS",
+      "expected": "多余位置参数抛 TypeError，raw 调用 0 次",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.is_enabled() takes 1 positional argument but 2 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "unexpected_keyword",
+      "status": "PASS",
+      "expected": "多余关键字抛 TypeError，raw 调用 0 次",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.is_enabled() got an unexpected keyword argument 'timeout'",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    }
+  ]
+}

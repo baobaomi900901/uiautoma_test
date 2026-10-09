@@ -1,0 +1,85 @@
+import ctypes
+from ctypes import wintypes
+import json
+import sys
+from pathlib import Path
+import shutil
+sys.dont_write_bytecode=True
+sys.path.insert(0,r'D:\code\desktop\sdk\src')
+sys.path.insert(0,r'D:\code\元素库\sdk测试\web')
+from uiautoma import web,open as open_package,ping
+from test_web_element_get_select_options import copy_library,disable_dynamic_ids,find_switch
+
+user=ctypes.WinDLL('user32',use_last_error=True)
+user.SetThreadDpiAwarenessContext.argtypes=[wintypes.HANDLE];user.SetThreadDpiAwarenessContext.restype=wintypes.HANDLE
+user.SetThreadDpiAwarenessContext(wintypes.HANDLE(-4))
+user.GetForegroundWindow.restype=wintypes.HWND
+user.GetDpiForWindow.argtypes=[wintypes.HWND];user.GetDpiForWindow.restype=wintypes.UINT
+user.GetWindowRect.argtypes=[wintypes.HWND,ctypes.POINTER(wintypes.RECT)]
+user.GetClientRect.argtypes=[wintypes.HWND,ctypes.POINTER(wintypes.RECT)]
+user.ClientToScreen.argtypes=[wintypes.HWND,ctypes.POINTER(wintypes.POINT)]
+CB=ctypes.WINFUNCTYPE(wintypes.BOOL,wintypes.HWND,wintypes.LPARAM)
+def native_windows():
+    windows=[]
+    def info(hwnd):
+        name=ctypes.create_unicode_buffer(256);user.GetClassNameW(hwnd,name,256)
+        rect=wintypes.RECT();user.GetWindowRect(hwnd,ctypes.byref(rect))
+        point=wintypes.POINT();user.ClientToScreen(hwnd,ctypes.byref(point))
+        client=wintypes.RECT();user.GetClientRect(hwnd,ctypes.byref(client))
+        return {'hwnd':int(hwnd),'class':name.value,'rect':{'x':rect.left,'y':rect.top,'width':rect.right-rect.left,'height':rect.bottom-rect.top},'client_origin':{'x':point.x,'y':point.y},'client_size':{'width':client.right,'height':client.bottom},'dpi':user.GetDpiForWindow(hwnd)}
+    def each(hwnd,_):
+        row=info(hwnd)
+        if row['class']=='Chrome_WidgetWin_1' and user.IsWindowVisible(hwnd):
+            kids=[]
+            def child(ch,_):
+                r=info(ch)
+                if r['class']=='Chrome_RenderWidgetHostHWND':kids.append(r)
+                return True
+            user.EnumChildWindows(hwnd,CB(child),0);row['render_children']=kids;windows.append(row)
+        return True
+    user.EnumWindows(CB(each),0)
+    return windows
+
+page=package=None; previous=storage=None;before=set();tmp=Path(__file__).parent/'library'
+report={'native_windows':native_windows(),'foreground_before':int(user.GetForegroundWindow() or 0),'cases':[]}
+def js(body,arg=None):
+    return page.execute_javascript("function(_e,a){const f=document.querySelector('#iframe-shadow-form');const root=f.contentDocument.querySelector('#form-shadow-host').shadowRoot;"+body+'}',arg)
+try:
+    ping(timeout=5)
+    before={p._page_ref['id'] for p in web.get_all(mode='chrome')}
+    copy_library(Path(r'D:\code\元素库\260902_web元素'),tmp)
+    package=open_package(str(tmp),timeout=8,connect_timeout=8)
+    page=web.create('https://baobaomi900901.github.io/xpath/#/iframe-shadow-form',mode='chrome',load_timeout=25,silent_running=True)
+    storage=js("return localStorage.getItem('form-controls-dynamic-ids');")
+    previous=disable_dynamic_ids(page)
+    el=page.find('web靶场_表单测试_ant_输入框',timeout=5)
+    report['dom']=js("const q=f.getBoundingClientRect(),e=root.getElementById('form-controls-ant-text'),r=e.getBoundingClientRect();return {id:e.id,x:q.x+f.clientLeft+r.x,y:q.y+f.clientTop+r.y,width:r.width,height:r.height,iframe:{x:q.x,y:q.y,width:q.width,height:q.height},inner:{width:innerWidth,height:innerHeight},outer:{width:outerWidth,height:outerHeight},screen:{x:screenX,y:screenY},dpr:devicePixelRatio,visibility:document.visibilityState};")
+    print('dom',json.dumps(report['dom'],ensure_ascii=False),flush=True)
+    for relative in ['screen','window']:
+        for normal in [False,True]:
+            row={'relative_to':relative,'to96dpi':normal}
+            try: row['bounding']=el.get_bounding(to96dpi=normal,relative_to=relative)
+            except Exception as exc: row['error']={'exception':type(exc).__name__,'message':str(exc),'trace':getattr(exc,'trace_info','')}
+            report['cases'].append(row); print(json.dumps(row,ensure_ascii=False),flush=True)
+    report['native_windows_after']=native_windows()
+except Exception as exc:
+    report['error']={'exception':type(exc).__name__,'message':str(exc),'trace':getattr(exc,'trace_info','')};print(json.dumps(report['error'],ensure_ascii=False),flush=True)
+finally:
+    errors=[]
+    if page:
+        try:
+            if previous=='true':find_switch(page).click(simulative=False,delay_after=0)
+            js("if(a===null)localStorage.removeItem('form-controls-dynamic-ids');else localStorage.setItem('form-controls-dynamic-ids',a);return true;",storage)
+            page.close(ignore_beforeunload=True)
+        except Exception as exc:errors.append(str(exc))
+    if package:
+        try:package.close()
+        except Exception as exc:errors.append(str(exc))
+    if tmp.exists():
+        assert tmp.resolve().parent==Path(__file__).parent.resolve();shutil.rmtree(tmp)
+    after={p._page_ref['id'] for p in web.get_all(mode='chrome')}
+    report['foreground_after']=int(user.GetForegroundWindow() or 0)
+    report['cleanup']={'errors':errors,'tab_count':f'{len(before)}->{len(after)}','added':sorted(after-before),'removed':sorted(before-after)}
+    Path(__file__).with_suffix('.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    print('native_windows',json.dumps(report['native_windows_after'] if 'native_windows_after' in report else report['native_windows']),flush=True)
+    print('cleanup',json.dumps(report['cleanup'],ensure_ascii=False),flush=True)

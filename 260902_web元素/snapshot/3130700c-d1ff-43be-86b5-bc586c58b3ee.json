@@ -1,0 +1,45 @@
+{
+  "type": "web",
+  "path": [
+    {
+      "backend": "web",
+      "tag": "main",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "panel" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "actions" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 5 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "button",
+      "required": [
+        { "name": "innerText", "value": "开始测试" }
+      ],
+      "optional": [
+        { "name": "id", "value": "start-test" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    }
+  ],
+  "xpath": {
+    "enabled": false,
+    "segments": [
+      "//button[normalize-space(.)='开始测试']"
+    ]
+  }
+}

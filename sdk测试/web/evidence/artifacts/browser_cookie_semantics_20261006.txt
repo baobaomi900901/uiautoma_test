@@ -1,0 +1,17 @@
+native_seed [{"domain": null, "expires": null, "name": "sdk_cookie_semantics_2acd8a42ad094a6088a22cbffc27af0b_dup", "partitioned": false, "path": "/xpath/", "sameSite": "strict", "secure": true, "value": "deep"}, {"domain": null, "expires": null, "name": "sdk_cookie_semantics_2acd8a42ad094a6088a22cbffc27af0b_partition", "partitioned": true, "path": "/xpath/", "sameSite": "strict", "secure": true, "value": "partition"}, {"domain": null, "expires": null, "name": "sdk_cookie_semantics_2acd8a42ad094a6088a22cbffc27af0b_dup", "partitioned": false, "path": "/", "sameSite": "strict", "secure": true, "value": "root"}]
+get_dup {"name": "sdk_cookie_semantics_2acd8a42ad094a6088a22cbffc27af0b_dup", "value": "deep", "domain": "baobaomi900901.github.io", "path": "/xpath/", "httpOnly": false, "secure": true, "hostOnly": true, "sameSite": "strict", "session": true, "storeId": "0"}
+get_partition_without_argument {}
+remove_dup null
+native_after_remove [{"domain": null, "expires": null, "name": "sdk_cookie_semantics_2acd8a42ad094a6088a22cbffc27af0b_partition", "partitioned": true, "path": "/xpath/", "sameSite": "strict", "secure": true, "value": "partition"}]
+remove_nonexistent null
+clear_wrong_partition null
+native_after_wrong_partition [{"domain": null, "expires": null, "name": "sdk_cookie_semantics_2acd8a42ad094a6088a22cbffc27af0b_partition", "partitioned": true, "path": "/xpath/", "sameSite": "strict", "secure": true, "value": "partition"}]
+clear_nonpartition null
+native_after_clear [{"domain": null, "expires": null, "name": "sdk_cookie_semantics_2acd8a42ad094a6088a22cbffc27af0b_partition", "partitioned": true, "path": "/xpath/", "sameSite": "strict", "secure": true, "value": "partition"}]
+clear_partition null
+native_after_partition_clear []
+guard_cookie []
+sdk_guard_get [{"name": "sdk_cookie_semantics_2acd8a42ad094a6088a22cbffc27af0b_outside", "value": "guard", "domain": "baobaomi900901.github.io", "path": "/sdk-cookie-guard/", "httpOnly": false, "secure": true, "hostOnly": true, "sameSite": "strict", "session": true, "storeId": "0"}]
+guard_remove null
+native_guard_after_remove []
+cleanup_tabs {"before": 3, "after": 3}

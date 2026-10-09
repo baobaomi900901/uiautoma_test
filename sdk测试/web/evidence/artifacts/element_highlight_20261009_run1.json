@@ -1,0 +1,1433 @@
+{
+  "api": "uiautoma.web.WebElement.highlight",
+  "date": "2026-10-09",
+  "state": "VERIFIED",
+  "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "element": "web靶场_测试点击_单击触发",
+  "silent_running": false,
+  "duration": 1.0,
+  "delay_after": 0.0,
+  "close_page": true,
+  "contract_only": false,
+  "counts": {
+    "PASS": 8,
+    "FAIL": 0,
+    "BLOCKED": 0
+  },
+  "total": 8,
+  "exit_code": 0,
+  "rows": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名、默认值及 SDK→RPC→Runtime→Provider 快照一致",
+      "actual": {
+        "signature": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'",
+        "commits": {
+          "desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+          "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"
+        },
+        "rpc": "web.action.highlight",
+        "source_sections": 26
+      },
+      "elapsed_ms": 159.9
+    },
+    {
+      "case_id": "invalid_duration",
+      "status": "PASS",
+      "expected": "9 种非法 duration 抛 InvalidParamsError；RPC 调用 0 次",
+      "actual": {
+        "variants": 9,
+        "rpc_calls": 0,
+        "results": [
+          {
+            "name": "negative",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "true",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "false",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "nan",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "inf",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "negative_inf",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "string",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "none",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          },
+          {
+            "name": "list",
+            "exception": "InvalidParamsError",
+            "message": "duration 必须是非负的有限秒数",
+            "trace": ""
+          }
+        ]
+      },
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "非静默打开靶场，连接元素库副本",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/keys-click-test",
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "silent_running": false,
+        "baseline_tabs": 1
+      },
+      "elapsed_ms": 1878.1
+    },
+    {
+      "case_id": "library_mapping",
+      "status": "PASS",
+      "expected": "名称唯一命中 BUTTON#btn-click-target；原生几何参考可用",
+      "actual": {
+        "name": "web靶场_测试点击_单击触发",
+        "match_count": 1,
+        "id": "btn-click-target",
+        "tag": "BUTTON",
+        "dpi": 96
+      },
+      "elapsed_ms": 247.8
+    },
+    {
+      "case_id": "visible_highlight",
+      "status": "PASS",
+      "expected": "高亮目标；四边红框位置/持续时间/后置等待正确；返回 None 后消失",
+      "actual": {
+        "return": null,
+        "duration": 1.0,
+        "delay_after": 0.0,
+        "elapsed_s": 1.2800697000000127,
+        "strategy": "web_highlight",
+        "red_sides": {
+          "left": true,
+          "right": true,
+          "top": true,
+          "bottom": true
+        },
+        "pixels": {
+          "colors": {
+            "left": [
+              {
+                "xy": [
+                  2968,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  2969,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  2970,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  2971,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  2972,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  2973,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              },
+              {
+                "xy": [
+                  2974,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              }
+            ],
+            "right": [
+              {
+                "xy": [
+                  3069,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3068,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3067,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3066,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3065,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3064,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              },
+              {
+                "xy": [
+                  3063,
+                  404
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              }
+            ],
+            "top": [
+              {
+                "xy": [
+                  3019,
+                  381
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  382
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  383
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  384
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  385
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  386
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  387
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              }
+            ],
+            "bottom": [
+              {
+                "xy": [
+                  3019,
+                  426
+                ],
+                "rgb": [
+                  255,
+                  255,
+                  255
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  425
+                ],
+                "rgb": [
+                  250,
+                  250,
+                  250
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  424
+                ],
+                "rgb": [
+                  250,
+                  250,
+                  250
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  423
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  422
+                ],
+                "rgb": [
+                  255,
+                  0,
+                  0
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  421
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              },
+              {
+                "xy": [
+                  3019,
+                  420
+                ],
+                "rgb": [
+                  255,
+                  229,
+                  229
+                ]
+              }
+            ]
+          },
+          "red_sides": {
+            "left": true,
+            "right": true,
+            "top": true,
+            "bottom": true
+          }
+        },
+        "expected_rect": {
+          "x": 2971,
+          "y": 384,
+          "width": 96,
+          "height": 40
+        },
+        "overlay_rect": {
+          "x": 2968,
+          "y": 381,
+          "width": 102,
+          "height": 46
+        },
+        "geometry_ok": true,
+        "visible_time_bounds_s": [
+          1.0150395999999091,
+          1.1146343000000343
+        ],
+        "wait_after_disappear_s": 0.04817640000010215,
+        "overlays_after": [],
+        "dom_before": {
+          "attributes": [
+            [
+              "class",
+              "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+            ],
+            [
+              "id",
+              "btn-click-target"
+            ],
+            [
+              "type",
+              "button"
+            ]
+          ],
+          "dpr": 1,
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "id": "btn-click-target",
+          "inner": {
+            "height": 1215,
+            "width": 3440
+          },
+          "rect": {
+            "height": 40,
+            "width": 96,
+            "x": 2971,
+            "y": 207
+          },
+          "tag": "BUTTON",
+          "text": "单击触发",
+          "window": {
+            "height": 1392,
+            "width": 3440,
+            "x": 0,
+            "y": 0
+          }
+        },
+        "dom_after": {
+          "attributes": [
+            [
+              "class",
+              "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg"
+            ],
+            [
+              "id",
+              "btn-click-target"
+            ],
+            [
+              "type",
+              "button"
+            ]
+          ],
+          "dpr": 1,
+          "events": {
+            "change": 0,
+            "click": 0,
+            "input": 0,
+            "keydown": 0
+          },
+          "focus": "",
+          "id": "btn-click-target",
+          "inner": {
+            "height": 1215,
+            "width": 3440
+          },
+          "rect": {
+            "height": 40,
+            "width": 96,
+            "x": 2971,
+            "y": 207
+          },
+          "tag": "BUTTON",
+          "text": "单击触发",
+          "window": {
+            "height": 1392,
+            "width": 3440,
+            "x": 0,
+            "y": 0
+          }
+        },
+        "native": {
+          "hwnd": 199716,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 3440,
+            "height": 1392
+          },
+          "client_origin": {
+            "x": 0,
+            "y": 0
+          },
+          "client_size": {
+            "width": 3440,
+            "height": 1392
+          },
+          "dpi": 96,
+          "maximized": true,
+          "raw_window_rect": {
+            "x": -8,
+            "y": -8,
+            "width": 3456,
+            "height": 1408
+          },
+          "rect_source": "DWM_EXTENDED_FRAME_BOUNDS",
+          "viewport": {
+            "hwnd": 5904458,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 0,
+              "y": 177,
+              "width": 3440,
+              "height": 1215
+            },
+            "client_origin": {
+              "x": 0,
+              "y": 177
+            },
+            "client_size": {
+              "width": 3440,
+              "height": 1215
+            },
+            "dpi": 96
+          }
+        },
+        "samples": [
+          {
+            "at_s": 0.008429999999862048,
+            "until_s": 0.03500399999984438,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.04539339999996628,
+            "until_s": 0.069902299999967,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.08007449999990968,
+            "until_s": 0.10710189999986142,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.11725899999987632,
+            "until_s": 0.1449889999998959,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.15540169999985665,
+            "until_s": 0.16899190000003728,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.314964400000008,
+            "until_s": 0.3345053000000462,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.34475129999987075,
+            "until_s": 0.35903220000000147,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.3692925999998806,
+            "until_s": 0.4006815000000188,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.4110931000000164,
+            "until_s": 0.4433638999998948,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.45344329999988986,
+            "until_s": 0.48623320000001513,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.49650339999993776,
+            "until_s": 0.5339260999999169,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.5444569999999658,
+            "until_s": 0.5660739999998441,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.5761873999999807,
+            "until_s": 0.5923745999998573,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.6027560999998514,
+            "until_s": 0.6329144999999698,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.6431391999999505,
+            "until_s": 0.6657358999998451,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.6762029999999868,
+            "until_s": 0.693579600000021,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.7037540999999692,
+            "until_s": 0.7224506999998539,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.7328035000000455,
+            "until_s": 0.7716788999998698,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.7819640000000163,
+            "until_s": 0.7960610000000088,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.806539599999951,
+            "until_s": 0.8194504999999026,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.8295514999999796,
+            "until_s": 0.8542192999998406,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.8646014999999352,
+            "until_s": 0.8851749999998901,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.8956611999999495,
+            "until_s": 0.9151947999998811,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.9257198999998764,
+            "until_s": 0.9381510999999136,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.9482583999999861,
+            "until_s": 0.975307599999951,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 0.9858127999998487,
+            "until_s": 1.0247620000000097,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.0351474999999937,
+            "until_s": 1.0547053000000233,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.0651923000000352,
+            "until_s": 1.082881099999895,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.0933215999998538,
+            "until_s": 1.1184256999999889,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.1288904999998977,
+            "until_s": 1.149806099999978,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.159995699999854,
+            "until_s": 1.1735860999999659,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.1840314999999464,
+            "until_s": 1.2036235000000488,
+            "visible": [
+              {
+                "hwnd": 68508,
+                "class": "RustPerPixelAlphaHighlightClass",
+                "rect": {
+                  "x": 2968,
+                  "y": 381,
+                  "width": 102,
+                  "height": 46
+                },
+                "client_origin": {
+                  "x": 2968,
+                  "y": 381
+                },
+                "client_size": {
+                  "width": 102,
+                  "height": 46
+                },
+                "dpi": 96
+              }
+            ],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.214204699999982,
+            "until_s": 1.2318932999999106,
+            "visible": [],
+            "foreground": 199716
+          },
+          {
+            "at_s": 1.2422876999999062,
+            "until_s": 1.2798126000000138,
+            "visible": [],
+            "foreground": 199716
+          }
+        ]
+      },
+      "elapsed_ms": 1339.9
+    },
+    {
+      "case_id": "unchanged_dom",
+      "status": "PASS",
+      "expected": "按钮属性、文字与焦点不变，click/input/change/keydown 为 0",
+      "actual": {
+        "attributes_text_focus_unchanged": true,
+        "events": {
+          "change": 0,
+          "click": 0,
+          "input": 0,
+          "keydown": 0
+        }
+      },
+      "elapsed_ms": 9.2
+    },
+    {
+      "case_id": "closed_connection",
+      "status": "PASS",
+      "expected": "连接关闭后的旧对象抛 HostUnavailableError，不产生高亮",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 188.2
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "移除观察器/高亮并关闭连接、删除副本；页面按参数保留或关闭",
+      "actual": {
+        "errors": [],
+        "page_retained_for_observation": false,
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "source_library_unchanged": true,
+        "tab_count": "1->1",
+        "unexpected_added": [],
+        "external_removed": [],
+        "overlays_after": []
+      },
+      "elapsed_ms": 160.4
+    }
+  ]
+}

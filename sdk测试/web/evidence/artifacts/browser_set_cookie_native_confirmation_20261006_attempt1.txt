@@ -1,0 +1,6 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+0 !== 1
+
+    at D:\code\元素库\sdk测试\.pytest_tmp\set_cookie_confirmation\native_cookie_probe.cjs:70:18
+cleanup {"before_count":1,"after_count":0,"owned_cookies_removed":true,"isolated_browser_closed":true}

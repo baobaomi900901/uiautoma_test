@@ -1,0 +1,13 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.highlight
+页面    : https://baobaomi900901.github.io/xpath/#/keys-click-test
+01/08 [32m[通过][0m api_contract 期望 签名、默认值及 SDK→RPC→Runtime→Provider 快照一致；实测 {"signature": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'", "commits": {"desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa", "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"}, "rpc": "web.action.highlight", "source_sections": 26}；215.5ms
+02/08 [32m[通过][0m invalid_duration 期望 9 种非法 duration 抛 InvalidParamsError；RPC 调用 0 次；实测 {"variants": 9, "rpc_calls": 0}；0.1ms
+正在以非静默方式打开靶场…
+03/08 [31m[失败][0m environment 期望 非静默打开靶场，连接元素库副本；实测 {"exception": "UIAError", "message": "浏览器操作失败，请重试", "trace": "activate_tab_failed"}；1246.5ms
+04/08 [33m[阻塞][0m library_mapping 期望 名称唯一命中 BUTTON#btn-click-target；原生几何参考可用；实测 {"reason": "页面未创建"}；0.0ms
+05/08 [33m[阻塞][0m visible_highlight 期望 高亮目标；四边红框位置/持续时间/后置等待正确；返回 None 后消失；实测 {"reason": "环境或元素定位未通过，未执行本用例"}；0.0ms
+06/08 [33m[阻塞][0m unchanged_dom 期望 按钮属性、文字与焦点不变，click/input/change/keydown 为 0；实测 {"reason": "环境或元素定位未通过，未执行本用例"}；0.0ms
+07/08 [33m[阻塞][0m closed_connection 期望 连接关闭后的旧对象抛 HostUnavailableError，不产生高亮；实测 {"reason": "环境或元素定位未通过，未执行本用例"}；0.0ms
+08/08 [31m[失败][0m cleanup 期望 移除观察器/高亮并关闭连接、删除副本；页面按参数保留或关闭；实测 {"errors": [], "page_retained_for_observation": false, "own_tab_closed": false, "temporary_copy_removed": true, "source_library_unchanged": true, "tab_count": "1->2", "unexpected_added": ["85847cefbdd74871"], "external_removed": [], "overlays_after": []}；209.5ms
+READY_FOR_LIVE · 2/8 通过 · 2 失败 · 4 阻塞 · 退出码 1

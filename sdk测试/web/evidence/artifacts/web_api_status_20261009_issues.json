@@ -1,0 +1,250 @@
+{
+  "checked_date": "2026-10-09",
+  "source": "GitHub REST API /repos/uiautoma/desktop/issues?state=all&per_page=100",
+  "scope": "27 SDK Web API 直接或跨层关联 Issue，非全部仓库 Issue",
+  "issues": [
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/9",
+      "number": 9,
+      "state": "open",
+      "state_reason": null,
+      "title": "🐞 handle_save_dialog(wait_complete=True) 文件已生成但返回 web_download_timeout",
+      "updated_at": "2026-08-06T00:59:00Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/12",
+      "number": 12,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.check() 无法可靠设置 React/Ant 受控复选框状态",
+      "updated_at": "2026-08-08T13:40:06Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/14",
+      "number": 14,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.set_attribute() 当前版本暂不支持，阻塞 set→get 往返验收",
+      "updated_at": "2026-08-08T15:17:43Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/17",
+      "number": 17,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.select_multiple() 当前版本暂不支持，阻塞多选验收",
+      "updated_at": "2026-08-09T02:24:57Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/18",
+      "number": 18,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.select_multiple_by_index() 当前版本暂不支持",
+      "updated_at": "2026-08-09T02:24:58Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/19",
+      "number": 19,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.get_select_options() 当前版本暂不支持，阻塞下拉选项读取验收",
+      "updated_at": "2026-08-09T06:45:38Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/20",
+      "number": 20,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.screenshot() 元素截图裁剪区域偏移（CDP clip 坐标空间）",
+      "updated_at": "2026-08-09T09:52:44Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/21",
+      "number": 21,
+      "state": "open",
+      "state_reason": null,
+      "title": "需求：实现 WebElement.screenshot_to_clipboard()（Web 元素截图写剪贴板）",
+      "updated_at": "2026-08-09T09:52:39Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/22",
+      "number": 22,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.is_checked() 只读 HTML attribute，点击勾选后仍返回 False",
+      "updated_at": "2026-08-09T11:13:06Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/23",
+      "number": 23,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.is_enabled() 将 disabled 空串误判为可用",
+      "updated_at": "2026-10-08T08:09:58Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/24",
+      "number": 24,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.is_displayed() 被 locate 校验的 scrollIntoView 污染可见性语义",
+      "updated_at": "2026-08-09T12:45:04Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/25",
+      "number": 25,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.drag_to() 同步派发事件导致拖拽位移未生效",
+      "updated_at": "2026-08-09T13:40:29Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/26",
+      "number": 26,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.drag_to() 同步派发导致拖拽位移未生效",
+      "updated_at": "2026-08-09T13:40:53Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/27",
+      "number": 27,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.get_all_select_items() 当前版本暂不支持",
+      "updated_at": "2026-08-09T13:57:21Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/28",
+      "number": 28,
+      "state": "open",
+      "state_reason": null,
+      "title": "WebElement.get_selected_item() 当前版本暂不支持",
+      "updated_at": "2026-08-09T13:57:22Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/29",
+      "number": 29,
+      "state": "open",
+      "state_reason": null,
+      "title": "🐞 WebElement.download() 遇原生另存为无人处理导致 web_download_timeout",
+      "updated_at": "2026-08-09T14:15:03Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/39",
+      "number": 39,
+      "state": "open",
+      "state_reason": null,
+      "title": "对齐 Web 注入、高亮与元素快照选择器合同",
+      "updated_at": "2026-08-15T08:18:47Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/51",
+      "number": 51,
+      "state": "open",
+      "state_reason": null,
+      "title": "提测跟踪：6C Web 动作对齐与 6D SDK、跨层旧路径清理",
+      "updated_at": "2026-10-06T00:02:14Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/57",
+      "number": 57,
+      "state": "open",
+      "state_reason": null,
+      "title": "🐞 Web handle_save_dialog 返回 browser_host_window_mismatch",
+      "updated_at": "2026-09-14T07:44:58Z"
+    },
+    {
+      "closed_at": "2026-09-25T09:32:25Z",
+      "html_url": "https://github.com/uiautoma/desktop/issues/58",
+      "number": 58,
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "🐞 WebBrowser.go_back() 首次调用稳定失败（Cannot find a next page in history）",
+      "updated_at": "2026-09-25T09:32:25Z"
+    },
+    {
+      "closed_at": "2026-09-25T11:33:55Z",
+      "html_url": "https://github.com/uiautoma/desktop/issues/59",
+      "number": 59,
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "🐞 WebBrowser.is_load_completed() 在 Chrome 错误页上恒为 False（wait_load_completed 只能等到超时）",
+      "updated_at": "2026-09-25T11:33:55Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/60",
+      "number": 60,
+      "state": "open",
+      "state_reason": null,
+      "title": "🐞 连续两次 wait_load_completed() 超时后页面对象失效（stale_page_reference）并泄漏标签",
+      "updated_at": "2026-09-25T13:11:56Z"
+    },
+    {
+      "closed_at": "2026-09-25T11:34:00Z",
+      "html_url": "https://github.com/uiautoma/desktop/issues/61",
+      "number": 61,
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "🐞 无响应标签无法回收：close()/navigate() 在同步 JS 死循环页面上全部失败",
+      "updated_at": "2026-09-25T11:34:00Z"
+    },
+    {
+      "closed_at": "2026-09-23T14:49:35Z",
+      "html_url": "https://github.com/uiautoma/desktop/issues/64",
+      "number": 64,
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "🐞 元素级 WebElement.find_all() 作用域不跨 iframe/开 Shadow：页面级能命中、元素级恒返回空列表",
+      "updated_at": "2026-09-23T14:49:35Z"
+    },
+    {
+      "closed_at": "2026-09-25T07:55:56Z",
+      "html_url": "https://github.com/uiautoma/desktop/issues/65",
+      "number": 65,
+      "state": "closed",
+      "state_reason": "completed",
+      "title": "[Bug] WebElement.input(simulative=False) 不同步原生表单状态",
+      "updated_at": "2026-09-25T07:55:56Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/70",
+      "number": 70,
+      "state": "open",
+      "state_reason": null,
+      "title": "提测跟踪：Win32 与 Web 实时引用的 Package 解耦及生命周期验收",
+      "updated_at": "2026-09-26T10:25:24Z"
+    },
+    {
+      "closed_at": null,
+      "html_url": "https://github.com/uiautoma/desktop/issues/74",
+      "number": 74,
+      "state": "open",
+      "state_reason": null,
+      "title": "🐞 WebBrowser.set_cookie() 写入另一 Path 成功却抛 cookie_set_failed",
+      "updated_at": "2026-10-06T00:01:08Z"
+    }
+  ]
+}

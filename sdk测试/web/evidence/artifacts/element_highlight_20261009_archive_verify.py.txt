@@ -1,0 +1,73 @@
+import ast
+import hashlib
+import json
+import re
+import shutil
+from pathlib import Path
+
+root = Path(r'D:\code\元素库\sdk测试')
+art = root/'web/evidence/artifacts'
+old_tmp = root/'.pytest_tmp/highlight_retest_20261008'
+for name in ('probe', 'probe2', 'probe3', 'probe4', 'probe5'):
+    source = old_tmp/(name+'.py')
+    dest = art/('element_highlight_20261008_'+name+'.py.txt')
+    if dest.exists():
+        assert source.read_bytes() == dest.read_bytes()
+    else:
+        shutil.copyfile(source, dest)
+for name in ('freeze_contract', 'recover_trial'):
+    shutil.copyfile(root/'.pytest_tmp/highlight_retest_20261009'/(name+'.py'), art/('element_highlight_20261009_'+name+'.py.txt'))
+for source, target in [
+    ('web/test_web_element_highlight.py', 'script.py.txt'),
+    ('web/element_highlight_contract_20261009.json', 'contract.json'),
+    ('web/test_web_element_get_select_options.py', 'library_copy_helper.py.txt'),
+    ('web/test_web_element_get_anchor_position.py', 'native_dwm_helper.py.txt'),
+    ('web/test_web_element_get_bounding.py', 'native_geometry_helper.py.txt'),
+    ('web/evidence/highlight.md', 'evidence.md.txt'),
+]:
+    shutil.copyfile(root/source, art/('element_highlight_20261009_'+target))
+summaries = []
+for n in (3, 4, 5):
+    d = json.loads((art/f'element_highlight_20261009_run{n}.json').read_text(encoding='utf-8'))
+    assert d['state'] == 'VERIFIED' and d['counts'] == {'PASS': 8, 'FAIL': 0, 'BLOCKED': 0} and d['exit_code'] == 0
+    assert len(d['rows']) == 8 and all(r['status'] == 'PASS' for r in d['rows'])
+    h = next(r['actual'] for r in d['rows'] if r['case_id'] == 'visible_highlight')
+    assert h['geometry_ok'] and all(h['red_sides'].values()) and not h['overlays_after']
+    assert h['capture_foreground'] == h['native']['hwnd']
+    c = d['rows'][-1]['actual']
+    assert c['own_tab_closed'] and c['temporary_copy_removed'] and c['source_library_unchanged'] and c['tab_count'] == '1->1'
+    summaries.append({'file': f'run{n}', 'counts': d['counts'], 'duration': h['duration'], 'delay_after': h['delay_after'], 'visible_time_bounds_s': h['visible_time_bounds_s'], 'wait_after_disappear_s': h['wait_after_disappear_s'], 'cleanup': c})
+observe = json.loads((art/'element_highlight_20261009_observe2.json').read_text(encoding='utf-8'))
+assert observe['counts'] == {'PASS': 8, 'FAIL': 0, 'BLOCKED': 0} and not observe['silent_running']
+assert observe['rows'][-1]['actual']['page_retained_for_observation']
+script = root/'web/test_web_element_highlight.py'
+ast.parse(script.read_text(encoding='utf-8'))
+assert [p.name for p in (root/'web').glob('test_web_element_highlight*.py')] == [script.name]
+for file in (root/'web/evidence/highlight.md', root/'issues/highlight_history_20261009/README.md', root/'web/evidence/element_highlight_20261004.md'):
+    for link in re.findall(r'\]\(([^)]+)\)', file.read_text(encoding='utf-8')):
+        if not link.startswith(('https:', 'http:', '#')) and link != 'artifacts/element_highlight_20261009.txt':
+            assert (file.parent/link.split('#')[0]).exists(), (file, link)
+for file in (root/'index.md', root/'web/web api 清单.md'):
+    row = next(line for line in file.read_text(encoding='utf-8').splitlines() if '| `highlight`' in line or '| `uiautoma.web.WebElement.highlight()`' in line)
+    assert 'VERIFIED' in row and '8/8 PASS' in row and '3 轮' in row
+    assert '20261004.py' not in row
+shutil.copyfile(Path(__file__), art/'element_highlight_20261009_archive_verify.py.txt')
+files = sorted(set(art.glob('element_highlight_20261008_probe*')) | set(art.glob('element_highlight_20261009_*')))
+manifest = [f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(root).as_posix()}' for p in files if p.is_file()]
+out = art/'element_highlight_20261009.txt'
+lines = ['UIAutoma WebElement.highlight 验收汇总（UTF-8）', '日期：2026-10-09',
+         '最终连续三轮（run3/run4/run5）：每轮 VERIFIED，8/8 PASS，退出码 0。',
+         '非静默：silent_running=False。默认观察模式 observe2：8/8 PASS，保留页面，READY_FOR_LIVE。',
+         'trial1/run1/run2/observe 为加固历史，保留失败/阻塞及独立恢复记录，不并入三轮通过数。',
+         '正式命令（cwd D:\\code\\元素库\\sdk测试）：',
+         'uv run .\\web\\test_web_element_highlight.py --duration 1 --close-page',
+         'uv run .\\web\\test_web_element_highlight.py --close-page',
+         'uv run .\\web\\test_web_element_highlight.py --duration 0.6 --delay-after 0.25 --close-page',
+         '每轮附 --report-file 与对应 JSON 路径；原始日志由 subprocess 二进制流保存，UTF-8。',
+         json.dumps(summaries, ensure_ascii=False, indent=2),
+         f'SHA-256 文件清单（{len(manifest)} 个；不含本汇总自身）：', *manifest]
+out.write_text('\n'.join(lines)+'\n', encoding='utf-8')
+for line in manifest:
+    digest, name = line.split('  ', 1)
+    assert hashlib.sha256((root/name).read_bytes()).hexdigest() == digest
+print(json.dumps({'formal_runs': 3, 'pass_each': 8, 'unique_script': script.name, 'manifest_files_verified': len(manifest), 'local_evidence_links_valid': True, 'indexes_consistent': True, 'default_observation_passed': True}, ensure_ascii=False))

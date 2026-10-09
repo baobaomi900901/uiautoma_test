@@ -1,0 +1,106 @@
+import concurrent.futures
+import ctypes
+from ctypes import wintypes
+import json
+import shutil
+import sys
+import time
+import uuid
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+ROOT = Path(r'D:\code\元素库\sdk测试')
+sys.path[:0] = [r'D:\code\desktop\sdk\src', str(ROOT/'web')]
+from uiautoma import web, open as open_package
+from test_web_element_get_select_options import copy_library
+from test_web_element_get_anchor_position import NativeOracle as GeometryOracle
+
+
+class NativeOracle(GeometryOracle):
+    def __init__(self):
+        super().__init__()
+        self.u.GetWindowLongPtrW.argtypes = [wintypes.HWND, ctypes.c_int]
+        self.u.GetWindowLongPtrW.restype = ctypes.c_ssize_t
+        self.u.GetDC.argtypes = [wintypes.HWND]; self.u.GetDC.restype = wintypes.HDC
+        self.u.ReleaseDC.argtypes = [wintypes.HWND, wintypes.HDC]; self.u.ReleaseDC.restype = ctypes.c_int
+        self.g = ctypes.WinDLL('gdi32')
+        self.g.GetPixel.argtypes = [wintypes.HDC, ctypes.c_int, ctypes.c_int]; self.g.GetPixel.restype = wintypes.DWORD
+
+    def pixels(self, overlay):
+        r=overlay['rect']; x,y,w,h=(r[k] for k in ('x','y','width','height'))
+        points={side:[point for i in range(7)] for side,point in []}
+        points={'left':[(x+i,y+h//2) for i in range(7)],'right':[(x+w-1-i,y+h//2) for i in range(7)],'top':[(x+w//2,y+i) for i in range(7)],'bottom':[(x+w//2,y+h-1-i) for i in range(7)]}
+        dc=self.u.GetDC(None)
+        try:
+            colors={side:[{'xy':p,'rgb':((v:=int(self.g.GetPixel(dc,*p)))&255,(v>>8)&255,(v>>16)&255)} for p in locations] for side,locations in points.items()}
+            return {'colors':colors,'red_sides':{side:any(p['rgb'][0]>180 and p['rgb'][1]<90 and p['rgb'][2]<90 for p in pixels) for side,pixels in colors.items()}}
+        finally:
+            self.u.ReleaseDC(None,dc)
+
+    def overlays(self):
+        rows = []
+        def each(hwnd, _):
+            name = ctypes.create_unicode_buffer(256)
+            self.u.GetClassNameW(hwnd, name, len(name))
+            if name.value in {'RustFullscreenHighlightClass', 'RustPerPixelAlphaHighlightClass'} and self.u.IsWindowVisible(hwnd):
+                row = self.info(hwnd)
+                row['ex_style'] = int(self.u.GetWindowLongPtrW(hwnd, -20))
+                rows.append(row)
+            return True
+        self.u.EnumWindows(self.cb(each), 0)
+        return rows
+
+
+tmp = ROOT/'.pytest_tmp/highlight_retest_20261008'/uuid.uuid4().hex
+page = package = None
+oracle = NativeOracle()
+baseline = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+records = []
+try:
+    if oracle.overlays():
+        raise RuntimeError('用户已有可见高亮，暂不操作')
+    copy_library(Path(r'D:\code\元素库\260902_web元素'), tmp/'library')
+    package = open_package(str(tmp/'library'), timeout=8, connect_timeout=8)
+    page = web.create('https://baobaomi900901.github.io/xpath/#/keys-click-test',mode='chrome',silent_running=True,load_timeout=25)
+    def observe():
+        return page.execute_javascript("function(){const e=document.getElementById('btn-click-target'),r=e.getBoundingClientRect();return {id:e.id,tag:e.tagName,rect:{x:r.x,y:r.y,width:r.width,height:r.height},inner:{width:innerWidth,height:innerHeight},window:{x:screenX,y:screenY,width:outerWidth,height:outerHeight},dpr:devicePixelRatio,scroll:[scrollX,scrollY],focus:document.activeElement?.id||''};}")
+    matches = page.find_all('web靶场_测试点击_单击触发', timeout=5)
+    assert len(matches) == 1 and matches[0].get_attribute('id') == 'btn-click-target'
+    element = matches[0]
+    for duration, delay in [(1,0), (.5,.25), (.8,0), (0,0)]:
+        before = observe()
+        start = time.perf_counter()
+        samples = []; pixels=[]
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+            future = pool.submit(element.highlight, duration, delay)
+            while not future.done():
+                visible_now=oracle.overlays(); samples.append({'at_s':time.perf_counter()-start,'visible':visible_now,'foreground':oracle.foreground()})
+                if duration>0 and len(pixels)<4:
+                    for overlay in visible_now:
+                        if overlay['class']=='RustPerPixelAlphaHighlightClass':pixels.append(oracle.pixels(overlay))
+                time.sleep(.01)
+            try:
+                returned = future.result()
+                outcome = {'return':returned}
+            except Exception as exc:
+                outcome = {'exception':type(exc).__name__,'message':str(exc),'trace':getattr(exc,'trace_info','')}
+        elapsed = time.perf_counter()-start
+        after = observe()
+        native = oracle.measure(after)
+        visible = [s for s in samples if s['visible']]
+        row = {'duration':duration,'delay_after':delay,'outcome':outcome,'elapsed_s':elapsed,'first_visible_s':visible[0]['at_s'] if visible else None,'last_visible_s':visible[-1]['at_s'] if visible else None,'overlay_kinds':sorted({w['class'] for s in visible for w in s['visible']}),'first_overlay':visible[0] if visible else None,'overlays_after':oracle.overlays(),'dom_before':before,'dom_after':after,'native':native,'pixels':pixels,'samples':samples}
+        records.append(row)
+        print(json.dumps({k:v for k,v in row.items() if k!='samples'},ensure_ascii=False),flush=True)
+finally:
+    if page:
+        page.close(ignore_beforeunload=True)
+    if package:
+        package.close()
+    if tmp.exists():
+        assert tmp.resolve().parent == (ROOT/'.pytest_tmp/highlight_retest_20261008').resolve()
+        shutil.rmtree(tmp)
+    after = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+    cleanup = {'tab_count':f'{len(baseline)}->{len(after)}','external_added':sorted(after-baseline),'external_removed':sorted(baseline-after),'overlays_after':oracle.overlays(),'temporary_removed':not tmp.exists()}
+    oracle.close()
+    print(json.dumps({'cleanup':cleanup},ensure_ascii=False),flush=True)
+    (ROOT/'web/evidence/artifacts/element_highlight_20261008_probe2.json').write_text(json.dumps({'rows':records,'cleanup':cleanup},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

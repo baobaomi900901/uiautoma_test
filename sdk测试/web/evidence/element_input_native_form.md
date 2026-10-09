@@ -1,4 +1,6 @@
-# WebElement.input() 原生表单双靶场验收记录
+# WebElement.input() 原生表单双靶场历史验收记录
+
+> 本文保留 2026-09-20 的失败记录；当前复测结论见 [input.md](input.md)，唯一入口为 [test_web_element_input.py](../test_web_element_input.py)。以下旧命令是历史记录，旧脚本已归档。
 
 ## 当前结果与证据来源
 
@@ -7,7 +9,7 @@
 登记日期：2026-09-20。依据用户提交的两次完整终端输出登记；未声称 agent 运行了浏览器验收或连续三轮通过。
 
 - [双模式完整终端输出归档](artifacts/element_input_native_form_20260920.txt)。
-- 独立脚本：[test_web_element_input_native_form.py](../test_web_element_input_native_form.py)。
+- 独立脚本：[test_web_element_input_native_form.py](../../issues/input_history_20261008/test_web_element_input_native_form.py)。
 - 元素库：260902_web元素。
 - SDK/Runtime 快照：检出目录 `D:\code\desktop`，commit `c101caa9dcd115a461fc71ecaed351b0dea880b8`。
 - 相关缺陷：[Issue #65](https://github.com/uiautoma/desktop/issues/65)。

@@ -1,0 +1,155 @@
+{
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "apis": {
+    "get_cookies": {
+      "signature": "(self, *, name=None, domain=None, path=None, secure=None, session=None, partition_key=None) -> 'list'",
+      "docstring": "获取当前网页中符合条件的 Cookie 列表。\n\nArgs:\n    name: 按 Cookie 名称筛选，默认 None，不限制名称。\n    domain: 按域名及其子域名筛选，例如 \".example.com\"；默认 None，不限制域名。\n    path: 按路径筛选，例如 \"/\"；默认 None，不限制路径。\n    secure: 默认 None，不筛选；True 获取安全 Cookie，False 获取非安全 Cookie。\n    session: 默认 None，不筛选；True 获取会话 Cookie，False 获取持久 Cookie。\n    partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n        {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n        has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。\n\nReturns:\n    list[dict]：返回 Cookie 列表，列表项包含 name、value、domain、path、httpOnly 等键，\n    可通过 item['value'] 获取 Cookie 值；未匹配时返回 []。",
+      "source": "    def get_cookies(self, *, name=None, domain=None, path=None, secure=None, session=None, partition_key=None) -> list:\n        \"\"\"获取当前网页中符合条件的 Cookie 列表。\n\n        Args:\n            name: 按 Cookie 名称筛选，默认 None，不限制名称。\n            domain: 按域名及其子域名筛选，例如 \".example.com\"；默认 None，不限制域名。\n            path: 按路径筛选，例如 \"/\"；默认 None，不限制路径。\n            secure: 默认 None，不筛选；True 获取安全 Cookie，False 获取非安全 Cookie。\n            session: 默认 None，不筛选；True 获取会话 Cookie，False 获取持久 Cookie。\n            partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n                {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n                has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。\n\n        Returns:\n            list[dict]：返回 Cookie 列表，列表项包含 name、value、domain、path、httpOnly 等键，\n            可通过 item['value'] 获取 Cookie 值；未匹配时返回 []。\n        \"\"\"\n        from . import _normalize_cookie_partition_key\n        result = self._runtime_client().web_page_cookie(\"get_all\", page_ref=self._page_ref,\n            name=name, domain=domain, path=path, secure=secure, session=session,\n            partition_key=_normalize_cookie_partition_key(partition_key))\n        from .._core.exceptions import RpcProtocolError\n        if not isinstance(result.get(\"cookies\"), list):\n            raise RpcProtocolError(\"Runtime 返回的 Cookie 列表无效\", response=result)\n        return result[\"cookies\"]\n",
+      "file": "sdk\\src\\uiautoma\\web\\browser.py",
+      "line": 477
+    },
+    "get_cookie": {
+      "signature": "(self, *, name=None) -> 'dict'",
+      "docstring": "获取当前网页中指定名称的 Cookie。\n\nArgs:\n    name: 要获取的 Cookie 名称，必须指定。\n\nReturns:\n    dict：返回 Cookie 信息，包含 name、value、domain、path、httpOnly 等键，\n    可通过 cookie['value'] 获取 Cookie 值；未匹配时返回 {}。",
+      "source": "    def get_cookie(self, *, name=None) -> dict:\n        \"\"\"获取当前网页中指定名称的 Cookie。\n\n        Args:\n            name: 要获取的 Cookie 名称，必须指定。\n\n        Returns:\n            dict：返回 Cookie 信息，包含 name、value、domain、path、httpOnly 等键，\n            可通过 cookie['value'] 获取 Cookie 值；未匹配时返回 {}。\n        \"\"\"\n        return self._runtime_client().web_page_cookie(\"get\", page_ref=self._page_ref, name=name).get(\"cookie\") or {}\n",
+      "file": "sdk\\src\\uiautoma\\web\\browser.py",
+      "line": 503
+    },
+    "set_cookie": {
+      "signature": "(self, *, name=None, value=None, sessionCookie: 'bool' = False, expires: 'float' = 100, domain=None, path=None, httpOnly: 'bool' = False, secure: 'bool' = False) -> 'None'",
+      "docstring": "设置当前网页的 Cookie，已存在时覆盖。\n\nArgs:\n    name: Cookie 名称，必须指定。\n    value: Cookie 值，默认 None，设置为空字符串。\n    sessionCookie: 是否设置为会话 Cookie，默认 False；False 为持久 Cookie。\n    expires: 持久 Cookie 的有效期，单位秒，默认 100；会话 Cookie 不使用此参数。\n    domain: Cookie 域名，默认使用网址的域名。\n    path: Cookie 路径，默认使用网址的路径。\n    httpOnly: 是否标记为 HttpOnly，默认 False。\n    secure: 是否标记为 Secure，默认 False。",
+      "source": "    def set_cookie(self, *, name=None, value=None, sessionCookie: bool = False, expires: float = 100,\n                   domain=None, path=None, httpOnly: bool = False, secure: bool = False) -> None:\n        \"\"\"设置当前网页的 Cookie，已存在时覆盖。\n\n        Args:\n            name: Cookie 名称，必须指定。\n            value: Cookie 值，默认 None，设置为空字符串。\n            sessionCookie: 是否设置为会话 Cookie，默认 False；False 为持久 Cookie。\n            expires: 持久 Cookie 的有效期，单位秒，默认 100；会话 Cookie 不使用此参数。\n            domain: Cookie 域名，默认使用网址的域名。\n            path: Cookie 路径，默认使用网址的路径。\n            httpOnly: 是否标记为 HttpOnly，默认 False。\n            secure: 是否标记为 Secure，默认 False。\n        \"\"\"\n        self._runtime_client().web_page_cookie(\"set\", page_ref=self._page_ref, name=name, value=\"\" if value is None else value,\n            session_cookie=sessionCookie, expires_seconds=expires, domain=domain, path=path, httpOnly=httpOnly, secure=secure)\n",
+      "file": "sdk\\src\\uiautoma\\web\\browser.py",
+      "line": 515
+    },
+    "remove_cookie": {
+      "signature": "(self, name: 'str', *, partition_key=None) -> 'None'",
+      "docstring": "移除当前网页中指定名称的 Cookie。\n\nArgs:\n    name: 要移除的 Cookie 名称。\n    partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n        {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n        has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。",
+      "source": "    def remove_cookie(self, name: str, *, partition_key=None) -> None:\n        \"\"\"移除当前网页中指定名称的 Cookie。\n\n        Args:\n            name: 要移除的 Cookie 名称。\n            partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n                {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n                has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。\n        \"\"\"\n        from . import _normalize_cookie_partition_key\n        self._runtime_client().web_page_cookie(\"delete\", page_ref=self._page_ref, name=name,\n            partition_key=_normalize_cookie_partition_key(partition_key))\n",
+      "file": "sdk\\src\\uiautoma\\web\\browser.py",
+      "line": 532
+    },
+    "clear_cookies": {
+      "signature": "(self, *, partition_key=None) -> 'None'",
+      "docstring": "清除当前网页的 Cookie。\n\nArgs:\n    partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n        {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n        has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。",
+      "source": "    def clear_cookies(self, *, partition_key=None) -> None:\n        \"\"\"清除当前网页的 Cookie。\n\n        Args:\n            partition_key: Cookie 分区，默认 None 表示未分区。可传顶层站点网址字符串，或字典\n                {\"top_level_site\": \"https://example.com\", \"has_cross_site_ancestor\": False}；\n                has_cross_site_ancestor 表示是否存在跨站祖先，默认 False。\n        \"\"\"\n        from . import _normalize_cookie_partition_key\n        self._runtime_client().web_page_cookie(\"clear\", page_ref=self._page_ref,\n            partition_key=_normalize_cookie_partition_key(partition_key))\n",
+      "file": "sdk\\src\\uiautoma\\web\\browser.py",
+      "line": 545
+    }
+  },
+  "chain": [
+    {
+      "file": "sdk/src/uiautoma/_core/client.py",
+      "symbol": "web_page_cookie",
+      "line": 1176,
+      "source": "    def web_page_cookie(self, operation: str, *, page_ref: dict[str, str], **options: Any) -> dict[str, Any]:\n        if operation not in {\"get\", \"get_all\", \"set\", \"delete\", \"clear\"}:\n            raise InvalidParamsError(\"Cookie 操作无效\")\n        return self._run_web_browser_value(\"web.cookie.\" + operation,\n            page_ref=page_ref, timeout_ms=5000, **options)"
+    },
+    {
+      "file": "sdk/src/uiautoma/_core/client.py",
+      "symbol": "_run_web_browser_value",
+      "line": 1158,
+      "source": "    def _run_web_browser_value(self, method: str, /, **params: Any) -> dict[str, Any]:\n        self._ensure_method_supported(method)\n        rpc_params = dict(params)\n        if \"timeout_ms\" in rpc_params:\n            rpc_params[\"timeout_ms\"] = int(rpc_params[\"timeout_ms\"])\n        result = self._rpc(method, rpc_params)\n        if _business_error(result) != 0:\n            if _trace_info(result) in _FATAL_ACTION_TRACES:\n                self._raise_business_error(result, method=method)\n            ActionResult.from_payload(result).raise_for_error()\n        return result"
+    },
+    {
+      "file": "sdk/src/uiautoma/web/__init__.py",
+      "symbol": "_normalize_cookie_partition_key",
+      "line": 184,
+      "source": "def _normalize_cookie_partition_key(partition_key: object | None) -> dict[str, object] | None:\n    if partition_key is None:\n        return None\n    if not isinstance(partition_key, Mapping):\n        raise TypeError(\"partition_key must be a mapping\")\n    top_level_site = partition_key.get(\"top_level_site\", partition_key.get(\"topLevelSite\"))\n    if not isinstance(top_level_site, str) or not top_level_site.strip():\n        raise ValueError(\"partition_key.top_level_site is required\")\n    has_cross_site_ancestor = partition_key.get(\n        \"has_cross_site_ancestor\",\n        partition_key.get(\"hasCrossSiteAncestor\", False),\n    )\n    if not isinstance(has_cross_site_ancestor, bool):\n        raise TypeError(\"partition_key.has_cross_site_ancestor must be a bool\")\n    return {\n        \"top_level_site\": top_level_site.strip(),\n        \"has_cross_site_ancestor\": has_cross_site_ancestor,\n    }"
+    },
+    {
+      "file": "runtime/services/pipe_server.py",
+      "symbol": "_dispatch_registered",
+      "line": 447,
+      "source": "    def _dispatch_registered(\n        self,\n        req_id: Any,\n        spec: RpcMethodSpec,\n        params: dict[str, Any],\n    ) -> dict[str, Any]:\n        required = spec.required_params\n        # Cookie and attribute values may be empty; other required fields remain non-empty.\n        if \"value\" in params and (\n            spec.name == \"web.cookie.set\"\n            or (spec.name == \"web.element.set_attribute\" and isinstance(params[\"value\"], str))\n        ):\n            required = tuple(name for name in required if name != \"value\")\n        missing = _missing_params(params, *required)\n        if missing:\n            return _rpc_error(req_id, \"invalid_params\", f\"missing {missing}\", \"invalid_params\")\n        handler = getattr(self, spec.handler_name)\n        result = handler(params)\n        if spec.promote_host_unavailable and _is_host_unavailable_result(result):\n            return _rpc_error(\n                req_id,\n                \"host_unavailable\",\n                str(result.get(\"message\") or \"浏览器自动化通道不可用，请重试\"),\n                str(result.get(\"trace_info\") or \"host_unavailable\"),\n            )\n        return _rpc_ok(req_id, result)"
+    },
+    {
+      "file": "runtime/services/pipe_server.py",
+      "symbol": "_handle_web_cookie_get_all",
+      "line": 2206,
+      "source": "    def _handle_web_cookie_get_all(self, params: dict[str, Any]) -> dict[str, Any]:\n        return self.action_service.web_get_cookies(params)"
+    },
+    {
+      "file": "runtime/services/pipe_server.py",
+      "symbol": "_handle_web_cookie_get",
+      "line": 2209,
+      "source": "    def _handle_web_cookie_get(self, params: dict[str, Any]) -> dict[str, Any]:\n        return self.action_service.web_get_cookie(params)"
+    },
+    {
+      "file": "runtime/services/pipe_server.py",
+      "symbol": "_handle_web_cookie_set",
+      "line": 2212,
+      "source": "    def _handle_web_cookie_set(self, params: dict[str, Any]) -> dict[str, Any]:\n        return self.action_service.web_set_cookie(params)"
+    },
+    {
+      "file": "runtime/services/pipe_server.py",
+      "symbol": "_handle_web_cookie_delete",
+      "line": 2215,
+      "source": "    def _handle_web_cookie_delete(self, params: dict[str, Any]) -> dict[str, Any]:\n        return self.action_service.web_delete_cookie(params)"
+    },
+    {
+      "file": "runtime/services/pipe_server.py",
+      "symbol": "_handle_web_cookie_clear",
+      "line": 2218,
+      "source": "    def _handle_web_cookie_clear(self, params: dict[str, Any]) -> dict[str, Any]:\n        return self.action_service.web_clear_cookies(params)"
+    },
+    {
+      "file": "runtime/services/action_service.py",
+      "symbol": "_normalize_web_cookie_partition_key",
+      "line": 601,
+      "source": "def _normalize_web_cookie_partition_key(\n    params: dict[str, Any],\n) -> tuple[dict[str, Any] | None, dict[str, Any] | None]:\n    normalized = dict(params)\n    raw = normalized.pop(\"partitionKey\", None)\n    if \"partition_key\" in normalized:\n        raw = normalized.get(\"partition_key\")\n    if raw is None:\n        normalized.pop(\"partition_key\", None)\n        return normalized, None\n    if not isinstance(raw, dict):\n        return None, business_error(\n            2,\n            \"invalid_params\",\n            message=\"partition_key 必须是对象\",\n        )\n\n    if not _browser_mode_param(normalized.get(\"mode\")):\n        return None, business_error(\n            2,\n            \"invalid_params\",\n            message=\"浏览器类型必须为 auto、chrome 或 edge\",\n        )\n\n    top_level_site = raw.get(\"top_level_site\", raw.get(\"topLevelSite\"))\n    if not isinstance(top_level_site, str) or not top_level_site.strip():\n        return None, business_error(\n            2,\n            \"invalid_params\",\n            message=\"partition_key.top_level_site 不能为空\",\n        )\n    has_cross_site_ancestor = raw.get(\n        \"has_cross_site_ancestor\",\n        raw.get(\"hasCrossSiteAncestor\", False),\n    )\n    if not isinstance(has_cross_site_ancestor, bool):\n        return None, business_error(\n            2,\n            \"invalid_params\",\n            message=\"partition_key.has_cross_site_ancestor 必须是布尔值\",\n        )\n\n    normalized[\"partition_key\"] = {\n        \"top_level_site\": top_level_site.strip(),\n        \"has_cross_site_ancestor\": has_cross_site_ancestor,\n    }\n    return normalized, None"
+    },
+    {
+      "file": "runtime/services/action_service.py",
+      "symbol": "web_get_cookies",
+      "line": 3282,
+      "source": "    def web_get_cookies(self, params: dict[str, Any]) -> dict[str, Any]:\n        normalized, error = _normalize_web_cookie_partition_key(params)\n        if error is not None:\n            return _web_browser_result_from_error(error)\n        assert normalized is not None\n        return self._run_web_browser_command(normalized, command=\"cookie_get_all\")"
+    },
+    {
+      "file": "runtime/services/action_service.py",
+      "symbol": "web_get_cookie",
+      "line": 3289,
+      "source": "    def web_get_cookie(self, params: dict[str, Any]) -> dict[str, Any]:\n        if not str(params.get(\"name\") or \"\").strip():\n            return _web_browser_result_from_error(business_error(2, \"invalid_params\", message=\"Cookie 名称不能为空\"))\n        return self._run_web_browser_command(params, command=\"cookie_get\")"
+    },
+    {
+      "file": "runtime/services/action_service.py",
+      "symbol": "web_set_cookie",
+      "line": 3294,
+      "source": "    def web_set_cookie(self, params: dict[str, Any]) -> dict[str, Any]:\n        if not str(params.get(\"name\") or \"\").strip():\n            return _web_browser_result_from_error(business_error(2, \"invalid_params\", message=\"Cookie 名称不能为空\"))\n        if \"value\" not in params:\n            return _web_browser_result_from_error(business_error(2, \"invalid_params\", message=\"Cookie 值不能为空\"))\n        if \"expires_seconds\" in params:\n            import math\n            ttl = params[\"expires_seconds\"]\n            if isinstance(ttl, bool) or not isinstance(ttl, (int, float)) or not math.isfinite(ttl):\n                return business_error(2, \"invalid_params\", message=\"Cookie 有效期必须为有限秒数\")\n        for key in (\"session_cookie\", \"httpOnly\", \"secure\"):\n            if key in params and not isinstance(params[key], bool):\n                return business_error(2, \"invalid_params\", message=\"Cookie 开关必须为布尔值\")\n        return self._run_web_browser_command(params, command=\"cookie_set\")"
+    },
+    {
+      "file": "runtime/services/action_service.py",
+      "symbol": "web_delete_cookie",
+      "line": 3309,
+      "source": "    def web_delete_cookie(self, params: dict[str, Any]) -> dict[str, Any]:\n        if not str(params.get(\"name\") or \"\").strip():\n            return _web_browser_result_from_error(business_error(2, \"invalid_params\", message=\"Cookie 名称不能为空\"))\n        normalized, error = _normalize_web_cookie_partition_key(params)\n        if error is not None:\n            return _web_browser_result_from_error(error)\n        assert normalized is not None\n        return self._run_web_browser_command(normalized, command=\"cookie_delete\")"
+    },
+    {
+      "file": "runtime/services/action_service.py",
+      "symbol": "web_clear_cookies",
+      "line": 3318,
+      "source": "    def web_clear_cookies(self, params: dict[str, Any]) -> dict[str, Any]:\n        normalized, error = _normalize_web_cookie_partition_key(params)\n        if error is not None:\n            return _web_browser_result_from_error(error)\n        assert normalized is not None\n        return self._run_web_browser_command(normalized, command=\"cookie_clear\")"
+    },
+    {
+      "file": "runtime/services/action_service.py",
+      "symbol": "_run_web_browser_command",
+      "line": 5727,
+      "source": "    def _run_web_browser_command(self, params: dict[str, Any], *, command: str) -> dict[str, Any]:\n        params, error = self._route_user_environment(params)\n        if error:\n            return error\n        if \"mode\" in params and not _browser_mode_param(params[\"mode\"]):\n            return business_error(2, \"invalid_params\", message=\"浏览器类型必须为 auto、chrome 或 edge\")\n        timeout_ms = _int_param(params.get(\"timeout_ms\"), 5000)\n        payload = {\n            key: value\n            for key, value in params.items()\n            if value is not None\n            and key\n            not in {\"package_token\", \"element_id\", \"state_revision\", \"package_variables\"}\n        }\n        payload[\"timeout_ms\"] = timeout_ms\n        if \"page_ref\" in payload:\n            target = self.web_page_state.resolve_page(payload.pop(\"page_ref\"))\n            if target is None:\n                return business_error(3, \"stale_page_reference\", message=\"网页对象已失效\")\n            for key in (\"mode\", \"page_url\", \"targetBrowser\", \"targetSessionId\", \"targetTabId\"):\n                payload.pop(key, None)\n            payload.update(target)\n            payload[\"live_page\"] = True\n        payload.setdefault(\"command_timeout_ms\", timeout_ms if timeout_ms != 0 else 5000)\n        try:\n            raw = self.web_bridge.browser_command(command, **payload)\n        except Exception as exc:\n            failed = _web_business_error(5, \"web_bridge_unavailable\")\n            failed[\"log_lines\"] = [str(exc)]\n            return _web_browser_result_from_error(failed)\n        result = _web_browser_from_bridge(raw)\n        if \"page_ref\" in params and command != \"close\" and self.web_page_state.resolve_page(params[\"page_ref\"]) is None:\n            return business_error(3, \"stale_page_reference\", message=\"网页对象已失效\")\n        if result.get(\"trace_info\") == \"web_browser_command_timeout\" and command in {\n            \"get_active\", \"navigate\", \"reload\", \"back\", \"forward\", \"wait_ready\",\n        }:\n            result[\"message\"] = \"等待页面加载超时\"\n        elif result.get(\"trace_info\") == \"web_browser_command_timeout\" and command == \"close\":\n            result[\"message\"] = \"关闭网页超时，页面可能无响应\"\n        if command in {\"get_active\", \"get_info\"} and not result.get(\"error\"):\n            return self._public_web_pages(result, params, many=False)\n        return _public_web_bridge_payload(result, {\"element_ref\": {}}) if \"page_ref\" in params else result"
+    },
+    {
+      "file": "chrome/engine/plugin_packages/browser_command_package.js",
+      "line": 84,
+      "source": "    const url = chrome.runtime && chrome.runtime.getURL ? chrome.runtime.getURL(\"\") : \"\";\n    return /^chrome-extension:\\/\\//i.test(url) ? \"chrome\" : \"unknown\";\n  }\n  function urlForCookie(cmd) {\n    return String(cmd && (cmd.url || cmd.page_url || cmd.pageUrl) || \"\").trim();\n  }\n  function cookieDetails(cmd) {\n    const out = {};\n    const url = urlForCookie(cmd);\n    if (url) out.url = url;\n    if (cmd && cmd.name != null) out.name = String(cmd.name);\n    if (cmd && cmd.domain != null) out.domain = String(cmd.domain);\n    if (cmd && cmd.path != null) out.path = String(cmd.path);\n    if (cmd && cmd.storeId != null) out.storeId = String(cmd.storeId);\n    return out;\n  }\n  function cookiePartitionKey(cmd) {\n    const raw = cmd && (cmd.partition_key != null ? cmd.partition_key : cmd.partitionKey);\n    if (raw == null) return null;\n    if (!raw || typeof raw !== \"object\" || Array.isArray(raw)) {\n      throw new Error(\"partition_key must be an object\");\n    }\n    const topLevelSite = String(raw.top_level_site || raw.topLevelSite || \"\").trim();\n    if (!topLevelSite) throw new Error(\"partition_key.top_level_site is required\");\n    const rawAncestor = raw.has_cross_site_ancestor != null\n      ? raw.has_cross_site_ancestor\n      : raw.hasCrossSiteAncestor != null\n        ? raw.hasCrossSiteAncestor\n        : false;\n    if (typeof rawAncestor !== \"boolean\") {\n      throw new Error(\"partition_key.has_cross_site_ancestor must be a bool\");\n    }\n    return {\n      topLevelSite,\n      hasCrossSiteAncestor: rawAncestor,\n    };\n  }\n  function orderedCookie(cookie) {\n    const ordered = {};\n    for (const key of [\"name\", \"value\", \"domain\", \"path\", \"httpOnly\", \"secure\", \"expirationDate\"]) {\n      if (Object.prototype.hasOwnProperty.call(cookie, key)) ordered[key] = cookie[key];\n    }\n    return Object.assign(ordered, cookie);\n  }\n\n  function cookieQueryDetails(cmd) {\n    const out = cookieDetails(cmd);\n    if (cmd && cmd.secure != null) out.secure = !!cmd.secure;\n    if (cmd && cmd.session != null) out.session = !!cmd.session;\n    const partitionKey = cookiePartitionKey(cmd);\n    if (partitionKey) out.partitionKey = partitionKey;\n    return out;\n  }\n  function cookieAccessDetails(cmd) {\n    const out = {};\n    const url = urlForCookie(cmd);\n    if (url) out.url = url;\n    if (cmd && cmd.name != null) out.name = String(cmd.name);\n    if (cmd && cmd.storeId != null) out.storeId = String(cmd.storeId);\n    const partitionKey = cookiePartitionKey(cmd);\n    if (partitionKey) out.partitionKey = partitionKey;\n    return out;\n  }\n  function cookieMatchesPartitionKey(cookie, requested) {\n    const actual = cookie && cookie.partitionKey;\n    if (!requested) return !actual;\n    if (!actual || typeof actual !== \"object\") return false;\n    return String(actual.topLevelSite || \"\") === requested.topLevelSite\n      && !!actual.hasCrossSiteAncestor === requested.hasCrossSiteAncestor;\n  }\n  function filterCookiesForPartitionKey(cookies, requested) {\n    return (Array.isArray(cookies) ? cookies : []).filter(\n      (cookie) => cookieMatchesPartitionKey(cookie, requested),\n    );\n  }\n  function normalizeDownloadItem(item) {"
+    },
+    {
+      "file": "chrome/engine/plugin_packages/browser_command_package.js",
+      "line": 1781,
+      "source": "      }\n      if (command.startsWith(\"cookie_\") && cmd.live_page) {\n        const tab = await selectTabForLocate(cmd);\n        const current = await chrome.tabs.get(tab.id);\n        cmd.url = current.url;\n        const stores = await chrome.cookies.getAllCookieStores();\n        const store = stores.find(item => item.tabIds.includes(tab.id));\n        if (!store) return browserResult(3, \"cookie_store_unavailable\");\n        cmd.storeId = store.id;\n      }\n      if (command === \"cookie_get_all\") {\n        if (!chrome.cookies) return browserResult(5, \"cookie_api_unavailable\");\n        const requestedPartitionKey = cookiePartitionKey(cmd);\n        const cookies = filterCookiesForPartitionKey(\n          await chrome.cookies.getAll(cookieQueryDetails(cmd)),\n          requestedPartitionKey,\n        );\n        return browserResult(0, \"\", { cookies: cookies.map(orderedCookie) });\n      }\n      if (command === \"cookie_get\") {\n        if (!chrome.cookies) return browserResult(5, \"cookie_api_unavailable\");\n        const cookie = await chrome.cookies.get(cookieAccessDetails(cmd));\n        return browserResult(0, \"\", { cookie: cookie ? orderedCookie(cookie) : cookie });\n      }\n      if (command === \"cookie_set\") {\n        if (!chrome.cookies) return browserResult(5, \"cookie_api_unavailable\");\n        const details = cookieDetails(cmd);\n        details.value = String(cmd.value ?? \"\");\n        if (cmd && cmd.httpOnly != null) details.httpOnly = !!cmd.httpOnly;\n        if (cmd && cmd.secure != null) details.secure = !!cmd.secure;\n        if (cmd && cmd.expires != null) details.expirationDate = Number(cmd.expires);\n        if (cmd.expires_seconds != null && cmd.session_cookie !== true) details.expirationDate = Date.now() / 1000 + cmd.expires_seconds;\n        const cookie = await chrome.cookies.set(details);\n        if (!cookie) return browserResult(5, \"cookie_set_failed\");\n        return browserResult(0, \"\", { cookie });\n      }\n      if (command === \"cookie_delete\") {\n        if (!chrome.cookies) return browserResult(5, \"cookie_api_unavailable\");\n        const details = cookieAccessDetails(cmd);\n        const cookie = await chrome.cookies.remove(details);\n        return browserResult(0, \"\", { cookie });\n      }\n      if (command === \"cookie_clear\") {\n        if (!chrome.cookies) return browserResult(5, \"cookie_api_unavailable\");\n        const requestedPartitionKey = cookiePartitionKey(cmd);\n        const cookies = filterCookiesForPartitionKey(\n          await chrome.cookies.getAll(cookieQueryDetails(cmd)),\n          requestedPartitionKey,\n        );\n        for (const cookie of cookies) {\n          const scheme = cookie.secure ? \"https://\" : \"http://\";\n          const url = urlForCookie(cmd) || `${scheme}${cookie.domain.replace(/^\\./, \"\")}${cookie.path || \"/\"}`;\n          const details = { url, name: cookie.name };\n          if (cookie.storeId != null) details.storeId = cookie.storeId;\n          if (cookie.partitionKey) details.partitionKey = cookie.partitionKey;\n          await chrome.cookies.remove(details);\n        }\n        return browserResult(0, \"\", { cleared: cookies.length });\n      }\n      if (command === \"native_dialog_context\") {"
+    },
+    {
+      "file": "runtime/services/capabilities.py",
+      "line": 349,
+      "source": "    RpcMethodSpec(\"web.cookie.get_all\", \"_handle_web_cookie_get_all\", (\"timeout_ms\",)),\n    RpcMethodSpec(\"web.cookie.get\", \"_handle_web_cookie_get\", (\"name\", \"timeout_ms\")),\n    RpcMethodSpec(\"web.cookie.set\", \"_handle_web_cookie_set\", (\"name\", \"value\", \"timeout_ms\")),\n    RpcMethodSpec(\"web.cookie.delete\", \"_handle_web_cookie_delete\", (\"name\", \"timeout_ms\")),\n    RpcMethodSpec(\"web.cookie.clear\", \"_handle_web_cookie_clear\", (\"timeout_ms\",)),"
+    }
+  ],
+  "known_documentation_discrepancy": "get_cookies/remove_cookie/clear_cookies docstrings advertise partition_key string; SDK normalizer only accepts Mapping."
+}

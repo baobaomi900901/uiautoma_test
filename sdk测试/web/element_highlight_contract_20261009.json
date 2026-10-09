@@ -1,0 +1,226 @@
+{
+  "api": "uiautoma.web.WebElement.highlight",
+  "date": "2026-10-09",
+  "worktrees": {
+    "desktop": "D:\\code\\desktop",
+    "rust_uia": "D:\\code\\rust_uia"
+  },
+  "commits": {
+    "desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+    "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"
+  },
+  "signature": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'",
+  "source": "    def highlight(self, duration: float = 1.0, delay_after: float = 0) -> None:\n        \"\"\"高亮显示当前网页元素。\n\n        激活元素所在网页和浏览器窗口，将元素滚动到可见区域后显示高亮框。\n        即使网页以静默方式获取，调用本方法也会激活窗口。\n\n        Args:\n            duration: 高亮持续时间，单位秒，默认 1；0 表示立即清除。\n            delay_after: 高亮结束后等待时间，单位秒，默认 0。\n\n        Returns:\n            None。\n\n        Raises:\n            InvalidParamsError: 持续时间无效。\n            ActionError: 元素失效、不可见或高亮失败。\n        \"\"\"\n        self._finish(self._raw.highlight(duration=duration), delay_after)\n",
+  "rpc": "web.action.highlight",
+  "timeout_ms": 5000,
+  "source_snapshots": [
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/web/element.py",
+      "line_start": 1109,
+      "line_end": 1137,
+      "sha256": "621601eb753fe2ea5e0762331bdcc8231bc1f30fb81d3821323e976e30d6e748",
+      "excerpt": "    def highlight(self, duration: float = 1.0, delay_after: float = 0) -> None:\n        \"\"\"高亮显示当前网页元素。\n\n        激活元素所在网页和浏览器窗口，将元素滚动到可见区域后显示高亮框。\n        即使网页以静默方式获取，调用本方法也会激活窗口。\n\n        Args:\n            duration: 高亮持续时间，单位秒，默认 1；0 表示立即清除。\n            delay_after: 高亮结束后等待时间，单位秒，默认 0。\n\n        Returns:\n            None。\n\n        Raises:\n            InvalidParamsError: 持续时间无效。\n            ActionError: 元素失效、不可见或高亮失败。\n        \"\"\"\n        self._finish(self._raw.highlight(duration=duration), delay_after)\n\n    def _finish(self, result: ActionResult, delay_after: float | int | None) -> None:\n        self.last_result = result\n        result.raise_for_error()\n        sleep_after(delay_after)\n\n\ndef _wrap(element: RawWebElement | WebElement) -> WebElement:\n    \"\"\"把底层 WebElement 包装为高层 WebElement。\n\n    Args:"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/_core/client.py",
+      "line_start": 3560,
+      "line_end": 3572,
+      "sha256": "c3bf148875c8f7db0b74897fa5d6e449c70c9579d6c06b07f5db2148dbfe73b3",
+      "excerpt": "    def highlight(self, *, duration: float = 1.0) -> ActionResult:\n        \"\"\"高亮当前网页元素。\n\n        Args:\n            duration: 高亮持续时间，单位秒，默认 1；0 表示立即清除。\n\n        Returns:\n            ActionResult：动作结果。\n        \"\"\"\n        if isinstance(duration, bool) or not isinstance(duration, (int, float)) or not math.isfinite(duration) or duration < 0:\n            raise InvalidParamsError(\"duration 必须是非负的有限秒数\")\n        return self._session._run_web_action(\"web.action.highlight\", self.id,\n            duration_ms=int(round(duration * 1000)), timeout_ms=5000)"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/_core/client.py",
+      "line_start": 2090,
+      "line_end": 2096,
+      "sha256": "c3bf148875c8f7db0b74897fa5d6e449c70c9579d6c06b07f5db2148dbfe73b3",
+      "excerpt": "    def __init__(self, client: UIAutomaCoreClient) -> None:\n        self._client = client\n\n    def _ensure_open(self) -> None:\n        if self._client._closed:\n            raise HostUnavailableError(\"元素对象所属连接已关闭，请重新获取对象\")\n"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/_core/client.py",
+      "line_start": 2119,
+      "line_end": 2128,
+      "sha256": "c3bf148875c8f7db0b74897fa5d6e449c70c9579d6c06b07f5db2148dbfe73b3",
+      "excerpt": "    def _web_target_params(self) -> dict[str, Any]:\n        return {\"locator_kind\": \"runtime_ref\"}\n\n    def _locate_web_element(self, element_id: str, *, timeout_ms: int) -> LocateResult:\n        self._ensure_open()\n        return self._client._run_web_locate(element_id, timeout_ms=timeout_ms, **self._web_target_params())\n\n    def _run_web_action(self, method: str, element_id: str, **params: Any) -> ActionResult:\n        self._ensure_open()\n        return self._client._run_web_action(method, element_id, **self._web_target_params(), **params)"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/_core/client.py",
+      "line_start": 1120,
+      "line_end": 1137,
+      "sha256": "c3bf148875c8f7db0b74897fa5d6e449c70c9579d6c06b07f5db2148dbfe73b3",
+      "excerpt": "\n    def _run_web_action(\n        self,\n        method: str,\n        element_id: str,\n        **params: Any,\n    ) -> ActionResult:\n        self._ensure_method_supported(method)\n        rpc_params = {\n            \"element_id\": element_id,\n            **params,\n        }\n        if \"timeout_ms\" in rpc_params:\n            rpc_params[\"timeout_ms\"] = int(rpc_params[\"timeout_ms\"])\n        result = self._rpc(method, rpc_params)\n        if _business_error(result) != 0 and _trace_info(result) in _FATAL_ACTION_TRACES:\n            self._raise_business_error(result, method=method)\n        return ActionResult.from_payload(result)"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/_core/models.py",
+      "line_start": 170,
+      "line_end": 210,
+      "sha256": "34e631a2648b3fd4bc885ea3670d4e8428f87c89c03169621ccf21aeb80fabd4",
+      "excerpt": "    def from_payload(cls, payload: dict[str, Any]) -> \"ActionResult\":\n        \"\"\"从动作响应构造 ActionResult。\n\n        Args:\n            payload: 后端原始响应字典。\n\n        Returns:\n            ``ActionResult``。\n        \"\"\"\n\n        if \"error\" in payload:\n            error = _int_value(payload.get(\"error\"), 0)\n        else:\n            error = 0 if _bool_value(payload.get(\"ok\"), default=True) else 1\n        clicked_point = payload.get(\"clicked_point\")\n        if not isinstance(clicked_point, dict):\n            clicked_point = None\n        return cls(\n            error=error,\n            trace_info=str(payload.get(\"trace_info\") or \"\"),\n            strategy=str(payload.get(\"strategy\") or \"\"),\n            fallback_reason=str(payload.get(\"fallback_reason\") or \"\"),\n            clicked_point=dict(clicked_point) if clicked_point is not None else None,\n            log_lines=_string_list(payload.get(\"log_lines\")),\n            trace_id=str(payload.get(\"trace_id\") or \"\"),\n            raw=dict(payload),\n        )\n\n    def raise_for_error(self) -> None:\n        \"\"\"在动作失败时抛出异常。\n\n        Raises:\n            ActionError: ``ok`` 为 ``False`` 时抛出。\n        \"\"\"\n\n        if not self.ok:\n            raise ActionError(self)\n\n    def to_dict(self) -> dict[str, Any]:\n        \"\"\"转换为可序列化字典。\n"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/_compat.py",
+      "line_start": 53,
+      "line_end": 65,
+      "sha256": "ccc09d5bdaedbbd1e0698ea206410e6cac7e1aadeb79e4979a1714d949b15523",
+      "excerpt": "def sleep_after(delay_after: float | int | None) -> None:\n    \"\"\"按动作参数语义在动作后等待。\"\"\"\n\n    if delay_after in (None, 0):\n        return\n    try:\n        value = float(delay_after)\n    except (TypeError, ValueError) as exc:\n        raise InvalidParamsError(\"delay_after 必须是数字\") from exc\n    if value < 0:\n        raise InvalidParamsError(\"delay_after 不能小于 0\")\n    if value:\n        time.sleep(value)"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/pipe_server.py",
+      "line_start": 2073,
+      "line_end": 2074,
+      "sha256": "8284c86cf1360bb04357c3be5f484101804fb2e37d0b56d4367448de4a0a54d1",
+      "excerpt": "    def _handle_web_action_highlight(self, params: dict[str, Any]) -> dict[str, Any]:\n        return self.action_service.web_highlight_element(params)"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/action_service.py",
+      "line_start": 2452,
+      "line_end": 2507,
+      "sha256": "008efa70d6c7bd00ade95e0dee0f1d7935f4d0173ed7ca3dc7ee9eff8d3825f3",
+      "excerpt": "    def web_highlight_element(self, params: dict[str, Any]) -> dict[str, Any]:\n        duration_ms = params.get(\"duration_ms\", 1000)\n        timeout_ms = params.get(\"timeout_ms\", 5000)\n        if (not isinstance(duration_ms, int) or isinstance(duration_ms, bool) or duration_ms < 0\n                or not isinstance(timeout_ms, int) or isinstance(timeout_ms, bool) or timeout_ms <= 0):\n            return _action_result(business_error(2, \"invalid_params\", message=\"高亮持续时间必须为非负数，定位超时必须大于 0\"))\n        ctx, err = self._resolve_web_ctx(params)\n        if err is not None:\n            return _action_result(err)\n        if ctx.get(\"locator_kind\") != \"runtime_ref\":\n            return _action_result(business_error(2, \"invalid_params\", message=\"请先查找当前网页元素\"))\n        desc, err = self._web_descriptor(ctx)\n        if err is not None:\n            return _action_result(err)\n        try:\n            # The Provider action path activates the target and resolves the live\n            # node. Its physical coordinates must not be scaled in Runtime.\n            raw = self._web_physical_geometry(desc, timeout_ms, read_geometry=False)\n            if _web_bridge_error(raw):\n                return _action_result(_web_business_error(_web_bridge_error(raw),\n                    _trace_from_result(raw, \"web_locate_failed\"), raw), strategy=\"web_highlight\")\n            physical = raw.get(\"screen_rect\")\n            rect = _coerce_rect(physical) if isinstance(physical, dict) else None\n            if raw.get(\"count\", 1) != 1:\n                return _action_result(business_error(4, \"ambiguous_match\", message=\"无法确定唯一的网页元素\"))\n            if rect is None or physical.get(\"coordinate_space\") != \"screen_physical\":\n                return _action_result(business_error(5, \"browser_viewport_conversion_failed\", message=\"无法获取网页元素的高亮位置\"))\n            ok, logs = self.highlighter.highlight(rect, duration_ms / 1000)\n            return _action_result(business_error(0, \"\") if ok else\n                business_error(5, \"highlight_failed\", message=\"网页元素高亮失败\"),\n                strategy=\"web_highlight\", log_lines=logs)\n        except Exception as exc:\n            return _action_result(business_error(5, \"highlight_failed\", message=\"网页元素高亮失败\"),\n                strategy=\"web_highlight\", log_lines=[str(exc)])\n\n    def _web_physical_geometry(self, desc: dict[str, Any], timeout_ms: int, *, read_geometry: bool = True) -> dict[str, Any]:\n        from runtime.services.uiautomation_provider import get_uiautomation_provider\n        provider = self.uia_provider or get_uiautomation_provider()\n        raw = provider.request(\"web.resolve_element\", {\n            \"element_ref\": desc[\"element_ref\"], \"targetSessionId\": desc[\"target_session_id\"],\n            \"targetTabId\": desc[\"target_tab_id\"], \"read_geometry\": read_geometry,\n            \"browserExeName\": \"msedge.exe\" if desc[\"target_browser\"] == \"edge\" else \"chrome.exe\",\n            \"timeout_ms\": timeout_ms,\n        }, timeout_ms=timeout_ms)\n        if self.web_page_state.resolve_page(desc[\"page_ref\"]) is None:\n            return business_error(3, \"stale_page_reference\", message=\"网页对象已失效\")\n        return _public_web_bridge_payload(raw, desc)\n\n    def web_get_geometry(self, params: dict[str, Any]) -> dict[str, Any]:\n        ctx, err = self._resolve_web_ctx(params)\n        if err is not None:\n            return err\n        assert ctx is not None\n        if ctx.get(\"locator_kind\") != \"runtime_ref\":\n            return business_error(2, \"invalid_params\", message=\"请先查找当前网页元素\")\n        desc, err = self._web_descriptor(ctx)"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/action_service.py",
+      "line_start": 247,
+      "line_end": 284,
+      "sha256": "008efa70d6c7bd00ade95e0dee0f1d7935f4d0173ed7ca3dc7ee9eff8d3825f3",
+      "excerpt": "class HighlightBackend:\n    def highlight(self, rect: dict[str, int], duration: float) -> tuple[bool, list[str]]:\n        log_lines: list[str] = []\n        try:\n            from runtime.services.uiautomation_provider import get_uiautomation_provider\n\n            provider = get_uiautomation_provider()\n            show = provider.element_tree(\n                params={\n                    \"operation\": \"highlight\",\n                    \"visible\": True,\n                    \"screen_rects\": [rect],\n                    \"padding_px\": 0,\n                },\n                timeout_ms=10_000,\n            )\n            if not isinstance(show, dict) or _int_param(show.get(\"error\"), 5) != 0:\n                trace = str((show or {}).get(\"trace_info\") if isinstance(show, dict) else \"\")\n                return False, [f\"highlight show failed: {trace or 'unknown'}\"]\n            try:\n                time.sleep(max(0.0, float(duration)))\n            finally:\n                hide = provider.element_tree(\n                    params={\"operation\": \"highlight\", \"visible\": False},\n                    timeout_ms=10_000,\n                )\n            if isinstance(hide, dict) and _int_param(hide.get(\"error\"), 0) != 0:\n                log_lines.append(f\"highlight hide failed: {hide.get('trace_info') or 'unknown'}\")\n                return False, log_lines\n            return True, log_lines\n        except Exception as exc:\n            return False, [f\"highlight failed: {type(exc).__name__}: {exc}\"]\n\n\nclass WinFocusBackend:\n    def focus(self, req: dict[str, Any]) -> dict[str, Any]:\n        from runtime.desktop.element_operations import handle_focus_element\n"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/action_service.py",
+      "line_start": 3821,
+      "line_end": 3832,
+      "sha256": "008efa70d6c7bd00ade95e0dee0f1d7935f4d0173ed7ca3dc7ee9eff8d3825f3",
+      "excerpt": "    def _resolve_web_ctx(self, params: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[str, Any] | None]:\n        if params.get(\"locator_kind\") == \"runtime_ref\":\n            return self.web_live_elements.resolve(str(params.get(\"element_id\") or \"\"))\n        ctx, err = self._resolve_ctx(params)\n        if err is not None:\n            return None, err\n        assert ctx is not None\n        if ctx.get(\"kind\") != \"web\":\n            return None, business_error(5, \"unsupported_method\")\n        return ctx, None\n\n    def _run_pointer_action(self, params: dict[str, Any], *, action: str) -> dict[str, Any]:"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/action_service.py",
+      "line_start": 5554,
+      "line_end": 5575,
+      "sha256": "008efa70d6c7bd00ade95e0dee0f1d7935f4d0173ed7ca3dc7ee9eff8d3825f3",
+      "excerpt": "    def _web_descriptor(\n        self,\n        ctx: dict[str, Any],\n        *,\n        use_saved_target: bool = True,\n    ) -> tuple[dict[str, Any] | None, dict[str, Any] | None]:\n        if ctx.get(\"locator_kind\") == \"runtime_ref\":\n            context = ctx.get(\"runtime_context\") or {}\n            target = self.web_page_state.resolve_page(context.get(\"page_ref\"))\n            if target is None:\n                return None, business_error(3, \"stale_page_reference\", message=\"网页对象已失效\")\n            return {**target, \"element_ref\": context[\"element_ref\"], \"page_ref\": context[\"page_ref\"],\n                    \"silent_running\": self.web_page_state.page_is_silent(context[\"page_ref\"])}, None\n        snapshot = ctx.get(\"snapshot\") if isinstance(ctx.get(\"snapshot\"), dict) else {}\n        if not str(ctx.get(\"snapshot_path_abs\") or \"\").strip():\n            return None, business_error(3, \"runtime_element_not_found\", message=\"未找到指定ID的元素\")\n        try:\n            if not ctx.get(\"web_snapshot_validated\"):\n                validate_web_snapshot(snapshot)\n            xpath_enabled, xpath_segments = enabled_xpath(snapshot)\n        except WebSnapshotContractError as exc:\n            return None, business_error("
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/uiautomation_provider.py",
+      "line_start": 1012,
+      "line_end": 1015,
+      "sha256": "048a6e87b9038577d23a19e15e376a7b5d5de0dd80ddd8328986e60ba0a1d0de",
+      "excerpt": "    def element_tree(self, *, params: dict[str, Any] | None = None, timeout_ms: int = 30000) -> dict[str, Any]:\n        return self.request(\"elementtree\", params or {}, timeout_ms=max(1000, int(timeout_ms)))\n\n    def func(self, params: dict[str, Any] | None = None, *, timeout_ms: int = 30000) -> dict[str, Any]:"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "chrome/engine/engine_packages/page_engine_runtime.js",
+      "line_start": 2556,
+      "line_end": 2605,
+      "sha256": "e8187b45580378b983943afd2e2aefee8927c70eefab15bcbfd701f0d67dc75c",
+      "excerpt": "    const locateShouldScroll = action === \"locate\" && command &&\n      (command.scrollIntoView === true || command.scroll_into_view === true);\n    if (action === \"drag\" || action === \"scroll_into_view_if_needed\") {\n      element.scrollIntoViewIfNeeded();\n      await waitForWebDomLayout();\n      if (action === \"scroll_into_view_if_needed\") {\n        return { ok: true, result: webDomResult(0, \"\", selectorExtras) };\n      }\n    } else if (locateShouldScroll) {\n      await scrollElementsIntoViewIfNeeded(resolvedElements);\n    } else if (![\"locate\", \"get_text\", \"get_html\", \"get_value\", \"get_attribute\", \"set_attribute\", \"get_all_attributes\", \"get_select_options\", \"is_checked\", \"is_enabled\", \"is_displayed\", \"exists\", \"evaluate_js\", \"related\"].includes(action)) {\n      try {\n        if (typeof element.scrollIntoView === \"function\") {\n          element.scrollIntoView({ block: \"center\", inline: \"center\", behavior: \"auto\" });\n          await waitForWebDomLayout();\n        }\n      } catch (_error) {}\n    }\n    const operabilityError = validateWebDomOperability(element, action, selectorExtras);\n    if (operabilityError) return { ok: true, result: operabilityError };\n    if (command.mode === \"cdp\" && [\"click\", \"double_click\", \"hover\", \"drag\"].includes(action)) {\n      const inputRect = elementLocatePayload(element, false);\n      if (!inputRect) return { ok: true, result: webDomResult(3, \"element_not_visible\") };\n      return { ok: true, result: webDomResult(0, \"\", { input_rect: inputRect.client_rect }) };\n    }\n    if (action === \"locate\") {\n      const geometry = locateElementGeometry(resolvedElements);\n      const highlightRects = highlightBatchRects(geometry);\n      const count = Number.isFinite(Number(resolved.count))\n        ? Math.max(0, Math.trunc(Number(resolved.count)))\n        : resolvedElements.length;\n      const screenRect = geometry.visible[0] || null;\n      const locateResult = webDomResult(0, \"\", Object.assign({}, selectorExtras, {\n        count,\n        marked_count: highlightRects.length,\n        offscreen_count: geometry.offscreen_count,\n        hidden_count: geometry.hidden_count,\n        locate_multi: count > 1\n      }));\n      if (screenRect) {\n        locateResult.screen_rect = screenRect;\n        locateResult.screen_rects = highlightRects;\n      }\n      if (Array.isArray(resolved.anchor_elements)) {\n        locateResult.anchor_pairs = resolvedElements.map((targetElement, index) => ({\n          target_rect: elementLocatePayload(targetElement, false),\n          anchor_rect: elementLocatePayload(resolved.anchor_elements[index], false),\n        })).filter((pair) => pair.target_rect && pair.anchor_rect);\n      }\n      return { ok: true, result: locateResult };"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/main.rs",
+      "line_start": 937,
+      "line_end": 943,
+      "sha256": "0843207208019083f3c51908d215b66a5192e948aecdd34fee96882181a9677f",
+      "excerpt": "        \"win.resolve_window\" => resolve_win_window(params).map(|result| (result, false)),\n        \"web.resolve_element\" => Ok((resolve_web_element(params, web_probe), false)),\n        \"elementtree\" => element_tree(params, hl_win, web_probe).map(|result| (result, false)),\n        \"func\" => execute_func(params).map(|result| (result, false)),\n        \"exit\" => Ok((json!({ \"exit\": true }), true)),\n        _ => Err(RpcError::method_not_found(format!(\n            \"method not found: {method}\""
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/main.rs",
+      "line_start": 6077,
+      "line_end": 6170,
+      "sha256": "0843207208019083f3c51908d215b66a5192e948aecdd34fee96882181a9677f",
+      "excerpt": "fn resolve_web_element_with_activation(\n    params: Value,\n    web_probe: &mut dyn WebProbeClient,\n    activate: impl FnOnce(isize) -> bool,\n) -> Value {\n    let started = Instant::now();\n    let failure = |trace: &str| web_validation_failure(5, trace, \"无法定位网页元素\", None);\n    if !params.get(\"element_ref\").is_some_and(Value::is_object)\n        || !params\n            .get(\"targetTabId\")\n            .and_then(Value::as_u64)\n            .is_some_and(|id| id > 0)\n        || !params\n            .get(\"targetSessionId\")\n            .and_then(Value::as_str)\n            .is_some_and(|id| !id.trim().is_empty())\n    {\n        return failure(\"invalid_params\");\n    }\n    let timeout_ms = params\n        .get(\"timeout_ms\")\n        .and_then(Value::as_u64)\n        .unwrap_or(5000)\n        .clamp(1, 60000);\n    let read_geometry = params.get(\"read_geometry\").and_then(Value::as_bool) == Some(true);\n    let mut command = params;\n    command[\"rootHwnd\"] = json!(0);\n    command[\"rootPid\"] = json!(0);\n    command[\"captureSessionId\"] = json!(capture_session_id(None));\n    command[\"action\"] = json!(if read_geometry { \"geometry\" } else { \"locate\" });\n    command[\"scrollIntoView\"] = json!(!read_geometry);\n    command[\"timeoutMs\"] = json!(timeout_ms);\n    let result = match execute_web_validation_probe(web_probe, &command, timeout_ms) {\n        Ok(result) => result,\n        Err(_) => return failure(\"web_bridge_unavailable\"),\n    };\n    if value_as_i64(result.get(\"error\")).unwrap_or(5) != 0 {\n        return result;\n    }\n    let Some(root_hwnd) = result\n        .get(\"provider_root_hwnd\")\n        .and_then(Value::as_i64)\n        .filter(|hwnd| *hwnd > 0)\n    else {\n        return failure(\"browser_host_window_mismatch\");\n    };\n    if !read_geometry && !activate(root_hwnd as isize) {\n        return web_validation_failure(\n            5,\n            \"browser_window_activation_failed\",\n            \"无法激活浏览器窗口，已取消操作\",\n            None,\n        );\n    }\n    let remaining = Duration::from_millis(timeout_ms)\n        .saturating_sub(started.elapsed()).as_millis() as u64;\n    let (mut result, geometry) = match execute_web_validation_with_viewport(\n        web_probe, &command, remaining, Some(result),\n        |evidence| resolve_browser_viewport_geometry(root_hwnd as HWND, evidence),\n    ) {\n        Ok(result) => result,\n        Err(WebValidationAttemptError::Probe(_)) => return failure(\"web_bridge_unavailable\"),\n        Err(WebValidationAttemptError::Viewport(trace)) => return failure(trace),\n    };\n    if value_as_i64(result.get(\"error\")).unwrap_or(5) != 0 {\n        return result;\n    }\n    if result.get(\"provider_root_hwnd\").and_then(Value::as_i64) != Some(root_hwnd) {\n        return failure(\"browser_host_window_mismatch\");\n    }\n    let Some(geometry) = geometry else {\n        return failure(\"browser_viewport_evidence_missing\");\n    };\n    let Some(evidence) = first_web_validation_evidence(&result) else {\n        return failure(\"web_viewport_evidence_missing\");\n    };\n    if convert_web_validation_result_to_screen(&mut result, geometry) == 0 {\n        return failure(\"browser_viewport_conversion_failed\");\n    }\n    let mut response = json!({\"error\": 0, \"ok\": true, \"found\": true, \"count\": 1,\n        \"screen_rect\": result[\"screen_rect\"], \"strategy\": \"provider_web_dom\"});\n    if read_geometry {\n        let dpi = unsafe { windows_sys::Win32::UI::HiDpi::GetDpiForWindow(root_hwnd as HWND) };\n        let mut client_origin = POINT { x: 0, y: 0 };\n        if dpi == 0 || unsafe { ClientToScreen(root_hwnd as HWND, &mut client_origin) } == 0 {\n            return failure(\"browser_viewport_conversion_failed\");\n        }\n        response[\"window_dpi\"] = json!(dpi);\n        response[\"window_client_origin\"] = json!({\"x\": client_origin.x, \"y\": client_origin.y});\n        response[\"viewport_origin\"] = json!({\"x\": geometry.origin.0, \"y\": geometry.origin.1});\n        response[\"css_scale\"] = json!(evidence.scale);\n    }\n    response\n}"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/main.rs",
+      "line_start": 7420,
+      "line_end": 7430,
+      "sha256": "0843207208019083f3c51908d215b66a5192e948aecdd34fee96882181a9677f",
+      "excerpt": "        \"get_children\" => Ok(element_tree_get_children(&params)),\n        \"refresh_dom\" => Ok(element_tree_refresh_dom(&params)),\n        \"get_subtree\" | \"expand_subtree\" => Ok(element_tree_get_subtree(&params)),\n        \"resolve_path\" => Ok(element_tree_resolve_path(&params)),\n        \"action_target\" => Ok(element_tree_action_target(&params)),\n        \"pick_at_point\" => Ok(element_tree_pick_at_point(&params)),\n        \"highlight\" => Ok(element_tree_highlight(&params, hl_win, web_probe)),\n        \"set_highlight_enabled\" => {\n            let enabled = params\n                .get(\"enabled\")\n                .and_then(Value::as_bool)"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/main.rs",
+      "line_start": 8672,
+      "line_end": 8700,
+      "sha256": "0843207208019083f3c51908d215b66a5192e948aecdd34fee96882181a9677f",
+      "excerpt": "fn element_tree_highlight(\n    params: &Value,\n    hl_win: &Win32HighlightWindow,\n    web_probe: &mut dyn WebProbeClient,\n) -> Value {\n    if !value_as_bool(params.get(\"visible\")) {\n        return if hl_win.clear_highlight() {\n            json!({ \"error\": 0 })\n        } else {\n            tree_business_error(5, \"highlight_clear_unavailable\")\n        };\n    }\n    if let Some(scene) = highlight_overlay_from_params(params) {\n        if scene.boxes.is_empty() {\n            hl_win.clear_highlight();\n            return tree_business_error(2, \"invalid_screen_rect\");\n        }\n        if params.get(\"public_feedback\").and_then(Value::as_bool) == Some(true) {\n            let timeout = Duration::from_millis(params[\"timeout_ms\"].as_u64().unwrap_or(30000).clamp(1, 300000));\n            return match hl_win.public_feedback(scene, timeout) {\n                Ok(()) => json!({\"error\":0}),\n                Err(error) => tree_business_error(5, error),\n            };\n        }\n        hl_win.highlight_overlay(scene);\n        return json!({ \"error\": 0 });\n    }\n    let (session, path) = match tree_session_and_path(params) {\n        Ok(value) => value,"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/main.rs",
+      "line_start": 9199,
+      "line_end": 9250,
+      "sha256": "0843207208019083f3c51908d215b66a5192e948aecdd34fee96882181a9677f",
+      "excerpt": "    let padding = value_as_i32(params.get(\"padding_px\").or_else(|| params.get(\"paddingPx\")))\n        .unwrap_or(0)\n        .max(0);\n    let default_colorref = colorref_from_css(\n        params\n            .get(\"color\")\n            .or_else(|| params.get(\"highlight_color\"))\n            .or_else(|| params.get(\"highlightColor\")),\n        WIN_HOVER_COLORREF,\n    );\n    let expand = |(x, y, w, h): (i32, i32, i32, i32)| -> (i32, i32, i32, i32) {\n        (\n            x.saturating_sub(padding),\n            y.saturating_sub(padding),\n            w.saturating_add(padding.saturating_mul(2)),\n            h.saturating_add(padding.saturating_mul(2)),\n        )\n    };\n    let rect_values = if let Some(values) = params\n        .get(\"screen_rects\")\n        .or_else(|| params.get(\"screenRects\"))\n        .and_then(Value::as_array)\n    {\n        Some(values.as_slice())\n    } else if let Some(value) = params\n        .get(\"screen_rect\")\n        .or_else(|| params.get(\"screenRect\"))\n        .filter(|value| !value.is_null())\n    {\n        Some(std::slice::from_ref(value))\n    } else {\n        None\n    }?;\n    let rects = rect_values\n        .iter()\n        .filter_map(|value| {\n            let (x, y, w, h) = expand(highlight_rect_from_value(value)?);\n            let color = colorref_from_css(\n                value\n                    .get(\"color\")\n                    .or_else(|| value.get(\"highlight_color\"))\n                    .or_else(|| value.get(\"highlightColor\")),\n                default_colorref,\n            );\n            Some(HighlightBox::new((x, y, w, h), color))\n        })\n        .collect::<Vec<_>>();\n    let lines = params\n        .get(\"highlight_lines\")\n        .or_else(|| params.get(\"highlightLines\"))\n        .and_then(Value::as_array)\n        .map(|values| {"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/highlight_win32.rs",
+      "line_start": 98,
+      "line_end": 103,
+      "sha256": "201683e493735f1692e05ff7261f230f1a4fa6d689b34bc0ccf7672c5f08b598",
+      "excerpt": "pub(crate) const WIN_HOVER_COLORREF: u32 = 0x0000FF;\nconst WIN_CAPTURE_COLORREF: u32 = 0x00FF00;\nconst HIGHLIGHT_WINDOW_EX_STYLE: u32 =\n    WS_EX_TOPMOST | WS_EX_LAYERED | WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT;\nconst HIGHLIGHT_TOPMOST_SHOW_FLAGS: u32 = SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_SHOWWINDOW;\npub(crate) const WEB_HIGHLIGHT_COLORREF: u32 = 0x00FF3300;"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/highlight_win32.rs",
+      "line_start": 969,
+      "line_end": 1047,
+      "sha256": "201683e493735f1692e05ff7261f230f1a4fa6d689b34bc0ccf7672c5f08b598",
+      "excerpt": "            let wnd_class = WNDCLASSW {\n                style: 0,\n                lpfnWndProc: Some(wnd_proc),\n                cbClsExtra: 0,\n                cbWndExtra: 0,\n                hInstance: h_instance,\n                hIcon: ptr::null_mut(),\n                hCursor: ptr::null_mut(),\n                hbrBackground: ptr::null_mut(),\n                lpszMenuName: ptr::null(),\n                lpszClassName: class_name.as_ptr(),\n            };\n            RegisterClassW(&wnd_class);\n\n            let alpha_class_name = encode_utf16(\"RustPerPixelAlphaHighlightClass\");\n            let alpha_wnd_class = WNDCLASSW {\n                style: 0,\n                lpfnWndProc: Some(alpha_wnd_proc),\n                cbClsExtra: 0,\n                cbWndExtra: 0,\n                hInstance: h_instance,\n                hIcon: ptr::null_mut(),\n                hCursor: ptr::null_mut(),\n                hbrBackground: ptr::null_mut(),\n                lpszMenuName: ptr::null(),\n                lpszClassName: alpha_class_name.as_ptr(),\n            };\n            RegisterClassW(&alpha_wnd_class);\n\n            let v_x = GetSystemMetrics(SM_XVIRTUALSCREEN);\n            let v_y = GetSystemMetrics(SM_YVIRTUALSCREEN);\n            let v_cx = GetSystemMetrics(SM_CXVIRTUALSCREEN);\n            let v_cy = GetSystemMetrics(SM_CYVIRTUALSCREEN);\n\n            let render_data = Box::into_raw(Box::new(WindowRenderData {\n                highlight_enabled: true,\n                scene: HighlightScene::default(),\n                border_px: CAPTURE_BORDER_PX,\n                fill_alpha: HIGHLIGHT_FILL_ALPHA,\n                draw_colorkey_frame: true,\n                is_blocking: false,\n                admin_blocked: false,\n                v_x,\n                v_y,\n            }));\n\n            let hwnd = CreateWindowExW(\n                HIGHLIGHT_WINDOW_EX_STYLE,\n                class_name.as_ptr(),\n                ptr::null(),\n                WS_POPUP,\n                v_x,\n                v_y,\n                v_cx,\n                v_cy,\n                ptr::null_mut(),\n                ptr::null_mut(),\n                h_instance,\n                render_data as *const c_void,\n            );\n\n            SetLayeredWindowAttributes(hwnd, 0x000000, 0, LWA_COLORKEY);\n            ShowWindow(hwnd, SW_HIDE);\n\n            let alpha_hwnd = CreateWindowExW(\n                HIGHLIGHT_WINDOW_EX_STYLE,\n                alpha_class_name.as_ptr(),\n                ptr::null(),\n                WS_POPUP,\n                0,\n                0,\n                1,\n                1,\n                ptr::null_mut(),\n                ptr::null_mut(),\n                h_instance,\n                ptr::null(),\n            );\n            ShowWindow(alpha_hwnd, SW_HIDE);"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/highlight_win32.rs",
+      "line_start": 2518,
+      "line_end": 2527,
+      "sha256": "201683e493735f1692e05ff7261f230f1a4fa6d689b34bc0ccf7672c5f08b598",
+      "excerpt": "    pub(crate) fn highlight_overlay(&self, scene: HighlightScene) {\n        let (completed_tx, completed_rx) = mpsc::sync_channel(1);\n        if self\n            .tx\n            .send(Command::HighlightOverlay(scene, completed_tx))\n            .is_ok()\n        {\n            let _ = completed_rx.recv();\n        }\n    }"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/highlight_win32.rs",
+      "line_start": 2668,
+      "line_end": 2673,
+      "sha256": "201683e493735f1692e05ff7261f230f1a4fa6d689b34bc0ccf7672c5f08b598",
+      "excerpt": "    pub fn clear_highlight(&self) -> bool {\n        let (completed_tx, completed_rx) = mpsc::sync_channel(1);\n        self.tx.send(Command::ClearHighlight(completed_tx)).is_ok()\n            && completed_rx.recv_timeout(Duration::from_secs(5)).is_ok()\n    }\n"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/highlight_win32.rs",
+      "line_start": 3290,
+      "line_end": 3320,
+      "sha256": "201683e493735f1692e05ff7261f230f1a4fa6d689b34bc0ccf7672c5f08b598",
+      "excerpt": "    border_px: i32,\n) -> Option<(i32, i32, i32, i32)> {\n    let padding = (i64::from(border_px.max(1)) + 1) / 2 + 2;\n    let mut left = i64::MAX;\n    let mut top = i64::MAX;\n    let mut right = i64::MIN;\n    let mut bottom = i64::MIN;\n\n    for &(x, y, width, height) in rects {\n        if width <= 0 || height <= 0 {\n            continue;\n        }\n        let x = i64::from(x);\n        let y = i64::from(y);\n        left = left.min(x - padding);\n        top = top.min(y - padding);\n        right = right.max(x + i64::from(width) + padding);\n        bottom = bottom.max(y + i64::from(height) + padding);\n    }\n\n    if left == i64::MAX {\n        return None;\n    }\n    let width = right.checked_sub(left)?;\n    let height = bottom.checked_sub(top)?;\n    Some((\n        i32::try_from(left).ok()?,\n        i32::try_from(top).ok()?,\n        i32::try_from(width).ok()?,\n        i32::try_from(height).ok()?,\n    ))"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/highlight_win32.rs",
+      "line_start": 3891,
+      "line_end": 3895,
+      "sha256": "201683e493735f1692e05ff7261f230f1a4fa6d689b34bc0ccf7672c5f08b598",
+      "excerpt": "fn hide_highlight_windows(colorkey_hwnd: HWND, alpha_hwnd: HWND) {\n    unsafe {\n        ShowWindow(colorkey_hwnd, SW_HIDE);\n        ShowWindow(alpha_hwnd, SW_HIDE);\n    }"
+    },
+    {
+      "worktree": "D:\\code\\rust_uia",
+      "path": "src/highlight_win32.rs",
+      "line_start": 4522,
+      "line_end": 4608,
+      "sha256": "201683e493735f1692e05ff7261f230f1a4fa6d689b34bc0ccf7672c5f08b598",
+      "excerpt": "fn activate_hwnd(hwnd: HWND) -> WndActivationResult {\n    let mut result = WndActivationResult::default();\n    if hwnd.is_null() {\n        return result;\n    }\n\n    unsafe {\n        if IsWindow(hwnd) == 0 {\n            return result;\n        }\n\n        let root = {\n            let candidate = GetAncestor(hwnd, GA_ROOT);\n            if candidate.is_null() { hwnd } else { candidate }\n        };\n        if root.is_null() || IsWindow(root) == 0 {\n            return result;\n        }\n        if IsIconic(root) == 0 && is_foreground_root(root) {\n            result.succeeded = true;\n            result.already_foreground = true;\n            return result;\n        }\n\n        if IsIconic(root) != 0 {\n            let restore_started = Instant::now();\n            result.restored = true;\n            ShowWindow(root, SW_RESTORE);\n            for _ in 0..10 {\n                if IsIconic(root) == 0 {\n                    break;\n                }\n                thread::sleep(Duration::from_millis(20));\n            }\n            result.restore = restore_started.elapsed();\n            if IsIconic(root) != 0 {\n                return result;\n            }\n        }\n\n        let foreground_started = Instant::now();\n        BringWindowToTop(root);\n        SetForegroundWindow(root);\n        if wait_for_foreground_root(root, Duration::from_millis(60)) {\n            result.foreground = foreground_started.elapsed();\n            result.succeeded = true;\n            return result;\n        }\n        result.foreground = foreground_started.elapsed();\n\n        result.fallback_used = true;\n        let fallback_started = Instant::now();\n        let current_thread = GetCurrentThreadId();\n        let foreground = GetForegroundWindow();\n        let target_thread = window_thread_id(root);\n        let foreground_thread = if foreground.is_null() {\n            0\n        } else {\n            window_thread_id(foreground)\n        };\n\n        let attached_target = attach_input_thread(current_thread, target_thread);\n        let attached_foreground = if foreground_thread != target_thread {\n            attach_input_thread(current_thread, foreground_thread)\n        } else {\n            false\n        };\n\n        BringWindowToTop(root);\n        SetForegroundWindow(root);\n\n        detach_input_thread(current_thread, foreground_thread, attached_foreground);\n        detach_input_thread(current_thread, target_thread, attached_target);\n        result.succeeded = wait_for_foreground_root(root, Duration::from_millis(150));\n        result.fallback = fallback_started.elapsed();\n    }\n    result\n}\n\nfn wait_for_foreground_root(root: HWND, timeout: Duration) -> bool {\n    let deadline = Instant::now() + timeout;\n    loop {\n        if is_foreground_root(root) {\n            return true;\n        }\n        if Instant::now() >= deadline {\n            return false;"
+    }
+  ]
+}

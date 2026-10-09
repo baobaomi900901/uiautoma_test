@@ -1,0 +1,144 @@
+{
+  "api": "uiautoma.web.WebElement.get_anchor_position",
+  "date": "2026-10-08",
+  "lifecycle": "READY_FOR_LIVE",
+  "scope": "background Chrome, iframe/open Shadow Ant input, native DPI=96; higher DPI conversion not verified",
+  "worktrees": {
+    "desktop": "D:\\code\\desktop",
+    "rust_uia": "D:\\code\\rust_uia"
+  },
+  "commits": {
+    "desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+    "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"
+  },
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "element": "web靶场_表单测试_ant_输入框",
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名、源码、默认值、关键字参数及只读快照一致",
+      "actual": {
+        "signature": "(self, *, anchor: 'object | None' = None, to96dpi: 'bool' = True) -> 'tuple[int, int]'",
+        "commits": {
+          "desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+          "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"
+        },
+        "return": "tuple[int,int]",
+        "keyword_only": [
+          "anchor",
+          "to96dpi"
+        ]
+      },
+      "elapsed_ms": 358.1
+    },
+    {
+      "case_id": "invalid_name",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：bad",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "blank_name",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "whitespace_name",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点： top_left ",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_tuple_name",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：bad",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "invalid_dict_name",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：bad",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_type",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / anchor 必须是 None、字符串、元组或映射对象",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "anchor 必须是 None、字符串、元组或映射对象",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "uppercase_random",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：RANDOM",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "keyword_only",
+      "status": "PASS",
+      "expected": "位置传参抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.get_anchor_position() takes 1 positional argument but 2 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "expected": "未知关键字抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.get_anchor_position() got an unexpected keyword argument 'relative_to'",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    }
+  ],
+  "exit_code": 0
+}

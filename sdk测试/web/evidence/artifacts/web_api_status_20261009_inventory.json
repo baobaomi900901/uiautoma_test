@@ -1,0 +1,2373 @@
+{
+  "counts": {
+    "VERIFIED": 102,
+    "SKIPPED": 7,
+    "READY_FOR_LIVE": 2,
+    "DRAFT": 1
+  },
+  "groups": {
+    "顶层 `uiautoma.web` API": {
+      "VERIFIED": 16,
+      "SKIPPED": 1
+    },
+    "`WebBrowser` 页面/元素对象 API": {
+      "SKIPPED": 2,
+      "VERIFIED": 38,
+      "READY_FOR_LIVE": 1
+    },
+    "`WebElement` 页面/元素对象 API": {
+      "DRAFT": 1,
+      "SKIPPED": 4,
+      "VERIFIED": 48,
+      "READY_FOR_LIVE": 1
+    }
+  },
+  "total": 112,
+  "rows": [
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "create",
+      "state": "VERIFIED",
+      "line": 20,
+      "status": "✅ `VERIFIED`（5/5）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "get",
+      "state": "VERIFIED",
+      "line": 21,
+      "status": "✅ `VERIFIED`（9/9）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "get_active",
+      "state": "VERIFIED",
+      "line": 22,
+      "status": "✅ `VERIFIED`（9/9）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "get_all",
+      "state": "VERIFIED",
+      "line": 23,
+      "status": "✅ `VERIFIED`（9/9）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "get_cookies",
+      "state": "VERIFIED",
+      "line": 24,
+      "status": "✅ `VERIFIED`（12/12）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "get_cookie",
+      "state": "VERIFIED",
+      "line": 25,
+      "status": "✅ `VERIFIED`（8/8）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "set_cookie",
+      "state": "VERIFIED",
+      "line": 26,
+      "status": "✅ `VERIFIED`（10/10）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "remove_cookie",
+      "state": "VERIFIED",
+      "line": 27,
+      "status": "✅ `VERIFIED`（9/9）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "clear_cookies",
+      "state": "VERIFIED",
+      "line": 28,
+      "status": "✅ `VERIFIED`（10/10）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "close_all",
+      "state": "VERIFIED",
+      "line": 29,
+      "status": "✅ `VERIFIED`（9/9）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "handle_save_dialog",
+      "state": "VERIFIED",
+      "line": 30,
+      "status": "✅ `VERIFIED`（7/7；2026-09-15复测）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "handle_upload_dialog",
+      "state": "VERIFIED",
+      "line": 31,
+      "status": "✅ `VERIFIED`（2026-10-05；10/10 PASS + 0 FAIL + 0 KNOWN；连续 3 轮；退出码 0；指定单/多文件库元素）；[证据](evidence/web_handle_upload_dialog_20261005.md)",
+      "evidence": [
+        "evidence/web_handle_upload_dialog_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "auto_handle_popup",
+      "state": "VERIFIED",
+      "line": 32,
+      "status": "✅ `VERIFIED`（2026-10-05；19/19 PASS；3 轮正式验收 + 用户复测 1 次；退出码 0；用户清理 4→4）；[证据](evidence/auto_handle_popup_20261005.md)",
+      "evidence": [
+        "evidence/auto_handle_popup_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "remove_all_auto_handle_popup",
+      "state": "VERIFIED",
+      "line": 33,
+      "status": "✅ `VERIFIED`（2026-10-05；19/19 PASS；最后连续 3 轮；退出码 0；清理 4→4）；[证据](evidence/remove_all_auto_handle_popup_20261005.md)",
+      "evidence": [
+        "evidence/remove_all_auto_handle_popup_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "set_user_environment",
+      "state": "VERIFIED",
+      "line": 34,
+      "status": "✅ `VERIFIED`（6/6；含预期环境状态）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "set_user_environment_fingerprint",
+      "state": "SKIPPED",
+      "line": 35,
+      "status": "⏭️ `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮；退出码 0）；[证据](evidence/web_set_user_environment_fingerprint_20261004.md)",
+      "evidence": [
+        "evidence/web_set_user_environment_fingerprint_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "顶层 `uiautoma.web` API",
+      "api": "reset_user_environment",
+      "state": "VERIFIED",
+      "line": 36,
+      "status": "✅ `VERIFIED`（7/7）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "WebBrowser.id",
+      "state": "SKIPPED",
+      "line": 42,
+      "status": "⏭️ `SKIPPED`（公开 API 已移除）；脚本改为「成员收敛 + 替代方式」契约（8/8，`test_web_browser_id.py`）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "get_url",
+      "state": "VERIFIED",
+      "line": 43,
+      "status": "✅ `VERIFIED`（7/7）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "get_title",
+      "state": "VERIFIED",
+      "line": 44,
+      "status": "✅ `VERIFIED`（7/7）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "get_text",
+      "state": "VERIFIED",
+      "line": 45,
+      "status": "✅ `VERIFIED`（7/7）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "get_html",
+      "state": "VERIFIED",
+      "line": 46,
+      "status": "✅ `VERIFIED`（8/8）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "activate",
+      "state": "VERIFIED",
+      "line": 47,
+      "status": "✅ `VERIFIED`（6/6）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "activateTab",
+      "state": "VERIFIED",
+      "line": 48,
+      "status": "✅ `VERIFIED`（6/6；恢复仅尝试）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "navigate",
+      "state": "VERIFIED",
+      "line": 49,
+      "status": "✅ `VERIFIED`（14/14）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "go_back",
+      "state": "VERIFIED",
+      "line": 50,
+      "status": "✅ `VERIFIED`（2026-10-04；5/5 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/browser_go_back_20261004.md)",
+      "evidence": [
+        "evidence/browser_go_back_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "go_forward",
+      "state": "VERIFIED",
+      "line": 51,
+      "status": "✅ `VERIFIED`（13/13；前置依赖 #58，仅预热路径）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "reload",
+      "state": "VERIFIED",
+      "line": 52,
+      "status": "✅ `VERIFIED`（12/12）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "stop_load",
+      "state": "VERIFIED",
+      "line": 53,
+      "status": "✅ `VERIFIED`（2026-10-05；最后连续 3 轮 18/18 PASS；退出码 0；准备恢复与首轮 BLOCKED 已记录）；[证据](evidence/browser_stop_load_20261005.md)",
+      "evidence": [
+        "evidence/browser_stop_load_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "is_load_completed",
+      "state": "VERIFIED",
+      "line": 54,
+      "status": "✅ `VERIFIED`（2026-10-05；连续 3 轮 19/19 PASS；True/False、加载失败与失效引用）；[证据](evidence/is_load_completed.md)",
+      "evidence": [
+        "evidence/is_load_completed.md"
+      ],
+      "issues": [
+        59
+      ]
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "wait_load_completed",
+      "state": "VERIFIED",
+      "line": 55,
+      "status": "✅ `VERIFIED`（12/12）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "close",
+      "state": "VERIFIED",
+      "line": 56,
+      "status": "✅ `VERIFIED`（10/10）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "execute_javascript",
+      "state": "VERIFIED",
+      "line": 57,
+      "status": "✅ `VERIFIED`（16/16）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "scroll_to",
+      "state": "VERIFIED",
+      "line": 58,
+      "status": "✅ `VERIFIED`（16/16；`48f5bafb` 起默认值由 instant 改为 smooth）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "handle_javascript_dialog",
+      "state": "VERIFIED",
+      "line": 59,
+      "status": "✅ `VERIFIED`（2026-10-05；16/16 PASS；连续 3 轮；指定库按钮）；[证据](evidence/handle_javascript_dialog_20261005.md)",
+      "evidence": [
+        "evidence/handle_javascript_dialog_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "get_javascript_dialog_text",
+      "state": "VERIFIED",
+      "line": 60,
+      "status": "✅ `VERIFIED`（13/13）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "get_scroll",
+      "state": "VERIFIED",
+      "line": 61,
+      "status": "✅ `VERIFIED`（15/15）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "wait_appear",
+      "state": "VERIFIED",
+      "line": 62,
+      "status": "✅ `VERIFIED`（31/31 + 1 边界；canonical=靶场自计时页 delayed-element.html）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "wait_disappear",
+      "state": "VERIFIED",
+      "line": 63,
+      "status": "✅ `VERIFIED`（32/32；隐藏元素不算消失，自计时页零调度）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "get_cookies",
+      "state": "VERIFIED",
+      "line": 64,
+      "status": "✅ `VERIFIED`（2026-10-06；连续 3 轮 29/29 PASS；后台；清理 3→3；分区限字典，字符串文档差异已记录）；[证据](evidence/browser_get_cookies.md)",
+      "evidence": [
+        "evidence/browser_get_cookies.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "get_cookie",
+      "state": "VERIFIED",
+      "line": 65,
+      "status": "✅ `VERIFIED`（2026-10-06；连续 3 轮 18/18 PASS；后台；清理 3→3）；[证据](evidence/browser_get_cookie.md)",
+      "evidence": [
+        "evidence/browser_get_cookie.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "set_cookie",
+      "state": "READY_FOR_LIVE",
+      "line": 66,
+      "status": "❌ `READY_FOR_LIVE`（2026-10-06；三轮各 20/21 PASS + 1 FAIL；同版本 Chrome 原生 18 项与 SDK 三对确认：成功的 undefined 被误判 cookie_set_failed；清理 PASS）；[证据](evidence/browser_set_cookie.md)；[缺陷 #74](https://github.com/uiautoma/desktop/issues/74)",
+      "evidence": [
+        "evidence/browser_set_cookie.md"
+      ],
+      "issues": [
+        51,
+        74
+      ]
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "remove_cookie",
+      "state": "VERIFIED",
+      "line": 67,
+      "status": "✅ `VERIFIED`（2026-10-06；连续 3 轮 16/16 PASS；后台；清理 3→3；分区限字典，字符串文档差异已记录）；[证据](evidence/browser_remove_cookie.md)",
+      "evidence": [
+        "evidence/browser_remove_cookie.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "clear_cookies",
+      "state": "VERIFIED",
+      "line": 68,
+      "status": "✅ `VERIFIED`（2026-10-06；连续 3 轮 13/13 PASS；后台；清理 3→3；分区限字典，字符串文档差异已记录）；[证据](evidence/browser_clear_cookies.md)",
+      "evidence": [
+        "evidence/browser_clear_cookies.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "start_monitor_network",
+      "state": "VERIFIED",
+      "line": 69,
+      "status": "✅ `VERIFIED`（12/12；过滤为存储级）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "get_responses",
+      "state": "VERIFIED",
+      "line": 70,
+      "status": "✅ `VERIFIED`（19/19）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "stop_monitor_network",
+      "state": "VERIFIED",
+      "line": 71,
+      "status": "✅ `VERIFIED`（13/13）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "http_request",
+      "state": "VERIFIED",
+      "line": 72,
+      "status": "✅ `VERIFIED`（41/41；2026-09-18 新基线复跑；地址形态探测删除后 connect_timeout 由回显 `/delay` 覆盖）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "find_all",
+      "state": "VERIFIED",
+      "line": 73,
+      "status": "✅ `VERIFIED`（20/20；超时返回空列表、多命中返回全部；含清理复核修正）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "find",
+      "state": "VERIFIED",
+      "line": 74,
+      "status": "✅ `VERIFIED`（22/22；库=260902_web元素，靶场=#/iframe-shadow-form；含清理复核修正）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "find_all_by_css",
+      "state": "VERIFIED",
+      "line": 75,
+      "status": "✅ `VERIFIED`（22/22；官方靶场+活 DOM 推导）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "find_by_css",
+      "state": "VERIFIED",
+      "line": 76,
+      "status": "✅ `VERIFIED`（22/22；官方靶场+活 DOM 推导）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "find_all_by_xpath",
+      "state": "VERIFIED",
+      "line": 77,
+      "status": "✅ `VERIFIED`（22/22；官方靶场+活 DOM 推导）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "find_by_xpath",
+      "state": "VERIFIED",
+      "line": 78,
+      "status": "✅ `VERIFIED`（22/22；官方靶场+活 DOM 推导）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "is_element_displayed",
+      "state": "VERIFIED",
+      "line": 79,
+      "status": "✅ `VERIFIED`（20/20；库级未命中会抛异常而非 False）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "extract_table",
+      "state": "SKIPPED",
+      "line": 80,
+      "status": "⏭️ `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮；退出码 0）；[证据](evidence/browser_extract_table_20261004.md)",
+      "evidence": [
+        "evidence/browser_extract_table_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "screenshot",
+      "state": "VERIFIED",
+      "line": 81,
+      "status": "✅ `VERIFIED`（21/21；扩展名决定格式）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebBrowser` 页面/元素对象 API",
+      "api": "screenshot_to_clipboard",
+      "state": "VERIFIED",
+      "line": 82,
+      "status": "✅ `VERIFIED`（23/23；ctypes 独立读 CF_DIB，与文件截图三角像素比对）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "WebElement.id",
+      "state": "DRAFT",
+      "line": 88,
+      "status": "📝 `DRAFT`（原 8/8 尚缺属性独立验收证据）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "element_id",
+      "state": "SKIPPED",
+      "line": 89,
+      "status": "⏭️ `SKIPPED`（源码不存在；源码核对；应使用 `WebElement.id`）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "WebElement.name",
+      "state": "VERIFIED",
+      "line": 90,
+      "status": "✅ `VERIFIED`（2026-10-04；6/6 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_name_20261004.md)",
+      "evidence": [
+        "evidence/element_name_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "raw",
+      "state": "SKIPPED",
+      "line": 91,
+      "status": "⏭️ `SKIPPED`（源码不存在；源码核对）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "find",
+      "state": "VERIFIED",
+      "line": 92,
+      "status": "✅ `VERIFIED`（6/6；连续 3 次；人工复测通过）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "find_all",
+      "state": "VERIFIED",
+      "line": 93,
+      "status": "✅ `VERIFIED`（30 用例 29/29 + 1 记录；标准靶场同文档路由 `#/anchor-test` 语义正确；跨 iframe/open shadow 的已保存路径返回空，记为不对称边界 KNOWN，已提 [#64](https://github.com/uiautoma/desktop/issues/64)）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "find_by_css",
+      "state": "VERIFIED",
+      "line": 94,
+      "status": "✅ `VERIFIED`（38/38；已定位的 iframe/open shadow 容器内 CSS 查找）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "find_all_by_css",
+      "state": "VERIFIED",
+      "line": 95,
+      "status": "✅ `VERIFIED`（39/39；已定位的 iframe/open shadow 容器内 CSS 全量查找）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "find_by_xpath",
+      "state": "VERIFIED",
+      "line": 96,
+      "status": "✅ `VERIFIED`（40/40；已定位的 iframe/open shadow 容器内相对 XPath）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "find_all_by_xpath",
+      "state": "VERIFIED",
+      "line": 97,
+      "status": "✅ `VERIFIED`（41/41；已定位的 iframe/open shadow 容器内 XPath 全量查找）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "parent",
+      "state": "VERIFIED",
+      "line": 98,
+      "status": "✅ `VERIFIED`（23/23；含零预算超时边界，未宣称零超时读取成功）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "children",
+      "state": "VERIFIED",
+      "line": 99,
+      "status": "✅ `VERIFIED`（25/25；直接子元素；含零预算超时边界）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "child_at",
+      "state": "VERIFIED",
+      "line": 100,
+      "status": "✅ `VERIFIED`（40/40；0 起始索引；含零预算超时边界）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "previous_sibling",
+      "state": "VERIFIED",
+      "line": 101,
+      "status": "✅ `VERIFIED`（28/28；前一个兄弟元素；含零预算超时边界）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "next_sibling",
+      "state": "VERIFIED",
+      "line": 102,
+      "status": "✅ `VERIFIED`（28/28；下一个兄弟元素；含零预算超时边界）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "click",
+      "state": "VERIFIED",
+      "line": 103,
+      "status": "✅ `VERIFIED`（62/62；含真实 Win 键日志核验）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "dblclick",
+      "state": "VERIFIED",
+      "line": 104,
+      "status": "✅ `VERIFIED`（41/41；真实/DOM 双击；剪贴板日志核验）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "input",
+      "state": "VERIFIED",
+      "line": 105,
+      "status": "✅ `VERIFIED`（2026-10-08；后台范围连续 3 轮 60/60 PASS；Ant/原生；清理 2→2；系统键盘/实际鼠标锚点未复测）；[证据](evidence/input.md)",
+      "evidence": [
+        "evidence/input.md"
+      ],
+      "issues": [
+        65
+      ]
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "clipboard_input",
+      "state": "VERIFIED",
+      "line": 106,
+      "status": "✅ `VERIFIED`（双模式44/44；非 iframe/iframe；剪贴板 JSON 核对）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "focus",
+      "state": "VERIFIED",
+      "line": 107,
+      "status": "✅ `VERIFIED`（15/15；focusin/activeElement/剪贴板日志；实测 isTrusted=True）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "hover",
+      "state": "VERIFIED",
+      "line": 108,
+      "status": "✅ `VERIFIED`（23/23；真实/脚本悬停；锚点与 delay_after 核验）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_text",
+      "state": "VERIFIED",
+      "line": 109,
+      "status": "✅ `VERIFIED`（35/35 语义矩阵复验：隐藏不计入、不截断、空文本非 None）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_html",
+      "state": "VERIFIED",
+      "line": 110,
+      "status": "✅ `VERIFIED`（17/17；2026-09-20 真实库元素 `web靶场_测试超链接`：独立 DOM 全量比对、HTML/文本通道差异、属性转义、活推导读写）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_value",
+      "state": "VERIFIED",
+      "line": 111,
+      "status": "✅ `VERIFIED`（17/17；2026-09-20 `web靶场_表单测试_原生_输入框`：IDL 语义、`''`/`None` 区分、控件矩阵、动态 ID 前置条件含恢复、页面自身提交回显确证）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "set_value",
+      "state": "VERIFIED",
+      "line": 112,
+      "status": "✅ `VERIFIED`（21/21；2026-09-20 `web靶场_表单测试_原生_输入框`：不派发事件含有效性对照、不聚焦、覆盖语义、换行按控件类型、非输入元素 expando、页面表单状态 A/B）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "check",
+      "state": "VERIFIED",
+      "line": 113,
+      "status": "✅ `VERIFIED`（2026-09-24：61/61 PASS，连续 3 次退出码 0；Ant「音乐」input 重新抓取后唯一定位）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "select",
+      "state": "VERIFIED",
+      "line": 114,
+      "status": "✅ `VERIFIED`（2026-09-24：13/14 PASS + 1 KNOWN，连续 3 次退出码 0；Ant 自定义下拉框是已知边界）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "select_multiple",
+      "state": "VERIFIED",
+      "line": 115,
+      "status": "✅ `VERIFIED`（2026-09-24：20/21 PASS + 1 KNOWN，连续 3 次退出码 0；Ant 自定义控件是已知边界）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "select_by_index",
+      "state": "VERIFIED",
+      "line": 116,
+      "status": "✅ `VERIFIED`（2026-09-24：17/18 PASS + 1 KNOWN，连续 3 次退出码 0；Ant 自定义控件是已知边界）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "select_multiple_by_index",
+      "state": "VERIFIED",
+      "line": 117,
+      "status": "✅ `VERIFIED`（2026-09-24：22/23 PASS + 1 KNOWN，连续 3 次退出码 0；Ant 自定义控件是已知边界）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_select_options",
+      "state": "VERIFIED",
+      "line": 118,
+      "status": "✅ `VERIFIED`（2026-10-03：14/16 PASS + 2 KNOWN，连续 3 次退出码 0；Ant 是已知边界）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_all_select_items",
+      "state": "VERIFIED",
+      "line": 119,
+      "status": "✅ `VERIFIED`（2026-10-03：15/17 PASS + 2 KNOWN，连续 3 次退出码 0；Ant 是已知边界）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_selected_item",
+      "state": "VERIFIED",
+      "line": 120,
+      "status": "✅ `VERIFIED`（2026-10-04；10/12 PASS + 0 FAIL + 2 KNOWN；3 轮；退出码 0）；[证据](evidence/element_get_selected_item_20261004.md)",
+      "evidence": [
+        "evidence/element_get_selected_item_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "set_attribute",
+      "state": "VERIFIED",
+      "line": 121,
+      "status": "✅ `VERIFIED`（2026-10-04；7/7 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_set_attribute_20261004.md)",
+      "evidence": [
+        "evidence/element_set_attribute_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_attribute",
+      "state": "VERIFIED",
+      "line": 122,
+      "status": "✅ `VERIFIED`（2026-10-04；8/8 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_get_attribute_20261004.md)",
+      "evidence": [
+        "evidence/element_get_attribute_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_all_attributes",
+      "state": "VERIFIED",
+      "line": 123,
+      "status": "✅ `VERIFIED`（2026-10-04；7/7 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_get_all_attributes_20261004.md)",
+      "evidence": [
+        "evidence/element_get_all_attributes_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_bounding",
+      "state": "VERIFIED",
+      "line": 124,
+      "status": "✅ `VERIFIED`（2026-10-08；后台/96 DPI；连续 3 轮各 38/38 PASS；清理 6→6）；[证据](evidence/get_bounding.md)",
+      "evidence": [
+        "evidence/get_bounding.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_anchor_position",
+      "state": "VERIFIED",
+      "line": 125,
+      "status": "✅ `VERIFIED`（2026-10-08；后台/96 DPI；连续 3 轮各 76/76 PASS；清理 8→8）；[证据](evidence/get_anchor_position.md)",
+      "evidence": [
+        "evidence/get_anchor_position.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_anchor_viewport_position",
+      "state": "VERIFIED",
+      "line": 126,
+      "status": "✅ `VERIFIED`（2026-10-04；11/11 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_get_anchor_viewport_position_20261004.md)",
+      "evidence": [
+        "evidence/element_get_anchor_viewport_position_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "extract_table",
+      "state": "SKIPPED",
+      "line": 127,
+      "status": "⏭️ `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮；退出码 0）；[证据](evidence/element_extract_table_20261004.md)",
+      "evidence": [
+        "evidence/element_extract_table_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_basetable_value",
+      "state": "SKIPPED",
+      "line": 128,
+      "status": "⏭️ `SKIPPED`（2026-10-04；1/2 PASS + 0 FAIL + 1 KNOWN；1 轮；退出码 0）；[证据](evidence/element_get_basetable_value_20261004.md)",
+      "evidence": [
+        "evidence/element_get_basetable_value_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "screenshot",
+      "state": "VERIFIED",
+      "line": 129,
+      "status": "✅ `VERIFIED`（2026-10-04；5/5 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_screenshot_20261004.md)",
+      "evidence": [
+        "evidence/element_screenshot_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "screenshot_to_clipboard",
+      "state": "VERIFIED",
+      "line": 130,
+      "status": "✅ `VERIFIED`（18/18；活矩形裁切偏移扫描验取景，dpr=1 下 Issue #20 未复现）",
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "is_checked",
+      "state": "VERIFIED",
+      "line": 131,
+      "status": "✅ `VERIFIED`（2026-10-04；11/11 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_is_checked_20261004.md)",
+      "evidence": [
+        "evidence/element_is_checked_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "is_enabled",
+      "state": "READY_FOR_LIVE",
+      "line": 132,
+      "status": "❌ `READY_FOR_LIVE`（2026-10-08；30/32 PASS + 2 FAIL + 0 BLOCKED；3 轮；退出码 1；原始两按钮通过，disabled=\"false\" 缺陷；[Issue #23 已补充](https://github.com/uiautoma/desktop/issues/23#issuecomment-6055620980)）；[证据](evidence/is_enabled.md)",
+      "evidence": [
+        "evidence/is_enabled.md"
+      ],
+      "issues": [
+        23
+      ]
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "is_displayed",
+      "state": "VERIFIED",
+      "line": 133,
+      "status": "✅ `VERIFIED`（2026-10-04；7/7 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_is_displayed_20261004.md)",
+      "evidence": [
+        "evidence/element_is_displayed_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "execute_javascript",
+      "state": "VERIFIED",
+      "line": 134,
+      "status": "✅ `VERIFIED`（2026-10-04；10/10 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_execute_javascript_20261004.md)",
+      "evidence": [
+        "evidence/element_execute_javascript_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "scroll_to",
+      "state": "VERIFIED",
+      "line": 135,
+      "status": "✅ `VERIFIED`（2026-10-04；9/9 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_scroll_to_20261004.md)",
+      "evidence": [
+        "evidence/element_scroll_to_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "get_scroll",
+      "state": "VERIFIED",
+      "line": 136,
+      "status": "✅ `VERIFIED`（2026-10-04；10/10 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_get_scroll_20261004.md)",
+      "evidence": [
+        "evidence/element_get_scroll_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "drag_to",
+      "state": "VERIFIED",
+      "line": 137,
+      "status": "✅ `VERIFIED`（2026-10-04；6/7 PASS + 0 FAIL + 1 KNOWN；3 轮；退出码 0）；[证据](evidence/element_drag_to_20261004.md)",
+      "evidence": [
+        "evidence/element_drag_to_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "drag_to_by_cdp",
+      "state": "VERIFIED",
+      "line": 138,
+      "status": "✅ `VERIFIED`（2026-10-04；5/5 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_drag_to_by_cdp_20261004.md)",
+      "evidence": [
+        "evidence/element_drag_to_by_cdp_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "upload",
+      "state": "VERIFIED",
+      "line": 139,
+      "status": "✅ `VERIFIED`（2026-10-04；6/6 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_upload_20261004.md)",
+      "evidence": [
+        "evidence/element_upload_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "download",
+      "state": "VERIFIED",
+      "line": 140,
+      "status": "✅ `VERIFIED`（2026-10-04；5/5 PASS + 0 FAIL + 0 KNOWN；3 轮；退出码 0）；[证据](evidence/element_download_20261004.md)",
+      "evidence": [
+        "evidence/element_download_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "group": "`WebElement` 页面/元素对象 API",
+      "api": "highlight",
+      "state": "VERIFIED",
+      "line": 141,
+      "status": "✅ `VERIFIED`（2026-10-09；8/8 PASS，连续 3 轮；Chrome/96 DPI；非静默；完整清理用 --close-page）；[证据](evidence/highlight.md)",
+      "evidence": [
+        "evidence/highlight.md"
+      ],
+      "issues": []
+    }
+  ],
+  "linked_issues": {
+    "59": [
+      {
+        "api": "is_load_completed",
+        "state": "VERIFIED",
+        "evidence": [
+          "evidence/is_load_completed.md"
+        ]
+      }
+    ],
+    "51": [
+      {
+        "api": "set_cookie",
+        "state": "READY_FOR_LIVE",
+        "evidence": [
+          "evidence/browser_set_cookie.md"
+        ]
+      }
+    ],
+    "74": [
+      {
+        "api": "set_cookie",
+        "state": "READY_FOR_LIVE",
+        "evidence": [
+          "evidence/browser_set_cookie.md"
+        ]
+      }
+    ],
+    "65": [
+      {
+        "api": "input",
+        "state": "VERIFIED",
+        "evidence": [
+          "evidence/input.md"
+        ]
+      }
+    ],
+    "23": [
+      {
+        "api": "is_enabled",
+        "state": "READY_FOR_LIVE",
+        "evidence": [
+          "evidence/is_enabled.md"
+        ]
+      }
+    ]
+  },
+  "index_rows": [
+    {
+      "api": "uiautoma.web.WebBrowser.get_cookies()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 46,
+      "evidence": [
+        "web/evidence/browser_get_cookies.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.get_cookie()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 47,
+      "evidence": [
+        "web/evidence/browser_get_cookie.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.set_cookie()",
+      "group": "Web",
+      "state": "READY_FOR_LIVE",
+      "line": 48,
+      "evidence": [
+        "web/evidence/browser_set_cookie.md"
+      ],
+      "issues": [
+        51,
+        74
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.remove_cookie()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 49,
+      "evidence": [
+        "web/evidence/browser_remove_cookie.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.clear_cookies()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 50,
+      "evidence": [
+        "web/evidence/browser_clear_cookies.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.id",
+      "group": "Web",
+      "state": "DRAFT",
+      "line": 51,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.click()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 52,
+      "evidence": [
+        "web/evidence/click.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.dblclick()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 53,
+      "evidence": [
+        "web/evidence/dblclick.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.hover()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 54,
+      "evidence": [
+        "web/evidence/hover.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.focus()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 55,
+      "evidence": [
+        "web/evidence/focus.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.parent()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 56,
+      "evidence": [
+        "web/evidence/parent.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.children()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 57,
+      "evidence": [
+        "web/evidence/children.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.child_at()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 58,
+      "evidence": [
+        "web/evidence/child_at.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.previous_sibling()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 59,
+      "evidence": [
+        "web/evidence/previous_sibling.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.next_sibling()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 60,
+      "evidence": [
+        "web/evidence/next_sibling.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.input()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 61,
+      "evidence": [
+        "web/evidence/input.md"
+      ],
+      "issues": [
+        65
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.clipboard_input()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 62,
+      "evidence": [
+        "web/evidence/clipboard_input.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_text()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 63,
+      "evidence": [
+        "web/evidence/get_text.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_html()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 64,
+      "evidence": [
+        "web/evidence/get_html.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_value()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 65,
+      "evidence": [
+        "web/evidence/get_value.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.set_value()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 66,
+      "evidence": [
+        "web/evidence/set_value.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.check()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 67,
+      "evidence": [
+        "web/evidence/check.md"
+      ],
+      "issues": [
+        12
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.is_checked()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 68,
+      "evidence": [
+        "web/evidence/element_is_checked_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.is_enabled()",
+      "group": "Web",
+      "state": "READY_FOR_LIVE",
+      "line": 69,
+      "evidence": [
+        "web/evidence/is_enabled.md"
+      ],
+      "issues": [
+        23
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_attribute()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 70,
+      "evidence": [
+        "web/evidence/element_get_attribute_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_all_attributes()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 71,
+      "evidence": [
+        "web/evidence/element_get_all_attributes_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.set_attribute()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 72,
+      "evidence": [
+        "web/evidence/element_set_attribute_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.select()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 73,
+      "evidence": [
+        "web/evidence/select.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.select_by_index()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 74,
+      "evidence": [
+        "web/evidence/select_by_index.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.select_multiple()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 75,
+      "evidence": [
+        "web/evidence/select_multiple.md"
+      ],
+      "issues": [
+        17,
+        18
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.select_multiple_by_index()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 76,
+      "evidence": [
+        "web/evidence/select_multiple_by_index.md"
+      ],
+      "issues": [
+        17,
+        18
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_select_options()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 77,
+      "evidence": [
+        "web/evidence/get_select_options.md"
+      ],
+      "issues": [
+        19
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_all_select_items()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 78,
+      "evidence": [
+        "web/evidence/get_all_select_items.md"
+      ],
+      "issues": [
+        27
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_selected_item()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 79,
+      "evidence": [
+        "web/evidence/element_get_selected_item_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_bounding()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 80,
+      "evidence": [
+        "web/evidence/get_bounding.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.screenshot()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 81,
+      "evidence": [
+        "web/evidence/element_screenshot_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.drag_to()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 82,
+      "evidence": [
+        "web/evidence/element_drag_to_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.upload()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 83,
+      "evidence": [
+        "web/evidence/element_upload_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.download()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 84,
+      "evidence": [
+        "web/evidence/element_download_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.close_all()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 85,
+      "evidence": [
+        "web/evidence/close_all_current.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.handle_save_dialog()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 86,
+      "evidence": [
+        "web/evidence/handle_save_dialog_current.md"
+      ],
+      "issues": [
+        57
+      ]
+    },
+    {
+      "api": "uiautoma.web.handle_upload_dialog()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 87,
+      "evidence": [
+        "web/evidence/web_handle_upload_dialog_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.set_cookie()",
+      "group": "Web",
+      "state": "READY_FOR_LIVE",
+      "line": 88,
+      "evidence": [
+        "web/evidence/set_cookie.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.get_cookie()",
+      "group": "Web",
+      "state": "READY_FOR_LIVE",
+      "line": 89,
+      "evidence": [
+        "web/evidence/get_cookie.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.remove_cookie()",
+      "group": "Web",
+      "state": "READY_FOR_LIVE",
+      "line": 90,
+      "evidence": [
+        "web/evidence/remove_cookie.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.name",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 91,
+      "evidence": [
+        "web/evidence/element_name_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_anchor_position()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 92,
+      "evidence": [
+        "web/evidence/get_anchor_position.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_anchor_viewport_position()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 93,
+      "evidence": [
+        "web/evidence/element_get_anchor_viewport_position_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.is_displayed()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 94,
+      "evidence": [
+        "web/evidence/element_is_displayed_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.execute_javascript()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 95,
+      "evidence": [
+        "web/evidence/element_execute_javascript_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.scroll_to()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 96,
+      "evidence": [
+        "web/evidence/element_scroll_to_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_scroll()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 97,
+      "evidence": [
+        "web/evidence/element_get_scroll_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.drag_to_by_cdp()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 98,
+      "evidence": [
+        "web/evidence/element_drag_to_by_cdp_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.highlight()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 99,
+      "evidence": [
+        "web/evidence/highlight.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.auto_handle_popup()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 100,
+      "evidence": [
+        "web/evidence/auto_handle_popup_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.remove_all_auto_handle_popup()",
+      "group": "Web",
+      "state": "VERIFIED",
+      "line": 101,
+      "evidence": [
+        "web/evidence/remove_all_auto_handle_popup_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.set_user_environment_fingerprint()",
+      "group": "Web",
+      "state": "SKIPPED",
+      "line": 102,
+      "evidence": [
+        "web/evidence/web_set_user_environment_fingerprint_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.extract_table()",
+      "group": "Web",
+      "state": "SKIPPED",
+      "line": 103,
+      "evidence": [
+        "web/evidence/element_extract_table_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_basetable_value()",
+      "group": "Web",
+      "state": "SKIPPED",
+      "line": 104,
+      "evidence": [
+        "web/evidence/element_get_basetable_value_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.create()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 297,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.get()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 298,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.get_active()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 299,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.get_all()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 300,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.get_cookies()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 301,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.get_cookie()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 302,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.set_cookie()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 303,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.remove_cookie()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 304,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.clear_cookies()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 305,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.close_all()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 306,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.handle_save_dialog()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 307,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.handle_upload_dialog()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 308,
+      "evidence": [
+        "web/evidence/web_handle_upload_dialog_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.set_user_environment()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 309,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.reset_user_environment()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 310,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.id",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "SKIPPED",
+      "line": 311,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.find_all()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 312,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.get_title()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 313,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.get_html()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 314,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.activate()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 315,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.activateTab()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 316,
+      "evidence": [
+        "web/evidence/browser_activate_tab.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.get_url()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 317,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.navigate()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 318,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.get_text()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 319,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.get_text()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 320,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.go_back()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 321,
+      "evidence": [
+        "web/evidence/browser_go_back_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.go_forward()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 322,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.reload()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 323,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.is_load_completed()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 324,
+      "evidence": [
+        "web/evidence/is_load_completed.md"
+      ],
+      "issues": [
+        59
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.wait_load_completed()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 325,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.close()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 326,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.execute_javascript()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 327,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.scroll_to()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 328,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.get_scroll()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 329,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.handle_javascript_dialog()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 330,
+      "evidence": [
+        "web/evidence/handle_javascript_dialog_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.get_javascript_dialog_text()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 331,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.start_monitor_network()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 332,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.get_responses()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 333,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.stop_monitor_network()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 334,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.find()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 335,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.find()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 336,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.find_all()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 337,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.find_by_css()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 338,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.find_by_css()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 339,
+      "evidence": [
+        "web/evidence/element_find_by_css.md"
+      ],
+      "issues": [
+        64
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.find_all_by_css()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 340,
+      "evidence": [
+        "web/evidence/element_find_all_by_css.md"
+      ],
+      "issues": [
+        64
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.find_by_xpath()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 341,
+      "evidence": [
+        "web/evidence/element_find_by_xpath.md"
+      ],
+      "issues": [
+        64
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.find_all_by_xpath()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 342,
+      "evidence": [
+        "web/evidence/element_find_all_by_xpath.md"
+      ],
+      "issues": [
+        64
+      ]
+    },
+    {
+      "api": "uiautoma.web.WebElement.parent()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 343,
+      "evidence": [
+        "web/evidence/element_parent_form.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.children()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 344,
+      "evidence": [
+        "web/evidence/element_children_form.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.child_at()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 345,
+      "evidence": [
+        "web/evidence/element_child_at_form.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.previous_sibling()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 346,
+      "evidence": [
+        "web/evidence/element_previous_sibling_form.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.next_sibling()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 347,
+      "evidence": [
+        "web/evidence/element_next_sibling_form.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.click()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 348,
+      "evidence": [
+        "web/evidence/element_click_keys.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.clipboard_input()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 349,
+      "evidence": [
+        "web/evidence/element_clipboard_input_native_form.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.dblclick()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 350,
+      "evidence": [
+        "web/evidence/element_dblclick_keys.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.focus()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 351,
+      "evidence": [
+        "web/evidence/element_focus_keys.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.hover()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 352,
+      "evidence": [
+        "web/evidence/element_hover_keys.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.find_all_by_css()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 353,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.find_by_xpath()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 354,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.find_all_by_xpath()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 355,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.is_element_displayed()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 356,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.extract_table()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "SKIPPED",
+      "line": 357,
+      "evidence": [
+        "web/evidence/browser_extract_table_20261004.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.screenshot()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 358,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.screenshot_to_clipboard()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 359,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebElement.screenshot_to_clipboard()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 360,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.stop_load()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 361,
+      "evidence": [
+        "web/evidence/browser_stop_load_20261005.md"
+      ],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.wait_appear()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 362,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.wait_disappear()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 363,
+      "evidence": [],
+      "issues": []
+    },
+    {
+      "api": "uiautoma.web.WebBrowser.http_request()",
+      "group": "当前 Web API 复测结果（2026-09-14）",
+      "state": "VERIFIED",
+      "line": 364,
+      "evidence": [],
+      "issues": []
+    }
+  ]
+}

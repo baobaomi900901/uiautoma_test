@@ -1,5 +1,7 @@
 # `uiautoma.web.WebElement.get_anchor_position()` 验证证据（2026-10-04）
 
+> 历史记录：保留本次 SKIPPED 与计数。2026-10-08 最新验收及无日期入口见 [get_anchor_position.md](get_anchor_position.md)；旧入口已归档。
+
 ## 用途与合同
 
 获取网页元素的锚点坐标。
@@ -56,9 +58,9 @@ get_anchor_position(self, *, anchor: object | None = None, to96dpi: bool = True)
 
 各轮 cleanup 均 PASS：仅关闭本次标签页和库连接，删除本次 UUID 临时目录；标签数 1→1，未留下本次文件对话框。原始库和用户原页面保留。
 
-脚本：[test_web_element_get_anchor_position_20261004.py](../test_web_element_get_anchor_position_20261004.py)。
+当时脚本：[归档的 test_web_element_get_anchor_position_20261004.py](../../issues/get_anchor_position_history_20261008/test_web_element_get_anchor_position_20261004.py)。
 
-在 `D:\code\元素库\sdk测试` 运行：
+以下为历史命令，当前使用首节链接中的无日期入口：
 
 ```powershell
 uv run .\web\test_web_element_get_anchor_position_20261004.py

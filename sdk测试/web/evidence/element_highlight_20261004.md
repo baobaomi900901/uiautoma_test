@@ -1,5 +1,7 @@
 # `uiautoma.web.WebElement.highlight()` 验证证据（2026-10-04）
 
+> 历史记录，保留原始 SKIPPED 结论。当前入口为 [test_web_element_highlight.py](../test_web_element_highlight.py)，当前结果见 [2026-10-09 证据](highlight.md)。旧包装脚本已移至[历史目录](../../issues/highlight_history_20261009/README.md)。
+
 ## 用途与合同
 
 高亮显示当前网页元素。
@@ -51,12 +53,12 @@ highlight(self, duration: float = 1.0, delay_after: float = 0) -> None
 
 各轮 cleanup 均 PASS：仅关闭本次标签页和库连接，删除本次 UUID 临时目录；标签数 1→1，未留下本次文件对话框。原始库和用户原页面保留。
 
-脚本：[test_web_element_highlight_20261004.py](../test_web_element_highlight_20261004.py)。
+历史脚本：[test_web_element_highlight_20261004.py](../../issues/highlight_history_20261009/test_web_element_highlight_20261004.py)。当前运行命令如下，不会重放历史 SKIPPED 验收。
 
 在 `D:\code\元素库\sdk测试` 运行：
 
 ```powershell
-uv run .\web\test_web_element_highlight_20261004.py
+uv run .\web\test_web_element_highlight.py
 ```
 
-退出码 0 表示无 FAIL（允许 KNOWN/跳过），1 表示存在 FAIL。通过范围与生命周期必须结合报告读取。
+历史报告退出码 0 表示无 FAIL（允许 KNOWN/跳过），1 表示存在 FAIL；当前脚本退出码和覆盖以新证据为准。

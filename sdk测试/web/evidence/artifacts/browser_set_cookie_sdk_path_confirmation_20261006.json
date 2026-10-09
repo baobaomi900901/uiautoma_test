@@ -1,0 +1,192 @@
+{
+  "headless_native_comparator": "browser_set_cookie_native_confirmation_20261006.json",
+  "silent_running": true,
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "cb9332d1a04c09e04df54af958e028b2bc45af9b",
+  "pairs": [
+    {
+      "round": 1,
+      "params": {
+        "name": "sdk_browser_cookie_af77a962f3f34fc38878e746f9f48d48_pair_1",
+        "value": "same-write",
+        "path": "/xpath/stop-load-test/",
+        "sessionCookie": true
+      },
+      "calls": [
+        {
+          "page": "main",
+          "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+          "actual": {
+            "exception": "ActionError",
+            "message": "浏览器操作失败，请重试",
+            "trace": "cookie_set_failed"
+          },
+          "native_main": [],
+          "native_guard": [
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_af77a962f3f34fc38878e746f9f48d48_pair_1",
+              "partitioned": false,
+              "path": "/xpath/stop-load-test/",
+              "sameSite": "lax",
+              "secure": false,
+              "value": "same-write"
+            }
+          ],
+          "confirmation_status": "PASS"
+        },
+        {
+          "page": "guard",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+          "actual": {
+            "return": null
+          },
+          "native_main": [],
+          "native_guard": [
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_af77a962f3f34fc38878e746f9f48d48_pair_1",
+              "partitioned": false,
+              "path": "/xpath/stop-load-test/",
+              "sameSite": "lax",
+              "secure": false,
+              "value": "same-write"
+            }
+          ],
+          "confirmation_status": "PASS"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "params": {
+        "name": "sdk_browser_cookie_af77a962f3f34fc38878e746f9f48d48_pair_2",
+        "value": "same-write",
+        "path": "/xpath/stop-load-test/",
+        "sessionCookie": true
+      },
+      "calls": [
+        {
+          "page": "guard",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+          "actual": {
+            "return": null
+          },
+          "native_main": [],
+          "native_guard": [
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_af77a962f3f34fc38878e746f9f48d48_pair_2",
+              "partitioned": false,
+              "path": "/xpath/stop-load-test/",
+              "sameSite": "lax",
+              "secure": false,
+              "value": "same-write"
+            }
+          ],
+          "confirmation_status": "PASS"
+        },
+        {
+          "page": "main",
+          "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+          "actual": {
+            "exception": "ActionError",
+            "message": "浏览器操作失败，请重试",
+            "trace": "cookie_set_failed"
+          },
+          "native_main": [],
+          "native_guard": [
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_af77a962f3f34fc38878e746f9f48d48_pair_2",
+              "partitioned": false,
+              "path": "/xpath/stop-load-test/",
+              "sameSite": "lax",
+              "secure": false,
+              "value": "same-write"
+            }
+          ],
+          "confirmation_status": "PASS"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "params": {
+        "name": "sdk_browser_cookie_af77a962f3f34fc38878e746f9f48d48_pair_3",
+        "value": "same-write",
+        "path": "/xpath/stop-load-test/",
+        "sessionCookie": true
+      },
+      "calls": [
+        {
+          "page": "main",
+          "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+          "actual": {
+            "exception": "ActionError",
+            "message": "浏览器操作失败，请重试",
+            "trace": "cookie_set_failed"
+          },
+          "native_main": [],
+          "native_guard": [
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_af77a962f3f34fc38878e746f9f48d48_pair_3",
+              "partitioned": false,
+              "path": "/xpath/stop-load-test/",
+              "sameSite": "lax",
+              "secure": false,
+              "value": "same-write"
+            }
+          ],
+          "confirmation_status": "PASS"
+        },
+        {
+          "page": "guard",
+          "url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+          "actual": {
+            "return": null
+          },
+          "native_main": [],
+          "native_guard": [
+            {
+              "domain": null,
+              "expires": null,
+              "name": "sdk_browser_cookie_af77a962f3f34fc38878e746f9f48d48_pair_3",
+              "partitioned": false,
+              "path": "/xpath/stop-load-test/",
+              "sameSite": "lax",
+              "secure": false,
+              "value": "same-write"
+            }
+          ],
+          "confirmation_status": "PASS"
+        }
+      ]
+    }
+  ],
+  "environment": {
+    "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "baseline_tabs": 3,
+    "foreign_cookie_count": 0,
+    "silent_running": true,
+    "native_cookie_store": true
+  },
+  "confirmation": "SAME_PARAMETERS_PAGE_URL_ISOLATED",
+  "cleanup": {
+    "errors": [],
+    "owned_cookies_removed": true,
+    "foreign_cookie_baseline_preserved": true,
+    "tab_count": "3->3",
+    "own_tabs_closed": true,
+    "external_added": [],
+    "external_removed": []
+  },
+  "exit_code": 0
+}

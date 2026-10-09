@@ -416,13 +416,63 @@
           "type": "web"
         },
         {
-          "id": "c0436921-4e36-45b5-9b6a-7160f640afd4",
-          "name": "左侧 Ant Design 表...",
+          "id": "06f7480e-61a0-4a4c-aad7-545909e03887",
+          "name": "web靶场_单文件上传测试_按钮",
           "type": "web"
         },
         {
-          "id": "f530a667-e3a9-4d24-8cbe-d2e0eed90018",
-          "name": "左侧 Ant Design 表..._1",
+          "id": "c8b710f3-182c-4ad0-b9c8-8bc052dca5a4",
+          "name": "web靶场_多文件上传测试_按钮",
+          "type": "web"
+        },
+        {
+          "id": "ab0ed2e1-f97a-47ec-9eb7-4dc495d3af49",
+          "name": "web靶场_触发alert对话框_按钮",
+          "type": "web"
+        },
+        {
+          "id": "4d224971-c6d7-46ac-bcf5-7f72f9d1386c",
+          "name": "web靶场_触发confirm对话框_按钮",
+          "type": "web"
+        },
+        {
+          "id": "7550b2bf-e6d6-4839-969b-06127ea4cfa7",
+          "name": "web靶场_触发Prompt对话框_按钮",
+          "type": "web"
+        },
+        {
+          "id": "74ad2a3f-abe5-4436-922e-fa5390ac4360",
+          "name": "web靶场_打开遮罩弹窗_按钮",
+          "type": "web"
+        },
+        {
+          "id": "19379329-5c15-41ff-8e6b-b54cd0f1fe54",
+          "name": "web靶场_模态弹窗",
+          "type": "web"
+        },
+        {
+          "id": "04504f71-3dc6-44cb-b3a7-d883de5e4f4e",
+          "name": "web靶场_模态弹窗_关闭按钮",
+          "type": "web"
+        },
+        {
+          "id": "3130700c-d1ff-43be-86b5-bc586c58b3ee",
+          "name": "web靶场_停止加载测试_开始测试_按钮",
+          "type": "web"
+        },
+        {
+          "id": "88b12426-579f-415f-9a78-998bac75986a",
+          "name": "web靶场_停止加载测试_清理测试环境_按钮",
+          "type": "web"
+        },
+        {
+          "id": "7d0a7c10-4687-4a3b-943a-678fd407f3f0",
+          "name": "输入框_form-controls-ant-text",
+          "type": "web"
+        },
+        {
+          "id": "bb93abd9-cccf-4ef9-a72c-4c111fb7c797",
+          "name": "web靶场_disabled_按钮",
           "type": "web"
         }
       ]

@@ -1,0 +1,88 @@
+{
+  "target_url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+  "guard_url": "https://baobaomi900901.github.io/xpath/stop-load-test/slow.svg",
+  "headless": true,
+  "isolated_profile": true,
+  "target_documents_loaded": false,
+  "product_engine_loaded": false,
+  "cases": [
+    {
+      "round": 1,
+      "scene": "matching_path",
+      "mode": "callback",
+      "details": {
+        "url": "https://baobaomi900901.github.io/xpath/#/cookie-test",
+        "name": "sdk_cookie_native_confirm_67878020499e493a922ab795c8a085ce_1_matching_path_callback",
+        "value": "native-written",
+        "path": "/xpath/",
+        "secure": false,
+        "httpOnly": false
+      },
+      "returned": {
+        "kind": "cookie",
+        "value": {
+          "domain": "baobaomi900901.github.io",
+          "hostOnly": true,
+          "httpOnly": false,
+          "name": "sdk_cookie_native_confirm_67878020499e493a922ab795c8a085ce_1_matching_path_callback",
+          "path": "/xpath/",
+          "sameSite": "unspecified",
+          "secure": false,
+          "session": true,
+          "storeId": "0",
+          "value": "native-written"
+        },
+        "last_error": null,
+        "rejected": false
+      },
+      "stored": [],
+      "main_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_67878020499e493a922ab795c8a085ce_1_matching_path_callback",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "guard_get": {
+        "domain": "baobaomi900901.github.io",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "sdk_cookie_native_confirm_67878020499e493a922ab795c8a085ce_1_matching_path_callback",
+        "path": "/xpath/",
+        "sameSite": "unspecified",
+        "secure": false,
+        "session": true,
+        "storeId": "0",
+        "value": "native-written"
+      },
+      "cdp_cookies": [
+        {
+          "name": "sdk_cookie_native_confirm_67878020499e493a922ab795c8a085ce_1_matching_path_callback",
+          "value": "native-written",
+          "domain": "baobaomi900901.github.io",
+          "path": "/xpath/",
+          "expires": -1,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "before_count": 1,
+    "after_count": 0,
+    "owned_cookies_removed": true,
+    "isolated_browser_closed": true
+  },
+  "browser_version": "154.0.8037.95",
+  "extension_permissions": [
+    "cookies"
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n0 !== 1\n\n    at D:\\code\\元素库\\sdk测试\\.pytest_tmp\\set_cookie_confirmation\\native_cookie_probe.cjs:70:18"
+}

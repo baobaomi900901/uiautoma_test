@@ -1,0 +1,3506 @@
+{
+  "api": "uiautoma.web.WebElement.get_bounding",
+  "date": "2026-10-08",
+  "lifecycle": "VERIFIED",
+  "scope": "background Chrome, iframe/open Shadow Ant input, native window DPI=96; higher native DPI not verified",
+  "worktrees": {
+    "desktop": "D:\\code\\desktop",
+    "rust_uia": "D:\\code\\rust_uia"
+  },
+  "commits": {
+    "desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+    "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"
+  },
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "element": "web靶场_表单测试_ant_输入框",
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名、默认值、源码及两仓库只读 commit 与冻结合同一致",
+      "actual": {
+        "signature": "(self, to96dpi: 'bool' = True, relative_to: 'str' = 'screen') -> 'dict[str, int]'",
+        "commits": {
+          "desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+          "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"
+        },
+        "keys": [
+          "x",
+          "y",
+          "width",
+          "height"
+        ]
+      },
+      "elapsed_ms": 246.6
+    },
+    {
+      "case_id": "invalid_reference",
+      "status": "PASS",
+      "expected": "SDK 立即抛 InvalidParamsError / relative_to 必须是 screen 或 window",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "relative_to 必须是 screen 或 window",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "blank_reference",
+      "status": "PASS",
+      "expected": "SDK 立即抛 InvalidParamsError / relative_to 必须是 screen 或 window",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "relative_to 必须是 screen 或 window",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "case_sensitive_reference",
+      "status": "PASS",
+      "expected": "SDK 立即抛 InvalidParamsError / relative_to 必须是 screen 或 window",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "relative_to 必须是 screen 或 window",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "none_reference",
+      "status": "PASS",
+      "expected": "SDK 立即抛 InvalidParamsError / relative_to 必须是 screen 或 window",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "relative_to 必须是 screen 或 window",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "expected": "多余位置参数抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.get_bounding() takes from 1 to 3 positional arguments but 4 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "expected": "未知关键字抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.get_bounding() got an unexpected keyword argument 'unknown'",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "Runtime、静默自有页面与临时库可用",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "silent_running": true,
+        "baseline_tabs": 6
+      },
+      "elapsed_ms": 1741.9
+    },
+    {
+      "case_id": "library_mapping",
+      "status": "PASS",
+      "expected": "指定库元素唯一命中 Ant input",
+      "actual": {
+        "name": "web靶场_表单测试_ant_输入框",
+        "matches": 1,
+        "id": "form-controls-ant-text",
+        "tag": "INPUT"
+      },
+      "elapsed_ms": 47.8
+    },
+    {
+      "case_id": "native_oracle",
+      "status": "PASS",
+      "expected": "Win32 独立唯一识别 Chrome 主窗口及网页 viewport；记录 DPI",
+      "actual": {
+        "hwnd": 6886240,
+        "class": "Chrome_WidgetWin_1",
+        "rect": {
+          "x": 885,
+          "y": 22,
+          "width": 1256,
+          "height": 1255
+        },
+        "client_origin": {
+          "x": 893,
+          "y": 22
+        },
+        "client_size": {
+          "width": 1240,
+          "height": 1247
+        },
+        "dpi": 96,
+        "viewport": {
+          "hwnd": 7998344,
+          "class": "Chrome_RenderWidgetHostHWND",
+          "rect": {
+            "x": 893,
+            "y": 199,
+            "width": 1240,
+            "height": 1070
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 199
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1070
+          },
+          "dpi": 96
+        }
+      },
+      "elapsed_ms": 22.2
+    },
+    {
+      "case_id": "default",
+      "status": "PASS",
+      "expected": "默认 screen/96 DPI，四个整数与独立坐标完全相同",
+      "actual": {
+        "bounding": {
+          "x": 992,
+          "y": 644,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 992,
+          "y": 644,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "baseline",
+        "relative_to": "screen",
+        "to96dpi": true
+      },
+      "elapsed_ms": 327.0
+    },
+    {
+      "case_id": "baseline_screen_False",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 992,
+          "y": 644,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 992,
+          "y": 644,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "baseline",
+        "relative_to": "screen",
+        "to96dpi": false
+      },
+      "elapsed_ms": 326.8
+    },
+    {
+      "case_id": "baseline_screen_True",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 992,
+          "y": 644,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 992,
+          "y": 644,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "baseline",
+        "relative_to": "screen",
+        "to96dpi": true
+      },
+      "elapsed_ms": 296.0
+    },
+    {
+      "case_id": "baseline_window_False",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 99,
+          "y": 622,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 99,
+          "y": 622,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "baseline",
+        "relative_to": "window",
+        "to96dpi": false
+      },
+      "elapsed_ms": 295.7
+    },
+    {
+      "case_id": "baseline_window_True",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 99,
+          "y": 622,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 99,
+          "y": 622,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "baseline",
+        "relative_to": "window",
+        "to96dpi": true
+      },
+      "elapsed_ms": 312.7
+    },
+    {
+      "case_id": "top_scroll_screen_False",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 992,
+          "y": 584,
+          "width": 483,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 992,
+          "y": 584,
+          "width": 483,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 60
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 1470px !important; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 482.5,
+            "x": 99,
+            "y": 385
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 60
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 1470px !important; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 482.5,
+            "x": 99,
+            "y": 385
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 60
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "top_scroll",
+        "relative_to": "screen",
+        "to96dpi": false
+      },
+      "elapsed_ms": 325.3
+    },
+    {
+      "case_id": "top_scroll_screen_True",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 992,
+          "y": 584,
+          "width": 483,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 992,
+          "y": 584,
+          "width": 483,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 60
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 1470px !important; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 482.5,
+            "x": 99,
+            "y": 385
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 60
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 1470px !important; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 482.5,
+            "x": 99,
+            "y": 385
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 60
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "top_scroll",
+        "relative_to": "screen",
+        "to96dpi": true
+      },
+      "elapsed_ms": 330.2
+    },
+    {
+      "case_id": "top_scroll_window_False",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 99,
+          "y": 562,
+          "width": 483,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 99,
+          "y": 562,
+          "width": 483,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 60
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 1470px !important; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 482.5,
+            "x": 99,
+            "y": 385
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 60
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 1470px !important; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 482.5,
+            "x": 99,
+            "y": 385
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 60
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "top_scroll",
+        "relative_to": "window",
+        "to96dpi": false
+      },
+      "elapsed_ms": 342.4
+    },
+    {
+      "case_id": "top_scroll_window_True",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 99,
+          "y": 562,
+          "width": 483,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 99,
+          "y": 562,
+          "width": 483,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 60
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 1470px !important; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 482.5,
+            "x": 99,
+            "y": 385
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 60
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 1470px !important; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 482.5,
+            "x": 99,
+            "y": 385
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 60
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "top_scroll",
+        "relative_to": "window",
+        "to96dpi": true
+      },
+      "elapsed_ms": 327.8
+    },
+    {
+      "case_id": "iframe_scroll_screen_False",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 992,
+          "y": 571,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 992,
+          "y": 571,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 73,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 372
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 73,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 372
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 73,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "iframe_scroll",
+        "relative_to": "screen",
+        "to96dpi": false
+      },
+      "elapsed_ms": 328.6
+    },
+    {
+      "case_id": "iframe_scroll_screen_True",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 992,
+          "y": 571,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 992,
+          "y": 571,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 73,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 372
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 73,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 372
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 73,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "iframe_scroll",
+        "relative_to": "screen",
+        "to96dpi": true
+      },
+      "elapsed_ms": 330.3
+    },
+    {
+      "case_id": "iframe_scroll_window_False",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 99,
+          "y": 549,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 99,
+          "y": 549,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 73,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 372
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 73,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 372
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 73,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "iframe_scroll",
+        "relative_to": "window",
+        "to96dpi": false
+      },
+      "elapsed_ms": 282.8
+    },
+    {
+      "case_id": "iframe_scroll_window_True",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 99,
+          "y": 549,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 99,
+          "y": 549,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 73,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 372
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 73,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 372
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 73,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "iframe_scroll",
+        "relative_to": "window",
+        "to96dpi": true
+      },
+      "elapsed_ms": 326.8
+    },
+    {
+      "case_id": "translate_resize_screen_False",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 1005,
+          "y": 662,
+          "width": 238,
+          "height": 38
+        },
+        "expected_rect": {
+          "x": 1005,
+          "y": 662,
+          "width": 238,
+          "height": 38
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 37.5,
+            "width": 237.5,
+            "x": 112.25,
+            "y": 462.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(13.25px, 17.75px); box-sizing: border-box; width: 237.5px; height: 37.5px;",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 37.5,
+            "width": 237.5,
+            "x": 112.25,
+            "y": 462.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(13.25px, 17.75px); box-sizing: border-box; width: 237.5px; height: 37.5px;",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "translate_resize",
+        "relative_to": "screen",
+        "to96dpi": false
+      },
+      "elapsed_ms": 332.0
+    },
+    {
+      "case_id": "translate_resize_screen_True",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 1005,
+          "y": 662,
+          "width": 238,
+          "height": 38
+        },
+        "expected_rect": {
+          "x": 1005,
+          "y": 662,
+          "width": 238,
+          "height": 38
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 37.5,
+            "width": 237.5,
+            "x": 112.25,
+            "y": 462.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(13.25px, 17.75px); box-sizing: border-box; width: 237.5px; height: 37.5px;",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 37.5,
+            "width": 237.5,
+            "x": 112.25,
+            "y": 462.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(13.25px, 17.75px); box-sizing: border-box; width: 237.5px; height: 37.5px;",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "translate_resize",
+        "relative_to": "screen",
+        "to96dpi": true
+      },
+      "elapsed_ms": 344.7
+    },
+    {
+      "case_id": "translate_resize_window_False",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 112,
+          "y": 640,
+          "width": 238,
+          "height": 38
+        },
+        "expected_rect": {
+          "x": 112,
+          "y": 640,
+          "width": 238,
+          "height": 38
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 37.5,
+            "width": 237.5,
+            "x": 112.25,
+            "y": 462.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(13.25px, 17.75px); box-sizing: border-box; width: 237.5px; height: 37.5px;",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 37.5,
+            "width": 237.5,
+            "x": 112.25,
+            "y": 462.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(13.25px, 17.75px); box-sizing: border-box; width: 237.5px; height: 37.5px;",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "translate_resize",
+        "relative_to": "window",
+        "to96dpi": false
+      },
+      "elapsed_ms": 327.9
+    },
+    {
+      "case_id": "translate_resize_window_True",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 112,
+          "y": 640,
+          "width": 238,
+          "height": 38
+        },
+        "expected_rect": {
+          "x": 112,
+          "y": 640,
+          "width": 238,
+          "height": 38
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 37.5,
+            "width": 237.5,
+            "x": 112.25,
+            "y": 462.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(13.25px, 17.75px); box-sizing: border-box; width: 237.5px; height: 37.5px;",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 37.5,
+            "width": 237.5,
+            "x": 112.25,
+            "y": 462.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(13.25px, 17.75px); box-sizing: border-box; width: 237.5px; height: 37.5px;",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "translate_resize",
+        "relative_to": "window",
+        "to96dpi": true
+      },
+      "elapsed_ms": 345.7
+    },
+    {
+      "case_id": "negative_position_screen_False",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 792,
+          "y": 93,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 792,
+          "y": 93,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": -101.25,
+            "y": -105.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(-200.25px, -550.75px);",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": -101.25,
+            "y": -105.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(-200.25px, -550.75px);",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "negative_position",
+        "relative_to": "screen",
+        "to96dpi": false
+      },
+      "elapsed_ms": 346.2
+    },
+    {
+      "case_id": "negative_position_screen_True",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": 792,
+          "y": 93,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 792,
+          "y": 93,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": -101.25,
+            "y": -105.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(-200.25px, -550.75px);",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": -101.25,
+            "y": -105.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(-200.25px, -550.75px);",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "negative_position",
+        "relative_to": "screen",
+        "to96dpi": true
+      },
+      "elapsed_ms": 268.0
+    },
+    {
+      "case_id": "negative_position_window_False",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": -101,
+          "y": 71,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": -101,
+          "y": 71,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": -101.25,
+            "y": -105.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(-200.25px, -550.75px);",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": -101.25,
+            "y": -105.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(-200.25px, -550.75px);",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "negative_position",
+        "relative_to": "window",
+        "to96dpi": false
+      },
+      "elapsed_ms": 329.0
+    },
+    {
+      "case_id": "negative_position_window_True",
+      "status": "PASS",
+      "expected": "四个整数与 DOM + Win32 独立推导完全相同，读取不滚动",
+      "actual": {
+        "bounding": {
+          "x": -101,
+          "y": 71,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": -101,
+          "y": 71,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": -101.25,
+            "y": -105.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(-200.25px, -550.75px);",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": -101.25,
+            "y": -105.75
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": "transition: none !important; animation: auto ease 0s 1 normal none running none !important; transform: translate(-200.25px, -550.75px);",
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "negative_position",
+        "relative_to": "window",
+        "to96dpi": true
+      },
+      "elapsed_ms": 339.8
+    },
+    {
+      "case_id": "positional_arguments",
+      "status": "PASS",
+      "expected": "两个可选参数可按位置传入，window 物理矩形正确",
+      "actual": {
+        "bounding": {
+          "x": 99,
+          "y": 622,
+          "width": 490,
+          "height": 32
+        },
+        "expected_rect": {
+          "x": 99,
+          "y": 622,
+          "width": 490,
+          "height": 32
+        },
+        "difference": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "dpi": 96,
+        "dpr": 1,
+        "scroll": {
+          "frame_x": 0,
+          "frame_y": 0,
+          "top_x": 0,
+          "top_y": 0
+        },
+        "foreground_unchanged": true,
+        "foreground_before": 6886240,
+        "foreground_after": 6886240,
+        "native": {
+          "hwnd": 6886240,
+          "class": "Chrome_WidgetWin_1",
+          "rect": {
+            "x": 885,
+            "y": 22,
+            "width": 1256,
+            "height": 1255
+          },
+          "client_origin": {
+            "x": 893,
+            "y": 22
+          },
+          "client_size": {
+            "width": 1240,
+            "height": 1247
+          },
+          "dpi": 96,
+          "viewport": {
+            "hwnd": 7998344,
+            "class": "Chrome_RenderWidgetHostHWND",
+            "rect": {
+              "x": 893,
+              "y": 199,
+              "width": 1240,
+              "height": 1070
+            },
+            "client_origin": {
+              "x": 893,
+              "y": 199
+            },
+            "client_size": {
+              "width": 1240,
+              "height": 1070
+            },
+            "dpi": 96
+          }
+        },
+        "dom_before": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "dom_after": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        },
+        "scene": "baseline",
+        "relative_to": "window",
+        "to96dpi": false
+      },
+      "elapsed_ms": 576.9
+    },
+    {
+      "case_id": "readonly_repeat",
+      "status": "PASS",
+      "expected": "连读三次相同；滚动、value、focus、style 不变",
+      "actual": {
+        "values": [
+          {
+            "x": 99,
+            "y": 622,
+            "width": 490,
+            "height": 32
+          },
+          {
+            "x": 99,
+            "y": 622,
+            "width": 490,
+            "height": 32
+          },
+          {
+            "x": 99,
+            "y": 622,
+            "width": 490,
+            "height": 32
+          }
+        ],
+        "dom_scroll_value_focus_style_unchanged": true
+      },
+      "elapsed_ms": 556.8
+    },
+    {
+      "case_id": "restore_scene",
+      "status": "PASS",
+      "expected": "自有页面样式/滚动恢复到进入时值",
+      "actual": {
+        "restored": true,
+        "actual": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1070,
+            "width": 1240
+          },
+          "rect": {
+            "height": 32,
+            "width": 490,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1255,
+            "width": 1256,
+            "x": 885,
+            "y": 22
+          }
+        }
+      },
+      "elapsed_ms": 153.2
+    },
+    {
+      "case_id": "restore_preference",
+      "status": "PASS",
+      "expected": "动态 ID 开关和站点 localStorage 精确恢复",
+      "actual": {
+        "expected_storage": "false",
+        "actual_storage": "false",
+        "expected_switch": "false",
+        "actual_switch": "false"
+      },
+      "elapsed_ms": 103.8
+    },
+    {
+      "case_id": "closed_page",
+      "status": "PASS",
+      "expected": "关闭自有页面后抛 ActionError / stale_page_reference",
+      "actual": {
+        "exception": "ActionError",
+        "message": "网页对象已失效",
+        "trace": "stale_page_reference"
+      },
+      "elapsed_ms": 229.3
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "关闭库连接后抛 HostUnavailableError / 连接已关闭",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 1.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "自有页面/库、副本已清理；源库、外部标签不变",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "source_library_unchanged": true,
+        "tab_count": "6->6",
+        "external_added": [],
+        "external_removed": []
+      },
+      "elapsed_ms": 184.0
+    }
+  ],
+  "exit_code": 0
+}

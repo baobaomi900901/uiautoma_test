@@ -1,0 +1,27 @@
+from pathlib import Path
+
+root = Path(r'D:\code\元素库\sdk测试')
+source = (root/'.pytest_tmp/highlight_retest_20261008/probe.py').read_text(encoding='utf-8')
+source = source.replace('element_highlight_20261008_probe.json', 'element_highlight_20261008_probe2.json')
+source = source.replace('[(1,0), (.4,.25), (0,0), (.001,0), (.1,0)]', '[(1,0), (.5,.25), (.8,0), (0,0)]')
+source = source.replace('self.u.GetWindowLongPtrW.restype = ctypes.c_ssize_t', '''self.u.GetWindowLongPtrW.restype = ctypes.c_ssize_t
+        self.u.GetDC.argtypes = [wintypes.HWND]; self.u.GetDC.restype = wintypes.HDC
+        self.u.ReleaseDC.argtypes = [wintypes.HWND, wintypes.HDC]; self.u.ReleaseDC.restype = ctypes.c_int
+        self.g = ctypes.WinDLL('gdi32')
+        self.g.GetPixel.argtypes = [wintypes.HDC, ctypes.c_int, ctypes.c_int]; self.g.GetPixel.restype = wintypes.DWORD''')
+source = source.replace('    def overlays(self):', '''    def pixels(self, overlay):
+        r=overlay['rect']; x,y,w,h=(r[k] for k in ('x','y','width','height'))
+        points={side:[point for i in range(7)] for side,point in []}
+        points={'left':[(x+i,y+h//2) for i in range(7)],'right':[(x+w-1-i,y+h//2) for i in range(7)],'top':[(x+w//2,y+i) for i in range(7)],'bottom':[(x+w//2,y+h-1-i) for i in range(7)]}
+        dc=self.u.GetDC(None)
+        try:
+            colors={side:[{'xy':p,'rgb':((v:=int(self.g.GetPixel(dc,*p)))&255,(v>>8)&255,(v>>16)&255)} for p in locations] for side,locations in points.items()}
+            return {'colors':colors,'red_sides':{side:any(p['rgb'][0]>180 and p['rgb'][1]<90 and p['rgb'][2]<90 for p in pixels) for side,pixels in colors.items()}}
+        finally:
+            self.u.ReleaseDC(None,dc)
+
+    def overlays(self):''')
+source = source.replace('        samples = []', '        samples = []; pixels=[]')
+source = source.replace("samples.append({'at_s':time.perf_counter()-start,'visible':oracle.overlays(),'foreground':oracle.foreground()})", "visible_now=oracle.overlays(); samples.append({'at_s':time.perf_counter()-start,'visible':visible_now,'foreground':oracle.foreground()})\n                if duration>0 and len(pixels)<4:\n                    for overlay in visible_now:\n                        if overlay['class']=='RustPerPixelAlphaHighlightClass':pixels.append(oracle.pixels(overlay))")
+source = source.replace("'samples':samples}", "'pixels':pixels,'samples':samples}")
+(root/'.pytest_tmp/highlight_retest_20261008/probe2.py').write_text(source,encoding='utf-8')

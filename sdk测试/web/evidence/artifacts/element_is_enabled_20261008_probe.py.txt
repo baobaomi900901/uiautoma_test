@@ -1,0 +1,80 @@
+import hashlib
+import json
+import shutil
+import sys
+import uuid
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+ROOT = Path(r'D:\code\元素库\sdk测试')
+sys.path[:0] = [r'D:\code\desktop\sdk\src', str(ROOT/'web')]
+from uiautoma import web, open as open_package
+from test_web_element_get_select_options import copy_library
+
+LIBRARY = Path(r'D:\code\元素库\260902_web元素')
+URL = 'https://baobaomi900901.github.io/xpath/#/keys-click-test'
+TARGETS = [('web靶场_disabled_按钮', 'btn-disabled-click-target'), ('web靶场_测试点击_单击触发', 'btn-click-target')]
+tmp = ROOT/'.pytest_tmp/is_enabled_retest_20261008'/uuid.uuid4().hex
+page = package = None
+baseline = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+before_hash = hashlib.sha256((LIBRARY/'elements.json').read_bytes()).hexdigest()
+rows = []
+try:
+    copy_library(LIBRARY, tmp/'library')
+    package = open_package(str(tmp/'library'), timeout=8, connect_timeout=8)
+    page = web.create(URL, mode='chrome', silent_running=True, load_timeout=25)
+    def js(body, arg=None):
+        return page.execute_javascript('function(_e,a){'+body+'}', arg)
+    original = js("return ['btn-disabled-click-target','btn-click-target'].map(id=>{const e=document.getElementById(id);return {id,attributes:[...e.attributes].map(a=>[a.name,a.value])};});")
+    def restore():
+        return js("for(const r of a){const e=document.getElementById(r.id);for(const x of [...e.attributes])e.removeAttribute(x.name);for(const [k,v] of r.attributes)e.setAttribute(k,v);}return true;", original)
+    def observe(id):
+        return js("const e=document.getElementById(a);return {id:e.id,tag:e.tagName,disabled:e.disabled,pseudo_disabled:e.matches(':disabled'),disabled_attribute:e.getAttribute('disabled'),aria_disabled:e.getAttribute('aria-disabled'),class:e.className,focus:document.activeElement?.id||'',scroll:[scrollX,scrollY],ancestors:[...(()=>{let n=e.parentElement,r=[];while(n){r.push(n);n=n.parentElement;}return r;})()].map(n=>({tag:n.tagName,disabled:n.getAttribute('disabled'),aria_disabled:n.getAttribute('aria-disabled'),class:n.className}))};", id)
+    for name, id in TARGETS:
+        matches = page.find_all(name, timeout=5)
+        mapping = {'name': name, 'count': len(matches), 'ids': [m.get_attribute('id') for m in matches]}
+        print(json.dumps(mapping, ensure_ascii=False), flush=True)
+        if mapping['ids'] != [id]:
+            raise RuntimeError('Incorrect library mapping')
+        element = matches[0]
+        for kind, value in [('baseline', None), *[('disabled_attribute', v) for v in ('', 'disabled', 'true', 'false', 'False')], ('enabled_property', False), ('disabled_property', True), ('aria', 'true'), ('aria', 'false')]:
+            restore()
+            if kind == 'disabled_attribute':
+                js("document.getElementById(a.id).setAttribute('disabled',a.value);return true;", {'id': id, 'value': value})
+            elif kind in ('enabled_property', 'disabled_property'):
+                js("document.getElementById(a.id).disabled=a.value;return true;", {'id': id, 'value': value})
+            elif kind == 'aria':
+                js("const e=document.getElementById(a.id);e.disabled=false;e.setAttribute('aria-disabled',a.value);return true;", {'id': id, 'value': value})
+            before = observe(id)
+            actual = element.is_enabled()
+            after = observe(id)
+            row = {'name': name, 'kind': kind, 'value': value, 'dom_before': before, 'actual': actual, 'return_type': type(actual).__name__, 'dom_after': after, 'readonly': before == after}
+            rows.append(row)
+            print(json.dumps(row, ensure_ascii=False), flush=True)
+    restore()
+    page.close(ignore_beforeunload=True)
+    for state in ('closed_page', 'closed_package'):
+        if state == 'closed_package':
+            package.close()
+        try:
+            row = {'state': state, 'return': element.is_enabled()}
+        except Exception as exc:
+            row = {'state': state, 'exception': type(exc).__name__, 'message': str(exc), 'trace': getattr(exc, 'trace_info', '')}
+        rows.append(row)
+        print(json.dumps(row, ensure_ascii=False), flush=True)
+finally:
+    if page:
+        current = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+        if page._page_ref['id'] in current:
+            if 'original' in locals():
+                restore()
+            page.close(ignore_beforeunload=True)
+    if package:
+        package.close()
+    if tmp.exists():
+        assert tmp.resolve().parent == (ROOT/'.pytest_tmp/is_enabled_retest_20261008').resolve()
+        shutil.rmtree(tmp)
+    after = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+    cleanup = {'tab_count': f'{len(baseline)}->{len(after)}', 'external_added': sorted(after-baseline), 'external_removed': sorted(baseline-after), 'temporary_removed': not tmp.exists(), 'library_unchanged': before_hash == hashlib.sha256((LIBRARY/'elements.json').read_bytes()).hexdigest()}
+    print(json.dumps({'cleanup': cleanup}, ensure_ascii=False), flush=True)
+    (ROOT/'web/evidence/artifacts/element_is_enabled_20261008_probe.json').write_text(json.dumps({'rows': rows, 'cleanup': cleanup}, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')

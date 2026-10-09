@@ -1,0 +1,144 @@
+{
+  "api": "uiautoma.web.WebElement.is_enabled",
+  "date": "2026-10-08",
+  "worktree": "D:\\code\\desktop",
+  "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+  "signature": "(self) -> 'bool'",
+  "source": "    def is_enabled(self) -> bool:\n        \"\"\"判断网页元素是否可用。\n\n        Returns:\n            ``bool``：可用返回 ``True``，否则返回 ``False``。\n        \"\"\"\n\n        return self._raw.is_enabled()\n",
+  "rpc": "web.is_enabled",
+  "timeout_ms": 5000,
+  "source_snapshots": [
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/web/element.py",
+      "line_start": 866,
+      "line_end": 873,
+      "sha256": "621601eb753fe2ea5e0762331bdcc8231bc1f30fb81d3821323e976e30d6e748",
+      "excerpt": "    def is_enabled(self) -> bool:\n        \"\"\"判断网页元素是否可用。\n\n        Returns:\n            ``bool``：可用返回 ``True``，否则返回 ``False``。\n        \"\"\"\n\n        return self._raw.is_enabled()"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/_core/client.py",
+      "line_start": 3585,
+      "line_end": 3596,
+      "sha256": "c3bf148875c8f7db0b74897fa5d6e449c70c9579d6c06b07f5db2148dbfe73b3",
+      "excerpt": "\n    def _read_state(self, state: str, *, timeout: float = 5.0) -> bool:\n        result = self._session._run_web_value(\n            f\"web.{state}\", self.id, timeout_ms=_timeout_to_ms(timeout, 5.0),\n        )\n        return bool(result[\"value\"])\n\n    def is_checked(self) -> bool:\n        return self._read_state(\"is_checked\")\n\n    def is_enabled(self) -> bool:\n        return self._read_state(\"is_enabled\")"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/_core/client.py",
+      "line_start": 2699,
+      "line_end": 2711,
+      "sha256": "c3bf148875c8f7db0b74897fa5d6e449c70c9579d6c06b07f5db2148dbfe73b3",
+      "excerpt": "    def _run_web_value(\n        self,\n        method: str,\n        element_id: str,\n        **params: Any,\n    ) -> dict[str, Any]:\n        self._ensure_open()\n        return self._client._run_web_value(\n            method,\n            element_id,\n            **self._web_target_params(),\n            **params,\n        )"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "sdk/src/uiautoma/_core/client.py",
+      "line_start": 1139,
+      "line_end": 1157,
+      "sha256": "c3bf148875c8f7db0b74897fa5d6e449c70c9579d6c06b07f5db2148dbfe73b3",
+      "excerpt": "    def _run_web_value(\n        self,\n        method: str,\n        element_id: str,\n        **params: Any,\n    ) -> dict[str, Any]:\n        self._ensure_method_supported(method)\n        rpc_params = {\n            \"element_id\": element_id,\n            **params,\n        }\n        if \"timeout_ms\" in rpc_params:\n            rpc_params[\"timeout_ms\"] = int(rpc_params[\"timeout_ms\"])\n        result = self._rpc(method, rpc_params)\n        if _business_error(result) != 0:\n            if _trace_info(result) in _FATAL_ACTION_TRACES:\n                self._raise_business_error(result, method=method)\n            ActionResult.from_payload(result).raise_for_error()\n        return result"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/pipe_server.py",
+      "line_start": 2136,
+      "line_end": 2137,
+      "sha256": "8284c86cf1360bb04357c3be5f484101804fb2e37d0b56d4367448de4a0a54d1",
+      "excerpt": "    def _handle_web_is_enabled(self, params: dict[str, Any]) -> dict[str, Any]:\n        return self.action_service.web_is_enabled_element(params)"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/action_service.py",
+      "line_start": 2591,
+      "line_end": 2592,
+      "sha256": "008efa70d6c7bd00ade95e0dee0f1d7935f4d0173ed7ca3dc7ee9eff8d3825f3",
+      "excerpt": "    def web_is_enabled_element(self, params: dict[str, Any]) -> dict[str, Any]:\n        return self._run_web_value(params, op=\"is_enabled\")"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/action_service.py",
+      "line_start": 3821,
+      "line_end": 3831,
+      "sha256": "008efa70d6c7bd00ade95e0dee0f1d7935f4d0173ed7ca3dc7ee9eff8d3825f3",
+      "excerpt": "    def _resolve_web_ctx(self, params: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[str, Any] | None]:\n        if params.get(\"locator_kind\") == \"runtime_ref\":\n            return self.web_live_elements.resolve(str(params.get(\"element_id\") or \"\"))\n        ctx, err = self._resolve_ctx(params)\n        if err is not None:\n            return None, err\n        assert ctx is not None\n        if ctx.get(\"kind\") != \"web\":\n            return None, business_error(5, \"unsupported_method\")\n        return ctx, None\n"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/action_service.py",
+      "line_start": 5554,
+      "line_end": 5568,
+      "sha256": "008efa70d6c7bd00ade95e0dee0f1d7935f4d0173ed7ca3dc7ee9eff8d3825f3",
+      "excerpt": "    def _web_descriptor(\n        self,\n        ctx: dict[str, Any],\n        *,\n        use_saved_target: bool = True,\n    ) -> tuple[dict[str, Any] | None, dict[str, Any] | None]:\n        if ctx.get(\"locator_kind\") == \"runtime_ref\":\n            context = ctx.get(\"runtime_context\") or {}\n            target = self.web_page_state.resolve_page(context.get(\"page_ref\"))\n            if target is None:\n                return None, business_error(3, \"stale_page_reference\", message=\"网页对象已失效\")\n            return {**target, \"element_ref\": context[\"element_ref\"], \"page_ref\": context[\"page_ref\"],\n                    \"silent_running\": self.web_page_state.page_is_silent(context[\"page_ref\"])}, None\n        snapshot = ctx.get(\"snapshot\") if isinstance(ctx.get(\"snapshot\"), dict) else {}\n        if not str(ctx.get(\"snapshot_path_abs\") or \"\").strip():"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/services/action_service.py",
+      "line_start": 6350,
+      "line_end": 6406,
+      "sha256": "008efa70d6c7bd00ade95e0dee0f1d7935f4d0173ed7ca3dc7ee9eff8d3825f3",
+      "excerpt": "    def _run_web_value(self, params: dict[str, Any], *, op: str) -> dict[str, Any]:\n        ctx, err = self._resolve_web_ctx(params)\n        if err is not None:\n            return _web_value_error(err)\n        assert ctx is not None\n        if ctx.get(\"locator_kind\") != \"runtime_ref\":\n            return _web_value_error(business_error(2, \"invalid_params\", message=\"请先查找当前网页元素\"))\n        desc, err = self._web_descriptor(ctx)\n        if err is not None:\n            return _web_value_error(err)\n        timeout_ms = _int_param(params.get(\"timeout_ms\"), 5000)\n        call_params = self._web_selector_params(desc)\n        call_params[\"timeout_ms\"] = timeout_ms\n        call_params.update(self._web_command_target(params, desc))\n        try:\n            extra = {key: params[key] for key in (\"name\", \"text\", \"script\", \"mode\", \"direction\", \"location\", \"search_up\") if key in params}\n            raw = self.web_bridge.action(op, **call_params, **extra)\n        except Exception as exc:\n            return _web_value_error(\n                _web_runtime_failure(\n                    5,\n                    \"web_bridge_unavailable\",\n                    detail=_public_web_bridge_message(exc, desc),\n                )\n            )\n        if not isinstance(raw, dict):\n            return _web_value_error(_web_business_error(5, \"web_bridge_unavailable\"))\n        public_raw = _public_web_bridge_payload(raw, desc)\n        assert isinstance(public_raw, dict)\n        trace = _web_trace(public_raw)\n        if trace == \"<redacted>\":\n            trace = \"\"\n        if trace in {\"web_bridge_unavailable\", \"native_host_unavailable\", \"plugin_not_connected\"}:\n            return _web_value_error(_web_business_error(5, trace, public_raw))\n        error = _web_bridge_error(public_raw)\n        if error != 0:\n            mapped_trace = trace or \"web_dom_query_failed\"\n            if mapped_trace in {\"unknown_method\", \"unsupported_method\", \"native_host_unavailable\", \"plugin_not_connected\"}:\n                mapped_error = 5\n            else:\n                mapped_error = 2 if error == 2 else 3 if error in {3, 5} else error\n            return _web_value_error(\n                _web_business_error(\n                    mapped_error,\n                    mapped_trace,\n                    public_raw,\n                    fallback=\"读取 Web 元素信息失败，请重试\",\n                )\n            )\n        out = dict(public_raw)\n        out[\"error\"] = 0\n        out[\"ok\"] = True\n        out.setdefault(\"strategy\", \"web_dom\")\n        out.setdefault(\"fallback_reason\", \"\")\n        out.setdefault(\"trace_info\", \"\")\n        out.setdefault(\"raw\", dict(public_raw))\n        return out"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "runtime/web/bridge_client.py",
+      "line_start": 94,
+      "line_end": 200,
+      "sha256": "50b4dd931bc0d7be813532787f710d4442f7d0ac0649ebd54085dc5c968570b3",
+      "excerpt": "def web_dom_action(\n    action: str,\n    xpath: str = \"\",\n    *,\n    element_ref: dict[str, Any] | None = None,\n    root_ref: dict[str, Any] | None = None,\n    scope_to_root: bool = False,\n    css: str | None = None,\n    max_results: int = 0,\n    button: str | None = None,\n    relation: str | None = None,\n    name: str | None = None,\n    script: str | None = None,\n    xpath_segments: list[str] | None = None,\n    path: list[dict[str, Any]] | None = None,\n    anchor: dict[str, Any] | None = None,\n    multi: bool = False,\n    hostname: str | None = None,\n    page_url: str | None = None,\n    timeout_ms: int | float = 10_000,\n    locator_kind: str | None = None,\n    frame_locator: dict[str, Any] | None = None,\n    shadow_locator: dict[str, Any] | None = None,\n    target_session_id: str | None = None,\n    target_browser: str | None = None,\n    target_tab_id: int | None = None,\n    text: str = \"\",\n    contains_hotkey: bool | None = None,\n    send_key_delay_ms: int | None = None,\n    clear: bool = False,\n    focus: bool = True,\n    mode: str | None = None,\n    match: str | None = None,\n    items: list[str] | None = None,\n    indexes: list[int] | None = None,\n    append: bool | None = None,\n    multiple: bool | None = None,\n    location: str | None = None,\n    behavior: str | None = None,\n    direction: str | None = None,\n    search_up: bool | None = None,\n    move_speed: str | None = None,\n    target_x: float | None = None,\n    target_y: float | None = None,\n    index: int | None = None,\n    left: int | None = None,\n    top: int | None = None,\n    keys: str | None = None,\n    pt: str | None = None,\n    _request: RequestFunc | None = None,\n) -> dict[str, Any]:\n    params = _web_dom_params(\n        xpath,\n        xpath_segments=xpath_segments,\n        path=path,\n        anchor=anchor,\n        multi=bool(multi),\n        hostname=hostname,\n        page_url=page_url,\n        timeout_ms=timeout_ms,\n        locator_kind=locator_kind,\n        frame_locator=frame_locator,\n        shadow_locator=shadow_locator,\n        target_session_id=target_session_id,\n        target_browser=target_browser,\n        target_tab_id=target_tab_id,\n        action=action,\n        element_ref=element_ref,\n        root_ref=root_ref,\n        scope_to_root=scope_to_root,\n        css=css,\n        max_results=max_results,\n        button=button,\n        relation=relation,\n        name=name,\n        script=script,\n        text=text,\n        contains_hotkey=contains_hotkey,\n        send_key_delay_ms=send_key_delay_ms,\n        clear=bool(clear),\n        focus=bool(focus),\n        mode=mode,\n        match=match,\n        items=items,\n        indexes=indexes,\n        append=append,\n        multiple=multiple,\n        location=location, behavior=behavior, direction=direction, search_up=search_up,\n        move_speed=move_speed, target_x=target_x, target_y=target_y,\n        index=index,\n        left=left,\n        top=top,\n        pt=pt,\n    )\n    if keys is not None:\n        params[\"keys\"] = str(keys)\n    return _web_dom_request(\"web.action\", params, _request=_request)\n\n\ndef web_get_text(\n    xpath: str = \"\",\n    *,\n    xpath_segments: list[str] | None = None,\n    path: list[dict[str, Any]] | None = None,\n    anchor: dict[str, Any] | None = None,\n    hostname: str | None = None,\n    page_url: str | None = None,"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "chrome/engine/engine_packages/page_engine_runtime.js",
+      "line_start": 2537,
+      "line_end": 2575,
+      "sha256": "e8187b45580378b983943afd2e2aefee8927c70eefab15bcbfd701f0d67dc75c",
+      "excerpt": "          target = target.parentElement || (target.getRootNode().host || null);\n        }\n        target = target || document.documentElement;\n      }\n      if (action === \"get_scroll\") {\n        if (![\"current\", \"bottom\"].includes(command.location)) return { ok: true, result: webDomResult(2, \"invalid_params\") };\n        const key = direction === \"vertical\" ? (command.location === \"current\" ? \"scrollTop\" : \"scrollHeight\")\n          : (command.location === \"current\" ? \"scrollLeft\" : \"scrollWidth\");\n        return { ok: true, result: webDomResult(0, \"\", { value: target[key] }) };\n      }\n      if (![\"top\", \"bottom\", \"point\", \"one_screen\"].includes(command.location) ||\n          ![\"instant\", \"smooth\"].includes(command.behavior)) return { ok: true, result: webDomResult(2, \"invalid_params\") };\n      const options = { behavior: command.behavior };\n      if (command.location === \"point\") Object.assign(options, { top: command.top, left: command.left });\n      else options.top = command.location === \"top\" ? 0 : command.location === \"bottom\" ? target.scrollHeight : target.scrollTop + target.clientHeight;\n      const scroller = command.search_up && target === document.documentElement ? window : target;\n      scroller.scrollTo(options);\n      return { ok: true, result: webDomResult(0, \"\") };\n    }\n    const locateShouldScroll = action === \"locate\" && command &&\n      (command.scrollIntoView === true || command.scroll_into_view === true);\n    if (action === \"drag\" || action === \"scroll_into_view_if_needed\") {\n      element.scrollIntoViewIfNeeded();\n      await waitForWebDomLayout();\n      if (action === \"scroll_into_view_if_needed\") {\n        return { ok: true, result: webDomResult(0, \"\", selectorExtras) };\n      }\n    } else if (locateShouldScroll) {\n      await scrollElementsIntoViewIfNeeded(resolvedElements);\n    } else if (![\"locate\", \"get_text\", \"get_html\", \"get_value\", \"get_attribute\", \"set_attribute\", \"get_all_attributes\", \"get_select_options\", \"is_checked\", \"is_enabled\", \"is_displayed\", \"exists\", \"evaluate_js\", \"related\"].includes(action)) {\n      try {\n        if (typeof element.scrollIntoView === \"function\") {\n          element.scrollIntoView({ block: \"center\", inline: \"center\", behavior: \"auto\" });\n          await waitForWebDomLayout();\n        }\n      } catch (_error) {}\n    }\n    const operabilityError = validateWebDomOperability(element, action, selectorExtras);\n    if (operabilityError) return { ok: true, result: operabilityError };"
+    },
+    {
+      "worktree": "D:\\code\\desktop",
+      "path": "chrome/engine/engine_packages/page_engine_runtime.js",
+      "line_start": 2780,
+      "line_end": 2795,
+      "sha256": "e8187b45580378b983943afd2e2aefee8927c70eefab15bcbfd701f0d67dc75c",
+      "excerpt": "    if (action === \"is_enabled\") {\n      let current = element;\n      while (current) {\n        if (typeof current.getAttribute === \"function\") {\n          const disabled = current.getAttribute(\"disabled\");\n          const ariaDisabled = current.getAttribute(\"aria-disabled\");\n          const classes = current.getAttribute(\"class\") || \"\";\n          const unavailable = disabled != null ? disabled !== \"false\"\n            : ariaDisabled != null ? ariaDisabled === \"true\"\n            : classes.toLowerCase().includes(\"disable\");\n          if (unavailable) return { ok: true, result: webDomResult(0, \"\", { value: false }) };\n        }\n        current = current.parentNode || current.parentElement;\n      }\n      return { ok: true, result: webDomResult(0, \"\", { value: true }) };\n    }"
+    }
+  ],
+  "target_snapshot": {
+    "worktree": "D:\\code\\xpath\\WEB",
+    "commit": "e1fb860b78ad4b9bc89a39b59e76a48e46f9ff7e",
+    "path": "src/pages/KeysClickTestPage.tsx",
+    "line_start": 365,
+    "line_end": 401,
+    "sha256": "42684bb3c9a5711157a53273ca875ecd0b9020e40af4397d2b59a06c9340933a",
+    "excerpt": "                id=\"btn-click-target\"\n                size=\"large\"\n                onClick={(event) => handleClick('btn-click-target', '测试按钮', ANY_EXPECTED, event)}\n              >\n                单击触发\n              </Button>\n              <Button\n                id=\"btn-dblclick-target\"\n                size=\"large\"\n                onClick={() => console.log('[元素点击测试]', '双击按钮: 单击未触发, 请双击')}\n                onDoubleClick={(event) =>\n                  handleInteraction('btn-dblclick-target', '双击触发按钮', ANY_EXPECTED, event, 'dblclick')\n                }\n              >\n                双击触发\n              </Button>\n              <Button\n                id=\"btn-rightclick-target\"\n                size=\"large\"\n                onClick={() => console.log('[元素点击测试]', '右键按钮: 左键未触发, 请右键')}\n                onContextMenu={(event) => {\n                  event.preventDefault();\n                  handleInteraction('btn-rightclick-target', '右键触发按钮', ANY_EXPECTED, event, 'contextmenu');\n                }}\n              >\n                右键触发\n              </Button>\n              <Button id=\"btn-trusted-click-target\" size=\"large\" onClick={handleTrustedClick}>\n                点击调试\n              </Button>\n              <Button\n                id=\"btn-disabled-click-target\"\n                size=\"large\"\n                disabled\n                onClick={(event) => handleClick('btn-disabled-click-target', '禁用按钮', ANY_EXPECTED, event)}\n              >\n                禁用按钮（disabled）"
+  },
+  "failure_paths": [
+    {
+      "trigger": "extra positional / keyword argument",
+      "type": "TypeError",
+      "stage": "Python signature, before RPC"
+    },
+    {
+      "trigger": "closed page",
+      "type": "ActionError",
+      "message": "网页对象已失效",
+      "trace": "stale_page_reference",
+      "stage": "Runtime page_ref resolution"
+    },
+    {
+      "trigger": "closed package",
+      "type": "HostUnavailableError",
+      "message": "元素对象所属连接已关闭，请重新获取对象",
+      "trace": "",
+      "stage": "SDK _ensure_open"
+    },
+    {
+      "trigger": "browser bridge unavailable",
+      "type": "HostUnavailableError / ActionError, depends on trace",
+      "message": "由 Runtime/引擎返回并经 SDK 映射，未注入故障",
+      "stage": "Runtime _run_web_value"
+    }
+  ]
+}

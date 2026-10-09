@@ -1,0 +1,139 @@
+UIAutoma WebElement.highlight 验收汇总（UTF-8）
+日期：2026-10-09
+最终连续三轮（run3/run4/run5）：每轮 VERIFIED，8/8 PASS，退出码 0。
+非静默：silent_running=False。默认观察模式 observe2：8/8 PASS，保留页面，READY_FOR_LIVE。
+trial1/run1/run2/observe 为加固历史，保留失败/阻塞及独立恢复记录，不并入三轮通过数。
+正式命令（cwd D:\code\元素库\sdk测试）：
+uv run .\web\test_web_element_highlight.py --duration 1 --close-page
+uv run .\web\test_web_element_highlight.py --close-page
+uv run .\web\test_web_element_highlight.py --duration 0.6 --delay-after 0.25 --close-page
+每轮附 --report-file 与对应 JSON 路径；原始日志由 subprocess 二进制流保存，UTF-8。
+[
+  {
+    "file": "run3",
+    "counts": {
+      "PASS": 8,
+      "FAIL": 0,
+      "BLOCKED": 0
+    },
+    "duration": 1.0,
+    "delay_after": 0.0,
+    "visible_time_bounds_s": [
+      0.9606544000000667,
+      1.2017002999998567
+    ],
+    "wait_after_disappear_s": 0.0003039000000626402,
+    "cleanup": {
+      "errors": [],
+      "page_retained_for_observation": false,
+      "own_tab_closed": true,
+      "temporary_copy_removed": true,
+      "source_library_unchanged": true,
+      "tab_count": "1->1",
+      "unexpected_added": [],
+      "external_removed": [],
+      "overlays_after": []
+    }
+  },
+  {
+    "file": "run4",
+    "counts": {
+      "PASS": 8,
+      "FAIL": 0,
+      "BLOCKED": 0
+    },
+    "duration": 3.0,
+    "delay_after": 0.0,
+    "visible_time_bounds_s": [
+      2.9370758000000023,
+      3.107425400000011
+    ],
+    "wait_after_disappear_s": 0.06327740000006088,
+    "cleanup": {
+      "errors": [],
+      "page_retained_for_observation": false,
+      "own_tab_closed": true,
+      "temporary_copy_removed": true,
+      "source_library_unchanged": true,
+      "tab_count": "1->1",
+      "unexpected_added": [],
+      "external_removed": [],
+      "overlays_after": []
+    }
+  },
+  {
+    "file": "run5",
+    "counts": {
+      "PASS": 8,
+      "FAIL": 0,
+      "BLOCKED": 0
+    },
+    "duration": 0.6,
+    "delay_after": 0.25,
+    "visible_time_bounds_s": [
+      0.4926989999999023,
+      0.7498700999999528
+    ],
+    "wait_after_disappear_s": 0.2593047000000297,
+    "cleanup": {
+      "errors": [],
+      "page_retained_for_observation": false,
+      "own_tab_closed": true,
+      "temporary_copy_removed": true,
+      "source_library_unchanged": true,
+      "tab_count": "1->1",
+      "unexpected_added": [],
+      "external_removed": [],
+      "overlays_after": []
+    }
+  }
+]
+SHA-256 文件清单（48 个；不含本汇总自身）：
+7a129a94e4fcdb971c6d4c470390a6b4f665685b9f29067a740a583b0c41c57a  web/evidence/artifacts/element_highlight_20261008_probe.json
+104b1b2487ec5ca9e5116d705b2acd5ca341f9644dd6348e0451b1532108d4a1  web/evidence/artifacts/element_highlight_20261008_probe.py.txt
+51beb63b4f07edb56ab565ebb4381b11c4da8e20bd9f3d73510a93871797c963  web/evidence/artifacts/element_highlight_20261008_probe.txt
+d5c94cf5e08dba02c87d6b722f284f1e2ace6ae6a651c1e9647d6062d673c037  web/evidence/artifacts/element_highlight_20261008_probe2.json
+d67d39d06cfde3418b245cb3660c217bbd3859ed2f1ae565f5ea0fd817464050  web/evidence/artifacts/element_highlight_20261008_probe2.py.txt
+528331cccb4c2fa6281f29b65241d5193c3b9b6058a15de7ec7cb01511efeb61  web/evidence/artifacts/element_highlight_20261008_probe2.txt
+f49a595847d4d6f673beabe731f7549810fb90a731f63d4b1c1b756f9dea9d48  web/evidence/artifacts/element_highlight_20261008_probe3.json
+df52558522b6b4cc602ee266c2eda65dca4f2788c48cf5b9f93a4baac952ebed  web/evidence/artifacts/element_highlight_20261008_probe3.py.txt
+4685b564f19b6b02fed0b747b131e3f4ab6a39db91067a74b0fc6b4ca4946197  web/evidence/artifacts/element_highlight_20261008_probe3.txt
+146bc2d3b758812f0130d8a3877fc109905e63b88e0357870d47c26ad6e92c48  web/evidence/artifacts/element_highlight_20261008_probe4.json
+949f0d0eab9fc506569ae3f086e26988436ada1d1b9a58cff1cc934c75a91dd3  web/evidence/artifacts/element_highlight_20261008_probe4.py.txt
+244a937466dbe83795d16e0115defcdce4b961d60ad4a8646771fb77c0ccb158  web/evidence/artifacts/element_highlight_20261008_probe4.txt
+757705264803abf097bd775db14ed95343e90827f06d63940b45dd59f6e3b431  web/evidence/artifacts/element_highlight_20261008_probe5.json
+9aff57afaef88c1d9de7b03ccbbb60658ee7fd41c9ab2c8bff5e61d9a534e42e  web/evidence/artifacts/element_highlight_20261008_probe5.py.txt
+07089c5123298ee641d526860b3de6011c7e8b5aa96c13f1dc858e1ba0d8d85c  web/evidence/artifacts/element_highlight_20261008_probe5.txt
+9ea99d619ad0326d8ac1a68db01a06d0b606dbaab8e5fe9a4a43b49931e0fff7  web/evidence/artifacts/element_highlight_20261009_archive_verify.py.txt
+b0cd205adc9a665854e75e448db327f08f751dd4e28309b7ddf04a884508dc3e  web/evidence/artifacts/element_highlight_20261009_contract.json
+47b47bb0aa073e44cc555c529315307894f485177b87e78205e5a83a678192f9  web/evidence/artifacts/element_highlight_20261009_contract_only.json
+0afba34596672e390c149887b6ce797a5aa82580256d1c81a1a410a92d62d3a5  web/evidence/artifacts/element_highlight_20261009_contract_only.txt
+fcaf505fc7e39bfe94a0e4803eee48c559e3eed029825e26a12f8ecee6797f10  web/evidence/artifacts/element_highlight_20261009_evidence.md.txt
+3a6381a48c1927578f3eb92a58408e0ac6986fe40cd564ef731594eca957d319  web/evidence/artifacts/element_highlight_20261009_freeze_contract.py.txt
+e175c8034d75c12f0a2f64698c9711ff1b5ba07fdba5be3238315e0fafcda427  web/evidence/artifacts/element_highlight_20261009_library_copy_helper.py.txt
+36c73dd2e07b164465ce854979a37d418511f4175c4a30ed50636096066af97f  web/evidence/artifacts/element_highlight_20261009_native_dwm_helper.py.txt
+d29b2f5abe56edfe143e286bb5e78e4cd4c186510eb4537b90d73483a83a4cb7  web/evidence/artifacts/element_highlight_20261009_native_geometry_helper.py.txt
+b05e10e87f445da0b17ecd94e30c1c89418d1016ea74e3b0e9d72918365f8f55  web/evidence/artifacts/element_highlight_20261009_observe.json
+f11be53baa6b5aea21ecc107016a513f9b1c75a5112a12c50f120590d321bb19  web/evidence/artifacts/element_highlight_20261009_observe.txt
+e498a0add926e4faffe0179235684816eebcd083e75fba66b46b4de92e775603  web/evidence/artifacts/element_highlight_20261009_observe2.json
+94834f8e675e2cfb86de301c6552f91f08db79c7d2355bc29f2fd966fa286d3a  web/evidence/artifacts/element_highlight_20261009_observe2.txt
+fa2f283beddf13533dcbe686af954f66d5cfe78b85501cb8c3aded6cfc4a8623  web/evidence/artifacts/element_highlight_20261009_observe_recovery.json
+968600b4538b874ac8feeeda0df73de25ee0da3492742c3205579d04fef54248  web/evidence/artifacts/element_highlight_20261009_pre_foreground_scope.py.txt
+044d0834bb166fd23090987ec48999c26cf2e79083fb0a88afc3d2e7ae097da3  web/evidence/artifacts/element_highlight_20261009_recover_trial.py.txt
+988564a22c923563474660ed15fb48b22ec6ae1138b3db83365bfea9710f0535  web/evidence/artifacts/element_highlight_20261009_run1.json
+2d00797ee619449eb0f861ebd4cd44ae9d9ae5914c2d369f721fba68408753a9  web/evidence/artifacts/element_highlight_20261009_run1.txt
+30cb9de9677bc43e06ed1230d762217bdf9dd683e9f45713ed994031ae38775c  web/evidence/artifacts/element_highlight_20261009_run2.json
+193b410facff5030fb718d002e25a4ac6a60f03fc99d9adf59a4db13ee25049b  web/evidence/artifacts/element_highlight_20261009_run2.txt
+386cca6268c3b9fa9304fe16ea0b2f27aa30a6ddd4ca40694178ec42c44119fc  web/evidence/artifacts/element_highlight_20261009_run3.json
+921fb674f6384c8f988b2cd2a2bbccf1507dad635e900edefeb8591ff2c6ea9c  web/evidence/artifacts/element_highlight_20261009_run3.txt
+4599f75527c1bfb7399aecb73aadccec4d022793240788d90af6fd4fe2bbad82  web/evidence/artifacts/element_highlight_20261009_run4.json
+f5fc9ed86737c4880fabecf1397f4aec149d4dca58f6555f6603c1ff5173b95d  web/evidence/artifacts/element_highlight_20261009_run4.txt
+6f7ed0557fb4e481e756e2434a942eb3878f11442dc8a2b5fb28269b304e04dd  web/evidence/artifacts/element_highlight_20261009_run5.json
+accbabae00f8a3887e486040d5b7a7fd5b9ef9c85661c20ccd4ebb5202de453c  web/evidence/artifacts/element_highlight_20261009_run5.txt
+12e4c23ca86eb49cc3fc9ab9f4e3f01e2a24e4ad16bde276e80e928c4453c9c0  web/evidence/artifacts/element_highlight_20261009_script.py.txt
+0b2164b15b64460c64b9f049c8977d7d374daa126dc4977340c1e49bdde68f42  web/evidence/artifacts/element_highlight_20261009_trial1.json
+ea2d6c8e23947156f8a525153136cd7be37c4513416ac7dd072893cb8eea9a38  web/evidence/artifacts/element_highlight_20261009_trial1.txt
+d6ef4dd2131e967c3b05ac6fb2505fb6d9083d10adb6c634e5c9616257137c67  web/evidence/artifacts/element_highlight_20261009_trial1_recovery.json
+30fd58132c84d2a41a4f3c0898014fb976441fc9a331b5d45d3cbe9f8cd1ad10  web/evidence/artifacts/element_highlight_20261008_make_probe2.py.txt
+3929abf7c4379477ba405108aec013129ead5a985f6fdd19b790c5ef1cd53862  web/evidence/artifacts/element_highlight_20261008_make_probe3.py.txt
+ae6e77dcee3a87c1c872a54b6d84bf26fec73f3edbc02b7b149336b41a8beaeb  web/evidence/artifacts/element_highlight_20261009_temporary_backup_manifest.json

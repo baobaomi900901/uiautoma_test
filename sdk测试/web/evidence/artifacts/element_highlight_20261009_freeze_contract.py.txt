@@ -1,0 +1,54 @@
+import hashlib
+import inspect
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+sys.dont_write_bytecode = True
+root = Path(r'D:\code\元素库\sdk测试')
+product = Path(r'D:\code\desktop'); provider = Path(r'D:\code\rust_uia')
+sys.path.insert(0, str(product/'sdk/src'))
+from uiautoma.web import WebElement
+
+sections = [
+    (product, 'sdk/src/uiautoma/web/element.py', 1109, 1137),
+    (product, 'sdk/src/uiautoma/_core/client.py', 3560, 3572),
+    (product, 'sdk/src/uiautoma/_core/client.py', 2090, 2096),
+    (product, 'sdk/src/uiautoma/_core/client.py', 2119, 2128),
+    (product, 'sdk/src/uiautoma/_core/client.py', 1120, 1137),
+    (product, 'sdk/src/uiautoma/_core/models.py', 170, 210),
+    (product, 'sdk/src/uiautoma/_compat.py', 53, 65),
+    (product, 'runtime/services/pipe_server.py', 2073, 2074),
+    (product, 'runtime/services/action_service.py', 2452, 2507),
+    (product, 'runtime/services/action_service.py', 247, 284),
+    (product, 'runtime/services/action_service.py', 3821, 3832),
+    (product, 'runtime/services/action_service.py', 5554, 5575),
+    (product, 'runtime/services/uiautomation_provider.py', 1012, 1015),
+    (product, 'chrome/engine/engine_packages/page_engine_runtime.js', 2556, 2605),
+    (provider, 'src/main.rs', 937, 943),
+    (provider, 'src/main.rs', 6077, 6170),
+    (provider, 'src/main.rs', 7420, 7430),
+    (provider, 'src/main.rs', 8672, 8700),
+    (provider, 'src/main.rs', 9199, 9250),
+    (provider, 'src/highlight_win32.rs', 98, 103),
+    (provider, 'src/highlight_win32.rs', 969, 1047),
+    (provider, 'src/highlight_win32.rs', 2518, 2527),
+    (provider, 'src/highlight_win32.rs', 2668, 2673),
+    (provider, 'src/highlight_win32.rs', 3290, 3320),
+    (provider, 'src/highlight_win32.rs', 3891, 3895),
+    (provider, 'src/highlight_win32.rs', 4522, 4608),
+]
+data = {'api': 'uiautoma.web.WebElement.highlight', 'date': '2026-10-09',
+        'worktrees': {'desktop': str(product), 'rust_uia': str(provider)},
+        'commits': {key: subprocess.check_output(['git', '-C', str(path), 'rev-parse', 'HEAD'], text=True).strip() for key, path in [('desktop', product), ('rust_uia', provider)]},
+        'signature': str(inspect.signature(WebElement.highlight)), 'source': inspect.getsource(WebElement.highlight),
+        'rpc': 'web.action.highlight', 'timeout_ms': 5000, 'source_snapshots': []}
+for worktree, name, start, end in sections:
+    file = worktree/name
+    lines = file.read_text(encoding='utf-8').splitlines()
+    data['source_snapshots'].append({'worktree': str(worktree), 'path': name, 'line_start': start, 'line_end': end,
+                                   'sha256': hashlib.sha256(file.read_bytes()).hexdigest(), 'excerpt': '\n'.join(lines[start-1:end])})
+out = root/'web/element_highlight_contract_20261009.json'
+out.write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+print(json.dumps({'signature': data['signature'], 'commits': data['commits'], 'source_sections': len(sections)}, ensure_ascii=False))

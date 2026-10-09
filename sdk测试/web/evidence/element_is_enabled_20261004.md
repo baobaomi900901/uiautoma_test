@@ -1,5 +1,7 @@
 # `uiautoma.web.WebElement.is_enabled()` 验证证据（2026-10-04）
 
+> 历史证据：下文 8/9、三轮结果仅属于 2026-10-04 快照，原始日志保留原样。2026-10-08 最新结果与唯一入口见 [is_enabled.md](is_enabled.md)，每轮 30/32 PASS、2 FAIL、READY_FOR_LIVE。旧脚本已[归档](../../issues/is_enabled_history_20261008/README.md)。
+
 ## 用途与合同
 
 判断网页元素是否可用。
@@ -54,12 +56,12 @@ is_enabled(self) -> bool
 
 各轮 cleanup 均 PASS：仅关闭本次标签页和库连接，删除本次 UUID 临时目录；标签数 1→1，未留下本次文件对话框。原始库和用户原页面保留。
 
-脚本：[test_web_element_is_enabled_20261004.py](../test_web_element_is_enabled_20261004.py)。
+历史脚本：[归档 wrapper](../../issues/is_enabled_history_20261008/test_web_element_is_enabled_20261004.py)。当前入口：[test_web_element_is_enabled.py](../test_web_element_is_enabled.py)。以下命令运行当前用例，不重放历史快照。
 
 在 `D:\code\元素库\sdk测试` 运行：
 
 ```powershell
-uv run .\web\test_web_element_is_enabled_20261004.py
+uv run .\web\test_web_element_is_enabled.py
 ```
 
 退出码 0 表示无 FAIL（允许 KNOWN/跳过），1 表示存在 FAIL。通过范围与生命周期必须结合报告读取。

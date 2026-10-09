@@ -1,0 +1,199 @@
+API: uiautoma.web.WebBrowser.set_cookie
+日期: 2026-10-06
+状态: READY_FOR_LIVE
+最终三轮: 20/21 PASS, 1 FAIL
+worktree: D:\code\desktop
+commit: cb9332d1a04c09e04df54af958e028b2bc45af9b
+SHA256 test_web_browser_set_cookie.py: 1c73932a4678df887d85fb42ca82e01334405c82550d2b68307b685bf85b370d
+SHA256 _web_browser_cookie_common.py: 21606332fa8149071465e78b697aba7dcd855405111482eafa3afedbcd841e87
+SHA256 browser_cookie_contracts_20261006.json: 19cce37350018e325f8aacf699d6c9caa40642d6bce4ef5c7841732a23bd3305
+
+RUN 1
+命令: uv run .\web\test_web_browser_set_cookie.py --report-file .\web\evidence\artifacts\browser_set_cookie_20261006_run1.json
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.set_cookie
+页面    : https://baobaomi900901.github.io/xpath/#/cookie-test
+方式    : 后台 API / JavaScript
+已执行 api_contract: PASS
+已执行 extra_positional: PASS
+已执行 unknown_keyword: PASS
+已执行 environment: PASS
+已执行 native_fixtures: PASS
+已执行 default_persistent: PASS
+已执行 session_cookie: PASS
+已执行 fractional_expiry: PASS
+已执行 secure_cookie: PASS
+已执行 domain_cookie: PASS
+已执行 empty_value: PASS
+已执行 overwrite: PASS
+已执行 other_path_write: FAIL
+已执行 cleanup: FAIL
+进度     状态    测试项                  测试结果
+01/14 [92m[通过][0m api_contract 期望 签名、默认值、docstring 和 SDK 源码均匹配只读快照；实测 "(self, *, name=None, value=None, sessionCookie: 'bool' = False, expires: 'float' = 100, domain=None, path=None, httpOnly: 'bool' = False, secure: 'bool' = False) -> 'None'"；1.0ms
+02/14 [92m[通过][0m extra_positional 期望 多余位置参数由 Python TypeError 拒绝，方法体未执行；实测 {"exception": "TypeError", "message": "WebBrowser.set_cookie() takes 1 positional argument but 2 were given", "trace": ""}；0.0ms
+03/14 [92m[通过][0m unknown_keyword 期望 未知 keyword 由 Python TypeError 拒绝，方法体未执行；实测 {"exception": "TypeError", "message": "WebBrowser.set_cookie() got an unexpected keyword argument 'unexpected'", "trace": ""}；0.0ms
+04/14 [92m[通过][0m environment 期望 创建后台测试页、读取原生 Cookie Store、记录 Chrome 标签基线；实测 {"url": "https://baobaomi900901.github.io/xpath/#/cookie-test", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36", "baseline_tabs": 3, "foreign_cookie_count": 0, "silent_running": true, "native_cookie_store": true}；754.9ms
+05/14 [92m[通过][0m native_fixtures 期望 原生 JS 准备会话/持久、域 Cookie、分区和其他 Path；Cookie Store 确认；实测 {"main": {"cookies": [{"domain": null, "expires": null, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_session", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "session-value"}, {"domain": "baobaomi900901.github.io", "expires": null, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_domain", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "domain-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_partition", "partitioned": true, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "partition-value"}, {"domain": null, "expires": 1791242395675.135, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_persistent", "partitioned": false, "path": "/", "sameSite": "lax", "…；508.3ms
+06/14 [92m[通过][0m default_persistent 期望 默认持久 Cookie、100 秒、默认 URL Path /xpath、hostOnly、Secure False、返回 None；实测 {"return": null, "native": {"domain": null, "expires": 1791241896171, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_defaults", "partitioned": false, "path": "/xpath", "sameSite": "lax", "secure": false, "value": ""}, "time_before": 1791241796147, "time_after": 1791241796191}；65.7ms
+07/14 [92m[通过][0m session_cookie 期望 sessionCookie=True 的过期时间为空，值正确，返回 None；实测 {"return": null, "native": {"domain": null, "expires": null, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_session_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791241796207, "time_after": 1791241796239}；47.1ms
+08/14 [92m[通过][0m fractional_expiry 期望 expires 接受有限小数，原生有效期落在调用前后时钟 + 2.5 秒范围；实测 {"return": null, "native": {"domain": null, "expires": 1791241798766, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_fractional", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791241796254, "time_after": 1791241796286}；46.4ms
+09/14 [92m[通过][0m secure_cookie 期望 Secure True 写入原生属性正确，返回 None；实测 {"return": null, "native": {"domain": null, "expires": 1791241896327, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_secure_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "written"}, "time_before": 1791241796304, "time_after": 1791241796348}；61.7ms
+10/14 [92m[通过][0m domain_cookie 期望 显式当前域名写为域 Cookie，原生 domain 正确；实测 {"return": null, "native": {"domain": "baobaomi900901.github.io", "expires": 1791241896374, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_domain_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791241796362, "time_after": 1791241796393}；45.0ms
+11/14 [92m[通过][0m empty_value 期望 value=None 规范化为空字符串，原生值为空；实测 {"return": null, "native": {"domain": null, "expires": 1791241896422, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_empty_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": ""}, "time_before": 1791241796410, "time_after": 1791241796441}；48.2ms
+12/14 [92m[通过][0m overwrite 期望 同名/同域/同 Path 覆盖后仅一个项且原生值是 second；实测 {"first": {"return": null, "native": {"domain": null, "expires": 1791241896470, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_overwrite", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "first"}, "time_before": 1791241796456, "time_after": 1791241796487}, "second": {"return": null, "native": {"domain": null, "expires": 1791241896516, "name": "sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_overwrite", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "second"}, "time_before": 1791241796504, "time_after": 1791241796534}}；93.0ms
+13/14 [91m[失败][0m other_path_write 期望 另一路径写入只在真实匹配文档的原生观察中可见；实测 {"exception": "ActionError", "message": "浏览器操作失败，请重试", "trace": "cookie_set_failed"}；9.4ms
+14/14 [91m[失败][0m cleanup 期望 删除本次 Cookie、原生确认；保留外部 Cookie、关闭自有标签并复核基线；实测 {"exception": "AssertionError", "message": "{'errors': [\"AssertionError: {'cookies': [{'domain': None, 'expires': 1791241896171, 'name': 'sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_defaults', 'partitioned': False, 'path': '/xpath', 'sameSite': 'lax', 'secure': False, 'value': ''}], 'hostname': 'baobaomi900901.github.io', 'now': 1791241796764, 'pairs': [{'name': 'sdk_browser_cookie_e7b2f432db8743c98075bae0ff228bf0_defaults', 'value': ''}], 'path': '/xpath/', 'readyState': 'complete', 'url': 'https://baobaomi900901.github.io/xpath/#/cookie-test', 'userAgent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36', 'foreign_fingerprint': '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945', 'foreign_count': 0}\", \"AssertionError: {'cookies': [{'domain': No…；438.2ms
+READY_FOR_LIVE · 12/14 通过 · 退出码 1
+
+RUN 2
+命令: uv run .\web\test_web_browser_set_cookie.py --report-file .\web\evidence\artifacts\browser_set_cookie_20261006_run2.json
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.set_cookie
+页面    : https://baobaomi900901.github.io/xpath/#/cookie-test
+方式    : 后台 API / JavaScript
+已执行 api_contract: PASS
+已执行 extra_positional: PASS
+已执行 unknown_keyword: PASS
+已执行 environment: PASS
+已执行 native_fixtures: PASS
+已执行 default_persistent: PASS
+已执行 session_cookie: PASS
+已执行 fractional_expiry: PASS
+已执行 secure_cookie: PASS
+已执行 domain_cookie: PASS
+已执行 empty_value: PASS
+已执行 overwrite: PASS
+已执行 other_path_write: FAIL
+已执行 http_only_protection: PASS
+已执行 natural_expiry: PASS
+已执行 missing_name: PASS
+已执行 blank_name: PASS
+已执行 invalid_expiry: PASS
+已执行 invalid_flags: PASS
+已执行 closed_page: PASS
+已执行 cleanup: PASS
+进度     状态    测试项                  测试结果
+01/21 [92m[通过][0m api_contract 期望 签名、默认值、docstring 和 SDK 源码均匹配只读快照；实测 "(self, *, name=None, value=None, sessionCookie: 'bool' = False, expires: 'float' = 100, domain=None, path=None, httpOnly: 'bool' = False, secure: 'bool' = False) -> 'None'"；1.5ms
+02/21 [92m[通过][0m extra_positional 期望 多余位置参数由 Python TypeError 拒绝，方法体未执行；实测 {"exception": "TypeError", "message": "WebBrowser.set_cookie() takes 1 positional argument but 2 were given", "trace": ""}；0.0ms
+03/21 [92m[通过][0m unknown_keyword 期望 未知 keyword 由 Python TypeError 拒绝，方法体未执行；实测 {"exception": "TypeError", "message": "WebBrowser.set_cookie() got an unexpected keyword argument 'unexpected'", "trace": ""}；0.0ms
+04/21 [92m[通过][0m environment 期望 创建后台测试页、读取原生 Cookie Store、记录 Chrome 标签基线；实测 {"url": "https://baobaomi900901.github.io/xpath/#/cookie-test", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36", "baseline_tabs": 3, "foreign_cookie_count": 0, "silent_running": true, "native_cookie_store": true}；874.4ms
+05/21 [92m[通过][0m native_fixtures 期望 原生 JS 准备会话/持久、域 Cookie、分区和其他 Path；Cookie Store 确认；实测 {"main": {"cookies": [{"domain": null, "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_session", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "session-value"}, {"domain": "baobaomi900901.github.io", "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_domain", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "domain-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_partition", "partitioned": true, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "partition-value"}, {"domain": null, "expires": 1791242693793.036, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_persistent", "partitioned": false, "path": "/", "sameSite": "lax", "…；511.2ms
+06/21 [92m[通过][0m default_persistent 期望 默认持久 Cookie、100 秒、默认 URL Path /xpath、hostOnly、Secure False、返回 None；实测 {"return": null, "native": {"domain": null, "expires": 1791242194235, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_defaults", "partitioned": false, "path": "/xpath", "sameSite": "lax", "secure": false, "value": ""}, "time_before": 1791242094225, "time_after": 1791242094259}；52.7ms
+07/21 [92m[通过][0m session_cookie 期望 sessionCookie=True 的过期时间为空，值正确，返回 None；实测 {"return": null, "native": {"domain": null, "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_session_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242094287, "time_after": 1791242094318}；59.6ms
+08/21 [92m[通过][0m fractional_expiry 期望 expires 接受有限小数，原生有效期落在调用前后时钟 + 2.5 秒范围；实测 {"return": null, "native": {"domain": null, "expires": 1791242096845, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_fractional", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242094332, "time_after": 1791242094366}；47.8ms
+09/21 [92m[通过][0m secure_cookie 期望 Secure True 写入原生属性正确，返回 None；实测 {"return": null, "native": {"domain": null, "expires": 1791242194406, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_secure_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "written"}, "time_before": 1791242094382, "time_after": 1791242094426}；58.7ms
+10/21 [92m[通过][0m domain_cookie 期望 显式当前域名写为域 Cookie，原生 domain 正确；实测 {"return": null, "native": {"domain": "baobaomi900901.github.io", "expires": 1791242194452, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_domain_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242094442, "time_after": 1791242094472}；46.2ms
+11/21 [92m[通过][0m empty_value 期望 value=None 规范化为空字符串，原生值为空；实测 {"return": null, "native": {"domain": null, "expires": 1791242194498, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_empty_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": ""}, "time_before": 1791242094489, "time_after": 1791242094522}；50.9ms
+12/21 [92m[通过][0m overwrite 期望 同名/同域/同 Path 覆盖后仅一个项且原生值是 second；实测 {"first": {"return": null, "native": {"domain": null, "expires": 1791242194560, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_overwrite", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "first"}, "time_before": 1791242094551, "time_after": 1791242094581}, "second": {"return": null, "native": {"domain": null, "expires": 1791242194606, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_overwrite", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "second"}, "time_before": 1791242094595, "time_after": 1791242094627}}；105.8ms
+13/21 [91m[失败][0m other_path_write 期望 另一路径写入只在真实匹配文档的原生观察中可见；实测 {"exception": "ActionError", "message": "浏览器操作失败，请重试", "trace": "cookie_set_failed", "native_main": {"cookies": [{"domain": null, "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_session", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "session-value"}, {"domain": "baobaomi900901.github.io", "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_domain", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "domain-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_partition", "partitioned": true, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "partition-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4c…；46.1ms
+14/21 [92m[通过][0m http_only_protection 期望 写入后脚本不能读取或覆盖；删除后同名同 Path 可由 JS 创建，排除未写入；实测 {"return": null, "hidden_before_and_after_js_overwrite": true, "native_after_removal": {"cookies": [{"domain": null, "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_session", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "session-value"}, {"domain": "baobaomi900901.github.io", "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_domain", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "domain-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_partition", "partitioned": true, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "partition-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_ses…；123.8ms
+15/21 [92m[通过][0m natural_expiry 期望 1.2 秒有效期自然到期；原生 Cookie 消失，无 SDK 删除操作；实测 {"written": {"return": null, "native": {"domain": null, "expires": 1791242096023, "name": "sdk_browser_cookie_bb05b89819b549d68221d4ccab6fa35c_expiry", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242094812, "time_after": 1791242094843}, "native_expired": true, "elapsed_seconds": 1.267}；1311.7ms
+16/21 [92m[通过][0m missing_name 期望 未提供名称抛 InvalidParamsError / missing name；实测 {"exception": "InvalidParamsError", "message": "missing name", "trace": "invalid_params"}；0.6ms
+17/21 [92m[通过][0m blank_name 期望 空名称抛 InvalidParamsError / missing name；实测 {"exception": "InvalidParamsError", "message": "missing name", "trace": "invalid_params"}；0.5ms
+18/21 [92m[通过][0m invalid_expiry 期望 NaN/Infinity/bool/None 有效期均拒绝，未生成 Cookie；实测 [{"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}]；1.9ms
+19/21 [92m[通过][0m invalid_flags 期望 三个布尔开关均拒绝字符串 true；实测 [{"exception": "InvalidParamsError", "message": "Cookie 开关必须为布尔值", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 开关必须为布尔值", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 开关必须为布尔值", "trace": "invalid_params"}]；1.6ms
+20/21 [92m[通过][0m closed_page 期望 有效参数操作已关闭页面抛 ActionError / 网页对象已失效 / stale_page_reference；实测 {"exception": "ActionError", "message": "网页对象已失效", "trace": "stale_page_reference"}；760.6ms
+21/21 [92m[通过][0m cleanup 期望 删除本次 Cookie、原生确认；保留外部 Cookie、关闭自有标签并复核基线；实测 {"errors": [], "owned_cookies_removed": true, "foreign_cookie_baseline_preserved": true, "tab_count": "3->3", "own_tabs_closed": true, "external_added": [], "external_removed": []}；617.0ms
+READY_FOR_LIVE · 20/21 通过 · 退出码 1
+
+RUN 3
+命令: uv run .\web\test_web_browser_set_cookie.py --report-file .\web\evidence\artifacts\browser_set_cookie_20261006_run3.json
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.set_cookie
+页面    : https://baobaomi900901.github.io/xpath/#/cookie-test
+方式    : 后台 API / JavaScript
+已执行 api_contract: PASS
+已执行 extra_positional: PASS
+已执行 unknown_keyword: PASS
+已执行 environment: PASS
+已执行 native_fixtures: PASS
+已执行 default_persistent: PASS
+已执行 session_cookie: PASS
+已执行 fractional_expiry: PASS
+已执行 secure_cookie: PASS
+已执行 domain_cookie: PASS
+已执行 empty_value: PASS
+已执行 overwrite: PASS
+已执行 other_path_write: FAIL
+已执行 http_only_protection: PASS
+已执行 natural_expiry: PASS
+已执行 missing_name: PASS
+已执行 blank_name: PASS
+已执行 invalid_expiry: PASS
+已执行 invalid_flags: PASS
+已执行 closed_page: PASS
+已执行 cleanup: PASS
+进度     状态    测试项                  测试结果
+01/21 [92m[通过][0m api_contract 期望 签名、默认值、docstring 和 SDK 源码均匹配只读快照；实测 "(self, *, name=None, value=None, sessionCookie: 'bool' = False, expires: 'float' = 100, domain=None, path=None, httpOnly: 'bool' = False, secure: 'bool' = False) -> 'None'"；1.1ms
+02/21 [92m[通过][0m extra_positional 期望 多余位置参数由 Python TypeError 拒绝，方法体未执行；实测 {"exception": "TypeError", "message": "WebBrowser.set_cookie() takes 1 positional argument but 2 were given", "trace": ""}；0.0ms
+03/21 [92m[通过][0m unknown_keyword 期望 未知 keyword 由 Python TypeError 拒绝，方法体未执行；实测 {"exception": "TypeError", "message": "WebBrowser.set_cookie() got an unexpected keyword argument 'unexpected'", "trace": ""}；0.0ms
+04/21 [92m[通过][0m environment 期望 创建后台测试页、读取原生 Cookie Store、记录 Chrome 标签基线；实测 {"url": "https://baobaomi900901.github.io/xpath/#/cookie-test", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36", "baseline_tabs": 3, "foreign_cookie_count": 0, "silent_running": true, "native_cookie_store": true}；908.0ms
+05/21 [92m[通过][0m native_fixtures 期望 原生 JS 准备会话/持久、域 Cookie、分区和其他 Path；Cookie Store 确认；实测 {"main": {"cookies": [{"domain": null, "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_session", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "session-value"}, {"domain": "baobaomi900901.github.io", "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_domain", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "domain-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_partition", "partitioned": true, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "partition-value"}, {"domain": null, "expires": 1791242740955.542, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_persistent", "partitioned": false, "path": "/", "sameSite": "lax", "…；593.6ms
+06/21 [92m[通过][0m default_persistent 期望 默认持久 Cookie、100 秒、默认 URL Path /xpath、hostOnly、Secure False、返回 None；实测 {"return": null, "native": {"domain": null, "expires": 1791242241511, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_defaults", "partitioned": false, "path": "/xpath", "sameSite": "lax", "secure": false, "value": ""}, "time_before": 1791242141499, "time_after": 1791242141533}；51.8ms
+07/21 [92m[通过][0m session_cookie 期望 sessionCookie=True 的过期时间为空，值正确，返回 None；实测 {"return": null, "native": {"domain": null, "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_session_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242141549, "time_after": 1791242141599}；66.4ms
+08/21 [92m[通过][0m fractional_expiry 期望 expires 接受有限小数，原生有效期落在调用前后时钟 + 2.5 秒范围；实测 {"return": null, "native": {"domain": null, "expires": 1791242144137, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_fractional", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242141625, "time_after": 1791242141657}；56.1ms
+09/21 [92m[通过][0m secure_cookie 期望 Secure True 写入原生属性正确，返回 None；实测 {"return": null, "native": {"domain": null, "expires": 1791242241683, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_secure_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "written"}, "time_before": 1791242141672, "time_after": 1791242141703}；46.5ms
+10/21 [92m[通过][0m domain_cookie 期望 显式当前域名写为域 Cookie，原生 domain 正确；实测 {"return": null, "native": {"domain": "baobaomi900901.github.io", "expires": 1791242241733, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_domain_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242141719, "time_after": 1791242141751}；48.4ms
+11/21 [92m[通过][0m empty_value 期望 value=None 规范化为空字符串，原生值为空；实测 {"return": null, "native": {"domain": null, "expires": 1791242241777, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_empty_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": ""}, "time_before": 1791242141766, "time_after": 1791242141797}；45.3ms
+12/21 [92m[通过][0m overwrite 期望 同名/同域/同 Path 覆盖后仅一个项且原生值是 second；实测 {"first": {"return": null, "native": {"domain": null, "expires": 1791242241826, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_overwrite", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "first"}, "time_before": 1791242141812, "time_after": 1791242141847}, "second": {"return": null, "native": {"domain": null, "expires": 1791242241885, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_overwrite", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "second"}, "time_before": 1791242141874, "time_after": 1791242141905}}；110.5ms
+13/21 [91m[失败][0m other_path_write 期望 另一路径写入只在真实匹配文档的原生观察中可见；实测 {"exception": "ActionError", "message": "浏览器操作失败，请重试", "trace": "cookie_set_failed", "native_main": {"cookies": [{"domain": null, "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_session", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "session-value"}, {"domain": "baobaomi900901.github.io", "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_domain", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "domain-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_partition", "partitioned": true, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "partition-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9…；42.8ms
+14/21 [92m[通过][0m http_only_protection 期望 写入后脚本不能读取或覆盖；删除后同名同 Path 可由 JS 创建，排除未写入；实测 {"return": null, "hidden_before_and_after_js_overwrite": true, "native_after_removal": {"cookies": [{"domain": null, "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_session", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "session-value"}, {"domain": "baobaomi900901.github.io", "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_domain", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "domain-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_partition", "partitioned": true, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "partition-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_ses…；126.9ms
+15/21 [92m[通过][0m natural_expiry 期望 1.2 秒有效期自然到期；原生 Cookie 消失，无 SDK 删除操作；实测 {"written": {"return": null, "native": {"domain": null, "expires": 1791242143304, "name": "sdk_browser_cookie_534661d26fce4157abb5af9c2ef411f6_expiry", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242142092, "time_after": 1791242142124}, "native_expired": true, "elapsed_seconds": 1.271}；1318.1ms
+16/21 [92m[通过][0m missing_name 期望 未提供名称抛 InvalidParamsError / missing name；实测 {"exception": "InvalidParamsError", "message": "missing name", "trace": "invalid_params"}；0.6ms
+17/21 [92m[通过][0m blank_name 期望 空名称抛 InvalidParamsError / missing name；实测 {"exception": "InvalidParamsError", "message": "missing name", "trace": "invalid_params"}；0.4ms
+18/21 [92m[通过][0m invalid_expiry 期望 NaN/Infinity/bool/None 有效期均拒绝，未生成 Cookie；实测 [{"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}]；1.3ms
+19/21 [92m[通过][0m invalid_flags 期望 三个布尔开关均拒绝字符串 true；实测 [{"exception": "InvalidParamsError", "message": "Cookie 开关必须为布尔值", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 开关必须为布尔值", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 开关必须为布尔值", "trace": "invalid_params"}]；1.0ms
+20/21 [92m[通过][0m closed_page 期望 有效参数操作已关闭页面抛 ActionError / 网页对象已失效 / stale_page_reference；实测 {"exception": "ActionError", "message": "网页对象已失效", "trace": "stale_page_reference"}；746.7ms
+21/21 [92m[通过][0m cleanup 期望 删除本次 Cookie、原生确认；保留外部 Cookie、关闭自有标签并复核基线；实测 {"errors": [], "owned_cookies_removed": true, "foreign_cookie_baseline_preserved": true, "tab_count": "3->3", "own_tabs_closed": true, "external_added": [], "external_removed": []}；611.1ms
+READY_FOR_LIVE · 20/21 通过 · 退出码 1
+
+RUN 4
+命令: uv run .\web\test_web_browser_set_cookie.py --report-file .\web\evidence\artifacts\browser_set_cookie_20261006_run4.json
+UIAutoma Web API 测试
+API     : uiautoma.web.WebBrowser.set_cookie
+页面    : https://baobaomi900901.github.io/xpath/#/cookie-test
+方式    : 后台 API / JavaScript
+已执行 api_contract: PASS
+已执行 extra_positional: PASS
+已执行 unknown_keyword: PASS
+已执行 environment: PASS
+已执行 native_fixtures: PASS
+已执行 default_persistent: PASS
+已执行 session_cookie: PASS
+已执行 fractional_expiry: PASS
+已执行 secure_cookie: PASS
+已执行 domain_cookie: PASS
+已执行 empty_value: PASS
+已执行 overwrite: PASS
+已执行 other_path_write: FAIL
+已执行 http_only_protection: PASS
+已执行 natural_expiry: PASS
+已执行 missing_name: PASS
+已执行 blank_name: PASS
+已执行 invalid_expiry: PASS
+已执行 invalid_flags: PASS
+已执行 closed_page: PASS
+已执行 cleanup: PASS
+进度     状态    测试项                  测试结果
+01/21 [92m[通过][0m api_contract 期望 签名、默认值、docstring 和 SDK 源码均匹配只读快照；实测 "(self, *, name=None, value=None, sessionCookie: 'bool' = False, expires: 'float' = 100, domain=None, path=None, httpOnly: 'bool' = False, secure: 'bool' = False) -> 'None'"；1.2ms
+02/21 [92m[通过][0m extra_positional 期望 多余位置参数由 Python TypeError 拒绝，方法体未执行；实测 {"exception": "TypeError", "message": "WebBrowser.set_cookie() takes 1 positional argument but 2 were given", "trace": ""}；0.0ms
+03/21 [92m[通过][0m unknown_keyword 期望 未知 keyword 由 Python TypeError 拒绝，方法体未执行；实测 {"exception": "TypeError", "message": "WebBrowser.set_cookie() got an unexpected keyword argument 'unexpected'", "trace": ""}；0.0ms
+04/21 [92m[通过][0m environment 期望 创建后台测试页、读取原生 Cookie Store、记录 Chrome 标签基线；实测 {"url": "https://baobaomi900901.github.io/xpath/#/cookie-test", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36", "baseline_tabs": 3, "foreign_cookie_count": 0, "silent_running": true, "native_cookie_store": true}；876.7ms
+05/21 [92m[通过][0m native_fixtures 期望 原生 JS 准备会话/持久、域 Cookie、分区和其他 Path；Cookie Store 确认；实测 {"main": {"cookies": [{"domain": null, "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_session", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "session-value"}, {"domain": "baobaomi900901.github.io", "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_domain", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "domain-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_partition", "partitioned": true, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "partition-value"}, {"domain": null, "expires": 1791242747297.061, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_persistent", "partitioned": false, "path": "/", "sameSite": "lax", "…；507.4ms
+06/21 [92m[通过][0m default_persistent 期望 默认持久 Cookie、100 秒、默认 URL Path /xpath、hostOnly、Secure False、返回 None；实测 {"return": null, "native": {"domain": null, "expires": 1791242247805, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_defaults", "partitioned": false, "path": "/xpath", "sameSite": "lax", "secure": false, "value": ""}, "time_before": 1791242147793, "time_after": 1791242147824}；50.4ms
+07/21 [92m[通过][0m session_cookie 期望 sessionCookie=True 的过期时间为空，值正确，返回 None；实测 {"return": null, "native": {"domain": null, "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_session_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242147853, "time_after": 1791242147884}；59.1ms
+08/21 [92m[通过][0m fractional_expiry 期望 expires 接受有限小数，原生有效期落在调用前后时钟 + 2.5 秒范围；实测 {"return": null, "native": {"domain": null, "expires": 1791242150424, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_fractional", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242147901, "time_after": 1791242147944}；59.5ms
+09/21 [92m[通过][0m secure_cookie 期望 Secure True 写入原生属性正确，返回 None；实测 {"return": null, "native": {"domain": null, "expires": 1791242247972, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_secure_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "written"}, "time_before": 1791242147959, "time_after": 1791242147991}；46.9ms
+10/21 [92m[通过][0m domain_cookie 期望 显式当前域名写为域 Cookie，原生 domain 正确；实测 {"return": null, "native": {"domain": "baobaomi900901.github.io", "expires": 1791242248015, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_domain_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242148005, "time_after": 1791242148037}；46.4ms
+11/21 [92m[通过][0m empty_value 期望 value=None 规范化为空字符串，原生值为空；实测 {"return": null, "native": {"domain": null, "expires": 1791242248061, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_empty_write", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": ""}, "time_before": 1791242148050, "time_after": 1791242148081}；45.3ms
+12/21 [92m[通过][0m overwrite 期望 同名/同域/同 Path 覆盖后仅一个项且原生值是 second；实测 {"first": {"return": null, "native": {"domain": null, "expires": 1791242248109, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_overwrite", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "first"}, "time_before": 1791242148098, "time_after": 1791242148129}, "second": {"return": null, "native": {"domain": null, "expires": 1791242248155, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_overwrite", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "second"}, "time_before": 1791242148143, "time_after": 1791242148177}}；96.2ms
+13/21 [91m[失败][0m other_path_write 期望 另一路径写入只在真实匹配文档的原生观察中可见；实测 {"exception": "ActionError", "message": "浏览器操作失败，请重试", "trace": "cookie_set_failed", "native_main": {"cookies": [{"domain": null, "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_session", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "session-value"}, {"domain": "baobaomi900901.github.io", "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_domain", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "domain-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_partition", "partitioned": true, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "partition-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b…；55.8ms
+14/21 [92m[通过][0m http_only_protection 期望 写入后脚本不能读取或覆盖；删除后同名同 Path 可由 JS 创建，排除未写入；实测 {"return": null, "hidden_before_and_after_js_overwrite": true, "native_after_removal": {"cookies": [{"domain": null, "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_session", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "session-value"}, {"domain": "baobaomi900901.github.io", "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_domain", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "domain-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_partition", "partitioned": true, "path": "/xpath/", "sameSite": "lax", "secure": true, "value": "partition-value"}, {"domain": null, "expires": null, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_ses…；123.8ms
+15/21 [92m[通过][0m natural_expiry 期望 1.2 秒有效期自然到期；原生 Cookie 消失，无 SDK 删除操作；实测 {"written": {"return": null, "native": {"domain": null, "expires": 1791242149585, "name": "sdk_browser_cookie_b53f4b3b0ef84fc486c7c5b0bd26fe57_expiry", "partitioned": false, "path": "/xpath/", "sameSite": "lax", "secure": false, "value": "written"}, "time_before": 1791242148373, "time_after": 1791242148404}, "native_expired": true, "elapsed_seconds": 1.268}；1314.0ms
+16/21 [92m[通过][0m missing_name 期望 未提供名称抛 InvalidParamsError / missing name；实测 {"exception": "InvalidParamsError", "message": "missing name", "trace": "invalid_params"}；0.4ms
+17/21 [92m[通过][0m blank_name 期望 空名称抛 InvalidParamsError / missing name；实测 {"exception": "InvalidParamsError", "message": "missing name", "trace": "invalid_params"}；0.3ms
+18/21 [92m[通过][0m invalid_expiry 期望 NaN/Infinity/bool/None 有效期均拒绝，未生成 Cookie；实测 [{"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 有效期必须为有限秒数", "trace": "invalid_params"}]；1.9ms
+19/21 [92m[通过][0m invalid_flags 期望 三个布尔开关均拒绝字符串 true；实测 [{"exception": "InvalidParamsError", "message": "Cookie 开关必须为布尔值", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 开关必须为布尔值", "trace": "invalid_params"}, {"exception": "InvalidParamsError", "message": "Cookie 开关必须为布尔值", "trace": "invalid_params"}]；1.2ms
+20/21 [92m[通过][0m closed_page 期望 有效参数操作已关闭页面抛 ActionError / 网页对象已失效 / stale_page_reference；实测 {"exception": "ActionError", "message": "网页对象已失效", "trace": "stale_page_reference"}；792.8ms
+21/21 [92m[通过][0m cleanup 期望 删除本次 Cookie、原生确认；保留外部 Cookie、关闭自有标签并复核基线；实测 {"errors": [], "owned_cookies_removed": true, "foreign_cookie_baseline_preserved": true, "tab_count": "3->3", "own_tabs_closed": true, "external_added": [], "external_removed": []}；584.8ms
+READY_FOR_LIVE · 20/21 通过 · 退出码 1

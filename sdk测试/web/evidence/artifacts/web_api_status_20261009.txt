@@ -1,0 +1,11 @@
+SDK Web API 汇总（2026-10-09）
+112 条：102 VERIFIED、2 READY_FOR_LIVE、1 DRAFT、7 SKIPPED
+关联 27 Issue：22 OPEN、5 CLOSED；非当前缺陷数量
+汇总既有证据，未执行本轮全量回归、未变更 Issue 状态。
+SHA-256：
+d1693d1a00714fd6ffd868887b7d80bf5b08fef751df942fdc4e8852cecd5a1f  web/evidence/web_api_status_20261009.md
+b31d28f04bcc6b173bd694ef7d135be466739961b908c6b5bab709828ef570f5  web/evidence/artifacts/web_api_status_20261009_inventory.json
+f9a671f3bed9abcb4cf7745c39cab4a2eac7f0571dc4e2dcd3e36adcd17ab28f  web/evidence/artifacts/web_api_status_20261009_inventory.py.txt
+1e6a11594886a5f6dc45da63811f641520959f30342fbfb23706fa56545aec43  web/evidence/artifacts/web_api_status_20261009_issues.json
+410a8aec61ee4f4c33490ca48dadb7086394d8289139d65b9275960832303741  web/evidence/artifacts/web_api_status_20261009_write_summary.py.txt
+760fc98e2a456e801c95cf4b24a4889bcb5efb4807abfa431acf225bbbeceeec  web/evidence/artifacts/web_api_status_20261009_issues_all_readonly.json

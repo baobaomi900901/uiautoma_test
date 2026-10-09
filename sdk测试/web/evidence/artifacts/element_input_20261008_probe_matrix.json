@@ -1,0 +1,1676 @@
+{
+  "api": "uiautoma.web.WebElement.input",
+  "date": "2026-10-08",
+  "lifecycle": "VERIFIED",
+  "scope": "background DOM/silent-default/CDP; system keyboard excluded",
+  "product_worktree": "D:\\code\\desktop",
+  "product_commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名、源码和只读 commit 与冻结合同一致",
+      "actual": {
+        "signature": "(self, text: 'str', *, simulative: 'bool' = True, cdp_input: 'bool' = False, append: 'bool' = False, contains_hotkey: 'bool' = False, force_ime_eng: 'bool' = False, send_key_delay: 'int' = 50, focus_timeout: 'int' = 1000, delay_after: 'float' = 1, click_before_input: 'bool' = True, anchor: 'object | None' = None, input_check: 'bool' = False, retry_times: 'int' = 3, check_value: 'str' = '') -> 'None'",
+        "product_commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+        "source": "D:\\code\\desktop\\sdk\\src\\uiautoma\\web\\element.py"
+      },
+      "elapsed_ms": 99.9
+    },
+    {
+      "case_id": "required_text",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.input() missing 1 required positional argument: 'text'",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "extra_positional",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.input() takes 2 positional arguments but 3 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.input() got an unexpected keyword argument 'unknown'",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_simulative",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "simulative 必须是布尔值 True 或 False",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "dom_hotkey_unsupported",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 UnsupportedActionError",
+      "actual": {
+        "exception": "UnsupportedActionError",
+        "message": "hotkey input requires simulative=True or cdp_input=True",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "append_check_missing",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "追加输入或包含快捷键时，输入验证必须提供 check_value",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "hotkey_check_missing",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "追加输入或包含快捷键时，输入验证必须提供 check_value",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_retry_negative",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "retry_times 必须是非负整数",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_retry_bool",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "retry_times 必须是非负整数",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_retry_float",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "retry_times 必须是非负整数",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_anchor",
+      "status": "PASS",
+      "expected": "在访问 Runtime 前抛 InvalidParamsError",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：invalid-anchor",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "后台靶场、临时库、剪贴板截获器可用，保留用户标签",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "silent_running": true,
+        "baseline_tabs": 2,
+        "temporary_library": "D:\\code\\元素库\\sdk测试\\.pytest_tmp\\input_live\\c7c7cb2b778b4c1cac6de3c38237556c\\library",
+        "observer": {
+          "clipboard_observer": true,
+          "root_is_shadow": true
+        }
+      },
+      "elapsed_ms": 1774.5
+    },
+    {
+      "case_id": "ant_library_mapping",
+      "status": "PASS",
+      "expected": "库选择器唯一命中指定 ant input",
+      "actual": {
+        "name": "web靶场_表单测试_ant_输入框",
+        "matches": 1,
+        "id": "form-controls-ant-text"
+      },
+      "elapsed_ms": 61.0
+    },
+    {
+      "case_id": "ant_dom_unicode",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 47.0,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 442.2
+    },
+    {
+      "case_id": "ant_dom_literal_symbols",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 '!@#$%^&*()_+-=[]{};:\\'\",.?/\\\\|~'",
+      "actual": {
+        "native_value": "!@#$%^&*()_+-=[]{};:'\",.?/\\|~",
+        "submitted_text": "!@#$%^&*()_+-=[]{};:'\",.?/\\|~",
+        "calls": [
+          {
+            "text": "!@#$%^&*()_+-=[]{};:'\",.?/\\|~",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "!@#$%^&*()_+-=[]{};:'\",.?/\\|~"
+            },
+            "elapsed_ms": 36.1,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 418.3
+    },
+    {
+      "case_id": "ant_dom_overwrite",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "original",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "original"
+            },
+            "elapsed_ms": 40.4,
+            "input_events": 1
+          },
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 31.8,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 483.8
+    },
+    {
+      "case_id": "ant_dom_append",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 '前缀-尾部😀'",
+      "actual": {
+        "native_value": "前缀-尾部😀",
+        "submitted_text": "前缀-尾部😀",
+        "calls": [
+          {
+            "text": "前缀-",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "前缀-"
+            },
+            "elapsed_ms": 41.7,
+            "input_events": 1
+          },
+          {
+            "text": "尾部😀",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "append": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "前缀-尾部😀"
+            },
+            "elapsed_ms": 34.4,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 494.8
+    },
+    {
+      "case_id": "ant_dom_empty_clear",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 ''",
+      "actual": {
+        "native_value": "",
+        "submitted_text": "",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 46.1,
+            "input_events": 1
+          },
+          {
+            "text": "",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": ""
+            },
+            "elapsed_ms": 36.0,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 483.1
+    },
+    {
+      "case_id": "ant_silent_default",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 32.4,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 392.5
+    },
+    {
+      "case_id": "ant_silent_ignored_keyboard_options",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'silent'",
+      "actual": {
+        "native_value": "silent",
+        "submitted_text": "silent",
+        "calls": [
+          {
+            "text": "silent",
+            "options": {
+              "delay_after": 0,
+              "force_ime_eng": true,
+              "send_key_delay": 500,
+              "focus_timeout": 1000,
+              "anchor": [
+                "top_left",
+                5,
+                5
+              ]
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "silent"
+            },
+            "elapsed_ms": 42.5,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 401.7
+    },
+    {
+      "case_id": "ant_dom_no_click",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "click_before_input": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 36.2,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 406.3
+    },
+    {
+      "case_id": "ant_delay_none",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": null,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 44.8,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 389.8
+    },
+    {
+      "case_id": "ant_delay_one_second",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 1,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 1040.2,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 1409.2
+    },
+    {
+      "case_id": "ant_check_default",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "input_check": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 340.0,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 683.9
+    },
+    {
+      "case_id": "ant_check_explicit",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "input_check": true,
+              "retry_times": 0,
+              "check_value": "SDK 输入 中文 123 😀✓"
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 337.6,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 716.8
+    },
+    {
+      "case_id": "ant_check_fail_zero",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'actual'",
+      "actual": {
+        "native_value": "actual",
+        "submitted_text": "actual",
+        "calls": [
+          {
+            "text": "actual",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "input_check": true,
+              "retry_times": 0,
+              "check_value": "different"
+            },
+            "return": null,
+            "error": {
+              "exception": "ActionError",
+              "message": "输入内容验证失败，输入后预期文本为：different，实际文本为：actual",
+              "trace": "input_check_failed"
+            },
+            "native": {
+              "focused": false,
+              "value": "actual"
+            },
+            "elapsed_ms": 351.7,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 1216.9
+    },
+    {
+      "case_id": "ant_check_fail_two",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'actual'",
+      "actual": {
+        "native_value": "actual",
+        "submitted_text": "actual",
+        "calls": [
+          {
+            "text": "actual",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "input_check": true,
+              "retry_times": 2,
+              "check_value": "different"
+            },
+            "return": null,
+            "error": {
+              "exception": "ActionError",
+              "message": "输入内容验证失败，输入后预期文本为：different，实际文本为：actual",
+              "trace": "input_check_failed"
+            },
+            "native": {
+              "focused": false,
+              "value": "actual"
+            },
+            "elapsed_ms": 4978.1,
+            "input_events": 3
+          }
+        ]
+      },
+      "elapsed_ms": 5328.1
+    },
+    {
+      "case_id": "ant_check_recovery",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'recovered'",
+      "actual": {
+        "native_value": "recovered",
+        "submitted_text": "recovered",
+        "calls": [
+          {
+            "text": "recovered",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "input_check": true,
+              "retry_times": 1
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "recovered"
+            },
+            "elapsed_ms": 2631.1,
+            "input_events": 2
+          }
+        ]
+      },
+      "elapsed_ms": 3035.1
+    },
+    {
+      "case_id": "ant_check_append_no_retry",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'prefix-tail'",
+      "actual": {
+        "native_value": "prefix-tail",
+        "submitted_text": "prefix-tail",
+        "calls": [
+          {
+            "text": "prefix-",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "prefix-"
+            },
+            "elapsed_ms": 15.3,
+            "input_events": 1
+          },
+          {
+            "text": "tail",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "append": true,
+              "input_check": true,
+              "retry_times": 3,
+              "check_value": "different"
+            },
+            "return": null,
+            "error": {
+              "exception": "ActionError",
+              "message": "输入内容验证失败，输入后预期文本为：different，实际文本为：prefix-tail",
+              "trace": "input_check_failed"
+            },
+            "native": {
+              "focused": false,
+              "value": "prefix-tail"
+            },
+            "elapsed_ms": 321.3,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 764.4
+    },
+    {
+      "case_id": "ant_cdp_unicode",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 34.9,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 408.5
+    },
+    {
+      "case_id": "ant_cdp_append",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'CDP-尾部😀'",
+      "actual": {
+        "native_value": "CDP-尾部😀",
+        "submitted_text": "CDP-尾部😀",
+        "calls": [
+          {
+            "text": "CDP-",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "CDP-"
+            },
+            "elapsed_ms": 33.9,
+            "input_events": 1
+          },
+          {
+            "text": "尾部😀",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true,
+              "append": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "CDP-尾部😀"
+            },
+            "elapsed_ms": 19.5,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 498.2
+    },
+    {
+      "case_id": "ant_cdp_priority",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": true,
+              "cdp_input": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 36.0,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 434.4
+    },
+    {
+      "case_id": "ant_cdp_no_click_focused",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true,
+              "click_before_input": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 27.4,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 390.1
+    },
+    {
+      "case_id": "ant_cdp_no_click_unfocused",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 ''",
+      "actual": {
+        "native_value": "",
+        "submitted_text": "",
+        "calls": [
+          {
+            "text": "",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true,
+              "click_before_input": false
+            },
+            "return": null,
+            "error": {
+              "exception": "ActionError",
+              "message": "输入框未获得焦点",
+              "trace": "element_not_focused"
+            },
+            "native": {
+              "focused": false,
+              "value": ""
+            },
+            "elapsed_ms": 14.9,
+            "input_events": 0
+          }
+        ]
+      },
+      "elapsed_ms": 403.3
+    },
+    {
+      "case_id": "ant_cdp_hotkey_replace",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 '新值'",
+      "actual": {
+        "native_value": "新值",
+        "submitted_text": "新值",
+        "calls": [
+          {
+            "text": "old",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "old"
+            },
+            "elapsed_ms": 21.6,
+            "input_events": 1
+          },
+          {
+            "text": "^a新值",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true,
+              "append": true,
+              "contains_hotkey": true,
+              "input_check": true,
+              "check_value": "新值",
+              "send_key_delay": 0
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "新值"
+            },
+            "elapsed_ms": 338.6,
+            "input_events": 2
+          }
+        ]
+      },
+      "elapsed_ms": 825.7
+    },
+    {
+      "case_id": "native_library_mapping",
+      "status": "PASS",
+      "expected": "库选择器唯一命中指定 native input",
+      "actual": {
+        "name": "web靶场_表单测试_原生_输入框",
+        "matches": 1,
+        "id": "form-controls-native-text"
+      },
+      "elapsed_ms": 43.1
+    },
+    {
+      "case_id": "native_dom_unicode",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 20.9,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 302.7
+    },
+    {
+      "case_id": "native_dom_literal_symbols",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 '!@#$%^&*()_+-=[]{};:\\'\",.?/\\\\|~'",
+      "actual": {
+        "native_value": "!@#$%^&*()_+-=[]{};:'\",.?/\\|~",
+        "submitted_text": "!@#$%^&*()_+-=[]{};:'\",.?/\\|~",
+        "calls": [
+          {
+            "text": "!@#$%^&*()_+-=[]{};:'\",.?/\\|~",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "!@#$%^&*()_+-=[]{};:'\",.?/\\|~"
+            },
+            "elapsed_ms": 21.7,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 344.3
+    },
+    {
+      "case_id": "native_dom_overwrite",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "original",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "original"
+            },
+            "elapsed_ms": 16.2,
+            "input_events": 1
+          },
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 12.4,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 417.5
+    },
+    {
+      "case_id": "native_dom_append",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 '前缀-尾部😀'",
+      "actual": {
+        "native_value": "前缀-尾部😀",
+        "submitted_text": "前缀-尾部😀",
+        "calls": [
+          {
+            "text": "前缀-",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "前缀-"
+            },
+            "elapsed_ms": 16.6,
+            "input_events": 1
+          },
+          {
+            "text": "尾部😀",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "append": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "前缀-尾部😀"
+            },
+            "elapsed_ms": 12.9,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 419.8
+    },
+    {
+      "case_id": "native_dom_empty_clear",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 ''",
+      "actual": {
+        "native_value": "",
+        "submitted_text": "",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 23.2,
+            "input_events": 1
+          },
+          {
+            "text": "",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": ""
+            },
+            "elapsed_ms": 13.5,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 438.2
+    },
+    {
+      "case_id": "native_silent_default",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 15.2,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 380.9
+    },
+    {
+      "case_id": "native_silent_ignored_keyboard_options",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'silent'",
+      "actual": {
+        "native_value": "silent",
+        "submitted_text": "silent",
+        "calls": [
+          {
+            "text": "silent",
+            "options": {
+              "delay_after": 0,
+              "force_ime_eng": true,
+              "send_key_delay": 500,
+              "focus_timeout": 1000,
+              "anchor": [
+                "top_left",
+                5,
+                5
+              ]
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "silent"
+            },
+            "elapsed_ms": 15.3,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 335.1
+    },
+    {
+      "case_id": "native_dom_no_click",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "click_before_input": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 9.2,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 391.6
+    },
+    {
+      "case_id": "native_delay_none",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": null,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 17.6,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 343.8
+    },
+    {
+      "case_id": "native_delay_one_second",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 1,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 1016.5,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 1341.7
+    },
+    {
+      "case_id": "native_check_default",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "input_check": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 327.7,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 655.9
+    },
+    {
+      "case_id": "native_check_explicit",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "input_check": true,
+              "retry_times": 0,
+              "check_value": "SDK 输入 中文 123 😀✓"
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 321.9,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 641.7
+    },
+    {
+      "case_id": "native_check_fail_zero",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'actual'",
+      "actual": {
+        "native_value": "actual",
+        "submitted_text": "actual",
+        "calls": [
+          {
+            "text": "actual",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "input_check": true,
+              "retry_times": 0,
+              "check_value": "different"
+            },
+            "return": null,
+            "error": {
+              "exception": "ActionError",
+              "message": "输入内容验证失败，输入后预期文本为：different，实际文本为：actual",
+              "trace": "input_check_failed"
+            },
+            "native": {
+              "focused": false,
+              "value": "actual"
+            },
+            "elapsed_ms": 321.4,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 622.4
+    },
+    {
+      "case_id": "native_check_fail_two",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'actual'",
+      "actual": {
+        "native_value": "actual",
+        "submitted_text": "actual",
+        "calls": [
+          {
+            "text": "actual",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "input_check": true,
+              "retry_times": 2,
+              "check_value": "different"
+            },
+            "return": null,
+            "error": {
+              "exception": "ActionError",
+              "message": "输入内容验证失败，输入后预期文本为：different，实际文本为：actual",
+              "trace": "input_check_failed"
+            },
+            "native": {
+              "focused": false,
+              "value": "actual"
+            },
+            "elapsed_ms": 4949.8,
+            "input_events": 3
+          }
+        ]
+      },
+      "elapsed_ms": 5265.7
+    },
+    {
+      "case_id": "native_check_recovery",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'recovered'",
+      "actual": {
+        "native_value": "recovered",
+        "submitted_text": "recovered",
+        "calls": [
+          {
+            "text": "recovered",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "input_check": true,
+              "retry_times": 1
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "recovered"
+            },
+            "elapsed_ms": 2633.5,
+            "input_events": 2
+          }
+        ]
+      },
+      "elapsed_ms": 3025.9
+    },
+    {
+      "case_id": "native_check_append_no_retry",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'prefix-tail'",
+      "actual": {
+        "native_value": "prefix-tail",
+        "submitted_text": "prefix-tail",
+        "calls": [
+          {
+            "text": "prefix-",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "prefix-"
+            },
+            "elapsed_ms": 16.6,
+            "input_events": 1
+          },
+          {
+            "text": "tail",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "append": true,
+              "input_check": true,
+              "retry_times": 3,
+              "check_value": "different"
+            },
+            "return": null,
+            "error": {
+              "exception": "ActionError",
+              "message": "输入内容验证失败，输入后预期文本为：different，实际文本为：prefix-tail",
+              "trace": "input_check_failed"
+            },
+            "native": {
+              "focused": false,
+              "value": "prefix-tail"
+            },
+            "elapsed_ms": 316.1,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 716.4
+    },
+    {
+      "case_id": "native_cdp_unicode",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 30.0,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 342.2
+    },
+    {
+      "case_id": "native_cdp_append",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'CDP-尾部😀'",
+      "actual": {
+        "native_value": "CDP-尾部😀",
+        "submitted_text": "CDP-尾部😀",
+        "calls": [
+          {
+            "text": "CDP-",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "CDP-"
+            },
+            "elapsed_ms": 18.7,
+            "input_events": 1
+          },
+          {
+            "text": "尾部😀",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true,
+              "append": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "CDP-尾部😀"
+            },
+            "elapsed_ms": 19.6,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 404.5
+    },
+    {
+      "case_id": "native_cdp_priority",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": true,
+              "cdp_input": true
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 22.5,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 375.9
+    },
+    {
+      "case_id": "native_cdp_no_click_focused",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 'SDK 输入 中文 123 😀✓'",
+      "actual": {
+        "native_value": "SDK 输入 中文 123 😀✓",
+        "submitted_text": "SDK 输入 中文 123 😀✓",
+        "calls": [
+          {
+            "text": "SDK 输入 中文 123 😀✓",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true,
+              "click_before_input": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "SDK 输入 中文 123 😀✓"
+            },
+            "elapsed_ms": 22.8,
+            "input_events": 1
+          }
+        ]
+      },
+      "elapsed_ms": 378.0
+    },
+    {
+      "case_id": "native_cdp_no_click_unfocused",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 ''",
+      "actual": {
+        "native_value": "",
+        "submitted_text": "",
+        "calls": [
+          {
+            "text": "",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true,
+              "click_before_input": false
+            },
+            "return": null,
+            "error": {
+              "exception": "ActionError",
+              "message": "输入框未获得焦点",
+              "trace": "element_not_focused"
+            },
+            "native": {
+              "focused": false,
+              "value": ""
+            },
+            "elapsed_ms": 14.1,
+            "input_events": 0
+          }
+        ]
+      },
+      "elapsed_ms": 329.8
+    },
+    {
+      "case_id": "native_cdp_hotkey_replace",
+      "status": "PASS",
+      "expected": "返回/异常符合合同，原生 DOM 与真实提交 text 均为 '新值'",
+      "actual": {
+        "native_value": "新值",
+        "submitted_text": "新值",
+        "calls": [
+          {
+            "text": "old",
+            "options": {
+              "delay_after": 0,
+              "simulative": false
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": false,
+              "value": "old"
+            },
+            "elapsed_ms": 15.8,
+            "input_events": 1
+          },
+          {
+            "text": "^a新值",
+            "options": {
+              "delay_after": 0,
+              "simulative": false,
+              "cdp_input": true,
+              "append": true,
+              "contains_hotkey": true,
+              "input_check": true,
+              "check_value": "新值",
+              "send_key_delay": 0
+            },
+            "return": null,
+            "error": null,
+            "native": {
+              "focused": true,
+              "value": "新值"
+            },
+            "elapsed_ms": 335.9,
+            "input_events": 2
+          }
+        ]
+      },
+      "elapsed_ms": 739.0
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "关闭自有页面/库，删除副本，源库和外部标签基线不变",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "source_library_unchanged": true,
+        "tab_count": "2->2",
+        "external_added": [],
+        "external_removed": []
+      },
+      "elapsed_ms": 189.5
+    }
+  ],
+  "exit_code": 0
+}

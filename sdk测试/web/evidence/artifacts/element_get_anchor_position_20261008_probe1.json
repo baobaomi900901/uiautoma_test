@@ -1,0 +1,921 @@
+{
+  "api": "uiautoma.web.WebElement.get_anchor_position",
+  "date": "2026-10-08",
+  "lifecycle": "READY_FOR_LIVE",
+  "scope": "background Chrome, iframe/open Shadow Ant input, native DPI=96; higher DPI conversion not verified",
+  "worktrees": {
+    "desktop": "D:\\code\\desktop",
+    "rust_uia": "D:\\code\\rust_uia"
+  },
+  "commits": {
+    "desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+    "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"
+  },
+  "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "library": "D:\\code\\元素库\\260902_web元素",
+  "element": "web靶场_表单测试_ant_输入框",
+  "results": [
+    {
+      "case_id": "api_contract",
+      "status": "PASS",
+      "expected": "签名、源码、默认值、关键字参数及只读快照一致",
+      "actual": {
+        "signature": "(self, *, anchor: 'object | None' = None, to96dpi: 'bool' = True) -> 'tuple[int, int]'",
+        "commits": {
+          "desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+          "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"
+        },
+        "return": "tuple[int,int]",
+        "keyword_only": [
+          "anchor",
+          "to96dpi"
+        ]
+      },
+      "elapsed_ms": 225.7
+    },
+    {
+      "case_id": "invalid_name",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：bad",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "blank_name",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "whitespace_name",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点： top_left ",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_tuple_name",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：bad",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.1
+    },
+    {
+      "case_id": "invalid_dict_name",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：bad",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "invalid_type",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / anchor 必须是 None、字符串、元组或映射对象",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "anchor 必须是 None、字符串、元组或映射对象",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "uppercase_random",
+      "status": "PASS",
+      "expected": "SDK 在 RPC 前拒绝；InvalidParamsError / 不支持的锚点",
+      "actual": {
+        "exception": "InvalidParamsError",
+        "message": "不支持的锚点：RANDOM",
+        "trace": "",
+        "rpc_calls": 0
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "keyword_only",
+      "status": "PASS",
+      "expected": "位置传参抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.get_anchor_position() takes 1 positional argument but 2 were given",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "unknown_keyword",
+      "status": "PASS",
+      "expected": "未知关键字抛 TypeError",
+      "actual": {
+        "exception": "TypeError",
+        "message": "WebElement.get_anchor_position() got an unexpected keyword argument 'relative_to'",
+        "trace": ""
+      },
+      "elapsed_ms": 0.0
+    },
+    {
+      "case_id": "environment",
+      "status": "PASS",
+      "expected": "静默自有靶场/库副本可用；保留用户标签",
+      "actual": {
+        "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+        "library": "D:\\code\\元素库\\260902_web元素",
+        "silent_running": true,
+        "baseline_tabs": 8
+      },
+      "elapsed_ms": 2799.6
+    },
+    {
+      "case_id": "library_mapping",
+      "status": "PASS",
+      "expected": "库选择器唯一命中 Ant input",
+      "actual": {
+        "name": "web靶场_表单测试_ant_输入框",
+        "matches": 1,
+        "id": "form-controls-ant-text",
+        "tag": "INPUT"
+      },
+      "elapsed_ms": 70.0
+    },
+    {
+      "case_id": "native_oracle",
+      "status": "BLOCKED",
+      "expected": "独立 Win32 唯一识别 96 DPI Chrome 主窗口与 viewport",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 22.0
+    },
+    {
+      "case_id": "default_center",
+      "status": "BLOCKED",
+      "expected": "默认参数返回元素中心屏幕坐标、两个 int",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 171.2
+    },
+    {
+      "case_id": "top_left_False",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 169.5
+    },
+    {
+      "case_id": "top_left_True",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 173.0
+    },
+    {
+      "case_id": "top_center_False",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 170.6
+    },
+    {
+      "case_id": "top_center_True",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 165.9
+    },
+    {
+      "case_id": "top_right_False",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 170.8
+    },
+    {
+      "case_id": "top_right_True",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 172.9
+    },
+    {
+      "case_id": "middle_left_False",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 169.2
+    },
+    {
+      "case_id": "middle_left_True",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 158.1
+    },
+    {
+      "case_id": "middle_center_False",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 167.1
+    },
+    {
+      "case_id": "middle_center_True",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 157.7
+    },
+    {
+      "case_id": "middle_right_False",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 156.4
+    },
+    {
+      "case_id": "middle_right_True",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 157.2
+    },
+    {
+      "case_id": "bottom_left_False",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 170.3
+    },
+    {
+      "case_id": "bottom_left_True",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 155.0
+    },
+    {
+      "case_id": "bottom_center_False",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 175.4
+    },
+    {
+      "case_id": "bottom_center_True",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 168.8
+    },
+    {
+      "case_id": "bottom_right_False",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 172.5
+    },
+    {
+      "case_id": "bottom_right_True",
+      "status": "BLOCKED",
+      "expected": "锚点与 DOM + Win32 独立参考完全相同，无点击 inset",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 171.9
+    },
+    {
+      "case_id": "form_none_False",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 169.2
+    },
+    {
+      "case_id": "form_none_True",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 157.8
+    },
+    {
+      "case_id": "form_tuple_False",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 173.5
+    },
+    {
+      "case_id": "form_tuple_True",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 168.7
+    },
+    {
+      "case_id": "form_list_False",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 155.6
+    },
+    {
+      "case_id": "form_list_True",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 172.1
+    },
+    {
+      "case_id": "form_dict_False",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 167.9
+    },
+    {
+      "case_id": "form_dict_True",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 161.2
+    },
+    {
+      "case_id": "form_fractional_offset_False",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 169.2
+    },
+    {
+      "case_id": "form_fractional_offset_True",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 164.9
+    },
+    {
+      "case_id": "form_dict_default_position_False",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 160.0
+    },
+    {
+      "case_id": "form_dict_default_position_True",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 156.2
+    },
+    {
+      "case_id": "form_empty_list_False",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 176.4
+    },
+    {
+      "case_id": "form_empty_list_True",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 164.6
+    },
+    {
+      "case_id": "form_casefold_False",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 156.6
+    },
+    {
+      "case_id": "form_casefold_True",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 172.6
+    },
+    {
+      "case_id": "form_outside_bounds_False",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 166.5
+    },
+    {
+      "case_id": "form_outside_bounds_True",
+      "status": "BLOCKED",
+      "expected": "形式/偏移符合快照；独立屏幕坐标完全相同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 157.6
+    },
+    {
+      "case_id": "random_(0, 0)_False",
+      "status": "BLOCKED",
+      "expected": "12 个整数元组位于完整矩形加偏移范围内，至少两点不同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 157.1
+    },
+    {
+      "case_id": "random_(0, 0)_True",
+      "status": "BLOCKED",
+      "expected": "12 个整数元组位于完整矩形加偏移范围内，至少两点不同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 171.8
+    },
+    {
+      "case_id": "random_(11, -7)_False",
+      "status": "BLOCKED",
+      "expected": "12 个整数元组位于完整矩形加偏移范围内，至少两点不同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 170.8
+    },
+    {
+      "case_id": "random_(11, -7)_True",
+      "status": "BLOCKED",
+      "expected": "12 个整数元组位于完整矩形加偏移范围内，至少两点不同",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 171.2
+    },
+    {
+      "case_id": "top_scroll_middle_center_False",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 187.5
+    },
+    {
+      "case_id": "top_scroll_middle_center_True",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 210.2
+    },
+    {
+      "case_id": "top_scroll_bottom_right_False",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 176.8
+    },
+    {
+      "case_id": "top_scroll_bottom_right_True",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 173.6
+    },
+    {
+      "case_id": "iframe_scroll_middle_center_False",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 173.5
+    },
+    {
+      "case_id": "iframe_scroll_middle_center_True",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 201.0
+    },
+    {
+      "case_id": "iframe_scroll_bottom_right_False",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 186.1
+    },
+    {
+      "case_id": "iframe_scroll_bottom_right_True",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 173.1
+    },
+    {
+      "case_id": "translate_resize_middle_center_False",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 188.4
+    },
+    {
+      "case_id": "translate_resize_middle_center_True",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 169.8
+    },
+    {
+      "case_id": "translate_resize_bottom_right_False",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 172.4
+    },
+    {
+      "case_id": "translate_resize_bottom_right_True",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 176.9
+    },
+    {
+      "case_id": "negative_position_middle_center_False",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 182.6
+    },
+    {
+      "case_id": "negative_position_middle_center_True",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 170.5
+    },
+    {
+      "case_id": "negative_position_bottom_right_False",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 173.9
+    },
+    {
+      "case_id": "negative_position_bottom_right_True",
+      "status": "BLOCKED",
+      "expected": "场景变化后锚点仍与独立坐标相同，读取不滚动",
+      "actual": {
+        "exception": "Blocked",
+        "message": "{\"reason\": \"Cannot uniquely identify 96-DPI native Chrome window and viewport\", \"matches\": [], \"callback_errors\": [], \"dom_window\": {\"height\": 1392, \"width\": 3440, \"x\": 0, \"y\": 0}}",
+        "trace": ""
+      },
+      "elapsed_ms": 172.8
+    },
+    {
+      "case_id": "readonly_repeat",
+      "status": "PASS",
+      "expected": "连读三次相同；滚动/value/focus/style 不变",
+      "actual": {
+        "points": [
+          [
+            894,
+            638
+          ],
+          [
+            894,
+            638
+          ],
+          [
+            894,
+            638
+          ]
+        ],
+        "dom_scroll_value_focus_style_unchanged": true
+      },
+      "elapsed_ms": 750.3
+    },
+    {
+      "case_id": "restore_scene",
+      "status": "PASS",
+      "expected": "自有页面样式/滚动精确恢复",
+      "actual": {
+        "restored": true,
+        "actual": {
+          "dpr": 1,
+          "focus": {
+            "shadow": "",
+            "top": ""
+          },
+          "frame_style": "width: 100%; height: 80vh; min-height: 600px; border: 1px solid rgb(217, 217, 217); border-radius: 8px;",
+          "id": "form-controls-ant-text",
+          "inner": {
+            "height": 1215,
+            "width": 3440
+          },
+          "rect": {
+            "height": 32,
+            "width": 1590,
+            "x": 99,
+            "y": 445
+          },
+          "scroll": {
+            "frame_x": 0,
+            "frame_y": 0,
+            "top_x": 0,
+            "top_y": 0
+          },
+          "style": null,
+          "tag": "INPUT",
+          "value": "",
+          "window": {
+            "height": 1392,
+            "width": 3440,
+            "x": 0,
+            "y": 0
+          }
+        }
+      },
+      "elapsed_ms": 156.1
+    },
+    {
+      "case_id": "restore_preference",
+      "status": "PASS",
+      "expected": "动态 ID 开关/localStorage 精确恢复",
+      "actual": {
+        "expected_storage": "false",
+        "actual_storage": "false",
+        "expected_switch": "false",
+        "actual_switch": "false"
+      },
+      "elapsed_ms": 101.4
+    },
+    {
+      "case_id": "closed_page",
+      "status": "PASS",
+      "expected": "关闭页面后抛 ActionError / stale_page_reference",
+      "actual": {
+        "exception": "ActionError",
+        "message": "网页对象已失效",
+        "trace": "stale_page_reference"
+      },
+      "elapsed_ms": 217.8
+    },
+    {
+      "case_id": "closed_package",
+      "status": "PASS",
+      "expected": "关闭库连接后抛 HostUnavailableError / 连接已关闭",
+      "actual": {
+        "exception": "HostUnavailableError",
+        "message": "元素对象所属连接已关闭，请重新获取对象",
+        "trace": ""
+      },
+      "elapsed_ms": 0.8
+    },
+    {
+      "case_id": "cleanup",
+      "status": "PASS",
+      "expected": "自有资源已清理，源库/用户标签不变",
+      "actual": {
+        "errors": [],
+        "own_tab_closed": true,
+        "temporary_copy_removed": true,
+        "source_library_unchanged": true,
+        "tab_count": "8->8",
+        "external_added": [],
+        "external_removed": []
+      },
+      "elapsed_ms": 157.9
+    }
+  ],
+  "exit_code": 2
+}

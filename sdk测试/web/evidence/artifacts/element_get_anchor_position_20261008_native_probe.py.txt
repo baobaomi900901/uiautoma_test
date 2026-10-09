@@ -1,0 +1,28 @@
+import sys,json,ctypes
+from ctypes import wintypes
+from pathlib import Path
+sys.dont_write_bytecode=True
+sys.path.insert(0,r'D:\code\元素库\sdk测试\web')
+from test_web_element_get_bounding import NativeOracle
+oracle=NativeOracle();u=oracle.u
+u.IsZoomed.argtypes=[wintypes.HWND];u.IsZoomed.restype=wintypes.BOOL
+dwm=ctypes.WinDLL('dwmapi',use_last_error=True)
+dwm.DwmGetWindowAttribute.argtypes=[wintypes.HWND,wintypes.DWORD,wintypes.LPVOID,wintypes.DWORD]
+dwm.DwmGetWindowAttribute.restype=ctypes.c_long
+rows=[]
+def each(hwnd,_):
+    if not u.IsWindowVisible(hwnd) or not oracle.is_chrome(hwnd):return True
+    row=oracle.info(hwnd)
+    if row['class']!='Chrome_WidgetWin_1':return True
+    r=wintypes.RECT();result=dwm.DwmGetWindowAttribute(hwnd,9,ctypes.byref(r),ctypes.sizeof(r))
+    row['extended_frame_bounds']={'x':r.left,'y':r.top,'width':r.right-r.left,'height':r.bottom-r.top}
+    row['dwm_result']=result;row['maximized']=bool(u.IsZoomed(hwnd));kids=[]
+    def child(ch,_):
+        c=oracle.info(ch)
+        if c['class']=='Chrome_RenderWidgetHostHWND' and u.IsWindowVisible(ch):kids.append(c)
+        return True
+    u.EnumChildWindows(hwnd,oracle.cb(child),0);row['render_children']=kids;rows.append(row)
+    return True
+u.EnumWindows(oracle.cb(each),0);oracle.close()
+Path(__file__).with_suffix('.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+for row in rows:print(json.dumps(row,ensure_ascii=False),flush=True)

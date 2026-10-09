@@ -1,0 +1,3943 @@
+{
+  "rows": [
+    {
+      "name": "web靶场_disabled_按钮",
+      "kind": "baseline",
+      "value": null,
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_disabled_按钮",
+      "kind": "disabled_attribute",
+      "value": "",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_disabled_按钮",
+      "kind": "disabled_attribute",
+      "value": "disabled",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "disabled",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "disabled",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_disabled_按钮",
+      "kind": "disabled_attribute",
+      "value": "true",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "true",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "true",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_disabled_按钮",
+      "kind": "disabled_attribute",
+      "value": "false",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "false",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": true,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "false",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_disabled_按钮",
+      "kind": "disabled_attribute",
+      "value": "False",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "False",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "False",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_disabled_按钮",
+      "kind": "enabled_property",
+      "value": false,
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": true,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_disabled_按钮",
+      "kind": "disabled_property",
+      "value": true,
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "",
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_disabled_按钮",
+      "kind": "aria",
+      "value": "true",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": "true",
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": "true",
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_disabled_按钮",
+      "kind": "aria",
+      "value": "false",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": "false",
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": true,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": "false",
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-disabled-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_测试点击_单击触发",
+      "kind": "baseline",
+      "value": null,
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": true,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_测试点击_单击触发",
+      "kind": "disabled_attribute",
+      "value": "",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_测试点击_单击触发",
+      "kind": "disabled_attribute",
+      "value": "disabled",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "disabled",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "disabled",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_测试点击_单击触发",
+      "kind": "disabled_attribute",
+      "value": "true",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "true",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "true",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_测试点击_单击触发",
+      "kind": "disabled_attribute",
+      "value": "false",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "false",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": true,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "false",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_测试点击_单击触发",
+      "kind": "disabled_attribute",
+      "value": "False",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "False",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "False",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_测试点击_单击触发",
+      "kind": "enabled_property",
+      "value": false,
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": true,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_测试点击_单击触发",
+      "kind": "disabled_property",
+      "value": true,
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": null,
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": true,
+        "disabled_attribute": "",
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": true,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_测试点击_单击触发",
+      "kind": "aria",
+      "value": "true",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": "true",
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": false,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": "true",
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "name": "web靶场_测试点击_单击触发",
+      "kind": "aria",
+      "value": "false",
+      "dom_before": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": "false",
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "actual": true,
+      "return_type": "bool",
+      "dom_after": {
+        "ancestors": [
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-horizontal ant-space-align-center",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space-item",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-space css-mncuj7 ant-space-vertical",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card-body",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "ant-card ant-card-bordered css-mncuj7",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "DIV"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "BODY"
+          },
+          {
+            "aria_disabled": null,
+            "class": "",
+            "disabled": null,
+            "tag": "HTML"
+          }
+        ],
+        "aria_disabled": "false",
+        "class": "ant-btn css-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-lg",
+        "disabled": false,
+        "disabled_attribute": null,
+        "focus": "",
+        "id": "btn-click-target",
+        "pseudo_disabled": false,
+        "scroll": [
+          0,
+          0
+        ],
+        "tag": "BUTTON"
+      },
+      "readonly": true
+    },
+    {
+      "state": "closed_page",
+      "exception": "ActionError",
+      "message": "网页对象已失效",
+      "trace": "stale_page_reference"
+    },
+    {
+      "state": "closed_package",
+      "exception": "HostUnavailableError",
+      "message": "元素对象所属连接已关闭，请重新获取对象",
+      "trace": ""
+    }
+  ],
+  "cleanup": {
+    "tab_count": "2->2",
+    "external_added": [],
+    "external_removed": [],
+    "temporary_removed": true,
+    "library_unchanged": true
+  }
+}

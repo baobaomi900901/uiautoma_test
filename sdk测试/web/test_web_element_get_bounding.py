@@ -1,950 +1,405 @@
-"""uiautoma.web.WebElement.get_bounding() 持久化真实浏览器测试运行器。
+"""WebElement.get_bounding 后台验收。
 
-导入本模块不会连接 Runtime、访问靶场或操作浏览器。真实场景打开唯一 Chrome
-``form-controls`` 页面并连接指定元素库；对 ``select_html_多选`` 直接调用
-``WebElement.get_bounding(...)``，校验返回边界字典形状与几何一致性。
+靶场：iframe-shadow-form；元素库：260902_web元素；目标：Ant 输入框。
+期望值由真实 DOM 矩形和独立 Win32 原生窗口/网页客户区测量推导，
+不读取被测 Runtime 的 geometry 元数据。当前原生窗口参考支持 96 DPI。
+只对自有标签做滚动/样式干预；不激活窗口，不发送系统输入。
+退出码 0 全通过、1 失败、2 环境阻塞；--contract-only 不启动浏览器。
 """
-
 from __future__ import annotations
 
 import argparse
+import ctypes
+from ctypes import wintypes
+import hashlib
 import inspect
 import json
-import re
+import math
 import shutil
+import subprocess
 import sys
 import time
 import uuid
 from pathlib import Path
-from typing import Any, Sequence
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
-from urllib.request import Request, urlopen
-
-PRODUCT_ROOT = Path(__file__).resolve().parents[3]
-SDK_SRC = PRODUCT_ROOT / "sdk" / "src"
-if str(SDK_SRC) not in sys.path:
-    sys.path.insert(0, str(SDK_SRC))
-
-import uiautoma  # noqa: E402
-from uiautoma import ping, web  # noqa: E402
-from uiautoma.web import WebBrowser, WebElement  # noqa: E402
-
 
 __test__ = False
+sys.dont_write_bytecode = True
+ROOT = Path(r'D:\code\元素库\sdk测试')
+PRODUCT = Path(r'D:\code\desktop')
+PROVIDER = Path(r'D:\code\rust_uia')
+sys.path.insert(0, str(PRODUCT/'sdk/src'))
+sys.path.insert(0, str(ROOT/'web'))
+from uiautoma import web, open as open_package, ping, InvalidParamsError, ActionError, HostUnavailableError
+from uiautoma.web import WebElement
+from test_web_element_get_select_options import copy_library, disable_dynamic_ids, find_switch
 
-DEFAULT_TARGET_URL = "http://localhost:7199/form-controls"
-DEFAULT_ELEMENT_LIBRARY = Path(__file__).with_name("web测试元素库")
-DEFAULT_SELECT_ELEMENT_NAME = "select_html_多选"
-DEFAULT_PROFILE_DIRECTORY = "Default"
-DEFAULT_RESET_ELEMENT_NAME = "重置_html"
-RUN_QUERY_KEY = "uiautoma_element_get_bounding_run"
-
-EXPECTED_PARAMETER_ORDER = (
-    "self",
-    "to96dpi",
-    "relative_to",
-)
-EXPECTED_DEFAULTS: dict[str, Any] = {
-    "to96dpi": True,
-    "relative_to": "screen",
-}
-EXPECTED_KINDS = {
-    "self": inspect.Parameter.POSITIONAL_OR_KEYWORD,
-    "to96dpi": inspect.Parameter.POSITIONAL_OR_KEYWORD,
-    "relative_to": inspect.Parameter.POSITIONAL_OR_KEYWORD,
-}
-
-EXPECTED_BOUNDING_KEYS = (
-    "x",
-    "y",
-    "width",
-    "height",
-    "top",
-    "left",
-    "right",
-    "bottom",
-)
-
-# 目标 API：get_bounding(to96dpi=True, relative_to="screen") -> dict[str, int]
-# 用户文案仅写 to96dpi；公开合同另含 relative_to（当前仅 screen）。
-# to96dpi 当前为保留参数，不改变返回合同。
-
-BLOCKING_EXCEPTION_NAMES = {
-    "ConnectionError",
-    "EOFError",
-    "HostUnavailableError",
-    "PipeClosedError",
-    "TimeoutError",
-    "UnsupportedProtocolError",
-}
-BLOCKING_TRACES = {
-    "browser_executable_not_found",
-    "browser_launch_timeout",
-    "browser_session_discovery_failed",
-    "browser_session_disconnected",
-    "native_host_unavailable",
-    "plugin_not_connected",
-    "web_bridge_unavailable",
-    "web_host_unavailable",
-    "web_ipc_unreachable",
-    "web_runtime_incompatible",
-    "web_session_unavailable",
-}
+URL = 'https://baobaomi900901.github.io/xpath/#/iframe-shadow-form'
+LIBRARY = Path(r'D:\code\元素库\260902_web元素')
+NAME = 'web靶场_表单测试_ant_输入框'
+CONTRACT = ROOT/'web/element_get_bounding_contract_20261008.json'
+KEYS = ('x', 'y', 'width', 'height')
+SCENES = ('baseline', 'top_scroll', 'iframe_scroll', 'translate_resize', 'negative_position')
 
 
-def _result(case_id: str, status: str, detail: str, **extra: Any) -> dict[str, Any]:
-    return {"case_id": case_id, "status": status, "detail": detail, **extra}
+class Blocked(Exception):
+    pass
 
 
-def _safe_trace(exc: BaseException) -> str:
-    for attr in ("trace_info", "method"):
-        trace = str(getattr(exc, attr, "") or "")
-        if re.fullmatch(r"[A-Za-z0-9_.-]{1,80}", trace):
-            return trace
-    return ""
+def require(ok, detail):
+    if not ok:
+        raise AssertionError(json.dumps(detail, ensure_ascii=False, default=str))
+    return detail
 
 
-def _error_fields(exc: BaseException) -> dict[str, str]:
-    return {"exception": exc.__class__.__name__, "trace_info": _safe_trace(exc)}
+def error(exc):
+    return {'exception': type(exc).__name__, 'message': str(exc), 'trace': getattr(exc, 'trace_info', '')}
 
 
-def _error_status(exc: BaseException) -> str:
-    if exc.__class__.__name__ in BLOCKING_EXCEPTION_NAMES or _safe_trace(exc) in BLOCKING_TRACES:
-        return "BLOCKED"
-    return "FAIL"
-
-
-def _validate_url(value: str, option: str) -> str:
-    text = str(value or "").strip()
+def raises(kind, fn, message='', trace=''):
     try:
-        parts = urlsplit(text)
-    except ValueError as exc:
-        raise argparse.ArgumentTypeError(f"{option} 不是有效 URL") from exc
-    if (
-        parts.scheme.casefold() not in {"http", "https"}
-        or not parts.hostname
-        or parts.username is not None
-        or parts.password is not None
-    ):
-        raise argparse.ArgumentTypeError(f"{option} 必须是不含凭据的绝对 HTTP/HTTPS URL")
-    return text
+        fn()
+    except kind as exc:
+        detail = error(exc)
+        require((not message or message in detail['message']) and (not trace or trace == detail['trace']), detail)
+        return detail
+    raise AssertionError('Expected '+kind.__name__)
 
 
-def _marked_url(target_url: str, run_id: str) -> str:
-    parts = urlsplit(target_url)
-    query = [
-        (key, value)
-        for key, value in parse_qsl(parts.query, keep_blank_values=True)
-        if key != RUN_QUERY_KEY
-    ]
-    query.append((RUN_QUERY_KEY, run_id))
-    return urlunsplit((parts.scheme, parts.netloc, parts.path or "/", urlencode(query), ""))
+def source_commit(path):
+    return subprocess.check_output(['git', '-C', str(path), 'rev-parse', 'HEAD'], text=True).strip()
 
 
-def _page_key(value: object) -> tuple[Any, ...] | None:
-    try:
-        parts = urlsplit(str(value or "").strip())
-        port = parts.port
-    except ValueError:
-        return None
-    scheme = parts.scheme.casefold()
-    hostname = (parts.hostname or "").casefold()
-    if scheme not in {"http", "https"} or not hostname:
-        return None
-    if port == (443 if scheme == "https" else 80):
-        port = None
-    return scheme, hostname, port, parts.path or "/"
+def check_contract():
+    frozen = json.loads(CONTRACT.read_text(encoding='utf-8'))
+    require(str(inspect.signature(WebElement.get_bounding)) == frozen['signature'], str(inspect.signature(WebElement.get_bounding)))
+    require(inspect.getsource(WebElement.get_bounding) == frozen['source'], 'SDK source changed; review contract')
+    commits = {'desktop': source_commit(PRODUCT), 'rust_uia': source_commit(PROVIDER)}
+    require(commits == frozen['commits'], {'expected': frozen['commits'], 'actual': commits})
+    for snapshot in frozen['source_snapshots']:
+        path = Path(snapshot['worktree'])/snapshot['path']
+        require(hashlib.sha256(path.read_bytes()).hexdigest() == snapshot['sha256'], {'changed_source': str(path)})
+    return {'signature': frozen['signature'], 'commits': commits, 'keys': list(KEYS)}
 
 
-def _exact_url_key(value: object) -> tuple[Any, ...] | None:
-    try:
-        parts = urlsplit(str(value or "").strip())
-        port = parts.port
-    except ValueError:
-        return None
-    scheme = parts.scheme.casefold()
-    hostname = (parts.hostname or "").casefold()
-    if scheme not in {"http", "https"} or not hostname:
-        return None
-    if port == (443 if scheme == "https" else 80):
-        port = None
-    return (
-        scheme,
-        hostname,
-        port,
-        parts.path or "/",
-        tuple(sorted(parse_qsl(parts.query, keep_blank_values=True))),
-    )
+class NativeOracle:
+    """Read-only ctypes channel; never calls SetForegroundWindow/ShowWindow/MoveWindow."""
 
+    def __init__(self):
+        self.u = ctypes.WinDLL('user32', use_last_error=True)
+        self.k = ctypes.WinDLL('kernel32', use_last_error=True)
+        self.cb = ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.HWND, wintypes.LPARAM)
+        prototypes = {
+            'SetThreadDpiAwarenessContext': ([wintypes.HANDLE], wintypes.HANDLE),
+            'GetForegroundWindow': ([], wintypes.HWND),
+            'GetDpiForWindow': ([wintypes.HWND], wintypes.UINT),
+            'GetWindowRect': ([wintypes.HWND, ctypes.POINTER(wintypes.RECT)], wintypes.BOOL),
+            'GetClientRect': ([wintypes.HWND, ctypes.POINTER(wintypes.RECT)], wintypes.BOOL),
+            'ClientToScreen': ([wintypes.HWND, ctypes.POINTER(wintypes.POINT)], wintypes.BOOL),
+            'GetClassNameW': ([wintypes.HWND, wintypes.LPWSTR, ctypes.c_int], ctypes.c_int),
+            'IsWindowVisible': ([wintypes.HWND], wintypes.BOOL),
+            'GetWindowThreadProcessId': ([wintypes.HWND, ctypes.POINTER(wintypes.DWORD)], wintypes.DWORD),
+            'EnumWindows': ([self.cb, wintypes.LPARAM], wintypes.BOOL),
+            'EnumChildWindows': ([wintypes.HWND, self.cb, wintypes.LPARAM], wintypes.BOOL),
+        }
+        for name, (args, result) in prototypes.items():
+            fn = getattr(self.u, name); fn.argtypes = args; fn.restype = result
+        self.k.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+        self.k.OpenProcess.restype = wintypes.HANDLE
+        self.k.QueryFullProcessImageNameW.argtypes = [wintypes.HANDLE, wintypes.DWORD, wintypes.LPWSTR, ctypes.POINTER(wintypes.DWORD)]
+        self.k.QueryFullProcessImageNameW.restype = wintypes.BOOL
+        self.k.CloseHandle.argtypes = [wintypes.HANDLE]; self.k.CloseHandle.restype = wintypes.BOOL
+        self.old_dpi = self.u.SetThreadDpiAwarenessContext(wintypes.HANDLE(-4))
+        if not self.old_dpi:
+            raise Blocked('Cannot enable physical-coordinate measurements on test thread')
 
-def _tab_identity(page: WebBrowser | None) -> tuple[str, int, int] | None:
-    if page is None:
-        return None
-    raw = page.raw if isinstance(page.raw, dict) else {}
-    tab = raw.get("tab") if isinstance(raw.get("tab"), dict) else raw
-    try:
-        tab_id = int(tab.get("tabId", tab.get("id", 0)) or 0)
-        window_id = int(tab.get("windowId", tab.get("window_id", 0)) or 0)
-    except (TypeError, ValueError):
-        return None
-    session_id = str(
-        raw.get("target_session_id")
-        or raw.get("targetSessionId")
-        or raw.get("sessionId")
-        or tab.get("target_session_id")
-        or tab.get("targetSessionId")
-        or tab.get("sessionId")
-        or ""
-    )
-    return (session_id, window_id, tab_id) if tab_id > 0 else None
+    def foreground(self):
+        return int(self.u.GetForegroundWindow() or 0)
 
+    def close(self):
+        if self.old_dpi:
+            self.u.SetThreadDpiAwarenessContext(self.old_dpi)
+            self.old_dpi = None
 
-def _try_get_active_page(mode: str, timeout: float) -> WebBrowser | None:
-    try:
-        return web.get_active(mode, load_timeout=max(0.1, timeout))
-    except Exception:  # noqa: BLE001
-        return None
+    def info(self, hwnd):
+        name = ctypes.create_unicode_buffer(256)
+        self.u.GetClassNameW(hwnd, name, len(name))
+        rect, client, point = wintypes.RECT(), wintypes.RECT(), wintypes.POINT()
+        if not (self.u.GetWindowRect(hwnd, ctypes.byref(rect)) and self.u.GetClientRect(hwnd, ctypes.byref(client)) and self.u.ClientToScreen(hwnd, ctypes.byref(point))):
+            raise Blocked('Native window changed during measurement')
+        return {'hwnd': int(hwnd), 'class': name.value, 'rect': {'x': rect.left, 'y': rect.top, 'width': rect.right-rect.left, 'height': rect.bottom-rect.top}, 'client_origin': {'x': point.x, 'y': point.y}, 'client_size': {'width': client.right-client.left, 'height': client.bottom-client.top}, 'dpi': int(self.u.GetDpiForWindow(hwnd))}
 
+    def is_chrome(self, hwnd):
+        pid = wintypes.DWORD(); self.u.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
+        handle = self.k.OpenProcess(0x1000, False, pid.value)
+        if not handle:
+            return False
+        try:
+            path = ctypes.create_unicode_buffer(32768); size = wintypes.DWORD(len(path))
+            return bool(self.k.QueryFullProcessImageNameW(handle, 0, path, ctypes.byref(size))) and Path(path.value).name.casefold() == 'chrome.exe'
+        finally:
+            self.k.CloseHandle(handle)
 
-def _wait_for_launched_start_page(
-    mode: str,
-    before_identity: tuple[str, int, int] | None,
-    timeout: float,
-) -> WebBrowser | None:
-    deadline = time.monotonic() + timeout
-    while time.monotonic() < deadline:
-        page = _try_get_active_page(mode, min(1.0, timeout))
-        identity = _tab_identity(page)
-        if page is not None and identity is not None and identity != before_identity:
-            return page
-        time.sleep(0.1)
-    return None
+    def measure(self, dom):
+        matches, callback_errors = [], []
 
-
-def preflight_runtime(timeout: float) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        ping(timeout=timeout)
-        return _result(
-            "runtime_preflight",
-            "PASS",
-            "Runtime 与 Automation Pipe 可响应",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "runtime_preflight",
-            "BLOCKED",
-            "Runtime 或 Automation Pipe 不可用",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-
-def prepare_scrubbed_library(source_library: Path, owned_dir: Path) -> dict[str, Any]:
-    """复制元素库并清空捕获期 WebSessionId，避免陈旧会话拦截当前页面绑定。"""
-
-    started = time.perf_counter()
-    scrubbed_fields = 0
-    try:
-        shutil.copytree(source_library, owned_dir)
-        elements_file = owned_dir / "elements.json"
-        payload = json.loads(elements_file.read_text(encoding="utf-8"))
-        for process in payload.values():
-            if not isinstance(process, dict):
-                continue
-            for item in process.get("Group", process.get("group", [])):
-                if not isinstance(item, dict):
-                    continue
-                for key in list(item):
-                    if "session" in key.casefold() and item.get(key):
-                        item[key] = ""
-                        scrubbed_fields += 1
-                if item.get("BrowserPid"):
-                    item["BrowserPid"] = 0
-                    scrubbed_fields += 1
-        elements_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-        snapshot_dir = owned_dir / "snapshot"
-        if snapshot_dir.is_dir():
-            for snap in snapshot_dir.glob("*.json"):
-                data = json.loads(snap.read_text(encoding="utf-8"))
-                stack: list[Any] = [data]
-                local = 0
-                while stack:
-                    obj = stack.pop()
-                    if isinstance(obj, dict):
-                        for key, value in list(obj.items()):
-                            if isinstance(key, str) and "session" in key.casefold() and value:
-                                obj[key] = ""
-                                local += 1
-                            elif isinstance(value, (dict, list)):
-                                stack.append(value)
-                    elif isinstance(obj, list):
-                        stack.extend(obj)
-                if local:
-                    snap.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-                    scrubbed_fields += local
-
-        passed = (owned_dir / "elements.json").is_file()
-        return _result(
-            "scrubbed_library_setup",
-            "PASS" if passed else "FAIL",
-            "已准备清空捕获会话后的本次元素库副本" if passed else "本次元素库副本不可用",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            scrubbed_fields=scrubbed_fields,
-            owned_library_exists=passed,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "scrubbed_library_setup",
-            "FAIL",
-            "无法准备本次元素库副本",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            scrubbed_fields=scrubbed_fields,
-            **_error_fields(exc),
-        )
-
-
-def prepare_owned_page(
-    target_url: str,
-    mode: str,
-    load_timeout: float,
-    profile_directory: str,
-) -> tuple[dict[str, Any], WebBrowser | None]:
-    started = time.perf_counter()
-    page: WebBrowser | None = None
-    before_active = _try_get_active_page(mode, min(1.0, load_timeout))
-    before_identity = _tab_identity(before_active)
-    existing_session_reused = before_active is not None
-    profile_identity_fallback_used = False
-    profile_identity_trace = ""
-    recovery_method = "existing_session" if existing_session_reused else ""
-    try:
-        if existing_session_reused:
-            page = web.create(target_url, mode, load_timeout=load_timeout, silent_running=True)
-        else:
+        def each(hwnd, _):
             try:
-                page = web.create(
-                    target_url,
-                    mode,
-                    load_timeout=load_timeout,
-                    silent_running=True,
-                    arguments=[
-                        f"--profile-directory={profile_directory}",
-                        "--ignore-profile-directory-if-not-exists",
-                    ],
-                )
-            except Exception as exc:  # noqa: BLE001
-                trace = _safe_trace(exc)
-                if trace != "browser_profile_identity_unknown":
-                    raise
-                profile_identity_fallback_used = True
-                profile_identity_trace = trace
-                page = _wait_for_launched_start_page(
-                    mode,
-                    before_identity,
-                    min(5.0, max(1.0, load_timeout)),
-                )
-                if page is None:
-                    raise RuntimeError("launched Chrome start page is not safely identifiable")
-                page.raw["created_by"] = "profile_launch_recovery"
-                recovery_method = "navigate_launched_start_page"
-                page.navigate(target_url, load_timeout=load_timeout)
-        checks = {
-            "returned_type_ok": isinstance(page, WebBrowser),
-            "mode_ok": str(page.mode or "").casefold() == mode.casefold(),
-            "url_ok": _exact_url_key(page.url) == _exact_url_key(target_url),
-            "owned_identity_ok": page.raw.get("created_by") in {
-                "web.create",
-                "profile_launch_recovery",
-            },
-        }
-        passed = all(checks.values())
-        return (
-            _result(
-                "owned_page_setup",
-                "PASS" if passed else "BLOCKED",
-                "已打开本次唯一 get_bounding 测试页面" if passed else "get_bounding 测试页面创建结果不完整",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                profile_directory=profile_directory,
-                existing_session_reused=existing_session_reused,
-                profile_identity_fallback_used=profile_identity_fallback_used,
-                profile_identity_trace=profile_identity_trace,
-                profile_recovery_method=recovery_method,
-                **checks,
-            ),
-            page,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return (
-            _result(
-                "owned_page_setup",
-                "BLOCKED",
-                "无法打开本次 get_bounding 测试页面",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                profile_directory=profile_directory,
-                existing_session_reused=existing_session_reused,
-                profile_identity_fallback_used=profile_identity_fallback_used,
-                profile_identity_trace=profile_identity_trace,
-                profile_recovery_method=recovery_method,
-                **_error_fields(exc),
-            ),
-            page,
-        )
+                if not self.u.IsWindowVisible(hwnd) or not self.is_chrome(hwnd):
+                    return True
+                row = self.info(hwnd)
+                if row['class'] != 'Chrome_WidgetWin_1':
+                    return True
+                # Current reference is explicitly limited to a 96-DPI Chrome window.
+                if row['dpi'] != 96 or any(abs(row['rect'][key]-dom['window'][key]) > 1 for key in KEYS):
+                    return True
+                children = []
+
+                def child(ch, _):
+                    try:
+                        item = self.info(ch)
+                        if item['class'] == 'Chrome_RenderWidgetHostHWND' and self.u.IsWindowVisible(ch) and all(abs(item['client_size'][key]-dom['inner'][key]*dom['dpr']) <= 1 for key in ('width', 'height')):
+                            children.append(item)
+                    except Exception as exc:
+                        callback_errors.append(error(exc))
+                    return True
+
+                self.u.EnumChildWindows(hwnd, self.cb(child), 0)
+                if len(children) == 1:
+                    row['viewport'] = children[0]; matches.append(row)
+            except Exception as exc:
+                callback_errors.append(error(exc))
+            return True
+
+        self.u.EnumWindows(self.cb(each), 0)
+        if len(matches) != 1:
+            raise Blocked(json.dumps({'reason': 'Cannot uniquely identify 96-DPI native Chrome window and viewport', 'matches': matches, 'callback_errors': callback_errors, 'dom_window': dom['window']}, ensure_ascii=False))
+        return matches[0]
 
 
-def check_contract() -> dict[str, Any]:
-    try:
-        signature = inspect.signature(WebElement.get_bounding)
-        parameters = signature.parameters
-        order_ok = tuple(parameters) == EXPECTED_PARAMETER_ORDER
-        defaults_ok = all(parameters[name].default == value for name, value in EXPECTED_DEFAULTS.items())
-        kinds_ok = all(parameters[name].kind == value for name, value in EXPECTED_KINDS.items())
-        no_extra_ok = set(parameters) == set(EXPECTED_PARAMETER_ORDER)
-        ann_text = str(signature.return_annotation).replace("typing.", "")
-        return_ok = ann_text in {"dict[str, int]", "Dict[str, int]"} or (
-            "dict" in ann_text.casefold() and "int" in ann_text.casefold()
-        )
-        passed = order_ok and defaults_ok and kinds_ok and return_ok and no_extra_ok
-        return _result(
-            "api_contract",
-            "PASS" if passed else "FAIL",
-            "公开签名符合当前合同" if passed else "公开签名与当前合同不一致",
-            parameter_order_ok=order_ok,
-            defaults_ok=defaults_ok,
-            parameter_kinds_ok=kinds_ok,
-            return_annotation_ok=return_ok,
-            no_extra_parameters_ok=no_extra_ok,
-            return_annotation=str(signature.return_annotation),
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result("api_contract", "FAIL", "无法检查公开签名", **_error_fields(exc))
+class Run:
+    def __init__(self, args):
+        self.args = args; self.rows = []; self.page = None; self.package = None; self.element = None; self.oracle = None
+        self.baseline = None; self.id = None; self.library_hash = None; self.previous = None; self.storage_before = None; self.original = None
+        self.tmp = ROOT/'.pytest_tmp/bounding_live'/uuid.uuid4().hex
+        self.total = 7 if args.contract_only else 38
 
-def preflight_target(target_url: str, timeout: float) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        request = Request(target_url, headers={"User-Agent": "UIAutoma-SDK-persistent-test"})
-        with urlopen(request, timeout=timeout) as response:
-            status_code = int(getattr(response, "status", 200))
-        passed = 200 <= status_code < 400
-        return _result(
-            "target_preflight",
-            "PASS" if passed else "BLOCKED",
-            "get_bounding 测试靶场可访问" if passed else "get_bounding 测试靶场未返回成功状态",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            http_status=status_code,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "target_preflight",
-            "BLOCKED",
-            "get_bounding 测试靶场不可访问",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-
-def _library_named_matches(payload: dict[str, Any], element_name: str) -> list[dict[str, Any]]:
-    matches: list[dict[str, Any]] = []
-    for process in payload.values():
-        if not isinstance(process, dict):
-            continue
-        for item in process.get("Group", process.get("group", [])):
-            if isinstance(item, dict) and str(item.get("Name") or "") == element_name:
-                matches.append(item)
-    return matches
-
-
-def _library_item_ok(matches: list[dict[str, Any]], target_url: str) -> tuple[bool, bool]:
-    page_ok = len(matches) == 1 and _page_key(matches[0].get("PageUrl")) == _page_key(target_url)
-    selector_ok = len(matches) == 1 and bool(str(matches[0].get("Characteristics") or "").strip())
-    return page_ok, selector_ok
-
-
-def preflight_element_library(
-    library_dir: Path,
-    select_element_name: str,
-    reset_element_name: str,
-    target_url: str,
-) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        elements_file = library_dir / "elements.json"
-        payload = json.loads(elements_file.read_text(encoding="utf-8"))
-        select_matches = _library_named_matches(payload, select_element_name)
-        reset_matches = _library_named_matches(payload, reset_element_name)
-        select_page_ok, select_selector_ok = _library_item_ok(select_matches, target_url)
-        reset_page_ok, reset_selector_ok = _library_item_ok(reset_matches, target_url)
-        passed = (
-            library_dir.is_dir()
-            and elements_file.is_file()
-            and select_page_ok
-            and select_selector_ok
-            and reset_page_ok
-            and reset_selector_ok
-        )
-        return _result(
-            "element_library_preflight",
-            "PASS" if passed else "BLOCKED",
-            "元素库包含 select_html_多选 与 重置_html"
-            if passed
-            else "元素库缺少 select_html_多选 或 重置_html",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            library_dir_exists=library_dir.is_dir(),
-            elements_json_exists=elements_file.is_file(),
-            select_named_element_count=len(select_matches),
-            select_page_url_matches=select_page_ok,
-            select_selector_present=select_selector_ok,
-            reset_named_element_count=len(reset_matches),
-            reset_page_url_matches=reset_page_ok,
-            reset_selector_present=reset_selector_ok,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "element_library_preflight",
-            "BLOCKED",
-            "无法读取或验证元素库",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-
-def connect_library_and_find_elements(
-    page: WebBrowser,
-    library_dir: Path,
-    select_element_name: str,
-    reset_element_name: str,
-    runtime_timeout: float,
-    element_timeout: float,
-) -> tuple[dict[str, Any], Any | None, WebElement | None, WebElement | None]:
-    started = time.perf_counter()
-    package: Any | None = None
-    try:
-        package = uiautoma.open(str(library_dir), timeout=runtime_timeout)
-        select_element = page.find(select_element_name, timeout=element_timeout)
-        reset_element = page.find(reset_element_name, timeout=element_timeout)
-        select_name_ok = str(select_element.name or "") == select_element_name
-        reset_name_ok = str(reset_element.name or "") == reset_element_name
-        passed = package.web_count > 0 and select_name_ok and reset_name_ok
-        return (
-            _result(
-                "element_library_setup",
-                "PASS" if passed else "FAIL",
-                "已连接元素库并绑定 select_html_多选 与 重置_html"
-                if passed
-                else "元素库连接或元素绑定结果不符合预期",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                package_opened=True,
-                web_element_count=package.web_count,
-                select_name_ok=select_name_ok,
-                reset_name_ok=reset_name_ok,
-            ),
-            package,
-            select_element,
-            reset_element,
-        )
-    except Exception as exc:  # noqa: BLE001
-        status = _error_status(exc)
-        return (
-            _result(
-                "element_library_setup",
-                status,
-                "元素库连接被环境阻塞" if status == "BLOCKED" else "无法连接元素库或绑定目标元素",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                package_opened=package is not None,
-                **_error_fields(exc),
-            ),
-            package,
-            None,
-            None,
-        )
-
-
-def _validate_bounding(value: object) -> dict[str, Any]:
-    type_ok = isinstance(value, dict)
-    if not type_ok:
-        return {
-            "type_ok": False,
-            "keys_ok": False,
-            "ints_ok": False,
-            "size_ok": False,
-            "geometry_ok": False,
-            "passed": False,
-            "normalized": None,
-        }
-    keys_ok = all(key in value for key in EXPECTED_BOUNDING_KEYS)
-    ints_ok = keys_ok and all(isinstance(value[key], int) for key in EXPECTED_BOUNDING_KEYS)
-    size_ok = False
-    geometry_ok = False
-    normalized = None
-    if ints_ok:
-        normalized = {key: int(value[key]) for key in EXPECTED_BOUNDING_KEYS}
-        size_ok = normalized["width"] > 0 and normalized["height"] > 0
-        geometry_ok = (
-            normalized["x"] == normalized["left"]
-            and normalized["y"] == normalized["top"]
-            and normalized["right"] == normalized["left"] + normalized["width"]
-            and normalized["bottom"] == normalized["top"] + normalized["height"]
-        )
-    return {
-        "type_ok": type_ok,
-        "keys_ok": keys_ok,
-        "ints_ok": ints_ok,
-        "size_ok": size_ok,
-        "geometry_ok": geometry_ok,
-        "passed": type_ok and keys_ok and ints_ok and size_ok and geometry_ok,
-        "normalized": normalized,
-    }
-
-
-def run_get_bounding_case(
-    page: WebBrowser,
-    select_element: WebElement,
-    *,
-    case_id: str,
-    to96dpi: bool = True,
-    relative_to: str = "screen",
-) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        page.activate()
-        time.sleep(0.1)
-        call_started = time.perf_counter()
-        ret = select_element.get_bounding(to96dpi=to96dpi, relative_to=relative_to)
-        call_elapsed_ms = round((time.perf_counter() - call_started) * 1000, 1)
-        checks = _validate_bounding(ret)
-        print(
-            f"get_bounding(to96dpi={to96dpi}, relative_to={relative_to!r}) -> {ret!r}",
-            file=sys.stderr,
-            flush=True,
-        )
-        return _result(
-            case_id,
-            "PASS" if checks["passed"] else "FAIL",
-            "get_bounding 返回边界符合预期" if checks["passed"] else "get_bounding 返回值不符合预期",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            get_bounding_elapsed_ms=call_elapsed_ms,
-            to96dpi=to96dpi,
-            relative_to=relative_to,
-            return_type_ok=checks["type_ok"],
-            keys_ok=checks["keys_ok"],
-            ints_ok=checks["ints_ok"],
-            size_ok=checks["size_ok"],
-            geometry_ok=checks["geometry_ok"],
-            value=checks["normalized"],
-            target_name=str(select_element.name or ""),
-        )
-    except Exception as exc:  # noqa: BLE001
-        status = _error_status(exc)
-        print(
-            f"get_bounding(to96dpi={to96dpi}, relative_to={relative_to!r}) raised "
-            f"{exc.__class__.__name__}: {exc}",
-            file=sys.stderr,
-            flush=True,
-        )
-        return _result(
-            case_id,
-            status,
-            "get_bounding 被环境阻塞" if status == "BLOCKED" else "get_bounding 调用失败",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            to96dpi=to96dpi,
-            relative_to=relative_to,
-            target_name=str(select_element.name or ""),
-            **_error_fields(exc),
-        )
-
-
-def cleanup_resources(
-    *,
-    package: Any | None,
-    page: WebBrowser | None,
-    owned_library_dir: Path | None,
-) -> dict[str, Any]:
-    items: list[dict[str, Any]] = []
-
-    package_item: dict[str, Any] = {"resource": "element_library_connection"}
-    if package is None:
-        package_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    else:
+    def case(self, name, expected, fn):
+        start = time.perf_counter()
         try:
-            package.close()
-            package_item.update(status="PASS", confirmed=True, cleanup_call_needed=True, created=True)
-        except Exception as exc:  # noqa: BLE001
-            package_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(package_item)
+            actual = fn(); status = 'PASS'
+        except Exception as exc:
+            actual = error(exc)
+            status = 'BLOCKED' if isinstance(exc, Blocked) or type(exc).__name__ in {'HostUnavailableError', 'ConnectionError'} or getattr(exc, 'trace_info', '') == 'uiautomation_provider_unavailable' else 'FAIL'
+        row = {'case_id': name, 'status': status, 'expected': expected, 'actual': actual, 'elapsed_ms': round((time.perf_counter()-start)*1000, 1)}
+        self.rows.append(row)
+        display = actual
+        if isinstance(actual, dict) and 'native' in actual and 'bounding' in actual:
+            display = {key: actual[key] for key in ('bounding', 'expected_rect', 'difference', 'dpi', 'dpr', 'scroll', 'foreground_unchanged')}
+        color, label = {'PASS': ('\x1b[32m', '通过'), 'FAIL': ('\x1b[31m', '失败'), 'BLOCKED': ('\x1b[33m', '阻塞')}[status]
+        print(f"{len(self.rows):02d}/{self.total:02d} {color}[{label}]\x1b[0m {name} 期望 {expected}；实测 {json.dumps(display, ensure_ascii=False, default=str)}；{row['elapsed_ms']}ms", flush=True)
+        return status
 
-    page_item: dict[str, Any] = {"resource": "owned_page"}
-    if page is None:
-        page_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    elif page.raw.get("created_by") not in {"web.create", "profile_launch_recovery"}:
-        page_item.update(
-            status="FAIL",
-            confirmed=False,
-            cleanup_call_needed=False,
-            created=True,
-            reason="owned_page_identity_unknown",
-        )
-    else:
+    def js(self, body, arg=None):
+        return self.page.execute_javascript("function(_e,a){const f=document.querySelector('#iframe-shadow-form');const root=f.contentDocument.querySelector('#form-shadow-host').shadowRoot;const e=root.getElementById('form-controls-ant-text');"+body+'}', arg)
+
+    def observe(self):
+        return self.js("""
+          const q=f.getBoundingClientRect(),r=e.getBoundingClientRect();
+          return {id:e.id,tag:e.tagName,rect:{x:q.x+f.clientLeft+r.x,y:q.y+f.clientTop+r.y,width:r.width,height:r.height},
+            inner:{width:innerWidth,height:innerHeight},window:{x:screenX,y:screenY,width:outerWidth,height:outerHeight},dpr:devicePixelRatio,
+            scroll:{top_x:scrollX,top_y:scrollY,frame_x:f.contentWindow.scrollX,frame_y:f.contentWindow.scrollY},
+            value:e.value,focus:{top:document.activeElement?.id||'',shadow:root.activeElement?.id||''},style:e.getAttribute('style'),frame_style:f.getAttribute('style')};
+        """)
+
+    def setup(self):
+        ping(timeout=5)
+        if not self.args.library.is_dir():
+            raise Blocked('元素库目录不存在')
+        self.oracle = NativeOracle()
+        self.library_hash = hashlib.sha256((self.args.library/'elements.json').read_bytes()).hexdigest()
+        self.baseline = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+        copy_library(self.args.library, self.tmp/'library')
+        self.package = open_package(str(self.tmp/'library'), timeout=8, connect_timeout=8)
+        self.page = web.create(self.args.url, mode='chrome', silent_running=True, load_timeout=25)
+        self.id = self.page._page_ref['id']
+        self.storage_before = self.js("return localStorage.getItem('form-controls-dynamic-ids');")
+        self.previous = disable_dynamic_ids(self.page)
+        self.original = self.stable()
+        return {'url': self.page.get_url(), 'library': str(self.args.library), 'silent_running': True, 'baseline_tabs': len(self.baseline)}
+
+    def mapping(self):
+        matches = self.page.find_all(self.args.element, timeout=5)
+        require(len(matches) == 1, {'name': self.args.element, 'matches': len(matches)})
+        self.element = matches[0]
+        actual = {'name': self.args.element, 'matches': len(matches), 'id': self.element.get_attribute('id'), 'tag': self.observe()['tag']}
+        return require(actual['id'] == 'form-controls-ant-text' and actual['tag'] == 'INPUT', actual)
+
+    def restore(self):
+        if not self.original:
+            return None
+        return self.js("if(a.style===null)e.removeAttribute('style');else e.setAttribute('style',a.style);if(a.frame_style===null)f.removeAttribute('style');else f.setAttribute('style',a.frame_style);window.scrollTo({left:a.scroll.top_x,top:a.scroll.top_y,behavior:'instant'});f.contentWindow.scrollTo({left:a.scroll.frame_x,top:a.scroll.frame_y,behavior:'instant'});return true;", self.original)
+
+    def stable(self):
+        end = time.monotonic()+3
+        previous = self.observe(); count = 0
+        while time.monotonic() < end:
+            time.sleep(.05)
+            current = self.observe()
+            count = count+1 if current == previous else 0
+            if count >= 2:
+                return current
+            previous = current
+        raise Blocked('DOM layout did not settle: '+json.dumps(previous, ensure_ascii=False))
+
+    def prepare(self, scene):
+        self.restore()
+        if scene == 'top_scroll':
+            self.js("f.style.setProperty('height',Math.max(1300,innerHeight+400)+'px','important');window.scrollTo({top:60,left:0,behavior:'instant'});return true;")
+        elif scene == 'iframe_scroll':
+            self.js("f.contentWindow.scrollTo({top:73,left:0,behavior:'instant'});return true;")
+        elif scene == 'translate_resize':
+            self.js("e.style.setProperty('transition','none','important');e.style.setProperty('animation','none','important');e.getAnimations().forEach(a=>a.cancel());e.style.transform='translate(13.25px,17.75px)';e.style.boxSizing='border-box';e.style.width='237.5px';e.style.height='37.5px';return true;")
+        elif scene == 'negative_position':
+            self.js("e.style.setProperty('transition','none','important');e.style.setProperty('animation','none','important');e.getAnimations().forEach(a=>a.cancel());e.style.transform='translate(-200.25px,-550.75px)';return true;")
+        before = self.stable()
+        if scene == 'top_scroll':
+            require(before['scroll']['top_y'] > self.original['scroll']['top_y'], before)
+        if scene == 'iframe_scroll':
+            require(before['scroll']['frame_y'] > self.original['scroll']['frame_y'], before)
+        if scene == 'translate_resize':
+            require(before['rect']['width'] == 237.5 and before['rect']['height'] == 37.5, before)
+        if scene == 'negative_position':
+            require(before['rect']['x'] < 0 and before['rect']['y'] < 0, before)
+        return before
+
+    def measurement(self, scene='baseline', normal=True, relative='screen', call='explicit'):
+        before = self.prepare(scene)
+        native = self.oracle.measure(before)
+        foreground = self.oracle.foreground()
+        if call == 'default':
+            actual = self.element.get_bounding()
+        elif call == 'positional':
+            actual = self.element.get_bounding(normal, relative)
+        else:
+            actual = self.element.get_bounding(to96dpi=normal, relative_to=relative)
+        after = self.observe(); native_after = self.oracle.measure(after); foreground_after = self.oracle.foreground()
+        if before != after or native != native_after:
+            raise Blocked(json.dumps({'reason': 'DOM/native geometry moved during read', 'before': before, 'after': after, 'native_before': native, 'native_after': native_after}, ensure_ascii=False))
+        factor = 96/native['dpi'] if normal else 1
+        physical = {key: math.floor(before['rect'][key]*before['dpr']+.5) for key in KEYS}
+        for key in ('x', 'y'):
+            physical[key] += native['viewport']['client_origin'][key]
+            if relative == 'window':
+                physical[key] -= native['client_origin'][key]
+        expected = {key: math.floor(physical[key]*factor+.5) for key in KEYS}
+        difference = {key: actual.get(key, None)-expected[key] if isinstance(actual, dict) and type(actual.get(key)) is int else None for key in KEYS}
+        detail = {'bounding': actual, 'expected_rect': expected, 'difference': difference, 'dpi': native['dpi'], 'dpr': before['dpr'], 'scroll': before['scroll'], 'foreground_unchanged': foreground == foreground_after, 'foreground_before': foreground, 'foreground_after': foreground_after, 'native': native, 'dom_before': before, 'dom_after': after, 'scene': scene, 'relative_to': relative, 'to96dpi': normal}
+        require(isinstance(actual, dict) and set(actual) == set(KEYS) and all(type(actual[key]) is int for key in KEYS), detail)
+        require(all(value == 0 for value in difference.values()), detail)
+        # Foreground changes by the user are recorded, not blamed on the API.
+        if foreground != native['hwnd'] and foreground_after == native['hwnd']:
+            raise Blocked(json.dumps({'reason': 'Test Chrome became foreground during geometry call', **detail}, ensure_ascii=False))
+        return detail
+
+    def readonly(self):
+        self.restore(); before = self.stable()
+        values = [self.element.get_bounding(False, 'window') for _ in range(3)]
+        after = self.observe()
+        return require(before == after and all(v == values[0] for v in values), {'values': values, 'dom_scroll_value_focus_style_unchanged': before == after})
+
+    def restore_case(self):
+        self.restore(); after = self.stable()
+        return require(after == self.original, {'restored': after == self.original, 'actual': after})
+
+    def restore_preference(self):
+        if self.previous == 'true':
+            find_switch(self.page).click(simulative=False, delay_after=0)
+        self.js("if(a===null)localStorage.removeItem('form-controls-dynamic-ids');else localStorage.setItem('form-controls-dynamic-ids',a);return true;", self.storage_before)
+        actual = self.js("return localStorage.getItem('form-controls-dynamic-ids');")
+        switched = find_switch(self.page).get_attribute('aria-checked')
+        return require(actual == self.storage_before and switched == self.previous, {'expected_storage': self.storage_before, 'actual_storage': actual, 'expected_switch': self.previous, 'actual_switch': switched})
+
+    def closed_page(self):
+        self.page.close(ignore_beforeunload=True)
+        return raises(ActionError, lambda: self.element.get_bounding(), trace='stale_page_reference')
+
+    def closed_package(self):
+        self.package.close()
+        return raises(HostUnavailableError, lambda: self.element.get_bounding(), '连接已关闭')
+
+    def cleanup(self):
+        errors = []
+        if self.page:
+            try:
+                ids = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+                if self.id in ids:
+                    self.restore()
+                    if self.previous == 'true':
+                        find_switch(self.page).click(simulative=False, delay_after=0)
+                    self.js("if(a===null)localStorage.removeItem('form-controls-dynamic-ids');else localStorage.setItem('form-controls-dynamic-ids',a);return true;", self.storage_before)
+                    self.page.close(ignore_beforeunload=True)
+            except Exception as exc:
+                errors.append(error(exc))
+        if self.package:
+            try:
+                self.package.close()
+            except Exception as exc:
+                errors.append(error(exc))
+        if self.tmp.exists():
+            require(self.tmp.resolve().parent == (ROOT/'.pytest_tmp/bounding_live').resolve(), 'Unexpected cleanup path')
+            shutil.rmtree(self.tmp)
+        after = {p._page_ref['id'] for p in web.get_all(mode='chrome')} if self.baseline is not None else set()
+        unchanged = self.library_hash is None or hashlib.sha256((self.args.library/'elements.json').read_bytes()).hexdigest() == self.library_hash
+        if self.oracle:
+            self.oracle.close()
+        detail = {'errors': errors, 'own_tab_closed': self.id not in after, 'temporary_copy_removed': not self.tmp.exists(), 'source_library_unchanged': unchanged, 'tab_count': f'{len(self.baseline or set())}->{len(after)}', 'external_added': sorted(after-(self.baseline or set())), 'external_removed': sorted((self.baseline or set())-after)}
+        return require(not errors and detail['own_tab_closed'] and detail['temporary_copy_removed'] and unchanged and not detail['external_added'] and not detail['external_removed'], detail)
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--url', default=URL)
+    parser.add_argument('--library', type=Path, default=LIBRARY)
+    parser.add_argument('--element', default=NAME)
+    parser.add_argument('--contract-only', action='store_true')
+    parser.add_argument('--json', action='store_true', help='报告结束后输出完整 JSON')
+    parser.add_argument('--report-file', type=Path)
+    args = parser.parse_args(argv); run = Run(args)
+    print('UIAutoma Web API 测试\nAPI     : uiautoma.web.WebElement.get_bounding\n页面    : '+args.url, flush=True)
+    good = run.case('api_contract', '签名、默认值、源码及两仓库只读 commit 与冻结合同一致', check_contract) == 'PASS'
+    for name, value in [('invalid_reference', 'bad'), ('blank_reference', ''), ('case_sensitive_reference', 'SCREEN'), ('none_reference', None)]:
+        run.case(name, 'SDK 立即抛 InvalidParamsError / relative_to 必须是 screen 或 window', lambda value=value: raises(InvalidParamsError, lambda: WebElement.get_bounding(object(), relative_to=value), 'relative_to 必须是 screen 或 window'))
+    run.case('extra_positional', '多余位置参数抛 TypeError', lambda: raises(TypeError, lambda: WebElement.get_bounding(object(), True, 'screen', 1)))
+    run.case('unknown_keyword', '未知关键字抛 TypeError', lambda: raises(TypeError, lambda: WebElement.get_bounding(object(), unknown=True)))
+    if not args.contract_only and good:
         try:
-            page.close()
-            page_item.update(status="PASS", confirmed=True, cleanup_call_needed=True, created=True)
-        except Exception as exc:  # noqa: BLE001
-            page_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(page_item)
-
-    library_item: dict[str, Any] = {"resource": "owned_scrubbed_library"}
-    if owned_library_dir is None:
-        library_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    elif not re.fullmatch(r"[0-9a-f]{32}", owned_library_dir.name):
-        library_item.update(
-            status="FAIL",
-            confirmed=False,
-            cleanup_call_needed=False,
-            created=True,
-            reason="owned_library_identity_unknown",
-        )
-    else:
-        try:
-            if owned_library_dir.exists():
-                shutil.rmtree(owned_library_dir)
-            confirmed = not owned_library_dir.exists()
-            library_item.update(
-                status="PASS" if confirmed else "FAIL",
-                confirmed=confirmed,
-                cleanup_call_needed=True,
-                created=True,
-            )
-        except Exception as exc:  # noqa: BLE001
-            library_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(library_item)
-
-    passed = all(item["status"] == "PASS" for item in items)
-    return _result(
-        "owned_resources_cleanup",
-        "PASS" if passed else "FAIL",
-        "本次元素库连接、测试页面和临时库副本已逐项确认清理"
-        if passed
-        else "本次资源未能全部精确清理",
-        confirmed=passed,
-        attempted_count=len(items),
-        cleaned_count=sum(item["status"] == "PASS" for item in items),
-        resources=items,
-    )
+            if run.case('environment', 'Runtime、静默自有页面与临时库可用', run.setup) == 'PASS':
+                if run.case('library_mapping', '指定库元素唯一命中 Ant input', run.mapping) == 'PASS':
+                    run.case('native_oracle', 'Win32 独立唯一识别 Chrome 主窗口及网页 viewport；记录 DPI', lambda: run.oracle.measure(run.observe()))
+                    run.case('default', '默认 screen/96 DPI，四个整数与独立坐标完全相同', lambda: run.measurement(call='default'))
+                    for scene in SCENES:
+                        for relative in ('screen', 'window'):
+                            for normal in (False, True):
+                                run.case(f'{scene}_{relative}_{normal}', '四个整数与 DOM + Win32 独立推导完全相同，读取不滚动', lambda scene=scene, relative=relative, normal=normal: run.measurement(scene, normal, relative))
+                    run.case('positional_arguments', '两个可选参数可按位置传入，window 物理矩形正确', lambda: run.measurement(normal=False, relative='window', call='positional'))
+                    run.case('readonly_repeat', '连读三次相同；滚动、value、focus、style 不变', run.readonly)
+                    run.case('restore_scene', '自有页面样式/滚动恢复到进入时值', run.restore_case)
+                    run.case('restore_preference', '动态 ID 开关和站点 localStorage 精确恢复', run.restore_preference)
+                    run.case('closed_page', '关闭自有页面后抛 ActionError / stale_page_reference', run.closed_page)
+                    run.case('closed_package', '关闭库连接后抛 HostUnavailableError / 连接已关闭', run.closed_package)
+        finally:
+            run.case('cleanup', '自有页面/库、副本已清理；源库、外部标签不变', run.cleanup)
+    code = 1 if any(r['status'] == 'FAIL' for r in run.rows) else 2 if any(r['status'] == 'BLOCKED' for r in run.rows) else 0
+    report = {'api': 'uiautoma.web.WebElement.get_bounding', 'date': '2026-10-08', 'lifecycle': 'VERIFIED' if code == 0 and not args.contract_only and len(run.rows) == run.total else 'READY_FOR_LIVE', 'scope': 'background Chrome, iframe/open Shadow Ant input, native window DPI=96; higher native DPI not verified', 'worktrees': {'desktop': str(PRODUCT), 'rust_uia': str(PROVIDER)}, 'commits': {'desktop': source_commit(PRODUCT), 'rust_uia': source_commit(PROVIDER)}, 'url': args.url, 'library': str(args.library), 'element': args.element, 'results': run.rows, 'exit_code': code}
+    if args.report_file:
+        args.report_file.parent.mkdir(parents=True, exist_ok=True)
+        args.report_file.write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+    if args.json:
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+    passed = sum(r['status'] == 'PASS' for r in run.rows)
+    print(f"{'测试通过' if code == 0 else '测试失败' if code == 1 else '测试阻塞'} · {passed}/{len(run.rows)} 通过 · 退出码 {code}", flush=True)
+    return code
 
 
-def _exit_code(results: Sequence[dict[str, Any]]) -> int:
-    statuses = {str(item.get("status") or "FAIL") for item in results}
-    return 1 if "FAIL" in statuses else (2 if "BLOCKED" in statuses else 0)
-
-
-def _report(args: argparse.Namespace, results: Sequence[dict[str, Any]]) -> tuple[dict[str, Any], int]:
-    exit_code = _exit_code(results)
-    status = "FAIL" if exit_code == 1 else ("BLOCKED" if exit_code == 2 else "PASS")
-    excluded = [
-        "edge",
-        "cef",
-        "auto",
-        "relative_to 非 screen 负例",
-        "跨 DPI 精确像素对照（to96dpi 当前为保留参数）",
-        "select_html 单选 / Ant/组件库控件",
-        "元素库捕获期 WebSessionId 在不清理时仍可直连当前页面（产品侧会话绑定）",
-    ]
-    return (
-        {
-            "api": "uiautoma.web.WebElement.get_bounding",
-            "status": status,
-            "exit_code": exit_code,
-            "mode": args.mode,
-            "profile_directory": args.profile_directory,
-            "contract_only": bool(args.contract_only),
-            "select_element_name": args.select_element_name,
-            "reset_element_name": args.reset_element_name,
-            "results": list(results),
-            "excluded": excluded,
-        },
-        exit_code,
-    )
-
-
-def run(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
-    results = [check_contract()]
-    if results[-1]["status"] != "PASS" or args.contract_only:
-        return _report(args, results)
-
-    results.append(preflight_target(args.target_url, args.preflight_timeout))
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    results.append(preflight_runtime(args.runtime_timeout))
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    results.append(
-        preflight_element_library(
-            args.element_library,
-            args.select_element_name,
-            args.reset_element_name,
-            args.target_url,
-        )
-    )
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    run_id = uuid.uuid4().hex
-    marked_url = _marked_url(args.target_url, run_id)
-    owned_library_dir = PRODUCT_ROOT / ".pytest_tmp" / run_id
-    page: WebBrowser | None = None
-    package: Any | None = None
-    try:
-        scrub_result = prepare_scrubbed_library(args.element_library, owned_library_dir)
-        results.append(scrub_result)
-        if scrub_result["status"] == "PASS":
-            page_result, page = prepare_owned_page(
-                marked_url,
-                args.mode,
-                args.load_timeout,
-                args.profile_directory,
-            )
-            results.append(page_result)
-            if page_result["status"] == "PASS" and page is not None:
-                library_result, package, select_element, reset_element = (
-                    connect_library_and_find_elements(
-                        page,
-                        owned_library_dir,
-                        args.select_element_name,
-                        args.reset_element_name,
-                        args.runtime_timeout,
-                        args.element_timeout,
-                    )
-                )
-                results.append(library_result)
-                if (
-                    library_result["status"] == "PASS"
-                    and select_element is not None
-                    and reset_element is not None
-                ):
-                    results.append(
-                        run_get_bounding_case(
-                            page,
-                            select_element,
-                            case_id="get_bounding_default",
-                        )
-                    )
-                    results.append(
-                        run_get_bounding_case(
-                            page,
-                            select_element,
-                            case_id="get_bounding_to96dpi_false",
-                            to96dpi=False,
-                        )
-                    )
-    except Exception as exc:  # noqa: BLE001
-        results.append(
-            _result(
-                "scenario_orchestration",
-                "FAIL",
-                "真实场景编排失败",
-                **_error_fields(exc),
-            )
-        )
-    finally:
-        results.append(
-            cleanup_resources(
-                package=package,
-                page=page,
-                owned_library_dir=owned_library_dir if owned_library_dir.exists() else None,
-            )
-        )
-    return _report(args, results)
-
-
-def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="运行 uiautoma.web.WebElement.get_bounding() 持久化真实浏览器测试。"
-    )
-    parser.add_argument(
-        "--mode",
-        default="chrome",
-        choices=["chrome"],
-        help="用什么浏览器打开测试页面；默认 chrome。",
-    )
-    parser.add_argument(
-        "--profile-directory",
-        default=DEFAULT_PROFILE_DIRECTORY,
-        help="Chrome Profile 目录标识；默认 Default。",
-    )
-    parser.add_argument(
-        "--target-url",
-        default=DEFAULT_TARGET_URL,
-        help=f"get_bounding 测试靶场，默认 {DEFAULT_TARGET_URL}",
-    )
-    parser.add_argument(
-        "--element-library",
-        type=Path,
-        default=DEFAULT_ELEMENT_LIBRARY,
-        help="包含 select_html_多选 与 重置_html 的元素库目录。",
-    )
-    parser.add_argument(
-        "--select-element-name",
-        default=DEFAULT_SELECT_ELEMENT_NAME,
-        help=f"下拉框元素名称，默认 {DEFAULT_SELECT_ELEMENT_NAME}。",
-    )
-    parser.add_argument(
-        "--reset-element-name",
-        default=DEFAULT_RESET_ELEMENT_NAME,
-        help=f"重置按钮元素名称，默认 {DEFAULT_RESET_ELEMENT_NAME}。",
-    )
-    parser.add_argument("--preflight-timeout", type=float, default=2.0, help="靶场预检超时秒数，默认 2。")
-    parser.add_argument("--runtime-timeout", type=float, default=5.0, help="Runtime 与元素库连接超时秒数，默认 5。")
-    parser.add_argument("--load-timeout", type=float, default=20.0, help="页面创建超时秒数，默认 20。")
-    parser.add_argument("--element-timeout", type=float, default=5.0, help="元素库目标绑定超时秒数，默认 5。")
-    parser.add_argument("--contract-only", action="store_true", help="只检查公开签名，不连接 Runtime、靶场或浏览器。")
-    args = parser.parse_args(argv)
-    try:
-        args.target_url = _validate_url(args.target_url, "--target-url")
-    except argparse.ArgumentTypeError as exc:
-        parser.error(str(exc))
-    args.element_library = args.element_library.resolve()
-    args.select_element_name = str(args.select_element_name or "").strip()
-    args.reset_element_name = str(args.reset_element_name or "").strip()
-    args.profile_directory = str(args.profile_directory or "").strip()
-    if not args.select_element_name:
-        parser.error("--select-element-name 不能为空")
-    if not args.reset_element_name:
-        parser.error("--reset-element-name 不能为空")
-    if not args.profile_directory or any(char in args.profile_directory for char in ("/", "\\")):
-        parser.error("--profile-directory 必须是不含路径分隔符的 Chrome Profile 目录标识")
-    for name in ("preflight_timeout", "runtime_timeout", "load_timeout", "element_timeout"):
-        if getattr(args, name) <= 0:
-            parser.error(f"--{name.replace('_', '-')} 必须大于 0")
-    return args
-
-
-def main(argv: Sequence[str] | None = None) -> int:
-    args = parse_args(argv)
-    report, exit_code = run(args)
-    print(json.dumps(report, ensure_ascii=False, indent=2))
-    return exit_code
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())

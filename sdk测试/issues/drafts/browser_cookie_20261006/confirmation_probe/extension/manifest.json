@@ -1,0 +1,8 @@
+{
+  "manifest_version": 3,
+  "name": "Temporary Cookie Return Probe",
+  "version": "1.0.0",
+  "permissions": ["cookies"],
+  "host_permissions": ["*://baobaomi900901.github.io/*"],
+  "background": {"service_worker": "worker.js"}
+}

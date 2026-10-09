@@ -1,0 +1,21 @@
+import json
+import sys
+from pathlib import Path
+sys.dont_write_bytecode = True
+sys.path.insert(0, r'D:\code\desktop\sdk\src')
+from uiautoma import web
+
+owned = '588fc5b790934e89'
+pages = web.get_all(mode='chrome')
+before = {p._page_ref['id'] for p in pages}
+found = [p for p in pages if p._page_ref['id'] == owned]
+assert len(found) == 1
+page = found[0]
+assert page.get_url() == 'https://baobaomi900901.github.io/xpath/#/keys-click-test'
+page.execute_javascript('function(){const o=window.__uiaHighlightObservation;if(o){for(const k of Object.keys(o.counts))document.removeEventListener(k,o.listener,true);delete window.__uiaHighlightObservation;}return true;}')
+page.close(ignore_beforeunload=True)
+after = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+assert after == before-{owned}
+result = {'owned_trial_page_closed': owned, 'tabs': f'{len(before)}->{len(after)}', 'other_pages_unchanged': True}
+Path(r'D:\code\元素库\sdk测试\web\evidence\artifacts\element_highlight_20261009_trial1_recovery.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+print(json.dumps(result, ensure_ascii=False))

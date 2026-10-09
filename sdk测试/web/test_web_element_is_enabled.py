@@ -1,825 +1,328 @@
-"""uiautoma.web.WebElement.is_enabled() 持久化真实浏览器测试运行器。
+"""WebElement.is_enabled 后台验收；真实库按钮与独立浏览器状态参考。
 
-导入本模块不会连接 Runtime、访问靶场或操作浏览器。真实场景打开唯一 Chrome
-``form-controls`` 页面并连接指定元素库；目标断言直接调用 ``WebElement.is_enabled()``。
-
-用例：
-- ``input元素``：期望 ``True``（可用）
-- ``input_html_disabled``：期望 ``False``（禁用）
+只在自有静默标签中临时切换现有按钮属性，每项恢复，最终关闭资源。
+不点击、不激活窗口、不发送键鼠输入。HTML disabled 按属性存在与 IDL 判断；
+aria-disabled 按 ARIA true/false 判断。退出码 0 全通过、1 失败、2 环境阻塞。
+--contract-only 不连接 Runtime。
 """
-
 from __future__ import annotations
 
 import argparse
+import hashlib
 import inspect
 import json
-import re
 import shutil
+import subprocess
 import sys
 import time
 import uuid
 from pathlib import Path
-from typing import Any, Sequence
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
-from urllib.request import Request, urlopen
-
-PRODUCT_ROOT = Path(__file__).resolve().parents[3]
-SDK_SRC = PRODUCT_ROOT / "sdk" / "src"
-if str(SDK_SRC) not in sys.path:
-    sys.path.insert(0, str(SDK_SRC))
-
-import uiautoma  # noqa: E402
-from uiautoma import ping, web  # noqa: E402
-from uiautoma.web import WebBrowser, WebElement  # noqa: E402
-
 
 __test__ = False
+sys.dont_write_bytecode = True
+ROOT = Path(__file__).resolve().parents[1]
+PRODUCT = Path(r'D:\code\desktop')
+sys.path[:0] = [str(PRODUCT/'sdk/src'), str(ROOT/'web')]
+from uiautoma import web, open as open_package, ping, ActionError, HostUnavailableError
+from uiautoma.web import WebElement
+from test_web_element_get_select_options import copy_library
 
-DEFAULT_TARGET_URL = "http://localhost:7199/form-controls"
-DEFAULT_ELEMENT_LIBRARY = Path(__file__).with_name("web测试元素库")
-DEFAULT_PROFILE_DIRECTORY = "Default"
-DEFAULT_ENABLED_ELEMENT_NAME = "input元素"
-DEFAULT_DISABLED_ELEMENT_NAME = "input_html_disabled"
-RUN_QUERY_KEY = "uiautoma_element_is_enabled_run"
-
-EXPECTED_PARAMETER_ORDER = ("self",)
-EXPECTED_DEFAULTS: dict[str, Any] = {}
-EXPECTED_KINDS = {
-    "self": inspect.Parameter.POSITIONAL_OR_KEYWORD,
-}
-
-# 目标 API：is_enabled() -> bool
-# 可用 True；禁用 False。实现读 disabled 属性：空/None/"false"/"False" → True。
-
-BLOCKING_EXCEPTION_NAMES = {
-    "ConnectionError",
-    "EOFError",
-    "HostUnavailableError",
-    "PipeClosedError",
-    "TimeoutError",
-    "UnsupportedProtocolError",
-}
-BLOCKING_TRACES = {
-    "browser_executable_not_found",
-    "browser_launch_timeout",
-    "browser_session_discovery_failed",
-    "browser_session_disconnected",
-    "native_host_unavailable",
-    "plugin_not_connected",
-    "web_bridge_unavailable",
-    "web_host_unavailable",
-    "web_ipc_unreachable",
-    "web_runtime_incompatible",
-    "web_session_unavailable",
-}
+URL = 'https://baobaomi900901.github.io/xpath/#/keys-click-test'
+LIBRARY = Path(r'D:\code\元素库\260902_web元素')
+CONTRACT = ROOT/'web/element_is_enabled_contract_20261008.json'
+TARGETS = (
+    ('disabled_button', 'web靶场_disabled_按钮', 'btn-disabled-click-target', False),
+    ('click_button', 'web靶场_测试点击_单击触发', 'btn-click-target', True),
+)
+ATTRIBUTE_VALUES = ('', 'disabled', 'true', 'false', 'False')
 
 
-def _result(case_id: str, status: str, detail: str, **extra: Any) -> dict[str, Any]:
-    return {"case_id": case_id, "status": status, "detail": detail, **extra}
+class Blocked(Exception):
+    pass
 
 
-def _safe_trace(exc: BaseException) -> str:
-    for attr in ("trace_info", "method"):
-        trace = str(getattr(exc, attr, "") or "")
-        if re.fullmatch(r"[A-Za-z0-9_.-]{1,80}", trace):
-            return trace
-    return ""
+class Failure(AssertionError):
+    def __init__(self, detail):
+        self.detail = detail
+        super().__init__(json.dumps(detail, ensure_ascii=False, default=str))
 
 
-def _error_fields(exc: BaseException) -> dict[str, str]:
-    return {"exception": exc.__class__.__name__, "trace_info": _safe_trace(exc)}
+def require(ok, detail):
+    if not ok:
+        raise Failure(detail)
+    return detail
 
 
-def _error_status(exc: BaseException) -> str:
-    if exc.__class__.__name__ in BLOCKING_EXCEPTION_NAMES or _safe_trace(exc) in BLOCKING_TRACES:
-        return "BLOCKED"
-    return "FAIL"
+def error(exc):
+    return {'exception': type(exc).__name__, 'message': str(exc), 'trace': getattr(exc, 'trace_info', '')}
 
 
-def _validate_url(value: str, option: str) -> str:
-    text = str(value or "").strip()
+def raises(kind, fn, message='', trace=''):
     try:
-        parts = urlsplit(text)
-    except ValueError as exc:
-        raise argparse.ArgumentTypeError(f"{option} 不是有效 URL") from exc
-    if (
-        parts.scheme.casefold() not in {"http", "https"}
-        or not parts.hostname
-        or parts.username is not None
-        or parts.password is not None
-    ):
-        raise argparse.ArgumentTypeError(f"{option} 必须是不含凭据的绝对 HTTP/HTTPS URL")
-    return text
+        fn()
+    except kind as exc:
+        detail = error(exc)
+        return require((not message or message in str(exc)) and (not trace or detail['trace'] == trace), detail)
+    raise Failure({'expected_exception': kind.__name__, 'actual': 'returned normally'})
 
 
-def _marked_url(target_url: str, run_id: str) -> str:
-    parts = urlsplit(target_url)
-    query = [
-        (key, value)
-        for key, value in parse_qsl(parts.query, keep_blank_values=True)
-        if key != RUN_QUERY_KEY
-    ]
-    query.append((RUN_QUERY_KEY, run_id))
-    return urlunsplit((parts.scheme, parts.netloc, parts.path or "/", urlencode(query), ""))
+def contract():
+    frozen = json.loads(CONTRACT.read_text(encoding='utf-8'))
+    signature = inspect.signature(WebElement.is_enabled)
+    require(tuple(signature.parameters) == ('self',) and str(signature.return_annotation) == 'bool', str(signature))
+    require(str(signature) == frozen['signature'] and inspect.getsource(WebElement.is_enabled) == frozen['source'], 'SDK method changed; review frozen contract')
+    commit = subprocess.check_output(['git', '-C', str(PRODUCT), 'rev-parse', 'HEAD'], text=True).strip()
+    require(commit == frozen['commit'], {'expected_commit': frozen['commit'], 'actual_commit': commit})
+    for snapshot in frozen['source_snapshots']:
+        path = Path(snapshot['worktree'])/snapshot['path']
+        require(hashlib.sha256(path.read_bytes()).hexdigest() == snapshot['sha256'], {'changed_source': str(path)})
+    return {'signature': str(signature), 'worktree': str(PRODUCT), 'commit': commit, 'rpc': frozen['rpc'], 'timeout_ms': frozen['timeout_ms'], 'source_sections': len(frozen['source_snapshots'])}
 
 
-def _page_key(value: object) -> tuple[Any, ...] | None:
-    try:
-        parts = urlsplit(str(value or "").strip())
-        port = parts.port
-    except ValueError:
-        return None
-    scheme = parts.scheme.casefold()
-    hostname = (parts.hostname or "").casefold()
-    if scheme not in {"http", "https"} or not hostname:
-        return None
-    if port == (443 if scheme == "https" else 80):
-        port = None
-    return scheme, hostname, port, parts.path or "/"
+class ValidationRaw:
+    calls = 0
+
+    def is_enabled(self):
+        self.calls += 1
+        raise AssertionError('Argument validation must precede raw delegation')
 
 
-def _exact_url_key(value: object) -> tuple[Any, ...] | None:
-    try:
-        parts = urlsplit(str(value or "").strip())
-        port = parts.port
-    except ValueError:
-        return None
-    scheme = parts.scheme.casefold()
-    hostname = (parts.hostname or "").casefold()
-    if scheme not in {"http", "https"} or not hostname:
-        return None
-    if port == (443 if scheme == "https" else 80):
-        port = None
-    return (
-        scheme,
-        hostname,
-        port,
-        parts.path or "/",
-        tuple(sorted(parse_qsl(parts.query, keep_blank_values=True))),
-    )
+class Run:
+    def __init__(self, args):
+        self.args, self.rows, self.elements = args, [], {}
+        self.page = self.package = self.baseline = self.page_id = self.library_hash = self.original = None
+        self.ready = False
+        self.total = 3 if args.contract_only else 32
+        self.tmp = ROOT/'.pytest_tmp/is_enabled_live'/uuid.uuid4().hex
+        self.targets = ((TARGETS[0][0], args.disabled_element, *TARGETS[0][2:]),
+                        (TARGETS[1][0], args.enabled_element, *TARGETS[1][2:]))
 
+    def case(self, name, expected, fn, live=False):
+        start = time.perf_counter()
+        try:
+            if live and not self.ready:
+                raise Blocked('环境准备未通过，未执行本用例')
+            actual, status = fn(), 'PASS'
+        except Failure as exc:
+            actual, status = exc.detail, 'FAIL'
+        except Exception as exc:
+            actual = error(exc)
+            status = 'BLOCKED' if isinstance(exc, (Blocked, HostUnavailableError, ConnectionError)) else 'FAIL'
+        row = {'case_id': name, 'status': status, 'expected': expected, 'actual': actual, 'elapsed_ms': round((time.perf_counter()-start)*1000, 1)}
+        self.rows.append(row)
+        display = actual
+        if isinstance(actual, dict) and 'dom_before' in actual:
+            keys = ('name', 'id', 'disabled_attribute', 'dom_disabled', 'pseudo_disabled', 'aria_disabled', 'expected_is_enabled', 'actual_is_enabled', 'return_type', 'readonly', 'values', 'attributes_focus_scroll_events_unchanged')
+            display = {key: actual[key] for key in keys if key in actual}
+        color, label = {'PASS': ('\x1b[32m', '通过'), 'FAIL': ('\x1b[31m', '失败'), 'BLOCKED': ('\x1b[33m', '阻塞')}[status]
+        print(f"{len(self.rows):02d}/{self.total:02d} {color}[{label}]\x1b[0m {name} 期望 {expected}；实测 {json.dumps(display, ensure_ascii=False, default=str)}；{row['elapsed_ms']}ms", flush=True)
+        return status
 
-def _tab_identity(page: WebBrowser | None) -> tuple[str, int, int] | None:
-    if page is None:
-        return None
-    raw = page.raw if isinstance(page.raw, dict) else {}
-    tab = raw.get("tab") if isinstance(raw.get("tab"), dict) else raw
-    try:
-        tab_id = int(tab.get("tabId", tab.get("id", 0)) or 0)
-        window_id = int(tab.get("windowId", tab.get("window_id", 0)) or 0)
-    except (TypeError, ValueError):
-        return None
-    session_id = str(
-        raw.get("target_session_id")
-        or raw.get("targetSessionId")
-        or raw.get("sessionId")
-        or tab.get("target_session_id")
-        or tab.get("targetSessionId")
-        or tab.get("sessionId")
-        or ""
-    )
-    return (session_id, window_id, tab_id) if tab_id > 0 else None
+    def js(self, body, arg=None):
+        return self.page.execute_javascript('function(_e,a){'+body+'}', arg)
 
+    def snapshot(self):
+        return self.js("""
+          const pick=id=>{const e=document.getElementById(id);return e?{id:e.id,tag:e.tagName,
+            attributes:[...e.attributes].map(x=>[x.name,x.value]).sort((a,b)=>a[0].localeCompare(b[0])),
+            disabled:e.disabled,pseudo_disabled:e.matches(':disabled'),disabled_attribute:e.getAttribute('disabled'),
+            aria_disabled:e.getAttribute('aria-disabled'),text:e.textContent}:null;};
+          return {buttons:['btn-disabled-click-target','btn-click-target'].map(pick),
+            focus:document.activeElement?.id||'',scroll:[scrollX,scrollY],events:{...window.__isEnabledObserve.counts}};
+        """)
 
-def _try_get_active_page(mode: str, timeout: float) -> WebBrowser | None:
-    try:
-        return web.get_active(mode, load_timeout=max(0.1, timeout))
-    except Exception:  # noqa: BLE001
-        return None
+    def setup(self):
+        ping(timeout=5)
+        if not self.args.library.is_dir():
+            raise Blocked('元素库目录不存在：'+str(self.args.library))
+        self.library_hash = hashlib.sha256((self.args.library/'elements.json').read_bytes()).hexdigest()
+        self.baseline = {p._page_ref['id'] for p in web.get_all(mode='chrome')}
+        copy_library(self.args.library, self.tmp/'library')
+        self.package = open_package(str(self.tmp/'library'), timeout=8, connect_timeout=8)
+        self.page = web.create(self.args.url, mode='chrome', silent_running=True, load_timeout=25)
+        self.page_id = self.page._page_ref['id']
+        self.js("""
+          const counts={click:0,input:0,change:0,keydown:0};const listener=e=>{counts[e.type]++;};
+          for(const k of Object.keys(counts))document.addEventListener(k,listener,true);
+          window.__isEnabledObserve={counts,listener};return true;
+        """)
+        self.original = self.snapshot()
+        require(all(x and x['tag'] == 'BUTTON' for x in self.original['buttons']), self.original)
+        require(self.page.get_url() == self.args.url, {'actual_url': self.page.get_url()})
+        self.ready = True
+        return {'url': self.page.get_url(), 'library': str(self.args.library), 'silent_running': True, 'baseline_tabs': len(self.baseline), 'original_states': self.original['buttons']}
 
+    def restore(self):
+        if self.original:
+            self.js("""
+              for(const row of a.buttons){const e=document.getElementById(row.id);
+                for(const x of [...e.attributes])e.removeAttribute(x.name);
+                for(const [k,v] of row.attributes)e.setAttribute(k,v);}return true;
+            """, self.original)
 
-def _wait_for_launched_start_page(
-    mode: str,
-    before_identity: tuple[str, int, int] | None,
-    timeout: float,
-) -> WebBrowser | None:
-    deadline = time.monotonic() + timeout
-    while time.monotonic() < deadline:
-        page = _try_get_active_page(mode, min(1.0, timeout))
-        identity = _tab_identity(page)
-        if page is not None and identity is not None and identity != before_identity:
-            return page
-        time.sleep(0.1)
-    return None
+    def mapping(self, key, name, id):
+        matches = self.page.find_all(name, timeout=5)
+        detail = {'name': name, 'matches': len(matches), 'ids': [e.get_attribute('id') for e in matches]}
+        require(detail['ids'] == [id], detail)
+        self.elements[key] = matches[0]
+        return detail
 
+    def element(self, key):
+        if key not in self.elements:
+            raise Blocked('库元素未唯一定位：'+key)
+        return self.elements[key]
 
-def preflight_runtime(timeout: float) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        ping(timeout=timeout)
-        return _result(
-            "runtime_preflight",
-            "PASS",
-            "Runtime 与 Automation Pipe 可响应",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "runtime_preflight",
-            "BLOCKED",
-            "Runtime 或 Automation Pipe 不可用",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
+    def dom(self, id):
+        return next(x for x in self.snapshot()['buttons'] if x['id'] == id)
 
+    def read(self, key, name, id, expected):
+        before = self.snapshot()
+        dom = next(x for x in before['buttons'] if x['id'] == id)
+        require(type(dom['disabled']) is bool and dom['disabled'] == dom['pseudo_disabled'], {'oracle_disagrees': dom})
+        value = self.element(key).is_enabled()
+        after = self.snapshot()
+        detail = {'name': name, 'id': id, 'disabled_attribute': dom['disabled_attribute'], 'dom_disabled': dom['disabled'], 'pseudo_disabled': dom['pseudo_disabled'], 'aria_disabled': dom['aria_disabled'], 'expected_is_enabled': expected, 'actual_is_enabled': value, 'return_type': type(value).__name__, 'readonly': before == after, 'dom_before': before, 'dom_after': after}
+        return require(type(value) is bool and value is expected and before == after, detail)
 
-def prepare_scrubbed_library(source_library: Path, owned_dir: Path) -> dict[str, Any]:
-    started = time.perf_counter()
-    scrubbed_fields = 0
-    try:
-        shutil.copytree(source_library, owned_dir)
-        elements_file = owned_dir / "elements.json"
-        payload = json.loads(elements_file.read_text(encoding="utf-8"))
-        for process in payload.values():
-            if not isinstance(process, dict):
-                continue
-            for item in process.get("Group", process.get("group", [])):
-                if not isinstance(item, dict):
-                    continue
-                for key in list(item):
-                    if "session" in key.casefold() and item.get(key):
-                        item[key] = ""
-                        scrubbed_fields += 1
-                if item.get("BrowserPid"):
-                    item["BrowserPid"] = 0
-                    scrubbed_fields += 1
-        elements_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    def baseline_state(self, key, name, id, expected):
+        self.restore()
+        return self.read(key, name, id, expected)
 
-        snapshot_dir = owned_dir / "snapshot"
-        if snapshot_dir.is_dir():
-            for snap in snapshot_dir.glob("*.json"):
-                data = json.loads(snap.read_text(encoding="utf-8"))
-                stack: list[Any] = [data]
-                local = 0
-                while stack:
-                    obj = stack.pop()
-                    if isinstance(obj, dict):
-                        for key, value in list(obj.items()):
-                            if isinstance(key, str) and "session" in key.casefold() and value:
-                                obj[key] = ""
-                                local += 1
-                            elif isinstance(value, (dict, list)):
-                                stack.append(value)
-                    elif isinstance(obj, list):
-                        stack.extend(obj)
-                if local:
-                    snap.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-                    scrubbed_fields += local
+    def attribute(self, key, name, id, value):
+        self.restore()
+        try:
+            self.js("const e=document.getElementById(a.id);e.removeAttribute('aria-disabled');e.setAttribute('disabled',a.value);return true;", {'id': id, 'value': value})
+            dom = self.dom(id)
+            require(dom['disabled_attribute'] == value and dom['disabled'] is True and dom['pseudo_disabled'] is True, {'preparation_failed': dom})
+            return self.read(key, name, id, False)
+        finally:
+            self.restore()
 
-        passed = (owned_dir / "elements.json").is_file()
-        return _result(
-            "scrubbed_library_setup",
-            "PASS" if passed else "FAIL",
-            "已准备清空捕获会话后的本次元素库副本" if passed else "本次元素库副本不可用",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            scrubbed_fields=scrubbed_fields,
-            owned_library_exists=passed,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "scrubbed_library_setup",
-            "FAIL",
-            "无法准备本次元素库副本",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            scrubbed_fields=scrubbed_fields,
-            **_error_fields(exc),
-        )
+    def dynamic(self, key, name, id):
+        self.restore()
+        details = []
+        try:
+            for disabled in (False, True, False):
+                self.js("const e=document.getElementById(a.id);e.removeAttribute('aria-disabled');e.disabled=a.disabled;return true;", {'id': id, 'disabled': disabled})
+                dom = self.dom(id)
+                require(dom['disabled'] is disabled and dom['pseudo_disabled'] is disabled, {'preparation_failed': dom})
+                details.append(self.read(key, name, id, not disabled))
+            return {'name': name, 'sequence': [x['actual_is_enabled'] for x in details], 'same_element_reference': True, 'measurements': details}
+        finally:
+            self.restore()
 
+    def aria(self, key, name, id, value):
+        self.restore()
+        try:
+            self.js("const e=document.getElementById(a.id);e.disabled=false;if(a.value===null)e.removeAttribute('aria-disabled');else e.setAttribute('aria-disabled',a.value);return true;", {'id': id, 'value': value})
+            dom = self.dom(id)
+            require(dom['disabled'] is False and dom['pseudo_disabled'] is False and dom['aria_disabled'] == value, {'preparation_failed': dom})
+            return self.read(key, name, id, value != 'true')
+        finally:
+            self.restore()
 
-def prepare_owned_page(
-    target_url: str,
-    mode: str,
-    load_timeout: float,
-    profile_directory: str,
-) -> tuple[dict[str, Any], WebBrowser | None]:
-    started = time.perf_counter()
-    page: WebBrowser | None = None
-    before_active = _try_get_active_page(mode, min(1.0, load_timeout))
-    before_identity = _tab_identity(before_active)
-    existing_session_reused = before_active is not None
-    profile_identity_fallback_used = False
-    profile_identity_trace = ""
-    recovery_method = "existing_session" if existing_session_reused else ""
-    try:
-        if existing_session_reused:
-            page = web.create(target_url, mode, load_timeout=load_timeout, silent_running=True)
-        else:
+    def readonly(self, key, name, id, expected):
+        self.restore()
+        before = self.snapshot()
+        values = [self.element(key).is_enabled() for _ in range(3)]
+        after = self.snapshot()
+        return require(before == after and all(type(v) is bool and v is expected for v in values), {'name': name, 'values': values, 'expected': expected, 'attributes_focus_scroll_events_unchanged': before == after, 'dom_before': before, 'dom_after': after})
+
+    def restored(self):
+        self.restore()
+        actual = self.snapshot()
+        return require(actual == self.original and not any(actual['events'].values()), {'attributes_focus_scroll_events_restored': actual == self.original, 'events': actual['events']})
+
+    def closed_page(self):
+        self.page.close(ignore_beforeunload=True)
+        return raises(ActionError, self.element('click_button').is_enabled, '网页对象已失效', 'stale_page_reference')
+
+    def closed_package(self):
+        self.package.close()
+        return raises(HostUnavailableError, self.element('click_button').is_enabled, '连接已关闭')
+
+    def cleanup(self):
+        errors = []
+        try:
+            current = {p._page_ref['id'] for p in web.get_all(mode='chrome')} if self.baseline is not None else set()
+            if self.page and self.page_id in current:
+                try:
+                    self.restore()
+                    self.js("const w=window.__isEnabledObserve;if(w){for(const k of Object.keys(w.counts))document.removeEventListener(k,w.listener,true);delete window.__isEnabledObserve;}return true;")
+                except Exception as exc:
+                    errors.append(error(exc))
+                self.page.close(ignore_beforeunload=True)
+        except Exception as exc:
+            errors.append(error(exc))
+        if self.package:
             try:
-                page = web.create(
-                    target_url,
-                    mode,
-                    load_timeout=load_timeout,
-                    silent_running=True,
-                    arguments=[
-                        f"--profile-directory={profile_directory}",
-                        "--ignore-profile-directory-if-not-exists",
-                    ],
-                )
-            except Exception as exc:  # noqa: BLE001
-                trace = _safe_trace(exc)
-                if trace != "browser_profile_identity_unknown":
-                    raise
-                profile_identity_fallback_used = True
-                profile_identity_trace = trace
-                page = _wait_for_launched_start_page(
-                    mode,
-                    before_identity,
-                    min(5.0, max(1.0, load_timeout)),
-                )
-                if page is None:
-                    raise RuntimeError("launched Chrome start page is not safely identifiable")
-                page.raw["created_by"] = "profile_launch_recovery"
-                recovery_method = "navigate_launched_start_page"
-                page.navigate(target_url, load_timeout=load_timeout)
-        checks = {
-            "returned_type_ok": isinstance(page, WebBrowser),
-            "mode_ok": str(page.mode or "").casefold() == mode.casefold(),
-            "url_ok": _exact_url_key(page.url) == _exact_url_key(target_url),
-            "owned_identity_ok": page.raw.get("created_by")
-            in {
-                "web.create",
-                "profile_launch_recovery",
-            },
-        }
-        passed = all(checks.values())
-        return (
-            _result(
-                "owned_page_setup",
-                "PASS" if passed else "BLOCKED",
-                "已打开本次唯一 is_enabled 测试页面" if passed else "is_enabled 测试页面创建结果不完整",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                profile_directory=profile_directory,
-                existing_session_reused=existing_session_reused,
-                profile_identity_fallback_used=profile_identity_fallback_used,
-                profile_identity_trace=profile_identity_trace,
-                profile_recovery_method=recovery_method,
-                **checks,
-            ),
-            page,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return (
-            _result(
-                "owned_page_setup",
-                "BLOCKED",
-                "无法打开本次 is_enabled 测试页面",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                profile_directory=profile_directory,
-                existing_session_reused=existing_session_reused,
-                profile_identity_fallback_used=profile_identity_fallback_used,
-                profile_identity_trace=profile_identity_trace,
-                profile_recovery_method=recovery_method,
-                **_error_fields(exc),
-            ),
-            page,
-        )
+                self.package.close()
+            except Exception as exc:
+                errors.append(error(exc))
+        if self.tmp.exists():
+            require(self.tmp.resolve().parent == (ROOT/'.pytest_tmp/is_enabled_live').resolve(), 'Unexpected cleanup path')
+            shutil.rmtree(self.tmp)
+        after = {p._page_ref['id'] for p in web.get_all(mode='chrome')} if self.baseline is not None else set()
+        unchanged = self.library_hash is None or hashlib.sha256((self.args.library/'elements.json').read_bytes()).hexdigest() == self.library_hash
+        detail = {'errors': errors, 'own_tab_closed': self.page_id not in after, 'temporary_copy_removed': not self.tmp.exists(), 'source_library_unchanged': unchanged, 'tab_count': f'{len(self.baseline or set())}->{len(after)}', 'external_added': sorted(after-(self.baseline or set())), 'external_removed': sorted((self.baseline or set())-after)}
+        return require(not errors and detail['own_tab_closed'] and detail['temporary_copy_removed'] and unchanged and not detail['external_added'] and not detail['external_removed'], detail)
 
 
-def check_contract() -> dict[str, Any]:
-    try:
-        signature = inspect.signature(WebElement.is_enabled)
-        parameters = signature.parameters
-        order_ok = tuple(parameters) == EXPECTED_PARAMETER_ORDER
-        defaults_ok = all(parameters[name].default == value for name, value in EXPECTED_DEFAULTS.items())
-        kinds_ok = all(parameters[name].kind == value for name, value in EXPECTED_KINDS.items())
-        no_extra_ok = set(parameters) == set(EXPECTED_PARAMETER_ORDER)
-        return_ann = signature.return_annotation
-        return_ok = return_ann is bool or return_ann == "bool" or str(return_ann) in {"bool", "<class 'bool'>"}
-        passed = order_ok and defaults_ok and kinds_ok and return_ok and no_extra_ok
-        return _result(
-            "api_contract",
-            "PASS" if passed else "FAIL",
-            "公开签名符合当前合同" if passed else "公开签名与当前合同不一致",
-            parameter_order_ok=order_ok,
-            defaults_ok=defaults_ok,
-            parameter_kinds_ok=kinds_ok,
-            return_annotation_ok=return_ok,
-            no_extra_parameters_ok=no_extra_ok,
-            return_annotation=str(return_ann),
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result("api_contract", "FAIL", "无法检查公开签名", **_error_fields(exc))
-
-
-def preflight_target(target_url: str, timeout: float) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        request = Request(target_url, headers={"User-Agent": "UIAutoma-SDK-persistent-test"})
-        with urlopen(request, timeout=timeout) as response:
-            status_code = int(getattr(response, "status", 200))
-        passed = 200 <= status_code < 400
-        return _result(
-            "target_preflight",
-            "PASS" if passed else "BLOCKED",
-            "is_enabled 测试靶场可访问" if passed else "is_enabled 测试靶场未返回成功状态",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            http_status=status_code,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "target_preflight",
-            "BLOCKED",
-            "is_enabled 测试靶场不可访问",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-
-def _library_named_matches(payload: dict[str, Any], element_name: str) -> list[dict[str, Any]]:
-    matches: list[dict[str, Any]] = []
-    for process in payload.values():
-        if not isinstance(process, dict):
-            continue
-        for item in process.get("Group", process.get("group", [])):
-            if isinstance(item, dict) and str(item.get("Name") or "") == element_name:
-                matches.append(item)
-    return matches
-
-
-def _library_item_ok(matches: list[dict[str, Any]], target_url: str) -> tuple[bool, bool]:
-    page_ok = len(matches) == 1 and _page_key(matches[0].get("PageUrl")) == _page_key(target_url)
-    selector_ok = len(matches) == 1 and bool(str(matches[0].get("Characteristics") or "").strip())
-    return page_ok, selector_ok
-
-
-def preflight_element_library(
-    library_dir: Path,
-    names: Sequence[str],
-    target_url: str,
-) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        elements_file = library_dir / "elements.json"
-        payload = json.loads(elements_file.read_text(encoding="utf-8"))
-        details: dict[str, Any] = {}
-        all_ok = library_dir.is_dir() and elements_file.is_file()
-        for name in names:
-            matches = _library_named_matches(payload, name)
-            page_ok, selector_ok = _library_item_ok(matches, target_url)
-            details[f"{name}_count"] = len(matches)
-            details[f"{name}_page_url_matches"] = page_ok
-            details[f"{name}_selector_present"] = selector_ok
-            all_ok = all_ok and page_ok and selector_ok
-        return _result(
-            "element_library_preflight",
-            "PASS" if all_ok else "BLOCKED",
-            "元素库包含 is_enabled 场景所需库项"
-            if all_ok
-            else "元素库缺少 is_enabled 场景库项或 PageUrl/选择器不匹配",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            library_dir_exists=library_dir.is_dir(),
-            elements_json_exists=elements_file.is_file(),
-            **details,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "element_library_preflight",
-            "BLOCKED",
-            "无法读取或验证元素库",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-
-def connect_library_and_find_elements(
-    page: WebBrowser,
-    library_dir: Path,
-    names: Sequence[str],
-    runtime_timeout: float,
-    element_timeout: float,
-) -> tuple[dict[str, Any], Any | None, dict[str, WebElement | None]]:
-    started = time.perf_counter()
-    package: Any | None = None
-    found: dict[str, WebElement | None] = {name: None for name in names}
-    try:
-        package = uiautoma.open(str(library_dir), timeout=runtime_timeout)
-        name_oks: dict[str, bool] = {}
-        for name in names:
-            element = page.find(name, timeout=element_timeout)
-            found[name] = element
-            name_oks[f"{name}_name_ok"] = str(element.name or "") == name
-        passed = package.web_count > 0 and all(name_oks.values())
-        return (
-            _result(
-                "element_library_setup",
-                "PASS" if passed else "FAIL",
-                "已连接元素库并绑定 is_enabled 场景元素"
-                if passed
-                else "元素库连接或元素绑定结果不符合预期",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                package_opened=True,
-                web_element_count=package.web_count,
-                **name_oks,
-            ),
-            package,
-            found,
-        )
-    except Exception as exc:  # noqa: BLE001
-        status = _error_status(exc)
-        return (
-            _result(
-                "element_library_setup",
-                status,
-                "元素库连接被环境阻塞" if status == "BLOCKED" else "无法连接元素库或绑定目标元素",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                package_opened=package is not None,
-                **_error_fields(exc),
-            ),
-            package,
-            found,
-        )
-
-
-def run_is_enabled_case(
-    *,
-    case_id: str,
-    page: WebBrowser,
-    target: WebElement,
-    expected: bool,
-) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        page.activate()
-        time.sleep(0.1)
-        call_started = time.perf_counter()
-        value = target.is_enabled()
-        call_elapsed_ms = round((time.perf_counter() - call_started) * 1000, 1)
-        attr_disabled = target.get_attribute("disabled")
-        print(
-            f"{case_id}: is_enabled()={value!r} expected={expected!r} attr.disabled={attr_disabled!r}",
-            file=sys.stderr,
-            flush=True,
-        )
-        type_ok = isinstance(value, bool)
-        value_ok = value is expected
-        passed = type_ok and value_ok
-        return _result(
-            case_id,
-            "PASS" if passed else "FAIL",
-            f"is_enabled 返回 {expected!r} 符合预期" if passed else f"is_enabled 期望 {expected!r} 实际 {value!r}",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            is_enabled_elapsed_ms=call_elapsed_ms,
-            return_type_ok=type_ok,
-            value_ok=value_ok,
-            expected=expected,
-            value=value,
-            attr_disabled=attr_disabled,
-            target_name=str(target.name or ""),
-            target_id=str(target.id or ""),
-        )
-    except Exception as exc:  # noqa: BLE001
-        status = _error_status(exc)
-        return _result(
-            case_id,
-            status,
-            "is_enabled 被环境阻塞" if status == "BLOCKED" else "is_enabled 调用失败",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            expected=expected,
-            **_error_fields(exc),
-        )
-
-
-def cleanup_resources(
-    *,
-    package: Any | None,
-    page: WebBrowser | None,
-    owned_library_dir: Path | None,
-) -> dict[str, Any]:
-    items: list[dict[str, Any]] = []
-
-    package_item: dict[str, Any] = {"resource": "element_library_connection"}
-    if package is None:
-        package_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    else:
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--url', default=URL)
+    parser.add_argument('--library', type=Path, default=LIBRARY)
+    parser.add_argument('--disabled-element', default=TARGETS[0][1])
+    parser.add_argument('--enabled-element', default=TARGETS[1][1])
+    parser.add_argument('--contract-only', action='store_true')
+    parser.add_argument('--json', action='store_true')
+    parser.add_argument('--report-file', type=Path)
+    args = parser.parse_args(argv)
+    run = Run(args)
+    print('UIAutoma Web API 测试\nAPI     : uiautoma.web.WebElement.is_enabled\n页面    : '+args.url, flush=True)
+    good = run.case('api_contract', '签名仅 self，返回 bool；SDK→RPC→Runtime→引擎快照一致', contract) == 'PASS'
+    raw = ValidationRaw()
+    validation_element = WebElement(raw)
+    run.case('unexpected_positional', '多余位置参数抛 TypeError，raw 调用 0 次', lambda: raises(TypeError, lambda: validation_element.is_enabled(True)))
+    run.case('unexpected_keyword', '多余关键字抛 TypeError，raw 调用 0 次', lambda: raises(TypeError, lambda: validation_element.is_enabled(timeout=1)))
+    require(raw.calls == 0, {'unexpected_raw_calls': raw.calls})
+    if not args.contract_only:
         try:
-            package.close()
-            package_item.update(status="PASS", confirmed=True, cleanup_call_needed=True, created=True)
-        except Exception as exc:  # noqa: BLE001
-            package_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(package_item)
-
-    page_item: dict[str, Any] = {"resource": "owned_page"}
-    if page is None:
-        page_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    elif page.raw.get("created_by") not in {"web.create", "profile_launch_recovery"}:
-        page_item.update(
-            status="FAIL",
-            confirmed=False,
-            cleanup_call_needed=False,
-            created=True,
-            reason="owned_page_identity_unknown",
-        )
-    else:
-        try:
-            page.close()
-            page_item.update(status="PASS", confirmed=True, cleanup_call_needed=True, created=True)
-        except Exception as exc:  # noqa: BLE001
-            page_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(page_item)
-
-    library_item: dict[str, Any] = {"resource": "owned_scrubbed_library"}
-    if owned_library_dir is None:
-        library_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    elif not re.fullmatch(r"[0-9a-f]{32}", owned_library_dir.name):
-        library_item.update(
-            status="FAIL",
-            confirmed=False,
-            cleanup_call_needed=False,
-            created=True,
-            reason="owned_library_identity_unknown",
-        )
-    else:
-        try:
-            if owned_library_dir.exists():
-                shutil.rmtree(owned_library_dir)
-            confirmed = not owned_library_dir.exists()
-            library_item.update(
-                status="PASS" if confirmed else "FAIL",
-                confirmed=confirmed,
-                cleanup_call_needed=True,
-                created=True,
-            )
-        except Exception as exc:  # noqa: BLE001
-            library_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(library_item)
-
-    passed = all(item["status"] == "PASS" for item in items)
-    return _result(
-        "owned_resources_cleanup",
-        "PASS" if passed else "FAIL",
-        "本次元素库连接、测试页面和临时库副本已逐项确认清理"
-        if passed
-        else "本次资源未能全部精确清理",
-        confirmed=passed,
-        attempted_count=len(items),
-        cleaned_count=sum(item["status"] == "PASS" for item in items),
-        resources=items,
-    )
+            if good:
+                run.case('environment', 'Runtime、库副本、自有静默靶场可用', run.setup)
+            else:
+                run.case('environment', '合同一致后再连接 Runtime', lambda: (_ for _ in ()).throw(Blocked('合同已变，先核对源码')))
+            for key, name, id, expected in run.targets:
+                run.case('mapping_'+key, '库选择器唯一命中 '+id, lambda key=key, name=name, id=id: run.mapping(key, name, id), live=True)
+            for key, name, id, expected in run.targets:
+                run.case('baseline_'+key, f'原始按钮状态 is_enabled() is {expected}', lambda key=key, name=name, id=id, expected=expected: run.baseline_state(key, name, id, expected), live=True)
+            for key, name, id, expected in run.targets:
+                for value in ATTRIBUTE_VALUES:
+                    run.case('disabled_'+(value or 'empty')+'_'+key, 'HTML disabled 存在即禁用；IDL / :disabled=True；API=False', lambda key=key, name=name, id=id, value=value: run.attribute(key, name, id, value), live=True)
+            for key, name, id, expected in run.targets:
+                run.case('dynamic_'+key, '同一对象动态切换，返回 True→False→True', lambda key=key, name=name, id=id: run.dynamic(key, name, id), live=True)
+            for key, name, id, expected in run.targets:
+                for value in ('true', 'false', None):
+                    run.case('aria_'+str(value)+'_'+key, '原生 disabled 不存在；ARIA true=False、false/缺失=True', lambda key=key, name=name, id=id, value=value: run.aria(key, name, id, value), live=True)
+            for key, name, id, expected in run.targets:
+                run.case('readonly_'+key, '连读三次 bool 正确，不改变属性、焦点、滚动或事件计数', lambda key=key, name=name, id=id, expected=expected: run.readonly(key, name, id, expected), live=True)
+            run.case('restore_original', '自有两个按钮恢复原状态，无 click/input/change/keydown 事件', run.restored, live=True)
+            run.case('closed_page', '页面关闭后 ActionError / stale_page_reference', run.closed_page, live=True)
+            run.case('closed_package', '连接关闭后 HostUnavailableError / 连接已关闭', run.closed_package, live=True)
+        finally:
+            run.case('cleanup', '关闭自有页面/连接、删副本；库不变、标签基线一致', run.cleanup)
+    counts = {state: sum(row['status'] == state for row in run.rows) for state in ('PASS', 'FAIL', 'BLOCKED')}
+    code = 2 if counts['BLOCKED'] else 1 if counts['FAIL'] else 0
+    state = 'SKIPPED' if args.contract_only and code == 0 else 'VERIFIED' if code == 0 else 'READY_FOR_LIVE'
+    result = {'api': 'uiautoma.web.WebElement.is_enabled', 'date': '2026-10-08', 'state': state, 'url': args.url, 'library': str(args.library), 'counts': counts, 'total': len(run.rows), 'exit_code': code, 'contract_only': args.contract_only, 'rows': run.rows}
+    if args.report_file:
+        args.report_file.parent.mkdir(parents=True, exist_ok=True)
+        args.report_file.write_text(json.dumps(result, ensure_ascii=False, indent=2, default=str)+'\n', encoding='utf-8')
+    print(f"{state} · {counts['PASS']}/{len(run.rows)} 通过 · {counts['FAIL']} 失败 · {counts['BLOCKED']} 阻塞 · 退出码 {code}", flush=True)
+    if args.json:
+        print(json.dumps(result, ensure_ascii=False, default=str))
+    return code
 
 
-def _exit_code(results: Sequence[dict[str, Any]]) -> int:
-    statuses = {str(item.get("status") or "FAIL") for item in results}
-    return 1 if "FAIL" in statuses else (2 if "BLOCKED" in statuses else 0)
-
-
-def _report(args: argparse.Namespace, results: Sequence[dict[str, Any]]) -> tuple[dict[str, Any], int]:
-    exit_code = _exit_code(results)
-    status = "FAIL" if exit_code == 1 else ("BLOCKED" if exit_code == 2 else "PASS")
-    return (
-        {
-            "api": "uiautoma.web.WebElement.is_enabled",
-            "status": status,
-            "exit_code": exit_code,
-            "lifecycle_hint": "VERIFIED_CANDIDATE" if exit_code == 0 else "READY_FOR_LIVE",
-            "mode": args.mode,
-            "profile_directory": args.profile_directory,
-            "contract_only": bool(args.contract_only),
-            "enabled_element_name": args.enabled_element_name,
-            "disabled_element_name": args.disabled_element_name,
-            "results": list(results),
-            "excluded": [
-                "edge",
-                "cef",
-                "auto",
-                "aria-disabled / IDL disabled 与 HTML attribute 差异矩阵",
-                "动态 setAttribute('disabled') 后复读",
-            ],
-            "open_defects": [
-                "HTML boolean 属性 disabled 存在时 getAttribute 常为 ''；is_enabled 把 '' 当成可用，导致禁用输入仍返回 True",
-            ],
-        },
-        exit_code,
-    )
-
-
-def run(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
-    names = [args.enabled_element_name, args.disabled_element_name]
-    results = [check_contract()]
-    if results[-1]["status"] != "PASS" or args.contract_only:
-        return _report(args, results)
-
-    results.append(preflight_target(args.target_url, args.preflight_timeout))
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    results.append(preflight_runtime(args.runtime_timeout))
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    results.append(preflight_element_library(args.element_library, names, args.target_url))
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    run_id = uuid.uuid4().hex
-    marked_url = _marked_url(args.target_url, run_id)
-    owned_library_dir = PRODUCT_ROOT / ".pytest_tmp" / run_id
-    page: WebBrowser | None = None
-    package: Any | None = None
-    try:
-        scrub_result = prepare_scrubbed_library(args.element_library, owned_library_dir)
-        results.append(scrub_result)
-        if scrub_result["status"] == "PASS":
-            page_result, page = prepare_owned_page(
-                marked_url,
-                args.mode,
-                args.load_timeout,
-                args.profile_directory,
-            )
-            results.append(page_result)
-            if page_result["status"] == "PASS" and page is not None:
-                library_result, package, found = connect_library_and_find_elements(
-                    page,
-                    owned_library_dir,
-                    names,
-                    args.runtime_timeout,
-                    args.element_timeout,
-                )
-                results.append(library_result)
-                enabled_el = found.get(args.enabled_element_name)
-                disabled_el = found.get(args.disabled_element_name)
-                if library_result["status"] == "PASS" and enabled_el is not None and disabled_el is not None:
-                    results.append(
-                        run_is_enabled_case(
-                            case_id="enabled_input_is_enabled_true",
-                            page=page,
-                            target=enabled_el,
-                            expected=True,
-                        )
-                    )
-                    results.append(
-                        run_is_enabled_case(
-                            case_id="disabled_input_is_enabled_false",
-                            page=page,
-                            target=disabled_el,
-                            expected=False,
-                        )
-                    )
-    except Exception as exc:  # noqa: BLE001
-        results.append(
-            _result(
-                "scenario_orchestration",
-                "FAIL",
-                "真实场景编排失败",
-                **_error_fields(exc),
-            )
-        )
-    finally:
-        results.append(
-            cleanup_resources(
-                package=package,
-                page=page,
-                owned_library_dir=owned_library_dir if owned_library_dir.exists() else None,
-            )
-        )
-    return _report(args, results)
-
-
-def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="运行 uiautoma.web.WebElement.is_enabled() 持久化真实浏览器测试。"
-    )
-    parser.add_argument("--mode", default="chrome", choices=["chrome"])
-    parser.add_argument("--profile-directory", default=DEFAULT_PROFILE_DIRECTORY)
-    parser.add_argument(
-        "--target-url",
-        default=DEFAULT_TARGET_URL,
-        type=lambda value: _validate_url(value, "--target-url"),
-    )
-    parser.add_argument("--element-library", default=str(DEFAULT_ELEMENT_LIBRARY), type=Path)
-    parser.add_argument("--enabled-element-name", default=DEFAULT_ENABLED_ELEMENT_NAME)
-    parser.add_argument("--disabled-element-name", default=DEFAULT_DISABLED_ELEMENT_NAME)
-    parser.add_argument("--preflight-timeout", type=float, default=5.0)
-    parser.add_argument("--runtime-timeout", type=float, default=5.0)
-    parser.add_argument("--load-timeout", type=float, default=20.0)
-    parser.add_argument("--element-timeout", type=float, default=10.0)
-    parser.add_argument("--contract-only", action="store_true")
-    return parser.parse_args(argv)
-
-
-def main(argv: Sequence[str] | None = None) -> int:
-    args = parse_args(argv)
-    report, exit_code = run(args)
-    sys.stdout.write(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
-    return exit_code
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())

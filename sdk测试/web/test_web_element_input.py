@@ -1,1147 +1,266 @@
-"""uiautoma.web.WebElement.input() 持久化真实浏览器测试运行器。
-
-导入本模块不会连接 Runtime、访问靶场或操作浏览器。真实场景打开唯一 Chrome
-``form-controls`` 页面并连接指定元素库；目标断言只对 ``input元素`` 直接调用
-``WebElement.input(...)``（后台 / 模拟人工 / append / delay_after），再点击
-``提交_html`` 从剪贴板读取表单 JSON 验收；用例间通过 ``重置_html`` 清空表单。
-"""
-
+"""WebElement.input 双输入框验收；默认后台，--foreground 才使用系统键盘。"""
 from __future__ import annotations
-
 import argparse
+import hashlib
 import inspect
 import json
-import re
 import shutil
+import subprocess
 import sys
 import time
 import uuid
 from pathlib import Path
-from typing import Any, Sequence
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
-from urllib.request import Request, urlopen
-
-PRODUCT_ROOT = Path(__file__).resolve().parents[3]
-SDK_SRC = PRODUCT_ROOT / "sdk" / "src"
-if str(SDK_SRC) not in sys.path:
-    sys.path.insert(0, str(SDK_SRC))
-
-import uiautoma  # noqa: E402
-from uiautoma import ping, web  # noqa: E402
-from uiautoma.web import WebBrowser, WebElement  # noqa: E402
-from uiautoma.win32 import clipboard  # noqa: E402
-
 
 __test__ = False
+sys.dont_write_bytecode = True
+ROOT = Path(r'D:\code\元素库\sdk测试')
+PRODUCT = Path(r'D:\code\desktop')
+sys.path.insert(0, str(PRODUCT/'sdk/src'))
+sys.path.insert(0, str(ROOT/'web'))
+from uiautoma import web, open as open_package, ping, ActionError, InvalidParamsError, UnsupportedActionError
+from uiautoma.web import WebElement
+from test_web_element_get_select_options import copy_library, disable_dynamic_ids, find_switch
 
-DEFAULT_TARGET_URL = "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"
-DEFAULT_ELEMENT_LIBRARY = Path(r"D:\code\元素库\260902_web元素")
-DEFAULT_INPUT_ELEMENT_NAME = "web靶场_表单测试_ant_输入框"
-DEFAULT_PROFILE_DIRECTORY = "Default"
-DEFAULT_SUBMIT_ELEMENT_NAME = "web靶场_表单测试_ant_按钮_提交"
-DEFAULT_RESET_ELEMENT_NAME = "web靶场_表单测试_ant_按钮_重置"
-DEFAULT_INPUT_TEXT = "123"
-RUN_QUERY_KEY = "uiautoma_element_input_run"
+URL = 'https://baobaomi900901.github.io/xpath/#/iframe-shadow-form'
+LIBRARY = Path(r'D:\code\元素库\260902_web元素')
+NAMES = {'ant':'web靶场_表单测试_ant_输入框','native':'web靶场_表单测试_原生_输入框'}
+ROOT_JS = "document.querySelector('#iframe-shadow-form').contentDocument.querySelector('#form-shadow-host').shadowRoot"
+CONTRACT = ROOT/'web/element_input_contract_20261008.json'
+TEXT = 'SDK 输入 中文 123 😀✓'
+SPECIAL = '!@#$%^&*()_+-=[]{};:\'",.?/\\|~'
 
-EXPECTED_PARAMETER_ORDER = (
-    "self",
-    "text",
-    "simulative",
-    "cdp_input",
-    "append",
-    "contains_hotkey",
-    "force_ime_eng",
-    "send_key_delay",
-    "focus_timeout",
-    "delay_after",
-    "click_before_input",
-    "anchor",
-    "input_check",
-    "retry_times",
-    "check_value",
-)
-EXPECTED_DEFAULTS = {
-    "simulative": True,
-    "cdp_input": False,
-    "append": False,
-    "contains_hotkey": False,
-    "force_ime_eng": False,
-    "send_key_delay": 50,
-    "focus_timeout": 1000,
-    "delay_after": 1,
-    "click_before_input": True,
-    "anchor": None,
-    "input_check": False,
-    "retry_times": 3,
-    "check_value": "",
-}
-EXPECTED_KINDS = {
-    "self": inspect.Parameter.POSITIONAL_OR_KEYWORD,
-    "text": inspect.Parameter.POSITIONAL_OR_KEYWORD,
-    "simulative": inspect.Parameter.KEYWORD_ONLY,
-    "cdp_input": inspect.Parameter.KEYWORD_ONLY,
-    "append": inspect.Parameter.KEYWORD_ONLY,
-    "contains_hotkey": inspect.Parameter.KEYWORD_ONLY,
-    "force_ime_eng": inspect.Parameter.KEYWORD_ONLY,
-    "send_key_delay": inspect.Parameter.KEYWORD_ONLY,
-    "focus_timeout": inspect.Parameter.KEYWORD_ONLY,
-    "delay_after": inspect.Parameter.KEYWORD_ONLY,
-    "click_before_input": inspect.Parameter.KEYWORD_ONLY,
-    "anchor": inspect.Parameter.KEYWORD_ONLY,
-    "input_check": inspect.Parameter.KEYWORD_ONLY,
-    "retry_times": inspect.Parameter.KEYWORD_ONLY,
-    "check_value": inspect.Parameter.KEYWORD_ONLY,
-}
+class Blocked(Exception): pass
 
-# 基础路径：后台 DOM 输入、模拟人工、append、delay_after=1。
-INPUT_CASES: tuple[dict[str, Any], ...] = (
-    {
-        "case_id": "input_background_basic",
-        "steps": (
-            {
-                "text": DEFAULT_INPUT_TEXT,
-                "kwargs": {"simulative": False, "delay_after": 0.2},
-            },
-        ),
-        "expected_text": DEFAULT_INPUT_TEXT,
-    },
-    {
-        "case_id": "input_simulative_basic",
-        "steps": (
-            {
-                "text": DEFAULT_INPUT_TEXT,
-                "kwargs": {"simulative": True, "delay_after": 0.2},
-            },
-        ),
-        "expected_text": DEFAULT_INPUT_TEXT,
-    },
-    {
-        "case_id": "input_background_append",
-        "steps": (
-            {
-                "text": "12",
-                "kwargs": {"simulative": False, "append": False, "delay_after": 0.2},
-            },
-            {
-                "text": "3",
-                "kwargs": {"simulative": False, "append": True, "delay_after": 0.2},
-            },
-        ),
-        "expected_text": "123",
-    },
-    {
-        "case_id": "input_background_delay_after",
-        "steps": (
-            {
-                "text": DEFAULT_INPUT_TEXT,
-                "kwargs": {"simulative": False, "delay_after": 1},
-            },
-        ),
-        "expected_text": DEFAULT_INPUT_TEXT,
-        "min_input_elapsed_ms": 900,
-    },
-)
+def require(ok, detail):
+    if not ok: raise AssertionError(json.dumps(detail, ensure_ascii=False, default=str))
+    return detail
 
-BLOCKING_EXCEPTION_NAMES = {
-    "ConnectionError",
-    "EOFError",
-    "HostUnavailableError",
-    "PipeClosedError",
-    "TimeoutError",
-    "UnsupportedProtocolError",
-}
-BLOCKING_TRACES = {
-    "browser_executable_not_found",
-    "browser_launch_timeout",
-    "browser_session_discovery_failed",
-    "browser_session_disconnected",
-    "native_host_unavailable",
-    "plugin_not_connected",
-    "web_bridge_unavailable",
-    "web_host_unavailable",
-    "web_ipc_unreachable",
-    "web_runtime_incompatible",
-    "web_session_unavailable",
-}
+def error(exc):
+    return {'exception':type(exc).__name__,'message':str(exc),'trace':getattr(exc,'trace_info','')}
 
-def _result(case_id: str, status: str, detail: str, **extra: Any) -> dict[str, Any]:
-    return {"case_id": case_id, "status": status, "detail": detail, **extra}
+def raises(kind, fn, message='', trace=''):
+    try: fn()
+    except kind as exc:
+        d=error(exc)
+        require((not message or message in d['message']) and (not trace or trace==d['trace']),d)
+        return d
+    raise AssertionError('Expected '+kind.__name__)
 
-def _safe_trace(exc: BaseException) -> str:
-    trace = str(getattr(exc, "trace_info", "") or "")
-    return trace if re.fullmatch(r"[A-Za-z0-9_.-]{1,80}", trace) else ""
+def contract():
+    frozen=json.loads(CONTRACT.read_text(encoding='utf-8'))
+    require(str(inspect.signature(WebElement.input))==frozen['signature'],str(inspect.signature(WebElement.input)))
+    require(inspect.getsource(WebElement.input)==frozen['source'],'SDK input source changed; review new contract')
+    actual=subprocess.check_output(['git','-C',str(PRODUCT),'rev-parse','HEAD'],text=True).strip()
+    require(actual==frozen['product_commit'],{'expected':frozen['product_commit'],'actual':actual})
+    return {'signature':frozen['signature'],'product_commit':actual,'source':str(Path(inspect.getfile(WebElement.input)))}
 
-def _error_fields(exc: BaseException) -> dict[str, str]:
-    return {"exception": exc.__class__.__name__, "trace_info": _safe_trace(exc)}
-
-def _error_status(exc: BaseException) -> str:
-    if exc.__class__.__name__ in BLOCKING_EXCEPTION_NAMES or _safe_trace(exc) in BLOCKING_TRACES:
-        return "BLOCKED"
-    return "FAIL"
-
-def _validate_url(value: str, option: str) -> str:
-    text = str(value or "").strip()
-    try:
-        parts = urlsplit(text)
-    except ValueError as exc:
-        raise argparse.ArgumentTypeError(f"{option} 不是有效 URL") from exc
-    if (
-        parts.scheme.casefold() not in {"http", "https"}
-        or not parts.hostname
-        or parts.username is not None
-        or parts.password is not None
-    ):
-        raise argparse.ArgumentTypeError(f"{option} 必须是不含凭据的绝对 HTTP/HTTPS URL")
-    return text
-
-def _marked_url(target_url: str, run_id: str) -> str:
-    parts = urlsplit(target_url)
-    query = [
-        (key, value)
-        for key, value in parse_qsl(parts.query, keep_blank_values=True)
-        if key != RUN_QUERY_KEY
-    ]
-    query.append((RUN_QUERY_KEY, run_id))
-    return urlunsplit((parts.scheme, parts.netloc, parts.path or "/", urlencode(query), ""))
-
-def _page_key(value: object) -> tuple[Any, ...] | None:
-    try:
-        parts = urlsplit(str(value or "").strip())
-        port = parts.port
-    except ValueError:
-        return None
-    scheme = parts.scheme.casefold()
-    hostname = (parts.hostname or "").casefold()
-    if scheme not in {"http", "https"} or not hostname:
-        return None
-    if port == (443 if scheme == "https" else 80):
-        port = None
-    return scheme, hostname, port, parts.path or "/"
-
-def _exact_url_key(value: object) -> tuple[Any, ...] | None:
-    try:
-        parts = urlsplit(str(value or "").strip())
-        port = parts.port
-    except ValueError:
-        return None
-    scheme = parts.scheme.casefold()
-    hostname = (parts.hostname or "").casefold()
-    if scheme not in {"http", "https"} or not hostname:
-        return None
-    if port == (443 if scheme == "https" else 80):
-        port = None
-    return (
-        scheme,
-        hostname,
-        port,
-        parts.path or "/",
-        tuple(sorted(parse_qsl(parts.query, keep_blank_values=True))),
-    )
-
-def _tab_identity(page: WebBrowser | None) -> tuple[str, int, int] | None:
-    if page is None:
-        return None
-    raw = page.raw if isinstance(page.raw, dict) else {}
-    tab = raw.get("tab") if isinstance(raw.get("tab"), dict) else raw
-    try:
-        tab_id = int(tab.get("tabId", tab.get("id", 0)) or 0)
-        window_id = int(tab.get("windowId", tab.get("window_id", 0)) or 0)
-    except (TypeError, ValueError):
-        return None
-    session_id = str(
-        raw.get("target_session_id")
-        or raw.get("targetSessionId")
-        or raw.get("sessionId")
-        or tab.get("target_session_id")
-        or tab.get("targetSessionId")
-        or tab.get("sessionId")
-        or ""
-    )
-    return (session_id, window_id, tab_id) if tab_id > 0 else None
-
-def _try_get_active_page(mode: str, timeout: float) -> WebBrowser | None:
-    try:
-        return web.get_active(mode, load_timeout=max(0.1, timeout))
-    except Exception:  # noqa: BLE001
-        return None
-
-def _wait_for_launched_start_page(
-    mode: str,
-    before_identity: tuple[str, int, int] | None,
-    timeout: float,
-) -> WebBrowser | None:
-    deadline = time.monotonic() + timeout
-    while time.monotonic() < deadline:
-        page = _try_get_active_page(mode, min(1.0, timeout))
-        identity = _tab_identity(page)
-        if page is not None and identity is not None and identity != before_identity:
-            return page
-        time.sleep(0.1)
-    return None
-
-def preflight_runtime(timeout: float) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        ping(timeout=timeout)
-        return _result(
-            "runtime_preflight",
-            "PASS",
-            "Runtime 与 Automation Pipe 可响应",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "runtime_preflight",
-            "BLOCKED",
-            "Runtime 或 Automation Pipe 不可用",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-def prepare_scrubbed_library(source_library: Path, owned_dir: Path) -> dict[str, Any]:
-    """复制元素库并清空捕获期 WebSessionId，避免陈旧会话拦截当前页面绑定。"""
-
-    started = time.perf_counter()
-    scrubbed_fields = 0
-    try:
-        shutil.copytree(source_library, owned_dir)
-        elements_file = owned_dir / "elements.json"
-        payload = json.loads(elements_file.read_text(encoding="utf-8"))
-        for process in payload.values():
-            if not isinstance(process, dict):
-                continue
-            for item in process.get("Group", process.get("group", [])):
-                if not isinstance(item, dict):
-                    continue
-                for key in list(item):
-                    if "session" in key.casefold() and item.get(key):
-                        item[key] = ""
-                        scrubbed_fields += 1
-                if item.get("BrowserPid"):
-                    item["BrowserPid"] = 0
-                    scrubbed_fields += 1
-        elements_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-        snapshot_dir = owned_dir / "snapshot"
-        if snapshot_dir.is_dir():
-            for snap in snapshot_dir.glob("*.json"):
-                data = json.loads(snap.read_text(encoding="utf-8"))
-                stack: list[Any] = [data]
-                local = 0
-                while stack:
-                    obj = stack.pop()
-                    if isinstance(obj, dict):
-                        for key, value in list(obj.items()):
-                            if isinstance(key, str) and "session" in key.casefold() and value:
-                                obj[key] = ""
-                                local += 1
-                            elif isinstance(value, (dict, list)):
-                                stack.append(value)
-                    elif isinstance(obj, list):
-                        stack.extend(obj)
-                if local:
-                    snap.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-                    scrubbed_fields += local
-
-        passed = (owned_dir / "elements.json").is_file()
-        return _result(
-            "scrubbed_library_setup",
-            "PASS" if passed else "FAIL",
-            "已准备清空捕获会话后的本次元素库副本" if passed else "本次元素库副本不可用",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            scrubbed_fields=scrubbed_fields,
-            owned_library_exists=passed,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "scrubbed_library_setup",
-            "FAIL",
-            "无法准备本次元素库副本",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            scrubbed_fields=scrubbed_fields,
-            **_error_fields(exc),
-        )
-
-def prepare_owned_page(
-    target_url: str,
-    mode: str,
-    load_timeout: float,
-    profile_directory: str,
-) -> tuple[dict[str, Any], WebBrowser | None]:
-    started = time.perf_counter()
-    page: WebBrowser | None = None
-    before_active = _try_get_active_page(mode, min(1.0, load_timeout))
-    before_identity = _tab_identity(before_active)
-    existing_session_reused = before_active is not None
-    profile_identity_fallback_used = False
-    profile_identity_trace = ""
-    recovery_method = "existing_session" if existing_session_reused else ""
-    try:
-        if existing_session_reused:
-            page = web.create(target_url, mode, load_timeout=load_timeout, silent_running=True)
-        else:
+class Run:
+    def __init__(self, args):
+        self.args=args; self.rows=[]; self.page=None; self.package=None; self.baseline=None
+        self.previous=None; self.library_hash=None; self.storage_before=None
+        self.total=12 if args.contract_only else 16+2*len(scenarios())+(2 if args.foreground else 0)
+        self.tmp=ROOT/'.pytest_tmp/input_live'/uuid.uuid4().hex
+        self.id=None
+    def case(self, name, expected, fn):
+        start=time.perf_counter()
+        try: actual=fn(); status='PASS'
+        except Exception as exc:
+            actual=error(exc)
+            status='BLOCKED' if isinstance(exc,Blocked) or type(exc).__name__ in {'HostUnavailableError','ConnectionError'} else 'FAIL'
+        row={'case_id':name,'status':status,'expected':expected,'actual':actual,'elapsed_ms':round((time.perf_counter()-start)*1000,1)}
+        self.rows.append(row)
+        display=actual
+        if isinstance(actual,dict) and 'calls' in actual:
+            display={k:v for k,v in actual.items() if k!='calls'}
+            display['calls']=[{'return':c['return'],'error':c['error'],'input_events':c['input_events'],'elapsed_ms':c['elapsed_ms']} for c in actual['calls']]
+        label={'PASS':'通过','FAIL':'失败','BLOCKED':'阻塞'}[status]
+        color={'PASS':'\x1b[32m','FAIL':'\x1b[31m','BLOCKED':'\x1b[33m'}[status]
+        print(f"{len(self.rows):02d}/{self.total:02d} {color}[{label}]\x1b[0m {name}: 期望 {expected}；实测 {json.dumps(display,ensure_ascii=False,default=str)}；{row['elapsed_ms']}ms",flush=True)
+        return status
+    def js(self, body, arg=None, main=False):
+        return self.page.execute_javascript('function(_e,a){const root='+ROOT_JS+';'+body+'}',arg,execution_world='MAIN' if main else 'ISOLATED')
+    def wait(self, fn, predicate, timeout=5):
+        end=time.monotonic()+timeout
+        while True:
+            value=fn()
+            if predicate(value): return value
+            if time.monotonic()>end: raise AssertionError('Timed out: '+repr(value))
+            time.sleep(.05)
+    def setup(self):
+        ping(timeout=5)
+        if not self.args.library.is_dir(): raise Blocked('元素库目录不存在')
+        self.library_hash=hashlib.sha256((self.args.library/'elements.json').read_bytes()).hexdigest()
+        self.baseline={p._page_ref['id'] for p in web.get_all(mode='chrome')}
+        copy_library(self.args.library,self.tmp/'library')
+        self.package=open_package(str(self.tmp/'library'),timeout=8,connect_timeout=8)
+        self.page=web.create(URL,mode='chrome',silent_running=not self.args.foreground,load_timeout=25)
+        self.id=self.page._page_ref['id']
+        self.storage_before=self.js("return localStorage.getItem(\'form-controls-dynamic-ids\');",main=True)
+        self.previous=disable_dynamic_ids(self.page)
+        observer=self.js('''
+          window.__uiaInput={events:[],copies:[],mutate:0};
+          for(const n of [navigator,document.querySelector('#iframe-shadow-form').contentWindow.navigator]){
+            Object.defineProperty(n.clipboard,'writeText',{configurable:true,value:async text=>{window.__uiaInput.copies.push(String(text));}});
+          }
+          for(const type of ['beforeinput','input','change']) root.addEventListener(type,e=>{
+            if(!/^form-controls-(ant|native)-text$/.test(e.target.id))return;
+            window.__uiaInput.events.push({type,id:e.target.id,value:e.target.value});
+            if(type==='input' && window.__uiaInput.mutate>0){window.__uiaInput.mutate--;e.target.value='first-attempt-mismatch';}
+          },true);
+          return {clipboard_observer:true,root_is_shadow:root instanceof document.querySelector('#iframe-shadow-form').contentWindow.ShadowRoot};
+        ''',main=True)
+        if self.args.foreground: self.page.activate()
+        return {'url':self.page.get_url(),'silent_running':not self.args.foreground,'baseline_tabs':len(self.baseline),'temporary_library':str(self.tmp/'library'),'observer':observer}
+    def mapping(self, side):
+        all_matches=self.page.find_all(NAMES[side],timeout=4)
+        require(len(all_matches)==1,{'name':NAMES[side],'matches':len(all_matches)})
+        el=all_matches[0]; expected='form-controls-'+side+'-text'
+        require(el.get_attribute('id')==expected,{'id':el.get_attribute('id'),'expected':expected})
+        return {'name':NAMES[side],'matches':1,'id':expected}
+    def reset(self, side):
+        self.js("root.getElementById('form-controls-'+a+'-reset').click();return true;",side)
+        self.wait(lambda:self.js("return {value:root.getElementById('form-controls-'+a+'-text').value,result:root.getElementById(a+'-result').textContent};",side),lambda s:s['value']=='' and not s['result'].lstrip().startswith('{'))
+        self.js('window.__uiaInput.events=[];window.__uiaInput.copies=[];window.__uiaInput.mutate=0;return true;',main=True)
+    def observe(self, side):
+        return self.js("const e=root.getElementById('form-controls-'+a+'-text');return {value:e.value,focused:root.activeElement===e};",side)
+    def submit(self, side):
+        self.js("root.getElementById('form-controls-'+a+'-submit').click();return true;",side)
+        def read():
+            raw=self.js("return root.getElementById(a+'-result').textContent;",side)
+            try: return json.loads(raw)
+            except ValueError: return None
+        payload=self.wait(read,lambda x:isinstance(x,dict) and 'text' in x)
+        copied=self.js('return window.__uiaInput.copies;',main=True)
+        require(len(copied)==1 and json.loads(copied[0])==payload,{'copy_count':len(copied),'payload':payload})
+        return payload['text']
+    def scenario(self, side, spec):
+        self.reset(side)
+        el=self.page.find(NAMES[side],timeout=4)
+        if spec.get('focus'): self.js("root.getElementById('form-controls-'+a+'-text').focus();return true;",side)
+        if spec.get('blur'): self.js("root.getElementById('form-controls-'+a+'-text').blur();return true;",side)
+        calls=[]
+        for index,(text,params) in enumerate(spec['steps']):
+            options={'delay_after':0,**params}
+            if spec.get('mutate') and index==len(spec['steps'])-1: self.js('window.__uiaInput.mutate=1;return true;',main=True)
+            before=self.observe(side)
+            events_before=self.js('return window.__uiaInput.events.length;',main=True)
+            start=time.perf_counter(); caught=None; returned=None
+            try: returned=el.input(text,**options)
+            except Exception as exc: caught=exc
+            elapsed=time.perf_counter()-start
+            after=self.observe(side)
+            events=self.js('return window.__uiaInput.events.slice(a);',events_before,main=True)
+            detail={'text':text,'options':options,'return':returned,'error':error(caught) if caught else None,'native':after,'elapsed_ms':round(elapsed*1000,1),'input_events':sum(e['type']=='input' for e in events)}
+            calls.append(detail)
+            if index==len(spec['steps'])-1 and spec.get('error'):
+                require(isinstance(caught,ActionError) and getattr(caught,'trace_info','')==spec['error'],detail)
+            elif caught: raise caught
+            else: require(returned is None,detail)
+            if spec.get('no_focus'): require(after['focused']==before['focused']==False,detail)
+            if index==len(spec['steps'])-1:
+                if 'min_seconds' in spec: require(elapsed>=spec['min_seconds'],detail)
+                if 'input_events' in spec: require(detail['input_events']==spec['input_events'],detail)
+        actual=self.observe(side)
+        submitted=self.submit(side)
+        require(actual['value']==submitted==spec['expected'],{'expected':spec['expected'],'native':actual,'submitted':submitted,'calls':calls})
+        return {'native_value':actual['value'],'submitted_text':submitted,'calls':calls}
+    def cleanup(self):
+        errors=[]
+        if self.page:
             try:
-                page = web.create(
-                    target_url,
-                    mode,
-                    load_timeout=load_timeout,
-                    silent_running=True,
-                    arguments=[
-                        f"--profile-directory={profile_directory}",
-                        "--ignore-profile-directory-if-not-exists",
-                    ],
-                )
-            except Exception as exc:  # noqa: BLE001
-                trace = _safe_trace(exc)
-                if trace != "browser_profile_identity_unknown":
-                    raise
-                profile_identity_fallback_used = True
-                profile_identity_trace = trace
-                page = _wait_for_launched_start_page(
-                    mode,
-                    before_identity,
-                    min(5.0, max(1.0, load_timeout)),
-                )
-                if page is None:
-                    raise RuntimeError("launched Chrome start page is not safely identifiable")
-                page.raw["created_by"] = "profile_launch_recovery"
-                recovery_method = "navigate_launched_start_page"
-                page.navigate(target_url, load_timeout=load_timeout)
-        checks = {
-            "returned_type_ok": isinstance(page, WebBrowser),
-            "mode_ok": str(page.mode or "").casefold() == mode.casefold(),
-            "url_ok": _exact_url_key(page.url) == _exact_url_key(target_url),
-            "owned_identity_ok": page.raw.get("created_by") in {
-                "web.create",
-                "profile_launch_recovery",
-            },
-        }
-        passed = all(checks.values())
-        return (
-            _result(
-                "owned_page_setup",
-                "PASS" if passed else "BLOCKED",
-                "已打开本次唯一表单输入测试页面" if passed else "表单输入测试页面创建结果不完整",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                profile_directory=profile_directory,
-                existing_session_reused=existing_session_reused,
-                profile_identity_fallback_used=profile_identity_fallback_used,
-                profile_identity_trace=profile_identity_trace,
-                profile_recovery_method=recovery_method,
-                **checks,
-            ),
-            page,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return (
-            _result(
-                "owned_page_setup",
-                "BLOCKED",
-                "无法打开本次表单输入测试页面",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                profile_directory=profile_directory,
-                existing_session_reused=existing_session_reused,
-                profile_identity_fallback_used=profile_identity_fallback_used,
-                profile_identity_trace=profile_identity_trace,
-                profile_recovery_method=recovery_method,
-                **_error_fields(exc),
-            ),
-            page,
-        )
+                if self.previous=='true': find_switch(self.page).click(simulative=False,delay_after=0)
+                self.js("if(a===null)localStorage.removeItem('form-controls-dynamic-ids');else localStorage.setItem('form-controls-dynamic-ids',a);return true;",self.storage_before,main=True)
+                restored=self.js("return localStorage.getItem('form-controls-dynamic-ids');",main=True)
+                require(restored==self.storage_before,{'expected_storage':self.storage_before,'actual_storage':restored})
+                self.page.close(ignore_beforeunload=True)
+            except Exception as exc: errors.append(error(exc))
+        if self.package:
+            try: self.package.close()
+            except Exception as exc: errors.append(error(exc))
+        if self.tmp.exists():
+            require(self.tmp.resolve().parent==(ROOT/'.pytest_tmp/input_live').resolve(),'Unexpected cleanup path')
+            shutil.rmtree(self.tmp)
+        after={p._page_ref['id'] for p in web.get_all(mode='chrome')} if self.baseline is not None else set()
+        source_ok=self.library_hash is None or hashlib.sha256((self.args.library/'elements.json').read_bytes()).hexdigest()==self.library_hash
+        d={'errors':errors,'own_tab_closed':self.id not in after,'temporary_copy_removed':not self.tmp.exists(),'source_library_unchanged':source_ok,'tab_count':f'{len(self.baseline or set())}->{len(after)}','external_added':sorted(after-(self.baseline or set())),'external_removed':sorted((self.baseline or set())-after)}
+        require(not errors and d['own_tab_closed'] and source_ok and not d['external_added'] and not d['external_removed'],d)
+        return d
 
-
-
-def check_contract() -> dict[str, Any]:
-    try:
-        signature = inspect.signature(WebElement.input)
-        parameters = signature.parameters
-        order_ok = tuple(parameters) == EXPECTED_PARAMETER_ORDER
-        defaults_ok = all(parameters[name].default == value for name, value in EXPECTED_DEFAULTS.items())
-        kinds_ok = all(parameters[name].kind == value for name, value in EXPECTED_KINDS.items())
-        text_required_ok = parameters["text"].default is inspect.Parameter.empty
-        return_ok = signature.return_annotation in {None, "None", type(None)}
-        passed = order_ok and defaults_ok and kinds_ok and return_ok and text_required_ok
-        return _result(
-            "api_contract",
-            "PASS" if passed else "FAIL",
-            "公开签名符合当前合同" if passed else "公开签名与当前合同不一致",
-            parameter_order_ok=order_ok,
-            defaults_ok=defaults_ok,
-            parameter_kinds_ok=kinds_ok,
-            return_annotation_ok=return_ok,
-            text_required_ok=text_required_ok,
-            return_annotation=str(signature.return_annotation),
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result("api_contract", "FAIL", "无法检查公开签名", **_error_fields(exc))
-
-
-def preflight_target(target_url: str, timeout: float) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        request = Request(target_url, headers={"User-Agent": "UIAutoma-SDK-persistent-test"})
-        with urlopen(request, timeout=timeout) as response:
-            status_code = int(getattr(response, "status", 200))
-        passed = 200 <= status_code < 400
-        return _result(
-            "target_preflight",
-            "PASS" if passed else "BLOCKED",
-            "表单输入测试靶场可访问" if passed else "表单输入测试靶场未返回成功状态",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            http_status=status_code,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "target_preflight",
-            "BLOCKED",
-            "表单输入测试靶场不可访问",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-
-def _library_named_matches(payload: dict[str, Any], element_name: str) -> list[dict[str, Any]]:
-    matches: list[dict[str, Any]] = []
-    # 当前元素库格式：顶层 groups[].elements[]；兼容旧版进程/Group 结构。
-    for group in payload.get("groups", []):
-        if not isinstance(group, dict):
-            continue
-        for item in group.get("elements", []):
-            if isinstance(item, dict) and str(item.get("name") or "") == element_name:
-                matches.append(item)
-    for process in payload.values():
-        if not isinstance(process, dict):
-            continue
-        for item in process.get("Group", process.get("group", [])):
-            if isinstance(item, dict) and str(item.get("Name") or "") == element_name:
-                matches.append(item)
-    return matches
-
-
-def _library_item_ok(matches: list[dict[str, Any]], target_url: str) -> tuple[bool, bool]:
-    if len(matches) == 1 and "name" in matches[0] and "Name" not in matches[0]:
-        # 新版 manifest 将定位器存储在 Runtime 可读取的包数据中，manifest 只负责名称索引。
-        return True, True
-    page_ok = len(matches) == 1 and _page_key(matches[0].get("PageUrl")) == _page_key(target_url)
-    selector_ok = len(matches) == 1 and bool(str(matches[0].get("Characteristics") or "").strip())
-    return page_ok, selector_ok
-
-
-def preflight_element_library(
-    library_dir: Path,
-    input_element_name: str,
-    submit_element_name: str,
-    reset_element_name: str,
-    target_url: str,
-) -> dict[str, Any]:
-    started = time.perf_counter()
-    try:
-        elements_file = library_dir / "elements.json"
-        payload = json.loads(elements_file.read_text(encoding="utf-8"))
-        input_matches = _library_named_matches(payload, input_element_name)
-        submit_matches = _library_named_matches(payload, submit_element_name)
-        reset_matches = _library_named_matches(payload, reset_element_name)
-        input_page_ok, input_selector_ok = _library_item_ok(input_matches, target_url)
-        submit_page_ok, submit_selector_ok = _library_item_ok(submit_matches, target_url)
-        reset_page_ok, reset_selector_ok = _library_item_ok(reset_matches, target_url)
-        passed = (
-            library_dir.is_dir()
-            and elements_file.is_file()
-            and input_page_ok
-            and input_selector_ok
-            and submit_page_ok
-            and submit_selector_ok
-            and reset_page_ok
-            and reset_selector_ok
-        )
-        return _result(
-            "element_library_preflight",
-            "PASS" if passed else "BLOCKED",
-            "元素库包含指定输入、提交和重置元素"
-            if passed
-            else "元素库缺少指定输入、提交或重置元素",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            library_dir_exists=library_dir.is_dir(),
-            elements_json_exists=elements_file.is_file(),
-            input_named_element_count=len(input_matches),
-            input_page_url_matches=input_page_ok,
-            input_selector_present=input_selector_ok,
-            submit_named_element_count=len(submit_matches),
-            submit_page_url_matches=submit_page_ok,
-            submit_selector_present=submit_selector_ok,
-            reset_named_element_count=len(reset_matches),
-            reset_page_url_matches=reset_page_ok,
-            reset_selector_present=reset_selector_ok,
-        )
-    except Exception as exc:  # noqa: BLE001
-        return _result(
-            "element_library_preflight",
-            "BLOCKED",
-            "无法读取或验证元素库",
-            elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-            **_error_fields(exc),
-        )
-
-
-def connect_library_and_find_elements(
-    page: WebBrowser,
-    library_dir: Path,
-    input_element_name: str,
-    submit_element_name: str,
-    reset_element_name: str,
-    runtime_timeout: float,
-    element_timeout: float,
-) -> tuple[dict[str, Any], Any | None, WebElement | None, WebElement | None, WebElement | None]:
-    started = time.perf_counter()
-    package: Any | None = None
-    try:
-        package = uiautoma.open(str(library_dir), timeout=runtime_timeout)
-        input_element = page.find(input_element_name, timeout=element_timeout)
-        submit_element = page.find(submit_element_name, timeout=element_timeout)
-        reset_element = page.find(reset_element_name, timeout=element_timeout)
-        input_name_ok = str(input_element.name or "") == input_element_name
-        submit_name_ok = str(submit_element.name or "") == submit_element_name
-        reset_name_ok = str(reset_element.name or "") == reset_element_name
-        passed = package.web_count > 0 and input_name_ok and submit_name_ok and reset_name_ok
-        return (
-            _result(
-                "element_library_setup",
-                "PASS" if passed else "FAIL",
-                "已连接元素库并绑定 input元素、提交_html 与 重置_html"
-                if passed
-                else "元素库连接或元素绑定结果不符合预期",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                package_opened=True,
-                web_element_count=package.web_count,
-                input_element_name_ok=input_name_ok,
-                submit_element_name_ok=submit_name_ok,
-                reset_element_name_ok=reset_name_ok,
-            ),
-            package,
-            input_element,
-            submit_element,
-            reset_element,
-        )
-    except Exception as exc:  # noqa: BLE001
-        status = _error_status(exc)
-        return (
-            _result(
-                "element_library_setup",
-                status,
-                "元素库连接被环境阻塞" if status == "BLOCKED" else "无法连接元素库或绑定目标元素",
-                elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                package_opened=package is not None,
-                **_error_fields(exc),
-            ),
-            package,
-            None,
-            None,
-            None,
-        )
-
-
-def _clipboard_form_payload() -> dict[str, Any] | None:
-    text_value = clipboard.get_text()
-    try:
-        payload = json.loads(text_value)
-    except Exception:  # noqa: BLE001
-        return None
-    return payload if isinstance(payload, dict) else None
-
-
-def _submit_form(submit_element: WebElement) -> tuple[dict[str, Any] | None, str]:
-    sentinel = f"uiautoma_input_sentinel_{uuid.uuid4().hex}"
-    clipboard.set_text(sentinel)
-    submit_element.click(simulative=False, delay_after=0.2)
-    payload = _clipboard_form_payload()
-    if payload is not None:
-        return payload, "dom"
-    submit_element.click(simulative=True, delay_after=0.25)
-    payload = _clipboard_form_payload()
-    if payload is not None:
-        return payload, "simulative_fallback"
-    return None, "failed"
-
-
-def _reset_form(reset_element: WebElement) -> str:
-    reset_element.click(simulative=False, delay_after=0.2)
-    return "dom"
-
-
-def run_input_cases(
-    page: WebBrowser,
-    input_element: WebElement,
-    submit_element: WebElement,
-    reset_element: WebElement,
-) -> list[dict[str, Any]]:
-    results: list[dict[str, Any]] = []
-    for case in INPUT_CASES:
-        started = time.perf_counter()
-        case_id = str(case["case_id"])
-        steps = tuple(case.get("steps") or ())
-        expected_text = str(case["expected_text"])
-        min_input_elapsed_ms = case.get("min_input_elapsed_ms")
-        step_logs: list[dict[str, Any]] = []
-        try:
-            page.activate()
-            time.sleep(0.1)
-            reset_mode = _reset_form(reset_element)
-            return_is_none = True
-            input_elapsed_ms = 0.0
-            for step in steps:
-                text_value = str(step["text"])
-                kwargs = dict(step.get("kwargs") or {})
-                call_started = time.perf_counter()
-                returned = input_element.input(text_value, **kwargs)
-                step_elapsed_ms = round((time.perf_counter() - call_started) * 1000, 1)
-                input_elapsed_ms += step_elapsed_ms
-                return_is_none = return_is_none and returned is None
-                print(
-                    f"{case_id}: input({text_value!r}, {kwargs}) -> {returned!r} ({step_elapsed_ms}ms)",
-                    file=sys.stderr,
-                    flush=True,
-                )
-                step_logs.append(
-                    {
-                        "text": text_value,
-                        "kwargs": kwargs,
-                        "return_is_none": returned is None,
-                        "elapsed_ms": step_elapsed_ms,
-                    }
-                )
-            input_elapsed_ms = round(input_elapsed_ms, 1)
-            payload, submit_mode = _submit_form(submit_element)
-            clipboard_text = "" if payload is None else str(payload.get("text") or "")
-            text_ok = clipboard_text == expected_text
-            payload_ok = isinstance(payload, dict)
-            delay_ok = True
-            if min_input_elapsed_ms is not None:
-                delay_ok = input_elapsed_ms >= float(min_input_elapsed_ms)
-            passed = (
-                return_is_none
-                and payload_ok
-                and text_ok
-                and delay_ok
-                and submit_mode != "failed"
-            )
-            results.append(
-                _result(
-                    case_id,
-                    "PASS" if passed else "FAIL",
-                    "input 后提交剪贴板 JSON 符合预期"
-                    if passed
-                    else "input 返回值或剪贴板 JSON 不符合预期",
-                    elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                    input_elapsed_ms=input_elapsed_ms,
-                    return_is_none=return_is_none,
-                    reset_mode=reset_mode,
-                    submit_mode=submit_mode,
-                    expected_text=expected_text,
-                    clipboard_text=clipboard_text,
-                    text_ok=text_ok,
-                    payload_ok=payload_ok,
-                    delay_ok=delay_ok,
-                    min_input_elapsed_ms=min_input_elapsed_ms,
-                    steps=step_logs,
-                    clipboard_payload=payload,
-                )
-            )
-        except Exception as exc:  # noqa: BLE001
-            status = _error_status(exc)
-            results.append(
-                _result(
-                    case_id,
-                    status,
-                    "input 被环境阻塞" if status == "BLOCKED" else "input 调用失败",
-                    elapsed_ms=round((time.perf_counter() - started) * 1000, 1),
-                    steps=step_logs,
-                    **_error_fields(exc),
-                )
-            )
-    return results
-
-
-def cleanup_resources(
-    *,
-    package: Any | None,
-    page: WebBrowser | None,
-    owned_library_dir: Path | None,
-) -> dict[str, Any]:
-    items: list[dict[str, Any]] = []
-
-    package_item: dict[str, Any] = {"resource": "element_library_connection"}
-    if package is None:
-        package_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    else:
-        try:
-            package.close()
-            package_item.update(status="PASS", confirmed=True, cleanup_call_needed=True, created=True)
-        except Exception as exc:  # noqa: BLE001
-            package_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(package_item)
-
-    page_item: dict[str, Any] = {"resource": "owned_page"}
-    if page is None:
-        page_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    elif page.raw.get("created_by") not in {"web.create", "profile_launch_recovery"}:
-        page_item.update(
-            status="FAIL",
-            confirmed=False,
-            cleanup_call_needed=False,
-            created=True,
-            reason="owned_page_identity_unknown",
-        )
-    else:
-        try:
-            page.close()
-            page_item.update(status="PASS", confirmed=True, cleanup_call_needed=True, created=True)
-        except Exception as exc:  # noqa: BLE001
-            page_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(page_item)
-
-    library_item: dict[str, Any] = {"resource": "owned_scrubbed_library"}
-    if owned_library_dir is None:
-        library_item.update(status="PASS", confirmed=True, cleanup_call_needed=False, created=False)
-    elif not re.fullmatch(r"[0-9a-f]{32}", owned_library_dir.name):
-        library_item.update(
-            status="FAIL",
-            confirmed=False,
-            cleanup_call_needed=False,
-            created=True,
-            reason="owned_library_identity_unknown",
-        )
-    else:
-        try:
-            if owned_library_dir.exists():
-                shutil.rmtree(owned_library_dir)
-            confirmed = not owned_library_dir.exists()
-            library_item.update(
-                status="PASS" if confirmed else "FAIL",
-                confirmed=confirmed,
-                cleanup_call_needed=True,
-                created=True,
-            )
-        except Exception as exc:  # noqa: BLE001
-            library_item.update(
-                status="FAIL",
-                confirmed=False,
-                cleanup_call_needed=True,
-                created=True,
-                **_error_fields(exc),
-            )
-    items.append(library_item)
-
-    passed = all(item["status"] == "PASS" for item in items)
-    return _result(
-        "owned_resources_cleanup",
-        "PASS" if passed else "FAIL",
-        "本次元素库连接、测试页面和临时库副本已逐项确认清理"
-        if passed
-        else "本次资源未能全部精确清理",
-        confirmed=passed,
-        attempted_count=len(items),
-        cleaned_count=sum(item["status"] == "PASS" for item in items),
-        resources=items,
-    )
-
-
-def _exit_code(results: Sequence[dict[str, Any]]) -> int:
-    statuses = {str(item.get("status") or "FAIL") for item in results}
-    return 1 if "FAIL" in statuses else (2 if "BLOCKED" in statuses else 0)
-
-
-def _report(args: argparse.Namespace, results: Sequence[dict[str, Any]]) -> tuple[dict[str, Any], int]:
-    exit_code = _exit_code(results)
-    status = "FAIL" if exit_code == 1 else ("BLOCKED" if exit_code == 2 else "PASS")
-    excluded = [
-        "edge",
-        "cef",
-        "auto",
-        "contains_hotkey / force_ime_ENG / anchor",
-        "cdp_input / driver_input / input_check",
-        "模拟人工 append 与 delay_after=1",
-        "元素库捕获期 WebSessionId 在不清理时仍可直连当前页面（产品侧会话绑定）",
+def scenarios():
+    dom={'simulative':False}
+    cdp={'simulative':False,'cdp_input':True}
+    def item(name,text,kw,**extra): return {'id':name,'steps':[(text,kw)],'expected':text,**extra}
+    return [
+        item('dom_unicode',TEXT,dom),
+        item('dom_literal_symbols',SPECIAL,dom),
+        {'id':'dom_overwrite','steps':[('original',dom),(TEXT,dom)],'expected':TEXT},
+        {'id':'dom_append','steps':[('前缀-',dom),('尾部😀',{**dom,'append':True})],'expected':'前缀-尾部😀'},
+        {'id':'dom_empty_clear','steps':[(TEXT,dom),('',dom)],'expected':''},
+        item('silent_default',TEXT,{}),
+        item('silent_ignored_keyboard_options','silent',{'force_ime_eng':True,'send_key_delay':500,'focus_timeout':1000,'anchor':('top_left',5,5)}),
+        item('dom_no_click',TEXT,{**dom,'click_before_input':False},no_focus=True,blur=True),
+        item('delay_none',TEXT,{**dom,'delay_after':None}),
+        item('delay_one_second',TEXT,{**dom,'delay_after':1},min_seconds=.95),
+        item('check_default',TEXT,{**dom,'input_check':True}),
+        item('check_explicit',TEXT,{**dom,'input_check':True,'retry_times':0,'check_value':TEXT}),
+        item('check_fail_zero','actual',{**dom,'input_check':True,'retry_times':0,'check_value':'different'},error='input_check_failed',input_events=1),
+        item('check_fail_two','actual',{**dom,'input_check':True,'retry_times':2,'check_value':'different'},error='input_check_failed',input_events=3),
+        item('check_recovery','recovered',{**dom,'input_check':True,'retry_times':1},mutate=True,input_events=2),
+        {'id':'check_append_no_retry','steps':[('prefix-',dom),('tail',{**dom,'append':True,'input_check':True,'retry_times':3,'check_value':'different'})],'expected':'prefix-tail','error':'input_check_failed','input_events':1},
+        item('cdp_unicode',TEXT,cdp),
+        {'id':'cdp_append','steps':[('CDP-',cdp),('尾部😀',{**cdp,'append':True})],'expected':'CDP-尾部😀'},
+        item('cdp_priority',TEXT,{'simulative':True,'cdp_input':True}),
+        item('cdp_no_click_focused',TEXT,{**cdp,'click_before_input':False},focus=True),
+        item('cdp_no_click_unfocused','',{**cdp,'click_before_input':False},blur=True,error='element_not_focused'),
+        {'id':'cdp_hotkey_replace','steps':[('old',dom),('^a新值',{**cdp,'append':True,'contains_hotkey':True,'input_check':True,'check_value':'新值','send_key_delay':0})],'expected':'新值'},
     ]
-    return (
-        {
-            "api": "uiautoma.web.WebElement.input",
-            "status": status,
-            "exit_code": exit_code,
-            "mode": args.mode,
-            "profile_directory": args.profile_directory,
-            "contract_only": bool(args.contract_only),
-            "input_element_name": args.input_element_name,
-            "submit_element_name": args.submit_element_name,
-            "reset_element_name": args.reset_element_name,
-            "input_text": args.input_text,
-            "results": list(results),
-            "excluded": excluded,
-        },
-        exit_code,
-    )
 
+def main(argv=None):
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--library',type=Path,default=LIBRARY)
+    parser.add_argument('--foreground',action='store_true',help='允许激活 Chrome 并使用系统键盘；运行期间勿操作电脑')
+    parser.add_argument('--contract-only',action='store_true')
+    parser.add_argument('--report-file',type=Path)
+    args=parser.parse_args(argv); run=Run(args)
+    print('UIAutoma Web API 测试\nAPI     : uiautoma.web.WebElement.input\n页面    : '+URL,flush=True)
+    contract_status=run.case('api_contract','签名、源码和只读 commit 与冻结合同一致',contract)
+    invalid=[
+        ('required_text',TypeError,lambda:WebElement.input(object())),
+        ('extra_positional',TypeError,lambda:WebElement.input(object(),'x',False)),
+        ('unknown_keyword',TypeError,lambda:WebElement.input(object(),'x',unknown=True)),
+        ('invalid_simulative',InvalidParamsError,lambda:WebElement.input(object(),'x',simulative='false')),
+        ('dom_hotkey_unsupported',UnsupportedActionError,lambda:WebElement.input(object(),'^a',simulative=False,contains_hotkey=True)),
+        ('append_check_missing',InvalidParamsError,lambda:WebElement.input(object(),'x',simulative=False,append=True,input_check=True)),
+        ('hotkey_check_missing',InvalidParamsError,lambda:WebElement.input(object(),'^a',cdp_input=True,contains_hotkey=True,input_check=True)),
+        ('invalid_retry_negative',InvalidParamsError,lambda:WebElement.input(object(),'x',input_check=True,retry_times=-1)),
+        ('invalid_retry_bool',InvalidParamsError,lambda:WebElement.input(object(),'x',input_check=True,retry_times=True)),
+        ('invalid_retry_float',InvalidParamsError,lambda:WebElement.input(object(),'x',input_check=True,retry_times=1.5)),
+        ('invalid_anchor',InvalidParamsError,lambda:WebElement.input(object(),'x',anchor='invalid-anchor')),
+    ]
+    for name,kind,fn in invalid: run.case(name,'在访问 Runtime 前抛 '+kind.__name__,lambda kind=kind,fn=fn:raises(kind,fn))
+    if not args.contract_only and contract_status=='PASS':
+        try:
+            if run.case('environment','后台靶场、临时库、剪贴板截获器可用，保留用户标签',run.setup)=='PASS':
+                for side in NAMES:
+                    if run.case(side+'_library_mapping','库选择器唯一命中指定 '+side+' input',lambda side=side:run.mapping(side))!='PASS': continue
+                    for spec in scenarios():
+                        if args.foreground and spec['id'] in {'silent_default','silent_ignored_keyboard_options'}: continue
+                        run.case(side+'_'+spec['id'],'返回/异常符合合同，原生 DOM 与真实提交 text 均为 '+repr(spec['expected']),lambda side=side,spec=spec:run.scenario(side,spec))
+                if args.foreground:
+                    for side in NAMES:
+                        for spec in [
+                            {'id':'keyboard_default','steps':[('SDK 中文 123',{})],'expected':'SDK 中文 123'},
+                            {'id':'keyboard_ime_delay_anchor','steps':[('IME123',{'force_ime_eng':True,'send_key_delay':0,'focus_timeout':0,'anchor':{'anchor':'middle_center','offset_x':0,'offset_y':0}})],'expected':'IME123'},
+                            {'id':'keyboard_append','steps':[('key-',{}),('tail',{'append':True})],'expected':'key-tail'},
+                        ]: run.case(side+'_'+spec['id'],'系统键盘输入与真实表单提交一致',lambda side=side,spec=spec:run.scenario(side,spec))
+        finally: run.case('cleanup','关闭自有页面/库，删除副本，源库和外部标签基线不变',run.cleanup)
+    code=1 if any(r['status']=='FAIL' for r in run.rows) else 2 if any(r['status']=='BLOCKED' for r in run.rows) else 0
+    report={'api':'uiautoma.web.WebElement.input','date':'2026-10-08','lifecycle':'VERIFIED' if code==0 and not args.contract_only else 'READY_FOR_LIVE','scope':'DOM/CDP plus system keyboard; silent-default excluded' if args.foreground else 'background DOM/silent-default/CDP; system keyboard excluded','product_worktree':str(PRODUCT),'product_commit':subprocess.check_output(['git','-C',str(PRODUCT),'rev-parse','HEAD'],text=True).strip(),'url':URL,'library':str(args.library),'results':run.rows,'exit_code':code}
+    if args.report_file:
+        args.report_file.parent.mkdir(parents=True,exist_ok=True)
+        args.report_file.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    passed=sum(r['status']=='PASS' for r in run.rows)
+    print(f"{'测试通过' if code==0 else '测试失败' if code==1 else '测试阻塞'} · {passed}/{len(run.rows)} 通过 · 退出码 {code}",flush=True)
+    return code
 
-def _build_input_cases(input_text: str) -> tuple[dict[str, Any], ...]:
-    base = str(input_text)
-    append_prefix = base[: max(1, len(base) // 2)]
-    append_suffix = base[len(append_prefix) :] or "X"
-    return (
-        {
-            "case_id": "input_background_basic",
-            "steps": (
-                {
-                    "text": base,
-                    "kwargs": {"simulative": False, "delay_after": 0.2},
-                },
-            ),
-            "expected_text": base,
-        },
-        {
-            "case_id": "input_simulative_basic",
-            "steps": (
-                {
-                    "text": base,
-                    "kwargs": {"simulative": True, "delay_after": 0.2},
-                },
-            ),
-            "expected_text": base,
-        },
-        {
-            "case_id": "input_background_append",
-            "steps": (
-                {
-                    "text": append_prefix,
-                    "kwargs": {"simulative": False, "append": False, "delay_after": 0.2},
-                },
-                {
-                    "text": append_suffix,
-                    "kwargs": {"simulative": False, "append": True, "delay_after": 0.2},
-                },
-            ),
-            "expected_text": append_prefix + append_suffix,
-        },
-        {
-            "case_id": "input_background_delay_after",
-            "steps": (
-                {
-                    "text": base,
-                    "kwargs": {"simulative": False, "delay_after": 1},
-                },
-            ),
-            "expected_text": base,
-            "min_input_elapsed_ms": 900,
-        },
-    )
-
-
-def run(args: argparse.Namespace) -> tuple[dict[str, Any], int]:
-    global INPUT_CASES
-    INPUT_CASES = _build_input_cases(args.input_text)
-    results = [check_contract()]
-    if results[-1]["status"] != "PASS" or args.contract_only:
-        return _report(args, results)
-
-    results.append(preflight_target(args.target_url, args.preflight_timeout))
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    results.append(preflight_runtime(args.runtime_timeout))
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    results.append(
-        preflight_element_library(
-            args.element_library,
-            args.input_element_name,
-            args.submit_element_name,
-            args.reset_element_name,
-            args.target_url,
-        )
-    )
-    if results[-1]["status"] != "PASS":
-        return _report(args, results)
-
-    run_id = uuid.uuid4().hex
-    marked_url = _marked_url(args.target_url, run_id)
-    owned_library_dir = PRODUCT_ROOT / ".pytest_tmp" / run_id
-    page: WebBrowser | None = None
-    package: Any | None = None
-    try:
-        scrub_result = prepare_scrubbed_library(args.element_library, owned_library_dir)
-        results.append(scrub_result)
-        if scrub_result["status"] == "PASS":
-            page_result, page = prepare_owned_page(
-                marked_url,
-                args.mode,
-                args.load_timeout,
-                args.profile_directory,
-            )
-            results.append(page_result)
-            if page_result["status"] == "PASS" and page is not None:
-                library_result, package, input_element, submit_element, reset_element = (
-                    connect_library_and_find_elements(
-                        page,
-                        owned_library_dir,
-                        args.input_element_name,
-                        args.submit_element_name,
-                        args.reset_element_name,
-                        args.runtime_timeout,
-                        args.element_timeout,
-                    )
-                )
-                results.append(library_result)
-                if (
-                    library_result["status"] == "PASS"
-                    and input_element is not None
-                    and submit_element is not None
-                    and reset_element is not None
-                ):
-                    # 关闭表单靶场动态 ID 开关；已关闭时不重复点击，避免把固定选择器重新变成动态。
-                    try:
-                        dynamic_id_switch = page.find(
-                            "web靶场_表单测试_控制表单组件id是否为动态的开关",
-                            timeout=args.element_timeout,
-                        )
-                        switch_state = bool(dynamic_id_switch.is_checked())
-                        if switch_state:
-                            dynamic_id_switch.click(delay_after=0)
-                        results.append(
-                            _result(
-                                "dynamic_id_switch",
-                                "PASS",
-                                "动态 ID 开关已确认关闭" if not switch_state else "动态 ID 开关已关闭",
-                                was_checked=switch_state,
-                            )
-                        )
-                    except Exception as exc:  # noqa: BLE001
-                        results.append(
-                            _result(
-                                "dynamic_id_switch",
-                                "FAIL",
-                                "无法确认或关闭动态 ID 开关",
-                                **_error_fields(exc),
-                            )
-                        )
-                        return _report(args, results)
-                    results.extend(
-                        run_input_cases(page, input_element, submit_element, reset_element)
-                    )
-    except Exception as exc:  # noqa: BLE001
-        results.append(
-            _result(
-                "scenario_orchestration",
-                "FAIL",
-                "真实场景编排失败",
-                **_error_fields(exc),
-            )
-        )
-    finally:
-        results.append(
-            cleanup_resources(
-                package=package,
-                page=page,
-                owned_library_dir=owned_library_dir if owned_library_dir.exists() else None,
-            )
-        )
-    return _report(args, results)
-
-
-def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="运行 uiautoma.web.WebElement.input() 持久化真实浏览器测试。"
-    )
-    parser.add_argument(
-        "--mode",
-        default="chrome",
-        choices=["chrome"],
-        help="用什么浏览器打开测试页面；默认 chrome。",
-    )
-    parser.add_argument(
-        "--profile-directory",
-        default=DEFAULT_PROFILE_DIRECTORY,
-        help="Chrome Profile 目录标识；默认 Default。",
-    )
-    parser.add_argument(
-        "--target-url",
-        default=DEFAULT_TARGET_URL,
-        help=f"表单输入测试靶场，默认 {DEFAULT_TARGET_URL}",
-    )
-    parser.add_argument(
-        "--element-library",
-        type=Path,
-        default=DEFAULT_ELEMENT_LIBRARY,
-        help="包含 input元素、提交_html 与 重置_html 的元素库目录。",
-    )
-    parser.add_argument(
-        "--input-element-name",
-        default=DEFAULT_INPUT_ELEMENT_NAME,
-        help=f"输入目标元素名称，默认 {DEFAULT_INPUT_ELEMENT_NAME}。",
-    )
-    parser.add_argument(
-        "--submit-element-name",
-        default=DEFAULT_SUBMIT_ELEMENT_NAME,
-        help=f"提交按钮元素名称，默认 {DEFAULT_SUBMIT_ELEMENT_NAME}。",
-    )
-    parser.add_argument(
-        "--reset-element-name",
-        default=DEFAULT_RESET_ELEMENT_NAME,
-        help=f"重置按钮元素名称，默认 {DEFAULT_RESET_ELEMENT_NAME}。",
-    )
-    parser.add_argument(
-        "--input-text",
-        default=DEFAULT_INPUT_TEXT,
-        help=f"基础示例输入文本，默认 {DEFAULT_INPUT_TEXT}。",
-    )
-    parser.add_argument("--preflight-timeout", type=float, default=2.0, help="靶场预检超时秒数，默认 2。")
-    parser.add_argument("--runtime-timeout", type=float, default=5.0, help="Runtime 与元素库连接超时秒数，默认 5。")
-    parser.add_argument("--load-timeout", type=float, default=20.0, help="页面创建超时秒数，默认 20。")
-    parser.add_argument("--element-timeout", type=float, default=5.0, help="元素库目标绑定超时秒数，默认 5。")
-    parser.add_argument("--contract-only", action="store_true", help="只检查公开签名，不连接 Runtime、靶场或浏览器。")
-    args = parser.parse_args(argv)
-    try:
-        args.target_url = _validate_url(args.target_url, "--target-url")
-    except argparse.ArgumentTypeError as exc:
-        parser.error(str(exc))
-    args.element_library = args.element_library.resolve()
-    args.input_element_name = str(args.input_element_name or "").strip()
-    args.submit_element_name = str(args.submit_element_name or "").strip()
-    args.reset_element_name = str(args.reset_element_name or "").strip()
-    args.input_text = str(args.input_text if args.input_text is not None else "")
-    args.profile_directory = str(args.profile_directory or "").strip()
-    if not args.input_element_name:
-        parser.error("--input-element-name 不能为空")
-    if not args.submit_element_name:
-        parser.error("--submit-element-name 不能为空")
-    if not args.reset_element_name:
-        parser.error("--reset-element-name 不能为空")
-    if args.input_text == "":
-        parser.error("--input-text 不能为空")
-    if not args.profile_directory or any(char in args.profile_directory for char in ("/", "\\")):
-        parser.error("--profile-directory 必须是不含路径分隔符的 Chrome Profile 目录标识")
-    for name in ("preflight_timeout", "runtime_timeout", "load_timeout", "element_timeout"):
-        if getattr(args, name) <= 0:
-            parser.error(f"--{name.replace('_', '-')} 必须大于 0")
-    return args
-
-
-def main(argv: Sequence[str] | None = None) -> int:
-    args = parse_args(argv)
-    report, exit_code = run(args)
-    print(json.dumps(report, ensure_ascii=False, indent=2))
-    return exit_code
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__=='__main__': raise SystemExit(main())

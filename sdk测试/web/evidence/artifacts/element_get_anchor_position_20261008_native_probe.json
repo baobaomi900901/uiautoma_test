@@ -1,0 +1,78 @@
+[
+  {
+    "hwnd": 6886240,
+    "class": "Chrome_WidgetWin_1",
+    "rect": {
+      "x": -8,
+      "y": -8,
+      "width": 3456,
+      "height": 1408
+    },
+    "client_origin": {
+      "x": 0,
+      "y": 0
+    },
+    "client_size": {
+      "width": 3440,
+      "height": 1392
+    },
+    "dpi": 96,
+    "extended_frame_bounds": {
+      "x": 0,
+      "y": 0,
+      "width": 3440,
+      "height": 1392
+    },
+    "dwm_result": 0,
+    "maximized": true,
+    "render_children": [
+      {
+        "hwnd": 60430564,
+        "class": "Chrome_RenderWidgetHostHWND",
+        "rect": {
+          "x": 0,
+          "y": 177,
+          "width": 3440,
+          "height": 1215
+        },
+        "client_origin": {
+          "x": 0,
+          "y": 177
+        },
+        "client_size": {
+          "width": 3440,
+          "height": 1215
+        },
+        "dpi": 96
+      }
+    ]
+  },
+  {
+    "hwnd": 4919488,
+    "class": "Chrome_WidgetWin_1",
+    "rect": {
+      "x": 1552,
+      "y": 54,
+      "width": 1256,
+      "height": 921
+    },
+    "client_origin": {
+      "x": 1560,
+      "y": 54
+    },
+    "client_size": {
+      "width": 1240,
+      "height": 913
+    },
+    "dpi": 96,
+    "extended_frame_bounds": {
+      "x": 1559,
+      "y": 54,
+      "width": 1242,
+      "height": 914
+    },
+    "dwm_result": 0,
+    "maximized": false,
+    "render_children": []
+  }
+]

@@ -1,0 +1,11 @@
+from pathlib import Path
+root=Path(r'D:\code\元素库\sdk测试')
+source=(root/'.pytest_tmp/highlight_retest_20261008/probe2.py').read_text(encoding='utf-8')
+source=source.replace('element_highlight_20261008_probe2.json','element_highlight_20261008_probe3.json')
+source=source.replace('[(1,0), (.5,.25), (.8,0), (0,0)]', '[(.5,0)]')
+source=source.replace('    element = matches[0]', '''    element = matches[0]
+    page.execute_javascript("function(){const e=document.getElementById('btn-click-target');window.__highlightOriginal={style:e.getAttribute('style'),parents:[]};for(let n=e.parentElement;n;n=n.parentElement)window.__highlightOriginal.parents.push({e:n,x:n.scrollLeft,y:n.scrollTop});e.style.marginTop='1600px';return true;}")''')
+source=source.replace('    if page:\n        page.close', '''    if page:
+        page.execute_javascript("function(){const e=document.getElementById('btn-click-target'),o=window.__highlightOriginal;if(o){if(o.style===null)e.removeAttribute('style');else e.setAttribute('style',o.style);for(const p of o.parents){p.e.scrollLeft=p.x;p.e.scrollTop=p.y;}delete window.__highlightOriginal;}return true;}")
+        page.close''')
+(root/'.pytest_tmp/highlight_retest_20261008/probe3.py').write_text(source,encoding='utf-8')

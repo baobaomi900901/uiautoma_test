@@ -1,5 +1,7 @@
 # `uiautoma.web.WebElement.get_bounding()` 验证证据（2026-10-04）
 
+> 历史记录：本次 SKIPPED 与原始计数保留。2026-10-08 最新验收及无日期入口见 [get_bounding.md](get_bounding.md)；旧包装脚本已归档，不再作为当前运行入口。
+
 ## 用途与合同
 
 获取网页元素的位置和尺寸。
@@ -54,9 +56,9 @@ DOM 矩形 × devicePixelRatio 独立计算尺寸，尝试 screen/window 参照�
 
 各轮 cleanup 均 PASS：仅关闭本次标签页和库连接，删除本次 UUID 临时目录；标签数 1→1，未留下本次文件对话框。原始库和用户原页面保留。
 
-脚本：[test_web_element_get_bounding_20261004.py](../test_web_element_get_bounding_20261004.py)。
+当时脚本：[归档的 test_web_element_get_bounding_20261004.py](../../issues/get_bounding_history_20261008/test_web_element_get_bounding_20261004.py)。
 
-在 `D:\code\元素库\sdk测试` 运行：
+以下为历史运行命令，当前请使用首节链接中的无日期入口：
 
 ```powershell
 uv run .\web\test_web_element_get_bounding_20261004.py

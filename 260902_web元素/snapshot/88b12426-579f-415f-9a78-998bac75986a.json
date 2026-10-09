@@ -1,0 +1,46 @@
+{
+  "type": "web",
+  "path": [
+    {
+      "backend": "web",
+      "tag": "main",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "panel" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 0 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "div",
+      "selected": false,
+      "required": [],
+      "optional": [
+        { "name": "class", "value": "actions" },
+        { "name": "index-of-type", "value": 0 },
+        { "name": "index", "value": 5 }
+      ]
+    },
+    {
+      "backend": "web",
+      "tag": "button",
+      "required": [
+        { "name": "innerText", "value": "清理测试环境" }
+      ],
+      "optional": [
+        { "name": "id", "value": "cleanup-worker" },
+        { "name": "class", "value": "secondary" },
+        { "name": "index-of-type", "value": 1 },
+        { "name": "index", "value": 1 }
+      ]
+    }
+  ],
+  "xpath": {
+    "enabled": false,
+    "segments": [
+      "//button[normalize-space(.)='清理测试环境']"
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "cases": [
+    {
+      "side": "ant",
+      "mode": "dom",
+      "id": "form-controls-ant-text",
+      "return": null,
+      "native_value": "SDK中文123😀",
+      "submitted": {
+        "text": "SDK中文123😀",
+        "password": "",
+        "email": "",
+        "number": null,
+        "date": null,
+        "time": null,
+        "search": "",
+        "disabled": "不可编辑",
+        "city": null,
+        "cities": [],
+        "gender": null,
+        "hobbies": [],
+        "remark": "",
+        "range": 0,
+        "readonly": "只读内容"
+      },
+      "clipboard_observed": 1
+    },
+    {
+      "side": "ant",
+      "mode": "silent_default",
+      "id": "form-controls-ant-text",
+      "return": null,
+      "native_value": "SDK中文123😀",
+      "submitted": {
+        "text": "SDK中文123😀",
+        "password": "",
+        "email": "",
+        "number": null,
+        "date": null,
+        "time": null,
+        "search": "",
+        "disabled": "不可编辑",
+        "city": null,
+        "cities": [],
+        "gender": null,
+        "hobbies": [],
+        "remark": "",
+        "range": 0,
+        "readonly": "只读内容"
+      },
+      "clipboard_observed": 2
+    },
+    {
+      "side": "ant",
+      "mode": "cdp",
+      "id": "form-controls-ant-text",
+      "return": null,
+      "native_value": "SDK中文123😀",
+      "submitted": {
+        "text": "SDK中文123😀",
+        "password": "",
+        "email": "",
+        "number": null,
+        "date": null,
+        "time": null,
+        "search": "",
+        "disabled": "不可编辑",
+        "city": null,
+        "cities": [],
+        "gender": null,
+        "hobbies": [],
+        "remark": "",
+        "range": 0,
+        "readonly": "只读内容"
+      },
+      "clipboard_observed": 3
+    },
+    {
+      "side": "native",
+      "mode": "dom",
+      "id": "form-controls-native-text",
+      "return": null,
+      "native_value": "SDK中文123😀",
+      "submitted": {
+        "text": "SDK中文123😀",
+        "password": "",
+        "email": "",
+        "number": null,
+        "date": "",
+        "time": "",
+        "search": "",
+        "disabled": "不可编辑",
+        "city": "",
+        "cities": [],
+        "gender": null,
+        "hobbies": [],
+        "remark": "",
+        "range": 0,
+        "readonly": "只读内容"
+      },
+      "clipboard_observed": 4
+    },
+    {
+      "side": "native",
+      "mode": "silent_default",
+      "id": "form-controls-native-text",
+      "return": null,
+      "native_value": "SDK中文123😀",
+      "submitted": {
+        "text": "SDK中文123😀",
+        "password": "",
+        "email": "",
+        "number": null,
+        "date": "",
+        "time": "",
+        "search": "",
+        "disabled": "不可编辑",
+        "city": "",
+        "cities": [],
+        "gender": null,
+        "hobbies": [],
+        "remark": "",
+        "range": 0,
+        "readonly": "只读内容"
+      },
+      "clipboard_observed": 5
+    },
+    {
+      "side": "native",
+      "mode": "cdp",
+      "id": "form-controls-native-text",
+      "return": null,
+      "native_value": "SDK中文123😀",
+      "submitted": {
+        "text": "SDK中文123😀",
+        "password": "",
+        "email": "",
+        "number": null,
+        "date": "",
+        "time": "",
+        "search": "",
+        "disabled": "不可编辑",
+        "city": "",
+        "cities": [],
+        "gender": null,
+        "hobbies": [],
+        "remark": "",
+        "range": 0,
+        "readonly": "只读内容"
+      },
+      "clipboard_observed": 6
+    }
+  ],
+  "observer": true,
+  "cleanup": {
+    "errors": [],
+    "tabs": "2->2",
+    "external_added": [],
+    "external_removed": []
+  }
+}

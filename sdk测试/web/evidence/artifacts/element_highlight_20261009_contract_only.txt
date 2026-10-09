@@ -1,0 +1,7 @@
+UIAutoma Web API 测试
+API     : uiautoma.web.WebElement.highlight
+页面    : https://baobaomi900901.github.io/xpath/#/keys-click-test
+01/03 [32m[通过][0m api_contract 期望 签名、默认值及 SDK→RPC→Runtime→Provider 快照一致；实测 {"signature": "(self, duration: 'float' = 1.0, delay_after: 'float' = 0) -> 'None'", "commits": {"desktop": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa", "rust_uia": "b700f9238134f57da83ab478a5ee55337ade1082"}, "rpc": "web.action.highlight", "source_sections": 26}；156.9ms
+02/03 [32m[通过][0m invalid_duration 期望 9 种非法 duration 抛 InvalidParamsError；RPC 调用 0 次；实测 {"variants": 9, "rpc_calls": 0}；0.1ms
+03/03 [32m[通过][0m cleanup 期望 移除观察器/高亮并关闭连接、删除副本；页面按参数保留或关闭；实测 {"errors": [], "page_retained_for_observation": false, "own_tab_closed": false, "temporary_copy_removed": true, "source_library_unchanged": true, "tab_count": "0->0", "unexpected_added": [], "external_removed": [], "overlays_after": []}；0.2ms
+SKIPPED · 3/3 通过 · 0 失败 · 0 阻塞 · 退出码 0

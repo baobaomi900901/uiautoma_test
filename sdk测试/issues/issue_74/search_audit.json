@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-06",
+  "repo": "uiautoma/desktop",
+  "visibility": "PRIVATE",
+  "state": "all",
+  "queries": [
+    "cookie in:title,body,comments",
+    "cookie_set_failed in:title,body,comments",
+    "set_cookie in:title,body,comments"
+  ],
+  "results": {
+    "cookie": [
+      51,
+      58
+    ],
+    "cookie_set_failed": [],
+    "set_cookie": [
+      51
+    ]
+  },
+  "decision": "No same defect found. Created #74 and added its reference plus test results to tracking issue #51.",
+  "publication_review": "Initial full body rejected by automatic approval review due to disclosure scope. Published minimal body omits local paths, raw artifacts and source locations; target visibility verified PRIVATE.",
+  "issue_url": "https://github.com/uiautoma/desktop/issues/74",
+  "tracker_comment_url": "https://github.com/uiautoma/desktop/issues/51#issuecomment-6006002391",
+  "remote_body_verified": true,
+  "remote_comment_verified": true
+}

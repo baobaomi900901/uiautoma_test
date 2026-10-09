@@ -1,0 +1,5 @@
+environment {"url": "https://baobaomi900901.github.io/xpath/#/cookie-test", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36", "baseline_tabs": 3, "foreign_cookie_count": 0, "silent_running": true, "native_cookie_store": true}
+get_cookies {"exception": "TypeError", "message": "partition_key must be a mapping", "trace": ""}
+remove_cookie {"exception": "TypeError", "message": "partition_key must be a mapping", "trace": ""}
+clear_cookies {"exception": "TypeError", "message": "partition_key must be a mapping", "trace": ""}
+cleanup {"errors": [], "owned_cookies_removed": true, "foreign_cookie_baseline_preserved": true, "tab_count": "3->3", "own_tabs_closed": true, "external_added": [], "external_removed": []}
