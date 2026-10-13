@@ -1,0 +1,1 @@
+{"command":"package validate","data":{"count":1,"failed_index":-1,"found":true,"hidden_count":0,"highlight_requested":false,"highlighted":false,"id":"27785e62-3c42-425b-b8fe-add95dd1d4be","kind":"web","message":"Web 元素校验通过","name":"文本输入框_ant","offscreen_count":0,"rects":[{"height":32,"width":1033,"x":130,"y":569}],"status":"passed","validated":true},"ok":true,"schema_version":1}

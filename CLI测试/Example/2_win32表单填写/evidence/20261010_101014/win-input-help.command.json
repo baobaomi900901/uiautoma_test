@@ -1,0 +1,8 @@
+{
+  "args": [
+    "win",
+    "input",
+    "--help"
+  ],
+  "exit_code": 0
+}

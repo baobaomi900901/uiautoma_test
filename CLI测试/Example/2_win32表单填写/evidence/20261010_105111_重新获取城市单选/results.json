@@ -1,0 +1,44 @@
+{
+  "field": "城市（单选）",
+  "option_count": 5,
+  "options": [
+    {
+      "name": "北京",
+      "has_keyboard_focus": false,
+      "selected": null,
+      "selected_status": "unknown",
+      "source": "details-e57.json"
+    },
+    {
+      "name": "上海",
+      "has_keyboard_focus": true,
+      "selected": null,
+      "selected_status": "unknown",
+      "source": "details-e58.json"
+    },
+    {
+      "name": "广州",
+      "has_keyboard_focus": false,
+      "selected": null,
+      "selected_status": "unknown",
+      "source": "details-e59.json"
+    },
+    {
+      "name": "深圳",
+      "has_keyboard_focus": false,
+      "selected": null,
+      "selected_status": "unknown",
+      "source": "details-e60.json"
+    },
+    {
+      "name": "杭州",
+      "has_keyboard_focus": false,
+      "selected": null,
+      "selected_status": "unknown",
+      "source": "details-e61.json"
+    }
+  ],
+  "focus_source": "CLI observe win details properties.has_keyboard_focus",
+  "selected_state_source": "Not exposed by this CLI result",
+  "environment": "environment.json"
+}

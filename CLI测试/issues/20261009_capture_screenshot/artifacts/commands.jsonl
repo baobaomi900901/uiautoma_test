@@ -1,0 +1,71 @@
+{"name": "current-before", "args": ["package", "current"], "exit_code": 0}
+{"name": "pages", "args": ["browser", "list", "--url", "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form"], "exit_code": 0}
+{"name": "browser-windows", "args": ["windows", "list", "--process-name", "chrome.exe"], "exit_code": 0}
+{"name": "occluder-windows", "args": ["windows", "list", "--process-name", "UIAutoma.exe"], "exit_code": 0}
+{"name": "original-metrics", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\original-metrics.js"], "exit_code": 0}
+{"name": "probe-open", "args": ["package", "open", "--path", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\probe_library"], "exit_code": 0}
+{"name": "round-1-visible-no-highlight-visible-fixture", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-1-visible-no-highlight-visible-fixture.js"], "exit_code": 0}
+{"name": "round-1-visible-no-highlight-metrics-before", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-1-visible-no-highlight-metrics-before.js"], "exit_code": 0}
+{"name": "round-1-visible-no-highlight-open", "args": ["observe", "web", "open", "--page", "e9b72d74f2bf45af"], "exit_code": 0}
+{"name": "round-1-visible-no-highlight-f1e41", "args": ["observe", "web", "details", "--session", "57e909b1-821b-4229-a9a2-cb715c254007", "--snapshot", 1, "--ref", "f1e41", "--no-highlight"], "exit_code": 0}
+{"name": "round-1-visible-no-highlight-f1e50", "args": ["observe", "web", "details", "--session", "57e909b1-821b-4229-a9a2-cb715c254007", "--snapshot", 1, "--ref", "f1e50", "--no-highlight"], "exit_code": 0}
+{"name": "round-1-visible-no-highlight-occlude", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-1-visible-no-highlight-capture", "args": ["capture", "web", "--session", "57e909b1-821b-4229-a9a2-cb715c254007", "--snapshot", 1, "--ref", "f1e50", "--package", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\probe_library", "--name", "round-1-visible-no-highlight", "--no-highlight"], "exit_code": 0}
+{"name": "round-1-visible-no-highlight-metrics-after", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-1-visible-no-highlight-metrics-after.js"], "exit_code": 0}
+{"name": "round-1-visible-no-highlight-observe-close", "args": ["observe", "web", "close", "--session", "57e909b1-821b-4229-a9a2-cb715c254007"], "exit_code": 0}
+{"name": "round-1-visible-no-highlight-restore-occluder", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-1-visible-default-visible-fixture", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-1-visible-default-visible-fixture.js"], "exit_code": 0}
+{"name": "round-1-visible-default-metrics-before", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-1-visible-default-metrics-before.js"], "exit_code": 0}
+{"name": "round-1-visible-default-open", "args": ["observe", "web", "open", "--page", "e9b72d74f2bf45af"], "exit_code": 0}
+{"name": "round-1-visible-default-f1e41", "args": ["observe", "web", "details", "--session", "2a64be14-0cb7-440b-8e02-e097952581a3", "--snapshot", 1, "--ref", "f1e41", "--no-highlight"], "exit_code": 0}
+{"name": "round-1-visible-default-f1e50", "args": ["observe", "web", "details", "--session", "2a64be14-0cb7-440b-8e02-e097952581a3", "--snapshot", 1, "--ref", "f1e50", "--no-highlight"], "exit_code": 0}
+{"name": "round-1-visible-default-occlude", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-1-visible-default-capture", "args": ["capture", "web", "--session", "2a64be14-0cb7-440b-8e02-e097952581a3", "--snapshot", 1, "--ref", "f1e50", "--package", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\probe_library", "--name", "round-1-visible-default"], "exit_code": 0}
+{"name": "round-1-visible-default-metrics-after", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-1-visible-default-metrics-after.js"], "exit_code": 0}
+{"name": "round-1-visible-default-observe-close", "args": ["observe", "web", "close", "--session", "2a64be14-0cb7-440b-8e02-e097952581a3"], "exit_code": 0}
+{"name": "round-1-visible-default-restore-occluder", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-1-offscreen-default-visible-fixture", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-1-offscreen-default-visible-fixture.js"], "exit_code": 0}
+{"name": "round-1-offscreen-default-offscreen-fixture", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-1-offscreen-default-offscreen-fixture.js"], "exit_code": 0}
+{"name": "round-1-offscreen-default-metrics-before", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-1-offscreen-default-metrics-before.js"], "exit_code": 0}
+{"name": "round-1-offscreen-default-open", "args": ["observe", "web", "open", "--page", "e9b72d74f2bf45af"], "exit_code": 0}
+{"name": "round-1-offscreen-default-f1e41", "args": ["observe", "web", "details", "--session", "9141e4e1-063a-4083-a815-568875691b13", "--snapshot", 1, "--ref", "f1e41", "--no-highlight"], "exit_code": 0}
+{"name": "round-1-offscreen-default-f1e50", "args": ["observe", "web", "details", "--session", "9141e4e1-063a-4083-a815-568875691b13", "--snapshot", 1, "--ref", "f1e50", "--no-highlight"], "exit_code": 0}
+{"name": "round-1-offscreen-default-occlude", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-1-offscreen-default-capture", "args": ["capture", "web", "--session", "9141e4e1-063a-4083-a815-568875691b13", "--snapshot", 1, "--ref", "f1e50", "--package", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\probe_library", "--name", "round-1-offscreen-default"], "exit_code": 0}
+{"name": "round-1-offscreen-default-metrics-after", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-1-offscreen-default-metrics-after.js"], "exit_code": 0}
+{"name": "round-1-offscreen-default-observe-close", "args": ["observe", "web", "close", "--session", "9141e4e1-063a-4083-a815-568875691b13"], "exit_code": 0}
+{"name": "round-1-offscreen-default-restore-occluder", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-2-visible-no-highlight-visible-fixture", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-2-visible-no-highlight-visible-fixture.js"], "exit_code": 0}
+{"name": "round-2-visible-no-highlight-metrics-before", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-2-visible-no-highlight-metrics-before.js"], "exit_code": 0}
+{"name": "round-2-visible-no-highlight-open", "args": ["observe", "web", "open", "--page", "e9b72d74f2bf45af"], "exit_code": 0}
+{"name": "round-2-visible-no-highlight-f1e41", "args": ["observe", "web", "details", "--session", "cd35e92d-b7e5-4160-89a2-0ff341487b70", "--snapshot", 1, "--ref", "f1e41", "--no-highlight"], "exit_code": 0}
+{"name": "round-2-visible-no-highlight-f1e50", "args": ["observe", "web", "details", "--session", "cd35e92d-b7e5-4160-89a2-0ff341487b70", "--snapshot", 1, "--ref", "f1e50", "--no-highlight"], "exit_code": 0}
+{"name": "round-2-visible-no-highlight-occlude", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-2-visible-no-highlight-capture", "args": ["capture", "web", "--session", "cd35e92d-b7e5-4160-89a2-0ff341487b70", "--snapshot", 1, "--ref", "f1e50", "--package", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\probe_library", "--name", "round-2-visible-no-highlight", "--no-highlight"], "exit_code": 0}
+{"name": "round-2-visible-no-highlight-metrics-after", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-2-visible-no-highlight-metrics-after.js"], "exit_code": 0}
+{"name": "round-2-visible-no-highlight-observe-close", "args": ["observe", "web", "close", "--session", "cd35e92d-b7e5-4160-89a2-0ff341487b70"], "exit_code": 0}
+{"name": "round-2-visible-no-highlight-restore-occluder", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-2-visible-default-visible-fixture", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-2-visible-default-visible-fixture.js"], "exit_code": 0}
+{"name": "round-2-visible-default-metrics-before", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-2-visible-default-metrics-before.js"], "exit_code": 0}
+{"name": "round-2-visible-default-open", "args": ["observe", "web", "open", "--page", "e9b72d74f2bf45af"], "exit_code": 0}
+{"name": "round-2-visible-default-f1e41", "args": ["observe", "web", "details", "--session", "6a7e2ddc-c2af-4331-aec6-13f6c23e0c4a", "--snapshot", 1, "--ref", "f1e41", "--no-highlight"], "exit_code": 0}
+{"name": "round-2-visible-default-f1e50", "args": ["observe", "web", "details", "--session", "6a7e2ddc-c2af-4331-aec6-13f6c23e0c4a", "--snapshot", 1, "--ref", "f1e50", "--no-highlight"], "exit_code": 0}
+{"name": "round-2-visible-default-occlude", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-2-visible-default-capture", "args": ["capture", "web", "--session", "6a7e2ddc-c2af-4331-aec6-13f6c23e0c4a", "--snapshot", 1, "--ref", "f1e50", "--package", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\probe_library", "--name", "round-2-visible-default"], "exit_code": 0}
+{"name": "round-2-visible-default-metrics-after", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-2-visible-default-metrics-after.js"], "exit_code": 0}
+{"name": "round-2-visible-default-observe-close", "args": ["observe", "web", "close", "--session", "6a7e2ddc-c2af-4331-aec6-13f6c23e0c4a"], "exit_code": 0}
+{"name": "round-2-visible-default-restore-occluder", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-2-offscreen-default-visible-fixture", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-2-offscreen-default-visible-fixture.js"], "exit_code": 0}
+{"name": "round-2-offscreen-default-offscreen-fixture", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-2-offscreen-default-offscreen-fixture.js"], "exit_code": 0}
+{"name": "round-2-offscreen-default-metrics-before", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-2-offscreen-default-metrics-before.js"], "exit_code": 0}
+{"name": "round-2-offscreen-default-open", "args": ["observe", "web", "open", "--page", "e9b72d74f2bf45af"], "exit_code": 0}
+{"name": "round-2-offscreen-default-f1e41", "args": ["observe", "web", "details", "--session", "b9d94938-e77e-463e-a9dc-fb643d4969e2", "--snapshot", 1, "--ref", "f1e41", "--no-highlight"], "exit_code": 0}
+{"name": "round-2-offscreen-default-f1e50", "args": ["observe", "web", "details", "--session", "b9d94938-e77e-463e-a9dc-fb643d4969e2", "--snapshot", 1, "--ref", "f1e50", "--no-highlight"], "exit_code": 0}
+{"name": "round-2-offscreen-default-occlude", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "round-2-offscreen-default-capture", "args": ["capture", "web", "--session", "b9d94938-e77e-463e-a9dc-fb643d4969e2", "--snapshot", 1, "--ref", "f1e50", "--package", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\probe_library", "--name", "round-2-offscreen-default"], "exit_code": 0}
+{"name": "round-2-offscreen-default-metrics-after", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\round-2-offscreen-default-metrics-after.js"], "exit_code": 0}
+{"name": "round-2-offscreen-default-observe-close", "args": ["observe", "web", "close", "--session", "b9d94938-e77e-463e-a9dc-fb643d4969e2"], "exit_code": 0}
+{"name": "round-2-offscreen-default-restore-occluder", "args": ["windows", "activate", "--hwnd", 5049218], "exit_code": 0}
+{"name": "restore-scrolls", "args": ["web", "run-code", "--page", "e9b72d74f2bf45af", "--file", "D:\\code\\元素库\\CLI测试\\issues\\20261009_capture_screenshot\\artifacts\\restore-scrolls.js"], "exit_code": 0}
+{"name": "restore-package", "args": ["package", "open", "--path", "D:\\code\\元素库\\CLI测试\\Example\\1_网页表单填写\\element"], "exit_code": 0}
+{"name": "current-after", "args": ["package", "current"], "exit_code": 0}

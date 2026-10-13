@@ -1,0 +1,20 @@
+{
+  "cli": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+  "cli_sha256": "c4cc52c93dac523f354c8bae6b08da412e6b16e5fa8d2b14917b233a624fccb8",
+  "version": "uia 0.1.1",
+  "version_exit_code": 0,
+  "sources": {
+    "D:\\code\\desktop": {
+      "root": "D:/code/desktop",
+      "branch": "main",
+      "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa"
+    },
+    "D:\\code\\rust_uia": {
+      "root": "D:/code/rust_uia",
+      "branch": "main",
+      "commit": "b700f9238134f57da83ab478a5ee55337ade1082"
+    }
+  },
+  "cli_test_dir": "D:\\code\\元素库\\CLI测试",
+  "sdk_test_dir": "D:\\code\\元素库\\sdk测试"
+}

@@ -1,0 +1,13 @@
+{
+  "args": [
+    "observe",
+    "win",
+    "close",
+    "--session",
+    "9c6a00fe-dce3-48cd-a513-48628a13d8c0",
+    "--format",
+    "json"
+  ],
+  "cli_path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+  "exit_code": 0
+}

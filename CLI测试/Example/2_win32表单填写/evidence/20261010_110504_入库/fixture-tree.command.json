@@ -1,0 +1,18 @@
+{
+  "args": [
+    "observe",
+    "win",
+    "subtree",
+    "--session",
+    "50ddd049-55b8-47c2-a745-ee1e889b5182",
+    "--snapshot",
+    "1",
+    "--max-depth",
+    "10",
+    "--max-nodes",
+    "400",
+    "--format",
+    "json"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,90 @@
+UIAutoma CLI 基础冒烟测试
+CLI     : D:\code\desktop\cli\target\x86_64-pc-windows-msvc\release\uia.exe
+SHA-256 : c4cc52c93dac523f354c8bae6b08da412e6b16e5fa8d2b14917b233a624fccb8
+Runtime : \\.\pipe\UIAutoma.Automation.v1
+01/85 [通过] environment_baseline | 期望：只读获取 Runtime、库、标签和观察会话基线 | 实测：Runtime PID 95580，标签 8，会话 0/0 | 202.9ms
+02/85 [通过] version_version | 期望：退出码 0；与源码声明版本一致 | 实测：uia 0.1.1 | 21.5ms
+03/85 [通过] version_V | 期望：退出码 0；与源码声明版本一致 | 实测：uia 0.1.1 | 23.8ms
+04/85 [通过] root_help_--help | 期望：退出码 0；英文文本；公开命令完整 | 实测：退出码 0，英文文本帮助 | 22.3ms
+05/85 [通过] root_help_-h | 期望：退出码 0；英文文本；公开命令完整 | 实测：退出码 0，英文文本帮助 | 23.9ms
+06/85 [通过] root_help_--format_json_--help | 期望：退出码 0；英文文本；公开命令完整 | 实测：退出码 0，英文文本帮助 | 22.3ms
+07/85 [通过] help_clipboard | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 22.6ms
+08/85 [通过] help_docs | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 25.4ms
+09/85 [通过] help_screenshot | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 22.2ms
+10/85 [通过] help_package | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 22.6ms
+11/85 [通过] help_app | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 23.7ms
+12/85 [通过] help_capture | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 22.3ms
+13/85 [通过] help_win | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 25.3ms
+14/85 [通过] help_web | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 24.0ms
+15/85 [通过] help_observe | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 24.4ms
+16/85 [通过] help_status | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 24.9ms
+17/85 [通过] help_capabilities | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 22.8ms
+18/85 [通过] help_windows | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 25.3ms
+19/85 [通过] help_browser | 期望：离线帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 25.6ms
+20/85 [通过] help_observe_win | 期望：嵌套帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 23.0ms
+21/85 [通过] help_observe_web | 期望：嵌套帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 24.8ms
+22/85 [通过] help_windows_list | 期望：嵌套帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 23.0ms
+23/85 [通过] help_browser_list | 期望：嵌套帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 23.4ms
+24/85 [通过] help_docs_sdk | 期望：嵌套帮助退出码 0 | 实测：退出码 0，英文文本帮助 | 21.7ms
+25/85 [通过] missing_command | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.9ms
+26/85 [通过] unknown_command_format_before | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 25.5ms
+27/85 [通过] unknown_command_format_after | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 24.9ms
+28/85 [通过] unknown_option_equals_before | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 22.7ms
+29/85 [通过] unknown_option_equals_after | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 22.0ms
+30/85 [通过] hwnd_zero | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.4ms
+31/85 [通过] hwnd_missing | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.5ms
+32/85 [通过] screenshot_out_missing | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 23.0ms
+33/85 [通过] screenshot_targets_conflict | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 22.3ms
+34/85 [通过] clipboard_source_missing | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 23.6ms
+35/85 [通过] clipboard_sources_conflict | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.2ms
+36/85 [通过] browser_mode_invalid | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.9ms
+37/85 [通过] browser_profile_session_conflict | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.2ms
+38/85 [通过] max_items_zero | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.0ms
+39/85 [通过] max_items_overflow | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.9ms
+40/85 [通过] snapshot_zero | 期望：本地拒绝；退出码 2；invalid_params；command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.0ms
+41/85 [通过] missing_command_text | 期望：默认/无效格式采用文本错误，退出码 2 | 实测：文本错误 invalid_params，退出码 2 | 20.6ms
+42/85 [通过] invalid_format_falls_back_text | 期望：默认/无效格式采用文本错误，退出码 2 | 实测：文本错误 invalid_params，退出码 2 | 20.5ms
+43/85 [通过] missing_format_value_falls_back_text | 期望：默认/无效格式采用文本错误，退出码 2 | 实测：文本错误 invalid_params，退出码 2 | 21.7ms
+44/85 [通过] format_in_text_is_not_option | 期望：默认/无效格式采用文本错误，退出码 2 | 实测：文本错误 invalid_params，退出码 2 | 20.3ms
+45/85 [通过] explicit_format_after_text_value | 期望：参数值中的 format 不覆盖真正的 JSON 选项 | 实测：退出码 2，invalid_params，单行 JSON | 22.1ms
+46/85 [通过] format_after_double_dash_ignored | 期望：-- 后内容不改变输出；连接失败退出码 3 | 实测：文本错误 runtime_unavailable，退出码 3 | 122.9ms
+47/85 [通过] explicit_format_before_double_dash | 期望：-- 前 JSON 生效；不启动程序 | 实测：退出码 3，runtime_unavailable，单行 JSON | 125.3ms
+48/85 [通过] range_reject_--connect-timeout-ms_0 | 期望：超出公开范围，解析拒绝，command=null | 实测：退出码 2，invalid_params，单行 JSON | 22.8ms
+49/85 [通过] range_reject_--connect-timeout-ms_300001 | 期望：超出公开范围，解析拒绝，command=null | 实测：退出码 2，invalid_params，单行 JSON | 22.7ms
+50/85 [通过] range_accept_--connect-timeout-ms_1 | 期望：边界值通过解析；无效管道随后本地拒绝，command=status | 实测：退出码 2，invalid_params，单行 JSON | 21.8ms
+51/85 [通过] range_accept_--connect-timeout-ms_300000 | 期望：边界值通过解析；无效管道随后本地拒绝，command=status | 实测：退出码 2，invalid_params，单行 JSON | 21.4ms
+52/85 [通过] range_reject_--timeout-ms_0 | 期望：超出公开范围，解析拒绝，command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.8ms
+53/85 [通过] range_reject_--timeout-ms_300001 | 期望：超出公开范围，解析拒绝，command=null | 实测：退出码 2，invalid_params，单行 JSON | 21.8ms
+54/85 [通过] range_accept_--timeout-ms_1 | 期望：边界值通过解析；无效管道随后本地拒绝，command=status | 实测：退出码 2，invalid_params，单行 JSON | 22.6ms
+55/85 [通过] range_accept_--timeout-ms_300000 | 期望：边界值通过解析；无效管道随后本地拒绝，command=status | 实测：退出码 2，invalid_params，单行 JSON | 23.3ms
+56/85 [通过] range_reject_--max-response-bytes_255 | 期望：超出公开范围，解析拒绝，command=null | 实测：退出码 2，invalid_params，单行 JSON | 24.2ms
+57/85 [通过] range_reject_--max-response-bytes_67108865 | 期望：超出公开范围，解析拒绝，command=null | 实测：退出码 2，invalid_params，单行 JSON | 23.2ms
+58/85 [通过] range_accept_--max-response-bytes_256 | 期望：边界值通过解析；无效管道随后本地拒绝，command=status | 实测：退出码 2，invalid_params，单行 JSON | 23.1ms
+59/85 [通过] range_accept_--max-response-bytes_67108864 | 期望：边界值通过解析；无效管道随后本地拒绝，command=status | 实测：退出码 2，invalid_params，单行 JSON | 21.7ms
+60/85 [通过] reject_pipe_not-a-local-pipe | 期望：非本地/空名称管道本地拒绝，退出码 2 | 实测：退出码 2，invalid_params，单行 JSON | 22.1ms
+61/85 [通过] reject_pipe_\\smoke-server\pipe\absent | 期望：非本地/空名称管道本地拒绝，退出码 2 | 实测：退出码 2，invalid_params，单行 JSON | 21.8ms
+62/85 [通过] reject_pipe_\\.\pipe\ | 期望：非本地/空名称管道本地拒绝，退出码 2 | 实测：退出码 2，invalid_params，单行 JSON | 21.8ms
+63/85 [通过] missing_runtime_json | 期望：连接预算 100ms；JSON runtime_unavailable；退出码 3 | 实测：runtime_unavailable，退出码 3，132.1ms | 132.1ms
+64/85 [通过] missing_runtime_text | 期望：连接预算 100ms；文本 runtime_unavailable；退出码 3 | 实测：runtime_unavailable，退出码 3，126.3ms | 126.3ms
+65/85 [通过] environment_pipe_selected | 期望：无 --pipe 时使用环境变量，而非已运行的默认 Runtime | 实测：runtime_unavailable，退出码 3，125.3ms | 125.3ms
+66/85 [通过] explicit_pipe_overrides_environment | 期望：显式 --pipe 覆盖无效环境变量 | 实测：退出码 3，runtime_unavailable，单行 JSON | 124.8ms
+67/85 [通过] docs_topics_offline | 期望：显式本地资源；不连接 Runtime；包含公开主题 | 实测：不存在的 Runtime 管道下成功读取显式本地参考 | 22.3ms
+68/85 [通过] docs_symbol_offline | 期望：精确查询 WebElement.click 签名和指南 | 实测：不存在的 Runtime 管道下成功读取显式本地参考 | 22.4ms
+69/85 [通过] docs_contracts_offline | 期望：本地 contracts 主题返回非空内容 | 实测：不存在的 Runtime 管道下成功读取显式本地参考 | 21.9ms
+70/85 [通过] docs_unknown_symbol | 期望：不存在的公共符号退出码 2，documentation_not_found | 实测：退出码 2，documentation_not_found，单行 JSON | 22.2ms
+71/85 [通过] docs_missing_resources | 期望：资源目录缺失退出码 2，documentation_unavailable | 实测：退出码 2，documentation_unavailable，单行 JSON | 22.7ms
+72/85 [通过] runtime_status_json | 期望：协议/版本/PID 类型正确，Provider 可用 | 实测：PID 95580，协议 1，Provider=true | 23.5ms
+73/85 [通过] runtime_status_default_text | 期望：默认输出为文本 | 实测：退出码 0，文本含 runtime_pid: | 24.3ms
+74/85 [通过] runtime_status_debug | 期望：debug 不污染 stdout，stderr 为诊断 JSON | 实测：stdout 一行结果，stderr 3 条 JSON 诊断 | 22.9ms
+75/85 [通过] runtime_capabilities | 期望：方法数组、布尔能力表；只验证声明 | 实测：202 个声明方法，39 项能力 | 23.5ms
+76/85 [通过] runtime_package_current | 期望：当前库只读查询，无库也成功 | 实测：只读查询成功，字段 has_current_package,package_dir | 25.1ms
+77/85 [通过] windows_list_limited | 期望：返回数不超过 3，句柄正整数，前台不变 | 实测：count=3，前台 HWND 1055684 未变化 | 27.4ms
+78/85 [通过] windows_empty_json | 期望：随机标题 count=0/items=[]，前台不变 | 实测：count=0，前台 HWND 1055684 未变化 | 27.5ms
+79/85 [通过] windows_empty_text | 期望：默认文本与空 JSON 结果一致 | 实测：退出码 0，文本含 No windows. | 26.2ms
+80/85 [通过] browser_list_json | 期望：items/count 一致，page_ref 为字符串，前台不变 | 实测：count=8，前台 HWND 1055684 未变化 | 32.3ms
+81/85 [通过] browser_empty_json | 期望：随机标题 count=0/items=[]，保留连接数 | 实测：count=0，前台 HWND 1055684 未变化 | 36.6ms
+82/85 [通过] browser_empty_text | 期望：默认文本与空 JSON 结果一致 | 实测：退出码 0，文本含 No pages. | 32.0ms
+83/85 [通过] observe_win_list | 期望：只读会话列表，items/count 一致 | 实测：只读查询成功，字段 count,items | 88.3ms
+84/85 [通过] observe_web_list | 期望：只读会话列表，items/count 一致 | 实测：只读查询成功，字段 count,items | 24.4ms
+85/85 [通过] state_cleanup | 期望：PID、库、标签和观察会话保持本轮基线 | 实测：当前库、PID、标签 8 和 Win/Web 会话均一致 | 189.8ms
+总计 85：85 PASS，0 FAIL，0 BLOCKED；退出码 0

@@ -1,0 +1,1 @@
+{"command":null,"error":{"code":"invalid_params","hint":"Run uia --help for usage","message":"the following required arguments were not provided: --snapshot <SNAPSHOT>"},"ok":false,"schema_version":1}

@@ -1,0 +1,14 @@
+{
+  "cli_path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+  "args": [
+    "observe",
+    "win",
+    "close",
+    "--session",
+    "17bb11a9-b6dc-4be5-905f-d12600e8aedf",
+    "--format",
+    "json"
+  ],
+  "working_directory": "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复",
+  "exit_code": 2
+}

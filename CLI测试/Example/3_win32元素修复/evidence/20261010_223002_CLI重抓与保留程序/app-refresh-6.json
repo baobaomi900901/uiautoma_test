@@ -1,0 +1,1 @@
+{"command":"observe win refresh","data":{"backend":"win","root":{"backend":"uia","children_state":"unexpanded","control_type":"Window","name":"UIAutoma","path":[],"ref":"e1"},"session_id":"3b56cf9d-7e81-47de-8f4a-eae6641c03d8","snapshot_id":6,"target":{"native_handle":5378502,"process_id":57984}},"ok":true,"schema_version":1}

@@ -1,0 +1,2535 @@
+{
+  "metadata": {
+    "tested_at": "2026-10-09T11:23:57.916433+08:00",
+    "provider_source": {
+      "git_root": "D:/code/rust_uia",
+      "branch": "main",
+      "commit": "b700f9238134f57da83ab478a5ee55337ade1082",
+      "path": "D:\\code\\rust_uia"
+    },
+    "desktop_source": {
+      "git_root": "D:/code/desktop",
+      "branch": "main",
+      "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+      "path": "D:\\code\\desktop"
+    },
+    "sdk_test_directory": "D:\\code\\元素库\\sdk测试",
+    "cli_test_directory": "D:\\code\\元素库\\CLI测试",
+    "cli_path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+    "cli_sha256": "c4cc52c93dac523f354c8bae6b08da412e6b16e5fa8d2b14917b233a624fccb8",
+    "cli_size_bytes": 2688000,
+    "runtime_pipe": "\\\\.\\pipe\\UIAutoma.Automation.v1",
+    "baseline": {
+      "runtime_pid": 95580,
+      "package": {
+        "has_current_package": true,
+        "package_dir": "D:\\code\\元素库\\260902_web元素"
+      },
+      "browser_refs": [
+        "1aa68c9e34234208",
+        "28f7f572c0f147b0",
+        "5b1ca0c9bdc8444e",
+        "7e407bdcc2054cb9",
+        "9ee465bef5194669",
+        "a4080868dc5c4047",
+        "ba111a8daeeb46da",
+        "c353a87613714038"
+      ],
+      "connected_browser_sessions": 1,
+      "win_sessions": [],
+      "web_sessions": []
+    },
+    "cli_version_output": "uia 0.1.1",
+    "final_state": {
+      "runtime_pid": 95580,
+      "package": {
+        "has_current_package": true,
+        "package_dir": "D:\\code\\元素库\\260902_web元素"
+      },
+      "browser_refs": [
+        "1aa68c9e34234208",
+        "28f7f572c0f147b0",
+        "5b1ca0c9bdc8444e",
+        "7e407bdcc2054cb9",
+        "9ee465bef5194669",
+        "a4080868dc5c4047",
+        "ba111a8daeeb46da",
+        "c353a87613714038"
+      ],
+      "connected_browser_sessions": 1,
+      "win_sessions": [],
+      "web_sessions": []
+    }
+  },
+  "cases": [
+    {
+      "id": "environment_baseline",
+      "status": "PASS",
+      "expected": "只读获取 Runtime、库、标签和观察会话基线",
+      "actual": "Runtime PID 95580，标签 8，会话 0/0",
+      "elapsed_ms": 200.851,
+      "call_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "version_version",
+      "status": "PASS",
+      "expected": "退出码 0；与源码声明版本一致",
+      "actual": "uia 0.1.1",
+      "elapsed_ms": 22.394,
+      "call_indices": [
+        5
+      ]
+    },
+    {
+      "id": "version_V",
+      "status": "PASS",
+      "expected": "退出码 0；与源码声明版本一致",
+      "actual": "uia 0.1.1",
+      "elapsed_ms": 24.391,
+      "call_indices": [
+        6
+      ]
+    },
+    {
+      "id": "root_help_--help",
+      "status": "PASS",
+      "expected": "退出码 0；英文文本；公开命令完整",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 24.189,
+      "call_indices": [
+        7
+      ]
+    },
+    {
+      "id": "root_help_-h",
+      "status": "PASS",
+      "expected": "退出码 0；英文文本；公开命令完整",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 22.829,
+      "call_indices": [
+        8
+      ]
+    },
+    {
+      "id": "root_help_--format_json_--help",
+      "status": "PASS",
+      "expected": "退出码 0；英文文本；公开命令完整",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 26.218,
+      "call_indices": [
+        9
+      ]
+    },
+    {
+      "id": "help_clipboard",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 25.04,
+      "call_indices": [
+        10
+      ]
+    },
+    {
+      "id": "help_docs",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 22.16,
+      "call_indices": [
+        11
+      ]
+    },
+    {
+      "id": "help_screenshot",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 21.853,
+      "call_indices": [
+        12
+      ]
+    },
+    {
+      "id": "help_package",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 21.558,
+      "call_indices": [
+        13
+      ]
+    },
+    {
+      "id": "help_app",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 22.507,
+      "call_indices": [
+        14
+      ]
+    },
+    {
+      "id": "help_capture",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 21.07,
+      "call_indices": [
+        15
+      ]
+    },
+    {
+      "id": "help_win",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 22.908,
+      "call_indices": [
+        16
+      ]
+    },
+    {
+      "id": "help_web",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 21.796,
+      "call_indices": [
+        17
+      ]
+    },
+    {
+      "id": "help_observe",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 19.96,
+      "call_indices": [
+        18
+      ]
+    },
+    {
+      "id": "help_status",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 21.491,
+      "call_indices": [
+        19
+      ]
+    },
+    {
+      "id": "help_capabilities",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 19.973,
+      "call_indices": [
+        20
+      ]
+    },
+    {
+      "id": "help_windows",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 21.215,
+      "call_indices": [
+        21
+      ]
+    },
+    {
+      "id": "help_browser",
+      "status": "PASS",
+      "expected": "离线帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 22.245,
+      "call_indices": [
+        22
+      ]
+    },
+    {
+      "id": "help_observe_win",
+      "status": "PASS",
+      "expected": "嵌套帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 24.545,
+      "call_indices": [
+        23
+      ]
+    },
+    {
+      "id": "help_observe_web",
+      "status": "PASS",
+      "expected": "嵌套帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 22.221,
+      "call_indices": [
+        24
+      ]
+    },
+    {
+      "id": "help_windows_list",
+      "status": "PASS",
+      "expected": "嵌套帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 22.622,
+      "call_indices": [
+        25
+      ]
+    },
+    {
+      "id": "help_browser_list",
+      "status": "PASS",
+      "expected": "嵌套帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 21.519,
+      "call_indices": [
+        26
+      ]
+    },
+    {
+      "id": "help_docs_sdk",
+      "status": "PASS",
+      "expected": "嵌套帮助退出码 0",
+      "actual": "退出码 0，英文文本帮助",
+      "elapsed_ms": 21.75,
+      "call_indices": [
+        27
+      ]
+    },
+    {
+      "id": "missing_command",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 21.399,
+      "call_indices": [
+        28
+      ]
+    },
+    {
+      "id": "unknown_command_format_before",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 21.549,
+      "call_indices": [
+        29
+      ]
+    },
+    {
+      "id": "unknown_command_format_after",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 21.07,
+      "call_indices": [
+        30
+      ]
+    },
+    {
+      "id": "unknown_option_equals_before",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.256,
+      "call_indices": [
+        31
+      ]
+    },
+    {
+      "id": "unknown_option_equals_after",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 23.005,
+      "call_indices": [
+        32
+      ]
+    },
+    {
+      "id": "hwnd_zero",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.508,
+      "call_indices": [
+        33
+      ]
+    },
+    {
+      "id": "hwnd_missing",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 21.859,
+      "call_indices": [
+        34
+      ]
+    },
+    {
+      "id": "screenshot_out_missing",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.841,
+      "call_indices": [
+        35
+      ]
+    },
+    {
+      "id": "screenshot_targets_conflict",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.278,
+      "call_indices": [
+        36
+      ]
+    },
+    {
+      "id": "clipboard_source_missing",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.595,
+      "call_indices": [
+        37
+      ]
+    },
+    {
+      "id": "clipboard_sources_conflict",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.62,
+      "call_indices": [
+        38
+      ]
+    },
+    {
+      "id": "browser_mode_invalid",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.575,
+      "call_indices": [
+        39
+      ]
+    },
+    {
+      "id": "browser_profile_session_conflict",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.635,
+      "call_indices": [
+        40
+      ]
+    },
+    {
+      "id": "max_items_zero",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.697,
+      "call_indices": [
+        41
+      ]
+    },
+    {
+      "id": "max_items_overflow",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 23.331,
+      "call_indices": [
+        42
+      ]
+    },
+    {
+      "id": "snapshot_zero",
+      "status": "PASS",
+      "expected": "本地拒绝；退出码 2；invalid_params；command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.538,
+      "call_indices": [
+        43
+      ]
+    },
+    {
+      "id": "missing_command_text",
+      "status": "PASS",
+      "expected": "默认/无效格式采用文本错误，退出码 2",
+      "actual": "文本错误 invalid_params，退出码 2",
+      "elapsed_ms": 22.596,
+      "call_indices": [
+        44
+      ]
+    },
+    {
+      "id": "invalid_format_falls_back_text",
+      "status": "PASS",
+      "expected": "默认/无效格式采用文本错误，退出码 2",
+      "actual": "文本错误 invalid_params，退出码 2",
+      "elapsed_ms": 22.594,
+      "call_indices": [
+        45
+      ]
+    },
+    {
+      "id": "missing_format_value_falls_back_text",
+      "status": "PASS",
+      "expected": "默认/无效格式采用文本错误，退出码 2",
+      "actual": "文本错误 invalid_params，退出码 2",
+      "elapsed_ms": 25.132,
+      "call_indices": [
+        46
+      ]
+    },
+    {
+      "id": "format_in_text_is_not_option",
+      "status": "PASS",
+      "expected": "默认/无效格式采用文本错误，退出码 2",
+      "actual": "文本错误 invalid_params，退出码 2",
+      "elapsed_ms": 23.816,
+      "call_indices": [
+        47
+      ]
+    },
+    {
+      "id": "explicit_format_after_text_value",
+      "status": "PASS",
+      "expected": "参数值中的 format 不覆盖真正的 JSON 选项",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.295,
+      "call_indices": [
+        48
+      ]
+    },
+    {
+      "id": "format_after_double_dash_ignored",
+      "status": "PASS",
+      "expected": "-- 后内容不改变输出；连接失败退出码 3",
+      "actual": "文本错误 runtime_unavailable，退出码 3",
+      "elapsed_ms": 138.257,
+      "call_indices": [
+        49
+      ]
+    },
+    {
+      "id": "explicit_format_before_double_dash",
+      "status": "PASS",
+      "expected": "-- 前 JSON 生效；不启动程序",
+      "actual": "退出码 3，runtime_unavailable，单行 JSON",
+      "elapsed_ms": 139.204,
+      "call_indices": [
+        50
+      ]
+    },
+    {
+      "id": "range_reject_--connect-timeout-ms_0",
+      "status": "PASS",
+      "expected": "超出公开范围，解析拒绝，command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 25.349,
+      "call_indices": [
+        51
+      ]
+    },
+    {
+      "id": "range_reject_--connect-timeout-ms_300001",
+      "status": "PASS",
+      "expected": "超出公开范围，解析拒绝，command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 23.009,
+      "call_indices": [
+        52
+      ]
+    },
+    {
+      "id": "range_accept_--connect-timeout-ms_1",
+      "status": "PASS",
+      "expected": "边界值通过解析；无效管道随后本地拒绝，command=status",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 23.132,
+      "call_indices": [
+        53
+      ]
+    },
+    {
+      "id": "range_accept_--connect-timeout-ms_300000",
+      "status": "PASS",
+      "expected": "边界值通过解析；无效管道随后本地拒绝，command=status",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 24.838,
+      "call_indices": [
+        54
+      ]
+    },
+    {
+      "id": "range_reject_--timeout-ms_0",
+      "status": "PASS",
+      "expected": "超出公开范围，解析拒绝，command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 23.903,
+      "call_indices": [
+        55
+      ]
+    },
+    {
+      "id": "range_reject_--timeout-ms_300001",
+      "status": "PASS",
+      "expected": "超出公开范围，解析拒绝，command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 23.332,
+      "call_indices": [
+        56
+      ]
+    },
+    {
+      "id": "range_accept_--timeout-ms_1",
+      "status": "PASS",
+      "expected": "边界值通过解析；无效管道随后本地拒绝，command=status",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 21.869,
+      "call_indices": [
+        57
+      ]
+    },
+    {
+      "id": "range_accept_--timeout-ms_300000",
+      "status": "PASS",
+      "expected": "边界值通过解析；无效管道随后本地拒绝，command=status",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.329,
+      "call_indices": [
+        58
+      ]
+    },
+    {
+      "id": "range_reject_--max-response-bytes_255",
+      "status": "PASS",
+      "expected": "超出公开范围，解析拒绝，command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.085,
+      "call_indices": [
+        59
+      ]
+    },
+    {
+      "id": "range_reject_--max-response-bytes_67108865",
+      "status": "PASS",
+      "expected": "超出公开范围，解析拒绝，command=null",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.488,
+      "call_indices": [
+        60
+      ]
+    },
+    {
+      "id": "range_accept_--max-response-bytes_256",
+      "status": "PASS",
+      "expected": "边界值通过解析；无效管道随后本地拒绝，command=status",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 21.099,
+      "call_indices": [
+        61
+      ]
+    },
+    {
+      "id": "range_accept_--max-response-bytes_67108864",
+      "status": "PASS",
+      "expected": "边界值通过解析；无效管道随后本地拒绝，command=status",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 22.582,
+      "call_indices": [
+        62
+      ]
+    },
+    {
+      "id": "reject_pipe_not-a-local-pipe",
+      "status": "PASS",
+      "expected": "非本地/空名称管道本地拒绝，退出码 2",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 21.962,
+      "call_indices": [
+        63
+      ]
+    },
+    {
+      "id": "reject_pipe_\\\\smoke-server\\pipe\\absent",
+      "status": "PASS",
+      "expected": "非本地/空名称管道本地拒绝，退出码 2",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 21.809,
+      "call_indices": [
+        64
+      ]
+    },
+    {
+      "id": "reject_pipe_\\\\.\\pipe\\",
+      "status": "PASS",
+      "expected": "非本地/空名称管道本地拒绝，退出码 2",
+      "actual": "退出码 2，invalid_params，单行 JSON",
+      "elapsed_ms": 21.003,
+      "call_indices": [
+        65
+      ]
+    },
+    {
+      "id": "missing_runtime_json",
+      "status": "PASS",
+      "expected": "连接预算 100ms；JSON runtime_unavailable；退出码 3",
+      "actual": "runtime_unavailable，退出码 3，124.6ms",
+      "elapsed_ms": 124.716,
+      "call_indices": [
+        66
+      ]
+    },
+    {
+      "id": "missing_runtime_text",
+      "status": "PASS",
+      "expected": "连接预算 100ms；文本 runtime_unavailable；退出码 3",
+      "actual": "runtime_unavailable，退出码 3，126.7ms",
+      "elapsed_ms": 126.765,
+      "call_indices": [
+        67
+      ]
+    },
+    {
+      "id": "environment_pipe_selected",
+      "status": "PASS",
+      "expected": "无 --pipe 时使用环境变量，而非已运行的默认 Runtime",
+      "actual": "runtime_unavailable，退出码 3，124.4ms",
+      "elapsed_ms": 124.447,
+      "call_indices": [
+        68
+      ]
+    },
+    {
+      "id": "explicit_pipe_overrides_environment",
+      "status": "PASS",
+      "expected": "显式 --pipe 覆盖无效环境变量",
+      "actual": "退出码 3，runtime_unavailable，单行 JSON",
+      "elapsed_ms": 124.593,
+      "call_indices": [
+        69
+      ]
+    },
+    {
+      "id": "docs_topics_offline",
+      "status": "PASS",
+      "expected": "显式本地资源；不连接 Runtime；包含公开主题",
+      "actual": "不存在的 Runtime 管道下成功读取显式本地参考",
+      "elapsed_ms": 22.932,
+      "call_indices": [
+        70
+      ]
+    },
+    {
+      "id": "docs_symbol_offline",
+      "status": "PASS",
+      "expected": "精确查询 WebElement.click 签名和指南",
+      "actual": "不存在的 Runtime 管道下成功读取显式本地参考",
+      "elapsed_ms": 24.95,
+      "call_indices": [
+        71
+      ]
+    },
+    {
+      "id": "docs_contracts_offline",
+      "status": "PASS",
+      "expected": "本地 contracts 主题返回非空内容",
+      "actual": "不存在的 Runtime 管道下成功读取显式本地参考",
+      "elapsed_ms": 21.891,
+      "call_indices": [
+        72
+      ]
+    },
+    {
+      "id": "docs_unknown_symbol",
+      "status": "PASS",
+      "expected": "不存在的公共符号退出码 2，documentation_not_found",
+      "actual": "退出码 2，documentation_not_found，单行 JSON",
+      "elapsed_ms": 23.007,
+      "call_indices": [
+        73
+      ]
+    },
+    {
+      "id": "docs_missing_resources",
+      "status": "PASS",
+      "expected": "资源目录缺失退出码 2，documentation_unavailable",
+      "actual": "退出码 2，documentation_unavailable，单行 JSON",
+      "elapsed_ms": 23.846,
+      "call_indices": [
+        74
+      ]
+    },
+    {
+      "id": "runtime_status_json",
+      "status": "PASS",
+      "expected": "协议/版本/PID 类型正确，Provider 可用",
+      "actual": "PID 95580，协议 1，Provider=true",
+      "elapsed_ms": 25.239,
+      "call_indices": [
+        75
+      ]
+    },
+    {
+      "id": "runtime_status_default_text",
+      "status": "PASS",
+      "expected": "默认输出为文本",
+      "actual": "退出码 0，文本含 runtime_pid:",
+      "elapsed_ms": 24.961,
+      "call_indices": [
+        76
+      ]
+    },
+    {
+      "id": "runtime_status_debug",
+      "status": "PASS",
+      "expected": "debug 不污染 stdout，stderr 为诊断 JSON",
+      "actual": "stdout 一行结果，stderr 3 条 JSON 诊断",
+      "elapsed_ms": 26.158,
+      "call_indices": [
+        77
+      ]
+    },
+    {
+      "id": "runtime_capabilities",
+      "status": "PASS",
+      "expected": "方法数组、布尔能力表；只验证声明",
+      "actual": "202 个声明方法，39 项能力",
+      "elapsed_ms": 25.264,
+      "call_indices": [
+        78
+      ]
+    },
+    {
+      "id": "runtime_package_current",
+      "status": "PASS",
+      "expected": "当前库只读查询，无库也成功",
+      "actual": "只读查询成功，字段 has_current_package,package_dir",
+      "elapsed_ms": 26.943,
+      "call_indices": [
+        79
+      ]
+    },
+    {
+      "id": "windows_list_limited",
+      "status": "PASS",
+      "expected": "返回数不超过 3，句柄正整数，前台不变",
+      "actual": "count=3，前台 HWND 1055684 未变化",
+      "elapsed_ms": 28.466,
+      "call_indices": [
+        80
+      ]
+    },
+    {
+      "id": "windows_empty_json",
+      "status": "PASS",
+      "expected": "随机标题 count=0/items=[]，前台不变",
+      "actual": "count=0，前台 HWND 1055684 未变化",
+      "elapsed_ms": 25.94,
+      "call_indices": [
+        81
+      ]
+    },
+    {
+      "id": "windows_empty_text",
+      "status": "PASS",
+      "expected": "默认文本与空 JSON 结果一致",
+      "actual": "退出码 0，文本含 No windows.",
+      "elapsed_ms": 26.583,
+      "call_indices": [
+        82
+      ]
+    },
+    {
+      "id": "browser_list_json",
+      "status": "PASS",
+      "expected": "items/count 一致，page_ref 为字符串，前台不变",
+      "actual": "count=8，前台 HWND 1055684 未变化",
+      "elapsed_ms": 30.84,
+      "call_indices": [
+        83
+      ]
+    },
+    {
+      "id": "browser_empty_json",
+      "status": "PASS",
+      "expected": "随机标题 count=0/items=[]，保留连接数",
+      "actual": "count=0，前台 HWND 1055684 未变化",
+      "elapsed_ms": 30.816,
+      "call_indices": [
+        84
+      ]
+    },
+    {
+      "id": "browser_empty_text",
+      "status": "PASS",
+      "expected": "默认文本与空 JSON 结果一致",
+      "actual": "退出码 0，文本含 No pages.",
+      "elapsed_ms": 32.164,
+      "call_indices": [
+        85
+      ]
+    },
+    {
+      "id": "observe_win_list",
+      "status": "PASS",
+      "expected": "只读会话列表，items/count 一致",
+      "actual": "只读查询成功，字段 count,items",
+      "elapsed_ms": 80.247,
+      "call_indices": [
+        86
+      ]
+    },
+    {
+      "id": "observe_web_list",
+      "status": "PASS",
+      "expected": "只读会话列表，items/count 一致",
+      "actual": "只读查询成功，字段 count,items",
+      "elapsed_ms": 27.875,
+      "call_indices": [
+        87
+      ]
+    },
+    {
+      "id": "state_cleanup",
+      "status": "PASS",
+      "expected": "PID、库、标签和观察会话保持本轮基线",
+      "actual": "当前库、PID、标签 8 和 Win/Web 会话均一致",
+      "elapsed_ms": 201.76,
+      "call_indices": [
+        88,
+        89,
+        90,
+        91,
+        92
+      ]
+    }
+  ],
+  "calls": [
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 26.163,
+      "stdout": "{\"command\":\"status\",\"data\":{\"has_current_package\":true,\"min_protocol\":1,\"protocol\":1,\"runtime_name\":\"UIAutoma Runtime\",\"runtime_pid\":95580,\"runtime_version\":\"0.1.1\",\"uiautomation_provider_available\":true},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "package",
+        "current",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 27.07,
+      "stdout": "{\"command\":\"package current\",\"data\":{\"has_current_package\":true,\"package_dir\":\"D:\\\\code\\\\元素库\\\\260902_web元素\"},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "browser",
+        "list",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 35.635,
+      "stdout": "{\"command\": \"browser list\", \"data\": {\"connected_session_count\": 1, \"count\": 8, \"items\": [{\"page_ref\": \"28f7f572c0f147b0\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596043}, {\"page_ref\": \"5b1ca0c9bdc8444e\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275595920}, {\"page_ref\": \"9ee465bef5194669\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596021}, {\"page_ref\": \"7e407bdcc2054cb9\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596025}, {\"page_ref\": \"1aa68c9e34234208\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596028}, {\"page_ref\": \"c353a87613714038\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596031}, {\"page_ref\": \"a4080868dc5c4047\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596053}, {\"page_ref\": \"ba111a8daeeb46da\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596056}]}, \"ok\": true, \"schema_version\": 1}\n",
+      "stderr": "",
+      "browser_identity_projection": true
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "observe",
+        "win",
+        "list",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 85.243,
+      "stdout": "{\"command\":\"observe win list\",\"data\":{\"count\":0,\"items\":[]},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "observe",
+        "web",
+        "list",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 25.775,
+      "stdout": "{\"command\":\"observe web list\",\"data\":{\"count\":0,\"items\":[]},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--version"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 22.289,
+      "stdout": "uia 0.1.1\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "-V"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 24.283,
+      "stdout": "uia 0.1.1\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 23.702,
+      "stdout": "Observation, automation and asset management for AI agents (Windows)\n\nUsage: uia.exe [OPTIONS] <COMMAND>\n\nCommands:\n  clipboard     Read, write or clear the system clipboard through Runtime\n  docs          Read local SDK reference topics or exact method signatures; no Runtime required\n  screenshot    Save a PNG screenshot through Runtime; target screenshots activate their window\n  package       Read or explicitly change the Runtime's shared current Package\n  app           Explicitly start a desktop application through Runtime\n  capture       Capture and save an observed element into an explicit Package\n  win           Act on observed UIA/ACC nodes. Failures are never replayed\n  web           Act on observed Web elements. Failures are never replayed; inspect before retrying\n  observe       Observe windows or pages using independent sessions\n  status        Report Runtime status without Package credentials\n  capabilities  List declared capabilities, not backend readiness\n  windows       Discover or explicitly control top-level windows through Runtime\n  browser       Discover, open, navigate or close browser pages through Runtime\n  help          Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help     Print help\n  -V, --version  Print version\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n\nStart UIAutoma Runtime first.\nDiscovery, observation, actions and screenshots need no Package.\nDefault output is text; use --format json for one JSON line and script parsing.\nUse observe win/web tree for a one-shot view, or observe win/web open to keep a session.\nThe CLI does not start Runtime automatically.\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "-h"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 22.412,
+      "stdout": "Observation, automation and asset management for AI agents (Windows)\n\nUsage: uia.exe [OPTIONS] <COMMAND>\n\nCommands:\n  clipboard     Read, write or clear the system clipboard through Runtime\n  docs          Read local SDK reference topics or exact method signatures; no Runtime required\n  screenshot    Save a PNG screenshot through Runtime; target screenshots activate their window\n  package       Read or explicitly change the Runtime's shared current Package\n  app           Explicitly start a desktop application through Runtime\n  capture       Capture and save an observed element into an explicit Package\n  win           Act on observed UIA/ACC nodes. Failures are never replayed\n  web           Act on observed Web elements. Failures are never replayed; inspect before retrying\n  observe       Observe windows or pages using independent sessions\n  status        Report Runtime status without Package credentials\n  capabilities  List declared capabilities, not backend readiness\n  windows       Discover or explicitly control top-level windows through Runtime\n  browser       Discover, open, navigate or close browser pages through Runtime\n  help          Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help     Print help\n  -V, --version  Print version\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n\nStart UIAutoma Runtime first.\nDiscovery, observation, actions and screenshots need no Package.\nDefault output is text; use --format json for one JSON line and script parsing.\nUse observe win/web tree for a one-shot view, or observe win/web open to keep a session.\nThe CLI does not start Runtime automatically.\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--format",
+        "json",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 25.746,
+      "stdout": "Observation, automation and asset management for AI agents (Windows)\n\nUsage: uia.exe [OPTIONS] <COMMAND>\n\nCommands:\n  clipboard     Read, write or clear the system clipboard through Runtime\n  docs          Read local SDK reference topics or exact method signatures; no Runtime required\n  screenshot    Save a PNG screenshot through Runtime; target screenshots activate their window\n  package       Read or explicitly change the Runtime's shared current Package\n  app           Explicitly start a desktop application through Runtime\n  capture       Capture and save an observed element into an explicit Package\n  win           Act on observed UIA/ACC nodes. Failures are never replayed\n  web           Act on observed Web elements. Failures are never replayed; inspect before retrying\n  observe       Observe windows or pages using independent sessions\n  status        Report Runtime status without Package credentials\n  capabilities  List declared capabilities, not backend readiness\n  windows       Discover or explicitly control top-level windows through Runtime\n  browser       Discover, open, navigate or close browser pages through Runtime\n  help          Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help     Print help\n  -V, --version  Print version\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n\nStart UIAutoma Runtime first.\nDiscovery, observation, actions and screenshots need no Package.\nDefault output is text; use --format json for one JSON line and script parsing.\nUse observe win/web tree for a one-shot view, or observe win/web open to keep a session.\nThe CLI does not start Runtime automatically.\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "clipboard",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 24.745,
+      "stdout": "Read, write or clear the system clipboard through Runtime\n\nUsage: uia.exe clipboard [OPTIONS] <COMMAND>\n\nCommands:\n  get    Read current clipboard text; use --format json to preserve exact content\n  set    Replace clipboard contents with text from one explicit UTF-8 source\n  clear  Clear clipboard contents (including non-text formats)\n  help   Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "docs",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 21.933,
+      "stdout": "Read local SDK reference topics or exact method signatures; no Runtime required\n\nUsage: uia.exe docs [OPTIONS] <COMMAND>\n\nCommands:\n  sdk   Read local SDK signatures and behavior guides without connecting to Runtime\n  help  Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "screenshot",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 21.613,
+      "stdout": "Save a PNG screenshot through Runtime; target screenshots activate their window\n\nUsage: uia.exe screenshot [OPTIONS] <COMMAND>\n\nCommands:\n  screen  Capture the current desktop across all monitors without activating a window\n  win     Activate a window and capture it or an observed UIA/ACC element\n  web     Activate a browser window/tab and capture its viewport or an observed element\n  help    Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "package",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 21.302,
+      "stdout": "Read or explicitly change the Runtime's shared current Package\n\nUsage: uia.exe package [OPTIONS] <COMMAND>\n\nCommands:\n  current   Show the Runtime's current Package; no Package is a successful empty state\n  open      Open or switch to an existing Package; does not create a library\n  items     List assets in the Runtime's current Package\n  validate  Relocate one saved Win/Web asset; optionally highlight its current matches\n  close     Close the Package read at the start of this command; never replayed\n  help      Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "app",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 22.229,
+      "stdout": "Explicitly start a desktop application through Runtime\n\nUsage: uia.exe app [OPTIONS] <COMMAND>\n\nCommands:\n  launch  Start one process and discover matching windows; never replayed\n  help    Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "capture",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 20.831,
+      "stdout": "Capture and save an observed element into an explicit Package\n\nUsage: uia.exe capture [OPTIONS] <COMMAND>\n\nCommands:\n  web   Capture and save a retained Playwright element using the App asset format\n  win   Capture and save an observed UIA/ACC element using the App asset format\n  help  Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "win",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 22.606,
+      "stdout": "Act on observed UIA/ACC nodes. Failures are never replayed\n\nUsage: uia.exe win [OPTIONS] <COMMAND>\n\nCommands:\n  click    Activate the window and click the visible element center once or twice\n  input    Input text using an explicit Runtime strategy; default replaces the native value\n  press    Focus the element and press a key/chord, such as Enter or Control+A\n  hover    Activate the window and hover the observed element center\n  check    Set a checkbox/radio to checked through Runtime's native control action\n  uncheck  Set a checkbox to unchecked through Runtime's native control action\n  select   Select a control option by exact text (case-insensitive) or zero-based index\n  scroll   Hover the target and scroll by wheel ticks (one tick = 120 native wheel units)\n  drag     Drag a UIA element onto another ref or by a relative screen-pixel displacement\n  help     Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "web",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 21.479,
+      "stdout": "Act on observed Web elements. Failures are never replayed; inspect before retrying\n\nUsage: uia.exe web [OPTIONS] <COMMAND>\n\nCommands:\n  run-code  Run a JavaScript function with the exact page's official Playwright Page\n  click     Click an observed element; waits for Playwright actionability\n  input     Replace editable text; an empty --text clears the field\n  press     Press a Playwright key or chord, such as Enter or Control+A\n  select    Select one native select option by value or label; custom menus use click\n  check     Set a checkbox or radio to checked; never toggles an already checked control\n  uncheck   Set a checkbox to unchecked\n  hover     Hover an observed element, for example to reveal a menu\n  upload    Set files on an observed file input or its label; --clear removes selected files\n  download  Click a download link/button once and save the completed file to --out\n  drag      Drag an observed element onto another ref in the same snapshot\n  scroll    Hover the target and send wheel deltas in CSS pixels; refresh to inspect the result\n  help      Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "observe",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 19.739,
+      "stdout": "Observe windows or pages using independent sessions\n\nUsage: uia.exe observe [OPTIONS] <COMMAND>\n\nCommands:\n  web   Observe web pages with Playwright semantic snapshots\n  win   Observe native windows with independent UIA/Helper sessions\n  help  Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "status",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 21.292,
+      "stdout": "Report Runtime status without Package credentials\n\nUsage: uia.exe status [OPTIONS]\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "capabilities",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 19.761,
+      "stdout": "List declared capabilities, not backend readiness\n\nUsage: uia.exe capabilities [OPTIONS]\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "windows",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 20.932,
+      "stdout": "Discover or explicitly control top-level windows through Runtime\n\nUsage: uia.exe windows [OPTIONS] <COMMAND>\n\nCommands:\n  list      List matching windows and handles\n  info      Read current window title, process and physical-screen rectangle\n  set-rect  Set any requested rectangle components in physical screen pixels, without activation\n  activate  Restore and activate an existing window; confirm foreground within the timeout\n  minimize  Minimize an existing window\n  maximize  Maximize an existing window\n  restore   Restore a window; a minimized window returns to its previous normal/maximized state\n  close     Post one close request; a confirmation dialog may keep the window open\n  help      Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "browser",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 21.956,
+      "stdout": "Discover, open, navigate or close browser pages through Runtime\n\nUsage: uia.exe browser [OPTIONS] <COMMAND>\n\nCommands:\n  dialog    Read or handle an already visible native JavaScript alert/confirm/prompt\n  list      List pages and identities in connected environments\n  open      Create a new page; auto starts Chrome's existing Default profile if none is connected\n  back      Go back once in the exact page's history; never replayed\n  forward   Go forward once in the exact page's history; never replayed\n  reload    Reload the exact page; unlike observation refresh, this reloads its content\n  navigate  Navigate an existing page; never creates a tab or retries navigation\n  close     Request page closure; a beforeunload dialog may keep it open\n  help      Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "observe",
+        "win",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 23.982,
+      "stdout": "Observe native windows with independent UIA/Helper sessions\n\nUsage: uia.exe observe win [OPTIONS] <COMMAND>\n\nCommands:\n  list       List public observations without reading targets or extending idle expiry\n  info       Read public session metadata; target liveness remains unchecked\n  tree       Read a window tree and close its temporary session. Helper DOM is collected in full\n  open       Open an observation for an explicit window handle (UIA and supported Helper DOM)\n  children   Read the direct children of a previously observed node\n  subtree    Read a bounded subtree below a previously observed node\n  details    Read properties and geometry for a previously observed node\n  highlight  Activate and briefly frame selected refs; does not capture or save them\n  refresh    Refresh the same target; all earlier snapshot references become stale\n  close      Release only the named observation\n  help       Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "observe",
+        "web",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 21.931,
+      "stdout": "Observe web pages with Playwright semantic snapshots\n\nUsage: uia.exe observe web [OPTIONS] <COMMAND>\n\nCommands:\n  tree       Read an existing page's semantic tree and close its temporary observation\n  open       Open an independent observation using PAGE_REF from browser list/open\n  list       List Web observations without reading targets\n  info       Read metadata without extending idle expiry\n  details    Read current properties of the exact element retained by a snapshot\n  highlight  Activate and briefly frame selected refs; does not build a similar rule\n  refresh    Refresh the document and invalidate previous snapshot references\n  close      Release only this observation, leaving the page open\n  help       Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "windows",
+        "list",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 22.365,
+      "stdout": "List matching windows and handles\n\nUsage: uia.exe windows list [OPTIONS]\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --title <TITLE>\n          Filter by title substring\n      --class-name <CLASS_NAME>\n          Filter by window class name\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --process-name <PROCESS_NAME>\n          Filter by process name\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --include-empty-title\n          Include windows without titles\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --wildcard\n          Enable * and ? wildcard filters\n      --max-items <MAX_ITEMS>\n          Maximum returned windows; count is not total matches [default: 200]\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "browser",
+        "list",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 21.274,
+      "stdout": "List pages and identities in connected environments\n\nUsage: uia.exe browser list [OPTIONS]\n\nOptions:\n  -h, --help  Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --mode <MODE>\n          Filter by browser type [default: auto] [possible values: auto, chrome, edge]\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --session <SESSION>\n          A target_session_id from browser list\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --title <TITLE>\n          Filter by title substring\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --url <URL>\n          Filter by URL substring\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --wildcard\n          Enable * and ? wildcard filters\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "docs",
+        "sdk",
+        "--help"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 21.506,
+      "stdout": "Read local SDK signatures and behavior guides without connecting to Runtime\n\nUsage: uia.exe docs sdk [OPTIONS]\n\nOptions:\n      --topic <TOPIC>            Reference topic; omit topic and symbol to list topics\n      --symbol <SYMBOL>          Exact public symbol, such as WebElement.click or win32.get\n      --skills-dir <SKILLS_DIR>  Directory containing uiautoma-sdk; defaults to skills beside this executable\n  -h, --help                     Print help\n\nOptions:\n      --debug\n          Enable diagnostic logs on stderr using --format (currently includes timings)\n      --format <FORMAT>\n          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]\n      --pipe <PIPE>\n          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\\\.\\pipe\\UIAutoma.Automation.v1]\n      --connect-timeout-ms <CONNECT_TIMEOUT_MS>\n          Maximum pipe connection wait (milliseconds) [default: 2000]\n      --timeout-ms <TIMEOUT_MS>\n          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)\n      --max-response-bytes <MAX_RESPONSE_BYTES>\n          Maximum response bytes, including newline [default: 4194304]\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 21.251,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"A subcommand is required\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--format",
+        "json",
+        "stauts"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 21.405,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"unrecognized subcommand 'stauts'\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "stauts",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 20.934,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"unrecognized subcommand 'stauts'\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--format=json",
+        "status",
+        "--unexpected"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.112,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"unexpected argument '--unexpected' found\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "status",
+        "--unexpected",
+        "--format=json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.868,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"unexpected argument '--unexpected' found\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "windows",
+        "info",
+        "--hwnd",
+        "0",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.367,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"invalid value '0' for '--hwnd <HWND>': 0 is not in 1..18446744073709551615\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "windows",
+        "info",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 21.722,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"the following required arguments were not provided: --hwnd <HWND>\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "screenshot",
+        "screen",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.701,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"the following required arguments were not provided: --out <OUT>\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "screenshot",
+        "win",
+        "--hwnd",
+        "1",
+        "--session",
+        "dummy",
+        "--snapshot",
+        "1",
+        "--out",
+        "__must_not_create__.png",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.141,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"the argument '--hwnd <HWND>' cannot be used with: --session <SESSION> --snapshot <SNAPSHOT>\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "clipboard",
+        "set",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.457,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"the following required arguments were not provided: <--text <TEXT>|--file <FILE>|--stdin>\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "clipboard",
+        "set",
+        "--text",
+        "smoke",
+        "--stdin",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.482,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"the argument '--text <TEXT>' cannot be used with '--stdin'\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "browser",
+        "list",
+        "--mode",
+        "firefox",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.377,
+      "stdout": "{\"command\": null, \"error\": {\"code\": \"invalid_params\", \"hint\": \"Run uia --help for usage\", \"message\": \"invalid value 'firefox' for '--mode <MODE>' [possible values: auto, chrome, edge]\"}, \"ok\": false, \"schema_version\": 1}\n",
+      "stderr": "",
+      "browser_identity_projection": true
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "browser",
+        "open",
+        "--url",
+        "about:blank",
+        "--profile",
+        "Default",
+        "--session",
+        "dummy",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.495,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"the argument '--profile <PROFILE>' cannot be used with '--session <SESSION>'\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "windows",
+        "list",
+        "--max-items",
+        "0",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.557,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"invalid value '0' for '--max-items <MAX_ITEMS>': 0 is not in 1..=10000\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "windows",
+        "list",
+        "--max-items",
+        "10001",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 23.19,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"invalid value '10001' for '--max-items <MAX_ITEMS>': 10001 is not in 1..=10000\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "observe",
+        "win",
+        "refresh",
+        "--session",
+        "dummy",
+        "--snapshot",
+        "0",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.395,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"invalid value '0' for '--snapshot <SNAPSHOT>': 0 is not in 1..9223372036854775807\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.485,
+      "stdout": "Error [invalid_params]: A subcommand is required\nHint: Run uia --help for usage\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "status",
+        "--format",
+        "yaml"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.478,
+      "stdout": "Error [invalid_params]: invalid value 'yaml' for '--format <FORMAT>' [possible values: json, text]\nHint: Run uia --help for usage\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "status",
+        "--format"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 25.025,
+      "stdout": "Error [invalid_params]: a value is required for '--format <FORMAT>' but none was supplied [possible values: json, text]\nHint: Run uia --help for usage\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "clipboard",
+        "set",
+        "--text",
+        "--format=json",
+        "--unexpected"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 23.701,
+      "stdout": "Error [invalid_params]: unexpected argument '--unexpected' found\nHint: Run uia --help for usage\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "clipboard",
+        "set",
+        "--text",
+        "--format=text",
+        "--unexpected",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.128,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"unexpected argument '--unexpected' found\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "app",
+        "launch",
+        "--exe",
+        "__uia_smoke_nonexistent__.exe",
+        "--connect-timeout-ms",
+        "100",
+        "--",
+        "--format=json"
+      ],
+      "environment_override": {},
+      "exit_code": 3,
+      "elapsed_ms": 138.151,
+      "stdout": "Error [runtime_unavailable]: Runtime pipe is not available; start UIAutoma Runtime first\nlaunched: unknown\nready: unknown\nUse windows list to inspect the outcome before retrying.\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--format",
+        "json",
+        "app",
+        "launch",
+        "--exe",
+        "__uia_smoke_nonexistent__.exe",
+        "--connect-timeout-ms",
+        "100",
+        "--",
+        "--format=text"
+      ],
+      "environment_override": {},
+      "exit_code": 3,
+      "elapsed_ms": 139.057,
+      "stdout": "{\"command\":\"app launch\",\"error\":{\"code\":\"runtime_unavailable\",\"message\":\"Runtime pipe is not available; start UIAutoma Runtime first\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--connect-timeout-ms",
+        "0",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 25.203,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"invalid value '0' for '--connect-timeout-ms <CONNECT_TIMEOUT_MS>': 0 is not in 1..=300000\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--connect-timeout-ms",
+        "300001",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.865,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"invalid value '300001' for '--connect-timeout-ms <CONNECT_TIMEOUT_MS>': 300001 is not in 1..=300000\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "not-a-local-pipe",
+        "--connect-timeout-ms",
+        "1",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.991,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"invalid_params\",\"message\":\"A local pipe and positive resource limits are required\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "not-a-local-pipe",
+        "--connect-timeout-ms",
+        "300000",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 24.695,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"invalid_params\",\"message\":\"A local pipe and positive resource limits are required\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--timeout-ms",
+        "0",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 23.763,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"invalid value '0' for '--timeout-ms <TIMEOUT_MS>': 0 is not in 1..=300000\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--timeout-ms",
+        "300001",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 23.188,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"invalid value '300001' for '--timeout-ms <TIMEOUT_MS>': 300001 is not in 1..=300000\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "not-a-local-pipe",
+        "--timeout-ms",
+        "1",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 21.729,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"invalid_params\",\"message\":\"A local pipe and positive resource limits are required\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "not-a-local-pipe",
+        "--timeout-ms",
+        "300000",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.188,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"invalid_params\",\"message\":\"A local pipe and positive resource limits are required\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--max-response-bytes",
+        "255",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 21.945,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"invalid value '255' for '--max-response-bytes <MAX_RESPONSE_BYTES>': 255 is not in 256..=67108864\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "--max-response-bytes",
+        "67108865",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.348,
+      "stdout": "{\"command\":null,\"error\":{\"code\":\"invalid_params\",\"hint\":\"Run uia --help for usage\",\"message\":\"invalid value '67108865' for '--max-response-bytes <MAX_RESPONSE_BYTES>': 67108865 is not in 256..=67108864\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "not-a-local-pipe",
+        "--max-response-bytes",
+        "256",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 20.961,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"invalid_params\",\"message\":\"A local pipe and positive resource limits are required\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "not-a-local-pipe",
+        "--max-response-bytes",
+        "67108864",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.438,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"invalid_params\",\"message\":\"A local pipe and positive resource limits are required\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "not-a-local-pipe",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 21.824,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"invalid_params\",\"message\":\"A local pipe and positive resource limits are required\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\smoke-server\\pipe\\absent",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 21.669,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"invalid_params\",\"message\":\"A local pipe and positive resource limits are required\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 20.869,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"invalid_params\",\"message\":\"A local pipe and positive resource limits are required\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "status",
+        "--connect-timeout-ms",
+        "100",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 3,
+      "elapsed_ms": 124.558,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"runtime_unavailable\",\"message\":\"Runtime pipe is not available; start UIAutoma Runtime first\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "status",
+        "--connect-timeout-ms",
+        "100"
+      ],
+      "environment_override": {},
+      "exit_code": 3,
+      "elapsed_ms": 126.648,
+      "stdout": "Error [runtime_unavailable]: Runtime pipe is not available; start UIAutoma Runtime first\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "status",
+        "--connect-timeout-ms",
+        "100",
+        "--format",
+        "json"
+      ],
+      "environment_override": {
+        "UIAUTOMA_AUTOMATION_PIPE_NAME": "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2"
+      },
+      "exit_code": 3,
+      "elapsed_ms": 124.298,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"runtime_unavailable\",\"message\":\"Runtime pipe is not available; start UIAutoma Runtime first\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "status",
+        "--connect-timeout-ms",
+        "100",
+        "--format",
+        "json"
+      ],
+      "environment_override": {
+        "UIAUTOMA_AUTOMATION_PIPE_NAME": "not-a-local-pipe"
+      },
+      "exit_code": 3,
+      "elapsed_ms": 124.452,
+      "stdout": "{\"command\":\"status\",\"error\":{\"code\":\"runtime_unavailable\",\"message\":\"Runtime pipe is not available; start UIAutoma Runtime first\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "docs",
+        "sdk",
+        "--skills-dir",
+        "D:\\code\\desktop\\skills",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 22.715,
+      "stdout": "{\"command\":\"docs sdk\",\"data\":{\"content\":\"# API reference index\\r\\n\\r\\nUse the signature page for exact positional/keyword parameters, defaults, and return\\r\\nannotations. Read [contracts](contracts.md) for semantics the signature cannot express.\\r\\nThe catalog covers ordinary automation scripts. Obtain objects through the documented\\r\\nentrypoints rather than constructing result objects yourself.\\r\\n\\r\\n| Task | Signatures | Guide |\\r\\n| --- | --- | --- |\\r\\n| SDK connection, owning/borrowing a library, diagnostics | [lifecycle](api/lifecycle.md) | [workflows](workflows.md) |\\r\\n| Saved selectors, catalog management, resources | [package](api/package.md) | [workflows](workflows.md) |\\r\\n| Window discovery, lifecycle, global keyboard/mouse | [windows](api/windows.md) | [contracts](contracts.md) |\\r\\n| Windows element input, selection, relatives, geometry | [win-elements](api/win-elements.md) | [contracts](contracts.md) |\\r\\n| Clipboard and screen/window screenshots | [desktop-utilities](api/desktop-utilities.md) | [contracts](contracts.md) |\\r\\n| Browser discovery, navigation, cookies, network | [browser](api/browser.md) | [browser contracts](browser.md) |\\r\\n| Web element queries, input, form controls, files | [web-elements](api/web-elements.md) | [browser contracts](browser.md) |\\r\\n| Official Playwright connection | [playwright](api/playwright.md) | [Playwright guide](playwright.md) |\\r\\n\\r\\n`package.variables` is a string-to-string mutable mapping; see workflows for its\\r\\ndictionary operations. `uiautoma.enable_debug()` is also available for SDK-local\\r\\nlogging.\\r\\n\\r\\nThe installed SDK is the final signature authority. To inspect without performing UI actions:\\r\\n\\r\\n```python\\r\\nimport inspect\\r\\nimport uiautoma\\r\\nfrom uiautoma.win32 import Win32Element\\r\\nprint(uiautoma.__version__)\\r\\nprint(inspect.signature(Win32Element.click))\\r\\nhelp(Win32Element.click)\\r\\n```\\r\\n\\r\\nCheck the installed signature when versions differ from this reference.\\r\\nFor structured data, use the row/field collection workflow rather than assuming a\\r\\none-call table extractor is available. Capture new assets through the App or CLI.\\r\\nSupported methods can still reject a backend or target that lacks the required native capability.\\r\\n\",\"skills_dir\":\"D:\\\\code\\\\desktop\\\\skills\",\"topics\":[\"index\",\"lifecycle\",\"package\",\"windows\",\"win-elements\",\"desktop-utilities\",\"browser\",\"web-elements\",\"playwright\",\"contracts\",\"workflows\",\"browser-guide\",\"playwright-guide\"]},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "docs",
+        "sdk",
+        "--skills-dir",
+        "D:\\code\\desktop\\skills",
+        "--symbol",
+        "WebElement.click",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 24.749,
+      "stdout": "{\"command\":\"docs sdk\",\"data\":{\"guides\":[\"contracts\",\"workflows\",\"browser-guide\"],\"sdk_version\":\"0.1.1\",\"signature\":\"WebElement.click(*, button: str='left', simulative: bool=True, keys: str='none', delay_after: float=1, move_mouse: bool=False, anchor: object | None=None) -> None\",\"skills_dir\":\"D:\\\\code\\\\desktop\\\\skills\",\"symbol\":\"WebElement.click\",\"topic\":\"web-elements\"},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "docs",
+        "sdk",
+        "--skills-dir",
+        "D:\\code\\desktop\\skills",
+        "--topic",
+        "contracts",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 21.655,
+      "stdout": "{\"command\":\"docs sdk\",\"data\":{\"content\":\"# Parameters, results, and failure semantics\\r\\n\\r\\nRead exact defaults in the linked [signature index](index.md). Methods with similar\\r\\nnames may have different defaults; do not transfer a CLI flag or Playwright parameter\\r\\ninto a UIAutoma SDK call.\\r\\n\\r\\n## Query and ownership\\r\\n\\r\\n- `selector` in `find/find_all` is a saved asset name or `package.selector(...)`,\\r\\n  not CSS, XPath, an observation ref or a raw runtime UUID. It needs the current Package.\\r\\n- `find` returns one live element and rejects missing or ambiguous matches.\\r\\n  `find_all` returns a list; check its length and actual contents.\\r\\n- Web `find_by_css/find_by_xpath` and their `find_all_*` variants operate directly on\\r\\n  the current page/element and do not require a Package. These are UIAutoma elements,\\r\\n  not official Playwright Locator objects.\\r\\n- Window/page operations without saved selectors do not require a Package.\\r\\n  Live objects retain the creating connection. Navigation, removal or connection\\r\\n  closure can invalidate them; obtain a new object from the intended target.\\r\\n- `web.get(title=..., url=...)` uses substring matching by default and chooses a\\r\\n  newer matching tab when several match. It does not enforce uniqueness. For an\\r\\n  exact page, enumerate with `web.get_all`, compare `get_url()` to the intended\\r\\n  full URL and reject zero or multiple exact matches. A base URL also matches\\r\\n  its hash routes. Use `connect_page(page_ref)` for the Playwright route.\\r\\n- SDK `timeout`, `load_timeout`, `connect_timeout`, `delay_after` and `duration`\\r\\n  are seconds. `send_key_delay` and `focus_timeout` are milliseconds.\\r\\n  Do not assume every API supports an infinite timeout. Element wait APIs document\\r\\n  `0` as one check and `-1` as indefinite; use bounded waits for unattended work.\\r\\n\\r\\n## Element input and pointer parameters\\r\\n\\r\\n| Parameter | Meaning / valid values |\\r\\n| --- | --- |\\r\\n| `button` | `left`, `right`, `middle` |\\r\\n| `keys` | `none` or a modifier combination such as `ctrl+shift` |\\r\\n| `simulative` | Select the product's simulated/native strategy; backend support varies. It is not a promise that the window stays in the background. |\\r\\n| `text`, `value` | Text to enter/set; do not put secret values in diagnostic output. |\\r\\n| `append` for input | False replaces existing contents; True appends. |\\r\\n| `contains_hotkey` | Whether keyboard syntax inside text is interpreted as keys rather than literal text. |\\r\\n| `click_before_input` | Click the input target first; this may activate its window. |\\r\\n| `force_ime_ENG` / `force_ime_eng` | Win element and Web spellings differ; use the exact signature. |\\r\\n| `move_speed` | `instant`, `fast`, `middle`, `slow` |\\r\\n| `behavior` for dragging | `smooth`, `instant` |\\r\\n| `anchor` | `top_left`, `top_center`, `top_right`, `middle_left`, `middle_center`, `middle_right`, `bottom_left`, `bottom_center`, `bottom_right`, `random`; None means center. Also accepts `(anchor, offset_x, offset_y)` or corresponding keys in a dict. |\\r\\n\\r\\n`input`/`clipboard_input` return None. Clipboard input uses the system clipboard;\\r\\ndo not rely on it as a way to set persistent clipboard contents.\\r\\nWeb input's optional `input_check`, `retry_times`, and `check_value` concern its\\r\\nbuilt-in text verification, not permission for the Agent to replay unrelated actions.\\r\\n`set_value` uses the automation/value path rather than a typed-key workflow.\\r\\n\\r\\nFor Win, default `input` clicks the target and types keys; `focus_timeout` is a\\r\\ndelay after focus preparation, not proof that focus remains on that control.\\r\\n`set_value` replaces the value through the control's automation interface.\\r\\nClipboard input pastes via the system clipboard. Choose the method for the\\r\\napplication's behavior: assigning a value need not trigger the same keyboard\\r\\nevents as typing. Read back the value and verify the application's result;\\r\\ndo not automatically retry with a different method after an uncertain action.\\r\\n`move_mouse=False` suppresses the visible travel, not the final positioning or\\r\\nclick. It does not make an operation background-only.\\r\\n\\r\\n`check(mode=...)` accepts `check`, `uncheck`, `toggle`. Prefer desired-state check or\\r\\nuncheck over toggle for a known task. `select(item, mode=...)` supports `fuzzy`,\\r\\n`exact`, `regex`; SDK selection rules are not the CLI's exact-text-only contract.\\r\\nIndexes are zero-based; supported element selection APIs accept -1 for the last option.\\r\\nRead Web-specific multi-selection rules in [browser contracts](browser.md).\\r\\n\\r\\n## Common results\\r\\n\\r\\n| API family | Result |\\r\\n| --- | --- |\\r\\n| Element click/input/hover/check/select/drag/highlight | None on successful completion; inspect the UI for business success. Element `last_result` holds available action diagnostics. |\\r\\n| `get_text`, `get_html` | String |\\r\\n| `get_value`, `get_attribute` | String or None when no value/attribute is available |\\r\\n| Win `get_all_attributes` | Dict of names to values; values need not all be strings |\\r\\n| Web `get_all_attributes` | Dict of attribute names to string values |\\r\\n| `get_all_select_items`, `get_selected_item` | List of strings, not a single selected string |\\r\\n| `get_select_options` (Web) | List of dicts with `name`, `value`, `selected` |\\r\\n| Element `screenshot(folder_path, file_name=...)` | Saved PNG path string |\\r\\n| WebBrowser `screenshot(...)` | None, unlike element screenshot |\\r\\n| `exists`, state checks, element appearance/disappearance waits | Boolean; not all window waits return bool (see signature). |\\r\\n| Web related-node lookup | `parent/child_at/previous_sibling/next_sibling` can return None; `children` returns a list |\\r\\n| Win related-node lookup | Element or list; do not assume the Web nullable contract |\\r\\n\\r\\n`ActionResult` diagnostics include `error`, `trace_info`, `strategy`,\\r\\n`fallback_reason`, `clicked_point`, `log_lines`, and `trace_id`; absence of diagnostics\\r\\nis not proof of success. Ordinary scripts should use exceptions and observable results,\\r\\nnot parse internal raw payloads.\\r\\n\\r\\n## Windows, coordinates and screenshots\\r\\n\\r\\n`window.get_detail()` returns a detail dict. With `operation`, it returns the value\\r\\nfor `title`, `text`, `process_name`, `class_name`, `handle`/`hwnd`, or `rect`; an unknown\\r\\nkey returns an empty string. Obtain a window with `win32.get_by_handle(actual_hwnd)`\\r\\nwhen the precise handle is known. `window.close()` requests closure, which may prompt.\\r\\n\\r\\n`set_state` accepts normal/show/restore, max/maximize/maximized,\\r\\nmin/minimize/minimized, hide. Use only the state the task needs.\\r\\n`get_screen_size/get_real_resolution` return `(width, height)`;\\r\\n`GetDeviceScaleFactor(125)` returns 1.25. Main-screen size is not a virtual-desktop rectangle.\\r\\n\\r\\nWin element `get_bounding` returns `(x, y, width, height)`; Web returns a dict with\\r\\nthose keys. `to96dpi=True` is normalized geometry; `False` requests physical pixels.\\r\\nWeb `relative_to` is `screen` or `window` (client area); Win supports `screen`,\\r\\n`window` (top-level window) and `client`. Do not mix normalized coordinates\\r\\nwith native physical mouse input. Negative screen coordinates are valid on multiple monitors.\\r\\nWin drag `left/top` are relative physical-pixel offsets from the chosen starting anchor.\\r\\n\\r\\n`win32.screenshot.save_*_to_file` returns a path, clipboard variants return None;\\r\\nmanual screenshot functions involve user region selection. `image_format` can be\\r\\ninferred from the output path. Rectangle inputs use left/top/right/bottom, not width/height.\\r\\n`clipboard.set_files` takes existing absolute paths; `get_file_paths` returns a list.\\r\\nClipboard reads/writes and global `send_keys/mouse_*` affect the current desktop target;\\r\\nprefer element-scoped actions when possible.\\r\\n\\r\\n## Errors and known limits\\r\\n\\r\\nPublic exceptions include `InvalidParamsError`, `ElementNotFoundError`,\\r\\n`AmbiguousElementError`, `NoCurrentPackageError`, `StalePackageError`,\\r\\n`HostUnavailableError`, `HostBusyError`, `UnsupportedActionError`, `ActionError`,\\r\\nand `UIAutomaError`. Catch the narrow error you can handle; do not convert all failures\\r\\nto empty data. A failed/timeout action may already have changed the UI.\\r\\n\\r\\nSome applications do not support every action, including drag or selection.\\r\\nReport unsupported operations rather than assuming a different target is equivalent.\\r\\nReacquire elements after UI restructuring and check similar collections against the intended scope.\\r\\n\",\"skills_dir\":\"D:\\\\code\\\\desktop\\\\skills\",\"topic\":\"contracts\"},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "docs",
+        "sdk",
+        "--skills-dir",
+        "D:\\code\\desktop\\skills",
+        "--symbol",
+        "WebElement.__uia_smoke_absent__",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 22.823,
+      "stdout": "{\"command\":\"docs sdk\",\"error\":{\"code\":\"documentation_not_found\",\"message\":\"Public symbol was not found in the local SDK reference; use docs sdk to list topics\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1.smoke-absent-024bc63bdfc94ae49d1e8706221ee4f2",
+        "docs",
+        "sdk",
+        "--skills-dir",
+        "D:\\code\\元素库\\.pytest_tmp\\UIA_smoke_unmatched_bd94ffe790414559b474110a5d200e8b",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 2,
+      "elapsed_ms": 23.64,
+      "stdout": "{\"command\":\"docs sdk\",\"error\":{\"code\":\"documentation_unavailable\",\"message\":\"Cannot read UTF-8 SDK reference D:\\\\code\\\\元素库\\\\.pytest_tmp\\\\UIA_smoke_unmatched_bd94ffe790414559b474110a5d200e8b\\\\uiautoma-sdk/references\\\\index.md: 系统找不到指定的路径。 (os error 3). Check the Skills installation or use --skills-dir.\"},\"ok\":false,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 25.08,
+      "stdout": "{\"command\":\"status\",\"data\":{\"has_current_package\":true,\"min_protocol\":1,\"protocol\":1,\"runtime_name\":\"UIAutoma Runtime\",\"runtime_pid\":95580,\"runtime_version\":\"0.1.1\",\"uiautomation_provider_available\":true},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "status"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 24.859,
+      "stdout": "has_current_package: true\nmin_protocol: 1\nprotocol: 1\nruntime_name: UIAutoma Runtime\nruntime_pid: 95580\nruntime_version: 0.1.1\nuiautomation_provider_available: true\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "status",
+        "--debug",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 25.751,
+      "stdout": "{\"command\":\"status\",\"data\":{\"has_current_package\":true,\"min_protocol\":1,\"protocol\":1,\"runtime_name\":\"UIAutoma Runtime\",\"runtime_pid\":95580,\"runtime_version\":\"0.1.1\",\"uiautomation_provider_available\":true},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "{\"elapsed_ms\":0.1141,\"event\":\"connect\",\"ok\":true}\n{\"backend_ms\":{\"runtime.total\":0.615},\"elapsed_ms\":1.5394,\"event\":\"rpc\",\"method\":\"system.ping\",\"ok\":true,\"operation\":null}\n{\"command\":\"status\",\"elapsed_ms\":2.1825,\"event\":\"command\",\"ok\":true}\n",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "capabilities",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 25.039,
+      "stdout": "{\"command\":\"capabilities\",\"data\":{\"capabilities\":{\"app_launch\":true,\"app_package_open\":true,\"capture\":true,\"capture_commit\":true,\"capture_image\":true,\"capture_web_from_ref\":true,\"capture_win32\":true,\"capture_win_from_ref\":true,\"desktop_clipboard\":true,\"desktop_screenshot\":true,\"image_actions_stage4\":true,\"package_list_items\":true,\"package_manage\":true,\"package_open\":true,\"package_read\":true,\"playwright_injection\":true,\"public_screenshots\":true,\"uiautomation_provider\":true,\"uiautomation_provider_rpc\":true,\"validate\":false,\"validate_win32\":true,\"web_anchor_replace\":true,\"web_browser_capabilities_stage4\":true,\"web_code_execution\":true,\"web_dom_actions_stage5\":true,\"web_observation_actions\":true,\"web_observation_sessions\":true,\"web_similar_bundle_save\":true,\"win32_elementtree\":true,\"win32_func\":true,\"win32_inspect_tree_v2\":true,\"win32_observation_sessions\":true,\"win_actions_stage3\":true,\"win_control_tree\":true,\"win_element_read_stage4\":true,\"win_input_actions\":true,\"win_observation_actions\":true,\"win_uia_patterns\":true,\"window_stage2\":true},\"supported_methods\":[\"system.ping\",\"app.launch\",\"app.package.open\",\"inspect\",\"validate\",\"elementtree\",\"observe.win_session\",\"observe.web_session\",\"web.observation_action\",\"web.observation_download\",\"web.run_code\",\"win.observation_action\",\"func\",\"exit\",\"capture.element.pick\",\"capture.image.pick\",\"capture.win32.pick\",\"capture.cancel\",\"app.image.save\",\"app.image.delete\",\"app.image.validate\",\"capture.web.from_ref\",\"capture.win.from_ref\",\"capture.commit\",\"package.replace_web_anchor\",\"package.replace_win_similar\",\"package.replace_web_similar\",\"validate.element\",\"validate.selector\",\"package.current\",\"package.list_items\",\"package.get_item\",\"package.resolve_selector\",\"package.refresh\",\"package.close\",\"package.open\",\"package.sync_external_change\",\"package.create\",\"package.rename_item\",\"package.delete_item\",\"package.replace_item\",\"package.write_win_path\",\"package.write_web_snapshot\",\"package.export_snapshot\",\"package.replace_variable_defaults\",\"package.read_resource\",\"window.list\",\"window.find\",\"window.get_active\",\"window.get_by_handle\",\"window.get_info\",\"window.get_by_element\",\"window.activate\",\"window.minimize\",\"window.maximize\",\"window.restore\",\"window.hide\",\"window.show\",\"window.close\",\"window.get_rect\",\"window.set_rect\",\"window.screenshot\",\"system.get_mouse_position\",\"system.get_screen_size\",\"window.exists\",\"window.wait\",\"window.minimize_all\",\"system.get_real_resolution\",\"system.get_ime\",\"system.set_ime\",\"system.get_selected_text\",\"element.get\",\"element.find_all\",\"element.locate\",\"element.exists\",\"element.get_text\",\"element.get_value\",\"element.get_attribute\",\"element.get_all_attributes\",\"element.find_related\",\"element.get_rect\",\"element.get_select_items\",\"element.get_selected_items\",\"element.get_parent\",\"element.get_children\",\"element.get_child_at\",\"element.get_previous_sibling\",\"element.get_next_sibling\",\"action.click_element\",\"action.double_click_element\",\"action.long_press_element\",\"action.hover_element\",\"action.drag_element\",\"action.highlight_element\",\"action.type_text_element\",\"action.screenshot_element\",\"action.check_element\",\"action.select_element\",\"action.select_element_by_index\",\"action.screenshot_element_to_clipboard\",\"input.send_keys\",\"mouse.move\",\"mouse.click\",\"mouse.wheel\",\"screenshot.capture\",\"screenshot.screen_to_file\",\"screenshot.screen_to_clipboard\",\"screenshot.window_to_file\",\"screenshot.window_to_clipboard\",\"screenshot.manual_to_file\",\"screenshot.manual_to_clipboard\",\"clipboard.set_text\",\"clipboard.get_text\",\"clipboard.clear\",\"clipboard.set_files\",\"clipboard.get_file_paths\",\"image.find\",\"action.click_image\",\"action.double_click_image\",\"action.long_press_image\",\"web.locate\",\"web.action.highlight\",\"web.scroll_into_view\",\"web.action.click\",\"web.action.double_click\",\"web.action.type_text\",\"web.action.hover\",\"web.action.focus\",\"web.action.clear\",\"web.action.check\",\"web.action.select\",\"web.get_select_options\",\"web.get_geometry\",\"web.get_scroll\",\"web.action.scroll\",\"web.action.drag\",\"web.get_text\",\"web.get_html\",\"web.get_value\",\"web.is_checked\",\"web.is_enabled\",\"web.is_displayed\",\"web.exists\",\"web.get_attribute\",\"web.get_all_attributes\",\"web.evaluate_js\",\"web.element.get_parent\",\"web.element.get_children\",\"web.element.get_child_at\",\"web.element.get_previous_sibling\",\"web.element.get_next_sibling\",\"web.browser.get_active\",\"web.browser.get\",\"web.element.find_all\",\"web.browser.list_tabs\",\"web.browser.get_info\",\"web.browser.get_text\",\"web.browser.http_request\",\"web.browser.wait_element\",\"web.element.set_attribute\",\"web.browser.get_html\",\"web.browser.execute_javascript\",\"web.browser.scroll_to\",\"web.browser.get_scroll\",\"web.browser.activate\",\"web.browser.is_load_completed\",\"web.browser.close\",\"web.browser.navigate\",\"web.browser.reload\",\"web.browser.back\",\"web.browser.forward\",\"web.browser.wait_ready\",\"web.browser.create\",\"web.environment.set\",\"web.environment.reset\",\"web.popup.add\",\"web.popup.remove_all\",\"web.browser.stop_load\",\"web.browser.close_all\",\"web.cookie.get_all\",\"web.cookie.get\",\"web.cookie.set\",\"web.cookie.delete\",\"web.cookie.clear\",\"web.dialog.accept\",\"web.dialog.get_text\",\"web.dialog.dismiss\",\"web.dialog.prompt\",\"web.upload.file_input\",\"web.download.element\",\"web.dialog.save\",\"web.dialog.upload\",\"web.screenshot.page\",\"web.screenshot.element\",\"web.screenshot.page_to_clipboard\",\"web.screenshot.element_to_clipboard\",\"web.network.start\",\"web.network.get_events\",\"web.network.stop\",\"playwright.start\",\"playwright.stop\",\"playwright.status\"]},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "package",
+        "current",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 26.805,
+      "stdout": "{\"command\":\"package current\",\"data\":{\"has_current_package\":true,\"package_dir\":\"D:\\\\code\\\\元素库\\\\260902_web元素\"},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "windows",
+        "list",
+        "--max-items",
+        "3",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 27.621,
+      "stdout": "{\"command\":\"windows list\",\"data\":{\"count\":3,\"items\":[{\"class_name\":\"TMainConfigFrm\",\"handle\":1055684,\"process_id\":99552,\"process_name\":\"Serverx64.exe\",\"rect\":{\"h\":630,\"w\":402,\"x\":1519,\"y\":381},\"title\":\"配置\"},{\"class_name\":\"TMainFrm\",\"handle\":29952824,\"process_id\":99552,\"process_name\":\"Serverx64.exe\",\"rect\":{\"h\":242,\"w\":298,\"x\":1571,\"y\":575},\"title\":\"Server\"},{\"class_name\":\"CabinetWClass\",\"handle\":12919242,\"process_id\":17852,\"process_name\":\"explorer.exe\",\"rect\":{\"h\":780,\"w\":1190,\"x\":647,\"y\":318},\"title\":\"Server - 文件资源管理器\"}]},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "windows",
+        "list",
+        "--title",
+        "UIA_smoke_unmatched_bd94ffe790414559b474110a5d200e8b",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 25.51,
+      "stdout": "{\"command\":\"windows list\",\"data\":{\"count\":0,\"items\":[]},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "windows",
+        "list",
+        "--title",
+        "UIA_smoke_unmatched_bd94ffe790414559b474110a5d200e8b"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 26.489,
+      "stdout": "No windows.\nUse --format json for all fields.\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "browser",
+        "list",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 30.18,
+      "stdout": "{\"command\": \"browser list\", \"data\": {\"connected_session_count\": 1, \"count\": 8, \"items\": [{\"page_ref\": \"28f7f572c0f147b0\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596043}, {\"page_ref\": \"5b1ca0c9bdc8444e\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275595920}, {\"page_ref\": \"9ee465bef5194669\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596021}, {\"page_ref\": \"7e407bdcc2054cb9\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596025}, {\"page_ref\": \"1aa68c9e34234208\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596028}, {\"page_ref\": \"c353a87613714038\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596031}, {\"page_ref\": \"a4080868dc5c4047\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596053}, {\"page_ref\": \"ba111a8daeeb46da\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596056}]}, \"ok\": true, \"schema_version\": 1}\n",
+      "stderr": "",
+      "browser_identity_projection": true
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "browser",
+        "list",
+        "--title",
+        "UIA_smoke_unmatched_bd94ffe790414559b474110a5d200e8b",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 30.121,
+      "stdout": "{\"command\": \"browser list\", \"data\": {\"connected_session_count\": 1, \"count\": 0, \"items\": []}, \"ok\": true, \"schema_version\": 1}\n",
+      "stderr": "",
+      "browser_identity_projection": true
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "browser",
+        "list",
+        "--title",
+        "UIA_smoke_unmatched_bd94ffe790414559b474110a5d200e8b"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 32.063,
+      "stdout": "Connected browser sessions: 1\nNo pages.\nUse --format json for all fields.\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "observe",
+        "win",
+        "list",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 80.105,
+      "stdout": "{\"command\":\"observe win list\",\"data\":{\"count\":0,\"items\":[]},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "observe",
+        "web",
+        "list",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 27.729,
+      "stdout": "{\"command\":\"observe web list\",\"data\":{\"count\":0,\"items\":[]},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "status",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 24.436,
+      "stdout": "{\"command\":\"status\",\"data\":{\"has_current_package\":true,\"min_protocol\":1,\"protocol\":1,\"runtime_name\":\"UIAutoma Runtime\",\"runtime_pid\":95580,\"runtime_version\":\"0.1.1\",\"uiautomation_provider_available\":true},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "package",
+        "current",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 26.806,
+      "stdout": "{\"command\":\"package current\",\"data\":{\"has_current_package\":true,\"package_dir\":\"D:\\\\code\\\\元素库\\\\260902_web元素\"},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "browser",
+        "list",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 32.762,
+      "stdout": "{\"command\": \"browser list\", \"data\": {\"connected_session_count\": 1, \"count\": 8, \"items\": [{\"page_ref\": \"28f7f572c0f147b0\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596043}, {\"page_ref\": \"5b1ca0c9bdc8444e\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275595920}, {\"page_ref\": \"9ee465bef5194669\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596021}, {\"page_ref\": \"7e407bdcc2054cb9\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596025}, {\"page_ref\": \"1aa68c9e34234208\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596028}, {\"page_ref\": \"c353a87613714038\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596031}, {\"page_ref\": \"a4080868dc5c4047\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596053}, {\"page_ref\": \"ba111a8daeeb46da\", \"target_browser\": \"chrome\", \"target_tab_id\": 1275596056}]}, \"ok\": true, \"schema_version\": 1}\n",
+      "stderr": "",
+      "browser_identity_projection": true
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "observe",
+        "win",
+        "list",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 90.964,
+      "stdout": "{\"command\":\"observe win list\",\"data\":{\"count\":0,\"items\":[]},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    },
+    {
+      "argv": [
+        "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+        "--pipe",
+        "\\\\.\\pipe\\UIAutoma.Automation.v1",
+        "observe",
+        "web",
+        "list",
+        "--format",
+        "json"
+      ],
+      "environment_override": {},
+      "exit_code": 0,
+      "elapsed_ms": 25.888,
+      "stdout": "{\"command\":\"observe web list\",\"data\":{\"count\":0,\"items\":[]},\"ok\":true,\"schema_version\":1}\n",
+      "stderr": "",
+      "browser_identity_projection": false
+    }
+  ],
+  "summary": {
+    "PASS": 85,
+    "FAIL": 0,
+    "BLOCKED": 0,
+    "total": 85,
+    "exit_code": 0
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "cli_path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+  "args": [
+    "observe",
+    "win",
+    "subtree",
+    "--session",
+    "a230a092-5b60-4919-94f8-6aafc2d90c70",
+    "--snapshot",
+    "1",
+    "--max-depth",
+    "8",
+    "--max-nodes",
+    "200",
+    "--budget-ms",
+    "5000",
+    "--format",
+    "json"
+  ],
+  "working_directory": "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复",
+  "exit_code": 0
+}

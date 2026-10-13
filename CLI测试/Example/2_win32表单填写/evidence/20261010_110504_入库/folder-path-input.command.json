@@ -1,0 +1,17 @@
+{
+  "args": [
+    "win",
+    "input",
+    "--session",
+    "c5cc0bcb-e726-44c5-93d1-3fef564046a7",
+    "--snapshot",
+    "1",
+    "--ref",
+    "e4",
+    "--text",
+    "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写",
+    "--format",
+    "json"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,62 @@
+Target:
+  native_handle: 8524180
+  process_id: 60380
+Window "Win32 靶场 - UIA" [root]
+  Tab "" [0]
+    Pane "表单控件页" [0,0]
+      Text "用户信息表单" [0,0,0] (children not expanded)
+      Text "姓名" [0,0,1] (children not expanded)
+      Edit "姓名" [0,0,2] (children not expanded)
+      Text "密码" [0,0,3] (children not expanded)
+      Edit "密码" [0,0,4] [password] (children not expanded)
+      Text "邮箱" [0,0,5] (children not expanded)
+      Edit "邮箱" [0,0,6] (children not expanded)
+      Text "年龄" [0,0,7] (children not expanded)
+      Edit "年龄" [0,0,8] (children not expanded)
+      Spinner "" [0,0,9]
+        Button "多" [0,0,9,0] (children not expanded)
+        Button "少" [0,0,9,1] (children not expanded)
+      Text "城市（单选）" [0,0,10] (children not expanded)
+      ComboBox "城市（单选）" [0,0,11]
+        Text "城市（单选）" [0,0,11,0] [offscreen] (children not expanded)
+        Button "打开" [0,0,11,1] (children not expanded)
+      Text "城市（多选）" [0,0,12] (children not expanded)
+      CheckBox "北京" [0,0,13] (children not expanded)
+      CheckBox "上海" [0,0,14] (children not expanded)
+      CheckBox "广州" [0,0,15] (children not expanded)
+      CheckBox "深圳" [0,0,16] (children not expanded)
+      CheckBox "杭州" [0,0,17] (children not expanded)
+      Text "性别（单选）" [0,0,18] (children not expanded)
+      RadioButton "男" [0,0,19] (children not expanded)
+      RadioButton "女" [0,0,20] (children not expanded)
+      RadioButton "其他" [0,0,21] (children not expanded)
+      Text "兴趣爱好（多选）" [0,0,22] (children not expanded)
+      CheckBox "阅读" [0,0,23] (children not expanded)
+      CheckBox "运动" [0,0,24] (children not expanded)
+      CheckBox "音乐" [0,0,25] (children not expanded)
+      CheckBox "旅行" [0,0,26] (children not expanded)
+      Text "备注" [0,0,27] (children not expanded)
+      Edit "备注" [0,0,28]
+        ScrollBar "垂直滚动条" [0,0,28,0] [disabled]
+          Button "上一行" [0,0,28,0,0] [disabled] (children not expanded)
+          Button "下一行" [0,0,28,0,1] [disabled] (children not expanded)
+      Text "协议" [0,0,29] (children not expanded)
+      CheckBox "同意用户协议" [0,0,30] (children not expanded)
+      Button "保存" [0,0,31] (children not expanded)
+      Button "重置" [0,0,32] (children not expanded)
+      Button "展开原生菜单 ▼" [0,0,33] (children not expanded)
+      Text "菜单测试: 尚未选择菜单项" [0,0,34] (children not expanded)
+    TabItem "表单控件" [0,1] (children not expanded)
+    TabItem "表格数据" [0,2] (children not expanded)
+    TabItem "拖拽测试" [0,3] (children not expanded)
+  TitleBar "" [1]
+    MenuBar "系统" [1,0]
+      MenuItem "系统" [1,0,0] (children not expanded)
+    Button "最小化" [1,1] (children not expanded)
+    Button "最大化" [1,2] (children not expanded)
+    Button "关闭" [1,3] (children not expanded)
+  MenuBar "应用程序" [2]
+    MenuItem "文件(F)" [2,0] (children not expanded)
+    MenuItem "编辑(E)" [2,1] (children not expanded)
+Returned descendants: 56  Truncated: false  Budget exhausted: false
+Session closed. Paths describe this report only; use observe win open for continued inspection.

@@ -1,0 +1,14 @@
+{
+  "file_count": 7,
+  "new_library_path": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\element",
+  "moved_entries": [
+    "package.json",
+    "elements.json",
+    "images.json",
+    "icon",
+    "images",
+    "screenshot",
+    "snapshot"
+  ],
+  "hashes_unchanged": true
+}

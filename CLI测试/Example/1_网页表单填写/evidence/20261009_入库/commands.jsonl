@@ -1,0 +1,5 @@
+{"args": ["package", "open", "--path", "D:\\code\\元素库\\CLI测试\\Example\\1_网页表单填写\\element"], "exit_code": 0}
+{"args": ["capture", "web", "--session", "1716dfd6-a766-4e75-b27c-cd2dbacfc450", "--snapshot", "1", "--ref", "f1e41", "--package", "D:\\code\\元素库\\CLI测试\\Example\\1_网页表单填写\\element", "--name", "文本输入框_ant", "--no-highlight"], "exit_code": 0}
+{"args": ["capture", "web", "--session", "1716dfd6-a766-4e75-b27c-cd2dbacfc450", "--snapshot", "1", "--ref", "f1e50", "--package", "D:\\code\\元素库\\CLI测试\\Example\\1_网页表单填写\\element", "--name", "文本输入框_原生", "--no-highlight"], "exit_code": 0}
+{"args": ["package", "items"], "exit_code": 0}
+{"args": ["observe", "web", "close", "--session", "1716dfd6-a766-4e75-b27c-cd2dbacfc450"], "exit_code": 0}

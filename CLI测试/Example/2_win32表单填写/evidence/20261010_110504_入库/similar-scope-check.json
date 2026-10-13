@@ -1,0 +1,131 @@
+{
+  "extra_count": 5,
+  "actual_count": 10,
+  "scope_passed": false,
+  "matches": [
+    {
+      "name": "阅读",
+      "automation_id": "1982",
+      "is_requested_city": false,
+      "rect": {
+        "height": 30,
+        "width": 82,
+        "x": 2486,
+        "y": 862
+      },
+      "detail_ref": "e38"
+    },
+    {
+      "name": "运动",
+      "automation_id": "1983",
+      "is_requested_city": false,
+      "rect": {
+        "height": 30,
+        "width": 82,
+        "x": 2574,
+        "y": 862
+      },
+      "detail_ref": "e39"
+    },
+    {
+      "name": "音乐",
+      "automation_id": "1984",
+      "is_requested_city": false,
+      "rect": {
+        "height": 30,
+        "width": 82,
+        "x": 2662,
+        "y": 862
+      },
+      "detail_ref": "e40"
+    },
+    {
+      "name": "旅行",
+      "automation_id": "1985",
+      "is_requested_city": false,
+      "rect": {
+        "height": 30,
+        "width": 82,
+        "x": 2750,
+        "y": 862
+      },
+      "detail_ref": "e41"
+    },
+    {
+      "name": "同意用户协议",
+      "automation_id": "1993",
+      "is_requested_city": false,
+      "rect": {
+        "height": 30,
+        "width": 180,
+        "x": 2486,
+        "y": 996
+      },
+      "detail_ref": "e45"
+    },
+    {
+      "name": "北京",
+      "automation_id": "1962",
+      "is_requested_city": true,
+      "rect": {
+        "height": 30,
+        "width": 74,
+        "x": 2486,
+        "y": 778
+      },
+      "detail_ref": "e28"
+    },
+    {
+      "name": "广州",
+      "automation_id": "1964",
+      "is_requested_city": true,
+      "rect": {
+        "height": 30,
+        "width": 74,
+        "x": 2642,
+        "y": 778
+      },
+      "detail_ref": "e30"
+    },
+    {
+      "name": "深圳",
+      "automation_id": "1965",
+      "is_requested_city": true,
+      "rect": {
+        "height": 30,
+        "width": 74,
+        "x": 2720,
+        "y": 778
+      },
+      "detail_ref": "e31"
+    },
+    {
+      "name": "上海",
+      "automation_id": "1963",
+      "is_requested_city": true,
+      "rect": {
+        "height": 30,
+        "width": 74,
+        "x": 2564,
+        "y": 778
+      },
+      "detail_ref": "e29"
+    },
+    {
+      "name": "杭州",
+      "automation_id": "1966",
+      "is_requested_city": true,
+      "rect": {
+        "height": 30,
+        "width": 74,
+        "x": 2798,
+        "y": 778
+      },
+      "detail_ref": "e32"
+    }
+  ],
+  "asset_id": "0726e92d-8380-49b2-9473-6fe4efcbe139",
+  "requested_city_count": 5,
+  "asset_name": "城市（多选）选项",
+  "expected_count": 5
+}

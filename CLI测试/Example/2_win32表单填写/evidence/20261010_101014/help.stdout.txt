@@ -1,0 +1,43 @@
+Observation, automation and asset management for AI agents (Windows)
+
+Usage: uia.exe [OPTIONS] <COMMAND>
+
+Commands:
+  clipboard     Read, write or clear the system clipboard through Runtime
+  docs          Read local SDK reference topics or exact method signatures; no Runtime required
+  screenshot    Save a PNG screenshot through Runtime; target screenshots activate their window
+  package       Read or explicitly change the Runtime's shared current Package
+  app           Explicitly start a desktop application through Runtime
+  capture       Capture and save an observed element into an explicit Package
+  win           Act on observed UIA/ACC nodes. Failures are never replayed
+  web           Act on observed Web elements. Failures are never replayed; inspect before retrying
+  observe       Observe windows or pages using independent sessions
+  status        Report Runtime status without Package credentials
+  capabilities  List declared capabilities, not backend readiness
+  windows       Discover or explicitly control top-level windows through Runtime
+  browser       Discover, open, navigate or close browser pages through Runtime
+  help          Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+Options:
+      --debug
+          Enable diagnostic logs on stderr using --format (currently includes timings)
+      --format <FORMAT>
+          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]
+      --pipe <PIPE>
+          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\.\pipe\UIAutoma.Automation.v1]
+      --connect-timeout-ms <CONNECT_TIMEOUT_MS>
+          Maximum pipe connection wait (milliseconds) [default: 2000]
+      --timeout-ms <TIMEOUT_MS>
+          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)
+      --max-response-bytes <MAX_RESPONSE_BYTES>
+          Maximum response bytes, including newline [default: 4194304]
+
+Start UIAutoma Runtime first.
+Discovery, observation, actions and screenshots need no Package.
+Default output is text; use --format json for one JSON line and script parsing.
+Use observe win/web tree for a one-shot view, or observe win/web open to keep a session.
+The CLI does not start Runtime automatically.

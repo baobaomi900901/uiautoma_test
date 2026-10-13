@@ -1,0 +1,55 @@
+{
+  "library_dir": "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复",
+  "required_files_present": true,
+  "required_directories_present": true,
+  "files": {
+    "package.json": {
+      "id": "85e0046b-6ee2-477f-95ea-fa57a1b77899",
+      "name": "3_win32元素修复",
+      "variables": []
+    },
+    "elements.json": {
+      "groups": []
+    },
+    "images.json": {
+      "groups": []
+    }
+  },
+  "directory_listing": [
+    {
+      "Name": "icon",
+      "Mode": "d----",
+      "Length": null
+    },
+    {
+      "Name": "images",
+      "Mode": "d----",
+      "Length": null
+    },
+    {
+      "Name": "screenshot",
+      "Mode": "d----",
+      "Length": null
+    },
+    {
+      "Name": "snapshot",
+      "Mode": "d----",
+      "Length": null
+    },
+    {
+      "Name": "elements.json",
+      "Mode": "-a---",
+      "Length": 19
+    },
+    {
+      "Name": "images.json",
+      "Mode": "-a---",
+      "Length": 19
+    },
+    {
+      "Name": "package.json",
+      "Mode": "-a---",
+      "Length": 103
+    }
+  ]
+}

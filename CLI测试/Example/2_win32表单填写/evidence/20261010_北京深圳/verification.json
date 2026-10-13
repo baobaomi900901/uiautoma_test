@@ -1,0 +1,21 @@
+{
+  "target": "Win32 靶场 - UIA",
+  "field": "城市（多选）",
+  "expected_checked": [
+    "北京",
+    "深圳"
+  ],
+  "observed_checked": [
+    "北京",
+    "深圳"
+  ],
+  "observed_unchecked": [
+    "上海",
+    "广州",
+    "杭州"
+  ],
+  "verification_method": "Visual inspection of the screenshot produced by uia screenshot win",
+  "screenshot": "after.png",
+  "environment": "environment.json",
+  "result": "PASS"
+}

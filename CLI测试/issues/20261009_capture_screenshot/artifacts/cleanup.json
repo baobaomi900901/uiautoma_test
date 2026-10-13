@@ -1,0 +1,15 @@
+{
+  "current_package_restored": true,
+  "original_example_unchanged": true,
+  "tracked_state": {
+    "foreground": 5049218,
+    "tracked_order": [
+      "occluder",
+      "browser"
+    ],
+    "ranks": {
+      "occluder": 159,
+      "browser": 165
+    }
+  }
+}

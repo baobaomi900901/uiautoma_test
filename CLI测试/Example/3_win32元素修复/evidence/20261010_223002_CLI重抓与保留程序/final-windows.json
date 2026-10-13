@@ -1,0 +1,1 @@
+{"command":"windows list","data":{"count":1,"items":[{"class_name":"XPathWin32ShootingRangeRandomForm","handle":599304,"process_id":166884,"process_name":"UIA 版（标准 Win32 控件_随机表单）.exe","rect":{"h":720,"w":1024,"x":1408,"y":696},"title":"Win32 靶场 - UIA (随机表单)"}]},"ok":true,"schema_version":1}

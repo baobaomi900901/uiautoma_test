@@ -1,0 +1,25 @@
+Activate the window and click the visible element center once or twice
+
+Usage: uia.exe win click [OPTIONS] --session <SESSION> --snapshot <SNAPSHOT> --ref <REF>
+
+Options:
+      --session <SESSION>    Session UUID returned when opening an observation
+      --snapshot <SNAPSHOT>  Required generation from open/refresh; prevents reusing refs from an older tree. No latest default
+      --ref <REF>            UIA/ACC element ref from this observation snapshot (for example e12)
+      --button <BUTTON>      [default: left] [possible values: left, right, middle]
+      --count <COUNT>        [default: 1]
+  -h, --help                 Print help
+
+Options:
+      --debug
+          Enable diagnostic logs on stderr using --format (currently includes timings)
+      --format <FORMAT>
+          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]
+      --pipe <PIPE>
+          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\.\pipe\UIAutoma.Automation.v1]
+      --connect-timeout-ms <CONNECT_TIMEOUT_MS>
+          Maximum pipe connection wait (milliseconds) [default: 2000]
+      --timeout-ms <TIMEOUT_MS>
+          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)
+      --max-response-bytes <MAX_RESPONSE_BYTES>
+          Maximum response bytes, including newline [default: 4194304]

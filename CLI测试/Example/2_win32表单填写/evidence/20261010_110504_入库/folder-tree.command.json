@@ -1,0 +1,20 @@
+{
+  "exit_code": 0,
+  "args": [
+    "observe",
+    "win",
+    "subtree",
+    "--session",
+    "c5cc0bcb-e726-44c5-93d1-3fef564046a7",
+    "--snapshot",
+    "1",
+    "--max-depth",
+    "10",
+    "--max-nodes",
+    "500",
+    "--budget-ms",
+    "10000",
+    "--format",
+    "json"
+  ]
+}

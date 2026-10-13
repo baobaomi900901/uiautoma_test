@@ -1,0 +1,9 @@
+{
+  "args": [
+    "observe",
+    "win",
+    "open",
+    "--help"
+  ],
+  "exit_code": 0
+}

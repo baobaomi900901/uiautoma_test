@@ -1,0 +1,9 @@
+{
+  "command": [
+    "D:\\code\\元素库\\sdk测试\\.venv\\Scripts\\python.exe",
+    "-B",
+    "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复\\evidence\\20261010_203503_SDK填写\\probe_form.py"
+  ],
+  "working_directory": "D:\\code\\元素库\\sdk测试",
+  "exit_code": 0
+}

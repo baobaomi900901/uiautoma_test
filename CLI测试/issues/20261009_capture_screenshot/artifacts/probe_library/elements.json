@@ -1,0 +1,41 @@
+{
+  "groups": [
+    {
+      "id": "eed9a502-b2b1-4e09-bbe5-261fd8ac7a04",
+      "name": "iframe + Shadow 表单测试",
+      "origin": "https://baobaomi900901.github.io",
+      "elements": [
+        {
+          "id": "e7811621-e0fa-4ee9-b1d0-4945985fa8a6",
+          "name": "round-1-visible-no-highlight",
+          "type": "web"
+        },
+        {
+          "id": "4d8a0433-08fd-4ab1-aa74-9ad95cb24966",
+          "name": "round-1-visible-default",
+          "type": "web"
+        },
+        {
+          "id": "bef4a1a8-308c-40da-98f2-7e08715cae38",
+          "name": "round-1-offscreen-default",
+          "type": "web"
+        },
+        {
+          "id": "f3243bae-edd2-486c-9da0-6ff03759e509",
+          "name": "round-2-visible-no-highlight",
+          "type": "web"
+        },
+        {
+          "id": "95e7fc0b-c6c8-4ec8-945c-b33dbb776475",
+          "name": "round-2-visible-default",
+          "type": "web"
+        },
+        {
+          "id": "1859d668-74db-4d7f-b042-fe8707160a71",
+          "name": "round-2-offscreen-default",
+          "type": "web"
+        }
+      ]
+    }
+  ]
+}

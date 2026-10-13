@@ -1,0 +1,1 @@
+{"command":"windows list","data":{"count":1,"items":[{"class_name":"Tauri Window","handle":5049218,"process_id":11184,"process_name":"UIAutoma.exe","rect":{"h":759,"w":1196,"x":1122,"y":320},"title":"UIAutoma"}]},"ok":true,"schema_version":1}

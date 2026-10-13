@@ -1,0 +1,18 @@
+{
+  "field": "城市（单选）",
+  "control_type": "ComboBox",
+  "count": 5,
+  "options": [
+    "北京",
+    "上海",
+    "广州",
+    "深圳",
+    "杭州"
+  ],
+  "data_source": "CLI observe win subtree JSON after opening the dropdown",
+  "source_file": "expanded-tree.json",
+  "list_children_state": "complete",
+  "truncated": false,
+  "budget_exhausted": false,
+  "environment": "environment.json"
+}

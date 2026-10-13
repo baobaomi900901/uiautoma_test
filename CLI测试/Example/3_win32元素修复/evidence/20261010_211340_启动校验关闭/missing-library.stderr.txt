@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import runpy; from pathlib import Path; n=runpy.run_path('D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复\\main.py'); n['main'].__globals__['LIBRARY_DIR']=Path('D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复\\evidence\\20261010_211340_启动校验关闭\\absent-library'); raise SystemExit(n['main']())
+                                                                                                                                                                                                                                                                                                         ~~~~~~~~~^^
+  File "D:\code\元素库\CLI测试\Example\3_win32元素修复\main.py", line 136, in main
+    raise RuntimeError(f"元素库不存在或尚未初始化：{LIBRARY_DIR}")
+RuntimeError: 元素库不存在或尚未初始化：D:\code\元素库\CLI测试\Example\3_win32元素修复\evidence\20261010_211340_启动校验关闭\absent-library

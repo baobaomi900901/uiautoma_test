@@ -1,0 +1,13 @@
+{
+  "cli_path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+  "args": [
+    "package",
+    "validate",
+    "--id",
+    "6f92710c-67f0-4493-9d3b-605f5251c96c",
+    "--format",
+    "json"
+  ],
+  "working_directory": "D:\\code\\元素库",
+  "exit_code": 0
+}

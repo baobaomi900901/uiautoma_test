@@ -1,0 +1,10 @@
+{
+  "exit_code": 0,
+  "recorded_at": "2026-10-10T16:31:22.5905663+08:00",
+  "args": [
+    "package",
+    "current",
+    "--format",
+    "json"
+  ]
+}

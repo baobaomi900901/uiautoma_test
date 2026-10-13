@@ -1,0 +1,26 @@
+{
+  "groups": [
+    {
+      "id": "6532e978-d0bd-4724-bb93-967c7b1bca06",
+      "name": "Win32 靶场 - UIA (随机表单)",
+      "process_name": "UIA 版（标准 Win32 控件_随机表单）.exe",
+      "elements": [
+        {
+          "id": "592739dc-294d-4135-ba88-db8b9163415c",
+          "name": "姓名",
+          "type": "win"
+        },
+        {
+          "id": "93b28762-2afb-4e3c-b1f8-09463366377f",
+          "name": "城市（单选）",
+          "type": "win"
+        },
+        {
+          "id": "aaed7d05-8cb4-4cbd-a807-545cd93613ac",
+          "name": "城市（多选）",
+          "type": "win"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "args": [
+    "status",
+    "--format",
+    "json"
+  ],
+  "exit_code": 0
+}

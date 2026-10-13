@@ -1,0 +1,13 @@
+{
+  "exit_code": 0,
+  "args": [
+    "observe",
+    "win",
+    "open",
+    "--hwnd",
+    "2428888",
+    "--format",
+    "json"
+  ],
+  "recorded_at": "2026-10-10T16:31:45.1257793+08:00"
+}

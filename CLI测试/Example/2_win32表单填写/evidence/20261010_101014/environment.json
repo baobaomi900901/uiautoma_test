@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-10-10T10:10:14.6533772",
+  "rust_uia": {
+    "git_root": "D:/code/rust_uia",
+    "commit": "b700f9238134f57da83ab478a5ee55337ade1082",
+    "branch": "main",
+    "path": "D:\\code\\rust_uia"
+  },
+  "desktop": {
+    "git_root": "D:/code/desktop",
+    "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+    "branch": "main",
+    "path": "D:\\code\\desktop"
+  },
+  "sdk_source": "D:\\code\\desktop\\sdk",
+  "sdk_test_directory": "D:\\code\\元素库\\sdk测试",
+  "cli_test_directory": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写",
+  "cli": {
+    "version_output": [
+      "uia 0.1.1"
+    ],
+    "sha256": "C4CC52C93DAC523F354C8BAE6B08DA412E6B16E5FA8D2B14917B233A624FCCB8",
+    "path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+    "version_exit_code": 0,
+    "binary_build_origin": "Not independently verified from source commits"
+  }
+}

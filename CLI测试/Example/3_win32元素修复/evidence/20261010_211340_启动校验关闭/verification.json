@@ -1,0 +1,32 @@
+{
+  "actual_library_missing_elements": {
+    "passed": true,
+    "pid": 117380,
+    "exit_code": 1
+  },
+  "compatible_fixture_success": {
+    "passed": true,
+    "pid": 145820,
+    "exit_code": 0,
+    "values": {
+      "姓名": "moby",
+      "城市（单选）": [
+        "深圳"
+      ],
+      "城市（多选）": {
+        "北京": true,
+        "上海": false,
+        "广州": true,
+        "深圳": false,
+        "杭州": false
+      }
+    }
+  },
+  "missing_library_cleanup": {
+    "passed": true,
+    "pid": 156548,
+    "exit_code": 1
+  },
+  "original_library_unchanged": true,
+  "existing_processes_preserved": []
+}

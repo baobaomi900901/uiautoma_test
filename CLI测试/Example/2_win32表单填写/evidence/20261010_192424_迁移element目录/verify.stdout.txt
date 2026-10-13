@@ -1,0 +1,11 @@
+{
+  "library_path": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\element",
+  "package_id": "d13bd3c5-3e17-40b6-a2f8-ea27676e1632",
+  "asset_count": 2,
+  "asset_names": [
+    "城市（单选）",
+    "城市（多选）选项"
+  ],
+  "resource_files_present": true,
+  "script_import_and_syntax": "passed"
+}

@@ -1,0 +1,14 @@
+{
+  "measured_turn_start": "2026-10-10T22:24:52.847+08:00",
+  "measured_turn_end": "2026-10-10T22:42:40.266+08:00",
+  "measured_turn_seconds": 1067.419,
+  "user_visible_seconds": 1062,
+  "tool_roundtrip_count": 25,
+  "tool_roundtrip_seconds": 236.26,
+  "outside_tool_roundtrips_seconds": 831.159,
+  "cli_command_count": 78,
+  "cli_observed_seconds": 59.9234002,
+  "script_observed_seconds": 8.1578578,
+  "tree_response_bytes": 1159631.0,
+  "method": "CLI duration estimated from stdout file creation to command metadata write; includes small recording overhead. Tool spans use local session log call/output timestamps. Async helpers overlap gaps. No per-SDK-operation timing was recorded."
+}

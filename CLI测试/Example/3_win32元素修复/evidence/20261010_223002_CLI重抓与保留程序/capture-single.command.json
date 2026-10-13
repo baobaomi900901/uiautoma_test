@@ -1,0 +1,22 @@
+{
+  "cli_path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+  "args": [
+    "capture",
+    "win",
+    "--session",
+    "a230a092-5b60-4919-94f8-6aafc2d90c70",
+    "--snapshot",
+    "1",
+    "--ref",
+    "e46",
+    "--package",
+    "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复\\element",
+    "--name",
+    "城市（单选）_修复",
+    "--no-highlight",
+    "--format",
+    "json"
+  ],
+  "working_directory": "D:\\code\\元素库",
+  "exit_code": 0
+}

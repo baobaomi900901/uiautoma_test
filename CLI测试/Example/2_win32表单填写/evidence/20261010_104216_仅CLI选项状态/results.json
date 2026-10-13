@@ -1,0 +1,81 @@
+{
+  "method": "CLI observe win subtree and details only",
+  "single": {
+    "reason": "No selected/selection/value property in the public CLI result; keyboard focus is a separate observation",
+    "selected_status": "unknown",
+    "options": [
+      {
+        "name": "北京",
+        "has_keyboard_focus": true,
+        "selected": null,
+        "selected_status": "unknown",
+        "source": "details-single-beijing.json"
+      },
+      {
+        "name": "上海",
+        "has_keyboard_focus": false,
+        "selected": null,
+        "selected_status": "unknown",
+        "source": "details-single-shanghai.json"
+      },
+      {
+        "name": "广州",
+        "has_keyboard_focus": false,
+        "selected": null,
+        "selected_status": "unknown",
+        "source": "details-single-guangzhou.json"
+      },
+      {
+        "name": "深圳",
+        "has_keyboard_focus": false,
+        "selected": null,
+        "selected_status": "unknown",
+        "source": "details-single-shenzhen.json"
+      },
+      {
+        "name": "杭州",
+        "has_keyboard_focus": false,
+        "selected": null,
+        "selected_status": "unknown",
+        "source": "details-single-hangzhou.json"
+      }
+    ]
+  },
+  "multi": {
+    "reason": "No checked/is_checked/toggle_state property in the public CLI result",
+    "options": [
+      {
+        "name": "北京",
+        "checked": null,
+        "checked_status": "unknown",
+        "source": "details-multi-beijing.json"
+      },
+      {
+        "name": "上海",
+        "checked": null,
+        "checked_status": "unknown",
+        "source": "details-multi-shanghai.json"
+      },
+      {
+        "name": "广州",
+        "checked": null,
+        "checked_status": "unknown",
+        "source": "details-multi-guangzhou.json"
+      },
+      {
+        "name": "深圳",
+        "checked": null,
+        "checked_status": "unknown",
+        "source": "details-multi-shenzhen.json"
+      },
+      {
+        "name": "杭州",
+        "checked": null,
+        "checked_status": "unknown",
+        "source": "details-multi-hangzhou.json"
+      }
+    ]
+  },
+  "environment": "environment.json",
+  "observation_closed": true
+}

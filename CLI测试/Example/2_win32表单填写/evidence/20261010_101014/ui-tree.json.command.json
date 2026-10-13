@@ -1,0 +1,19 @@
+{
+  "args": [
+    "observe",
+    "win",
+    "tree",
+    "--hwnd",
+    "8524180",
+    "--max-depth",
+    "12",
+    "--max-nodes",
+    "1000",
+    "--budget-ms",
+    "10000",
+    "--format",
+    "json"
+  ],
+  "cli_path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+  "exit_code": 0
+}

@@ -1,0 +1,1 @@
+{"command":"observe win open","data":{"backend":"win","root":{"backend":"uia","children_state":"unexpanded","control_type":"Window","name":"UIAutoma","path":[],"ref":"e1"},"session_id":"b0fe08f7-1437-4dde-aa17-bdb5444e2a79","snapshot_id":1,"target":{"native_handle":5378502,"process_id":57984}},"ok":true,"schema_version":1}

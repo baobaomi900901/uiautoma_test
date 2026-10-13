@@ -1,0 +1,766 @@
+[
+  {
+    "name": "round-1-visible-no-highlight",
+    "metrics_before": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": 445
+          },
+          "in_viewport": true
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "metrics_after": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": 445
+          },
+          "in_viewport": true
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "before": {
+      "foreground": 5049218,
+      "tracked_order": [
+        "occluder",
+        "browser"
+      ],
+      "ranks": {
+        "occluder": 159,
+        "browser": 185
+      }
+    },
+    "after": {
+      "foreground": 5049218,
+      "tracked_order": [
+        "occluder",
+        "browser"
+      ],
+      "ranks": {
+        "occluder": 159,
+        "browser": 185
+      }
+    },
+    "events": [
+      {
+        "elapsed_ms": 2.38,
+        "foreground": 5049218,
+        "tracked_order": [
+          "occluder",
+          "browser"
+        ],
+        "ranks": {
+          "occluder": 159,
+          "browser": 185
+        }
+      }
+    ],
+    "browser_was_foreground": false,
+    "foreground_restored": true,
+    "pair_z_order_restored": true,
+    "capture": {
+      "command": "capture web",
+      "data": {
+        "commit_unknown": false,
+        "committed": true,
+        "element_id": "e7811621-e0fa-4ee9-b1d0-4945985fa8a6",
+        "element_name": "round-1-visible-no-highlight",
+        "kind": "web",
+        "screenshot_path_rel": "./screenshot/e7811621-e0fa-4ee9-b1d0-4945985fa8a6.png",
+        "snapshot_path_rel": "./snapshot/e7811621-e0fa-4ee9-b1d0-4945985fa8a6.json"
+      },
+      "ok": true,
+      "schema_version": 1
+    }
+  },
+  {
+    "name": "round-1-visible-default",
+    "metrics_before": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": 445
+          },
+          "in_viewport": true
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "metrics_after": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": 445
+          },
+          "in_viewport": true
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "before": {
+      "foreground": 5049218,
+      "tracked_order": [
+        "occluder",
+        "browser"
+      ],
+      "ranks": {
+        "occluder": 159,
+        "browser": 185
+      }
+    },
+    "after": {
+      "foreground": 199716,
+      "tracked_order": [
+        "browser",
+        "occluder"
+      ],
+      "ranks": {
+        "browser": 157,
+        "occluder": 165
+      }
+    },
+    "events": [
+      {
+        "elapsed_ms": 2.35,
+        "foreground": 5049218,
+        "tracked_order": [
+          "occluder",
+          "browser"
+        ],
+        "ranks": {
+          "occluder": 159,
+          "browser": 185
+        }
+      },
+      {
+        "elapsed_ms": 203.1,
+        "foreground": 199716,
+        "tracked_order": [
+          "browser",
+          "occluder"
+        ],
+        "ranks": {
+          "browser": 157,
+          "occluder": 165
+        }
+      }
+    ],
+    "browser_was_foreground": true,
+    "foreground_restored": false,
+    "pair_z_order_restored": false,
+    "capture": {
+      "command": "capture web",
+      "data": {
+        "commit_unknown": false,
+        "committed": true,
+        "element_id": "4d8a0433-08fd-4ab1-aa74-9ad95cb24966",
+        "element_name": "round-1-visible-default",
+        "highlight_count": 1,
+        "highlighted": true,
+        "kind": "web",
+        "screenshot_path_rel": "./screenshot/4d8a0433-08fd-4ab1-aa74-9ad95cb24966.png",
+        "snapshot_path_rel": "./snapshot/4d8a0433-08fd-4ab1-aa74-9ad95cb24966.json"
+      },
+      "ok": true,
+      "schema_version": 1
+    }
+  },
+  {
+    "name": "round-1-offscreen-default",
+    "metrics_before": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": -635
+          },
+          "in_viewport": false
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 1080
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "metrics_after": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": -635
+          },
+          "in_viewport": false
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 1080
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "before": {
+      "foreground": 5049218,
+      "tracked_order": [
+        "occluder",
+        "browser"
+      ],
+      "ranks": {
+        "occluder": 159,
+        "browser": 165
+      }
+    },
+    "after": {
+      "foreground": 199716,
+      "tracked_order": [
+        "browser",
+        "occluder"
+      ],
+      "ranks": {
+        "browser": 157,
+        "occluder": 165
+      }
+    },
+    "events": [
+      {
+        "elapsed_ms": 3.31,
+        "foreground": 5049218,
+        "tracked_order": [
+          "occluder",
+          "browser"
+        ],
+        "ranks": {
+          "occluder": 159,
+          "browser": 165
+        }
+      },
+      {
+        "elapsed_ms": 225.16,
+        "foreground": 199716,
+        "tracked_order": [
+          "browser",
+          "occluder"
+        ],
+        "ranks": {
+          "browser": 157,
+          "occluder": 165
+        }
+      }
+    ],
+    "browser_was_foreground": true,
+    "foreground_restored": false,
+    "pair_z_order_restored": false,
+    "capture": {
+      "command": "capture web",
+      "data": {
+        "commit_unknown": false,
+        "committed": true,
+        "element_id": "bef4a1a8-308c-40da-98f2-7e08715cae38",
+        "element_name": "round-1-offscreen-default",
+        "highlight_count": 1,
+        "highlighted": true,
+        "kind": "web",
+        "screenshot_path_rel": "./screenshot/bef4a1a8-308c-40da-98f2-7e08715cae38.png",
+        "snapshot_path_rel": "./snapshot/bef4a1a8-308c-40da-98f2-7e08715cae38.json"
+      },
+      "ok": true,
+      "schema_version": 1
+    }
+  },
+  {
+    "name": "round-2-visible-no-highlight",
+    "metrics_before": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": 445
+          },
+          "in_viewport": true
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "metrics_after": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": 445
+          },
+          "in_viewport": true
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "before": {
+      "foreground": 5049218,
+      "tracked_order": [
+        "occluder",
+        "browser"
+      ],
+      "ranks": {
+        "occluder": 159,
+        "browser": 165
+      }
+    },
+    "after": {
+      "foreground": 5049218,
+      "tracked_order": [
+        "occluder",
+        "browser"
+      ],
+      "ranks": {
+        "occluder": 159,
+        "browser": 165
+      }
+    },
+    "events": [
+      {
+        "elapsed_ms": 3.43,
+        "foreground": 5049218,
+        "tracked_order": [
+          "occluder",
+          "browser"
+        ],
+        "ranks": {
+          "occluder": 159,
+          "browser": 165
+        }
+      }
+    ],
+    "browser_was_foreground": false,
+    "foreground_restored": true,
+    "pair_z_order_restored": true,
+    "capture": {
+      "command": "capture web",
+      "data": {
+        "commit_unknown": false,
+        "committed": true,
+        "element_id": "f3243bae-edd2-486c-9da0-6ff03759e509",
+        "element_name": "round-2-visible-no-highlight",
+        "kind": "web",
+        "screenshot_path_rel": "./screenshot/f3243bae-edd2-486c-9da0-6ff03759e509.png",
+        "snapshot_path_rel": "./snapshot/f3243bae-edd2-486c-9da0-6ff03759e509.json"
+      },
+      "ok": true,
+      "schema_version": 1
+    }
+  },
+  {
+    "name": "round-2-visible-default",
+    "metrics_before": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": 445
+          },
+          "in_viewport": true
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "metrics_after": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": 445
+          },
+          "in_viewport": true
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "before": {
+      "foreground": 5049218,
+      "tracked_order": [
+        "occluder",
+        "browser"
+      ],
+      "ranks": {
+        "occluder": 159,
+        "browser": 165
+      }
+    },
+    "after": {
+      "foreground": 199716,
+      "tracked_order": [
+        "browser",
+        "occluder"
+      ],
+      "ranks": {
+        "browser": 157,
+        "occluder": 165
+      }
+    },
+    "events": [
+      {
+        "elapsed_ms": 2.65,
+        "foreground": 5049218,
+        "tracked_order": [
+          "occluder",
+          "browser"
+        ],
+        "ranks": {
+          "occluder": 159,
+          "browser": 165
+        }
+      },
+      {
+        "elapsed_ms": 173.34,
+        "foreground": 199716,
+        "tracked_order": [
+          "browser",
+          "occluder"
+        ],
+        "ranks": {
+          "browser": 157,
+          "occluder": 165
+        }
+      }
+    ],
+    "browser_was_foreground": true,
+    "foreground_restored": false,
+    "pair_z_order_restored": false,
+    "capture": {
+      "command": "capture web",
+      "data": {
+        "commit_unknown": false,
+        "committed": true,
+        "element_id": "95e7fc0b-c6c8-4ec8-945c-b33dbb776475",
+        "element_name": "round-2-visible-default",
+        "highlight_count": 1,
+        "highlighted": true,
+        "kind": "web",
+        "screenshot_path_rel": "./screenshot/95e7fc0b-c6c8-4ec8-945c-b33dbb776475.png",
+        "snapshot_path_rel": "./snapshot/95e7fc0b-c6c8-4ec8-945c-b33dbb776475.json"
+      },
+      "ok": true,
+      "schema_version": 1
+    }
+  },
+  {
+    "name": "round-2-offscreen-default",
+    "metrics_before": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": -635
+          },
+          "in_viewport": false
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 1080
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "metrics_after": {
+      "matches": [
+        {
+          "box": {
+            "height": 32,
+            "width": 1033,
+            "x": 1181,
+            "y": -635
+          },
+          "in_viewport": false
+        }
+      ],
+      "scrolls": [
+        {
+          "index": 0,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "index": 1,
+          "url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form-content",
+          "x": 0,
+          "y": 1080
+        }
+      ],
+      "viewport": {
+        "height": 1172,
+        "width": 2326
+      }
+    },
+    "before": {
+      "foreground": 5049218,
+      "tracked_order": [
+        "occluder",
+        "browser"
+      ],
+      "ranks": {
+        "occluder": 159,
+        "browser": 165
+      }
+    },
+    "after": {
+      "foreground": 199716,
+      "tracked_order": [
+        "browser",
+        "occluder"
+      ],
+      "ranks": {
+        "browser": 157,
+        "occluder": 165
+      }
+    },
+    "events": [
+      {
+        "elapsed_ms": 3.52,
+        "foreground": 5049218,
+        "tracked_order": [
+          "occluder",
+          "browser"
+        ],
+        "ranks": {
+          "occluder": 159,
+          "browser": 165
+        }
+      },
+      {
+        "elapsed_ms": 226.48,
+        "foreground": 199716,
+        "tracked_order": [
+          "browser",
+          "occluder"
+        ],
+        "ranks": {
+          "browser": 157,
+          "occluder": 165
+        }
+      }
+    ],
+    "browser_was_foreground": true,
+    "foreground_restored": false,
+    "pair_z_order_restored": false,
+    "capture": {
+      "command": "capture web",
+      "data": {
+        "commit_unknown": false,
+        "committed": true,
+        "element_id": "1859d668-74db-4d7f-b042-fe8707160a71",
+        "element_name": "round-2-offscreen-default",
+        "highlight_count": 1,
+        "highlighted": true,
+        "kind": "web",
+        "screenshot_path_rel": "./screenshot/1859d668-74db-4d7f-b042-fe8707160a71.png",
+        "snapshot_path_rel": "./snapshot/1859d668-74db-4d7f-b042-fe8707160a71.json"
+      },
+      "ok": true,
+      "schema_version": 1
+    }
+  }
+]

@@ -1,0 +1,12 @@
+test_cli_build_failure_aborts_desktop_preparation (test_build_test_cli.CliBuildTests.test_cli_build_failure_aborts_desktop_preparation) ... ok
+test_cli_path_is_absolute_and_belongs_to_selected_worktree (test_build_test_cli.CliBuildTests.test_cli_path_is_absolute_and_belongs_to_selected_worktree) ... ok
+test_plan_builds_locked_release_cli_for_selected_worktree (test_build_test_cli.CliBuildTests.test_plan_builds_locked_release_cli_for_selected_worktree) ... ok
+test_prepare_desktop_executes_cli_without_repeating_cleanup (test_build_test_cli.CliBuildTests.test_prepare_desktop_executes_cli_without_repeating_cleanup) ... ok
+test_ready_notice_prints_copyable_absolute_cli_commands (test_build_test_cli.CliBuildTests.test_ready_notice_prints_copyable_absolute_cli_commands) ... ok
+test_workflow_builds_and_announces_cli_before_dev (test_build_test_cli.WorkflowIntegrationTests.test_workflow_builds_and_announces_cli_before_dev) ... ok
+test_workflow_restores_provider_and_never_starts_dev_on_cli_failure (test_build_test_cli.WorkflowIntegrationTests.test_workflow_restores_provider_and_never_starts_dev_on_cli_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.006s
+
+OK

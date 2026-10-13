@@ -1,0 +1,32 @@
+Act on observed UIA/ACC nodes. Failures are never replayed
+
+Usage: uia.exe win [OPTIONS] <COMMAND>
+
+Commands:
+  click    Activate the window and click the visible element center once or twice
+  input    Input text using an explicit Runtime strategy; default replaces the native value
+  press    Focus the element and press a key/chord, such as Enter or Control+A
+  hover    Activate the window and hover the observed element center
+  check    Set a checkbox/radio to checked through Runtime's native control action
+  uncheck  Set a checkbox to unchecked through Runtime's native control action
+  select   Select a control option by exact text (case-insensitive) or zero-based index
+  scroll   Hover the target and scroll by wheel ticks (one tick = 120 native wheel units)
+  drag     Drag a UIA element onto another ref or by a relative screen-pixel displacement
+  help     Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help  Print help
+
+Options:
+      --debug
+          Enable diagnostic logs on stderr using --format (currently includes timings)
+      --format <FORMAT>
+          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]
+      --pipe <PIPE>
+          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\.\pipe\UIAutoma.Automation.v1]
+      --connect-timeout-ms <CONNECT_TIMEOUT_MS>
+          Maximum pipe connection wait (milliseconds) [default: 2000]
+      --timeout-ms <TIMEOUT_MS>
+          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)
+      --max-response-bytes <MAX_RESPONSE_BYTES>
+          Maximum response bytes, including newline [default: 4194304]

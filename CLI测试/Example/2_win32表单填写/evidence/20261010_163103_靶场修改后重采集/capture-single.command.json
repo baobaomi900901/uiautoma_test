@@ -1,0 +1,21 @@
+{
+  "exit_code": 0,
+  "args": [
+    "capture",
+    "win",
+    "--session",
+    "c6b1e454-c4c1-4311-a889-d0f22a768023",
+    "--snapshot",
+    "1",
+    "--ref",
+    "e41",
+    "--package",
+    "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写",
+    "--name",
+    "城市（单选）",
+    "--no-highlight",
+    "--format",
+    "json"
+  ],
+  "recorded_at": "2026-10-10T16:32:24.7477969+08:00"
+}

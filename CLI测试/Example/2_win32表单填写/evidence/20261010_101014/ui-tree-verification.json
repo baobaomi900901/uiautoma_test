@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "exit_code": 0,
+  "window_title": "Win32 靶场 - UIA",
+  "hwnd": 8524180,
+  "returned_descendants": 56,
+  "truncated": false,
+  "budget_exhausted": false,
+  "one_shot_session_closed": true,
+  "original_observation_closed": true,
+  "environment_file": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\evidence\\20261010_101014\\environment.json"
+}

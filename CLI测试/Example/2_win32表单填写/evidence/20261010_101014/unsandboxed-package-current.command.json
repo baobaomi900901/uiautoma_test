@@ -1,0 +1,9 @@
+{
+  "args": [
+    "package",
+    "current",
+    "--format",
+    "json"
+  ],
+  "exit_code": 0
+}

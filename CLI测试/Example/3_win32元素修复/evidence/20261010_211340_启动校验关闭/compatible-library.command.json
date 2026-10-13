@@ -1,0 +1,9 @@
+{
+  "command": [
+    "D:\\code\\元素库\\sdk测试\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-c",
+    "import runpy; from pathlib import Path; n=runpy.run_path('D:\\\\code\\\\元素库\\\\CLI测试\\\\Example\\\\3_win32元素修复\\\\main.py'); n['main'].__globals__['LIBRARY_DIR']=Path('D:\\\\code\\\\元素库\\\\CLI测试\\\\Example\\\\3_win32元素修复\\\\evidence\\\\20261010_211340_启动校验关闭\\\\compatible-library'); raise SystemExit(n['main']())"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,113 @@
+{
+  "recorded_at": "2026-10-09T11:25:26.4111625+08:00",
+  "state": "VERIFIED",
+  "scope": "CLI basic smoke only",
+  "metadata": {
+    "tested_at": "2026-10-09T11:23:57.916433+08:00",
+    "provider_source": {
+      "git_root": "D:/code/rust_uia",
+      "branch": "main",
+      "commit": "b700f9238134f57da83ab478a5ee55337ade1082",
+      "path": "D:\\code\\rust_uia"
+    },
+    "desktop_source": {
+      "git_root": "D:/code/desktop",
+      "branch": "main",
+      "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+      "path": "D:\\code\\desktop"
+    },
+    "sdk_test_directory": "D:\\code\\元素库\\sdk测试",
+    "cli_test_directory": "D:\\code\\元素库\\CLI测试",
+    "cli_path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+    "cli_sha256": "c4cc52c93dac523f354c8bae6b08da412e6b16e5fa8d2b14917b233a624fccb8",
+    "cli_size_bytes": 2688000,
+    "runtime_pipe": "\\\\.\\pipe\\UIAutoma.Automation.v1",
+    "baseline": {
+      "runtime_pid": 95580,
+      "package": {
+        "has_current_package": true,
+        "package_dir": "D:\\code\\元素库\\260902_web元素"
+      },
+      "browser_refs": [
+        "1aa68c9e34234208",
+        "28f7f572c0f147b0",
+        "5b1ca0c9bdc8444e",
+        "7e407bdcc2054cb9",
+        "9ee465bef5194669",
+        "a4080868dc5c4047",
+        "ba111a8daeeb46da",
+        "c353a87613714038"
+      ],
+      "connected_browser_sessions": 1,
+      "win_sessions": [],
+      "web_sessions": []
+    },
+    "cli_version_output": "uia 0.1.1",
+    "final_state": {
+      "runtime_pid": 95580,
+      "package": {
+        "has_current_package": true,
+        "package_dir": "D:\\code\\元素库\\260902_web元素"
+      },
+      "browser_refs": [
+        "1aa68c9e34234208",
+        "28f7f572c0f147b0",
+        "5b1ca0c9bdc8444e",
+        "7e407bdcc2054cb9",
+        "9ee465bef5194669",
+        "a4080868dc5c4047",
+        "ba111a8daeeb46da",
+        "c353a87613714038"
+      ],
+      "connected_browser_sessions": 1,
+      "win_sessions": [],
+      "web_sessions": []
+    }
+  },
+  "attempts": [
+    {
+      "tested_at": "2026-10-09T11:21:57.343502+08:00",
+      "summary": {
+        "PASS": 84,
+        "FAIL": 0,
+        "BLOCKED": 1,
+        "total": 85,
+        "exit_code": 2
+      }
+    },
+    {
+      "tested_at": "2026-10-09T11:23:50.202477+08:00",
+      "summary": {
+        "PASS": 85,
+        "FAIL": 0,
+        "BLOCKED": 0,
+        "total": 85,
+        "exit_code": 0
+      }
+    },
+    {
+      "tested_at": "2026-10-09T11:23:54.11238+08:00",
+      "summary": {
+        "PASS": 85,
+        "FAIL": 0,
+        "BLOCKED": 0,
+        "total": 85,
+        "exit_code": 0
+      }
+    },
+    {
+      "tested_at": "2026-10-09T11:23:57.916433+08:00",
+      "summary": {
+        "PASS": 85,
+        "FAIL": 0,
+        "BLOCKED": 0,
+        "total": 85,
+        "exit_code": 0
+      }
+    }
+  ],
+  "final_consecutive_passes": 3,
+  "actual_cli_cases_per_run": 85,
+  "product_failures": 0,
+  "initial_blocked_case": "browser_empty_json: transient foreground change; causality unresolved, kept as BLOCKED"
+}

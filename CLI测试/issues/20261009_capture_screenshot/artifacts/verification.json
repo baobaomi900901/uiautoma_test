@@ -1,0 +1,9 @@
+{
+  "controlled_rounds": 2,
+  "controlled_captures": 6,
+  "occluded_pngs_visually_checked": 2,
+  "correct_pngs_visually_checked": 2,
+  "offscreen_pngs_missing": 2,
+  "original_library_elements": 2,
+  "cleanup_verified": true
+}

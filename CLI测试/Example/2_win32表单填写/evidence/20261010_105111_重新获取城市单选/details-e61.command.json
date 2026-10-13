@@ -1,0 +1,17 @@
+{
+  "exit_code": 0,
+  "args": [
+    "observe",
+    "win",
+    "details",
+    "--session",
+    "1eaf28c5-ca81-4d0f-bfbb-3d9b5f82efbe",
+    "--snapshot",
+    "2",
+    "--ref",
+    "e61",
+    "--no-highlight",
+    "--format",
+    "json"
+  ]
+}

@@ -1,0 +1,1 @@
+{"command":"windows list","error":{"code":"runtime_unavailable","message":"拒绝访问。 (os error 5)"},"ok":false,"schema_version":1}

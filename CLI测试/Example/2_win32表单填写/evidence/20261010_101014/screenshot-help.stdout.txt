@@ -1,0 +1,25 @@
+Activate a window and capture it or an observed UIA/ACC element
+
+Usage: uia.exe screenshot win [OPTIONS] --out <OUT>
+
+Options:
+      --hwnd <HWND>          
+      --session <SESSION>    Existing public observation session; requires --snapshot
+      --snapshot <SNAPSHOT>  
+      --ref <REF>            Screenshot one observed element instead of its window/page
+      --out <OUT>            PNG file path; relative paths use the CLI working directory. Existing files are replaced
+  -h, --help                 Print help
+
+Options:
+      --debug
+          Enable diagnostic logs on stderr using --format (currently includes timings)
+      --format <FORMAT>
+          Output format, including errors; invalid format options fall back to text [default: text] [possible values: json, text]
+      --pipe <PIPE>
+          Local Runtime pipe path [env: UIAUTOMA_AUTOMATION_PIPE_NAME=] [default: \\.\pipe\UIAutoma.Automation.v1]
+      --connect-timeout-ms <CONNECT_TIMEOUT_MS>
+          Maximum pipe connection wait (milliseconds) [default: 2000]
+      --timeout-ms <TIMEOUT_MS>
+          Deadline per RPC in milliseconds (capture: 120000; other commands: 30000)
+      --max-response-bytes <MAX_RESPONSE_BYTES>
+          Maximum response bytes, including newline [default: 4194304]

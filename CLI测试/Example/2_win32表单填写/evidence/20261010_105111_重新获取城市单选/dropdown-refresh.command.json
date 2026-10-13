@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "args": [
+    "observe",
+    "win",
+    "refresh",
+    "--session",
+    "1eaf28c5-ca81-4d0f-bfbb-3d9b5f82efbe",
+    "--snapshot",
+    "1",
+    "--format",
+    "json"
+  ]
+}

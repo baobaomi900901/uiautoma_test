@@ -1,0 +1,78 @@
+{
+  "similar_asset_id": "2f3403c2-5c9a-495d-8d72-c1307f80f800",
+  "matches": [
+    {
+      "name": "杭州",
+      "automation_id": "49974",
+      "ref": "e47",
+      "rect": {
+        "height": 30,
+        "width": 74,
+        "x": 2626,
+        "y": 450
+      },
+      "is_requested_city": true
+    },
+    {
+      "name": "深圳",
+      "automation_id": "49973",
+      "ref": "e46",
+      "rect": {
+        "height": 30,
+        "width": 74,
+        "x": 2548,
+        "y": 450
+      },
+      "is_requested_city": true
+    },
+    {
+      "name": "广州",
+      "automation_id": "49972",
+      "ref": "e45",
+      "rect": {
+        "height": 30,
+        "width": 74,
+        "x": 2470,
+        "y": 450
+      },
+      "is_requested_city": true
+    },
+    {
+      "name": "上海",
+      "automation_id": "49971",
+      "ref": "e44",
+      "rect": {
+        "height": 30,
+        "width": 74,
+        "x": 2392,
+        "y": 450
+      },
+      "is_requested_city": true
+    },
+    {
+      "name": "北京",
+      "automation_id": "49970",
+      "ref": "e43",
+      "rect": {
+        "height": 30,
+        "width": 74,
+        "x": 2314,
+        "y": 450
+      },
+      "is_requested_city": true
+    }
+  ],
+  "single_scope_passed": true,
+  "expected_names": [
+    "北京",
+    "上海",
+    "广州",
+    "深圳",
+    "杭州"
+  ],
+  "actual_count": 5,
+  "single_asset_id": "11e97a62-472a-47f2-bbcc-e0df7a42937d",
+  "verification_method": "CLI details geometry compared with package validate rectangles; observation closed before persistent-asset validation.",
+  "expected_count": 5,
+  "similar_scope_passed": true
+}

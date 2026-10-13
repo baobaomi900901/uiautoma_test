@@ -1,0 +1,13 @@
+{
+  "args": [
+    "screenshot",
+    "win",
+    "--hwnd",
+    "8524180",
+    "--out",
+    "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\evidence\\20261010_城市多选状态\\current.png",
+    "--format",
+    "json"
+  ],
+  "exit_code": 0
+}

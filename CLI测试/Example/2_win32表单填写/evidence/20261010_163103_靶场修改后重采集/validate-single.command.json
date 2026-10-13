@@ -1,0 +1,12 @@
+{
+  "args": [
+    "package",
+    "validate",
+    "--id",
+    "11e97a62-472a-47f2-bbcc-e0df7a42937d",
+    "--format",
+    "json"
+  ],
+  "recorded_at": "2026-10-10T16:33:02.4651272+08:00",
+  "exit_code": 0
+}

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "D:\code\元素库\CLI测试\Example\2_win32表单填写\evidence\20261010_192424_迁移element目录\verify_migration.py", line 4, in <module>
+    import main
+ModuleNotFoundError: No module named 'main'

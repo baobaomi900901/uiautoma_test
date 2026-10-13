@@ -1,0 +1,10 @@
+{
+  "command": [
+    "D:\\code\\元素库\\sdk测试\\.venv\\Scripts\\python.exe",
+    "-B",
+    "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复\\main.py"
+  ],
+  "working_directory": "D:\\code\\元素库\\sdk测试",
+  "exit_code": 0,
+  "script_sha256": "1463F54E4C1A11787362FC8A4B91CE1436ABFE0DB949F1963D039BF561D02B36"
+}

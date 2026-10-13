@@ -1,0 +1,10 @@
+{
+  "command": [
+    "D:\\code\\元素库\\sdk测试\\.venv\\Scripts\\python.exe",
+    "-B",
+    "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复\\evidence\\20261010_211340_启动校验关闭\\verify_lifecycle.py"
+  ],
+  "working_directory": "D:\\code\\元素库\\sdk测试",
+  "exit_code": 0,
+  "script_sha256": "6325249662DD9E5521873CD7A5C25735F562CE3F7DA0501DF7449D0715A961A9"
+}

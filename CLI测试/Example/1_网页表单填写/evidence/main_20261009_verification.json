@@ -1,0 +1,31 @@
+{
+  "verified_at": "2026-10-09T16:38:01.881864+08:00",
+  "script": "D:\\code\\元素库\\CLI测试\\Example\\1_网页表单填写\\main.py",
+  "script_sha256": "cd25f85046c4d12662d3f7bd1a1ebdf0b0d778a306f0c8a88f986d7fecf00408",
+  "sdk_module": "D:\\code\\desktop\\sdk\\src\\uiautoma\\__init__.py",
+  "sources": {
+    "rust_uia": {
+      "path": "D:\\code\\rust_uia",
+      "commit": "b700f9238134f57da83ab478a5ee55337ade1082"
+    },
+    "desktop": {
+      "path": "D:\\code\\desktop",
+      "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa"
+    }
+  },
+  "sdk_environment": "D:\\code\\元素库\\sdk测试\\.venv\\Scripts\\python.exe",
+  "current_library": "D:\\code\\元素库\\CLI测试\\Example\\1_网页表单填写\\element",
+  "page_url": "https://baobaomi900901.github.io/xpath/#/iframe-shadow-form",
+  "page_title": "iframe + Shadow 表单测试",
+  "independent_dom_read": {
+    "ant": "这是_ant_输入框",
+    "native": "这是_原生_输入框"
+  },
+  "checks": {
+    "library_retained": true,
+    "correct_page": true,
+    "ant_value": true,
+    "native_value": true
+  },
+  "passed": true
+}

@@ -1,0 +1,1 @@
+{"command":"observe win open","data":{"backend":"win","root":{"backend":"uia","children_state":"unexpanded","control_type":"Window","name":"Win32 靶场 - UIA","path":[],"ref":"e1"},"session_id":"9c6a00fe-dce3-48cd-a513-48628a13d8c0","snapshot_id":1,"target":{"native_handle":8524180,"process_id":60380}},"ok":true,"schema_version":1}

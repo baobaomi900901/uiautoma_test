@@ -1,0 +1,87 @@
+--- D:\code\.tools\build-test.py
++++ D:\code\元素库\.pytest_tmp\build-test-cli\candidate\build-test.py
+@@ -20,6 +20,7 @@
+ 
+ CONFIG_VERSION = 1
+ SDK_PYTHON_VERSION = "3.13.14"
++CLI_TARGET = "x86_64-pc-windows-msvc"
+ SCRIPT_DIR = Path(__file__).resolve().parent
+ CONFIG_PATH = SCRIPT_DIR / "build-test.config.json"
+ PROVIDER_FILES = (
+@@ -1592,6 +1593,10 @@
+         raise WorkflowError(f"缺少 Desktop Helper 资产: {rendered}")
+ 
+ 
++def cli_executable_path(desktop: Path) -> Path:
++    return desktop.resolve() / "cli" / "target" / CLI_TARGET / "release" / "uia.exe"
++
++
+ def desktop_command_plan(desktop: Path, powershell: str) -> list[CommandSpec]:
+     cleanup = desktop / "scripts" / "dev_tauri.ps1"
+     return [
+@@ -1627,6 +1632,22 @@
+             desktop,
+             CommandStatus("Web 组件", "准备中", "准备完成"),
+         ),
++        CommandSpec(
++            (
++                "cargo",
++                "build",
++                "--manifest-path",
++                "cli/Cargo.toml",
++                "--release",
++                "--locked",
++                "--target",
++                CLI_TARGET,
++                "--target-dir",
++                "cli/target",
++            ),
++            desktop,
++            CommandStatus("CLI", "构建中", "构建完成"),
++        ),
+     ]
+ 
+ 
+@@ -1722,6 +1743,25 @@
+     _CONSOLE.raw(message)
+ 
+ 
++def notify_cli_test_ready(
++    cli: Path,
++    *,
++    write: Callable[[str], object] | None = None,
++) -> None:
++    message = (
++        "\nCLI 测试环境已就绪，本次 uia.exe 路径：\n"
++        f"  {cli}\n\n"
++        "请在 dev 运行后新开 PowerShell 终端：\n\n"
++        f'  & "{cli}" --help\n'
++        f'  & "{cli}" status\n\n'
++        "向测试 Agent 提供源码目录时，请同时登记上述 CLI 绝对路径。\n"
++    )
++    if write is not None:
++        write(message)
++        return
++    _CONSOLE.raw(message)
++
++
+ def run_workflow(config_path: Path = CONFIG_PATH) -> int:
+     if os.name != "nt":
+         raise WorkflowError("build-test.py 只支持 Windows")
+@@ -1837,7 +1877,7 @@
+         )
+         _CONSOLE.result("Provider", "临时安装完成")
+ 
+-        _CONSOLE.stage(5, 6, "准备 Desktop 与浏览器组件")
++        _CONSOLE.stage(5, 6, "准备 Desktop、CLI 与浏览器组件")
+         try:
+             with provider_patch:
+                 prepare_desktop(
+@@ -1850,6 +1890,7 @@
+                 _CONSOLE.result("Host", "安装并注册完成")
+                 notify_extension_reload()
+                 notify_sdk_test_ready(sdk_test, sdk_environment)
++                notify_cli_test_ready(cli_executable_path(desktop_worktree))
+                 _CONSOLE.stage(6, 6, "启动 UIAutoma")
+                 ensure_dev_port_available(desktop_worktree)
+                 _CONSOLE.result(

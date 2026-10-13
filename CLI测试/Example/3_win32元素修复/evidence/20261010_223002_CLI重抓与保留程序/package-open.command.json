@@ -1,0 +1,14 @@
+{
+  "cli_path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+  "args": [
+    "package",
+    "open",
+    "--path",
+    "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复\\element",
+    "--in-app",
+    "--format",
+    "json"
+  ],
+  "working_directory": "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复",
+  "exit_code": 0
+}

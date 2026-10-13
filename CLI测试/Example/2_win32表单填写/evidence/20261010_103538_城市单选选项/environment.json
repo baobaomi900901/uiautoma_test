@@ -1,0 +1,21 @@
+{
+  "recorded_at": "2026-10-10T10:35:38.8795403",
+  "rust_uia": {
+    "path": "D:\\code\\rust_uia",
+    "commit": "b700f9238134f57da83ab478a5ee55337ade1082"
+  },
+  "desktop": {
+    "path": "D:\\code\\desktop",
+    "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa"
+  },
+  "sdk_test_directory": "D:\\code\\元素库\\sdk测试",
+  "cli_test_directory": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写",
+  "cli": {
+    "version_exit_code": 0,
+    "path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+    "sha256": "C4CC52C93DAC523F354C8BAE6B08DA412E6B16E5FA8D2B14917B233A624FCCB8",
+    "version_output": [
+      "uia 0.1.1"
+    ]
+  }
+}

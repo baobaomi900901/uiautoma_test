@@ -1,0 +1,5 @@
+[1/5] 打开程序：D:\code\xpath\WIN32\dist\UIA 版（标准 Win32 控件_随机表单）.exe
+  本次启动 PID：156548
+[2/5] 连接元素库：D:\code\元素库\CLI测试\Example\3_win32元素修复\evidence\20261010_211340_启动校验关闭\absent-library
+[5/5] 关闭本次启动的程序
+  程序已关闭，PID：156548

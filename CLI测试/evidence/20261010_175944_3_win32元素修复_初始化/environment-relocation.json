@@ -1,0 +1,25 @@
+{
+  "test_time": "2026-10-10T19:24:13.7866440+08:00",
+  "provider_source": {
+    "path": "D:\\code\\rust_uia",
+    "git_root": "D:/code/rust_uia",
+    "branch": "main",
+    "commit": "b700f9238134f57da83ab478a5ee55337ade1082"
+  },
+  "desktop_source": {
+    "path": "D:\\code\\desktop",
+    "git_root": "D:/code/desktop",
+    "branch": "main",
+    "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa"
+  },
+  "sdk_test_directory": "D:\\code\\元素库\\sdk测试",
+  "cli_test_directory": "D:\\code\\元素库\\CLI测试",
+  "library_directory": "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复\\element",
+  "cli": {
+    "path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+    "sha256": "C4CC52C93DAC523F354C8BAE6B08DA412E6B16E5FA8D2B14917B233A624FCCB8",
+    "version": "uia 0.1.1",
+    "version_exit_code": 0
+  },
+  "original_library_directory": "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复"
+}

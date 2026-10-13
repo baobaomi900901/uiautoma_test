@@ -1,0 +1,6 @@
+{
+  "exit_code": 0,
+  "command": "uv run --offline .\\main.py",
+  "working_directory": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写",
+  "recorded_at": "2026-10-10T17:01:05.8893290+08:00"
+}

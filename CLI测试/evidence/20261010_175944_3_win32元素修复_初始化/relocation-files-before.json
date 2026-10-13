@@ -1,0 +1,27 @@
+{
+  "source_dir": "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复",
+  "destination_dir": "D:\\code\\元素库\\CLI测试\\Example\\3_win32元素修复\\element",
+  "items": [
+    "package.json",
+    "elements.json",
+    "images.json",
+    "snapshot",
+    "screenshot",
+    "icon",
+    "images"
+  ],
+  "files": [
+    {
+      "relative_path": "package.json",
+      "sha256": "506DC4E183C91314BFF6FA9B17A65DF7B8E87C160DE591E3FEE3FB7C257E2267"
+    },
+    {
+      "relative_path": "elements.json",
+      "sha256": "4EA5E45828CC630698C2B6DD78DEC2319DAEAD3354F31C205EE1912A8652FAF2"
+    },
+    {
+      "relative_path": "images.json",
+      "sha256": "4EA5E45828CC630698C2B6DD78DEC2319DAEAD3354F31C205EE1912A8652FAF2"
+    }
+  ]
+}

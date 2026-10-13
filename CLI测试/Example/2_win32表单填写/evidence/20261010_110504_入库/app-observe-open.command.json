@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "args": [
+    "observe",
+    "win",
+    "open",
+    "--hwnd",
+    "5378502",
+    "--format",
+    "json"
+  ]
+}

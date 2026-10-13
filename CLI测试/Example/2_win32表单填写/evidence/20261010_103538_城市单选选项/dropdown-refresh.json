@@ -1,0 +1,1 @@
+{"command":"observe win refresh","data":{"backend":"win","root":{"backend":"uia","children_state":"unexpanded","control_type":"Window","name":"Win32 靶场 - UIA","path":[],"ref":"e1"},"session_id":"e27dd589-51e1-49c3-871d-b51da7a33952","snapshot_id":2,"target":{"native_handle":8524180,"process_id":60380}},"ok":true,"schema_version":1}

@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "args": [
+    "win",
+    "click",
+    "--session",
+    "e27dd589-51e1-49c3-871d-b51da7a33952",
+    "--snapshot",
+    "2",
+    "--ref",
+    "e55",
+    "--format",
+    "json"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "args": [
+    "windows",
+    "list",
+    "--format",
+    "json"
+  ],
+  "exit_code": 0
+}

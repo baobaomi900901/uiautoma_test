@@ -1,0 +1,5 @@
+{
+  "command": "python -W error evidence/20261010_192424_迁移element目录/verify_migration.py",
+  "recorded_at": "2026-10-10T19:25:37.8016038+08:00",
+  "exit_code": 0
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "relative_path": "package.json",
+    "length": 103,
+    "sha256": "B8AFDFA3857F75B056F1D26362A3310590175D2753B040DD14D74E1A6CF31D7D"
+  },
+  {
+    "relative_path": "elements.json",
+    "length": 491,
+    "sha256": "7E022DB42BF94ECE211BFE6E12ECA7DC049F57F7474E4CB72B64D83539BB2B7F"
+  },
+  {
+    "relative_path": "images.json",
+    "length": 19,
+    "sha256": "4EA5E45828CC630698C2B6DD78DEC2319DAEAD3354F31C205EE1912A8652FAF2"
+  },
+  {
+    "relative_path": "screenshot\\11e97a62-472a-47f2-bbcc-e0df7a42937d.png",
+    "length": 108092,
+    "sha256": "589266AF522C1B94ADEF07FFE933249C0C250318544CD453C158FA618ACBCEA4"
+  },
+  {
+    "relative_path": "screenshot\\2f3403c2-5c9a-495d-8d72-c1307f80f800.png",
+    "length": 2212793,
+    "sha256": "B7FCF4E152F997AA932F227D895870189B40EBC60ED4267CA38161130DE9B409"
+  },
+  {
+    "relative_path": "snapshot\\11e97a62-472a-47f2-bbcc-e0df7a42937d.json",
+    "length": 1515,
+    "sha256": "11299E72294D1BFE00353B2D1D815896AF88747DA28C7810B3D3EC30E860B601"
+  },
+  {
+    "relative_path": "snapshot\\2f3403c2-5c9a-495d-8d72-c1307f80f800.json",
+    "length": 1549,
+    "sha256": "5B226A600A9E7F010F087ABE80FDB5646F766FD9CC7A714E4255897928726DCC"
+  }
+]

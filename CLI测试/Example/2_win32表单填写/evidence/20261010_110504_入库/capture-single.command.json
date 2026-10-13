@@ -1,0 +1,20 @@
+{
+  "args": [
+    "capture",
+    "win",
+    "--session",
+    "50ddd049-55b8-47c2-a745-ee1e889b5182",
+    "--snapshot",
+    "1",
+    "--ref",
+    "e26",
+    "--package",
+    "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写",
+    "--name",
+    "城市（单选）",
+    "--no-highlight",
+    "--format",
+    "json"
+  ],
+  "exit_code": 0
+}

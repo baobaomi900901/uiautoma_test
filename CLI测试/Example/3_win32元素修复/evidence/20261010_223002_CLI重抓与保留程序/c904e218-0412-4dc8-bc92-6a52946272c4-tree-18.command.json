@@ -1,0 +1,22 @@
+{
+  "cli_path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe",
+  "args": [
+    "observe",
+    "win",
+    "subtree",
+    "--session",
+    "3b56cf9d-7e81-47de-8f4a-eae6641c03d8",
+    "--snapshot",
+    "18",
+    "--max-depth",
+    "42",
+    "--max-nodes",
+    "800",
+    "--budget-ms",
+    "10000",
+    "--format",
+    "json"
+  ],
+  "working_directory": "D:\\code\\元素库",
+  "exit_code": 0
+}

@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "args": [
+    "package",
+    "validate",
+    "--id",
+    "22b21bda-3fd1-4549-b0da-beeae579e166",
+    "--format",
+    "json"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "session_id": "1716dfd6-a766-4e75-b27c-cd2dbacfc450",
+  "snapshot_id": 1,
+  "page_ref": "e9b72d74f2bf45af",
+  "package": "D:\\code\\元素库\\CLI测试\\Example\\1_网页表单填写\\element",
+  "targets": [
+    {
+      "ref": "f1e41",
+      "id": "form-controls-ant-text",
+      "name": "文本输入框_ant"
+    },
+    {
+      "ref": "f1e50",
+      "id": "form-controls-native-text",
+      "name": "文本输入框_原生"
+    }
+  ]
+}

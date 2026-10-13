@@ -1,0 +1,37 @@
+[
+  {
+    "name": "package.json",
+    "source": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\package.json",
+    "destination": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\element\\package.json"
+  },
+  {
+    "name": "elements.json",
+    "source": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\elements.json",
+    "destination": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\element\\elements.json"
+  },
+  {
+    "name": "images.json",
+    "source": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\images.json",
+    "destination": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\element\\images.json"
+  },
+  {
+    "name": "icon",
+    "source": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\icon",
+    "destination": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\element\\icon"
+  },
+  {
+    "name": "images",
+    "source": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\images",
+    "destination": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\element\\images"
+  },
+  {
+    "name": "screenshot",
+    "source": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\screenshot",
+    "destination": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\element\\screenshot"
+  },
+  {
+    "name": "snapshot",
+    "source": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\snapshot",
+    "destination": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\element\\snapshot"
+  }
+]

@@ -1,0 +1,1 @@
+{"command":"package validate","data":{"count":1,"failed_index":-1,"found":true,"highlight_requested":false,"id":"be4c0721-a09d-4fad-9ce6-8e68e8b3b14f","kind":"win","message":"元素校验通过","name":"姓名_修复","rects":[{"height":30,"width":430,"x":1855,"y":1466}],"status":"passed","validated":true},"ok":true,"schema_version":1}

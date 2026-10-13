@@ -1,0 +1,36 @@
+{
+  "desktop": {
+    "commit": "7f148f27c0efa8bbba1f18d86c14845ea7d639fa",
+    "path": "D:\\code\\desktop"
+  },
+  "cli": {
+    "sha256": "C4CC52C93DAC523F354C8BAE6B08DA412E6B16E5FA8D2B14917B233A624FCCB8",
+    "version_output": [
+      "uia 0.1.1"
+    ],
+    "version_exit_code": 0,
+    "path": "D:\\code\\desktop\\cli\\target\\x86_64-pc-windows-msvc\\release\\uia.exe"
+  },
+  "script_directory": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写",
+  "sdk_test_directory": "D:\\code\\元素库\\sdk测试",
+  "rust_uia": {
+    "commit": "b700f9238134f57da83ab478a5ee55337ade1082",
+    "path": "D:\\code\\rust_uia"
+  },
+  "requested_state": {
+    "multi": [
+      "北京",
+      "上海"
+    ],
+    "single": "深圳"
+  },
+  "sdk_source_directory": "D:\\code\\desktop\\sdk",
+  "sdk_import_directory": "D:\\code\\desktop\\sdk\\src",
+  "recorded_at": "2026-10-10T16:57:45.3826459+08:00",
+  "sdk_version": "0.1.1",
+  "python_executable": "C:\\Users\\moby\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+  "script": {
+    "sha256": "AADB8F74F0DFFCA188672210DDFA6993E3BE3A6C8F49972094651747891AB2F1",
+    "path": "D:\\code\\元素库\\CLI测试\\Example\\2_win32表单填写\\main.py"
+  }
+}

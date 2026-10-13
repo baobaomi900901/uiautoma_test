@@ -1,0 +1,1 @@
+{"command":"observe win open","data":{"backend":"win","root":{"backend":"uia","children_state":"unexpanded","control_type":"Window","name":"选择元素库目录（需包含 package.json）","path":[],"ref":"e1"},"session_id":"e24941d2-e3bb-4690-8c30-f6d92261c3bd","snapshot_id":1,"target":{"native_handle":13504872,"process_id":57984}},"ok":true,"schema_version":1}

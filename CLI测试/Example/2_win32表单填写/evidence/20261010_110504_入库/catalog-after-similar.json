@@ -1,0 +1,26 @@
+{
+  "groups": [
+    {
+      "id": "3627a7ee-f58b-4885-8ec3-db7481c55f3e",
+      "name": "Win32 靶场 - UIA",
+      "process_name": "win32-shooting-range-uia.exe",
+      "elements": [
+        {
+          "id": "22b21bda-3fd1-4549-b0da-beeae579e166",
+          "name": "城市（单选）",
+          "type": "win"
+        },
+        {
+          "id": "0726e92d-8380-49b2-9473-6fe4efcbe139",
+          "name": "城市（多选）选项",
+          "type": "win"
+        },
+        {
+          "id": "be988e89-f5cb-45da-a962-e4b24462d077",
+          "name": "北京",
+          "type": "win"
+        }
+      ]
+    }
+  ]
+}

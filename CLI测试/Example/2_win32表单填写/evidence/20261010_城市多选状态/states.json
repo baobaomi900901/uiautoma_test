@@ -1,0 +1,13 @@
+{
+  "field": "城市（多选）",
+  "states": {
+    "北京": true,
+    "上海": false,
+    "广州": true,
+    "深圳": false,
+    "杭州": false
+  },
+  "verification_method": "Visual inspection of current.png captured by the CLI",
+  "screenshot": "current.png",
+  "environment": "environment.json"
+}

@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "args": [
+    "observe",
+    "win",
+    "close",
+    "--session",
+    "e27dd589-51e1-49c3-871d-b51da7a33952",
+    "--format",
+    "json"
+  ]
+}
